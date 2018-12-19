@@ -29,6 +29,10 @@ This is a good representation of a possible file/class hierarchy for ResearchPac
 
 [ResearchStack](http://researchstack.org/) and [ResearchKit](http://researchkit.org/) are built on native iOS and Android which have totally different architecture than the Widget-based [Flutter](flutter.io). It hopefully doesn't affect the domain model but for wiring up the model to the UI, we should definitely implement a different approach from ResearchKit and Stack.
 
+## Naming
+
+We are following Apple's pattern when it comes to naming. There's a prefix ORK (Open Research Kit) before the names of classes, types etc. in ResearchKit, so our names are starting with the RP prefix which stands for Research Package.
+
 
 ## Getting Started
 
