@@ -20,15 +20,14 @@ The main modules of the above mentioned libraries are:
 You can get a good understading of the flow and the basic concepts.
 Also there's a useful presentation of the different AnswerFormats.
 - [Hierarchy of objects in ResearchKit](http://researchkit.org/docs/hierarchy.html)
-This is a good representation of a possible hierarchy for ResearchPackage.
+This is a good representation of a possible file/class hierarchy for ResearchPackage.
 - [Tutorial on how to use ResearchKit in Swift](https://www.raywenderlich.com/1820-researchkit-tutorial-with-swift-getting-started).
 - [Sample App for ResearchStack](https://github.com/ResearchStack/SampleApp)
 - [Sample Apps for ResearchKit in Swift](https://github.com/ResearchKit/ResearchKit/tree/master/samples)
--
 
 ## Challenges
 
-[ResearchStack](http://researchstack.org/) and [ResearchKit](http://researchkit.org/) are built on native iOS and Android which have totally different architecture than the Widget-based [Flutter](flutter.io).
+[ResearchStack](http://researchstack.org/) and [ResearchKit](http://researchkit.org/) are built on native iOS and Android which have totally different architecture than the Widget-based [Flutter](flutter.io). It hopefully doesn't affect the domain model but for wiring up the model to the UI, we should definitely implement a different approach from ResearchKit and Stack.
 
 
 ## Getting Started
