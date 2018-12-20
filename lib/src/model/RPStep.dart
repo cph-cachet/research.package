@@ -15,6 +15,13 @@ import 'RPAnswerFormat.dart';
 
 
 class RPStep {
+  final String _identifier;
+
+  String get getIdentifier => _identifier;
+
+  RPStep(this._identifier);
+
+
   // Needs to be confirmed
   StepType type;
 

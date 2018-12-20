@@ -7,5 +7,5 @@ import 'RPStep.dart';
 class FormStep extends RPStep {
   List<RPStep> steps;
 
-  FormStep(this.steps);
+  FormStep(String identifier, this.steps) : super(identifier);
 }
