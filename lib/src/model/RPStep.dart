@@ -1,31 +1,52 @@
-import 'model.dart';
-import 'RPAnswerFormat.dart';
+// The class is based on ORKConsentSignature (http://researchkit.org/docs/Classes/ORKStep.html)
+// and ConsentSignature (https://github.com/ResearchStack/ResearchStack/blob/master/backbone/src/main/java/org/researchstack/backbone/step/Step.java)
+import 'RPTask.dart';
 
 /*
   This is a universal Step class.
-
-  Maybe we can make this a super class of more specified Step classes
-  (e.g. InstructionStep, QuestionStep, VisualConsentStep).
-
-
-
- - InstructionStep
-
+  To implement a new type of step, subclass Step and add your additional properties.
 */
-
 
 class RPStep {
   final String _identifier;
+  // RS has it but RK doesn't
+  int _stepTitle;
+  bool _optional;
+  String _title;
+  String _text;
+  //TODO: Find out how we should manage the layout in flutter
+  //class stepLayoutClass
+
+
+  // The following fields are in RK but not implemented in ResearchStack
+  // These options can be developed as needed or removed if we find they are not necessary
+  bool _restorable;
+  RPTask _task;
+  bool _shouldTintImages;
+  bool _showsProgress;
+  bool _allowsBackNavigation;
+  bool _useSurveyMode;
+
+  RPStep(this._identifier);
+  RPStep.withTitle(this._identifier, this._title);
 
   String get getIdentifier => _identifier;
 
-  RPStep(this._identifier);
+  bool get isOptional => _optional;
 
+  String get getTitle => _title;
 
-  // Needs to be confirmed
-  StepType type;
+  String get getText => _text;
 
-  String title;
+  set setOptional(bool optional) {
+    this._optional = optional;
+  }
 
-  String text;
+  set setTitle(String title) {
+    this._title = title;
+  }
+
+  set setText(String text) {
+    this._text = text;
+  }
 }
