@@ -1,5 +1,5 @@
-import 'RPStep.dart';
-import 'RPTaskResult.dart';
+import '../step/RPStep.dart';
+import 'package:research_package/src/model/task/RPTaskResult.dart';
 
 /*
   This is an abstract class (interface/protocol) for Task.

@@ -1,6 +1,6 @@
-import 'RPTask.dart';
-import 'RPTaskResult.dart';
-import 'RPStep.dart';
+import 'package:research_package/src/model/task/RPTask.dart';
+import 'package:research_package/src/model/task/RPTaskResult.dart';
+import '../step/RPStep.dart';
 
 class RPOrderedTask extends RPTask {
   // This can be a list of Steps or FormStep

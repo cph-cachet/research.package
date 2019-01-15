@@ -1,10 +1,14 @@
 // The class is based on ORKConsentSignature (http://researchkit.org/docs/Classes/ORKStep.html)
 // and ConsentSignature (https://github.com/ResearchStack/ResearchStack/blob/master/backbone/src/main/java/org/researchstack/backbone/step/Step.java)
-import 'RPTask.dart';
+import 'package:research_package/src/model/task/RPTask.dart';
 
 /*
   This is a universal Step class.
   To implement a new type of step, subclass Step and add your additional properties.
+
+  Whether your app is giving instructions, presenting a form or survey,
+  obtaining consent, or running an active task, everything in the ResearchKit framework is a collection of steps ([RPStep] objects),
+  which together form a task (an RPTask object)
 */
 
 class RPStep {

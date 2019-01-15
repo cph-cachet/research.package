@@ -1,5 +1,5 @@
-import 'RPConsentSection.dart';
-import 'RPConsentSignature.dart';
+import 'package:research_package/src/model/consent/RPConsentSection.dart';
+import 'package:research_package/src/model/consent/RPConsentSignature.dart';
 
 class RPConsentDocument {
   String _title;

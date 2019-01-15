@@ -1,4 +1,4 @@
-import 'RPStep.dart';
+import 'package:research_package/src/model/step/RPStep.dart';
 
 /*
   FormStep is containing more steps so you can show them on the same screen.
