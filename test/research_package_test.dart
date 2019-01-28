@@ -8,6 +8,6 @@ void main() {
   test('check task id getter', () {
     RPOrderedTask orderedTask = RPOrderedTask(id, steps);
 
-    expect(orderedTask.getIdentifier, id);
+    expect(orderedTask.identifier, id);
   });
 }

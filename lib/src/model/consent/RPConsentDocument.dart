@@ -1,5 +1,6 @@
-import 'package:research_package/src/model/consent/RPConsentSection.dart';
-import 'package:research_package/src/model/consent/RPConsentSignature.dart';
+//import 'package:research_package/src/model/consent/RPConsentSection.dart';
+//import 'package:research_package/src/model/consent/RPConsentSignature.dart';
+part of research_package_model;
 
 class RPConsentDocument {
   String _title;
@@ -24,29 +25,31 @@ class RPConsentDocument {
     return _signatures[index];
   }
 
-  String get getSignaturePageTitle => _signaturePageTitle;
+  String get signaturePageTitle => _signaturePageTitle;
 
-  List<RPConsentSection> get getSections => _sections;
+  String get signaturePageContent => _signaturePageContent;
 
-  String get getHtmlReviewContent => _htmlReviewContent;
+  List<RPConsentSection> get sections => _sections;
 
-  set setTitle(String title) {
+  String get htmlReviewContent => _htmlReviewContent;
+
+  set title(String title) {
     this._title = title;
   }
 
-  set setSignaturePageTitle(String signaturePageTitle) {
+  set signaturePageTitle(String signaturePageTitle) {
     this._signaturePageTitle = signaturePageTitle;
   }
 
-  set setSignaturePageContent(String signaturePageContent) {
+  set signaturePageContent(String signaturePageContent) {
     this._signaturePageContent = signaturePageContent;
   }
 
-  set setSections(List<RPConsentSection> sections) {
+  set sections(List<RPConsentSection> sections) {
     this._sections = sections;
   }
 
-  set setHtmlReviewContent(String htmlReviewContent) {
+  set htmlReviewContent(String htmlReviewContent) {
     this._htmlReviewContent = htmlReviewContent;
   }
 

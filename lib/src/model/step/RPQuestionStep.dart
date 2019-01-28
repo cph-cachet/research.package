@@ -1,5 +1,4 @@
-import 'RPStep.dart';
-import '../answerformat/RPAnswerFormat.dart';
+part of research_package_model;
 
 class RPQuestionStep extends RPStep {
   RPAnswerFormat _answerFormat;

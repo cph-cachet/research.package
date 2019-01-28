@@ -1,11 +1,11 @@
-import 'package:research_package/src/model/step/RPStep.dart';
+part of research_package_model;
 
 /*
   FormStep is containing more steps so you can show them on the same screen.
  */
 
-class FormStep extends RPStep {
+class RPFormStep extends RPStep {
   List<RPStep> steps;
 
-  FormStep(String identifier, this.steps) : super(identifier);
+  RPFormStep(String identifier, this.steps) : super(identifier);
 }

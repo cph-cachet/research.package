@@ -1,6 +1,4 @@
-import 'package:research_package/src/model/task/RPTask.dart';
-import 'package:research_package/src/model/task/RPTaskResult.dart';
-import '../step/RPStep.dart';
+part of research_package_model;
 
 class RPOrderedTask extends RPTask {
   // This can be a list of Steps or FormStep
@@ -40,7 +38,7 @@ class RPOrderedTask extends RPTask {
   @override
   RPStep getStepWithIdentifier(String identifier) {
     for (var step in steps) {
-      if (identifier == step.getIdentifier) {
+      if (identifier == step.identifier) {
         return step;
       }
     }

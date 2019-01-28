@@ -1,5 +1,7 @@
 // The class is based on ORKConsent section (http://researchkit.org/docs/Classes/ORKConsentSection.html)
 // and ConsentSection (https://github.com/ResearchStack/ResearchStack/blob/master/backbone/src/main/java/org/researchstack/backbone/model/ConsentSection.java)
+part of research_package_model;
+
 
 class RPConsentSection {
   RPConsentSectionType _type;
@@ -18,26 +20,32 @@ class RPConsentSection {
     this._summary = null;
   }
 
-  String get getTitle => _title;
+  String get title => _title;
 
-  String get getFormalTitle => _formalTitle;
+  String get formalTitle => _formalTitle;
 
-  RPConsentSectionType get getType => _type;
+  RPConsentSectionType get type => _type;
 
-  String get getHtmlContent => _htmlContent;
+  String get htmlContent => _htmlContent;
 
-  String get getContent => _content;
+  String get content => _content;
 
-  set setTitle(String title) {
+  String get summary => _summary;
+
+  set title(String title) {
     this._title = title;
   }
 
-  set setHtmlContent(String htmlContent) {
+  set htmlContent(String htmlContent) {
     this._htmlContent = htmlContent;
   }
 
-  set setContent(String content) {
+  set content(String content) {
     this._content = content;
+  }
+
+  set summary(String summary) {
+    this._summary = summary;
   }
 }
 

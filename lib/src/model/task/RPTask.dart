@@ -1,5 +1,4 @@
-import '../step/RPStep.dart';
-import 'package:research_package/src/model/task/RPTaskResult.dart';
+part of research_package_model;
 
 /*
   This is an abstract class (interface/protocol) for Task.
@@ -13,7 +12,7 @@ abstract class RPTask {
 
   RPTask(this._identifier);
 
-  String get getIdentifier => _identifier;
+  String get identifier => _identifier;
 
   RPStep getStepAfterStep(RPStep step, RPTaskResult result);
   RPStep getStepBeforeStep(RPStep step, RPTaskResult result);
@@ -31,6 +30,6 @@ class RPTaskProgress {
 
   RPTaskProgress(this._current, this._total);
 
-  get getCurrent => _current;
-  get getTotal => _total;
+  get current => _current;
+  get total => _total;
 }

@@ -1,6 +1,6 @@
 // The class is based on ORKConsentSignature (http://researchkit.org/docs/Classes/ORKStep.html)
 // and ConsentSignature (https://github.com/ResearchStack/ResearchStack/blob/master/backbone/src/main/java/org/researchstack/backbone/step/Step.java)
-import 'package:research_package/src/model/task/RPTask.dart';
+part of research_package_model;
 
 /*
   This is a universal Step class.
@@ -34,23 +34,23 @@ class RPStep {
   RPStep(this._identifier);
   RPStep.withTitle(this._identifier, this._title);
 
-  String get getIdentifier => _identifier;
+  String get identifier => _identifier;
 
-  bool get isOptional => _optional;
+  bool get optional => _optional;
 
-  String get getTitle => _title;
+  String get title => _title;
 
-  String get getText => _text;
+  String get text => _text;
 
-  set setOptional(bool optional) {
+  set optional(bool optional) {
     this._optional = optional;
   }
 
-  set setTitle(String title) {
+  set title(String title) {
     this._title = title;
   }
 
-  set setText(String text) {
+  set text(String text) {
     this._text = text;
   }
 }

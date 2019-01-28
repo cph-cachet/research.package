@@ -1,6 +1,8 @@
 // The class is based on ORKConsentSignature (http://researchkit.org/docs/Classes/ORKConsentSignature.html)
 // and ConsentSignature (https://github.com/ResearchStack/ResearchStack/blob/master/backbone/src/main/java/org/researchstack/backbone/model/ConsentSignature.java)
 
+part of research_package_model;
+
 class RPConsentSignature {
   bool _requiresName;
   bool _requiresSignatureImage;
@@ -24,7 +26,7 @@ class RPConsentSignature {
     this._signatureDate,
   );
 
-  String get getIdentifier => _identifier;
+  String get identifier => _identifier;
 
   bool get requiresName => _requiresName;
 
@@ -32,35 +34,35 @@ class RPConsentSignature {
 
   bool get requiresBirthDate => _requiresBirthDate;
 
-  String get getTitle => _title;
+  String get title => _title;
 
-  String get getFullName => _fullName;
+  String get fullName => _fullName;
 
-  String get getSignatureImage => _signatureImage;
+  String get signatureImage => _signatureImage;
 
-  DateTime get getSignatureDate => _signatureDate;
+  DateTime get signatureDate => _signatureDate;
 
-  set setIdentifier(String identifier) {
+  set identifier(String identifier) {
     this._identifier = identifier;
   }
 
-  set setSignatureImage(String signatureImage) {
+  set signatureImage(String signatureImage) {
     this._signatureImage = signatureImage;
   }
 
-  set setFullName(String fullName) {
+  set fullName(String fullName) {
     this._fullName = fullName;
   }
 
-  set setRequiresBirthDate(bool requiresBirthDate) {
+  set requiresBirthDate(bool requiresBirthDate) {
     this._requiresBirthDate = requiresBirthDate;
   }
 
-  set setRequiresSignatureImage(bool requiresSignatureImage) {
+  set requiresSignatureImage(bool requiresSignatureImage) {
     this._requiresSignatureImage = requiresSignatureImage;
   }
 
-  set setRequiresName(bool requiresName) {
+  set requiresName(bool requiresName) {
     this._requiresName = requiresName;
   }
 }
