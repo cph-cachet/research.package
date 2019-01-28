@@ -4,7 +4,9 @@ This is a Flutter package implementing support for surveys like [ResearchStack](
 
 ## Current stage
 
-Currently we are designing and implementing the domain model for ResearchPackage.
+Currently the focus is on creating a consent flow with the Dart model and Flutter UI widgets. 
+
+Also, we are designing and implementing the domain model for ResearchPackage.
 The package tries to follow the [ResearchStack](http://researchstack.org/) and [ResearchKit](http://researchkit.org/) patterns and namings.
 
 The main modules of the above mentioned libraries are:
@@ -32,6 +34,8 @@ This is a good representation of a possible file/class hierarchy for ResearchPac
 ## Naming
 
 We are following Apple's pattern when it comes to naming. There's a prefix ORK (Open Research Kit) before the names of classes, types etc. in ResearchKit, so our names are starting with the RP prefix which stands for Research Package.
+
+For UI widgets we are using the RPUI (Research Package UI) prefix.
 
 
 ## Getting Started
