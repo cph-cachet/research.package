@@ -17,15 +17,19 @@ The main modules of the above mentioned libraries are:
 
 
 ## Useful Links
-
-- [Official Tutorial on how to use ResearchKit in ObjectiveC](http://researchkit.org/docs/docs/Survey/CreatingSurveys.html)
+- ResearchKit
+  - [Official Tutorial on how to use ResearchKit in ObjectiveC](http://researchkit.org/docs/docs/Survey/CreatingSurveys.html)
 You can get a good understading of the flow and the basic concepts.
 Also there's a useful presentation of the different AnswerFormats.
-- [Hierarchy of objects in ResearchKit](http://researchkit.org/docs/hierarchy.html)
+  - [Hierarchy of objects in ResearchKit](http://researchkit.org/docs/hierarchy.html)
 This is a good representation of a possible file/class hierarchy for ResearchPackage.
-- [Tutorial on how to use ResearchKit in Swift](https://www.raywenderlich.com/1820-researchkit-tutorial-with-swift-getting-started).
-- [Sample App for ResearchStack](https://github.com/ResearchStack/SampleApp)
-- [Sample Apps for ResearchKit in Swift](https://github.com/ResearchKit/ResearchKit/tree/master/samples)
+  - [Tutorial on how to use ResearchKit in Swift](https://www.raywenderlich.com/1820-researchkit-tutorial-with-swift-getting-started).
+  - [Sample Apps for ResearchKit in Swift](https://github.com/ResearchKit/ResearchKit/tree/master/samples)
+
+- ResearchStack
+  - [Sample App for ResearchStack](https://github.com/ResearchStack/SampleApp)
+  - [Tutorial on how to use ResearchStack in Java](https://www.raywenderlich.com/637-researchstack-tutorial-getting-started)
+
 
 ## Challenges
 
