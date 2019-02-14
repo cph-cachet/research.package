@@ -8,7 +8,7 @@ class RPConsentDocument {
   String _signaturePageTitle;
   String _signaturePageContent;
   List<RPConsentSignature> _signatures;
-  String _htmlReviewContent;
+  String _htmlReviewContent; //TODO: Only in ResearchStack. ResearchKit has its own step for it
 
   RPConsentDocument(
     this._title,
@@ -24,6 +24,8 @@ class RPConsentDocument {
   RPConsentSignature getConsentSignatureAtIndex(int index) {
     return _signatures[index];
   }
+
+  String get title => _title;
 
   String get signaturePageTitle => _signaturePageTitle;
 

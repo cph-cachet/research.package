@@ -12,7 +12,7 @@ class RPOrderedTask extends RPTask {
   @override
   RPStep getStepAfterStep(RPStep step, RPTaskResult result) {
     if (step == null) {
-      return steps[0];
+      return steps.first;
     }
 
     int nextIndex = steps.indexOf(step) + 1;

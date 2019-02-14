@@ -20,6 +20,7 @@ class RPStep {
   String _text;
   //TODO: Find out how we should manage the layout in flutter
   //class stepLayoutClass
+  Widget _stepWidget;
 
 
   // The following fields are in RK but not implemented in ResearchStack
@@ -32,6 +33,7 @@ class RPStep {
   bool _useSurveyMode;
 
   RPStep(this._identifier);
+
   RPStep.withTitle(this._identifier, this._title);
 
   String get identifier => _identifier;
@@ -41,6 +43,8 @@ class RPStep {
   String get title => _title;
 
   String get text => _text;
+
+  Widget get stepWidget => _stepWidget;
 
   set optional(bool optional) {
     this._optional = optional;
@@ -53,4 +57,12 @@ class RPStep {
   set text(String text) {
     this._text = text;
   }
+
+}
+
+enum StepStatus{
+  Finished,
+  Canceled,
+  Ongoing,
+  Back
 }

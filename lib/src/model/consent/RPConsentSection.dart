@@ -18,6 +18,7 @@ class RPConsentSection {
   RPConsentSection(RPConsentSectionType type) {
     this._type = type;
     this._summary = null;
+    this._title = localizedTitleForConsentSectionType(type);
   }
 
   String get title => _title;
@@ -59,4 +60,39 @@ enum RPConsentSectionType {
   StudySurvey,
   Withdrawing,
   Custom
+}
+
+//TODO: Localization
+String localizedTitleForConsentSectionType(RPConsentSectionType type) {
+  String str;
+  switch (type) {
+    case RPConsentSectionType.Overview:
+      str = "Overview";
+      break;
+    case RPConsentSectionType.DataGathering:
+      str = "Data Gathering";
+      break;
+    case RPConsentSectionType.Privacy:
+      str = "Privacy";
+      break;
+    case RPConsentSectionType.DataUse:
+      str = "Data Use";
+      break;
+    case RPConsentSectionType.TimeCommitment:
+      str = "Time Commitment";
+      break;
+    case RPConsentSectionType.StudyTasks:
+      str = "Study Tasks";
+      break;
+    case RPConsentSectionType.StudySurvey:
+      str = "Study Survey";
+      break;
+    case RPConsentSectionType.Withdrawing:
+      str = "Withdrawing";
+      break;
+    case RPConsentSectionType.Custom:
+      str = null;
+      break;
+  }
+  return str;
 }

@@ -1,16 +1,19 @@
+library research_package_ui;
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+//import 'package:signature/signature.dart';
 
-class QuestionList extends StatelessWidget {
-  final questions;
-  const QuestionList({@required this.questions});
+import 'package:research_package/src/model/model.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return Text('${questions[index]}');
-      },
-    );
-  }
-}
+
+part 'RPStyles.dart';
+
+part 'RPUIOrderedTask.dart';
+
+part 'RPUIVisualConsentStep.dart';
+part 'RPUIConsentReviewStep.dart';
+
+
+
