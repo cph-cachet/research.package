@@ -8,4 +8,6 @@ class RPQuestionStep extends RPStep {
 
 //  RPQuestionStep.withTitle(String identifier, String title) : super(identifier, title);
 
+  RPAnswerFormat get answerFormat => _answerFormat;
+
 }

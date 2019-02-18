@@ -14,8 +14,10 @@ class RPConsentSignature {
   String _signatureImage;
   DateTime _signatureDate;
 
+  RPConsentSignature();
+
   //TODO: Consider adding other named constructors
-  RPConsentSignature(
+  RPConsentSignature.fullyPopulated(
     this._requiresName,
     this._requiresSignatureImage,
     this._requiresBirthDate,

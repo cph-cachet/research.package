@@ -27,7 +27,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
       actions: <Widget>[
         FlatButton(
           child: Text("YES"),
-          onPressed: () => print("YES"),
+          onPressed: () => Navigator.of(context).pop(),
         ),
         FlatButton(
           child: Text("NO"),

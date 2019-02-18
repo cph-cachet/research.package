@@ -1,5 +1,5 @@
-// The class is based on ORKConsentSignature (http://researchkit.org/docs/Classes/ORKStep.html)
-// and ConsentSignature (https://github.com/ResearchStack/ResearchStack/blob/master/backbone/src/main/java/org/researchstack/backbone/step/Step.java)
+// The class is based on ORKStep (http://researchkit.org/docs/Classes/ORKStep.html)
+// and Step (https://github.com/ResearchStack/ResearchStack/blob/master/backbone/src/main/java/org/researchstack/backbone/step/Step.java)
 part of research_package_model;
 
 /*
@@ -18,7 +18,7 @@ class RPStep {
   bool _optional;
   String _title;
   String _text;
-  //TODO: Find out how we should manage the layout in flutter
+  //TODO: Find out how we should manage the layout in flutter -> Widget
   //class stepLayoutClass
   Widget _stepWidget;
 

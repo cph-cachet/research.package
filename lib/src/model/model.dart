@@ -18,10 +18,12 @@ part 'step/RPStep.dart';
 part 'step/RPFormStep.dart';
 part 'step/RPQuestionStep.dart';
 
-
 part 'task/RPOrderedTask.dart';
 part 'task/RPTask.dart';
-part 'task/RPTaskResult.dart';
+
+part 'result/RPResult.dart';
+part 'result/RPTaskResult.dart';
+part 'result/RPStepResult.dart';
 
 part 'blocs/BlocConsent.dart';
 

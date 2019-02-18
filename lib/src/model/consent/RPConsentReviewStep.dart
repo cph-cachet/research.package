@@ -2,6 +2,7 @@ part of research_package_model;
 
 class RPConsentReviewStep extends RPStep {
   RPConsentDocument _consentDocument;
+  //If it's provided, the name-signature screens will be added to the flow
   RPConsentSignature _consentSignature;
 
   //Confirmation popup title

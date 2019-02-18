@@ -21,18 +21,18 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
       // return the header
       return Column(
         children: <Widget>[
+//          Padding(
+//            padding: const EdgeInsets.symmetric(vertical: 10.0),
+//            child: Text(
+//              'Review',
+//              style: RPStyles.H1,
+//            ),
+//          ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: Text(
-              'Review',
-              style: RPStyles.H1,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 64.0),
+            padding: const EdgeInsets.symmetric(vertical: 64.0),
             child: Text(
               'Review this form below, and tap AGREE if you\'re ready to continue.',
-              style: RPStyles.bodyText,
+              style: RPStyles.bodyText.copyWith(fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
             ),
           ),
@@ -62,23 +62,43 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
 
   @override
   Widget build(BuildContext context) {
-    void _showConsentPopUp<T>({BuildContext context, Widget child}) {
-      showDialog<T>(
-        context: context,
-        builder: (BuildContext context) => child,
-      ).then<void>((T value) {
-        // The value passed to Navigator.pop() or null.
-        if (value != null) {
-          print("pressed");
-        }
-      });
+
+    void _showConsentDialog() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(widget.text),
+              content: Text(widget.reasonForConsent),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("CANCEL"),
+                  onPressed: () => print("CANCEL"),
+                ),
+                FlatButton(
+                  child: Text("AGREE"),
+                  onPressed: widget.consentDocument.signatures != []
+                      ? () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                            return NameInputRoute(
+                              signaturePageTitle: widget.consentDocument.signaturePageTitle,
+                            );
+                          }));
+                        }
+                      : () => print('Agree'),
+                  textTheme: ButtonTextTheme.primary,
+                )
+              ],
+            );
+          });
     }
 
     return Theme(
       data: Theme.of(context).copyWith(primaryColor: RPStyles.cachetBlue),
       child: Scaffold(
-        appBar:
-            RPStyles.RPAppBar(text: widget.consentDocument.signaturePageTitle),
+        appBar: AppBar(
+          title: Text('Review'), //TODO: Localization
+        ),
         body: ListView.builder(
           padding: EdgeInsets.all(16),
           itemCount: widget.consentDocument.sections.length + 1,
@@ -93,34 +113,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
                 ),
               ),
               onPressed: () => blocConsent.changeStatus(StepStatus.Canceled)),
-          FlatButton(
-            child: Text("AGREE"),
-            onPressed: () => _showConsentPopUp(
-                context: context,
-                child: AlertDialog(
-                  title: Text(widget.text),
-                  content: Text(widget.reasonForConsent),
-                  actions: <Widget>[
-                    FlatButton(
-                      child: Text("CANCEL"),
-                      onPressed: () => print("CANCEL"),
-                    ),
-                    FlatButton(
-                      child: Text("AGREE"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) {
-                          return NameInputRoute(
-                            signaturePageTitle:
-                                widget.consentDocument.signaturePageTitle,
-                          );
-                        }));
-                      },
-                      textTheme: ButtonTextTheme.primary,
-                    )
-                  ],
-                )),
-          ),
+          FlatButton(child: Text("AGREE"), onPressed: () => _showConsentDialog()),
         ],
       ),
     );
@@ -148,11 +141,9 @@ class _NameInputRouteState extends State<NameInputRoute> {
 
   void _checkNameNotEmpty() {
     setState(() {
-      _isNameFilled =
-          (_firstNameController.text != '' && _lastNameController.text != '');
+      _isNameFilled = (_firstNameController.text != '' && _lastNameController.text != '');
     });
   }
-
 
   @override
   void initState() {
@@ -175,8 +166,7 @@ class _NameInputRouteState extends State<NameInputRoute> {
         ),
         TextFormField(
           controller: _lastNameController,
-          decoration:
-              InputDecoration(labelText: "Last Name"), //TODO: Localization
+          decoration: InputDecoration(labelText: "Last Name"), //TODO: Localization
         ),
       ],
     );
@@ -234,6 +224,7 @@ class _NameInputRouteState extends State<NameInputRoute> {
   @override
   void dispose() {
     _firstNameController.dispose();
+    _lastNameController.dispose();
     super.dispose();
   }
 }
