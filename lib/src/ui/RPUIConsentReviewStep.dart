@@ -62,7 +62,6 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
 
   @override
   Widget build(BuildContext context) {
-
     void _showConsentDialog() {
       showDialog(
           context: context,
@@ -134,10 +133,11 @@ class _NameInputRouteState extends State<NameInputRoute> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
 
-//  var _signatureCanvas = Signature(
-//    height: 200,
-//    backgroundColor: Colors.grey,
-//  );
+  var _signatureCanvas = Signature(
+    height: 200,
+    width: 300,
+    backgroundColor: Colors.grey,
+  );
 
   void _checkNameNotEmpty() {
     setState(() {
@@ -185,11 +185,11 @@ class _NameInputRouteState extends State<NameInputRoute> {
             ),
             Padding(
               padding: EdgeInsets.all(24.0),
-              child: Container(), //_signatureCanvas,
+              child: _signatureCanvas,
             ),
             FlatButton(
-              child: Text("CLEAR"),
-              onPressed: () => print(''), //_signatureCanvas.clear()
+              child: Text("Clear"),
+              onPressed: _signatureCanvas.clear,
             )
           ],
         ),
