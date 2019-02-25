@@ -78,6 +78,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
                   child: Text("AGREE"),
                   onPressed: widget.consentDocument.signatures != []
                       ? () {
+                          Navigator.of(context).pop();
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                             return NameInputRoute(
                               signaturePageTitle: widget.consentDocument.signaturePageTitle,

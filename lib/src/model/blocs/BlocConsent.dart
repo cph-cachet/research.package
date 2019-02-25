@@ -7,8 +7,9 @@ class BlocConsent {
   Function(StepStatus) get changeStatus => _stepStatusController.sink.add;
 
   //Retrieve data from stream
-  Stream<StepStatus> get stepStatus => _stepStatusController.stream; //TODO: .transform(StreamTransformer validator) do we need that?
-  
+  Stream<StepStatus> get stepStatus =>
+      _stepStatusController.stream; //TODO: .transform(StreamTransformer validator) do we need that?
+
   final _stepTypeController = StreamController<Type>.broadcast();
 
   Function(Type) get changeStepType => _stepTypeController.sink.add;
@@ -19,7 +20,6 @@ class BlocConsent {
     _stepStatusController.close();
     _stepTypeController.close();
   }
-
 }
 
 final blocConsent = BlocConsent();
