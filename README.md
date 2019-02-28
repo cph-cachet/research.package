@@ -4,15 +4,18 @@ This is a Flutter package implementing support for surveys like [ResearchStack](
 
 ## Current stage
 
+The main focus at the moment is to make Research Package capable of handling a [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO5_English.pdf) survey.
+
+
 Currently the focus is on creating a consent flow with the Dart model and Flutter UI widgets. 
 
 Also, we are designing and implementing the domain model for ResearchPackage.
 The package tries to follow the [ResearchStack](http://researchstack.org/) and [ResearchKit](http://researchkit.org/) patterns and namings.
 
 The main modules of the above mentioned libraries are:
-- Consent
-- Survey
-- Active Task
+- Consent - [How it's done in ResearchKit](http://researchkit.org/docs/docs/InformedConsent/InformedConsent.html)
+- Survey - [How it's done in ResearchKit](http://researchkit.org/docs/docs/Survey/CreatingSurveys.html)
+- Active Task - [How it's done in ResearchKit](http://researchkit.org/docs/docs/ActiveTasks/ActiveTasks.html)
   - We can implement these later with the help of flutter [plugins](https://github.com/cph-cachet/flutter-plugins) by CACHET.
 
 
@@ -23,7 +26,7 @@ You can get a good understading of the flow and the basic concepts.
 Also there's a useful presentation of the different AnswerFormats.
   - [Hierarchy of objects in ResearchKit](http://researchkit.org/docs/hierarchy.html)
 This is a good representation of a possible file/class hierarchy for ResearchPackage.
-  - [Tutorial on how to use ResearchKit in Swift](https://www.raywenderlich.com/1820-researchkit-tutorial-with-swift-getting-started).
+  - [Tutorial on how to use ResearchKit in Swift](https://www.raywenderlich.com/1820-researchkit-tutorial-with-swift-getting-started)
   - [Sample Apps for ResearchKit in Swift](https://github.com/ResearchKit/ResearchKit/tree/master/samples)
 
 - ResearchStack
@@ -44,11 +47,17 @@ For UI widgets we are using the RPUI (Research Package UI) prefix.
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.io/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+In order to use Research Package, you have to clone this repo and add it manually to your `pubspec.yaml` file
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```dart
+  research_package:
+    path: *PATH*/research.package
+```
+
+After you run the `flutter packages get` command you are able to import and start using Research Package. With the following line you have access both to the Model and the UI part of the package.
+
+`import 'package:research_package/research_package.dart';`
+
+Remember, that objects starting with `RP` are part of the Model (like `RPConsentDocument`) while those which start with `RPUI` are part of the UI library (like `RPUIVisualConsentStep`).
+
+
