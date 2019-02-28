@@ -2,6 +2,7 @@ library research_package_model;
 
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:rxdart/rxdart.dart';
 
 import 'package:research_package/src/ui/ui.dart';
 
@@ -17,6 +18,7 @@ part 'consent/RPConsentReviewStep.dart';
 part 'step/RPStep.dart';
 part 'step/RPFormStep.dart';
 part 'step/RPQuestionStep.dart';
+part 'step/RPInstructionStep.dart';
 
 part 'task/RPOrderedTask.dart';
 part 'task/RPTask.dart';

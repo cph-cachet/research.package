@@ -11,16 +11,14 @@ part of research_package_model;
 class RPVisualConsentStep extends RPStep {
   RPConsentDocument _consentDocument;
 
-  RPVisualConsentStep(String identifier, RPConsentDocument consentDocument)
-      : super(identifier) {
+  RPVisualConsentStep(String identifier, RPConsentDocument consentDocument) : super(identifier) {
     _consentDocument = consentDocument;
   }
 
   get consentDocument => this._consentDocument;
 
   @override
-  Widget get stepWidget =>
-      RPUIVisualConsentStep(
+  Widget get stepWidget => RPUIVisualConsentStep(
         consentDocument: consentDocument,
       );
 }

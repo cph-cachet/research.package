@@ -10,4 +10,7 @@ class RPQuestionStep extends RPStep {
 
   RPAnswerFormat get answerFormat => _answerFormat;
 
+  @override
+  Widget get stepWidget => RPUIQuestionStep();
+
 }

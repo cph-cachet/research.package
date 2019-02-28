@@ -22,7 +22,6 @@ class RPStep {
   //class stepLayoutClass
   Widget _stepWidget;
 
-
   // The following fields are in RK but not implemented in ResearchStack
   // These options can be developed as needed or removed if we find they are not necessary
   bool _restorable;
@@ -57,12 +56,6 @@ class RPStep {
   set text(String text) {
     this._text = text;
   }
-
 }
 
-enum StepStatus{
-  Finished,
-  Canceled,
-  Ongoing,
-  Back
-}
+enum StepStatus { Finished, Canceled, Ongoing, Back }

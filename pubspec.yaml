@@ -10,7 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  signature: '^1.0.3' #Bug in the current version
+  signature: "^1.0.3" #Bug in the current version
+  rxdart: "^0.21.0"
+
 
 dev_dependencies:
   flutter_test:
