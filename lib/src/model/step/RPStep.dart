@@ -18,8 +18,6 @@ class RPStep {
   bool _optional;
   String _title;
   String _text;
-  //TODO: Find out how we should manage the layout in flutter -> Widget
-  //class stepLayoutClass
   Widget _stepWidget;
 
   // The following fields are in RK but not implemented in ResearchStack
@@ -58,4 +56,5 @@ class RPStep {
   }
 }
 
+// Status to be sent to the Bloc so the Task Widget is notified about the navigation
 enum StepStatus { Finished, Canceled, Ongoing, Back }

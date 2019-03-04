@@ -5,7 +5,12 @@
 part of research_package_model;
 
 abstract class RPAnswerFormat {
-  RPAnswerFormat(
+  //Default constructor. The appropriate subclass of AnswerFormat should be used instead of this directly.
+  RPAnswerFormat();
 
-  );
+  // Returns the QuestionType for this answer format. Implement this in your subclass
+  // TODO
+
+
+
 }

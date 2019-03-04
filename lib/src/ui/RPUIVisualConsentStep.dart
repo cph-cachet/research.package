@@ -110,6 +110,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
                   textAlign: TextAlign.center,
                 ),
                 FlatButton(
+                  textTheme: ButtonTextTheme.accent,
                   child: Text("Learn more..."),
                   onPressed: () => _pushContent(
                         section.title,
@@ -154,11 +155,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
                     style: RPStyles.whiteText,
                   ),
             onPressed: _lastPage
-                ? () => blocConsent.changeStatus(
-                    StepStatus.Finished) //_pushReview(widget.consentDocument)
-                : () => controller.nextPage(
-                    duration: Duration(milliseconds: 400),
-                    curve: Curves.fastOutSlowIn),
+                ? () => blocConsent.changeStatus(StepStatus.Finished) //_pushReview(widget.consentDocument)
+                : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
           ),
           FlatButton(
               padding: EdgeInsets.all(10.0),
@@ -181,22 +179,27 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
   Widget build(BuildContext context) {
     PageController controller = PageController();
 
-    return Scaffold(
-      appBar: RPStyles.RPAppBar(text: "Consent"),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Expanded(
-            child: PageView.builder(
-              onPageChanged: (pageNr) => _goToNextPage(pageNr),
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: widget.consentDocument.sections.length,
-              controller: controller,
-              itemBuilder: _consentSectionPageBuilder,
+    return Theme(
+      data: RPStyles.cachetTheme,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Consent"),
+        ),
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Expanded(
+              child: PageView.builder(
+                onPageChanged: (pageNr) => _goToNextPage(pageNr),
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: widget.consentDocument.sections.length,
+                controller: controller,
+                itemBuilder: _consentSectionPageBuilder,
+              ),
             ),
-          ),
-          _navigationButtons(controller),
-        ],
+            _navigationButtons(controller),
+          ],
+        ),
       ),
     );
   }
@@ -210,14 +213,17 @@ class ContentRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(this.title),
-        backgroundColor: RPStyles.cachetBlue,
-      ),
-      body: Container(
-        padding: EdgeInsets.all(15.0),
-        child: Text(this.content),
+    return Theme(
+      data: RPStyles.cachetTheme,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(this.title),
+//        backgroundColor: RPStyles.cachetBlue,
+        ),
+        body: Container(
+          padding: EdgeInsets.all(15.0),
+          child: Text(this.content),
+        ),
       ),
     );
   }

@@ -8,8 +8,14 @@ class RPUIQuestionStep extends StatefulWidget {
 class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.purple,
+    return Theme(
+      data: RPStyles.cachetTheme,
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Container(
+          color: Colors.purple,
+        ),
+      ),
     );
   }
 }

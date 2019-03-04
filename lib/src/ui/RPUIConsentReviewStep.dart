@@ -94,7 +94,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
     }
 
     return Theme(
-      data: Theme.of(context).copyWith(primaryColor: RPStyles.cachetBlue),
+      data: RPStyles.cachetTheme,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Review'), //TODO: Localization
@@ -113,7 +113,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
                 ),
               ),
               onPressed: () => blocConsent.changeStatus(StepStatus.Canceled)),
-          FlatButton(child: Text("AGREE"), onPressed: () => _showConsentDialog()),
+          FlatButton(child: Text("AGREE"), onPressed: () => _showConsentDialog()), //TODO: Localization
         ],
       ),
     );
@@ -201,9 +201,11 @@ class _NameInputRouteState extends State<NameInputRoute> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: Theme.of(context).copyWith(primaryColor: RPStyles.cachetBlue),
+      data: RPStyles.cachetTheme,
       child: Scaffold(
-        appBar: RPStyles.RPAppBar(text: widget.signaturePageTitle),
+        appBar: AppBar(
+          title: Text(widget.signaturePageTitle),
+        ),
         body: ListView(
           padding: EdgeInsets.all(10.0),
           physics: NeverScrollableScrollPhysics(),

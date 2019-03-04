@@ -58,8 +58,9 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: currentStep.stepWidget,
+    return Theme(
+      data: RPStyles.cachetTheme,
+      child: currentStep.stepWidget,
     );
   }
 
