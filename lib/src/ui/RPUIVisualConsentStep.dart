@@ -21,22 +21,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
     });
   }
 
-  AlertDialog cancelDialog() {
-    return AlertDialog(
-      content: Text("Are you sure you want to quit?"),
-      actions: <Widget>[
-        FlatButton(
-          child: Text("YES"),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        FlatButton(
-          child: Text("NO"),
-          onPressed: () => print("NO"),
-        )
-      ],
-    );
-  }
-
   _pushContent(String title, String content) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -126,16 +110,28 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
   }
 
   Widget _navigationButtons(PageController controller) {
-    void showDemoDialog<T>({BuildContext context, Widget child}) {
-      showDialog<T>(
+    void _showCancelDialog() {
+      showDialog(
         context: context,
-        builder: (BuildContext context) => child,
-      ).then<void>((T value) {
-        // The value passed to Navigator.pop() or null.
-        if (value != null) {
-          print("pressed");
-        }
-      });
+        builder: (context) {
+          return AlertDialog(
+            content: Text("Are you sure you want to quit?"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("YES"),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Pop the popup
+                  Navigator.of(context).pop(); // Pop the screen
+                },
+              ),
+              FlatButton(
+                child: Text("NO"),
+                onPressed: () => print("NO"),
+              )
+            ],
+          );
+        },
+      );
     }
 
     return Container(
@@ -159,17 +155,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
                 : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
           ),
           FlatButton(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "CANCEL",
-                style: TextStyle(color: Colors.redAccent),
-              ),
-              onPressed: () {
-                showDemoDialog(
-                  context: context,
-                  child: cancelDialog(),
-                );
-              }),
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "CANCEL",
+              style: TextStyle(color: Colors.redAccent),
+            ),
+            onPressed: () => _showCancelDialog(),
+          ),
         ],
       ),
     );

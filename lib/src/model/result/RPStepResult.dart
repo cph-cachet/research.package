@@ -23,7 +23,7 @@ class RPStepResult<T> extends RPResult {
     this._results = results;
   }
 
-  void getResultForIdentifier(String identifier) => results[identifier];
+  void getResultForIdentifier(String identifier) => _results[identifier];
 
   void setResultForIdentifier(String identifier, T result) {
     this._results[identifier] = result;

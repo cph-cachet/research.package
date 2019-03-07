@@ -24,9 +24,14 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
   StreamSubscription blocConsentSubscription;
 
   void _pushStep(RPStep step) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
-      return step.stepWidget;
-    }));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return step.stepWidget;
+        },
+        settings: RouteSettings(name: step.identifier),
+      ),
+    );
   }
 
   @override
@@ -34,16 +39,26 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
     super.initState();
 
     blocConsentSubscription = blocConsent.stepStatus.listen((data) {
+      print('data:$data');
       switch (data) {
         case StepStatus.Finished:
           stepToNavigate = widget.task.getStepAfterStep(currentStep, null);
           _pushStep(stepToNavigate);
           print('stepToNavigate:$stepToNavigate');
-          print('data:$data');
           break;
         case StepStatus.Canceled:
           stepToNavigate = widget.task.steps.first;
-          Navigator.of(context).pop();
+//          Navigator.removeRouteBelow(context, )
+//          Navigator.pushAndRemoveUntil(
+//            context,
+//            MaterialPageRoute(
+//              builder: (BuildContext context) {
+//                return stepToNavigate.stepWidget;
+//              },
+//            ),
+//            (Route<dynamic> route) => false,
+//          );
+          Navigator.of(context).popUntil(ModalRoute.withName("/"));
           break;
         case StepStatus.Back:
           print('back');
@@ -58,10 +73,17 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: RPStyles.cachetTheme,
-      child: currentStep.stepWidget,
+    return MaterialApp(
+      theme: RPStyles.cachetTheme,
+      initialRoute: "/",
+      routes:{
+        "/" : (context) => widget.task.steps.first.stepWidget,
+      },
     );
+//    return Theme(
+//      data: RPStyles.cachetTheme,
+//      child: widget.task.steps.first.stepWidget,
+//    );
   }
 
   @override

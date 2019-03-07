@@ -64,33 +64,34 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
   Widget build(BuildContext context) {
     void _showConsentDialog() {
       showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text(widget.text),
-              content: Text(widget.reasonForConsent),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text("CANCEL"),
-                  onPressed: () => print("CANCEL"),
-                ),
-                FlatButton(
-                  child: Text("AGREE"),
-                  onPressed: widget.consentDocument.signatures != []
-                      ? () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                            return NameInputRoute(
-                              signaturePageTitle: widget.consentDocument.signaturePageTitle,
-                            );
-                          }));
-                        }
-                      : () => print('Agree'),
-                  textTheme: ButtonTextTheme.primary,
-                )
-              ],
-            );
-          });
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(widget.text),
+            content: Text(widget.reasonForConsent),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("CANCEL"),
+                onPressed: () => blocConsent.changeStatus(StepStatus.Canceled),
+              ),
+              FlatButton(
+                child: Text("AGREE"),
+                onPressed: widget.consentDocument.signatures != []
+                    ? () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return NameInputRoute(
+                            signaturePageTitle: widget.consentDocument.signaturePageTitle,
+                          );
+                        }));
+                      }
+                    : () => print('Agree'),
+                textTheme: ButtonTextTheme.primary,
+              )
+            ],
+          );
+        },
+      );
     }
 
     return Theme(

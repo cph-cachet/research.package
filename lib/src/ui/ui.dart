@@ -19,5 +19,7 @@ part 'RPUIConsentReviewStep.dart';
 part 'RPUIQuestionStep.dart';
 part 'RPUIInstructionStep.dart';
 
+part 'RPUIIntegerQuestionBody.dart';
+
 
 

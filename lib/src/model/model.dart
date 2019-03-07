@@ -7,6 +7,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:research_package/src/ui/ui.dart';
 
 part 'answerformat/RPAnswerFormat.dart';
+part 'answerformat/RPIntegerAnswerFormat.dart';
 
 part 'consent/RPConsentDocument.dart';
 part 'consent/RPConsentSection.dart';
@@ -28,6 +29,7 @@ part 'result/RPTaskResult.dart';
 part 'result/RPStepResult.dart';
 
 part 'blocs/BlocConsent.dart';
+part 'blocs/BlocSurvey.dart';
 
 
 
