@@ -3,6 +3,8 @@ part of research_package_ui;
 class RPStyles {
   static const H1 = TextStyle(color: Colors.black87, fontSize: 30, fontWeight: FontWeight.w600);
   static const H2 = TextStyle(color: Colors.black87, fontSize: 24, fontWeight: FontWeight.w400);
+  static const H3 = TextStyle(color: Colors.black87, fontSize: 18, fontWeight: FontWeight.w200);
+
   static const bodyText = TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w200);
   static const whiteText = TextStyle(color: Colors.white);
 

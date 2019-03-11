@@ -19,32 +19,55 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
   RPStep currentStep;
   RPStep stepToNavigate;
 
-  List<Widget> stepWidgets = List<Widget>();
-  int currentStepIndex = 0;
-  StreamSubscription blocConsentSubscription;
+//  List<Widget> stepWidgets = List<Widget>();
+  int currentStepIndex = 1;
+  StreamSubscription<StepStatus> stepStatusSubscription;
 
   void _pushStep(RPStep step) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) {
-          return step.stepWidget;
+          return WillPopScope(
+            child: step.stepWidget,
+            onWillPop: () async => false,
+          );
         },
-        settings: RouteSettings(name: step.identifier),
+        settings: RouteSettings(
+          name: step.identifier,
+        ),
       ),
     );
+
   }
 
   @override
   initState() {
     super.initState();
 
-    blocConsentSubscription = blocConsent.stepStatus.listen((data) {
-      print('data:$data');
+    // Calculating the number of question steps because we only want to display their count
+    var nrOfQuestionSteps = 0;
+    widget.task.steps.forEach((step) {
+      if (step.runtimeType == RPQuestionStep) {
+        nrOfQuestionSteps++;
+      }
+    });
+    // Making the stepcount available, so the steps can display the stepcount
+    blocTask.updateStepCount(nrOfQuestionSteps);
+
+    // Subscribe to step status changes so the navigation can be triggered
+    stepStatusSubscription = blocTask.stepStatus.listen((data) {
+      print('Data from stepstatus stream in RPUITask: $data');
       switch (data) {
         case StepStatus.Finished:
+          // Updating counter via stream
+          blocTask.updateCurrentStepIndex(currentStepIndex);
+
+          // Calculating next step and then navigate there
           stepToNavigate = widget.task.getStepAfterStep(currentStep, null);
+          currentStep = stepToNavigate;
+          currentStepIndex++;
           _pushStep(stepToNavigate);
-          print('stepToNavigate:$stepToNavigate');
+//          print('stepToNavigate:$stepToNavigate');
           break;
         case StepStatus.Canceled:
           stepToNavigate = widget.task.steps.first;
@@ -68,6 +91,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
           break;
       }
     });
+
+    //TODO: set up stream for sending/receiving the results
     currentStep = widget.task.getStepAfterStep(null, null);
   }
 
@@ -76,8 +101,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
     return MaterialApp(
       theme: RPStyles.cachetTheme,
       initialRoute: "/",
-      routes:{
-        "/" : (context) => widget.task.steps.first.stepWidget,
+      routes: {
+        "/": (context) => widget.task.steps.first.stepWidget,
       },
     );
 //    return Theme(
@@ -89,6 +114,6 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
   @override
   dispose() {
     super.dispose();
-    blocConsentSubscription.cancel();
+    stepStatusSubscription.cancel();
   }
 }

@@ -28,7 +28,7 @@ part 'result/RPResult.dart';
 part 'result/RPTaskResult.dart';
 part 'result/RPStepResult.dart';
 
-part 'blocs/BlocConsent.dart';
+part 'blocs/BlocTask.dart';
 part 'blocs/BlocSurvey.dart';
 
 

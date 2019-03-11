@@ -151,7 +151,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
                     style: RPStyles.whiteText,
                   ),
             onPressed: _lastPage
-                ? () => blocConsent.changeStatus(StepStatus.Finished) //_pushReview(widget.consentDocument)
+                ? () => blocTask.changeStatus(StepStatus.Finished) //_pushReview(widget.consentDocument)
                 : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
           ),
           FlatButton(

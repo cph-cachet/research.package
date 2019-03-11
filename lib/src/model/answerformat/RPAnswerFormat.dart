@@ -14,6 +14,44 @@ abstract class RPAnswerFormat {
   // Also, they are _almost_ the same as the questionresult classes in RK
   get questionType => QuestionType.None; // TODO: Investigate more what's this for
 
+//  Type stepBodyWidget(this.questionType) {
+//    // RS Just returns NotImplementedStepBody.class for many cases...
+//    switch (questionType) {
+//      case QuestionType.Scale:
+//        return Widget; //TODO: Implement
+//      case QuestionType.SingleChoice:
+//        return Widget; //TODO: Implement
+//      case QuestionType.MultipleChoice:
+//        return Widget; //TODO: Implement
+//      case QuestionType.Decimal:
+//        return Widget; //TODO: Implement
+//      case QuestionType.Integer:
+//        return RPUIIntegerQuestionBody; //TODO: Implement
+//      case QuestionType.Boolean:
+//        return Widget; //TODO: Implement
+//      case QuestionType.Eligibility:
+//        return Widget; //TODO: Implement
+//      case QuestionType.Text:
+//        return Widget; //TODO: Implement
+//      case QuestionType.TimeOfDay:
+//        return Widget; //TODO: Implement
+//      case QuestionType.DateAndTime:
+//        return Widget; //TODO: Implement
+//      case QuestionType.Date:
+//        return Widget; //TODO: Implement
+//      case QuestionType.TimeInterval:
+//        return Widget; //TODO: Implement
+//      case QuestionType.Duration:
+//        return Widget; //TODO: Implement
+//      case QuestionType.Location:
+//        return Widget; //TODO: Implement
+//      case QuestionType.Form:
+//        return Widget; //TODO: Implement
+//      default:
+//        return Widget;
+//    }
+//  }
+
   Widget stepBodyWidget(QuestionType questionType) {
     // RS Just returns NotImplementedStepBody.class for many cases...
     switch (questionType) {
@@ -26,7 +64,7 @@ abstract class RPAnswerFormat {
       case QuestionType.Decimal:
         return Container(); //TODO: Implement
       case QuestionType.Integer:
-        return Container(); //TODO: Implement
+        return Container();//RPUIIntegerQuestionBody(); //TODO: Implement
       case QuestionType.Boolean:
         return Container(); //TODO: Implement
       case QuestionType.Eligibility:
@@ -51,7 +89,6 @@ abstract class RPAnswerFormat {
         return Container();
     }
   }
-
 }
 
 enum QuestionType {
@@ -73,8 +110,4 @@ enum QuestionType {
   Form
 }
 
-enum ScaleAnswerStyle {
-  Default,
-  Percent,
-  Buttons
-}
+enum ScaleAnswerStyle { Default, Percent, Buttons }

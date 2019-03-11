@@ -51,7 +51,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                   child: Text(
                     widget.text,
                     textAlign: TextAlign.center,
-                    style: RPStyles.H2,
+                    style: RPStyles.H3,
                   ),
                 ),
                 FlatButton(
@@ -73,7 +73,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
         ),
         persistentFooterButtons: <Widget>[
           FlatButton(
-            onPressed: () => blocConsent.changeStatus(StepStatus.Canceled),
+            onPressed: () => blocTask.changeStatus(StepStatus.Canceled),
             child: Text(
               "CANCEL",
               style: TextStyle(color: Colors.redAccent),
@@ -85,7 +85,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
             child: Text(
               "GET STARTED",
             ),
-            onPressed: () => blocConsent.changeStatus(StepStatus.Finished),
+            onPressed: () => blocTask.changeStatus(StepStatus.Finished),
           ),
         ],
       ),

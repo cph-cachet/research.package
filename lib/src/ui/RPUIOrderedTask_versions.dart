@@ -33,7 +33,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
       stepWidgets.add(widget.task.steps[i].stepWidget);
     }
 
-    blocConsent.stepStatus.listen((data) {
+    blocTask.stepStatus.listen((data) {
       switch (data) {
         case StepStatus.Finished:
           setState(() {

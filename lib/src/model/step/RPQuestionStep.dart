@@ -21,6 +21,6 @@ class RPQuestionStep extends RPStep {
   }
 
   @override
-  Widget get stepWidget => RPUIQuestionStep();
+  Widget get stepWidget => RPUIQuestionStep(this);
 
 }

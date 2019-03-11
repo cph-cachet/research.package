@@ -5,6 +5,8 @@ class RPUIIntegerQuestionBody extends StatefulWidget {
   RPStepResult<int> result;
   RPIntegerAnswerFormat answerFormat;
 
+  RPUIIntegerQuestionBody(this.step, this.result, this.answerFormat);
+
   @override
   _RPUIIntegerQuestionBodyState createState() => _RPUIIntegerQuestionBodyState();
 }
