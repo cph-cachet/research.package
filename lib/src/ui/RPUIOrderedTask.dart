@@ -61,7 +61,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
         case StepStatus.Finished:
           // In case of last step we save the result and close the task
           if (currentStep == widget.task.steps.last) {
-            //TODO: Save the result
+            //TODO: Save the task level of result
             Navigator.of(context).popUntil(ModalRoute.withName("/"));
             break;
           }
@@ -72,8 +72,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
           stepToNavigate = widget.task.getStepAfterStep(currentStep, null);
           currentStep = stepToNavigate;
           currentStepIndex++;
-          _pushStep(stepToNavigate);
 //          print('stepToNavigate:$stepToNavigate');
+          _pushStep(stepToNavigate);
           break;
         case StepStatus.Canceled:
           stepToNavigate = widget.task.steps.first;

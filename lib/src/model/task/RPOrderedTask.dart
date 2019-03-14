@@ -42,7 +42,7 @@ class RPOrderedTask extends RPTask {
         return step;
       }
     }
-
+    print("Problem: Task Steps out of index");
     return null;
   }
 

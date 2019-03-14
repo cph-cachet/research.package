@@ -135,11 +135,34 @@ class _NameInputRouteState extends State<NameInputRoute> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
 
-  var _signatureCanvas = Signature(
-    height: 200,
+  var _signature = Signature(
+    height: 150,
     width: 300,
-    backgroundColor: Colors.grey,
+    backgroundColor: Colors.transparent,
   );
+
+  Widget _signatureCanvas() {
+    return GestureDetector(
+      onPanUpdate: (e) {
+        setState(() {
+          if (_signature.isNotEmpty) {
+            _isSignatureAdded = true;
+          }
+        });
+      },
+      child: Container(
+        child: _signature,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.grey,
+              width: 2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   void _checkNameNotEmpty() {
     setState(() {
@@ -181,17 +204,22 @@ class _NameInputRouteState extends State<NameInputRoute> {
         child: Column(
           children: <Widget>[
             Text(
-              'Please sign using your finger in the box below.', //TODO: Localization
+              'Please sign using your finger on the line below.', //TODO: Localization
               style: RPStyles.bodyText,
               textAlign: TextAlign.center,
             ),
             Padding(
               padding: EdgeInsets.all(24.0),
-              child: _signatureCanvas,
+              child: _signatureCanvas(),
             ),
             FlatButton(
               child: Text("Clear"),
-              onPressed: _signatureCanvas.clear,
+              onPressed: () {
+                _signature.clear();
+                setState(() {
+                  _isSignatureAdded = false;
+                });
+              },
             )
           ],
         ),
@@ -217,7 +245,7 @@ class _NameInputRouteState extends State<NameInputRoute> {
         ),
         persistentFooterButtons: <Widget>[
           FlatButton(
-            onPressed: _isNameFilled ? () => print('Next') : null,
+            onPressed: (_isNameFilled && _isSignatureAdded) ? () => blocTask.sendStatus(StepStatus.Finished) : null,
             child: Text('NEXT'),
           )
         ],
