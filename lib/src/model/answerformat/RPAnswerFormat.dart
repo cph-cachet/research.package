@@ -6,89 +6,17 @@
 part of research_package_model;
 
 abstract class RPAnswerFormat {
+  Widget _stepBody;
+
   //Default constructor. The appropriate subclass of AnswerFormat should be used instead of this directly.
   RPAnswerFormat();
 
   // Returns the QuestionType for this answer format. Implement this in your subclass
   // It's for approximation, what kind of data the answer will return.
-  // Also, they are _almost_ the same as the questionresult classes in RK
-  get questionType => QuestionType.None; // TODO: Investigate more what's this for
+  // Also, they are _almost_ the same as the questionResult classes in RK
+  QuestionType get questionType => QuestionType.None; // TODO: Investigate more what's this for
 
-//  Type stepBodyWidget(this.questionType) {
-//    // RS Just returns NotImplementedStepBody.class for many cases...
-//    switch (questionType) {
-//      case QuestionType.Scale:
-//        return Widget; //TODO: Implement
-//      case QuestionType.SingleChoice:
-//        return Widget; //TODO: Implement
-//      case QuestionType.MultipleChoice:
-//        return Widget; //TODO: Implement
-//      case QuestionType.Decimal:
-//        return Widget; //TODO: Implement
-//      case QuestionType.Integer:
-//        return RPUIIntegerQuestionBody; //TODO: Implement
-//      case QuestionType.Boolean:
-//        return Widget; //TODO: Implement
-//      case QuestionType.Eligibility:
-//        return Widget; //TODO: Implement
-//      case QuestionType.Text:
-//        return Widget; //TODO: Implement
-//      case QuestionType.TimeOfDay:
-//        return Widget; //TODO: Implement
-//      case QuestionType.DateAndTime:
-//        return Widget; //TODO: Implement
-//      case QuestionType.Date:
-//        return Widget; //TODO: Implement
-//      case QuestionType.TimeInterval:
-//        return Widget; //TODO: Implement
-//      case QuestionType.Duration:
-//        return Widget; //TODO: Implement
-//      case QuestionType.Location:
-//        return Widget; //TODO: Implement
-//      case QuestionType.Form:
-//        return Widget; //TODO: Implement
-//      default:
-//        return Widget;
-//    }
-//  }
-
-  Widget stepBodyWidget(QuestionType questionType) {
-    // RS Just returns NotImplementedStepBody.class for many cases...
-    switch (questionType) {
-      case QuestionType.Scale:
-        return Container(); //TODO: Implement
-      case QuestionType.SingleChoice:
-        return Container(); //TODO: Implement
-      case QuestionType.MultipleChoice:
-        return Container(); //TODO: Implement
-      case QuestionType.Decimal:
-        return Container(); //TODO: Implement
-      case QuestionType.Integer:
-        return Container();//RPUIIntegerQuestionBody(); //TODO: Implement
-      case QuestionType.Boolean:
-        return Container(); //TODO: Implement
-      case QuestionType.Eligibility:
-        return Container(); //TODO: Implement
-      case QuestionType.Text:
-        return Container(); //TODO: Implement
-      case QuestionType.TimeOfDay:
-        return Container(); //TODO: Implement
-      case QuestionType.DateAndTime:
-        return Container(); //TODO: Implement
-      case QuestionType.Date:
-        return Container(); //TODO: Implement
-      case QuestionType.TimeInterval:
-        return Container(); //TODO: Implement
-      case QuestionType.Duration:
-        return Container(); //TODO: Implement
-      case QuestionType.Location:
-        return Container(); //TODO: Implement
-      case QuestionType.Form:
-        return Container(); //TODO: Implement
-      default:
-        return Container();
-    }
-  }
+  Widget get stepBody => _stepBody;
 }
 
 enum QuestionType {
@@ -110,4 +38,24 @@ enum QuestionType {
   Form
 }
 
-enum ScaleAnswerStyle { Default, Percent, Buttons }
+enum ScaleAnswerStyle {
+  Default,
+  Percent,
+  Buttons,
+}
+
+enum ChoiceAnswerStyle {
+  SingleChoice,
+  MultipleChoice,
+}
+
+enum DateAnswerStyle {
+  DateAndTime,
+  Date,
+  TimeOfDay,
+}
+
+enum NumberFormattingStyle {
+  Default,
+  Percent
+}

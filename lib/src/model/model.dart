@@ -10,6 +10,7 @@ import 'package:research_package/src/ui/ui.dart';
 // Library elements
 part 'answerformat/RPAnswerFormat.dart';
 part 'answerformat/RPIntegerAnswerFormat.dart';
+part 'answerformat/RPChoiceAnswerFormat.dart';
 
 part 'consent/RPConsentDocument.dart';
 part 'consent/RPConsentSection.dart';

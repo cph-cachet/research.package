@@ -44,20 +44,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
           title: Text("$currentStepIndex/$stepCount"),
           automaticallyImplyLeading: false,
         ),
-        body: Container(
-          color: Colors.grey,
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Text(widget.step.title),
-                Text(
-                  "Question Body",
-                  style: RPStyles.H1,
-                ),
-              ],
-            ),
-          ),
-        ),
+        body: widget.step.answerFormat.stepBody,
         persistentFooterButtons: <Widget>[
           FlatButton(
             onPressed: () => blocTask.sendStatus(StepStatus.Canceled),

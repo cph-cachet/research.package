@@ -22,7 +22,8 @@ part 'RPUIQuestionStep.dart';
 part 'RPUIInstructionStep.dart';
 part 'RPUICompletionStep.dart';
 
-part 'RPUIIntegerQuestionBody.dart';
+part 'QuestionBody/RPUIIntegerQuestionBody.dart';
+part 'QuestionBody/RPUISingleChoiceQuestionBody.dart';
 
 
 
