@@ -72,7 +72,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
             actions: <Widget>[
               FlatButton(
                 child: Text("CANCEL"),
-                onPressed: () => blocTask.changeStatus(StepStatus.Canceled),
+                onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
               ),
               FlatButton(
                 child: Text("AGREE"),
@@ -113,7 +113,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
                   color: Colors.redAccent,
                 ),
               ),
-              onPressed: () => blocTask.changeStatus(StepStatus.Canceled)),
+              onPressed: () => blocTask.sendStatus(StepStatus.Canceled)),
           FlatButton(child: Text("AGREE"), onPressed: () => _showConsentDialog()), //TODO: Localization
         ],
       ),

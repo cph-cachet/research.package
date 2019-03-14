@@ -46,19 +46,21 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
         ),
         body: Container(
           color: Colors.grey,
-          child: Column(
-            children: <Widget>[
-              Text(widget.step.title),
-              Text(
-                "Question Body",
-                style: RPStyles.H1,
-              ),
-            ],
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Text(widget.step.title),
+                Text(
+                  "Question Body",
+                  style: RPStyles.H1,
+                ),
+              ],
+            ),
           ),
         ),
         persistentFooterButtons: <Widget>[
           FlatButton(
-            onPressed: () => blocTask.changeStatus(StepStatus.Canceled),
+            onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
             child: Text(
               "CANCEL",
               style: TextStyle(color: Colors.redAccent),
@@ -70,7 +72,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
             child: Text(
               "NEXT",
             ),
-            onPressed: () => blocTask.changeStatus(StepStatus.Finished),
+            onPressed: () => blocTask.sendStatus(StepStatus.Finished),
           ),
         ],
       ),

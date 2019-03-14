@@ -8,9 +8,24 @@ class RPUIVisualConsentStep extends StatefulWidget {
   _RPUIVisualConsentStep createState() => _RPUIVisualConsentStep();
 }
 
-class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
+class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTickerProviderStateMixin {
+  Animation<double> _scale;
+  AnimationController _controller;
   int _pageNr = 0;
   bool _lastPage = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 400));
+    _scale = Tween(begin: 0.6, end: 1.0)
+        .chain(
+          CurveTween(
+            curve: Interval(0.3, 1.0, curve: Curves.easeInOut),
+          ),
+        )
+        .animate(_controller);
+  }
 
   void _goToNextPage(pageNr) {
     setState(() {
@@ -81,10 +96,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
               style: RPStyles.H1,
               textAlign: TextAlign.center,
             ),
-            Icon(
-              _iconDataForType(section.type),
-              size: 80.0,
-              color: RPStyles.cachetBlue,
+            ScaleTransition(
+              scale: _scale,
+              child: Icon(
+                _iconDataForType(section.type),
+                size: 80.0,
+                color: RPStyles.cachetBlue,
+              ),
             ),
             Column(
               children: <Widget>[
@@ -151,7 +169,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
                     style: RPStyles.whiteText,
                   ),
             onPressed: _lastPage
-                ? () => blocTask.changeStatus(StepStatus.Finished) //_pushReview(widget.consentDocument)
+                ? () => blocTask.sendStatus(StepStatus.Finished) //_pushReview(widget.consentDocument)
                 : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
           ),
           FlatButton(
@@ -182,7 +200,10 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> {
           children: <Widget>[
             Expanded(
               child: PageView.builder(
-                onPageChanged: (pageNr) => _goToNextPage(pageNr),
+                onPageChanged: (pageNr) {
+                  _goToNextPage(pageNr);
+                  _controller.forward(from: 0.3);
+                },
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: widget.consentDocument.sections.length,
                 controller: controller,

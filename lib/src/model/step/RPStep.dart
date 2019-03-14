@@ -56,5 +56,6 @@ class RPStep {
   }
 }
 
+//TODO: status for finishing a whole task
 // Status to be sent to the Bloc so the Task Widget is notified about the navigation
 enum StepStatus { Finished, Canceled, Ongoing, Back }

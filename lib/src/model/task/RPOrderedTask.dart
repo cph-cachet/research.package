@@ -55,9 +55,6 @@ class RPOrderedTask extends RPTask {
 
   @override
   String getTitleForStep(RPStep step) {
-    // TODO: implement getTitleForStep
-    // RPStep implementation is needed for that
-
-    return null;
+    return step.title;
   }
 }

@@ -1,5 +1,6 @@
 library research_package_ui;
 
+// Imports
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +9,7 @@ import 'dart:async';
 
 import 'package:research_package/src/model/model.dart';
 
-
+// Library elements
 part 'RPStyles.dart';
 
 part 'RPUIOrderedTask.dart';
@@ -19,6 +20,7 @@ part 'RPUIConsentReviewStep.dart';
 
 part 'RPUIQuestionStep.dart';
 part 'RPUIInstructionStep.dart';
+part 'RPUICompletionStep.dart';
 
 part 'RPUIIntegerQuestionBody.dart';
 

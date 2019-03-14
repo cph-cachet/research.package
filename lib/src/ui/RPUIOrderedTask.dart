@@ -51,7 +51,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
         nrOfQuestionSteps++;
       }
     });
-    // Making the stepcount available, so the steps can display the stepcount
+    // Making the stepcount available, so the steps can display the StepCount
     blocTask.updateStepCount(nrOfQuestionSteps);
 
     // Subscribe to step status changes so the navigation can be triggered
@@ -59,9 +59,15 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
       print('Data from stepstatus stream in RPUITask: $data');
       switch (data) {
         case StepStatus.Finished:
+          // In case of last step we save the result and close the task
+          if (currentStep == widget.task.steps.last) {
+            //TODO: Save the result
+            Navigator.of(context).popUntil(ModalRoute.withName("/"));
+            break;
+          }
+
           // Updating counter via stream
           blocTask.updateCurrentStepIndex(currentStepIndex);
-
           // Calculating next step and then navigate there
           stepToNavigate = widget.task.getStepAfterStep(currentStep, null);
           currentStep = stepToNavigate;

@@ -1,11 +1,13 @@
 library research_package_model;
 
+// Imports
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:research_package/src/ui/ui.dart';
 
+// Library elements
 part 'answerformat/RPAnswerFormat.dart';
 part 'answerformat/RPIntegerAnswerFormat.dart';
 
@@ -20,6 +22,7 @@ part 'step/RPStep.dart';
 part 'step/RPFormStep.dart';
 part 'step/RPQuestionStep.dart';
 part 'step/RPInstructionStep.dart';
+part 'step/RPCompletionStep.dart';
 
 part 'task/RPOrderedTask.dart';
 part 'task/RPTask.dart';
@@ -28,8 +31,7 @@ part 'result/RPResult.dart';
 part 'result/RPTaskResult.dart';
 part 'result/RPStepResult.dart';
 
+// BLoCs
 part 'blocs/BlocTask.dart';
-part 'blocs/BlocSurvey.dart';
-
 
 

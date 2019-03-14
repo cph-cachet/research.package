@@ -7,7 +7,7 @@ class BlocTask {
   final _currentStepIndexController = BehaviorSubject<int>.seeded(1);
 
   //Add data to stream
-  Function(StepStatus) get changeStatus => _stepStatusController.sink.add;
+  Function(StepStatus) get sendStatus => _stepStatusController.sink.add;
   Function(int) get updateStepCount => _stepCountSubject.add;
   Function(int) get updateCurrentStepIndex => _currentStepIndexController.add;
 
