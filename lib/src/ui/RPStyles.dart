@@ -7,6 +7,7 @@ class RPStyles {
 
   static const bodyText = TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w200);
   static const whiteText = TextStyle(color: Colors.white);
+  static const choiceAnswerText = TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w200);
 
   static const cachetBlue = Color(0xff61c3d9);
 

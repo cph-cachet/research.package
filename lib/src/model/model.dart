@@ -34,5 +34,6 @@ part 'result/RPStepResult.dart';
 
 // BLoCs
 part 'blocs/BlocTask.dart';
+part 'blocs/BlocQuestion.dart';
 
 
