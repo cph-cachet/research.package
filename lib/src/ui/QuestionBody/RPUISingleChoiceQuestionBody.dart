@@ -17,7 +17,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
     super.initState();
   }
 
-  Function buttonCallBack(int index) {
+  Function _buttonCallBack(int index) {
     // Setting the state here is calling the build method so the checkmarks can be rendered.
     // Only one choice can be selected.
     if (selectedIndex == index) {
@@ -35,6 +35,15 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
         : blocQuestion.sendStatus(QuestionStatus.NotReady);
   }
 
+  Widget _choiceCellBuilder(BuildContext context, int index) {
+    return _ChoiceButton(
+      widget.answerFormat.choices[index],
+      _buttonCallBack,
+      selectedIndex == index ? true : false,
+      index,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -43,36 +52,21 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
       physics: NeverScrollableScrollPhysics(),
     );
   }
-
-  Widget _choiceCellBuilder(BuildContext context, int index) {
-    return _choiceButton(
-      widget.answerFormat.choices[index],
-      buttonCallBack,
-      selectedIndex == index ? true : false,
-      index,
-    );
-  }
 }
 
-class _choiceButton extends StatefulWidget {
+class _ChoiceButton extends StatefulWidget {
   RPChoice choice;
   Function selectedCallBack;
   bool selected;
   int index;
 
-  _choiceButton(this.choice, this.selectedCallBack, this.selected, this.index);
+  _ChoiceButton(this.choice, this.selectedCallBack, this.selected, this.index);
 
   @override
-  _choiceButtonState createState() => _choiceButtonState();
+  _ChoiceButtonState createState() => _ChoiceButtonState();
 }
 
-class _choiceButtonState extends State<_choiceButton> {
-  @override
-  void initState() {
-//    selected = false;
-    super.initState();
-  }
-
+class _ChoiceButtonState extends State<_ChoiceButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -82,9 +76,6 @@ class _choiceButtonState extends State<_choiceButton> {
         padding: EdgeInsets.all(14),
         highlightElevation: 2,
         onPressed: () {
-//          setState(() {
-//            selected = !selected;
-//          });
           print("The value of the choice: ${widget.choice.value}");
           widget.selectedCallBack(widget.index);
         },

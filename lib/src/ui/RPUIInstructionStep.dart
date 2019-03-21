@@ -50,13 +50,13 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                   padding: EdgeInsets.all(16),
                   child: Text(
                     widget.text,
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.left,
                     style: RPStyles.H3,
                   ),
                 ),
                 FlatButton(
                   textTheme: ButtonTextTheme.accent,
-                  child: Text("Learn more..."),
+                  child: Text("Learn more..."), // TODO: Localization
                   onPressed: _pushDetailTextRoute,
                 ),
               ],

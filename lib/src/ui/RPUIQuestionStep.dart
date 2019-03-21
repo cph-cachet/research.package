@@ -47,9 +47,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
     });
 
     currentStepIndexSubscription = blocTask.currentStepIndex.listen((index) {
-//      setState(() {
       currentStepIndex = index;
-//      });
     });
 
     questionType = widget.step.answerFormat.questionType;
@@ -75,6 +73,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     _title(),
                     Expanded(

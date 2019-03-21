@@ -65,7 +65,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
         return Icons.cancel;
         break;
       case RPConsentSectionType.Custom:
-        return Icons.access_time;
+        return Icons.extension;
         break;
       case RPConsentSectionType.DataGathering:
         return Icons.timeline;
@@ -144,7 +144,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               ),
               FlatButton(
                 child: Text("NO"),
-                onPressed: () => print("NO"),
+                onPressed: () => Navigator.of(context).pop() // Pop the popup,
               )
             ],
           );
@@ -169,7 +169,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                     style: RPStyles.whiteText,
                   ),
             onPressed: _lastPage
-                ? () => blocTask.sendStatus(StepStatus.Finished) //_pushReview(widget.consentDocument)
+                ? () => blocTask.sendStatus(StepStatus.Finished)
                 : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
           ),
           FlatButton(

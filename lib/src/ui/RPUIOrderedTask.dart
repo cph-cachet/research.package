@@ -37,7 +37,42 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
         ),
       ),
     );
+  }
 
+  void _showCancelConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Discard results and quit?"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("NO"),
+              onPressed: () => print('n'),
+            ),
+            FlatButton(
+              child: Text("YES"),
+              onPressed: () {
+                // TODO: Do something with the result
+                stepToNavigate = widget.task.steps.first;
+                Navigator.of(context).popUntil(ModalRoute.withName("/"));
+
+                //          Navigator.removeRouteBelow(context, )
+//          Navigator.pushAndRemoveUntil(
+//            context,
+//            MaterialPageRoute(
+//              builder: (BuildContext context) {
+//                return stepToNavigate.stepWidget;
+//              },
+//            ),
+//            (Route<dynamic> route) => false,
+//          );
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -76,18 +111,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
           _pushStep(stepToNavigate);
           break;
         case StepStatus.Canceled:
-          stepToNavigate = widget.task.steps.first;
-//          Navigator.removeRouteBelow(context, )
-//          Navigator.pushAndRemoveUntil(
-//            context,
-//            MaterialPageRoute(
-//              builder: (BuildContext context) {
-//                return stepToNavigate.stepWidget;
-//              },
-//            ),
-//            (Route<dynamic> route) => false,
-//          );
-          Navigator.of(context).popUntil(ModalRoute.withName("/"));
+          _showCancelConfirmationDialog();
           break;
         case StepStatus.Back:
           print('back');
