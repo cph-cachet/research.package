@@ -1,15 +1,12 @@
 part of research_package_ui;
 
 class RPUIConsentReviewStep extends StatefulWidget {
-  final RPConsentDocument consentDocument;
-  final String text;
-  final String reasonForConsent;
+  final RPConsentReviewStep step;
+//  final RPConsentDocument consentDocument;
+//  final String text;
+//  final String reasonForConsent;
 
-  RPUIConsentReviewStep({
-    @required this.consentDocument,
-    @required this.text,
-    @required this.reasonForConsent,
-  });
+  RPUIConsentReviewStep(this.step);
 
   @override
   _RPUIConsentReviewStepState createState() => _RPUIConsentReviewStepState();
@@ -47,12 +44,12 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              widget.consentDocument.sections[index].title,
+              widget.step.consentDocument.sections[index].title,
               style: RPStyles.H2,
             ),
           ),
           Text(
-            widget.consentDocument.sections[index].content,
+            widget.step.consentDocument.sections[index].content,
             style: RPStyles.bodyText,
           ),
         ],
@@ -67,8 +64,8 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text(widget.text),
-            content: Text(widget.reasonForConsent),
+            title: Text(widget.step.text),
+            content: Text(widget.step.reasonForConsent),
             actions: <Widget>[
               FlatButton(
                 child: Text("CANCEL"),
@@ -76,12 +73,12 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
               ),
               FlatButton(
                 child: Text("AGREE"),
-                onPressed: widget.consentDocument.signatures != []
+                onPressed: widget.step.consentDocument.signatures != []
                     ? () {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return NameInputRoute(
-                            signaturePageTitle: widget.consentDocument.signaturePageTitle,
+                            signaturePageTitle: widget.step.consentDocument.signaturePageTitle,
                           );
                         }));
                       }
@@ -102,7 +99,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
         ),
         body: ListView.builder(
           padding: EdgeInsets.all(16),
-          itemCount: widget.consentDocument.sections.length + 1,
+          itemCount: widget.step.consentDocument.sections.length + 1,
           itemBuilder: _reviewCellBuilder,
         ),
         persistentFooterButtons: <Widget>[

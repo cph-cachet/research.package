@@ -22,6 +22,8 @@ class RPConsentReviewStep extends RPStep {
 
   String get reasonForConsent => this._reasonForConsent;
 
+  RPConsentDocument get consentDocument => this._consentDocument;
+
   set consentSignature(RPConsentSignature consentSignature) {
     this._consentSignature = consentSignature;
   }
@@ -35,9 +37,5 @@ class RPConsentReviewStep extends RPStep {
   }
 
   @override
-  Widget get stepWidget => RPUIConsentReviewStep(
-        consentDocument: _consentDocument,
-        reasonForConsent: _reasonForConsent,
-        text: _text,
-      );
+  Widget get stepWidget => RPUIConsentReviewStep(this);
 }

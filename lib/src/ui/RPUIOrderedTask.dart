@@ -48,7 +48,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
           actions: <Widget>[
             FlatButton(
               child: Text("NO"),
-              onPressed: () => print('n'),
+              onPressed: () => Navigator.of(context).pop(), // Dismissing the pop-up
             ),
             FlatButton(
               child: Text("YES"),
@@ -100,7 +100,6 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
             Navigator.of(context).popUntil(ModalRoute.withName("/"));
             break;
           }
-
           // Updating counter via stream
           blocTask.updateCurrentStepIndex(currentStepIndex);
           // Calculating next step and then navigate there

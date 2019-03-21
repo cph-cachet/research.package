@@ -4,7 +4,7 @@ class RPStepResult<T> extends RPResult {
   Map<String, T> _results;
   RPAnswerFormat _answerFormat;
 
-  RPStepResult(RPStep step) : super(step._identifier) {
+  RPStepResult(RPStep step) : super(step.identifier) {
     this._results = Map();
 
     if (step.runtimeType == RPQuestionStep) {
@@ -23,7 +23,7 @@ class RPStepResult<T> extends RPResult {
     this._results = results;
   }
 
-  void getResultForIdentifier(String identifier) => _results[identifier];
+  T getResultForIdentifier(String identifier) => _results[identifier];
 
   void setResultForIdentifier(String identifier, T result) {
     this._results[identifier] = result;

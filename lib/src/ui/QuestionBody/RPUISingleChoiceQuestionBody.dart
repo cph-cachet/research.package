@@ -1,8 +1,21 @@
 part of research_package_ui;
 
 class RPUIChoiceQuestionBody extends StatefulWidget {
-  final RPChoiceAnswerFormat answerFormat;
-  RPUIChoiceQuestionBody(this.answerFormat);
+  RPChoiceAnswerFormat _answerFormat;
+  RPQuestionStep _step;
+  List<RPChoice> _choices;
+  RPStepResult _result;
+
+  RPUIChoiceQuestionBody(this._answerFormat);
+
+//  RPUIChoiceQuestionBody(RPQuestionStep step, RPStepResult stepResult) {
+//    this._step = step;
+//    this._result = stepResult == null ? RPStepResult(step) : stepResult;
+//    this._answerFormat = step.answerFormat;
+//    this._choices = _answerFormat.choices;
+//
+//    //TODO: Restore result (implemented in ResearchStack
+//  }
 
   @override
   _RPUIChoiceQuestionBodyState createState() => _RPUIChoiceQuestionBodyState();
@@ -37,7 +50,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
 
   Widget _choiceCellBuilder(BuildContext context, int index) {
     return _ChoiceButton(
-      widget.answerFormat.choices[index],
+      widget._answerFormat.choices[index],
       _buttonCallBack,
       selectedIndex == index ? true : false,
       index,
@@ -47,7 +60,8 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: widget.answerFormat.choices.length,
+      shrinkWrap: true,
+      itemCount: widget._answerFormat.choices.length,
       itemBuilder: _choiceCellBuilder,
       physics: NeverScrollableScrollPhysics(),
     );
@@ -83,7 +97,7 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(widget.choice.text, style: RPStyles.choiceAnswerText),
-            Icon(widget.selected ? Icons.check : null, color: Colors.grey),
+            Icon(widget.selected ? Icons.check : null, color: Colors.black),
           ],
         ),
       ),

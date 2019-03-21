@@ -67,20 +67,16 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Card(
-              elevation: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    _title(),
-                    Expanded(
-                      child: widget.step.answerFormat.stepBody,
-                    ),
-                  ],
-                ),
+          child: Card(
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  _title(),
+                  widget.step.answerFormat.stepBody,
+                ],
               ),
             ),
           ),
@@ -99,7 +95,10 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
             child: Text(
               "NEXT",
             ),
-            onPressed: readyToProceed ? () => blocTask.sendStatus(StepStatus.Finished) : null,
+            onPressed: () {
+              readyToProceed ? () => blocTask.sendStatus(StepStatus.Finished) : null;
+
+            },
           ),
         ],
       ),
