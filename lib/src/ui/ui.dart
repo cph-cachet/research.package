@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:signature/signature.dart';
 import 'dart:async';
+import 'package:rxdart/rxdart.dart';
 
 import 'package:research_package/src/model/model.dart';
 

@@ -9,18 +9,26 @@ class RPUIQuestionStep extends StatefulWidget {
   _RPUIQuestionStepState createState() => _RPUIQuestionStepState();
 }
 
-class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
+class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   QuestionType questionType;
   int stepCount;
   int currentStepIndex;
+  RPQuestionBodyResult currentQuestionBodyResult;
   bool readyToProceed;
+  RPStepResult result;
 
   StreamSubscription<int> stepCountSubscription;
   StreamSubscription<int> currentStepIndexSubscription;
   StreamSubscription<QuestionStatus> questionStatusSubscription;
+  StreamSubscription<RPQuestionBodyResult> questionBodyResultSubscription;
 
   @override
   void initState() {
+    // Instantiating the result object here to start the time counter (startDate)
+    result = RPStepResult(widget.step);
+    questionType = widget.step.answerFormat.questionType;
+    readyToProceed = false;
+
     questionStatusSubscription = blocQuestion.questionStatus.listen((status) {
       switch (status) {
         case QuestionStatus.Ready:
@@ -50,8 +58,12 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
       currentStepIndex = index;
     });
 
-    questionType = widget.step.answerFormat.questionType;
-    readyToProceed = false;
+    // Maybe not the best solution. Now we are updating the current result every time the user taps on a choice button
+    questionBodyResultSubscription = blocQuestion.resultValue.listen((questionBodyResult) {
+      setState(() {
+        currentQuestionBodyResult = questionBodyResult;
+      });
+    });
 
     super.initState();
   }
@@ -95,9 +107,13 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
             child: Text(
               "NEXT",
             ),
-            onPressed: readyToProceed ? () {
-               blocTask.sendStatus(StepStatus.Finished);
-            } : null,
+            onPressed: readyToProceed
+                ? () {
+                    // Communicating with the RPUITask Widget
+                    blocTask.sendStatus(StepStatus.Finished);
+                    createAndSendResult();
+                  }
+                : null,
           ),
         ],
       ),
@@ -119,10 +135,19 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
   }
 
   @override
+  void createAndSendResult() {
+    print("The last questionBody Result is: ${currentQuestionBodyResult.value}");
+    // Populate the result object with value and end the time tracker (set endDate)
+    result.setResult(currentQuestionBodyResult.value);
+    blocTask.sendStepResult(result);
+  }
+
+  @override
   void dispose() {
     stepCountSubscription.cancel();
     currentStepIndexSubscription.cancel();
     questionStatusSubscription.cancel();
+    questionBodyResultSubscription.cancel();
     super.dispose();
   }
 }

@@ -6,7 +6,6 @@ class RPResult {
   DateTime _endDate;
   bool _saveable;
 
-  /// Returns unique identifier
   RPResult(this._identifier);
 
   String get identifier => _identifier;

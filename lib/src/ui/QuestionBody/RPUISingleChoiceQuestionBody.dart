@@ -14,7 +14,7 @@ class RPUIChoiceQuestionBody extends StatefulWidget {
 //    this._answerFormat = step.answerFormat;
 //    this._choices = _answerFormat.choices;
 //
-//    //TODO: Restore result (implemented in ResearchStack
+//    //TODO: Restore result (implemented in ResearchStack)
 //  }
 
   @override
@@ -30,7 +30,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
     super.initState();
   }
 
-  Function _buttonCallBack(int index) {
+  void _buttonCallBack(int index) {
     // Setting the state here is calling the build method so the checkmarks can be rendered.
     // Only one choice can be selected.
     if (selectedIndex == index) {
@@ -90,7 +90,7 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
         padding: EdgeInsets.all(14),
         highlightElevation: 2,
         onPressed: () {
-          print("The value of the choice: ${widget.choice.value}");
+          blocQuestion.sendResultValue(RPQuestionBodyResult(widget.choice.value));
           widget.selectedCallBack(widget.index);
         },
         child: Row(

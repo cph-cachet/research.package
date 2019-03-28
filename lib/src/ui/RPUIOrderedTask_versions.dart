@@ -11,10 +11,10 @@ class RPUIOrderedTask extends StatefulWidget {
 }
 
 
-///
-/// VERSION 0: SetState
-/// One of the state elements of the widget is a widget to show. Based on bloc stream events we change that state element, changing the content on the screen.
-///
+/*
+  VERSION 0: SetState
+  One of the state elements of the widget is a widget to show. Based on bloc stream events we change that state element, changing the content on the screen.
+*/
 
 class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
   RPTaskResult taskResult;
@@ -62,10 +62,10 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> {
   }
 }
 
-///
-/// VERSION 1: StreamBuilder
-/// Why the builder is called when there's no event coming? (Agree button on)
-///
+/*
+  VERSION 1: StreamBuilder
+  Why the builder is called when there's no event coming? (Agree button on)
+*/
 
 //class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with SingleTickerProviderStateMixin {
 //  RPTaskResult taskResult;
