@@ -6,7 +6,7 @@
 part of research_package_model;
 
 abstract class RPAnswerFormat {
-  Widget _stepBody;
+  Widget _questionBody;
 
   //Default constructor. The appropriate subclass of AnswerFormat should be used instead of this directly.
   RPAnswerFormat();
@@ -16,7 +16,7 @@ abstract class RPAnswerFormat {
   // Also, they are _almost_ the same as the questionResult classes in RK
   QuestionType get questionType => QuestionType.None; // TODO: Investigate more what's this for
 
-  Widget get stepBody => _stepBody;
+  Widget get questionBody => _questionBody;
 }
 
 enum QuestionType {

@@ -14,22 +14,15 @@ class RPUIConsentReviewStep extends StatefulWidget {
 
 class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
   Widget _reviewCellBuilder(BuildContext context, int index) {
+    // Return the header as the first element.
     if (index == 0) {
-      // return the header
       return Column(
         children: <Widget>[
-//          Padding(
-//            padding: const EdgeInsets.symmetric(vertical: 10.0),
-//            child: Text(
-//              'Review',
-//              style: RPStyles.H1,
-//            ),
-//          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 64.0),
             child: Text(
               'Review this form below, and tap AGREE if you\'re ready to continue.',
-              style: RPStyles.bodyText.copyWith(fontWeight: FontWeight.w600),
+              style: TextStyle(fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
             ),
           ),
@@ -50,7 +43,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
           ),
           Text(
             widget.step.consentDocument.sections[index].content,
-            style: RPStyles.bodyText,
+            style: TextStyle(height: 1.1),
           ),
         ],
       ),
@@ -77,8 +70,10 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
                     ? () {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return NameInputRoute(
-                            signaturePageTitle: widget.step.consentDocument.signaturePageTitle,
+                          return SignatureRoute(
+                            widget.step.consentDocument.signaturePageTitle,
+                            widget.step.consentDocument.signatures
+                                .first, // TODO: Currently this implementation only support one signature, not multiple
                           );
                         }));
                       }
@@ -118,15 +113,16 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
   }
 }
 
-class NameInputRoute extends StatefulWidget {
-  final String signaturePageTitle;
-  NameInputRoute({this.signaturePageTitle});
+class SignatureRoute extends StatefulWidget {
+  final String _signaturePageTitle;
+  final RPConsentSignature _consentSignature;
+  SignatureRoute(this._signaturePageTitle, this._consentSignature);
 
   @override
-  _NameInputRouteState createState() => _NameInputRouteState();
+  _SignatureRouteState createState() => _SignatureRouteState();
 }
 
-class _NameInputRouteState extends State<NameInputRoute> {
+class _SignatureRouteState extends State<SignatureRoute> {
   bool _isNameFilled;
   bool _isSignatureAdded;
   final _firstNameController = TextEditingController();
@@ -161,7 +157,7 @@ class _NameInputRouteState extends State<NameInputRoute> {
     );
   }
 
-  void _checkNameNotEmpty() {
+  void _checkNameIsNotEmpty() {
     setState(() {
       _isNameFilled = (_firstNameController.text != '' && _lastNameController.text != '');
     });
@@ -169,10 +165,11 @@ class _NameInputRouteState extends State<NameInputRoute> {
 
   @override
   void initState() {
-    _isNameFilled = false;
-    _isSignatureAdded = false;
-    _firstNameController.addListener(_checkNameNotEmpty);
-    _lastNameController.addListener(_checkNameNotEmpty);
+    widget._consentSignature.requiresSignatureImage ? _isSignatureAdded = false : _isSignatureAdded = true;
+    widget._consentSignature.requiresName ? _isNameFilled = false : _isNameFilled = true;
+
+    _firstNameController.addListener(_checkNameIsNotEmpty);
+    _lastNameController.addListener(_checkNameIsNotEmpty);
     super.initState();
   }
 
@@ -197,7 +194,7 @@ class _NameInputRouteState extends State<NameInputRoute> {
   Widget _signingField() {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(top: 24.0),
+        padding: EdgeInsets.only(top: 24.0),
         child: Column(
           children: <Widget>[
             Text(
@@ -211,12 +208,14 @@ class _NameInputRouteState extends State<NameInputRoute> {
             ),
             FlatButton(
               child: Text("Clear"),
-              onPressed: () {
-                _signature.clear();
-                setState(() {
-                  _isSignatureAdded = false;
-                });
-              },
+              onPressed: _isSignatureAdded
+                  ? () {
+                      _signature.clear();
+                      setState(() {
+                        _isSignatureAdded = false;
+                      });
+                    }
+                  : null,
             )
           ],
         ),
@@ -230,15 +229,16 @@ class _NameInputRouteState extends State<NameInputRoute> {
       data: RPStyles.cachetTheme,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.signaturePageTitle),
+          title: Text(widget._signaturePageTitle),
         ),
-        body: ListView(
-          padding: EdgeInsets.all(10.0),
-          physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            _nameFields(),
-            _signingField(),
-          ],
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            children: <Widget>[
+              widget._consentSignature.requiresName ? _nameFields() : Container(),
+              widget._consentSignature.requiresSignatureImage ? _signingField() : Container(),
+            ],
+          ),
         ),
         persistentFooterButtons: <Widget>[
           FlatButton(

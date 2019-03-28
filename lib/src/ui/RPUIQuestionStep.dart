@@ -75,7 +75,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   _title(),
-                  widget.step.answerFormat.stepBody,
+                  widget.step.answerFormat.questionBody,
                 ],
               ),
             ),
@@ -95,10 +95,9 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> {
             child: Text(
               "NEXT",
             ),
-            onPressed: () {
-              readyToProceed ? () => blocTask.sendStatus(StepStatus.Finished) : null;
-
-            },
+            onPressed: readyToProceed ? () {
+               blocTask.sendStatus(StepStatus.Finished);
+            } : null,
           ),
         ],
       ),

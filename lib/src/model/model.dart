@@ -31,6 +31,7 @@ part 'task/RPTask.dart';
 part 'result/RPResult.dart';
 part 'result/RPTaskResult.dart';
 part 'result/RPStepResult.dart';
+part 'result/RPQuestionBodyResult.dart';
 
 // BLoCs
 part 'blocs/BlocTask.dart';

@@ -14,7 +14,7 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
   }
 
   @override
-  Widget get stepBody {
+  Widget get questionBody {
     return RPUIChoiceQuestionBody(this);
   }
 
