@@ -29,6 +29,7 @@ class RPStepResult<T> extends RPResult {
 
   void setResultForIdentifier(String identifier, T result) {
     this._results[identifier] = result;
+    this.endDate = DateTime.now();
   }
 
   void setResult(T result) {

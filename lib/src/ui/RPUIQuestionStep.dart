@@ -10,7 +10,7 @@ class RPUIQuestionStep extends StatefulWidget {
 }
 
 class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
-  QuestionType questionType;
+//  QuestionType questionType;
   int stepCount;
   int currentStepIndex;
   RPQuestionBodyResult currentQuestionBodyResult;
@@ -26,7 +26,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
     result = RPStepResult(widget.step);
-    questionType = widget.step.answerFormat.questionType;
+//    questionType = widget.step.answerFormat.questionType;
     readyToProceed = false;
 
     questionStatusSubscription = blocQuestion.questionStatus.listen((status) {

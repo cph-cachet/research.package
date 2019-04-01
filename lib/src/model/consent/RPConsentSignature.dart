@@ -9,10 +9,10 @@ class RPConsentSignature {
   bool _requiresBirthDate;
   String _identifier;
   String _title;
-  String _fullName;
-  //TODO: Consider the type of this property (UIImage on iOS) and to be moved to widget level
-  String _signatureImage;
-  DateTime _signatureDate;
+//  String _fullName;
+//  //TODO: Consider the type of this property (UIImage on iOS) and to be moved to widget level
+//  String _signatureImage;
+//  DateTime _signatureDate;
 
   RPConsentSignature(String identifier) {
     this._identifier = identifier;
@@ -27,9 +27,9 @@ class RPConsentSignature {
     this._requiresBirthDate,
     this._identifier,
     this._title,
-    this._fullName,
-    this._signatureImage,
-    this._signatureDate,
+//    this._fullName,
+//    this._signatureImage,
+//    this._signatureDate,
   );
 
   String get identifier => _identifier;
@@ -42,23 +42,23 @@ class RPConsentSignature {
 
   String get title => _title;
 
-  String get fullName => _fullName;
-
-  String get signatureImage => _signatureImage;
-
-  DateTime get signatureDate => _signatureDate;
+//  String get fullName => _fullName;
+//
+//  String get signatureImage => _signatureImage;
+//
+//  DateTime get signatureDate => _signatureDate;
 
   set identifier(String identifier) {
     this._identifier = identifier;
   }
 
-  set signatureImage(String signatureImage) {
-    this._signatureImage = signatureImage;
-  }
-
-  set fullName(String fullName) {
-    this._fullName = fullName;
-  }
+//  set signatureImage(String signatureImage) {
+//    this._signatureImage = signatureImage;
+//  }
+//
+//  set fullName(String fullName) {
+//    this._fullName = fullName;
+//  }
 
   set requiresBirthDate(bool requiresBirthDate) {
     this._requiresBirthDate = requiresBirthDate;

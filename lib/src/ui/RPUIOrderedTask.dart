@@ -40,7 +40,6 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     blocTask.updateStepCount(nrOfQuestionSteps);
     // Subscribe to step status changes so the navigation can be triggered
     stepStatusSubscription = blocTask.stepStatus.listen((data) {
-      print('Data from stepstatus stream in RPUITask: $data');
       switch (data) {
         case StepStatus.Finished:
           // In case of last step we save the result and close the task

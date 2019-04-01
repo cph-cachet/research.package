@@ -4,6 +4,7 @@ library research_package_model;
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
+import 'dart:typed_data';
 
 import 'package:research_package/src/ui/ui.dart';
 
@@ -32,7 +33,10 @@ part 'result/RPResult.dart';
 part 'result/RPTaskResult.dart';
 part 'result/RPStepResult.dart';
 part 'result/RPQuestionBodyResult.dart';
+part 'result/RPConsentSignatureResult.dart';
+part 'result/RPSignatureResult.dart';
 
+// Protocols
 part 'Abstracts.dart';
 
 // BLoCs

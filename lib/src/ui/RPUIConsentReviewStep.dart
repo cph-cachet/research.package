@@ -12,7 +12,11 @@ class RPUIConsentReviewStep extends StatefulWidget {
   _RPUIConsentReviewStepState createState() => _RPUIConsentReviewStepState();
 }
 
-class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
+class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanSaveResult {
+  RPConsentSignatureResult consentSignatureResult;
+  RPSignatureResult signatureResult;
+  RPStepResult result;
+
   Widget _reviewCellBuilder(BuildContext context, int index) {
     // Return the header as the first element.
     if (index == 0) {
@@ -51,6 +55,13 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
   }
 
   @override
+  void initState() {
+    // Instantiate result so the counter starts
+    result = RPStepResult(widget.step);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     void _showConsentDialog() {
       showDialog(
@@ -74,6 +85,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
                             widget.step.consentDocument.signaturePageTitle,
                             widget.step.consentDocument.signatures
                                 .first, // TODO: Currently this implementation only support one signature, not multiple
+                            _setSignatureResult,
                           );
                         }));
                       }
@@ -111,12 +123,31 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> {
       ),
     );
   }
+
+  void _setSignatureResult(RPSignatureResult result) {
+    setState(() {
+      signatureResult = result;
+    });
+    createAndSendResult();
+  }
+
+  @override
+  void createAndSendResult() {
+    consentSignatureResult =
+        RPConsentSignatureResult(widget.step.identifier, widget.step.consentDocument, signatureResult)
+          ..endDate = DateTime.now();
+
+    result.setResultForIdentifier("signature", consentSignatureResult);
+    blocTask.sendStepResult(result);
+  }
 }
 
 class SignatureRoute extends StatefulWidget {
   final String _signaturePageTitle;
   final RPConsentSignature _consentSignature;
-  SignatureRoute(this._signaturePageTitle, this._consentSignature);
+  // Callback for
+  final void Function(RPSignatureResult) _onFinished;
+  SignatureRoute(this._signaturePageTitle, this._consentSignature, this._onFinished);
 
   @override
   _SignatureRouteState createState() => _SignatureRouteState();
@@ -242,7 +273,15 @@ class _SignatureRouteState extends State<SignatureRoute> {
         ),
         persistentFooterButtons: <Widget>[
           FlatButton(
-            onPressed: (_isNameFilled && _isSignatureAdded) ? () => blocTask.sendStatus(StepStatus.Finished) : null,
+            onPressed: (_isNameFilled && _isSignatureAdded)
+                ? () {
+                    _signature.exportBytes().then((image) {
+                      widget._onFinished(
+                          RPSignatureResult(_firstNameController.value.text, _lastNameController.value.text, image));
+                    });
+                    blocTask.sendStatus(StepStatus.Finished);
+                  }
+                : null,
             child: Text('NEXT'),
           )
         ],

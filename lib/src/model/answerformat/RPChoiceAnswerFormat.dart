@@ -17,8 +17,6 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
   Widget get questionBody {
     return RPUIChoiceQuestionBody(this);
   }
-
-
 }
 
 class RPChoice<T> {
