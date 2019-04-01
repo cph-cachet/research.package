@@ -2,8 +2,9 @@ part of research_package_ui;
 
 class RPUIOrderedTask extends StatefulWidget {
   final RPOrderedTask task;
+  final void Function(RPTaskResult) onSubmit;
 
-  RPUIOrderedTask({this.task});
+  RPUIOrderedTask({this.task, this.onSubmit});
 
   @override
   _RPUIOrderedTaskState createState() => _RPUIOrderedTaskState();
@@ -26,6 +27,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
 
   @override
   initState() {
+    // Instantiate the taskresult so it starts tracking time
     taskResult = RPTaskResult(widget.task.identifier)..startDate = DateTime.now();
 
     // Calculating the number of question steps because we only want to display their count
@@ -85,7 +87,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate)
     taskResult.endDate = DateTime.now();
-    blocTask.updateTaskResult(taskResult);
+    widget.onSubmit(taskResult);
   }
 
   void _pushStep(RPStep step) {
