@@ -5,15 +5,9 @@ class RPInstructionStep extends RPStep {
   String footnote;
   Image image;
 
-  RPInstructionStep({String identifier, String title, String text, this.detailText, this.footnote, this.image})
+  RPInstructionStep({String identifier, String title, this.detailText, this.footnote, this.image})
       : super.withTitle(identifier, title);
 
   @override
-  Widget get stepWidget => RPUIInstructionStep(
-        title: title,
-        detailText: detailText,
-        text: text,
-        footnote: footnote,
-        image: image,
-      );
+  Widget get stepWidget => RPUIInstructionStep(step: this);
 }

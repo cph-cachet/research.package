@@ -11,12 +11,12 @@ class RPStyles {
 
   static const cachetBlue = Color(0xff61c3d9);
 
-  static Widget RPAppBar({String text}) {
-    return AppBar(backgroundColor: cachetBlue, title: Text(text));
-  }
-
   static final cachetTheme = ThemeData.light().copyWith(
     accentColor: cachetBlue,
     primaryColor: cachetBlue,
   );
+}
+
+Widget RPAppBar({String text}) {
+    return AppBar(backgroundColor: RPStyles.cachetBlue, title: Text(text));
 }

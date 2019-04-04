@@ -156,29 +156,35 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
       padding: EdgeInsets.only(bottom: 20.0, top: 10.0),
       child: Column(
         children: <Widget>[
-          RaisedButton(
-            padding: EdgeInsets.all(10.0),
-            color: RPStyles.cachetBlue,
-            child: _lastPage
-                ? Text(
-                    "SEE SUMMARY",
-                    style: RPStyles.whiteText,
-                  )
-                : Text(
-                    "NEXT",
-                    style: RPStyles.whiteText,
-                  ),
-            onPressed: _lastPage
-                ? () => blocTask.sendStatus(StepStatus.Finished)
-                : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
-          ),
-          FlatButton(
-            padding: EdgeInsets.all(10.0),
-            child: Text(
-              "CANCEL",
-              style: TextStyle(color: Colors.redAccent),
+          ButtonTheme(
+            minWidth: 150,
+            child: RaisedButton(
+              padding: EdgeInsets.all(10.0),
+              color: RPStyles.cachetBlue,
+              child: _lastPage
+                  ? Text(
+                      "SEE SUMMARY",
+                      style: RPStyles.whiteText,
+                    )
+                  : Text(
+                      "NEXT",
+                      style: RPStyles.whiteText,
+                    ),
+              onPressed: _lastPage
+                  ? () => blocTask.sendStatus(StepStatus.Finished)
+                  : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
             ),
-            onPressed: () => _showCancelDialog(),
+          ),
+          ButtonTheme(
+            minWidth: 150,
+            child: FlatButton(
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                "CANCEL",
+                style: TextStyle(color: Colors.redAccent),
+              ),
+              onPressed: () => _showCancelDialog(),
+            ),
           ),
         ],
       ),

@@ -86,9 +86,9 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
         splashColor: RPStyles.cachetBlue,
         padding: EdgeInsets.all(14),
-        highlightElevation: 2,
         onPressed: () {
           blocQuestion.sendResultValue(RPQuestionBodyResult(widget.choice.value));
           widget.selectedCallBack(widget.index);
@@ -96,7 +96,12 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(widget.choice.text, style: RPStyles.choiceAnswerText),
+            Text(
+              widget.choice.text,
+              style: widget.selected
+                  ? RPStyles.choiceAnswerText.copyWith(fontWeight: FontWeight.w500)
+                  : RPStyles.choiceAnswerText,
+            ),
             Icon(widget.selected ? Icons.check : null, color: Colors.black),
           ],
         ),

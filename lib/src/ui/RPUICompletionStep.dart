@@ -18,13 +18,6 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
     super.initState();
 
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 350));
-//      ..addStatusListener((AnimationStatus status) {
-//        if (status == AnimationStatus.completed) {
-//          _controller.reverse();
-//        } else if (status == AnimationStatus.dismissed) {
-//          _controller.forward();
-//        }
-//      });
     _scale = Tween(begin: 0.3, end: 1.1).chain(CurveTween(curve: Curves.easeInOut)).animate(_controller);
     _controller.forward();
   }
@@ -58,7 +51,8 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
                   color: RPStyles.cachetBlue,
                 ),
               ),
-              Container(
+              ButtonTheme(
+                minWidth: 150,
                 child: OutlineButton(
                   splashColor: RPStyles.cachetBlue,
                   color: RPStyles.cachetBlue,

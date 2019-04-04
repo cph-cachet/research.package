@@ -1,19 +1,9 @@
 part of research_package_ui;
 
 class RPUIInstructionStep extends StatefulWidget {
-  String title;
-  String detailText;
-  String footnote;
-  String text;
-  Image image;
+  final RPInstructionStep step;
 
-  RPUIInstructionStep({
-    @required this.title,
-    @required this.text,
-    this.detailText,
-    this.footnote,
-    this.image,
-  });
+  RPUIInstructionStep({@required this.step});
 
   @override
   _RPUIInstructionStepState createState() => _RPUIInstructionStepState();
@@ -25,8 +15,8 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
       MaterialPageRoute(
         builder: (context) {
           return DetailTextRoute(
-            title: widget.title,
-            content: widget.detailText,
+            title: widget.step.title,
+            content: widget.step.detailText,
           );
         },
       ),
@@ -39,7 +29,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
       data: RPStyles.cachetTheme,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(widget.step.title),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +39,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 Container(
                   padding: EdgeInsets.all(16),
                   child: Text(
-                    widget.text,
+                    widget.step.text,
                     textAlign: TextAlign.left,
                     style: RPStyles.H3,
                   ),
@@ -64,7 +54,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
             Container(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                widget.footnote,
+                widget.step.footnote,
                 style: RPStyles.bodyText,
                 textAlign: TextAlign.left,
               ),

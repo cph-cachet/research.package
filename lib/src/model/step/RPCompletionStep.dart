@@ -5,8 +5,6 @@ class RPCompletionStep extends RPStep {
 
   @override
   Widget get stepWidget {
-    return RPUICompletionStep(
-      step: this,
-    );
+    return RPUICompletionStep(step: this);
   }
 }

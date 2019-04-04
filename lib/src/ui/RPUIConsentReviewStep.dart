@@ -73,7 +73,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
             actions: <Widget>[
               FlatButton(
                 child: Text("CANCEL"),
-                onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+                onPressed: () => Navigator.of(context).pop(), //blocTask.sendStatus(StepStatus.Canceled),
               ),
               FlatButton(
                 child: Text("AGREE"),
@@ -103,6 +103,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
       child: Scaffold(
         appBar: AppBar(
           title: Text('Review'), //TODO: Localization
+          automaticallyImplyLeading: false,
         ),
         body: ListView.builder(
           padding: EdgeInsets.all(16),
@@ -118,7 +119,14 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
                 ),
               ),
               onPressed: () => blocTask.sendStatus(StepStatus.Canceled)),
-          FlatButton(child: Text("AGREE"), onPressed: () => _showConsentDialog()), //TODO: Localization
+          RaisedButton(
+            color: RPStyles.cachetBlue,
+            child: Text(
+              "AGREE",
+              style: RPStyles.whiteText,
+            ),
+            onPressed: () => _showConsentDialog(),
+          ), //TODO: Localization
         ],
       ),
     );
