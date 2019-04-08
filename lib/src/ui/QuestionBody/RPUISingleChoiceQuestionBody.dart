@@ -1,7 +1,7 @@
 part of research_package_ui;
 
 class RPUIChoiceQuestionBody extends StatefulWidget {
-  RPChoiceAnswerFormat _answerFormat;
+  final RPChoiceAnswerFormat _answerFormat;
   RPQuestionStep _step;
   List<RPChoice> _choices;
   RPStepResult _result;
@@ -69,10 +69,10 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
 }
 
 class _ChoiceButton extends StatefulWidget {
-  RPChoice choice;
-  Function selectedCallBack;
-  bool selected;
-  int index;
+  final RPChoice choice;
+  final Function selectedCallBack;
+  final bool selected;
+  final int index;
 
   _ChoiceButton(this.choice, this.selectedCallBack, this.selected, this.index);
 

@@ -1,9 +1,9 @@
 part of research_package_ui;
 
 class RPUIIntegerQuestionBody extends StatefulWidget {
-  RPQuestionStep step;
-  RPStepResult<int> result;
-  RPIntegerAnswerFormat answerFormat;
+  final RPQuestionStep step;
+  final RPStepResult<int> result;
+  final RPIntegerAnswerFormat answerFormat;
 
   RPUIIntegerQuestionBody(this.step, this.result, this.answerFormat);
 

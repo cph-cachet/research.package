@@ -13,8 +13,6 @@ part of research_package_model;
 
 class RPStep {
   final String _identifier;
-  // RS has it but RK doesn't. IMO it's super confusing
-  int _stepTitle;
   bool _optional;
   String _title;
   String _text;

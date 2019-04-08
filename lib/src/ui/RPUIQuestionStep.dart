@@ -1,7 +1,7 @@
 part of research_package_ui;
 
 class RPUIQuestionStep extends StatefulWidget {
-  RPQuestionStep step;
+  final RPQuestionStep step;
 
   RPUIQuestionStep(this.step);
 
@@ -85,8 +85,9 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
               padding: const EdgeInsets.all(12.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _title(),
+                  title(),
                   widget.step.answerFormat.questionBody,
                 ],
               ),
@@ -121,13 +122,14 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   }
 
   //Render the title above the questionBody
-  Widget _title() {
+  Widget title() {
     if (widget.step.title != null) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 24),
         child: Text(
           widget.step.title,
           style: RPStyles.H2,
+          textAlign: TextAlign.left,
         ),
       );
     }

@@ -1,7 +1,7 @@
 part of research_package_ui;
 
 class RPUICompletionStep extends StatefulWidget {
-  RPCompletionStep step;
+  final RPCompletionStep step;
 
   RPUICompletionStep({@required this.step});
 

@@ -4,7 +4,6 @@ class RPResult {
   String _identifier;
   DateTime _startDate;
   DateTime _endDate;
-  bool _saveable;
 
   RPResult(this._identifier);
 
@@ -21,5 +20,4 @@ class RPResult {
   set endDate(DateTime endDate) {
     this._endDate = endDate;
   }
-
 }

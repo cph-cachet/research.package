@@ -155,6 +155,7 @@ class SignatureRoute extends StatefulWidget {
   final RPConsentSignature _consentSignature;
   // Callback for
   final void Function(RPSignatureResult) _onFinished;
+
   SignatureRoute(this._title, this._consentSignature, this._onFinished);
 
   @override
@@ -175,7 +176,7 @@ class _SignatureRouteState extends State<SignatureRoute> {
 
   Widget _signatureCanvas() {
     return GestureDetector(
-      onPanUpdate: (e) {
+      onPanEnd: (e) {
         setState(() {
           if (_signature.isNotEmpty) {
             _isSignatureAdded = true;
@@ -237,7 +238,7 @@ class _SignatureRouteState extends State<SignatureRoute> {
         child: Column(
           children: <Widget>[
             Text(
-              'Please sign using your finger on the line below.', //TODO: Localization
+              'Please sign using your finger on the line below', //TODO: Localization
               style: RPStyles.bodyText,
               textAlign: TextAlign.center,
             ),
