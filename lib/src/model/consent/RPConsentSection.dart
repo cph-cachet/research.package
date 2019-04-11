@@ -2,43 +2,47 @@
 // and ConsentSection (https://github.com/ResearchStack/ResearchStack/blob/master/backbone/src/main/java/org/researchstack/backbone/model/ConsentSection.java)
 part of research_package_model;
 
-
+/// A content section in a [RPConsentDocument].
+///
+/// It represents one section in a [RPConsentDocument]. Each
 class RPConsentSection {
   RPConsentSectionType _type;
   String _title;
   String _formalTitle;
   String _summary;
   String _content;
-  String _htmlContent;
-  //TODO: Consider the following properties to be moved to widget level
-  String _customImageName;
-  String _customLearnMoreButtonTitle;
-  String _customAnimationURL;
 
+  /// Returns a populated object with the given [type].
+  ///
+  /// It is enough to provide only the [type] of the section, the title is automatically filled out.
+  /// [summary] is set to ````null``` initially.
   RPConsentSection(RPConsentSectionType type) {
     this._type = type;
     this._summary = null;
-    this._title = localizedTitleForConsentSectionType(type);
+    this._title = _localizedTitleForConsentSectionType(type);
   }
 
+  /// The title of the consent section which appears both in [RPVisualConsentStep] and [RPConsentReviewStep].
   String get title => _title;
 
   String get formalTitle => _formalTitle;
 
+  /// The type of the section.
+  ///
+  /// The [title] and the image which is shown on the section card is associated to the [type].
   RPConsentSectionType get type => _type;
 
-  String get htmlContent => _htmlContent;
-
+  /// A longer content text of the section.
+  ///
+  /// It's presented during [RPVisualConsentStep] when tapping on the "Learn more" button
+  /// and during [RPConsentReviewStep] where each section's content is shown to the user.
   String get content => _content;
 
+  /// A short summary of the section. It appears during [RPVisualConsentStep]
   String get summary => _summary;
 
   set title(String title) {
     this._title = title;
-  }
-
-  set htmlContent(String htmlContent) {
-    this._htmlContent = htmlContent;
   }
 
   set content(String content) {
@@ -50,6 +54,11 @@ class RPConsentSection {
   }
 }
 
+/// Enum containing the available types for [RPConsentSection].
+///
+/// Every type has a title and a logo associated to it.
+/// Use [Custom] to create your own section type and avoid any prepopulation (title, logo, animation).
+/// See more at: [http://researchkit.org/docs/Constants/ORKConsentSectionType.html]
 enum RPConsentSectionType {
   Overview,
   DataGathering,
@@ -63,36 +72,35 @@ enum RPConsentSectionType {
 }
 
 //TODO: Localization
-String localizedTitleForConsentSectionType(RPConsentSectionType type) {
-  String str;
+String _localizedTitleForConsentSectionType(RPConsentSectionType type) {
   switch (type) {
     case RPConsentSectionType.Overview:
-      str = "Overview";
+      return "Overview";
       break;
     case RPConsentSectionType.DataGathering:
-      str = "Data Gathering";
+      return "Data Gathering";
       break;
     case RPConsentSectionType.Privacy:
-      str = "Privacy";
+      return "Privacy";
       break;
     case RPConsentSectionType.DataUse:
-      str = "Data Use";
+      return "Data Use";
       break;
     case RPConsentSectionType.TimeCommitment:
-      str = "Time Commitment";
+      return "Time Commitment";
       break;
     case RPConsentSectionType.StudyTasks:
-      str = "Study Tasks";
+      return "Study Tasks";
       break;
     case RPConsentSectionType.StudySurvey:
-      str = "Study Survey";
+      return "Study Survey";
       break;
     case RPConsentSectionType.Withdrawing:
-      str = "Withdrawing";
+      return "Withdrawing";
       break;
     case RPConsentSectionType.Custom:
-      str = null;
+      return null;
       break;
   }
-  return str;
+  return null;
 }

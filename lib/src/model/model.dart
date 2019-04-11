@@ -1,3 +1,10 @@
+/// The domain model part of Research Package.
+/// Contains the "building blocks" for creating surveys and obtaining informed consents.
+/// Hold the different types of result classes.
+/// Also responsible for the streams and BLoC classes to provide communication channels
+/// between different parts of the package. ([BlocQuestion], [BlocTask])
+/// For the UI representations of the classes visit the [research_package_ui] library.
+
 library research_package_model;
 
 // Imports
@@ -6,6 +13,7 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'dart:typed_data';
 
+// Importing the UI library from Research Package
 import 'package:research_package/src/ui/ui.dart';
 
 // Library elements
@@ -42,5 +50,3 @@ part 'Abstracts.dart';
 // BLoCs
 part 'blocs/BlocTask.dart';
 part 'blocs/BlocQuestion.dart';
-
-

@@ -20,12 +20,12 @@ class RPStep {
 
   // The following fields are in RK but not implemented in ResearchStack
   // These options can be developed as needed or removed if we find they are not necessary
-  bool _restorable;
-  RPTask _task;
-  bool _shouldTintImages;
-  bool _showsProgress;
-  bool _allowsBackNavigation;
-  bool _useSurveyMode;
+//  bool _restorable;
+//  RPTask _task;
+//  bool _shouldTintImages;
+//  bool _showsProgress;
+//  bool _allowsBackNavigation;
+//  bool _useSurveyMode;
 
   RPStep(this._identifier);
 

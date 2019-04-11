@@ -11,10 +11,11 @@ class RPQuestionStep extends RPStep {
 
   RPAnswerFormat get answerFormat => _answerFormat;
 
+  String get placeholder => _placeholder;
+
   set answerFormat(RPAnswerFormat answerFormat) {
     this._answerFormat = answerFormat;
   }
-  String get placeholder => _placeholder;
 
   set placeholder(String placeholder) {
     this._placeholder = placeholder;
@@ -22,11 +23,7 @@ class RPQuestionStep extends RPStep {
 
   @override
   Widget get stepWidget => RPUIQuestionStep(this);
-
 }
 
-// Enum which is flowing in the stream to let the Question Container know if it can proceed to the next question
-enum QuestionStatus {
-  Ready,
-  NotReady
-}
+// Enum which is flowing through the stream to let the Question Container know if it can proceed to the next question
+enum QuestionStatus { Ready, NotReady }

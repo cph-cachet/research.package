@@ -14,7 +14,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return DetailTextRoute(
+          return _DetailTextRoute(
             title: widget.step.title,
             content: widget.step.detailText,
           );
@@ -83,11 +83,11 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
   }
 }
 
-class DetailTextRoute extends StatelessWidget {
+class _DetailTextRoute extends StatelessWidget {
   final String title;
   final String content;
 
-  DetailTextRoute({this.title, this.content});
+  _DetailTextRoute({this.title, this.content});
 
   @override
   Widget build(BuildContext context) {

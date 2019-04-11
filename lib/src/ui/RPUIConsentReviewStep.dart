@@ -81,7 +81,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
                     ? () {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return SignatureRoute(
+                          return _SignatureRoute(
                             widget.step.title,
                             widget.step.consentDocument.signatures
                                 .first, // TODO: Currently this implementation only support one signature, not multiple
@@ -150,19 +150,19 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
   }
 }
 
-class SignatureRoute extends StatefulWidget {
+class _SignatureRoute extends StatefulWidget {
   final String _title;
   final RPConsentSignature _consentSignature;
   // Callback for
   final void Function(RPSignatureResult) _onFinished;
 
-  SignatureRoute(this._title, this._consentSignature, this._onFinished);
+  _SignatureRoute(this._title, this._consentSignature, this._onFinished);
 
   @override
   _SignatureRouteState createState() => _SignatureRouteState();
 }
 
-class _SignatureRouteState extends State<SignatureRoute> {
+class _SignatureRouteState extends State<_SignatureRoute> {
   bool _isNameFilled;
   bool _isSignatureAdded;
   final _firstNameController = TextEditingController();

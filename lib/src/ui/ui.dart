@@ -1,3 +1,8 @@
+/// The UI library of Research Package.
+/// Contains various UI representations (Widgets) of the objects declared in [research_package_model].
+/// Many of these Widgets are responsible for making the collected results accessible to others.
+/// Also contains general styles used in Research Package UI [RPStyles]
+
 library research_package_ui;
 
 // Imports
@@ -18,13 +23,9 @@ part 'RPUIOrderedTask.dart';
 part 'RPUIVisualConsentStep.dart';
 part 'RPUIConsentReviewStep.dart';
 
-
 part 'RPUIQuestionStep.dart';
 part 'RPUIInstructionStep.dart';
 part 'RPUICompletionStep.dart';
 
 part 'questionbody/RPUIIntegerQuestionBody.dart';
 part 'questionbody/RPUISingleChoiceQuestionBody.dart';
-
-
-

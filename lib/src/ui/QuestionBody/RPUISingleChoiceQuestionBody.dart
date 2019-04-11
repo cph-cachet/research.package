@@ -2,9 +2,6 @@ part of research_package_ui;
 
 class RPUIChoiceQuestionBody extends StatefulWidget {
   final RPChoiceAnswerFormat _answerFormat;
-  RPQuestionStep _step;
-  List<RPChoice> _choices;
-  RPStepResult _result;
 
   RPUIChoiceQuestionBody(this._answerFormat);
 

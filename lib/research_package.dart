@@ -1,3 +1,2 @@
-export 'src/model/model.dart';
-export 'src/ui/ui.dart';
-
+export 'package:research_package/src/model/model.dart';
+export 'package:research_package/src/ui/ui.dart';

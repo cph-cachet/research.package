@@ -39,7 +39,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   _pushContent(String title, String content) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => ContentRoute(
+        builder: (context) => _ContentRoute(
               title: title,
               content: content,
             ),
@@ -65,7 +65,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
         return Icons.cancel;
         break;
       case RPConsentSectionType.Custom:
-        return Icons.extension;
+        return null;//Icons.extension;
         break;
       case RPConsentSectionType.DataGathering:
         return Icons.timeline;
@@ -113,7 +113,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                 ),
                 FlatButton(
                   textTheme: ButtonTextTheme.accent,
-                  child: Text("Learn more..."),
+                  child: Text("Learn more..."), // TODO: Localization
                   onPressed: () => _pushContent(
                         section.title,
                         section.content,
@@ -224,11 +224,11 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   }
 }
 
-class ContentRoute extends StatelessWidget {
+class _ContentRoute extends StatelessWidget {
   final String title;
   final String content;
 
-  ContentRoute({this.title, this.content});
+  _ContentRoute({this.title, this.content});
 
   @override
   Widget build(BuildContext context) {

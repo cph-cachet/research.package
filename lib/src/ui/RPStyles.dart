@@ -16,7 +16,3 @@ class RPStyles {
     primaryColor: cachetBlue,
   );
 }
-
-Widget RPAppBar({String text}) {
-    return AppBar(backgroundColor: RPStyles.cachetBlue, title: Text(text));
-}
