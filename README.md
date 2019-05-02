@@ -56,7 +56,10 @@ In order to use Research Package, you have to clone this repo and add it manuall
 
 After you run the `flutter packages get` command you are able to import and start using Research Package. With the following line you have access both to the Model and the UI part of the package.
 
-`import 'package:research_package/research_package.dart';`
+```dart
+import 'package:research_package/model.dart';
+import 'package:research_package/ui.dart';
+```
 
 Remember, that objects starting with `RP` are part of the Model (like `RPConsentDocument`) while those which start with `RPUI` are part of the UI library (like `RPUIVisualConsentStep`).
 
