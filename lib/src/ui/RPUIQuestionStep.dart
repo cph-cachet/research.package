@@ -128,7 +128,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
         padding: const EdgeInsets.only(bottom: 24),
         child: Text(
           widget.step.title,
-          style: RPStyles.H2,
+          style: RPStyles.h2,
           textAlign: TextAlign.left,
         ),
       );

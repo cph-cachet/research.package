@@ -35,11 +35,11 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
                 children: <Widget>[
                   Text(
                     widget.step.title,
-                    style: RPStyles.H2,
+                    style: RPStyles.h2,
                   ),
                   Text(
                     widget.step.text,
-                    style: RPStyles.H3,
+                    style: RPStyles.h3,
                   ),
                 ],
               ),

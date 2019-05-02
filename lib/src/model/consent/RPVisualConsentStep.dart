@@ -1,7 +1,3 @@
-/*
-Based on http://researchkit.org/docs/Classes/ORKVisualConsentStep.html
- */
-
 part of research_package_model;
 
 /*
@@ -18,7 +14,5 @@ class RPVisualConsentStep extends RPStep {
   get consentDocument => this._consentDocument;
 
   @override
-  Widget get stepWidget => RPUIVisualConsentStep(
-        consentDocument: consentDocument,
-      );
+  Widget get stepWidget => RPUIVisualConsentStep(consentDocument: consentDocument);
 }

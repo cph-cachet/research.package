@@ -4,7 +4,7 @@ part of research_package_model;
 
 /// A content section in a [RPConsentDocument].
 ///
-/// It represents one section in a [RPConsentDocument]. Each
+/// It represents one section in a [RPConsentDocument].
 class RPConsentSection {
   RPConsentSectionType _type;
   String _title;
@@ -15,7 +15,7 @@ class RPConsentSection {
   /// Returns a populated object with the given [type].
   ///
   /// It is enough to provide only the [type] of the section, the title is automatically filled out.
-  /// [summary] is set to ````null``` initially.
+  /// [summary] is set to [null] initially.
   RPConsentSection(RPConsentSectionType type) {
     this._type = type;
     this._summary = null;

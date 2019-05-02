@@ -1,8 +1,11 @@
 part of research_package_model;
 
+
+///
+///
+///
 class RPConsentSignatureResult extends RPResult {
   RPConsentDocument _consentDocument;
-  // Contains name and signature image
   RPSignatureResult _signature;
   String _userID;
 

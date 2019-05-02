@@ -2,9 +2,6 @@ part of research_package_ui;
 
 class RPUIConsentReviewStep extends StatefulWidget {
   final RPConsentReviewStep step;
-//  final RPConsentDocument consentDocument;
-//  final String text;
-//  final String reasonForConsent;
 
   RPUIConsentReviewStep(this.step);
 
@@ -16,6 +13,13 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
   RPConsentSignatureResult consentSignatureResult;
   RPSignatureResult signatureResult;
   RPStepResult result;
+
+  @override
+  void initState() {
+    // Instantiate result so the counter starts
+    result = RPStepResult(widget.step);
+    super.initState();
+  }
 
   Widget _reviewCellBuilder(BuildContext context, int index) {
     // Return the header as the first element.
@@ -42,7 +46,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
               widget.step.consentDocument.sections[index].title,
-              style: RPStyles.H2,
+              style: RPStyles.h2,
             ),
           ),
           Text(
@@ -52,13 +56,6 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
         ],
       ),
     );
-  }
-
-  @override
-  void initState() {
-    // Instantiate result so the counter starts
-    result = RPStepResult(widget.step);
-    super.initState();
   }
 
   @override
@@ -77,21 +74,23 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
               ),
               FlatButton(
                 child: Text("AGREE"),
-                onPressed: widget.step.consentDocument.signatures != []
+                onPressed: widget.step.consentDocument.signatures != null
                     ? () {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return _SignatureRoute(
                             widget.step.title,
-                            widget.step.consentDocument.signatures
-                                .first, // TODO: Currently this implementation only support one signature, not multiple
+                            widget.step.consentDocument.signatures.first,
                             _setSignatureResult,
                           );
                         }));
                       }
-                    : () => print('Agree'),
+                    : () {
+                        blocTask.sendStatus(StepStatus.Finished);
+                        _setSignatureResult(signatureResult);
+                      },
                 textTheme: ButtonTextTheme.primary,
-              )
+              ),
             ],
           );
         },
@@ -145,7 +144,11 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
         RPConsentSignatureResult(widget.step.identifier, widget.step.consentDocument, signatureResult)
           ..endDate = DateTime.now();
 
-    result.setResultForIdentifier("signature", consentSignatureResult);
+    consentSignatureResult.consentDocument.signatures.first == null
+        ? result.setResultForIdentifier("no signature collected", consentSignatureResult)
+        : //TODO: modify identifier to match the id of rpconsentsignature
+        result.setResultForIdentifier(consentSignatureResult.consentDocument.signatures.first.identifier,
+            consentSignatureResult); //TODO: modify identifier to match the id of rpconsentsignature
     blocTask.sendStepResult(result);
   }
 }
@@ -207,9 +210,9 @@ class _SignatureRouteState extends State<_SignatureRoute> {
   void initState() {
     widget._consentSignature.requiresSignatureImage ? _isSignatureAdded = false : _isSignatureAdded = true;
     widget._consentSignature.requiresName ? _isNameFilled = false : _isNameFilled = true;
-
     _firstNameController.addListener(_checkNameIsNotEmpty);
     _lastNameController.addListener(_checkNameIsNotEmpty);
+
     super.initState();
   }
 

@@ -65,7 +65,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
         return Icons.cancel;
         break;
       case RPConsentSectionType.Custom:
-        return null;//Icons.extension;
+        return null; //Icons.extension;
         break;
       case RPConsentSectionType.DataGathering:
         return Icons.timeline;
@@ -93,7 +93,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
           children: <Widget>[
             Text(
               section.title,
-              style: RPStyles.H1,
+              style: RPStyles.h1,
               textAlign: TextAlign.center,
             ),
             ScaleTransition(
@@ -108,7 +108,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               children: <Widget>[
                 Text(
                   section.summary,
-                  style: RPStyles.H2,
+                  style: RPStyles.h2,
                   textAlign: TextAlign.center,
                 ),
                 FlatButton(
@@ -142,10 +142,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                   Navigator.of(context).pop(); // Pop the screen
                 },
               ),
-              FlatButton(
-                child: Text("NO"),
-                onPressed: () => Navigator.of(context).pop() // Pop the popup,
-              )
+              FlatButton(child: Text("NO"), onPressed: () => Navigator.of(context).pop() // Pop the popup,
+                  )
             ],
           );
         },
@@ -199,7 +197,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
       data: RPStyles.cachetTheme,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Consent"),
+          title: Text(widget.consentDocument.title),
         ),
         body: Column(
           mainAxisSize: MainAxisSize.min,

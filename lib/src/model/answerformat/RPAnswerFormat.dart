@@ -50,7 +50,6 @@ enum ScaleAnswerStyle {
 }
 
 /// Available types for [RPChoiceAnswerFormat]
-///
 enum ChoiceAnswerStyle {
   /// The participant allowed to choose only a single option from the given set
   SingleChoice,

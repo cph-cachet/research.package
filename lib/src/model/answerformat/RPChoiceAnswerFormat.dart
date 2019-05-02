@@ -18,7 +18,7 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 
   /// The widget (UI representation) of the Answer Format
   ///
-  ///
+  /// It returns the corresponding Question Body widget with this Answer Format as an input
   @override
   Widget get questionBody {
     return RPUIChoiceQuestionBody(this);

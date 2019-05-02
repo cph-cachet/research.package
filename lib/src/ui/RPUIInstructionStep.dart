@@ -41,7 +41,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                   child: Text(
                     widget.step.text,
                     textAlign: TextAlign.left,
-                    style: RPStyles.H3,
+                    style: RPStyles.h3,
                   ),
                 ),
                 FlatButton(
