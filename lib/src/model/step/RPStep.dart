@@ -18,15 +18,6 @@ class RPStep {
   String _text;
   Widget _stepWidget;
 
-  // The following fields are in RK but not implemented in ResearchStack
-  // These options can be developed as needed or removed if we find they are not necessary
-//  bool _restorable;
-//  RPTask _task;
-//  bool _shouldTintImages;
-//  bool _showsProgress;
-//  bool _allowsBackNavigation;
-//  bool _useSurveyMode;
-
   RPStep(this._identifier);
 
   RPStep.withTitle(this._identifier, this._title);
@@ -54,6 +45,5 @@ class RPStep {
   }
 }
 
-//TODO: status for finishing a whole task
 // Status to be sent to the Bloc so the Task Widget is notified about the navigation
 enum StepStatus { Finished, Canceled, Ongoing, Back }

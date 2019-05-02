@@ -28,7 +28,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
   }
 
   void _buttonCallBack(int index) {
-    // Setting the state here is calling the build method so the checkmarks can be rendered.
+    // Setting the state here is calling the build method so the check marks can be rendered.
     // Only one choice can be selected.
     if (selectedIndex == index) {
       setState(() {

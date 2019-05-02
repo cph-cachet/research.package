@@ -1,6 +1,6 @@
 part of research_package_model;
 
-// The streams are open for the whole application run. Maybe the singleton solution is not the best and a new bloc instance is better to create each time it's needed.
+// Note: The streams are open for the whole application run. Maybe the singleton solution is not the best and a new bloc instance is better to create each time it's needed.
 /// The BLoC file for the communication between the task [RPUIOrderedTask] and its steps [RPStep].
 class BlocTask {
   final _stepStatusController = StreamController<StepStatus>.broadcast();

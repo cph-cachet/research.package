@@ -1,5 +1,3 @@
-// The class is based on ORKConsent section (http://researchkit.org/docs/Classes/ORKConsentSection.html)
-// and ConsentSection (https://github.com/ResearchStack/ResearchStack/blob/master/backbone/src/main/java/org/researchstack/backbone/model/ConsentSection.java)
 part of research_package_model;
 
 /// A content section in a [RPConsentDocument].

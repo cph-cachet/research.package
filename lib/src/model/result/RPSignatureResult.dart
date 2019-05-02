@@ -1,5 +1,8 @@
 part of research_package_model;
 
+/// The signature used in [RPConsentSignatureResult]
+///
+/// It represents a signature with the participants name and signature image
 class RPSignatureResult {
   String _firstName;
   String _lastName;

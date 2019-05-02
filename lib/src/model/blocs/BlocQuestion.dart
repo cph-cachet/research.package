@@ -23,7 +23,6 @@ class BlocQuestion {
   Function(RPQuestionBodyResult) get sendResultValue => _questionBodyResultController.sink.add;
 
   //Retrieve data from stream
-  //TODO: .transform(StreamTransformer validator) do we need that?
 
   /// The stream through which [QuestionStatus] is flowing
   ///

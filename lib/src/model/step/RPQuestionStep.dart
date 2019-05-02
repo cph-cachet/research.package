@@ -25,5 +25,5 @@ class RPQuestionStep extends RPStep {
   Widget get stepWidget => RPUIQuestionStep(this);
 }
 
-// Enum which is flowing through the stream to let the Question Container know if it can proceed to the next question
+/// Enum which is flowing through the stream to let the Question Container know if it can proceed to the next question
 enum QuestionStatus { Ready, NotReady }

@@ -1,5 +1,7 @@
 part of research_package_model;
 
+// TODO: not implemented yet
+/// Not fully implemented yet
 class RPIntegerAnswerFormat extends RPAnswerFormat {
   int _minValue;
   int _maxValue;
