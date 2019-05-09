@@ -31,35 +31,39 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
         appBar: AppBar(
           title: Text(widget.step.title),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                    widget.step.text,
-                    textAlign: TextAlign.left,
-                    style: RPStyles.h3,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              // If image if provided show it
+              widget.step.image != null ? widget.step.image : Container(),
+              Column(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      widget.step.text,
+                      textAlign: TextAlign.left,
+                      style: RPStyles.h3,
+                    ),
                   ),
-                ),
-                FlatButton(
-                  textTheme: ButtonTextTheme.accent,
-                  child: Text("Learn more..."), // TODO: Localization
-                  onPressed: _pushDetailTextRoute,
-                ),
-              ],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                widget.step.footnote,
-                style: RPStyles.bodyText,
-                textAlign: TextAlign.left,
+                  FlatButton(
+                    textTheme: ButtonTextTheme.accent,
+                    child: Text("Learn more..."), // TODO: Localization
+                    onPressed: _pushDetailTextRoute,
+                  ),
+                ],
               ),
-            ),
-          ],
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.step.footnote,
+                  style: RPStyles.bodyText,
+                  textAlign: TextAlign.left,
+                ),
+              ),
+            ],
+          ),
         ),
         persistentFooterButtons: <Widget>[
           FlatButton(

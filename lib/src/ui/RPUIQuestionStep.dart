@@ -11,14 +11,11 @@ class RPUIQuestionStep extends StatefulWidget {
 
 class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
 //  QuestionType questionType;
-  int stepCount;
-  int currentStepIndex;
+
   RPQuestionBodyResult currentQuestionBodyResult;
   bool readyToProceed;
   RPStepResult result;
 
-  StreamSubscription<int> stepCountSubscription;
-  StreamSubscription<int> currentStepIndexSubscription;
   StreamSubscription<QuestionStatus> questionStatusSubscription;
   StreamSubscription<RPQuestionBodyResult> questionBodyResultSubscription;
 
@@ -48,16 +45,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
       }
     });
 
-    stepCountSubscription = blocTask.stepCount.listen((count) {
-      setState(() {
-        stepCount = count;
-      });
-    });
-
-    currentStepIndexSubscription = blocTask.currentStepIndex.listen((index) {
-      currentStepIndex = index;
-    });
-
     // Maybe not the best solution. Now we are updating the current result every time the user taps on a choice button
     questionBodyResultSubscription = blocQuestion.resultValue.listen((questionBodyResult) {
       setState(() {
@@ -74,7 +61,13 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
       data: RPStyles.cachetTheme,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("$currentStepIndex of $stepCount"),
+          title: StreamBuilder<RPTaskProgress>(
+            stream: blocTask.taskProgress,
+            initialData: blocTask.lastProgressValue,
+            builder: (context, snapshot) {
+              return Text("${snapshot.data.current} of ${snapshot.data.total}");
+            }
+          ),
           automaticallyImplyLeading: false,
         ),
         body: Padding(
@@ -146,8 +139,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   @override
   void dispose() {
-    stepCountSubscription.cancel();
-    currentStepIndexSubscription.cancel();
     questionStatusSubscription.cancel();
     questionBodyResultSubscription.cancel();
     super.dispose();

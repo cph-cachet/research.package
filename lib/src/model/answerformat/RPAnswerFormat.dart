@@ -5,7 +5,6 @@ part of research_package_model;
 /// The Answer Format describes the format how a question can be answered.
 /// Research Package uses [RPQuestionStep] to represent a question in a survey.
 /// Each questions needs to have an associated Answer Format.
-///
 abstract class RPAnswerFormat {
   Widget _questionBody;
 

@@ -38,8 +38,9 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
       }
     });
 
-    // Making the stepcount available, so the steps can display the StepCount
-    blocTask.updateStepCount(nrOfQuestionSteps);
+    // Sending the inital Task Progress so the Question UI can use it in the app bar
+    blocTask.updateTaskProgress(RPTaskProgress(currentStepIndex, nrOfQuestionSteps));
+
     // Subscribe to step status changes so the navigation can be triggered
     stepStatusSubscription = blocTask.stepStatus.listen((data) {
       switch (data) {
@@ -51,14 +52,18 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
             Navigator.of(context).popUntil(ModalRoute.withName("/"));
             break;
           }
-          // Updating counter via stream
-          blocTask.updateCurrentStepIndex(currentStepIndex);
+          // Updating taskProgress stream
+          if (currentStep.runtimeType == RPQuestionStep) {
+            blocTask.updateTaskProgress(RPTaskProgress(currentStepIndex, nrOfQuestionSteps));
+          }
+
           // Calculating next step and then navigate there
           stepToNavigate = widget.task.getStepAfterStep(currentStep, null);
           currentStep = stepToNavigate;
           currentStepIndex++;
           _pushStep(stepToNavigate);
           break;
+
         case StepStatus.Canceled:
           _showCancelConfirmationDialog();
           break;

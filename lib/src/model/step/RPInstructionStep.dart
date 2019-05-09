@@ -7,8 +7,11 @@ class RPInstructionStep extends RPStep {
   String _footnote;
   Image _image;
 
-  RPInstructionStep(String identifier, String title, this._detailText, this._footnote, this._image)
-      : super.withTitle(identifier, title);
+  RPInstructionStep({String identifier, String title, String detailText, String footnote, Image image}): super.withTitle(identifier, title){
+    this._detailText = detailText;
+    this._footnote = footnote;
+    this._image = image;
+  }
 
   /// The text which is shown in a new window by pressing the "Learn more" button
   String get detailText => this._detailText;
@@ -16,7 +19,7 @@ class RPInstructionStep extends RPStep {
   /// Optional footnote to appear on the bottom of the screen
   String get footnote => this._footnote;
 
-  /// The image to show during the Instruction Step
+  /// The image to show during the Instruction Step. If ```null``` nothing is shown.
   Image get image => this._image;
 
   set detailText(String detailText) {

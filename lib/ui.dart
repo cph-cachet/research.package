@@ -1,5 +1,9 @@
 /// The UI library of Research Package.
-/// Contains various UI representations (Widgets) of the objects declared in [research_package_model].
+///
+/// Normally you don't need to use these widgets directly. After creating the model objects from [research_package_model]
+/// and adding them to an [RPTask] you can present the different elements by passing it to an [RPUIOrderedTask].
+///
+/// This library contains various UI representations (Widgets) of the objects declared in [research_package_model].
 /// Many of these Widgets are responsible for making the collected results accessible to others.
 /// Also contains general styles, UI statics used in Research Package UI in [RPStyles].
 
