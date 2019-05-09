@@ -1,7 +1,15 @@
 part of research_package_ui;
 
+/// This class is the primary entry point for the presentation of the Research Package framework UI.
+/// It presents the steps of an [RPOrderedTask] and then provides the [RPTaskResult] object.
 class RPUIOrderedTask extends StatefulWidget {
+  /// The task to present
+  /// The [RPUIOrderedTask] presents its steps after each other and creates an [RPTaskResult] object with the same
+  /// identifier as the [task]'s identifier.
   final RPOrderedTask task;
+
+  /// The callback function which has to return an [RPTaskResult] object.
+  /// This function is called when the participant has finished the last step.
   final void Function(RPTaskResult) onSubmit;
 
   RPUIOrderedTask({this.task, this.onSubmit});
@@ -164,8 +172,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
 
   @override
   dispose() {
-    super.dispose();
     stepStatusSubscription.cancel();
     stepResultSubscription.cancel();
+    super.dispose();
   }
 }

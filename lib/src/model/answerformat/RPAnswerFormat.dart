@@ -42,11 +42,11 @@ enum QuestionType {
   Form
 }
 
-enum ScaleAnswerStyle {
-  Default,
-  Percent,
-  Buttons,
-}
+//enum ScaleAnswerStyle {
+//  Default,
+//  Percent,
+//  Buttons,
+//}
 
 /// Available types for [RPChoiceAnswerFormat]
 enum ChoiceAnswerStyle {
@@ -56,13 +56,13 @@ enum ChoiceAnswerStyle {
   MultipleChoice,
 }
 
-enum DateAnswerStyle {
-  DateAndTime,
-  Date,
-  TimeOfDay,
-}
-
-enum NumberFormattingStyle {
-  Default,
-  Percent
-}
+//enum DateAnswerStyle {
+//  DateAndTime,
+//  Date,
+//  TimeOfDay,
+//}
+//
+//enum NumberFormattingStyle {
+//  Default,
+//  Percent
+//}

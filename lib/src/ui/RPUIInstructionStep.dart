@@ -1,5 +1,10 @@
 part of research_package_ui;
 
+/// The UI representation of [RPInstructionStep]
+///
+/// In general, you don’t need to instantiate an instruction step widget directly.
+/// Instead, add an instruction step to a task and present the task using a task widget.
+/// When appropriate, the task widget instantiates the step widget for the step.
 class RPUIInstructionStep extends StatefulWidget {
   final RPInstructionStep step;
 

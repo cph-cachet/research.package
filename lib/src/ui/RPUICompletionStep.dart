@@ -1,5 +1,9 @@
 part of research_package_ui;
 
+/// The UI representation of [RPCompletionStep]
+///
+/// Typically, you don’t need to instantiate a completion step widget directly. Instead, add a completion step to a task, and present the task with a task widget.
+/// The task widget instantiates the step widget for the completion step.
 class RPUICompletionStep extends StatefulWidget {
   final RPCompletionStep step;
 

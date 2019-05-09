@@ -1,5 +1,8 @@
 part of research_package_ui;
 
+/// The UI representation of the [RPQuestionStep]. This widget is the container, the concrete content depends on the input step's [RPAnswerFormat].
+///
+/// As soon as the participant has finished with the question the [RPStepResult] is being added to the [RPTaskResult]'s result list.
 class RPUIQuestionStep extends StatefulWidget {
   final RPQuestionStep step;
 

@@ -1,5 +1,6 @@
 part of research_package_ui;
 
+/// The UI representation of [RPChoiceAnswerFormat]. This UI appears embedded in a [RPUIQuestionStep].
 class RPUIChoiceQuestionBody extends StatefulWidget {
   final RPChoiceAnswerFormat _answerFormat;
 

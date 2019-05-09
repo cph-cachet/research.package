@@ -1,5 +1,10 @@
 part of research_package_ui;
 
+/// The UI representation of [RPVisualConsentStep]
+///
+/// In general, you don’t need to instantiate an visual consent step widget directly.
+/// Instead, add an visual consent step to a task and present the task using a task widget.
+/// When appropriate, the task widget instantiates the visual consent step widget for the step.
 class RPUIVisualConsentStep extends StatefulWidget {
   RPUIVisualConsentStep({@required this.consentDocument});
   final RPConsentDocument consentDocument;

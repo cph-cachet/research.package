@@ -1,5 +1,9 @@
 part of research_package_ui;
 
+/// The UI representation of [RPConsentReviewStep]
+///
+/// You should not need to instantiate a consent review step widget directly.
+/// Instead, include a consent review step in a task, and present a task widget for that task.
 class RPUIConsentReviewStep extends StatefulWidget {
   final RPConsentReviewStep step;
 
