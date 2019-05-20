@@ -101,37 +101,34 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
       );
     }
 
-    return Theme(
-      data: RPStyles.cachetTheme,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Review'), //TODO: Localization
-          automaticallyImplyLeading: false,
-        ),
-        body: ListView.builder(
-          padding: EdgeInsets.all(16),
-          itemCount: widget.step.consentDocument.sections.length + 1,
-          itemBuilder: _reviewCellBuilder,
-        ),
-        persistentFooterButtons: <Widget>[
-          FlatButton(
-              child: Text(
-                "DISAGREE",
-                style: TextStyle(
-                  color: Colors.redAccent,
-                ),
-              ),
-              onPressed: () => blocTask.sendStatus(StepStatus.Canceled)),
-          RaisedButton(
-            color: RPStyles.cachetBlue,
-            child: Text(
-              "AGREE",
-              style: RPStyles.whiteText,
-            ),
-            onPressed: () => _showConsentDialog(),
-          ), //TODO: Localization
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Review'), //TODO: Localization
+        automaticallyImplyLeading: false,
       ),
+      body: ListView.builder(
+        padding: EdgeInsets.all(16),
+        itemCount: widget.step.consentDocument.sections.length + 1,
+        itemBuilder: _reviewCellBuilder,
+      ),
+      persistentFooterButtons: <Widget>[
+        FlatButton(
+            child: Text(
+              "DISAGREE",
+              style: TextStyle(
+                color: Colors.redAccent,
+              ),
+            ),
+            onPressed: () => blocTask.sendStatus(StepStatus.Canceled)),
+        RaisedButton(
+          color: RPStyles.cachetBlue,
+          child: Text(
+            "AGREE",
+            style: RPStyles.whiteText,
+          ),
+          onPressed: () => _showConsentDialog(),
+        ), //TODO: Localization
+      ],
     );
   }
 
@@ -272,36 +269,33 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: RPStyles.cachetTheme,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget._title),
-        ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            children: <Widget>[
-              widget._consentSignature.requiresName ? _nameFields() : Container(),
-              widget._consentSignature.requiresSignatureImage ? _signingField() : Container(),
-            ],
-          ),
-        ),
-        persistentFooterButtons: <Widget>[
-          FlatButton(
-            onPressed: (_isNameFilled && _isSignatureAdded)
-                ? () {
-                    _signature.exportBytes().then((image) {
-                      widget._onFinished(
-                          RPSignatureResult(_firstNameController.value.text, _lastNameController.value.text, image));
-                    });
-                    blocTask.sendStatus(StepStatus.Finished);
-                  }
-                : null,
-            child: Text('NEXT'),
-          )
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget._title),
       ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            widget._consentSignature.requiresName ? _nameFields() : Container(),
+            widget._consentSignature.requiresSignatureImage ? _signingField() : Container(),
+          ],
+        ),
+      ),
+      persistentFooterButtons: <Widget>[
+        FlatButton(
+          onPressed: (_isNameFilled && _isSignatureAdded)
+              ? () {
+                  _signature.exportBytes().then((image) {
+                    widget._onFinished(
+                        RPSignatureResult(_firstNameController.value.text, _lastNameController.value.text, image));
+                  });
+                  blocTask.sendStatus(StepStatus.Finished);
+                }
+              : null,
+          child: Text('NEXT'),
+        )
+      ],
     );
   }
 

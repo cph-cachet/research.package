@@ -100,17 +100,14 @@ class _DetailTextRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: RPStyles.cachetTheme,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(this.title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(this.title),
 //        backgroundColor: RPStyles.cachetBlue,
-        ),
-        body: Container(
-          padding: EdgeInsets.all(15.0),
-          child: Text(this.content),
-        ),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(15.0),
+        child: Text(this.content),
       ),
     );
   }

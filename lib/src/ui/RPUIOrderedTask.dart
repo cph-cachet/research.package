@@ -158,7 +158,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: RPStyles.cachetTheme,
+//      theme: RPStyles.cachetTheme,
       initialRoute: "/",
       routes: {
         "/": (context) => widget.task.steps.first.stepWidget,

@@ -28,46 +28,43 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: RPStyles.cachetTheme,
-      child: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Text(
-                    widget.step.title,
-                    style: RPStyles.h2,
-                  ),
-                  Text(
-                    widget.step.text,
-                    style: RPStyles.h3,
-                  ),
-                ],
-              ),
-              ScaleTransition(
-                scale: _scale,
-                child: Icon(
-                  Icons.check_circle,
-                  size: 120,
-                  color: RPStyles.cachetBlue,
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Text(
+                  widget.step.title,
+                  style: RPStyles.h2,
                 ),
-              ),
-              ButtonTheme(
-                minWidth: 150,
-                child: OutlineButton(
-                  splashColor: RPStyles.cachetBlue,
-                  color: RPStyles.cachetBlue,
-                  onPressed: () {
-                    blocTask.sendStatus(StepStatus.Finished);
-                  },
-                  child: Text("DONE"), //TODO: Localization
+                Text(
+                  widget.step.text,
+                  style: RPStyles.h3,
                 ),
-              )
-            ],
-          ),
+              ],
+            ),
+            ScaleTransition(
+              scale: _scale,
+              child: Icon(
+                Icons.check_circle,
+                size: 120,
+                color: RPStyles.cachetBlue,
+              ),
+            ),
+            ButtonTheme(
+              minWidth: 150,
+              child: OutlineButton(
+                splashColor: RPStyles.cachetBlue,
+                color: RPStyles.cachetBlue,
+                onPressed: () {
+                  blocTask.sendStatus(StepStatus.Finished);
+                },
+                child: Text("DONE"), //TODO: Localization
+              ),
+            )
+          ],
         ),
       ),
     );

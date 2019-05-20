@@ -198,30 +198,27 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   Widget build(BuildContext context) {
     PageController controller = PageController();
 
-    return Theme(
-      data: RPStyles.cachetTheme,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.consentDocument.title),
-        ),
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Expanded(
-              child: PageView.builder(
-                onPageChanged: (pageNr) {
-                  _goToNextPage(pageNr);
-                  _controller.forward(from: 0.3);
-                },
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: widget.consentDocument.sections.length,
-                controller: controller,
-                itemBuilder: _consentSectionPageBuilder,
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.consentDocument.title),
+      ),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Expanded(
+            child: PageView.builder(
+              onPageChanged: (pageNr) {
+                _goToNextPage(pageNr);
+                _controller.forward(from: 0.3);
+              },
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: widget.consentDocument.sections.length,
+              controller: controller,
+              itemBuilder: _consentSectionPageBuilder,
             ),
-            _navigationButtons(controller),
-          ],
-        ),
+          ),
+          _navigationButtons(controller),
+        ],
       ),
     );
   }
@@ -235,17 +232,14 @@ class _ContentRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: RPStyles.cachetTheme,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(this.title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(this.title),
 //        backgroundColor: RPStyles.cachetBlue,
-        ),
-        body: Container(
-          padding: EdgeInsets.all(15.0),
-          child: Text(this.content),
-        ),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(15.0),
+        child: Text(this.content),
       ),
     );
   }

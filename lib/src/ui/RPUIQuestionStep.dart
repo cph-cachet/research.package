@@ -60,60 +60,57 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: RPStyles.cachetTheme,
-      child: Scaffold(
-        appBar: AppBar(
-          title: StreamBuilder<RPTaskProgress>(
-            stream: blocTask.taskProgress,
-            initialData: blocTask.lastProgressValue,
-            builder: (context, snapshot) {
-              return Text("${snapshot.data.current} of ${snapshot.data.total}");
-            }
-          ),
-          automaticallyImplyLeading: false,
+    return Scaffold(
+      appBar: AppBar(
+        title: StreamBuilder<RPTaskProgress>(
+          stream: blocTask.taskProgress,
+          initialData: blocTask.lastProgressValue,
+          builder: (context, snapshot) {
+            return Text("${snapshot.data.current} of ${snapshot.data.total}");
+          }
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  title(),
-                  widget.step.answerFormat.questionBody,
-                ],
-              ),
-            ),
-          ),
-        ),
-        persistentFooterButtons: <Widget>[
-          FlatButton(
-            onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-            child: Text(
-              "CANCEL",
-              style: TextStyle(color: Colors.redAccent),
-            ),
-          ),
-          RaisedButton(
-            color: RPStyles.cachetBlue,
-            textColor: Colors.white,
-            child: Text(
-              "NEXT",
-            ),
-            onPressed: readyToProceed
-                ? () {
-                    // Communicating with the RPUITask Widget
-                    blocTask.sendStatus(StepStatus.Finished);
-                    createAndSendResult();
-                  }
-                : null,
-          ),
-        ],
+        automaticallyImplyLeading: false,
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          elevation: 4,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                title(),
+                widget.step.answerFormat.questionBody,
+              ],
+            ),
+          ),
+        ),
+      ),
+      persistentFooterButtons: <Widget>[
+        FlatButton(
+          onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+          child: Text(
+            "CANCEL",
+            style: TextStyle(color: Colors.redAccent),
+          ),
+        ),
+        RaisedButton(
+          color: RPStyles.cachetBlue,
+          textColor: Colors.white,
+          child: Text(
+            "NEXT",
+          ),
+          onPressed: readyToProceed
+              ? () {
+                  // Communicating with the RPUITask Widget
+                  blocTask.sendStatus(StepStatus.Finished);
+                  createAndSendResult();
+                }
+              : null,
+        ),
+      ],
     );
   }
 
