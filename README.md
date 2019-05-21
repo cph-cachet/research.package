@@ -62,5 +62,3 @@ import 'package:research_package/ui.dart';
 ```
 
 Remember, that objects starting with `RP` are part of the Model (like `RPConsentDocument`) while those which start with `RPUI` are part of the UI library (like `RPUIVisualConsentStep`).
-
-
