@@ -50,7 +50,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
               child: Icon(
                 Icons.check_circle,
                 size: 120,
-                color: RPStyles.cachetBlue,
+                color: Theme.of(context).accentColor,
               ),
             ),
             ButtonTheme(

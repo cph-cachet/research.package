@@ -106,7 +106,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               child: Icon(
                 _iconDataForType(section.type),
                 size: 80.0,
-                color: RPStyles.cachetBlue,
               ),
             ),
             Column(
@@ -163,7 +162,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
             minWidth: 150,
             child: RaisedButton(
               padding: EdgeInsets.all(10.0),
-              color: RPStyles.cachetBlue,
               child: _lastPage
                   ? Text(
                       "SEE SUMMARY",
@@ -235,7 +233,6 @@ class _ContentRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(this.title),
-//        backgroundColor: RPStyles.cachetBlue,
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),

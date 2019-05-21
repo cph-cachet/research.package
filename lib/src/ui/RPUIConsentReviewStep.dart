@@ -121,7 +121,6 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
             ),
             onPressed: () => blocTask.sendStatus(StepStatus.Canceled)),
         RaisedButton(
-          color: RPStyles.cachetBlue,
           child: Text(
             "AGREE",
             style: RPStyles.whiteText,

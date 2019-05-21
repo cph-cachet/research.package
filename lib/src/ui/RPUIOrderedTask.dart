@@ -57,7 +57,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
           if (currentStep == widget.task.steps.last) {
             //Creating and sending the task level of result to a stream to which anybody can subscribe
             createAndSendResult();
-            Navigator.of(context).popUntil(ModalRoute.withName("/"));
+//            Navigator.of(context).popUntil(ModalRoute.withName("/"));
             break;
           }
           // Updating taskProgress stream
@@ -83,9 +83,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
           break;
       }
     });
-    //TODO: set up stream for sending/receiving the results
     stepResultSubscription = blocTask.stepResult.listen((stepResult) {
-      // TODO: Figuring out how to decide the identifier for the result
       taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
       print("This is the taskresult so far: ${taskResult.results}");
     });
@@ -158,16 +156,12 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-//      theme: RPStyles.cachetTheme,
+      theme: Theme.of(context),
       initialRoute: "/",
       routes: {
         "/": (context) => widget.task.steps.first.stepWidget,
       },
     );
-//    return Theme(
-//      data: RPStyles.cachetTheme,
-//      child: widget.task.steps.first.stepWidget,
-//    );
   }
 
   @override
