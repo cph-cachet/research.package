@@ -136,6 +136,7 @@ obj/
 .idea/sqlDataSources.xml
 .idea/dynamic.xml
 .idea/uiDesigner.xml
+.packages
 
 # OS-specific files
 .DS_Store

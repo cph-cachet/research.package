@@ -60,7 +60,6 @@ class RPOrderedTask extends RPTask {
     return null;
   }
 
-
 //  @override
 //  RPTaskProgress getProgressOfCurrentStep(RPStep step, RPTaskResult result) {
 //    int current = step == null ? -1 : _steps.indexOf(step);
