@@ -1,6 +1,7 @@
 part of research_package_model;
 
 /// Class representing an Answer Format that lets participants choose from a fixed set of choices.
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPChoiceAnswerFormat extends RPAnswerFormat {
   List<RPChoice> _choices;
   ChoiceAnswerStyle _answerStyle;
@@ -23,9 +24,13 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
   Widget get questionBody {
     return RPUIChoiceQuestionBody(this);
   }
+
+  factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPChoiceAnswerFormatFromJson(json);
+  Map<String, dynamic> toJson() => _$RPChoiceAnswerFormatToJson(this);
 }
 
 /// The choice object which the participant can choose during a [RPQuestionStep] with [RPChoiceAnswerFormat].
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPChoice<T> {
   String _text;
   T _value;
@@ -60,4 +65,7 @@ class RPChoice<T> {
   set detailText(String detailText) {
     this._detailText = detailText;
   }
+
+  factory RPChoice.fromJson(Map<String, dynamic> json) => _$RPChoiceFromJson(json);
+  Map<String, dynamic> toJson() => _$RPChoiceToJson(this);
 }

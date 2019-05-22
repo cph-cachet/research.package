@@ -1,7 +1,7 @@
 part of research_package_model;
 
 /// The superclass for results. It defines the attributes which all the more specialized results classes should have.
-class RPResult {
+abstract class RPResult {
   String _identifier;
   DateTime _startDate;
   DateTime _endDate;

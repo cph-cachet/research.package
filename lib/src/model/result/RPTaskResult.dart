@@ -1,6 +1,7 @@
 part of research_package_model;
 
 /// The result object a Task creates
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPTaskResult extends RPResult {
   Map<String, RPStepResult> _results;
 
@@ -28,4 +29,7 @@ class RPTaskResult extends RPResult {
   void setStepResultForIdentifier(String identifier, RPStepResult stepResult) {
     _results[identifier] = stepResult;
   }
+
+  factory RPTaskResult.fromJson(Map<String, dynamic> json) => _$RPTaskResultFromJson(json);
+  Map<String, dynamic> toJson() => _$RPTaskResultToJson(this);
 }

@@ -3,6 +3,7 @@ part of research_package_model;
 /// The signature used in [RPConsentSignatureResult]
 ///
 /// It represents a signature with the participants name and signature image
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPSignatureResult {
   String _firstName;
   String _lastName;
@@ -23,4 +24,7 @@ class RPSignatureResult {
   Uint8List get signatureImage => this._signatureImage;
 
   // There are no setters because nobody else should be able to modify the result
+
+  factory RPSignatureResult.fromJson(Map<String, dynamic> json) => _$RPSignatureResultFromJson(json);
+  Map<String, dynamic> toJson() => _$RPSignatureResultToJson(this);
 }

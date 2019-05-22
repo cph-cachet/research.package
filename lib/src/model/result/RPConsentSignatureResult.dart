@@ -2,6 +2,7 @@ part of research_package_model;
 
 /// Represents a signature applied to a given consent document.
 /// It indicates if a given consent document has been signed by a user.
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPConsentSignatureResult extends RPResult {
   RPConsentDocument _consentDocument;
   RPSignatureResult _signature;
@@ -24,4 +25,7 @@ class RPConsentSignatureResult extends RPResult {
   set userID(String userID) {
     this._userID = userID;
   }
+
+  factory RPConsentSignatureResult.fromJson(Map<String, dynamic> json) => _$RPConsentSignatureResultFromJson(json);
+  Map<String, dynamic> toJson() => _$RPConsentSignatureResultToJson(this);
 }

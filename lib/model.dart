@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'dart:typed_data';
+import 'package:json_serializable/json_serializable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 // Importing the UI library from Research Package
 import 'package:research_package/ui.dart';
@@ -49,3 +51,6 @@ part 'src/model/Abstracts.dart';
 // BLoCs
 part 'src/model/blocs/BlocTask.dart';
 part 'src/model/blocs/BlocQuestion.dart';
+
+// JSON
+part 'model.g.dart';

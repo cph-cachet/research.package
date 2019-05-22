@@ -1,6 +1,7 @@
 part of research_package_model;
 
 /// The result object a Step creates
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPStepResult<T> extends RPResult {
   Map<String, T> _results;
   RPAnswerFormat _answerFormat;
@@ -57,4 +58,7 @@ class RPStepResult<T> extends RPResult {
     setResultForIdentifier(DEFAULT_KEY, result);
     this.endDate = DateTime.now();
   }
+
+  factory RPStepResult.fromJson(Map<String, dynamic> json) => _$RPStepResultFromJson(json);
+  Map<String, dynamic> toJson() => _$RPStepResultoJson(this);
 }
