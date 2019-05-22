@@ -30,5 +30,5 @@ part 'src/ui/RPUIQuestionStep.dart';
 part 'src/ui/RPUIInstructionStep.dart';
 part 'src/ui/RPUICompletionStep.dart';
 
-part 'src/ui/questionbody/RPUIIntegerQuestionBody.dart';
-part 'src/ui/questionbody/RPUISingleChoiceQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUIIntegerQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUISingleChoiceQuestionBody.dart';
