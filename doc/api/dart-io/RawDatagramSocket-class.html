@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the RawDatagramSocket class from the dart:io library, for the Dart programming language.">
   <title>RawDatagramSocket class - dart:io library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
@@ -35,7 +36,7 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -179,15 +180,17 @@
     </ol>
   </div>
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <h1>RawDatagramSocket class </h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">RawDatagramSocket</span> class </h1></div>
 
     <section class="desc markdown">
-      <p>The <a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a> is a low-level interface to an UDP socket,
-exposing the raw events signaled by the system. It's a <a href="dart-async/Stream-class.html">Stream</a> of
-<a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s.</p>
+      <p>A <a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a> is an unbuffered interface to a UDP socket.</p>
+<p>The raw datagram socket delivers the datagrams in the same chunks as the
+underlying operating system. It's a <a href="dart-async/Stream-class.html">Stream</a> of <a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s.</p>
 <p>Note that the event <a href="dart-io/RawSocketEvent/readClosed-constant.html">RawSocketEvent.readClosed</a> will never be
 received as an UDP socket cannot be closed by a remote peer.</p>
+<p>It is not the same as a
+<a href="http://man7.org/linux/man-pages/man7/raw.7.html">POSIX raw socket</a>.</p>
     </section>
     
     <section>
@@ -764,7 +767,7 @@ port.
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
       <li class="section-title"><a href="dart-io/RawDatagramSocket-class.html#constructors">Constructors</a></li>
       <li><a href="dart-io/RawDatagramSocket/RawDatagramSocket.html">RawDatagramSocket</a></li>
@@ -845,7 +848,7 @@ port.
 
 <footer>
   <span class="no-break">
-    research_package 0.0.1
+    research_package 0.0.2
   </span>
 
   

@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the Gradient.radial constructor from the Class Gradient class from the dart:ui library, for the Dart programming language.">
   <title>Gradient.radial constructor - Gradient class - dart:ui library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
@@ -36,7 +37,7 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -75,8 +76,8 @@
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>Gradient.radial constructor</h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-constructor">Gradient.radial</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -92,9 +93,9 @@ not provided, then only two stops, at 0.0 and 1.0, are implied (and
 <code>color</code> must therefore only have two entries).</p>
 <p>The behavior before and after the radius is described by the <code>tileMode</code>
 argument. For details, see the <a href="dart-ui/TileMode-class.html">TileMode</a> enum.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_radial.png">
-<img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_radial.png">
-<img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_radial.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_radial.png" alt="">
+<img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_radial.png" alt="">
+<img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_radial.png" alt=""></p>
 <p>If <code>center</code>, <code>radius</code>, <code>colors</code>, or <code>tileMode</code> are null, or if <code>colors</code> or
 <code>colorStops</code> contain null values, this constructor will throw a
 <a href="dart-core/NoSuchMethodError-class.html">NoSuchMethodError</a>.</p>
@@ -128,7 +129,7 @@ not be equal to <a href="dart-ui/Offset/zero-constant.html">Offset.zero</a>.</p>
   focalRadius ??= 0.0;
   _validateColorStops(colors, colorStops);
   final Int32List colorsBuffer = _encodeColorList(colors);
-  final Float32List colorStopsBuffer = colorStops == null ? null : new Float32List.fromList(colorStops);
+  final Float32List colorStopsBuffer = colorStops == null ? null : Float32List.fromList(colorStops);
 
   &#47;&#47; If focal is null or focal radius is null, this should be treated as a regular radial gradient
   &#47;&#47; If focal == center and the focal radius is 0.0, it&#39;s still a regular radial gradient
@@ -145,14 +146,14 @@ not be equal to <a href="dart-ui/Offset/zero-constant.html">Offset.zero</a>.</p>
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
 
 </main>
 
 <footer>
   <span class="no-break">
-    research_package 0.0.1
+    research_package 0.0.2
   </span>
 
   

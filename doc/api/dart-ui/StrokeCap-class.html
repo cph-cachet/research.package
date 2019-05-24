@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the StrokeCap enum from the dart:ui library, for the Dart programming language.">
   <title>StrokeCap enum - dart:ui library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
@@ -35,7 +36,7 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -103,7 +104,6 @@
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
-      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -111,7 +111,6 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
-      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -142,6 +141,7 @@
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
+      <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
       <li><a href="dart-ui/PointMode-class.html">PointMode</a></li>
       <li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a></li>
       <li><a href="dart-ui/StrokeJoin-class.html">StrokeJoin</a></li>
@@ -165,8 +165,8 @@
     </ol>
   </div>
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>StrokeCap enum </h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-enum">StrokeCap</span> enum </h1></div>
 
     <section class="desc markdown">
       <p>Styles to use for line endings.</p>
@@ -184,8 +184,8 @@
                   </dt>
         <dd>
           <p>Begin and end contours with a flat edge and no extension.</p>
-<p><img alt="A butt cap ends line segments with a square end that stops at the end of
-the line segment." src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/butt_cap.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/butt_cap.png" alt="A butt cap ends line segments with a square end that stops at the end of
+the line segment."></p>
 <p>Compare to the <a href="dart-ui/StrokeCap-class.html">square</a> cap, which has the same shape, but extends past
 the end of the line by half a stroke width.</p>
                   
@@ -199,9 +199,9 @@ the end of the line by half a stroke width.</p>
                   </dt>
         <dd>
           <p>Begin and end contours with a semi-circle extension.</p>
-<p><img alt="A round cap adds a rounded end to the line segment that protrudes
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/round_cap.png" alt="A round cap adds a rounded end to the line segment that protrudes
 by one half of the thickness of the line (which is the radius of the cap)
-past the end of the segment." src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/round_cap.png"></p>
+past the end of the segment."></p>
 <p>The cap is colored in the diagram above to highlight it: in normal use it
 is the same color as the line.</p>
                   
@@ -217,8 +217,8 @@ is the same color as the line.</p>
           <p>Begin and end contours with a half square extension. This is
 similar to extending each contour by half the stroke width (as
 given by <a href="dart-ui/Paint/strokeWidth.html">Paint.strokeWidth</a>).</p>
-<p><img alt="A square cap has a square end that effectively extends the line length
-by half of the stroke width." src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/square_cap.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/square_cap.png" alt="A square cap has a square end that effectively extends the line length
+by half of the stroke width."></p>
 <p>The cap is colored in the diagram above to highlight it: in normal use it
 is the same color as the line.</p>
 <p>Compare to the <a href="dart-ui/StrokeCap-class.html">butt</a> cap, which has the same shape, but doesn't extend
@@ -316,7 +316,7 @@ past the end of the line.</p>
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
       <li class="section-title"><a href="dart-ui/StrokeCap-class.html#constants">Constants</a></li>
       <li>butt</li>
@@ -347,7 +347,7 @@ past the end of the line.</p>
 
 <footer>
   <span class="no-break">
-    research_package 0.0.1
+    research_package 0.0.2
   </span>
 
   

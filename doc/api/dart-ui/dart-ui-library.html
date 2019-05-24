@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="dart:ui library API docs, for the Dart programming language.">
   <title>dart:ui library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
@@ -34,7 +35,7 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -49,6 +50,7 @@
     <h5><span class="package-name">research_package</span> <span class="package-kind">package</span></h5>
     <ol>
           <li class="section-title">Libraries</li>
+          <li><a href="research_package/research_package-library.html">research_package</a></li>
           <li><a href="research_package_model/research_package_model-library.html">research_package_model</a></li>
           <li><a href="research_package_ui/research_package_ui-library.html">research_package_ui</a></li>
           <li class="section-title">Dart</li>
@@ -67,8 +69,8 @@
     </ol>
   </div>
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>dart:ui library </h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-library">dart:ui</span> library </h1></div>
 
     <section class="desc markdown">
       <p>Built-in types and core primitives for a Flutter application.</p>
@@ -238,7 +240,7 @@ a distance as a two-dimensional axis-aligned vector.
           <span class="name "><a href="dart-ui/PathMetric-class.html">PathMetric</a></span>         
         </dt>
         <dd>
-          Utilities for measuring a <a href="dart-ui/Path-class.html">Path</a> and extracting subpaths. <a href="dart-ui/PathMetric-class.html">[...]</a>
+          Utilities for measuring a <a href="dart-ui/Path-class.html">Path</a> and extracting sub-paths. <a href="dart-ui/PathMetric-class.html">[...]</a>
         </dd>
         <dt id="PathMetricIterator">
           <span class="name "><a href="dart-ui/PathMetricIterator-class.html">PathMetricIterator</a></span>         
@@ -373,7 +375,7 @@ correspond to shaders as used by <a href="dart-ui/Paint/shader.html">Paint.shade
           <span class="name "><a href="dart-ui/StrutStyle-class.html">StrutStyle</a></span>         
         </dt>
         <dd>
-          
+          See also: <a href="dart-ui/StrutStyle-class.html">[...]</a>
         </dd>
         <dt id="Tangent">
           <span class="name "><a href="dart-ui/Tangent-class.html">Tangent</a></span>         
@@ -403,13 +405,7 @@ correspond to shaders as used by <a href="dart-ui/Paint/shader.html">Paint.shade
           <span class="name "><a href="dart-ui/TextStyle-class.html">TextStyle</a></span>         
         </dt>
         <dd>
-          An opaque object that determines the size, position, and rendering of text.
-        </dd>
-        <dt id="Versions">
-          <span class="name "><a href="dart-ui/Versions-class.html">Versions</a></span>         
-        </dt>
-        <dd>
-          Wraps version information for Dart, Skia and Flutter.
+          An opaque object that determines the size, position, and rendering of text. <a href="dart-ui/TextStyle-class.html">[...]</a>
         </dd>
         <dt id="Vertices">
           <span class="name "><a href="dart-ui/Vertices-class.html">Vertices</a></span>         
@@ -442,15 +438,6 @@ around their user interface, as exposed by <a href="dart-ui/Window/viewInsets.ht
       <h2>Properties</h2>
 
       <dl class="properties">
-        <dt id="versions" class="property">
-          <span class="name"><a href="dart-ui/versions.html">versions</a></span>
-          <span class="signature">&#8594; <a href="dart-ui/Versions-class.html">Versions</a></span>         
-        </dt>
-        <dd>
-          <a href="dart-ui/Versions-class.html">Versions</a> singleton. This object exposes Dart, Skia and
-Flutter engine versions.
-                  <div class="features">final</div>
-</dd>
         <dt id="window" class="property">
           <span class="name"><a href="dart-ui/window.html">window</a></span>
           <span class="signature">&#8594; <a href="dart-ui/Window-class.html">Window</a></span>         
@@ -478,7 +465,7 @@ other such core services.
                   
 </dd>
         <dt id="decodeImageFromPixels" class="callable">
-          <span class="name"><a href="dart-ui/decodeImageFromPixels.html">decodeImageFromPixels</a></span><span class="signature">(<wbr><span class="parameter" id="decodeImageFromPixels-param-pixels"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">pixels</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-width"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-height"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-format"><span class="type-annotation"><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></span> <span class="parameter-name">format</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-callback"><span class="type-annotation"><a href="dart-ui/ImageDecoderCallback.html">ImageDecoderCallback</a></span> <span class="parameter-name">callback</span>, {</span> <span class="parameter" id="decodeImageFromPixels-param-rowBytes"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">rowBytes</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-decodedCacheRatioCap"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">decodedCacheRatioCap</span>: <span class="default-value">double.infinity</span></span> })
+          <span class="name"><a href="dart-ui/decodeImageFromPixels.html">decodeImageFromPixels</a></span><span class="signature">(<wbr><span class="parameter" id="decodeImageFromPixels-param-pixels"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">pixels</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-width"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-height"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-format"><span class="type-annotation"><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></span> <span class="parameter-name">format</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-callback"><span class="type-annotation"><a href="dart-ui/ImageDecoderCallback.html">ImageDecoderCallback</a></span> <span class="parameter-name">callback</span>, {</span> <span class="parameter" id="decodeImageFromPixels-param-rowBytes"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">rowBytes</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-targetWidth"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetWidth</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-targetHeight"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetHeight</span></span> })
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
@@ -507,7 +494,7 @@ given null as if given an empty list.
                   
 </dd>
         <dt id="instantiateImageCodec" class="callable">
-          <span class="name"><a href="dart-ui/instantiateImageCodec.html">instantiateImageCodec</a></span><span class="signature">(<wbr><span class="parameter" id="instantiateImageCodec-param-list"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">list</span>, {</span> <span class="parameter" id="instantiateImageCodec-param-decodedCacheRatioCap"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">decodedCacheRatioCap</span>: <span class="default-value">double.infinity</span></span> })
+          <span class="name"><a href="dart-ui/instantiateImageCodec.html">instantiateImageCodec</a></span><span class="signature">(<wbr><span class="parameter" id="instantiateImageCodec-param-list"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">list</span>, {</span> <span class="parameter" id="instantiateImageCodec-param-targetWidth"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetWidth</span>, </span> <span class="parameter" id="instantiateImageCodec-param-targetHeight"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetHeight</span></span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/Codec-class.html">Codec</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -656,6 +643,12 @@ calculated. <a href="dart-ui/PathFillType-class.html">[...]</a>
         <dd>
           The kind of pointer device.
         </dd>
+        <dt id="PointerSignalKind">
+          <span class="name "><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></span>         
+        </dt>
+        <dd>
+          The kind of <code>PointerDeviceKind.signal</code>.
+        </dd>
         <dt id="PointMode">
           <span class="name "><a href="dart-ui/PointMode-class.html">PointMode</a></span>         
         </dt>
@@ -793,7 +786,7 @@ different locations in the rendered string. <a href="dart-ui/TextAffinity-class.
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <h5>dart:ui library</h5>
     <ol>
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#classes">Classes</a></li>
@@ -849,7 +842,6 @@ different locations in the rendered string. <a href="dart-ui/TextAffinity-class.
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
-      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -857,7 +849,6 @@ different locations in the rendered string. <a href="dart-ui/TextAffinity-class.
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
-      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -888,6 +879,7 @@ different locations in the rendered string. <a href="dart-ui/TextAffinity-class.
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
+      <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
       <li><a href="dart-ui/PointMode-class.html">PointMode</a></li>
       <li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a></li>
       <li><a href="dart-ui/StrokeJoin-class.html">StrokeJoin</a></li>
@@ -915,7 +907,7 @@ different locations in the rendered string. <a href="dart-ui/TextAffinity-class.
 
 <footer>
   <span class="no-break">
-    research_package 0.0.1
+    research_package 0.0.2
   </span>
 
   

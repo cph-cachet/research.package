@@ -13,9 +13,9 @@ class RPUIQuestionStep extends StatefulWidget {
 }
 
 class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
-//  QuestionType questionType;
 
-  RPQuestionBodyResult currentQuestionBodyResult;
+  // Dynamic because we don't know what value the RPChoice will have
+  RPQuestionBodyResult<dynamic> currentQuestionBodyResult;
   bool readyToProceed;
   RPStepResult result;
 
@@ -25,7 +25,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    result = RPStepResult(widget.step);
+    result = RPStepResult.withParams(widget.step);
 //    questionType = widget.step.answerFormat.questionType;
     readyToProceed = false;
 

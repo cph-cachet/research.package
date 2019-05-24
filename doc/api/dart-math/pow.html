@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the pow function from the dart:math library, for the Dart programming language.">
   <title>pow function - dart:math library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
@@ -35,7 +36,7 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -88,8 +89,8 @@
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>pow function </h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-function">pow</span> function </h1></div>
 
     <section class="multi-line-signature">
         <span class="returntype"><a href="dart-core/num-class.html">num</a></span>
@@ -109,10 +110,11 @@ result is NaN.</li><li>if <code>x</code> is Infinity and <code>y</code> is negat
 is the same as <code>pow(-x , y)</code>.</li><li>if <code>y</code> is Infinity and the absolute value of <code>x</code> is less than 1, the
 result is 0.0.</li><li>if <code>y</code> is Infinity and <code>x</code> is -1, the result is 1.0.</li><li>if <code>y</code> is Infinity and the absolute value of <code>x</code> is greater than 1,
 the result is Infinity.</li><li>if <code>y</code> is -Infinity, the result is <code>1/pow(x, Infinity)</code>.</li></ul>
-<p>This corresponds to the <code>pow</code> function defined in the IEEE Standard 754-2008.</p>
+<p>This corresponds to the <code>pow</code> function defined in the IEEE Standard
+754-2008.</p>
 <p>Notice that the result may overflow. If integers are represented as 64-bit
-numbers, an integer result may be truncated, and a double result may overflow 
-to positive or negative <a href="dart-core/double/infinity-constant.html">double.infinity</a>.</p>
+numbers, an integer result may be truncated, and a double result may
+overflow to positive or negative <a href="dart-core/double/infinity-constant.html">double.infinity</a>.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -122,14 +124,14 @@ to positive or negative <a href="dart-core/double/infinity-constant.html">double
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
 
 </main>
 
 <footer>
   <span class="no-break">
-    research_package 0.0.1
+    research_package 0.0.2
   </span>
 
   

@@ -6,6 +6,7 @@ part of research_package_model;
 /// and for [RPConsentReviewStep] where the user can review and sign the document. The building blocks of a consent document are [sections].
 /// They hold the content which is presented and later agreed by the participant.
 /// By adding [signatures] to the consent document the parameters of the signature(s) to collect can be specified.
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPConsentDocument {
   String _title;
   List<RPConsentSection> _sections;
@@ -15,7 +16,8 @@ class RPConsentDocument {
   String _signaturePageTitle;
   String _signaturePageContent;
 
-  RPConsentDocument(this._title, this._sections);
+  RPConsentDocument();
+  RPConsentDocument.withParams(this._title, this._sections);
 
   /// Adds a signature to the array of [signatures]
   void addSignature(RPConsentSignature signature) {
@@ -67,6 +69,13 @@ class RPConsentDocument {
     this._sections = sections;
   }
 
+  set signatures(List<RPConsentSignature> signatures) {
+    this._signatures = signatures;
+  }
+
   //TODO: PDF generating
   //Generating the consent pdf is this class' task as well
+
+  factory RPConsentDocument.fromJson(Map<String, dynamic> json) => _$RPConsentDocumentFromJson(json);
+  Map<String, dynamic> toJson() => _$RPConsentDocumentToJson(this);
 }

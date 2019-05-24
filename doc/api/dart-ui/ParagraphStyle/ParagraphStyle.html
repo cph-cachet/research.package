@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the ParagraphStyle constructor from the Class ParagraphStyle class from the dart:ui library, for the Dart programming language.">
   <title>ParagraphStyle constructor - ParagraphStyle class - dart:ui library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
@@ -36,7 +37,7 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -73,8 +74,8 @@
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>ParagraphStyle constructor</h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-constructor">ParagraphStyle</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -97,17 +98,13 @@ one line is rendered. If <code>maxLines</code> is null, but <code>ellipsis</code
 then lines after the first one that overflows the width constraints are
 dropped. The width constraints are those set in the
 <a href="dart-ui/ParagraphConstraints-class.html">ParagraphConstraints</a> object passed to the <a href="dart-ui/Paragraph/layout.html">Paragraph.layout</a> method.</p></li><li>
-<p><code>fontFamily</code>: The name of the font to use when painting the text (e.g.,
-Roboto).</p></li><li>
-<p><code>fontSize</code>: The size of glyphs (in logical pixels) to use when painting
-the text.</p></li><li>
-<p><code>height</code>: The minimum height of the line boxes, as a multiple of the
-font size. The lines of the paragraph will be at least
-<code>(height + leading) * fontSize</code> tall when fontSize
-is not null. When fontSize is null, there is no minimum line height. Tall
-glyphs due to baseline alignment or large <code>TextStyle.fontSize</code> may cause
-the actual line height after layout to be taller than specified here.
-<code>fontSize</code> must be provided for this property to take effect.</p></li><li>
+<p><code>fontFamily</code>: The name of the font family to apply when painting the text,
+in the absence of a <code>textStyle</code> being attached to the span.</p></li><li>
+<p><code>fontSize</code>: The fallback size of glyphs (in logical pixels) to
+use when painting the text. This is used when there is no <a href="dart-ui/TextStyle-class.html">TextStyle</a>.</p></li><li>
+<p><code>height</code>: The height of the spans as a multiplier of the font size. The
+fallback height to use when no height is provided in through
+<code>TextStyle.height</code>.</p></li><li>
 <p><code>fontWeight</code>: The typeface thickness to use when painting the text
 (e.g., bold).</p></li><li>
 <p><code>fontStyle</code>: The typeface variant to use when drawing the letters (e.g.,
@@ -142,19 +139,15 @@ considered equivalent and turn off this behavior.</p></li><li>
 &#47;&#47;&#47;   dropped. The width constraints are those set in the
 &#47;&#47;&#47;   [ParagraphConstraints] object passed to the [Paragraph.layout] method.
 &#47;&#47;&#47;
-&#47;&#47;&#47; * `fontFamily`: The name of the font to use when painting the text (e.g.,
-&#47;&#47;&#47;   Roboto).
+&#47;&#47;&#47; * `fontFamily`: The name of the font family to apply when painting the text,
+&#47;&#47;&#47;   in the absence of a `textStyle` being attached to the span.
 &#47;&#47;&#47;
-&#47;&#47;&#47; * `fontSize`: The size of glyphs (in logical pixels) to use when painting
-&#47;&#47;&#47;   the text.
+&#47;&#47;&#47; * `fontSize`: The fallback size of glyphs (in logical pixels) to
+&#47;&#47;&#47;   use when painting the text. This is used when there is no [TextStyle].
 &#47;&#47;&#47;
-&#47;&#47;&#47; * `height`: The minimum height of the line boxes, as a multiple of the
-&#47;&#47;&#47;   font size. The lines of the paragraph will be at least
-&#47;&#47;&#47;   `(height + leading) * fontSize` tall when fontSize
-&#47;&#47;&#47;   is not null. When fontSize is null, there is no minimum line height. Tall
-&#47;&#47;&#47;   glyphs due to baseline alignment or large [TextStyle.fontSize] may cause
-&#47;&#47;&#47;   the actual line height after layout to be taller than specified here.
-&#47;&#47;&#47;   [fontSize] must be provided for this property to take effect.
+&#47;&#47;&#47; * `height`: The height of the spans as a multiplier of the font size. The
+&#47;&#47;&#47;   fallback height to use when no height is provided in through
+&#47;&#47;&#47;   [TextStyle.height].
 &#47;&#47;&#47;
 &#47;&#47;&#47; * `fontWeight`: The typeface thickness to use when painting the text
 &#47;&#47;&#47;   (e.g., bold).
@@ -211,14 +204,14 @@ ParagraphStyle({
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
 
 </main>
 
 <footer>
   <span class="no-break">
-    research_package 0.0.1
+    research_package 0.0.2
   </span>
 
   

@@ -21,7 +21,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
   @override
   void initState() {
     // Instantiate result so the counter starts
-    result = RPStepResult(widget.step);
+    result = RPStepResult.withParams(widget.step);
     super.initState();
   }
 
@@ -141,7 +141,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
   @override
   void createAndSendResult() {
     consentSignatureResult =
-        RPConsentSignatureResult(widget.step.identifier, widget.step.consentDocument, signatureResult)
+        RPConsentSignatureResult.withParams(widget.step.identifier, widget.step.consentDocument, signatureResult)
           ..endDate = DateTime.now();
 
     consentSignatureResult.consentDocument.signatures.first == null
@@ -287,7 +287,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
               ? () {
                   _signature.exportBytes().then((image) {
                     widget._onFinished(
-                        RPSignatureResult(_firstNameController.value.text, _lastNameController.value.text, image));
+                      RPSignatureResult.withParams(
+                        _firstNameController.value.text,
+                        _lastNameController.value.text,
+                        // Converting the Uint8List into a string to make it compatible with JSON serialization
+                        String.fromCharCodes(image),
+                      ),
+                    );
                   });
                   blocTask.sendStatus(StepStatus.Finished);
                 }

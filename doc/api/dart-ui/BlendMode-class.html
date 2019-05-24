@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the BlendMode enum from the dart:ui library, for the Dart programming language.">
   <title>BlendMode enum - dart:ui library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
@@ -35,7 +36,7 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -103,7 +104,6 @@
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
-      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -111,7 +111,6 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
-      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -142,6 +141,7 @@
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
+      <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
       <li><a href="dart-ui/PointMode-class.html">PointMode</a></li>
       <li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a></li>
       <li><a href="dart-ui/StrokeJoin-class.html">StrokeJoin</a></li>
@@ -165,8 +165,8 @@
     </ol>
   </div>
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>BlendMode enum </h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-enum">BlendMode</span> enum </h1></div>
 
     <section class="desc markdown">
       <p>Algorithms to use when painting on the canvas.</p>
@@ -223,7 +223,7 @@ strategy.</li></ul>
         <dd>
           <p>Drop both the source and destination images, leaving nothing.</p>
 <p>This corresponds to the "clear" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_clear.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_clear.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(0)</code></span>
@@ -240,7 +240,7 @@ destination image.</p>
 <p>The opacity of the output image is computed in the same way as for
 <a href="dart-ui/BlendMode-class.html">srcOver</a>. Regions that are entirely transparent in the source image take
 their hue and saturation from the destination.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_color.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_color.png" alt=""></p>
 <p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">hue</a>, which is a similar but weaker effect.</li><li><a href="dart-ui/BlendMode-class.html">softLight</a>, which is a similar tinting effect but also tints white.</li><li><a href="dart-ui/BlendMode-class.html">saturation</a>, which only applies the saturation of the source image.</li></ul>
                   
   <div>
@@ -256,7 +256,7 @@ their hue and saturation from the destination.</p>
 <p>Inverting the components means that a fully saturated channel (opaque
 white) is treated as the value 0.0, and values normally treated as 0.0
 (black, transparent) are treated as 1.0.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_colorBurn.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_colorBurn.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(19)</code></span>
@@ -271,7 +271,7 @@ white) is treated as the value 0.0, and values normally treated as 0.0
 <p>Inverting the components means that a fully saturated channel (opaque
 white) is treated as the value 0.0, and values normally treated as 0.0
 (black, transparent) are treated as 1.0.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_colorDodge.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_colorDodge.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(18)</code></span>
@@ -286,7 +286,7 @@ white) is treated as the value 0.0, and values normally treated as 0.0
 from each color channel.</p>
 <p>The opacity of the output image is computed in the same way as for
 <a href="dart-ui/BlendMode-class.html">srcOver</a>.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_darken.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_darken.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(16)</code></span>
@@ -303,7 +303,7 @@ the other image.</p>
 <p>The opacity of the output image is computed in the same way as for
 <a href="dart-ui/BlendMode-class.html">srcOver</a>.</p>
 <p>The effect is similar to <a href="dart-ui/BlendMode-class.html">exclusion</a> but harsher.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_difference.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_difference.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(22)</code></span>
@@ -318,7 +318,7 @@ the other image.</p>
 <p>Conceptually, the source image is discarded, leaving the destination
 untouched.</p>
 <p>This corresponds to the "Destination" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dst.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dst.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(2)</code></span>
@@ -337,7 +337,7 @@ channel being set to that of the source image instead of being a
 combination of both image's opacity channels.</p>
 <p>For a variant with the source on top instead of the destination, see
 <a href="dart-ui/BlendMode-class.html">srcATop</a>.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstATop.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstATop.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(10)</code></span>
@@ -355,7 +355,7 @@ channels of the source are ignored, only the opacity has an effect.</p>
 <p>To reverse the semantic of the mask (only showing the source where the
 destination is present, rather than where it is absent), consider <a href="dart-ui/BlendMode-class.html">dstOut</a>.</p>
 <p>This corresponds to the "Destination in Source" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstIn.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstIn.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(6)</code></span>
@@ -373,7 +373,7 @@ channels of the source are ignored, only the opacity has an effect.</p>
 <p>To reverse the semantic of the mask (only showing the destination where the
 source is present, rather than where it is absent), consider <a href="dart-ui/BlendMode-class.html">dstIn</a>.</p>
 <p>This corresponds to the "Destination out Source" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstOut.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstOut.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(8)</code></span>
@@ -387,7 +387,7 @@ source is present, rather than where it is absent), consider <a href="dart-ui/Bl
           <p>Composite the source image under the destination image.</p>
 <p>This is the opposite of <a href="dart-ui/BlendMode-class.html">srcOver</a>.</p>
 <p>This corresponds to the "Destination over Source" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstOver.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstOver.png" alt=""></p>
 <p>This is useful when the source image should have been painted before the
 destination image, but could not be.</p>
                   
@@ -407,7 +407,7 @@ the other image.</p>
 <p>The opacity of the output image is computed in the same way as for
 <a href="dart-ui/BlendMode-class.html">srcOver</a>.</p>
 <p>The effect is similar to <a href="dart-ui/BlendMode-class.html">difference</a> but softer.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_exclusion.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_exclusion.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(23)</code></span>
@@ -427,7 +427,7 @@ source value, then inverts the result.</p>
 <p>Inverting the components means that a fully saturated channel (opaque
 white) is treated as the value 0.0, and values normally treated as 0.0
 (black, transparent) are treated as 1.0.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hardLight.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hardLight.png" alt=""></p>
 <p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">modulate</a>, which always multiplies the values.</li><li><a href="dart-ui/BlendMode-class.html">screen</a>, which always multiplies the inverses of the values.</li><li><a href="dart-ui/BlendMode-class.html">overlay</a>, which is similar to <a href="dart-ui/BlendMode-class.html">hardLight</a> but favors the destination
 image instead of the source image.</li></ul>
                   
@@ -446,7 +446,7 @@ destination image.</p>
 <p>The opacity of the output image is computed in the same way as for
 <a href="dart-ui/BlendMode-class.html">srcOver</a>. Regions that are entirely transparent in the source image take
 their hue from the destination.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hue.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hue.png" alt=""></p>
 <p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">color</a>, which is a similar but stronger effect as it also applies the
 saturation of the source image.</li><li><code>HSVColor</code>, which allows colors to be expressed using Hue rather than
 the red/green/blue channels of <a href="dart-ui/Color-class.html">Color</a>.</li></ul>
@@ -464,7 +464,7 @@ the red/green/blue channels of <a href="dart-ui/Color-class.html">Color</a>.</li
 from each color channel.</p>
 <p>The opacity of the output image is computed in the same way as for
 <a href="dart-ui/BlendMode-class.html">srcOver</a>.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_lighten.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_lighten.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(17)</code></span>
@@ -480,7 +480,7 @@ destination image.</p>
 <p>The opacity of the output image is computed in the same way as for
 <a href="dart-ui/BlendMode-class.html">srcOver</a>. Regions that are entirely transparent in the source image take
 their luminosity from the destination.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_luminosity.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_luminosity.png" alt=""></p>
 <p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">saturation</a>, which applies the saturation of the source image to the
 destination.</li><li><a href="dart-ui/ImageFilter/ImageFilter.blur.html">ImageFilter.blur</a>, which can be used with <code>BackdropFilter</code> for a
 related effect.</li></ul>
@@ -500,7 +500,7 @@ related effect.</li></ul>
 <p>When compositing two opaque images, this has similar effect to overlapping
 two transparencies on a projector.</p>
 <p>For a variant that also multiplies the alpha channel, consider <a href="dart-ui/BlendMode-class.html">multiply</a>.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_modulate.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_modulate.png" alt=""></p>
 <p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">screen</a>, which does a similar computation but inverted.</li><li><a href="dart-ui/BlendMode-class.html">overlay</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
 destination image.</li><li><a href="dart-ui/BlendMode-class.html">hardLight</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
 source image.</li></ul>
@@ -523,7 +523,7 @@ the alpha channel.</p>
 output. This is similar to <a href="dart-ui/BlendMode-class.html">dstIn</a>, but with the colors combined.</p>
 <p>For a variant that multiplies the colors but does not multiply the alpha
 channel, consider <a href="dart-ui/BlendMode-class.html">modulate</a>.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_multiply.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_multiply.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(24)</code></span>
@@ -543,7 +543,7 @@ then inverts the result.</p>
 <p>Inverting the components means that a fully saturated channel (opaque
 white) is treated as the value 0.0, and values normally treated as 0.0
 (black, transparent) are treated as 1.0.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_overlay.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_overlay.png" alt=""></p>
 <p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">modulate</a>, which always multiplies the values.</li><li><a href="dart-ui/BlendMode-class.html">screen</a>, which always multiplies the inverses of the values.</li><li><a href="dart-ui/BlendMode-class.html">hardLight</a>, which is similar to <a href="dart-ui/BlendMode-class.html">overlay</a> but favors the source image
 instead of the destination image.</li></ul>
                   
@@ -561,7 +561,7 @@ instead of the destination image.</li></ul>
 that image to the corresponding output pixel, as if the color of that
 pixel in that image was darker.</p>
 <p>This corresponds to the "Source plus Destination" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_plus.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_plus.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(12)</code></span>
@@ -577,7 +577,7 @@ destination image.</p>
 <p>The opacity of the output image is computed in the same way as for
 <a href="dart-ui/BlendMode-class.html">srcOver</a>. Regions that are entirely transparent in the source image take
 their saturation from the destination.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hue.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hue.png" alt=""></p>
 <p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">color</a>, which also applies the hue of the source image.</li><li><a href="dart-ui/BlendMode-class.html">luminosity</a>, which applies the luminosity of the source image to the
 destination.</li></ul>
                   
@@ -603,7 +603,7 @@ inverted back before rendering.</p>
 Similarly, in the alpha channel, it can only result in more opaque colors.</p>
 <p>This has similar effect to two projectors displaying their images on the
 same screen simultaneously.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_screen.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_screen.png" alt=""></p>
 <p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">modulate</a>, which does a similar computation but without inverting the
 values.</li><li><a href="dart-ui/BlendMode-class.html">overlay</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
 destination image.</li><li><a href="dart-ui/BlendMode-class.html">hardLight</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
@@ -621,7 +621,7 @@ source image.</li></ul>
           <p>Use <a href="dart-ui/BlendMode-class.html">colorDodge</a> for source values below 0.5 and <a href="dart-ui/BlendMode-class.html">colorBurn</a> for source
 values above 0.5.</p>
 <p>This results in a similar but softer effect than <a href="dart-ui/BlendMode-class.html">overlay</a>.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_softLight.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_softLight.png" alt=""></p>
 <p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">color</a>, which is a more subtle tinting effect.</li></ul>
                   
   <div>
@@ -637,7 +637,7 @@ values above 0.5.</p>
 <p>Conceptually, the destination is first cleared, then the source image is
 painted.</p>
 <p>This corresponds to the "Copy" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_src.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_src.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(1)</code></span>
@@ -656,7 +656,7 @@ channel being set to that of the destination image instead of being a
 combination of both image's opacity channels.</p>
 <p>For a variant with the destination on top instead of the source, see
 <a href="dart-ui/BlendMode-class.html">dstATop</a>.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcATop.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcATop.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(9)</code></span>
@@ -676,7 +676,7 @@ effect.</p>
 destination is absent, rather than where it is present), consider
 <a href="dart-ui/BlendMode-class.html">srcOut</a>.</p>
 <p>This corresponds to the "Source in Destination" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcIn.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcIn.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(5)</code></span>
@@ -694,7 +694,7 @@ channels of the destination are ignored, only the opacity has an effect.</p>
 <p>To reverse the semantic of the mask (only showing the source where the
 destination is present, rather than where it is absent), consider <a href="dart-ui/BlendMode-class.html">srcIn</a>.</p>
 <p>This corresponds to the "Source out Destination" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcOut.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcOut.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(7)</code></span>
@@ -711,7 +711,7 @@ shapes are painted on top of what is below, with transparent areas showing
 the destination layer.</p>
 <p>This corresponds to the "Source over Destination" Porter-Duff operator,
 also known as the Painter's Algorithm.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcOver.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcOver.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(3)</code></span>
@@ -736,7 +736,7 @@ also known as the Painter's Algorithm.</p>
           <p>Apply a bitwise <code>xor</code> operator to the source and destination images. This
 leaves transparency where they would overlap.</p>
 <p>This corresponds to the "Source xor Destination" Porter-Duff operator.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_xor.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_xor.png" alt=""></p>
                   
   <div>
             <span class="signature"><code>const BlendMode(11)</code></span>
@@ -819,7 +819,7 @@ leaves transparency where they would overlap.</p>
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
       <li class="section-title"><a href="dart-ui/BlendMode-class.html#constants">Constants</a></li>
       <li>clear</li>
@@ -876,7 +876,7 @@ leaves transparency where they would overlap.</p>
 
 <footer>
   <span class="no-break">
-    research_package 0.0.1
+    research_package 0.0.2
   </span>
 
   

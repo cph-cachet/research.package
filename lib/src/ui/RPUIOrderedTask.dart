@@ -36,7 +36,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   @override
   initState() {
     // Instantiate the taskresult so it starts tracking time
-    taskResult = RPTaskResult(widget.task.identifier);
+    taskResult = RPTaskResult.withParams(widget.task.identifier);
 
     // Calculating the number of question steps because we only want to display their count
     var nrOfQuestionSteps = 0;
