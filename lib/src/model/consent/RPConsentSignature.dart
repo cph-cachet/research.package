@@ -6,6 +6,7 @@ part of research_package_model;
 ///
 /// The signature object has no concept of a cryptographic signature – it is merely a record of any input the user made during a consent review step.
 /// Also, the object does not verify or vouch for user identity.
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPConsentSignature {
   bool _requiresName;
   bool _requiresSignatureImage;
@@ -13,8 +14,10 @@ class RPConsentSignature {
   String _identifier;
   String _title;
 
+  RPConsentSignature();
+
   /// The default constructor. Returns a signature where both the name and the signature image is required
-  RPConsentSignature(String identifier) {
+  RPConsentSignature.withIdentifier(String identifier) {
     this._identifier = identifier;
     this._requiresName = true;
     this._requiresSignatureImage = true;
@@ -64,4 +67,7 @@ class RPConsentSignature {
   set requiresName(bool requiresName) {
     this._requiresName = requiresName;
   }
+
+  factory RPConsentSignature.fromJson(Map<String, dynamic> json) => _$RPConsentSignatureFromJson(json);
+  Map<String, dynamic> toJson() => _$RPConsentSignatureToJson(this);
 }

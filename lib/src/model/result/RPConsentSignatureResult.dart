@@ -4,27 +4,21 @@ part of research_package_model;
 /// It indicates if a given consent document has been signed by a user.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPConsentSignatureResult extends RPResult {
-  RPConsentDocument _consentDocument;
-  RPSignatureResult _signature;
-  String _userID;
-
-  RPConsentSignatureResult(String identifier, this._consentDocument, this._signature) : super(identifier);
-
   /// The linked Consent Document which the user signed
-  RPConsentDocument get consentDocument => this._consentDocument;
+  RPConsentDocument consentDocument;
 
   /// The signature which contains the name and signature image
-  RPSignatureResult get signature => this._signature;
+  RPSignatureResult signature;
 
   /// the ID of the user which signed the document
-  String get userID => this._userID;
+  String userID;
+
+  RPConsentSignatureResult();
+  RPConsentSignatureResult.withParams(String identifier, this.consentDocument, this.signature)
+      : super.withIdentifier(identifier);
 
   /// The time when the document was signed
   DateTime get signingDate => this._endDate;
-
-  set userID(String userID) {
-    this._userID = userID;
-  }
 
   factory RPConsentSignatureResult.fromJson(Map<String, dynamic> json) => _$RPConsentSignatureResultFromJson(json);
   Map<String, dynamic> toJson() => _$RPConsentSignatureResultToJson(this);

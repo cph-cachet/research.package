@@ -4,17 +4,21 @@ part of research_package_model;
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPChoiceAnswerFormat extends RPAnswerFormat {
   List<RPChoice> _choices;
-  ChoiceAnswerStyle _answerStyle;
+  ChoiceAnswerStyle answerStyle;
+
+  RPChoiceAnswerFormat();
 
   /// Returns an initialized choice answer format with the given [ChoiceAnswerStyle] and the set of [RPChoice]s.
-  RPChoiceAnswerFormat(this._answerStyle, this._choices);
+  RPChoiceAnswerFormat.withParams(this.answerStyle, this._choices) {
+    questionType =
+        answerStyle == ChoiceAnswerStyle.SingleChoice ? QuestionType.SingleChoice : QuestionType.MultipleChoice;
+  }
 
   /// An array of available [RPChoice] objects which represent the choices to the participant.
   get choices => this._choices;
 
-  @override
-  get questionType {
-    return _answerStyle == ChoiceAnswerStyle.SingleChoice ? QuestionType.SingleChoice : QuestionType.MultipleChoice;
+  set choices(List<RPChoice> choices) {
+    this._choices = choices;
   }
 
   /// The widget (UI representation) of the Answer Format
@@ -31,13 +35,15 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 
 /// The choice object which the participant can choose during a [RPQuestionStep] with [RPChoiceAnswerFormat].
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPChoice<T> {
+class RPChoice {
   String _text;
-  T _value;
+  dynamic _value;
   String _detailText;
 
+  RPChoice();
+
   /// Default constructor with [detailText] set to ```null```.
-  RPChoice(String text, T value) {
+  RPChoice.withParams(String text, dynamic value) {
     this._text = text;
     this._value = value;
     this._detailText = null;
@@ -56,7 +62,7 @@ class RPChoice<T> {
   /// The value of the choice
   get value => this._value;
 
-  set value(T value) {
+  set value(dynamic value) {
     this._value = value;
   }
 

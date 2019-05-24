@@ -3,18 +3,22 @@ part of research_package_model;
 /// A content section in a [RPConsentDocument].
 ///
 /// It represents one section in a [RPConsentDocument].
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPConsentSection {
+  @JsonKey(nullable: false)
   RPConsentSectionType _type;
   String _title;
   String _formalTitle;
   String _summary;
   String _content;
 
+  RPConsentSection();
+
   /// Returns a populated object with the given [type].
   ///
   /// It is enough to provide only the [type] of the section, the title is automatically filled out.
   /// [summary] is set to [null] initially.
-  RPConsentSection(RPConsentSectionType type) {
+  RPConsentSection.withParams(RPConsentSectionType type) {
     this._type = type;
     this._summary = null;
     this._title = _localizedTitleForConsentSectionType(type);
@@ -50,6 +54,13 @@ class RPConsentSection {
   set summary(String summary) {
     this._summary = summary;
   }
+
+  set type(RPConsentSectionType type) {
+    this._type = type;
+  }
+
+  factory RPConsentSection.fromJson(Map<String, dynamic> json) => _$RPConsentSectionFromJson(json);
+  Map<String, dynamic> toJson() => _$RPConsentSectionToJson(this);
 }
 
 /// Enum containing the available types for [RPConsentSection].

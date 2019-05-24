@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the exitCode property from the dart:io library, for the Dart programming language.">
   <title>exitCode property - dart:io library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
@@ -35,7 +36,7 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -179,68 +180,68 @@
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>exitCode top-level property </h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-top-level-property">exitCode</span> top-level property </h1></div>
 
 
-    <section id="getter">
-    
-    <section class="multi-line-signature">
-      <span class="returntype"><a href="dart-core/int-class.html">int</a></span>
-          <span class="name ">exitCode</span>
-      
+        <section id="getter">
+        
+        <section class="multi-line-signature">
+          <span class="returntype"><a href="dart-core/int-class.html">int</a></span>
+                  <span class="name ">exitCode</span>
+          
 </section>
-    
-        <section class="desc markdown">
-      <p>Get the global exit code for the Dart VM.</p>
+        
+                <section class="desc markdown">
+          <p>Get the global exit code for the Dart VM.</p>
 <p>The exit code is global for the Dart VM and the last assignment to
 exitCode from any isolate determines the exit code of the Dart VM
 on normal termination.</p>
 <p>See <a href="dart-io/exit.html">exit</a> for more information on how to chose a value for the
 exit code.</p>
-    </section>
-        <section class="summary source-code" id="source">
-      <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">int get exitCode =&gt; _ProcessUtils._getExitCode();</code></pre>
-    </section>
+        </section>
+                <section class="summary source-code" id="source">
+          <h2><span>Implementation</span></h2>
+          <pre class="language-dart"><code class="language-dart">int get exitCode =&gt; _ProcessUtils._getExitCode();</code></pre>
+        </section>
 </section>
-    
-    <section id="setter">
-    
-    <section class="multi-line-signature">
-      <span class="returntype">void</span>
-            <span class="name ">exitCode=</span>
+        
+        <section id="setter">
+        
+        <section class="multi-line-signature">
+          <span class="returntype">void</span>
+                    <span class="name ">exitCode=</span>
 <span class="signature">(<wbr><span class="parameter" id="exitCode=-param-code"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">code</span></span>)</span>
-          
+                  
 </section>
-    
-        <section class="desc markdown">
-      <p>Set the global exit code for the Dart VM.</p>
+        
+                <section class="desc markdown">
+          <p>Set the global exit code for the Dart VM.</p>
 <p>The exit code is global for the Dart VM and the last assignment to
 exitCode from any isolate determines the exit code of the Dart VM
 on normal termination.</p>
 <p>Default value is <code>0</code>.</p>
 <p>See <a href="dart-io/exit.html">exit</a> for more information on how to chose a value for the
 exit code.</p>
-    </section>
-        <section class="summary source-code" id="source">
-      <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">void set exitCode(int code) {
+        </section>
+                <section class="summary source-code" id="source">
+          <h2><span>Implementation</span></h2>
+          <pre class="language-dart"><code class="language-dart">void set exitCode(int code) {
   ArgumentError.checkNotNull(code, &quot;code&quot;);
   _ProcessUtils._setExitCode(code);
 }</code></pre>
-    </section>
+        </section>
 </section>
-      </div> <!-- /.main-content -->
+          </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
 
 </main>
 
 <footer>
   <span class="no-break">
-    research_package 0.0.1
+    research_package 0.0.2
   </span>
 
   

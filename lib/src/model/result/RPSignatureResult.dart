@@ -5,25 +5,21 @@ part of research_package_model;
 /// It represents a signature with the participants name and signature image
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPSignatureResult {
-  String _firstName;
-  String _lastName;
-  Uint8List _signatureImage;
+  /// The person's first name
+  String firstName;
 
-  RPSignatureResult(this._firstName, this._lastName, this._signatureImage);
+  /// The person's last name
+  String lastName;
+
+  /// The image of the provided signature in png format as bytes
+  String signatureImage;
+
+  RPSignatureResult();
+
+  RPSignatureResult.withParams(this.firstName, this.lastName, this.signatureImage);
 
   /// Returns the person's full name with space between first and last name
-  String get fullName => "${this._firstName} ${this._lastName}";
-
-  /// Returns the person's first name
-  String get firstName => this._firstName;
-
-  /// Returns the person's last name
-  String get lastName => this._lastName;
-
-  /// Returns the image of the provided signature in png format as bytes
-  Uint8List get signatureImage => this._signatureImage;
-
-  // There are no setters because nobody else should be able to modify the result
+  String get fullName => "${this.firstName} ${this.lastName}";
 
   factory RPSignatureResult.fromJson(Map<String, dynamic> json) => _$RPSignatureResultFromJson(json);
   Map<String, dynamic> toJson() => _$RPSignatureResultToJson(this);

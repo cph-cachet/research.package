@@ -9,7 +9,7 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
 
   RPIntegerAnswerFormat();
 
-  RPIntegerAnswerFormat.fromValues(this._minValue, this._maxValue);
+  RPIntegerAnswerFormat.withParams(this._minValue, this._maxValue);
 
   @override
   get questionType {
@@ -19,6 +19,14 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
   int get maxValue => _maxValue;
 
   int get minValue => _minValue;
+
+  set maxValue(int maxValue) {
+    this._maxValue = maxValue;
+  }
+
+  set minValue(int minValue) {
+    this._minValue = minValue;
+  }
 
   //TODO: Validation?
 

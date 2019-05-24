@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the StrutStyle constructor from the Class StrutStyle class from the dart:ui library, for the Dart programming language.">
   <title>StrutStyle constructor - StrutStyle class - dart:ui library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
@@ -36,7 +37,7 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -73,8 +74,8 @@
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>StrutStyle constructor</h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-constructor">StrutStyle</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -89,13 +90,12 @@ Roboto).</p></li><li>
  the font in <code>fontFamily</code> cannot be found.</p></li><li>
 <p><code>fontSize</code>: The size of glyphs (in logical pixels) to use when painting
 the text.</p></li><li>
-<p><code>lineHeight</code>: The minimum height of the line boxes, as a multiple of the
-font size. The lines of the paragraph will be at least
-<code>(lineHeight + leading) * fontSize</code> tall when fontSize
-is not null. When fontSize is null, there is no minimum line height. Tall
-glyphs due to baseline alignment or large <code>TextStyle.fontSize</code> may cause
-the actual line height after layout to be taller than specified here.
-<code>fontSize</code> must be provided for this property to take effect.</p></li><li>
+<p><code>height</code>: The minimum height of the line boxes, as a multiplier of the
+font size. The lines of the paragraph will be at least `(height + leading)</p><ul><li>fontSize` tall when fontSize is not null. When fontSize is null, there
+is no minimum line height. Tall glyphs due to baseline alignment or large
+<code>TextStyle.fontSize</code> may cause the actual line height after layout to be
+taller than specified here. <code>fontSize</code> must be provided for this property
+to take effect.</li></ul></li><li>
 <p><code>leading</code>: The minimum amount of leading between lines as a multiple of
 the font size. <code>fontSize</code> must be provided for this property to take effect.</p></li><li>
 <p><code>fontWeight</code>: The typeface thickness to use when painting the text
@@ -103,11 +103,11 @@ the font size. <code>fontSize</code> must be provided for this property to take 
 <p><code>fontStyle</code>: The typeface variant to use when drawing the letters (e.g.,
 italics).</p></li><li>
 <p><code>forceStrutHeight</code>: When true, the paragraph will force all lines to be exactly
-<code>(lineHeight + leading) * fontSize</code> tall from baseline to baseline.
+<code>(height + leading) * fontSize</code> tall from baseline to baseline.
 <a href="dart-ui/TextStyle-class.html">TextStyle</a> is no longer able to influence the line height, and any tall
 glyphs may overlap with lines above. If a <code>fontFamily</code> is specified, the
 total ascent of the first line will be the min of the <code>Ascent + half-leading</code>
-of the <code>fontFamily</code> and <code>(lineHeight + leading) * fontSize</code>. Otherwise, it
+of the <code>fontFamily</code> and <code>(height + leading) * fontSize</code>. Otherwise, it
 will be determined by the Ascent + half-leading of the first text.</p></li></ul>
     </section>
     
@@ -138,14 +138,14 @@ will be determined by the Ascent + half-leading of the first text.</p></li></ul>
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
 
 </main>
 
 <footer>
   <span class="no-break">
-    research_package 0.0.1
+    research_package 0.0.2
   </span>
 
   
