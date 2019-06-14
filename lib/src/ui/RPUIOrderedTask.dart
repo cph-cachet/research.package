@@ -28,7 +28,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
 
   RPStep currentStep;
   RPStep stepToNavigate;
-  int currentStepIndex = 1;
+  int currentStepIndex = 0;
+  int currentQuestionIndex = 1;
 
   StreamSubscription<StepStatus> stepStatusSubscription;
   StreamSubscription<RPStepResult> stepResultSubscription;
@@ -47,13 +48,13 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     });
 
     // Sending the inital Task Progress so the Question UI can use it in the app bar
-    blocTask.updateTaskProgress(RPTaskProgress(currentStepIndex, nrOfQuestionSteps));
+    blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
 
     // Subscribe to step status changes so the navigation can be triggered
     stepStatusSubscription = blocTask.stepStatus.listen((data) {
       switch (data) {
         case StepStatus.Finished:
-          // In case of last step we save the result and close the task
+        // In case of last step we save the result and close the task
           if (currentStep == widget.task.steps.last) {
             //Creating and sending the task level of result to a stream to which anybody can subscribe
             createAndSendResult();
@@ -62,7 +63,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
           }
           // Updating taskProgress stream
           if (currentStep.runtimeType == RPQuestionStep) {
-            blocTask.updateTaskProgress(RPTaskProgress(currentStepIndex, nrOfQuestionSteps));
+            currentQuestionIndex++;
+            blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
           }
 
           // Calculating next step and then navigate there

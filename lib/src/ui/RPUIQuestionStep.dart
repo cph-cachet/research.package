@@ -13,11 +13,11 @@ class RPUIQuestionStep extends StatefulWidget {
 }
 
 class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
-
   // Dynamic because we don't know what value the RPChoice will have
   RPQuestionBodyResult<dynamic> currentQuestionBodyResult;
   bool readyToProceed;
   RPStepResult result;
+  RPTaskProgress recentTaskProgress;
 
   StreamSubscription<QuestionStatus> questionStatusSubscription;
   StreamSubscription<RPQuestionBodyResult> questionBodyResultSubscription;
@@ -28,6 +28,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
     result = RPStepResult.withParams(widget.step);
 //    questionType = widget.step.answerFormat.questionType;
     readyToProceed = false;
+    recentTaskProgress = blocTask.lastProgressValue;
 
     questionStatusSubscription = blocQuestion.questionStatus.listen((status) {
       switch (status) {
@@ -62,13 +63,14 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: StreamBuilder<RPTaskProgress>(
-          stream: blocTask.taskProgress,
-          initialData: blocTask.lastProgressValue,
-          builder: (context, snapshot) {
-            return Text("${snapshot.data.current} of ${snapshot.data.total}");
-          }
-        ),
+        title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
+//        title: StreamBuilder<RPTaskProgress>(
+//          stream: blocTask.taskProgress,
+//          initialData: blocTask.lastProgressValue,
+//          builder: (context, snapshot) {
+//            return Text("${snapshot.data.current} of ${snapshot.data.total}");
+//          },
+//        ),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -104,10 +106,10 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
           ),
           onPressed: readyToProceed
               ? () {
-                  // Communicating with the RPUITask Widget
-                  blocTask.sendStatus(StepStatus.Finished);
-                  createAndSendResult();
-                }
+            // Communicating with the RPUITask Widget
+            blocTask.sendStatus(StepStatus.Finished);
+            createAndSendResult();
+          }
               : null,
         ),
       ],
