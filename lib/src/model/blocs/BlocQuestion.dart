@@ -8,6 +8,7 @@ class BlocQuestion {
   // Stream for the questionBody to send the actual answerValue to the questionContainer so that can create the stepresult object.
   final _questionBodyResultController = BehaviorSubject<RPQuestionBodyResult>();
   // Stream
+  final _readyToProceedWithQuestionController = StreamController<bool>.broadcast();
 
   //Add data to stream
   /// The function to send a [QuestionStatus] through a stream
@@ -22,6 +23,8 @@ class BlocQuestion {
   /// Use to send the actual AnswerValue to the QuestionContainer so that it can create the [RPStepResult] object.
   Function(RPQuestionBodyResult) get sendResultValue => _questionBodyResultController.sink.add;
 
+  Function(bool) get sendReadyToProceed => _readyToProceedWithQuestionController.sink.add;
+
   //Retrieve data from stream
 
   /// The stream through which [QuestionStatus] is flowing
@@ -34,9 +37,12 @@ class BlocQuestion {
   /// The [RPUIQuestionStep] listens to this stream and creating the [RPStepResult] object based on the incoming data.
   Stream<RPQuestionBodyResult> get resultValue => _questionBodyResultController.stream;
 
+  Stream<bool> get readyToProceedWithQuestion => _readyToProceedWithQuestionController.stream;
+
   dispose() {
     _questionStatusController.close();
     _questionBodyResultController.close();
+    _readyToProceedWithQuestionController.close();
   }
 }
 

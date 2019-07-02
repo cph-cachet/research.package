@@ -34,16 +34,18 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
       switch (status) {
         case QuestionStatus.Ready:
           {
-            setState(() {
-              readyToProceed = true;
-            });
+            blocQuestion.sendReadyToProceed(true);
+//            setState(() {
+//              readyToProceed = true;
+//            });
             break;
           }
         case QuestionStatus.NotReady:
           {
-            setState(() {
-              readyToProceed = false;
-            });
+            blocQuestion.sendReadyToProceed(false);
+//            setState(() {
+//              readyToProceed = false;
+//            });
             break;
           }
       }
@@ -98,19 +100,25 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
-        RaisedButton(
-          color: RPStyles.cachetBlue,
-          textColor: Colors.white,
-          child: Text(
-            "NEXT",
-          ),
-          onPressed: readyToProceed
-              ? () {
-            // Communicating with the RPUITask Widget
-            blocTask.sendStatus(StepStatus.Finished);
-            createAndSendResult();
-          }
-              : null,
+        StreamBuilder<bool>(
+          stream: blocQuestion.readyToProceedWithQuestion,
+          initialData: false,
+          builder: (context, snapshot) {
+            return RaisedButton(
+              color: RPStyles.cachetBlue,
+              textColor: Colors.white,
+              child: Text(
+                "NEXT",
+              ),
+              onPressed: snapshot.data
+                  ? () {
+                      // Communicating with the RPUITask Widget
+                      blocTask.sendStatus(StepStatus.Finished);
+                      createAndSendResult();
+                    }
+                  : null,
+            );
+          },
         ),
       ],
     );
