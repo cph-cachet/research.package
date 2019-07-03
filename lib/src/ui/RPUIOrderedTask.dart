@@ -88,7 +88,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     });
     stepResultSubscription = blocTask.stepResult.listen((stepResult) {
       taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
-      print("This is the taskresult so far: ${taskResult.results}");
+//      print("This is the taskresult so far: ${taskResult.results}");
     });
 
     // Getting the first step

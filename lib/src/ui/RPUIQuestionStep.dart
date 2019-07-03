@@ -105,7 +105,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
           initialData: false,
           builder: (context, snapshot) {
             return RaisedButton(
-              color: RPStyles.cachetBlue,
+              color: Theme.of(context).accentColor,
               textColor: Colors.white,
               child: Text(
                 "NEXT",

@@ -38,11 +38,12 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
         RPConsentSignatureResult.withParams(widget.step.identifier, widget.step.consentDocument, signatureResult)
           ..endDate = DateTime.now();
 
-    consentSignatureResult.consentDocument.signatures.first == null
+    consentSignatureResult.consentDocument.signatures == null
         ? result.setResultForIdentifier("no signature collected", consentSignatureResult)
         : //TODO: modify identifier to match the id of rpconsentsignature
         result.setResultForIdentifier(consentSignatureResult.consentDocument.signatures.first.identifier,
-            consentSignatureResult); //TODO: modify identifier to match the id of rpconsentsignature
+            consentSignatureResult); //TODO: modify identifier to match the id of RPConsentSignature
+
     blocTask.sendStepResult(result);
   }
 
@@ -54,7 +55,8 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
         WidgetBuilder builder;
         switch (settings.name) {
           case 'consent_review/text':
-            builder = (BuildContext _) => _TextPresenterRoute(widget.step);
+            builder = (BuildContext _) =>
+                _TextPresenterRoute(widget.step, (signatureResult) => _setSignatureResult(signatureResult));
             break;
           case 'consent_review/signature':
             builder = (BuildContext _) => _SignatureRoute(
@@ -74,8 +76,9 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
 
 class _TextPresenterRoute extends StatefulWidget {
   final RPConsentReviewStep step;
+  final void Function(RPSignatureResult) onNoSignature;
 
-  _TextPresenterRoute(this.step);
+  _TextPresenterRoute(this.step, this.onNoSignature);
 
   @override
   __TextPresenterRouteState createState() => __TextPresenterRouteState();
@@ -174,13 +177,15 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           onPressed: () => _showConsentDialog(
                 widget.step.consentDocument.signatures != null
                     ? () {
+                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
                         Navigator.of(context, rootNavigator: true).pop();
                         Navigator.of(context).pushReplacementNamed('consent_review/signature');
                       }
                     : () {
+                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                        Navigator.of(context, rootNavigator: true).pop();
+                        widget.onNoSignature(null);
                         blocTask.sendStatus(StepStatus.Finished);
-                        // TODO: FIX
-//                        _setSignatureResult(signatureResult);
                       },
               ),
         ), //TODO: Localization
