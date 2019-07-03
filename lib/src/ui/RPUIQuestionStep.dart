@@ -19,7 +19,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   RPStepResult result;
   RPTaskProgress recentTaskProgress;
 
-  StreamSubscription<QuestionStatus> questionStatusSubscription;
   StreamSubscription<RPQuestionBodyResult> questionBodyResultSubscription;
 
   @override
@@ -29,27 +28,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 //    questionType = widget.step.answerFormat.questionType;
     readyToProceed = false;
     recentTaskProgress = blocTask.lastProgressValue;
-
-    questionStatusSubscription = blocQuestion.questionStatus.listen((status) {
-      switch (status) {
-        case QuestionStatus.Ready:
-          {
-            blocQuestion.sendReadyToProceed(true);
-//            setState(() {
-//              readyToProceed = true;
-//            });
-            break;
-          }
-        case QuestionStatus.NotReady:
-          {
-            blocQuestion.sendReadyToProceed(false);
-//            setState(() {
-//              readyToProceed = false;
-//            });
-            break;
-          }
-      }
-    });
 
     // Maybe not the best solution. Now we are updating the current result every time the user taps on a choice button
     questionBodyResultSubscription = blocQuestion.resultValue.listen((questionBodyResult) {
@@ -101,7 +79,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
           ),
         ),
         StreamBuilder<bool>(
-          stream: blocQuestion.readyToProceedWithQuestion,
+          stream: blocQuestion.questionReadyToProceed,
           initialData: false,
           builder: (context, snapshot) {
             return RaisedButton(
@@ -149,7 +127,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   @override
   void dispose() {
-    questionStatusSubscription.cancel();
     questionBodyResultSubscription.cancel();
     super.dispose();
   }
