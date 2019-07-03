@@ -42,8 +42,8 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
     }
 
     selectedIndex != null
-        ? blocQuestion.sendStatus(QuestionStatus.Ready)
-        : blocQuestion.sendStatus(QuestionStatus.NotReady);
+        ? blocQuestion.sendReadyToProceed(true)
+        : blocQuestion.sendReadyToProceed(false);
   }
 
   Widget _choiceCellBuilder(BuildContext context, int index) {

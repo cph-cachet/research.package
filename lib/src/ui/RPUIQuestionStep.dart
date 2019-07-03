@@ -19,7 +19,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   RPStepResult result;
   RPTaskProgress recentTaskProgress;
 
-  StreamSubscription<QuestionStatus> questionStatusSubscription;
   StreamSubscription<RPQuestionBodyResult> questionBodyResultSubscription;
 
   @override
@@ -29,25 +28,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 //    questionType = widget.step.answerFormat.questionType;
     readyToProceed = false;
     recentTaskProgress = blocTask.lastProgressValue;
-
-    questionStatusSubscription = blocQuestion.questionStatus.listen((status) {
-      switch (status) {
-        case QuestionStatus.Ready:
-          {
-            setState(() {
-              readyToProceed = true;
-            });
-            break;
-          }
-        case QuestionStatus.NotReady:
-          {
-            setState(() {
-              readyToProceed = false;
-            });
-            break;
-          }
-      }
-    });
 
     // Maybe not the best solution. Now we are updating the current result every time the user taps on a choice button
     questionBodyResultSubscription = blocQuestion.resultValue.listen((questionBodyResult) {
@@ -98,19 +78,25 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
-        RaisedButton(
-          color: RPStyles.cachetBlue,
-          textColor: Colors.white,
-          child: Text(
-            "NEXT",
-          ),
-          onPressed: readyToProceed
-              ? () {
-            // Communicating with the RPUITask Widget
-            blocTask.sendStatus(StepStatus.Finished);
-            createAndSendResult();
-          }
-              : null,
+        StreamBuilder<bool>(
+          stream: blocQuestion.questionReadyToProceed,
+          initialData: false,
+          builder: (context, snapshot) {
+            return RaisedButton(
+              color: Theme.of(context).accentColor,
+              textColor: Colors.white,
+              child: Text(
+                "NEXT",
+              ),
+              onPressed: snapshot.data
+                  ? () {
+                      // Communicating with the RPUITask Widget
+                      blocTask.sendStatus(StepStatus.Finished);
+                      createAndSendResult();
+                    }
+                  : null,
+            );
+          },
         ),
       ],
     );
@@ -141,7 +127,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   @override
   void dispose() {
-    questionStatusSubscription.cancel();
     questionBodyResultSubscription.cancel();
     super.dispose();
   }

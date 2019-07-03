@@ -25,9 +25,9 @@ class RPUIOrderedTask extends StatefulWidget {
 
 class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   RPTaskResult taskResult;
+  List<Widget> stepWidgets = [];
 
   RPStep currentStep;
-  RPStep stepToNavigate;
   int currentStepIndex = 0;
   int currentQuestionIndex = 1;
 
@@ -42,6 +42,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     // Calculating the number of question steps because we only want to display their count
     var nrOfQuestionSteps = 0;
     widget.task.steps.forEach((step) {
+      stepWidgets.add(step.stepWidget);
+
       if (step.runtimeType == RPQuestionStep) {
         nrOfQuestionSteps++;
       }
@@ -54,11 +56,11 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     stepStatusSubscription = blocTask.stepStatus.listen((data) {
       switch (data) {
         case StepStatus.Finished:
-        // In case of last step we save the result and close the task
+          // In case of last step we save the result and close the task
           if (currentStep == widget.task.steps.last) {
             //Creating and sending the task level of result to a stream to which anybody can subscribe
             createAndSendResult();
-//            Navigator.of(context).popUntil(ModalRoute.withName("/"));
+            Navigator.of(context).pop();
             break;
           }
           // Updating taskProgress stream
@@ -68,10 +70,9 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
           }
 
           // Calculating next step and then navigate there
-          stepToNavigate = widget.task.getStepAfterStep(currentStep, null);
-          currentStep = stepToNavigate;
+          currentStep = widget.task.getStepAfterStep(currentStep, null);
           currentStepIndex++;
-          _pushStep(stepToNavigate);
+          taskPageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
           break;
 
         case StepStatus.Canceled:
@@ -87,7 +88,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     });
     stepResultSubscription = blocTask.stepResult.listen((stepResult) {
       taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
-      print("This is the taskresult so far: ${taskResult.results}");
+//      print("This is the taskresult so far: ${taskResult.results}");
     });
 
     // Getting the first step
@@ -103,25 +104,10 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     widget.onSubmit(taskResult);
   }
 
-  void _pushStep(RPStep step) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) {
-          return WillPopScope(
-            child: step.stepWidget,
-            onWillPop: () async => false,
-          );
-        },
-        settings: RouteSettings(
-          name: step.identifier,
-        ),
-      ),
-    );
-  }
-
   void _showCancelConfirmationDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Discard results and quit?"),
@@ -134,19 +120,10 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
               child: Text("YES"),
               onPressed: () {
                 // TODO: Do something with the result
-                stepToNavigate = widget.task.steps.first;
-                Navigator.of(context).popUntil(ModalRoute.withName("/"));
-
-                //          Navigator.removeRouteBelow(context, )
-//          Navigator.pushAndRemoveUntil(
-//            context,
-//            MaterialPageRoute(
-//              builder: (BuildContext context) {
-//                return stepToNavigate.stepWidget;
-//              },
-//            ),
-//            (Route<dynamic> route) => false,
-//          );
+                // Popup dismiss
+                Navigator.of(context).pop();
+                // Exit the Ordered Task
+                Navigator.of(context).pop();
               },
             )
           ],
@@ -155,14 +132,17 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     );
   }
 
+  PageController taskPageViewController = PageController();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: Theme.of(context),
-      initialRoute: "/",
-      routes: {
-        "/": (context) => widget.task.steps.first.stepWidget,
-      },
+    return Theme(
+      data: Theme.of(context),
+      child: PageView(
+        children: stepWidgets,
+        controller: taskPageViewController,
+        physics: NeverScrollableScrollPhysics(),
+      ),
     );
   }
 

@@ -25,6 +25,66 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
     super.initState();
   }
 
+  void _setSignatureResult(RPSignatureResult result) {
+    setState(() {
+      signatureResult = result;
+    });
+    createAndSendResult();
+  }
+
+  @override
+  void createAndSendResult() {
+    consentSignatureResult =
+        RPConsentSignatureResult.withParams(widget.step.identifier, widget.step.consentDocument, signatureResult)
+          ..endDate = DateTime.now();
+
+    consentSignatureResult.consentDocument.signatures == null
+        ? result.setResultForIdentifier("no signature collected", consentSignatureResult)
+        : //TODO: modify identifier to match the id of rpconsentsignature
+        result.setResultForIdentifier(consentSignatureResult.consentDocument.signatures.first.identifier,
+            consentSignatureResult); //TODO: modify identifier to match the id of RPConsentSignature
+
+    blocTask.sendStepResult(result);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      initialRoute: 'consent_review/text',
+      onGenerateRoute: (RouteSettings settings) {
+        WidgetBuilder builder;
+        switch (settings.name) {
+          case 'consent_review/text':
+            builder = (BuildContext _) =>
+                _TextPresenterRoute(widget.step, (signatureResult) => _setSignatureResult(signatureResult));
+            break;
+          case 'consent_review/signature':
+            builder = (BuildContext _) => _SignatureRoute(
+                  widget.step.title,
+                  widget.step.consentDocument.signatures.first,
+                  _setSignatureResult,
+                );
+            break;
+          default:
+            throw Exception('Invalid route: ${settings.name}');
+        }
+        return MaterialPageRoute(builder: builder, settings: settings);
+      },
+    );
+  }
+}
+
+class _TextPresenterRoute extends StatefulWidget {
+  final RPConsentReviewStep step;
+  final void Function(RPSignatureResult) onNoSignature;
+
+  _TextPresenterRoute(this.step, this.onNoSignature);
+
+  @override
+  __TextPresenterRouteState createState() => __TextPresenterRouteState();
+}
+
+class __TextPresenterRouteState extends State<_TextPresenterRoute> {
   Widget _reviewCellBuilder(BuildContext context, int index) {
     // Return the header as the first element.
     if (index == 0) {
@@ -64,7 +124,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
 
   @override
   Widget build(BuildContext context) {
-    void _showConsentDialog() {
+    void _showConsentDialog(VoidCallback onPressedCallback) {
       showDialog(
         context: context,
         builder: (context) {
@@ -74,25 +134,11 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
             actions: <Widget>[
               FlatButton(
                 child: Text("CANCEL"),
-                onPressed: () => Navigator.of(context).pop(), //blocTask.sendStatus(StepStatus.Canceled),
+                onPressed: () => Navigator.of(context).pop(),
               ),
               FlatButton(
                 child: Text("AGREE"),
-                onPressed: widget.step.consentDocument.signatures != null
-                    ? () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return _SignatureRoute(
-                            widget.step.title,
-                            widget.step.consentDocument.signatures.first,
-                            _setSignatureResult,
-                          );
-                        }));
-                      }
-                    : () {
-                        blocTask.sendStatus(StepStatus.Finished);
-                        _setSignatureResult(signatureResult);
-                      },
+                onPressed: onPressedCallback,
                 textTheme: ButtonTextTheme.primary,
               ),
             ],
@@ -113,50 +159,44 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
       ),
       persistentFooterButtons: <Widget>[
         FlatButton(
-            child: Text(
-              "DISAGREE",
-              style: TextStyle(
-                color: Colors.redAccent,
-              ),
+          child: Text(
+            "DISAGREE",
+            style: TextStyle(
+              color: Colors.redAccent,
             ),
-            onPressed: () => blocTask.sendStatus(StepStatus.Canceled)),
+          ),
+          onPressed: () {
+            blocTask.sendStatus(StepStatus.Canceled);
+          },
+        ),
         RaisedButton(
           child: Text(
             "AGREE",
             style: RPStyles.whiteText,
           ),
-          onPressed: () => _showConsentDialog(),
+          onPressed: () => _showConsentDialog(
+                widget.step.consentDocument.signatures != null
+                    ? () {
+                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                        Navigator.of(context, rootNavigator: true).pop();
+                        Navigator.of(context).pushReplacementNamed('consent_review/signature');
+                      }
+                    : () {
+                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                        Navigator.of(context, rootNavigator: true).pop();
+                        widget.onNoSignature(null);
+                        blocTask.sendStatus(StepStatus.Finished);
+                      },
+              ),
         ), //TODO: Localization
       ],
     );
-  }
-
-  void _setSignatureResult(RPSignatureResult result) {
-    setState(() {
-      signatureResult = result;
-    });
-    createAndSendResult();
-  }
-
-  @override
-  void createAndSendResult() {
-    consentSignatureResult =
-        RPConsentSignatureResult.withParams(widget.step.identifier, widget.step.consentDocument, signatureResult)
-          ..endDate = DateTime.now();
-
-    consentSignatureResult.consentDocument.signatures.first == null
-        ? result.setResultForIdentifier("no signature collected", consentSignatureResult)
-        : //TODO: modify identifier to match the id of rpconsentsignature
-        result.setResultForIdentifier(consentSignatureResult.consentDocument.signatures.first.identifier,
-            consentSignatureResult); //TODO: modify identifier to match the id of rpconsentsignature
-    blocTask.sendStepResult(result);
   }
 }
 
 class _SignatureRoute extends StatefulWidget {
   final String _title;
   final RPConsentSignature _consentSignature;
-  // Callback for
   final void Function(RPSignatureResult) _onFinished;
 
   _SignatureRoute(this._title, this._consentSignature, this._onFinished);
