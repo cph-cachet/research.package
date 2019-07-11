@@ -219,6 +219,12 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   Widget _signatureCanvas() {
     return GestureDetector(
+      onTapDown: (e) {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      onPanStart: (e) {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
       onPanEnd: (e) {
         setState(() {
           if (_signature.isNotEmpty) {
@@ -312,14 +318,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       appBar: AppBar(
         title: Text(widget._title),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: <Widget>[
-            widget._consentSignature.requiresName ? _nameFields() : Container(),
-            widget._consentSignature.requiresSignatureImage ? _signingField() : Container(),
-          ],
-        ),
+      body: ListView(
+        padding: EdgeInsets.all(12),
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[
+          widget._consentSignature.requiresName ? _nameFields() : Container(),
+          widget._consentSignature.requiresSignatureImage ? _signingField() : Container(),
+        ],
       ),
       persistentFooterButtons: <Widget>[
         FlatButton(
