@@ -39,9 +39,15 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
                   widget.step.title,
                   style: RPStyles.h2,
                 ),
-                Text(
-                  widget.step.text,
-                  style: RPStyles.h3,
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      widget.step.text,
+                      style: RPStyles.h3,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
               ],
             ),

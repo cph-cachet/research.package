@@ -51,21 +51,25 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                     style: RPStyles.h3,
                   ),
                 ),
-                FlatButton(
-                  textTheme: ButtonTextTheme.accent,
-                  child: Text("Learn more..."), // TODO: Localization
-                  onPressed: _pushDetailTextRoute,
-                ),
+                widget.step.detailText != null
+                    ? FlatButton(
+                        textTheme: ButtonTextTheme.accent,
+                        child: Text("Learn more..."), // TODO: Localization
+                        onPressed: _pushDetailTextRoute,
+                      )
+                    : Container(),
               ],
             ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                widget.step.footnote,
-                style: RPStyles.bodyText,
-                textAlign: TextAlign.left,
-              ),
-            ),
+            widget.step.footnote != null
+                ? Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      widget.step.footnote,
+                      style: RPStyles.bodyText,
+                      textAlign: TextAlign.left,
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),

@@ -137,9 +137,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                 onPressed: () => Navigator.of(context).pop(),
               ),
               FlatButton(
-                child: Text("AGREE"),
+                child: Text("AGREE", style: TextStyle(color: Theme.of(context).primaryColor),),
                 onPressed: onPressedCallback,
-                textTheme: ButtonTextTheme.primary,
               ),
             ],
           );
@@ -162,7 +161,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           child: Text(
             "DISAGREE",
             style: TextStyle(
-              color: Colors.redAccent,
+              color: Theme.of(context).accentColor,
             ),
           ),
           onPressed: () {
@@ -170,6 +169,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           },
         ),
         RaisedButton(
+          color: Theme.of(context).primaryColor,
           child: Text(
             "AGREE",
             style: RPStyles.whiteText,

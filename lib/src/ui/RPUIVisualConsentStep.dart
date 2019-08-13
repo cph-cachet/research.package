@@ -45,9 +45,9 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => _ContentRoute(
-              title: title,
-              content: content,
-            ),
+          title: title,
+          content: content,
+        ),
       ),
     );
   }
@@ -119,9 +119,9 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                   textTheme: ButtonTextTheme.accent,
                   child: Text("Learn more..."), // TODO: Localization
                   onPressed: () => _pushContent(
-                        section.title,
-                        section.content,
-                      ),
+                    section.title,
+                    section.content,
+                  ),
                 ),
               ],
             ),
@@ -161,6 +161,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
           ButtonTheme(
             minWidth: 150,
             child: RaisedButton(
+              color: Theme.of(context).primaryColor,
               padding: EdgeInsets.all(10.0),
               child: _lastPage
                   ? Text(
@@ -182,7 +183,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               padding: EdgeInsets.all(10.0),
               child: Text(
                 "CANCEL",
-                style: TextStyle(color: Colors.redAccent),
+                style: TextStyle(color: Theme.of(context).accentColor),
               ),
               onPressed: () => _showCancelDialog(),
             ),
