@@ -31,7 +31,7 @@ class RPInstructionStep extends RPStep {
     this._footnote = footnote;
   }
 
-  set image(String imagePath) {
+  set imagePath(String imagePath) {
     this._imagePath = imagePath;
   }
 

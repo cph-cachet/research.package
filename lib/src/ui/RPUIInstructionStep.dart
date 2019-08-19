@@ -8,14 +8,17 @@ part of research_package_ui;
 class RPUIInstructionStep extends StatefulWidget {
   final RPInstructionStep step;
 
-  RPUIInstructionStep({@required this.step});
+  RPUIInstructionStep({@required this.step}) {
+    assert(this.step.text != null,
+        "No text provided for Instruction Step. Use the .text setter of RPStep class to add some.");
+  }
 
   @override
   _RPUIInstructionStepState createState() => _RPUIInstructionStepState();
 }
 
 class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
-  void _pushDetailTextRoute() {
+  _pushDetailTextRoute() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
@@ -32,6 +35,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
     if (widget.step.imagePath != null) {
       return Image.asset(
         widget.step.imagePath,
+        width: MediaQuery.of(context).size.width / 2,
       );
     } else {
       return Container();
@@ -49,7 +53,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            // If image if provided show it
+            // If image is provided show it
             _buildImage(),
             Column(
               children: <Widget>[
