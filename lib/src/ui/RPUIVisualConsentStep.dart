@@ -197,27 +197,31 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   Widget build(BuildContext context) {
     PageController controller = PageController();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.consentDocument.title),
-      ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Expanded(
-            child: PageView.builder(
-              onPageChanged: (pageNr) {
-                _goToNextPage(pageNr);
-                _controller.forward(from: 0.3);
-              },
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: widget.consentDocument.sections.length,
-              controller: controller,
-              itemBuilder: _consentSectionPageBuilder,
+    return WillPopScope(
+      onWillPop: () => null,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.consentDocument.title),
+          automaticallyImplyLeading: false,
+        ),
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Expanded(
+              child: PageView.builder(
+                onPageChanged: (pageNr) {
+                  _goToNextPage(pageNr);
+                  _controller.forward(from: 0.3);
+                },
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: widget.consentDocument.sections.length,
+                controller: controller,
+                itemBuilder: _consentSectionPageBuilder,
+              ),
             ),
-          ),
-          _navigationButtons(controller),
-        ],
+            _navigationButtons(controller),
+          ],
+        ),
       ),
     );
   }

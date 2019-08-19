@@ -5,22 +5,23 @@ part of research_package_model;
 class RPInstructionStep extends RPStep {
   String _detailText;
   String _footnote;
-  Image _image;
+  String _imagePath;
 
-  RPInstructionStep({String identifier, String title, String detailText, String footnote, Image image}): super.withTitle(identifier, title){
+  RPInstructionStep({String identifier, String title, String detailText, String footnote, String imagePath})
+      : super.withTitle(identifier, title) {
     this._detailText = detailText;
     this._footnote = footnote;
-    this._image = image;
+    this._imagePath = imagePath;
   }
 
-  /// The text which is shown in a new window by pressing the "Learn more" button
+  /// The text which is shown in a new window by pressing the "Learn more" button. If ```null```, no "Learn more" button is shown.
   String get detailText => this._detailText;
 
   /// Optional footnote to appear on the bottom of the screen
   String get footnote => this._footnote;
 
-  /// The image to show during the Instruction Step. If ```null``` nothing is shown.
-  Image get image => this._image;
+  /// The path of the image to show during the Instruction Step (e.g.: "assets/picture.png"). If ```null``` nothing is shown.
+  String get imagePath => this._imagePath;
 
   set detailText(String detailText) {
     this._detailText = detailText;
@@ -30,8 +31,8 @@ class RPInstructionStep extends RPStep {
     this._footnote = footnote;
   }
 
-  set image(Image image) {
-    this._image = image;
+  set image(String imagePath) {
+    this._imagePath = imagePath;
   }
 
   /// The widget (UI representation) of the step

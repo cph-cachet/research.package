@@ -28,6 +28,16 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
     );
   }
 
+  Widget _buildImage() {
+    if (widget.step.imagePath != null) {
+      return Image.asset(
+        widget.step.imagePath,
+      );
+    } else {
+      return Container();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +50,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             // If image if provided show it
-            widget.step.image != null ? widget.step.image : Container(),
+            _buildImage(),
             Column(
               children: <Widget>[
                 Container(

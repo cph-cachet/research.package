@@ -34,6 +34,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   StreamSubscription<StepStatus> stepStatusSubscription;
   StreamSubscription<RPStepResult> stepResultSubscription;
 
+  bool consentTask = false;
+
   @override
   initState() {
     // Instantiate the taskresult so it starts tracking time
@@ -43,10 +45,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     var nrOfQuestionSteps = 0;
     widget.task.steps.forEach((step) {
       stepWidgets.add(step.stepWidget);
-
-      if (step.runtimeType == RPQuestionStep) {
-        nrOfQuestionSteps++;
-      }
+      if (step.runtimeType == RPConsentReviewStep) consentTask = true;
+      if (step.runtimeType == RPQuestionStep) nrOfQuestionSteps++;
     });
 
     // Sending the inital Task Progress so the Question UI can use it in the app bar
@@ -60,7 +60,9 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
           if (currentStep == widget.task.steps.last) {
             //Creating and sending the task level of result to a stream to which anybody can subscribe
             createAndSendResult();
-            Navigator.of(context).pop();
+            if (!consentTask) {
+              Navigator.of(context).pop();
+            }
             break;
           }
           // Updating taskProgress stream

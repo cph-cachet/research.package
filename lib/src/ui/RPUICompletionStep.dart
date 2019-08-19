@@ -63,6 +63,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
               minWidth: 150,
               child: OutlineButton(
                 color: Theme.of(context).accentColor,
+                highlightedBorderColor: Theme.of(context).primaryColor,
                 onPressed: () {
                   blocTask.sendStatus(StepStatus.Finished);
                 },
