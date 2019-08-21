@@ -137,7 +137,10 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                 onPressed: () => Navigator.of(context).pop(),
               ),
               FlatButton(
-                child: Text("AGREE", style: TextStyle(color: Theme.of(context).primaryColor),),
+                child: Text(
+                  "AGREE",
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
                 onPressed: onPressedCallback,
               ),
             ],
@@ -175,19 +178,19 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             style: RPStyles.whiteText,
           ),
           onPressed: () => _showConsentDialog(
-                widget.step.consentDocument.signatures != null
-                    ? () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        Navigator.of(context).pushReplacementNamed('consent_review/signature');
-                      }
-                    : () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        widget.onNoSignature(null);
-                        blocTask.sendStatus(StepStatus.Finished);
-                      },
-              ),
+            widget.step.consentDocument.signatures != null
+                ? () {
+                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                    Navigator.of(context, rootNavigator: true).pop();
+                    Navigator.of(context).pushReplacementNamed('consent_review/signature');
+                  }
+                : () {
+                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                    Navigator.of(context, rootNavigator: true).pop();
+                    widget.onNoSignature(null);
+                    blocTask.sendStatus(StepStatus.Finished);
+                  },
+          ),
         ), //TODO: Localization
       ],
     );
@@ -330,16 +333,29 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         FlatButton(
           onPressed: (_isNameFilled && _isSignatureAdded)
               ? () {
-                  _signature.exportBytes().then((image) {
+                  if (widget._consentSignature.requiresSignatureImage) {
+                    _signature.exportBytes().then(
+                      (image) {
+                        widget._onFinished(
+                          RPSignatureResult.withParams(
+                            _firstNameController.value.text,
+                            _lastNameController.value.text,
+                            // Converting the Uint8List into a string to make it compatible with JSON serialization
+                            image.toString(),
+                          ),
+                        );
+                      },
+                    );
+                  } else {
                     widget._onFinished(
                       RPSignatureResult.withParams(
                         _firstNameController.value.text,
                         _lastNameController.value.text,
-                        // Converting the Uint8List into a string to make it compatible with JSON serialization
-                        String.fromCharCodes(image),
+                        // Since no signature was asked set the image blob to null
+                        null,
                       ),
                     );
-                  });
+                  }
                   blocTask.sendStatus(StepStatus.Finished);
                 }
               : null,
