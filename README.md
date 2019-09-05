@@ -1,4 +1,4 @@
-# research_package
+# Research Package
 
 This is a Flutter package implementing support for surveys like [ResearchStack](http://researchstack.org/) and [ResearchKit](http://researchkit.org/).
 
