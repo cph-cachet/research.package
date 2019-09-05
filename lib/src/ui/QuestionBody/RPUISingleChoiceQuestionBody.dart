@@ -1,6 +1,7 @@
 part of research_package_ui;
 
-/// The UI representation of [RPChoiceAnswerFormat]. This UI appears embedded in a [RPUIQuestionStep].
+/// The UI representation of [RPChoiceAnswerFormat]. This UI part appears embedded in a [RPUIQuestionStep].
+/// Depending on the [RPChoiceAnswerFormat]'s [ChoiceAnswerStyle] property, the user can select only one or multiple options.
 class RPUIChoiceQuestionBody extends StatefulWidget {
   final RPChoiceAnswerFormat _answerFormat;
 
@@ -20,38 +21,46 @@ class RPUIChoiceQuestionBody extends StatefulWidget {
 }
 
 class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
-  int selectedIndex;
+  List<int> selectedIndices;
 
   @override
   void initState() {
-    selectedIndex = null;
+    selectedIndices = [];
     super.initState();
   }
 
   void _buttonCallBack(int index) {
-    // Setting the state here is calling the build method so the check marks can be rendered.
-    // Only one choice can be selected.
-    if (selectedIndex == index) {
-      setState(() {
-        selectedIndex = null;
-      });
-    } else {
-      setState(() {
-        selectedIndex = index;
-      });
+    if (widget._answerFormat.answerStyle == ChoiceAnswerStyle.SingleChoice) {
+      // Setting the state here is calling the build method so the check marks can be rendered.
+      // Only one choice can be selected.
+      if (selectedIndices.contains(index)) {
+        selectedIndices.remove(index);
+      } else {
+        selectedIndices = [];
+        selectedIndices.add(index);
+      }
+    }
+    if (widget._answerFormat.answerStyle == ChoiceAnswerStyle.MultipleChoice) {
+      // Setting the state here is calling the build method so the check marks can be rendered.
+      // Multiple choice can be selected.
+      if (selectedIndices.contains(index)) {
+        selectedIndices.remove(index);
+      } else {
+        selectedIndices.add(index);
+      }
     }
 
-    selectedIndex != null
-        ? blocQuestion.sendReadyToProceed(true)
-        : blocQuestion.sendReadyToProceed(false);
+    selectedIndices.length != 0 ? blocQuestion.sendReadyToProceed(true) : blocQuestion.sendReadyToProceed(false);
+
+    blocQuestion.sendResultValue(RPQuestionBodyResult(selectedIndices));
   }
 
   Widget _choiceCellBuilder(BuildContext context, int index) {
     return _ChoiceButton(
-      widget._answerFormat.choices[index],
-      _buttonCallBack,
-      selectedIndex == index ? true : false,
-      index,
+      choice: widget._answerFormat.choices[index],
+      selectedCallBack: _buttonCallBack,
+      selected: selectedIndices.contains(index) ? true : false,
+      index: index,
     );
   }
 
@@ -72,7 +81,7 @@ class _ChoiceButton extends StatefulWidget {
   final bool selected;
   final int index;
 
-  _ChoiceButton(this.choice, this.selectedCallBack, this.selected, this.index);
+  _ChoiceButton({this.choice, this.selectedCallBack, this.selected, this.index});
 
   @override
   _ChoiceButtonState createState() => _ChoiceButtonState();
@@ -85,10 +94,8 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
-        splashColor: RPStyles.cachetBlue,
         padding: EdgeInsets.all(14),
         onPressed: () {
-          blocQuestion.sendResultValue(RPQuestionBodyResult(widget.choice.value));
           widget.selectedCallBack(widget.index);
         },
         child: Row(
