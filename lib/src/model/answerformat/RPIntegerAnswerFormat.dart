@@ -6,10 +6,11 @@ part of research_package_model;
 class RPIntegerAnswerFormat extends RPAnswerFormat {
   int _minValue;
   int _maxValue;
+  String _suffix;
 
   RPIntegerAnswerFormat();
 
-  RPIntegerAnswerFormat.withParams(this._minValue, this._maxValue);
+  RPIntegerAnswerFormat.withParams(this._minValue, this._maxValue, [this._suffix]);
 
   @override
   get questionType {
@@ -20,6 +21,9 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
 
   int get minValue => _minValue;
 
+  /// The text to show after the input field. If '''null''' then no text is shown.
+  String get suffix => _suffix;
+
   set maxValue(int maxValue) {
     this._maxValue = maxValue;
   }
@@ -28,6 +32,10 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
     this._minValue = minValue;
   }
 
+  @override
+  Widget get questionBody {
+    return RPUIIntegerQuestionBody(this);
+  }
   //TODO: Validation?
 
   factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPIntegerAnswerFormatFromJson(json);
