@@ -28,8 +28,6 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> {
   }
 
   _validate(String text) {
-    print(text);
-
     int value;
     try {
       value = int.parse(text);

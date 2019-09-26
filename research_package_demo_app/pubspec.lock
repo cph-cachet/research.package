@@ -52,7 +52,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.0"
+    version: "3.0.0"
   matcher:
     dependency: transitive
     description:
@@ -91,11 +91,9 @@ packages:
   research_package:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: d56e281f69b3696f6c8ec4619c459c1bbccaff94
-      url: "git://github.com/cph-cachet/research.package.git"
-    source: git
+      path: "/Users/barnabashomola/Developer/CACHET/research.package"
+      relative: false
+    source: path
     version: "0.0.2"
   rxdart:
     dependency: transitive
@@ -103,7 +101,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.21.0"
+    version: "0.22.2"
   signature:
     dependency: transitive
     description:
@@ -173,5 +171,5 @@ packages:
     source: hosted
     version: "2.0.8"
 sdks:
-  dart: ">=2.2.2 <3.0.0"
+  dart: ">=2.3.0 <3.0.0"
   flutter: ">=0.6.0 <2.0.0"

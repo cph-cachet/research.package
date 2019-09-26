@@ -119,7 +119,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   @override
   void createAndSendResult() {
-    print("The last questionBody Result is: ${currentQuestionBodyResult.value}");
+//    print("The last questionBody Result is: ${currentQuestionBodyResult.value}");
     // Populate the result object with value and end the time tracker (set endDate)
     result.setResult(currentQuestionBodyResult.value);
     blocTask.sendStepResult(result);
