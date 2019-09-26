@@ -66,11 +66,23 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: widget._answerFormat.choices.length,
-      itemBuilder: _choiceCellBuilder,
-      physics: NeverScrollableScrollPhysics(),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(widget._answerFormat.answerStyle == ChoiceAnswerStyle.MultipleChoice
+              ? "(Choose one or more option)"
+              : "(Choose one option)"), //TODO: Localization
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: widget._answerFormat.choices.length,
+          itemBuilder: _choiceCellBuilder,
+          physics: NeverScrollableScrollPhysics(),
+        ),
+      ],
     );
   }
 }

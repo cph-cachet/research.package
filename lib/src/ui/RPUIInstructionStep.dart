@@ -33,9 +33,12 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
 
   Widget _buildImage() {
     if (widget.step.imagePath != null) {
-      return Image.asset(
-        widget.step.imagePath,
-        width: MediaQuery.of(context).size.width / 2,
+      return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Image.asset(
+          widget.step.imagePath,
+          width: MediaQuery.of(context).size.width / 2,
+        ),
       );
     } else {
       return Container();

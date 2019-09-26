@@ -16,7 +16,7 @@ part of research_package_model;
 abstract class RPTask {
   final String _identifier;
 
-  RPTask(this._identifier);
+  RPTask(this._identifier, {this.closeAfterFinished});
 
   /// A unique identifier of the Task. This identifier connects the Task to its result ([RPTaskResult]) object.
   String get identifier => _identifier;
@@ -35,6 +35,11 @@ abstract class RPTask {
 
   /// Returns the title of a given [step]
   String getTitleForStep(RPStep step);
+
+  /// If set to ```true``` the Task will close after the participant has finished the task. If it's set to ```false``` no navigation function is called.
+  ///
+  /// Navigation or closing is still possible for example in the [onSubmit] function of [RPUIOrderedTask].
+  bool closeAfterFinished;
 
   //TODO: Validates the task parameters.
 }

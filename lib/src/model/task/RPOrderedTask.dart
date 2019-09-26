@@ -4,10 +4,8 @@ class RPOrderedTask extends RPTask {
   // This can be a list of Steps or FormStep
   List<RPStep> _steps;
 
-  RPOrderedTask(
-    String identifier,
-    this._steps,
-  ) : super(identifier);
+  RPOrderedTask(String identifier, this._steps, {bool closeAfterFinished = true})
+      : super(identifier, closeAfterFinished: closeAfterFinished);
 
   /// The list of [RPStep]s of the task
   List<RPStep> get steps => this._steps;

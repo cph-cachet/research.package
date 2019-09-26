@@ -60,7 +60,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
           if (currentStep == widget.task.steps.last) {
             //Creating and sending the task level of result to a stream to which anybody can subscribe
             createAndSendResult();
-            if (!consentTask) {
+            if (widget.task.closeAfterFinished) {
               Navigator.of(context).pop();
             }
             break;
