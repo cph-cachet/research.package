@@ -91,7 +91,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">RegExp</span>(<wbr><span class="parameter" id="-param-source"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">source</span>, {</span> <span class="parameter" id="-param-multiLine"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">multiLine</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-caseSensitive"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">caseSensitive</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-unicode"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">unicode</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-dotAll"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">dotAll</span>: <span class="default-value">false</span></span> })
+      <span class="name ">RegExp</span>(<wbr><span class="parameter" id="-param-source"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">source</span>, {</span> <span class="parameter" id="-param-multiLine"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">multiLine</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-caseSensitive"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">caseSensitive</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-unicode"><span>@Since(&quot;2.4&quot;)</span> <span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">unicode</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-dotAll"><span>@Since(&quot;2.4&quot;)</span> <span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">dotAll</span>: <span class="default-value">false</span></span> })
     </section>
 
     <section class="desc markdown">
@@ -121,8 +121,8 @@ interpolation is required.</p>
       <pre class="language-dart"><code class="language-dart">external factory RegExp(String source,
     {bool multiLine = false,
     bool caseSensitive = true,
-    bool unicode = false,
-    bool dotAll = false});</code></pre>
+    @Since(&quot;2.4&quot;) bool unicode = false,
+    @Since(&quot;2.4&quot;) bool dotAll = false});</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

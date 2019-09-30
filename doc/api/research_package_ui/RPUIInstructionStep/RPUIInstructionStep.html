@@ -95,7 +95,10 @@
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">RPUIInstructionStep({@required this.step});</code></pre>
+      <pre class="language-dart"><code class="language-dart">RPUIInstructionStep({@required this.step}) {
+  assert(this.step.text != null,
+      &quot;No text provided for Instruction Step. Use the .text setter of RPStep class to add some.&quot;);
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

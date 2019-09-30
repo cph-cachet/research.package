@@ -61,7 +61,7 @@
       </li>
       <li><a href="research_package_model/RPInstructionStep/detailText.html">detailText</a></li>
       <li><a href="research_package_model/RPInstructionStep/footnote.html">footnote</a></li>
-      <li><a href="research_package_model/RPInstructionStep/image.html">image</a></li>
+      <li><a href="research_package_model/RPInstructionStep/imagePath.html">imagePath</a></li>
       <li><a href="research_package_model/RPInstructionStep/stepWidget.html">stepWidget</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="research_package_model/RPStep/identifier.html">identifier</a></li>
@@ -86,16 +86,17 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">RPInstructionStep</span>(<wbr>{<span class="parameter" id="-param-identifier"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">identifier</span>, </span> <span class="parameter" id="-param-title"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">title</span>, </span> <span class="parameter" id="-param-detailText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">detailText</span>, </span> <span class="parameter" id="-param-footnote"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">footnote</span>, </span> <span class="parameter" id="-param-image"><span class="type-annotation">Image</span> <span class="parameter-name">image</span></span> })
+      <span class="name ">RPInstructionStep</span>(<wbr>{<span class="parameter" id="-param-identifier"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">identifier</span>, </span> <span class="parameter" id="-param-title"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">title</span>, </span> <span class="parameter" id="-param-detailText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">detailText</span>, </span> <span class="parameter" id="-param-footnote"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">footnote</span>, </span> <span class="parameter" id="-param-imagePath"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">imagePath</span></span> })
     </section>
 
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">RPInstructionStep({String identifier, String title, String detailText, String footnote, Image image}): super.withTitle(identifier, title){
+      <pre class="language-dart"><code class="language-dart">RPInstructionStep({String identifier, String title, String detailText, String footnote, String imagePath})
+    : super.withTitle(identifier, title) {
   this._detailText = detailText;
   this._footnote = footnote;
-  this._image = image;
+  this._imagePath = imagePath;
 }</code></pre>
     </section>
 
