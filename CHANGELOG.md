@@ -1,3 +1,6 @@
+## 0.0.4
+ * Example added
+
 ## 0.0.3
  * Initial release for Pub
  * Support for three Answer Formats
