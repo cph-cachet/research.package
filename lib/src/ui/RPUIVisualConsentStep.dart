@@ -25,10 +25,10 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 400));
     _scale = Tween(begin: 0.6, end: 1.0)
         .chain(
-          CurveTween(
-            curve: Interval(0.3, 1.0, curve: Curves.easeInOut),
-          ),
-        )
+      CurveTween(
+        curve: Interval(0.3, 1.0, curve: Curves.easeInOut),
+      ),
+    )
         .animate(_controller);
   }
 
@@ -52,8 +52,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
     );
   }
 
-  IconData _iconDataForType(RPConsentSectionType sectionType) {
-    switch (sectionType) {
+  IconData _iconDataForType(RPConsentSection section) {
+    switch (section.type) {
       case RPConsentSectionType.Overview:
         return null;
         break;
@@ -70,7 +70,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
         return Icons.cancel;
         break;
       case RPConsentSectionType.Custom:
-        return null; //Icons.extension;
+        return section.customIcon.icon;
         break;
       case RPConsentSectionType.DataGathering:
         return Icons.timeline;
@@ -88,6 +88,10 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
 
   Widget _consentSectionPageBuilder(BuildContext context, int index) {
     RPConsentSection section = widget.consentDocument.sections[index];
+    if (section.title == null) {
+      throw Exception("No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text");
+    }
+
     return Container(
       padding: EdgeInsets.all(10.0),
       //color: Colors.white,
@@ -104,7 +108,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
             ScaleTransition(
               scale: _scale,
               child: Icon(
-                _iconDataForType(section.type),
+                _iconDataForType(section),
                 size: 80.0,
               ),
             ),
@@ -147,7 +151,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                 },
               ),
               FlatButton(child: Text("NO"), onPressed: () => Navigator.of(context).pop() // Pop the popup,
-                  )
+              )
             ],
           );
         },
@@ -165,13 +169,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               padding: EdgeInsets.all(10.0),
               child: _lastPage
                   ? Text(
-                      "SEE SUMMARY",
-                      style: RPStyles.whiteText,
-                    )
+                "SEE SUMMARY",
+                style: RPStyles.whiteText,
+              )
                   : Text(
-                      "NEXT",
-                      style: RPStyles.whiteText,
-                    ),
+                "NEXT",
+                style: RPStyles.whiteText,
+              ),
               onPressed: _lastPage
                   ? () => blocTask.sendStatus(StepStatus.Finished)
                   : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
