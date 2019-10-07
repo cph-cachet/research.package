@@ -111,6 +111,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             child: Text(
               widget.step.consentDocument.sections[index].title,
               style: RPStyles.h2,
+              textAlign: TextAlign.center,
             ),
           ),
           Text(

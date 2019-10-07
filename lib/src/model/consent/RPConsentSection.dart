@@ -12,8 +12,8 @@ class RPConsentSection {
   String _summary;
   String _content;
 
-  /// A custom icon for Custom [RPConsentSectionType]
-  Icon customIcon;
+  /// A custom illustration (an [Image] or [Icon] to show for Custom [RPConsentSectionType]
+  Widget customIllustration;
 
   RPConsentSection();
 
@@ -21,11 +21,14 @@ class RPConsentSection {
   ///
   /// It is enough to provide only the [type] of the section, the title is automatically filled out.
   /// [summary] is set to [null] initially.
-  RPConsentSection.withParams(RPConsentSectionType type, {Icon customIcon}) {
+  RPConsentSection.withParams(RPConsentSectionType type,
+      {Icon customIcon, Image customImage, Widget customIllustration})
+//      : assert(customIllustration.runtimeType == Icon || customIllustration.runtimeType == Image)
+      {
     this._type = type;
     this._summary = null;
     this._title = _localizedTitleForConsentSectionType(type);
-    this.customIcon = customIcon;
+    this.customIllustration = customIllustration;
   }
 
   /// The title of the consent section which appears both in [RPVisualConsentStep] and [RPConsentReviewStep].

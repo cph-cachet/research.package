@@ -25,10 +25,10 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 400));
     _scale = Tween(begin: 0.6, end: 1.0)
         .chain(
-      CurveTween(
-        curve: Interval(0.3, 1.0, curve: Curves.easeInOut),
-      ),
-    )
+          CurveTween(
+            curve: Interval(0.3, 1.0, curve: Curves.easeInOut),
+          ),
+        )
         .animate(_controller);
   }
 
@@ -52,34 +52,57 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
     );
   }
 
-  IconData _iconDataForType(RPConsentSection section) {
+  Widget _illustrationForType(RPConsentSection section) {
+    double iconSize = 80.0;
+    
     switch (section.type) {
       case RPConsentSectionType.Overview:
         return null;
         break;
       case RPConsentSectionType.DataUse:
-        return Icons.search;
+        return Icon(
+          Icons.search,
+          size: iconSize,
+        );
         break;
       case RPConsentSectionType.TimeCommitment:
-        return Icons.access_time;
+        return Icon(
+          Icons.access_time,
+          size: iconSize,
+        );
         break;
       case RPConsentSectionType.StudySurvey:
-        return Icons.format_list_bulleted;
+        return Icon(
+          Icons.format_list_bulleted,
+          size: iconSize,
+        );
         break;
       case RPConsentSectionType.Withdrawing:
-        return Icons.cancel;
+        return Icon(
+          Icons.cancel,
+          size: iconSize,
+        );
         break;
       case RPConsentSectionType.Custom:
-        return section.customIcon.icon;
+        return section.customIllustration;
         break;
       case RPConsentSectionType.DataGathering:
-        return Icons.timeline;
+        return Icon(
+          Icons.timeline,
+          size: iconSize,
+        );
         break;
       case RPConsentSectionType.Privacy:
-        return Icons.lock_outline;
+        return Icon(
+          Icons.lock_outline,
+          size: iconSize,
+        );
         break;
       case RPConsentSectionType.StudyTasks:
-        return Icons.check_circle_outline;
+        return Icon(
+          Icons.check_circle_outline,
+          size: iconSize,
+        );
         break;
       default:
         return null;
@@ -89,7 +112,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   Widget _consentSectionPageBuilder(BuildContext context, int index) {
     RPConsentSection section = widget.consentDocument.sections[index];
     if (section.title == null) {
-      throw Exception("No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text");
+      throw Exception(
+          "No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text");
     }
 
     return Container(
@@ -107,17 +131,17 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
             ),
             ScaleTransition(
               scale: _scale,
-              child: Icon(
-                _iconDataForType(section),
-                size: 80.0,
-              ),
+              child: _illustrationForType(section),
             ),
             Column(
               children: <Widget>[
-                Text(
-                  section.summary,
-                  style: RPStyles.h2,
-                  textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    section.summary,
+                    style: RPStyles.h3,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 FlatButton(
                   textTheme: ButtonTextTheme.accent,
@@ -151,7 +175,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                 },
               ),
               FlatButton(child: Text("NO"), onPressed: () => Navigator.of(context).pop() // Pop the popup,
-              )
+                  )
             ],
           );
         },
@@ -169,13 +193,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               padding: EdgeInsets.all(10.0),
               child: _lastPage
                   ? Text(
-                "SEE SUMMARY",
-                style: RPStyles.whiteText,
-              )
+                      "SEE SUMMARY",
+                      style: RPStyles.whiteText,
+                    )
                   : Text(
-                "NEXT",
-                style: RPStyles.whiteText,
-              ),
+                      "NEXT",
+                      style: RPStyles.whiteText,
+                    ),
               onPressed: _lastPage
                   ? () => blocTask.sendStatus(StepStatus.Finished)
                   : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
@@ -245,7 +269,7 @@ class _ContentRoute extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: Text(this.content),
+        child: SingleChildScrollView(child: Text(this.content)),
       ),
     );
   }
