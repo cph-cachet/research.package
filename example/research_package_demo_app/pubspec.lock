@@ -94,7 +94,7 @@ packages:
       path: "/Users/barnabashomola/Developer/CACHET/research.package"
       relative: false
     source: path
-    version: "0.0.2"
+    version: "0.0.3"
   rxdart:
     dependency: transitive
     description:

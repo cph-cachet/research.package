@@ -118,7 +118,8 @@ String toString() {
            &#39;locale: ${             _encoded[0] &amp; 0x04000 == 0x04000  ? _locale                                 : &quot;unspecified&quot;}, &#39;
            &#39;background: ${         _encoded[0] &amp; 0x08000 == 0x08000  ? _background                             : &quot;unspecified&quot;}, &#39;
            &#39;foreground: ${         _encoded[0] &amp; 0x10000 == 0x10000  ? _foreground                             : &quot;unspecified&quot;}, &#39;
-           &#39;shadows: ${            _encoded[0] &amp; 0x20000 == 0x20000  ? _shadows                                : &quot;unspecified&quot;}&#39;
+           &#39;shadows: ${            _encoded[0] &amp; 0x20000 == 0x20000  ? _shadows                                : &quot;unspecified&quot;}, &#39;
+           &#39;fontFeatures: ${       _encoded[0] &amp; 0x40000 == 0x40000  ? _fontFeatures                           : &quot;unspecified&quot;}&#39;
          &#39;)&#39;;
 }</code></pre>
     </section>

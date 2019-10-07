@@ -57,16 +57,12 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
         padding: const EdgeInsets.all(8.0),
         child: Card(
           elevation: 4,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                title(),
-                widget.step.answerFormat.questionBody,
-              ],
-            ),
+          child: ListView(
+            padding: EdgeInsets.all(12),
+            children: <Widget>[
+              title(),
+              widget.step.answerFormat.questionBody,
+            ],
           ),
         ),
       ),
