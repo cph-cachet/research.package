@@ -1,4 +1,5 @@
 # Research Package
+[![pub package](https://img.shields.io/pub/v/research_package.svg)](https://pub.dartlang.org/packages/research_package)
 
 This is a Flutter package implementing support for surveys like [ResearchStack](http://researchstack.org/) and [ResearchKit](http://researchkit.org/).
 
@@ -23,12 +24,9 @@ One of the goals for the package was to make it capable of handling a [WHO5](htt
 
 ## Getting Started
 
-In order to use Research Package, you have to clone this repo and add it manually to your `pubspec.yaml` file
+Research Package is published to Pub: [![pub package](https://img.shields.io/pub/v/research_package.svg)](https://pub.dartlang.org/packages/research_package) 
 
-```dart
-  research_package:
-    path: *PATH*/research.package
-```
+You can start using it by adding it to your dependecies.
 
 After you run the `flutter packages get` command you are able to import and start using Research Package. With the following line you have access both to the Model and the UI part of the package.
 
