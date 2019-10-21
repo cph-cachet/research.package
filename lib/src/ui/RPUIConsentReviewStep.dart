@@ -134,13 +134,16 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             content: Text(widget.step.reasonForConsent),
             actions: <Widget>[
               FlatButton(
-                child: Text("CANCEL"),
+                child: Text(
+                  "CANCEL",
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               FlatButton(
                 child: Text(
                   "AGREE",
-                  style: TextStyle(color: Theme.of(context).primaryColor),
+                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
                 onPressed: onPressedCallback,
               ),
@@ -331,7 +334,8 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         ],
       ),
       persistentFooterButtons: <Widget>[
-        FlatButton(
+        RaisedButton(
+//          color: Theme.of(context).accentColor,
           onPressed: (_isNameFilled && _isSignatureAdded)
               ? () {
                   if (widget._consentSignature.requiresSignatureImage) {

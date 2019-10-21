@@ -34,19 +34,27 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
       // Setting the state here is calling the build method so the check marks can be rendered.
       // Only one choice can be selected.
       if (selectedIndices.contains(index)) {
-        selectedIndices.remove(index);
+        setState(() {
+          selectedIndices.remove(index);
+        });
       } else {
-        selectedIndices = [];
-        selectedIndices.add(index);
+        setState(() {
+          selectedIndices = [];
+          selectedIndices.add(index);
+        });
       }
     }
     if (widget._answerFormat.answerStyle == ChoiceAnswerStyle.MultipleChoice) {
       // Setting the state here is calling the build method so the check marks can be rendered.
       // Multiple choice can be selected.
       if (selectedIndices.contains(index)) {
-        selectedIndices.remove(index);
+        setState(() {
+          selectedIndices.remove(index);
+        });
       } else {
-        selectedIndices.add(index);
+        setState(() {
+          selectedIndices.add(index);
+        });
       }
     }
 

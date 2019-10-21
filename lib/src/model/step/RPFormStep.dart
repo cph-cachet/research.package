@@ -2,8 +2,17 @@ part of research_package_model;
 
 // TODO: not implemented yet
 
-class _RPFormStep extends RPStep {
-  List<RPStep> steps;
+class RPFormStep extends RPStep {
+  List<RPQuestionStep> _formSteps;
 
-  _RPFormStep(String identifier, this.steps) : super(identifier);
+  RPFormStep(String identifier, this._formSteps) : super(identifier);
+
+  List<RPQuestionStep> get steps => this._formSteps;
+
+  set steps(List<RPQuestionStep> steps) {
+    this._formSteps = steps;
+  }
+
+  @override
+  Widget get stepWidget => RPUIFormStep(this);
 }

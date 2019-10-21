@@ -53,18 +53,21 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 //        ),
         automaticallyImplyLeading: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
-          elevation: 4,
-          child: ListView(
-            padding: EdgeInsets.all(12),
-            children: <Widget>[
-              title(),
-              widget.step.answerFormat.questionBody,
-            ],
+      body: ListView(
+        padding: EdgeInsets.all(8),
+        children: [
+          title(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: widget.step.answerFormat.questionBody,
+              ),
+            ),
           ),
-        ),
+        ],
       ),
       persistentFooterButtons: <Widget>[
         FlatButton(
@@ -102,7 +105,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   Widget title() {
     if (widget.step.title != null) {
       return Padding(
-        padding: const EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
         child: Text(
           widget.step.title,
           style: RPStyles.h2,
