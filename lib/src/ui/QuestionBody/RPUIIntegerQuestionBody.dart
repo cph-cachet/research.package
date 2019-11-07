@@ -1,15 +1,11 @@
 part of research_package_ui;
 
 class RPUIIntegerQuestionBody extends StatefulWidget {
-//  final RPQuestionStep step;
-//  final RPStepResult result;
-//  final RPIntegerAnswerFormat answerFormat;
-//
-//  RPUIIntegerQuestionBody(this.step, this.result, this.answerFormat);
 
-  final RPIntegerAnswerFormat _answerFormat;
+  final RPIntegerAnswerFormat answerFormat;
+  final Function(RPQuestionBodyResult) onResultChange;
 
-  RPUIIntegerQuestionBody(this._answerFormat);
+  RPUIIntegerQuestionBody(this.answerFormat, this.onResultChange);
 
   @override
   _RPUIIntegerQuestionBodyState createState() => _RPUIIntegerQuestionBodyState();
@@ -36,23 +32,23 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> {
         _valid = false;
         _errorMessage = "Input a number";
       });
-      blocQuestion.sendReadyToProceed(false);
+      widget.onResultChange(null);
       return;
     }
 
-    if (value >= widget._answerFormat.minValue && value <= widget._answerFormat.maxValue) {
+    if (value >= widget.answerFormat.minValue && value <= widget.answerFormat.maxValue) {
       setState(() {
         _valid = true;
       });
     } else {
       setState(() {
         _valid = false;
-        _errorMessage = "Should be between ${widget._answerFormat.minValue} and ${widget._answerFormat.maxValue}";
+        _errorMessage = "Should be between ${widget.answerFormat.minValue} and ${widget.answerFormat.maxValue}";
       });
-      blocQuestion.sendReadyToProceed(false);
+      widget.onResultChange(null);
       return;
     }
-    blocQuestion.sendReadyToProceed(true);
+    widget.onResultChange(RPQuestionBodyResult(text));
   }
 
   @override
@@ -67,7 +63,7 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> {
 //          textAlign: TextAlign.right,
           decoration: InputDecoration(
             hintText: "Tap to answer", // TODO: Localization
-            suffix: widget._answerFormat.suffix != null ? Text(widget._answerFormat.suffix) : null,
+            suffix: widget.answerFormat.suffix != null ? Text(widget.answerFormat.suffix) : null,
             errorText: _valid ? null : _errorMessage,
           ),
           onChanged: (text) => _validate(text),

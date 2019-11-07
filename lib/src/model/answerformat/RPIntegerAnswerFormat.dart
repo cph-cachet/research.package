@@ -1,7 +1,5 @@
 part of research_package_model;
 
-// TODO: not implemented yet
-/// Not fully implemented yet
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPIntegerAnswerFormat extends RPAnswerFormat {
   int _minValue;
@@ -31,12 +29,6 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
   set minValue(int minValue) {
     this._minValue = minValue;
   }
-
-  @override
-  Widget get questionBody {
-    return RPUIIntegerQuestionBody(this);
-  }
-  //TODO: Validation?
 
   factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPIntegerAnswerFormatFromJson(json);
   Map<String, dynamic> toJson() => _$RPIntegerAnswerFormatToJson(this);

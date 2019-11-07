@@ -18,11 +18,6 @@ class RPUIOrderedTask extends StatefulWidget {
   _RPUIOrderedTaskState createState() => _RPUIOrderedTaskState();
 }
 
-/*
-  VERSION 2: Trigger navigation based on blocConsent stream
-  Problem: I think because of the asynchronous stream the build method was called with wrong, not updated stepWidget, so we had the same step for multiple times.
-*/
-
 class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   RPTaskResult taskResult;
   List<Widget> stepWidgets = [];
@@ -46,7 +41,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     widget.task.steps.forEach((step) {
       stepWidgets.add(step.stepWidget);
       if (step.runtimeType == RPConsentReviewStep) consentTask = true;
-      if (step.runtimeType == RPQuestionStep) nrOfQuestionSteps++;
+      // Counting the Question or FormStep items
+      if (step is RPQuestionStep) nrOfQuestionSteps++;
     });
 
     // Sending the inital Task Progress so the Question UI can use it in the app bar

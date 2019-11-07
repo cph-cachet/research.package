@@ -6,7 +6,7 @@ part of research_package_model;
 /// Each [RPStep] object represents one logical piece of data entry or activity in a larger task.
 /// Whether your app is giving instructions, presenting a form or survey,
 /// obtaining consent, or running an active task, everything in the Research Package framework
-/// is a collection of steps ([RPStep] objects), which together form a task (an RPTask object)
+/// is a collection of steps ([RPStep] objects), which together form a task (an [RPTask] object)
 
 abstract class RPStep {
   final String _identifier;

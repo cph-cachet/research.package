@@ -27,8 +27,10 @@ class RPStepResult extends RPResult {
   RPStepResult.withParams(RPStep step) : super.withIdentifier(step.identifier) {
     this._results = Map();
 
-    if (step.runtimeType == RPQuestionStep) {
+    try {
       this.answerFormat = (step as RPQuestionStep).answerFormat;
+    } catch (e) {
+      print(e);
     }
 
     startDate = DateTime.now();
