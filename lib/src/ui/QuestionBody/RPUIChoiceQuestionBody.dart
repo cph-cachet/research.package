@@ -13,45 +13,45 @@ class RPUIChoiceQuestionBody extends StatefulWidget {
 }
 
 class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
-  List<int> selectedIndices;
+  List<RPChoice> selectedChoices;
 
   @override
   void initState() {
-    selectedIndices = [];
+    selectedChoices = [];
     super.initState();
   }
 
-  void _buttonCallBack(int index) {
+  void _buttonCallBack(RPChoice selectedChoice) {
     if (widget._answerFormat.answerStyle == ChoiceAnswerStyle.SingleChoice) {
       // Setting the state here is calling the build method so the check marks can be rendered.
       // Only one choice can be selected.
-      if (selectedIndices.contains(index)) {
+      if (selectedChoices.contains(selectedChoice)) {
         setState(() {
-          selectedIndices.remove(index);
+          selectedChoices.remove(selectedChoice);
         });
       } else {
         setState(() {
-          selectedIndices = [];
-          selectedIndices.add(index);
+          selectedChoices = [];
+          selectedChoices.add(selectedChoice);
         });
       }
     }
     if (widget._answerFormat.answerStyle == ChoiceAnswerStyle.MultipleChoice) {
       // Setting the state here is calling the build method so the check marks can be rendered.
       // Multiple choice can be selected.
-      if (selectedIndices.contains(index)) {
+      if (selectedChoices.contains(selectedChoice)) {
         setState(() {
-          selectedIndices.remove(index);
+          selectedChoices.remove(selectedChoice);
         });
       } else {
         setState(() {
-          selectedIndices.add(index);
+          selectedChoices.add(selectedChoice);
         });
       }
     }
 
-    selectedIndices.length != 0
-        ? widget.onResultChange(RPQuestionBodyResult(selectedIndices))
+    selectedChoices.length != 0
+        ? widget.onResultChange(RPQuestionBodyResult(selectedChoices))
         : widget.onResultChange(null);
   }
 
@@ -59,7 +59,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
     return _ChoiceButton(
       choice: widget._answerFormat.choices[index],
       selectedCallBack: _buttonCallBack,
-      selected: selectedIndices.contains(index) ? true : false,
+      selected: selectedChoices.contains(widget._answerFormat.choices[index]) ? true : false,
       index: index,
     );
   }
@@ -108,7 +108,7 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
         padding: EdgeInsets.all(14),
         onPressed: () {
-          widget.selectedCallBack(widget.index);
+          widget.selectedCallBack(widget.choice);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
