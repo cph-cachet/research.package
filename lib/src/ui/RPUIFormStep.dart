@@ -14,6 +14,10 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   RPStepResult stepResult;
   RPTaskProgress recentTaskProgress;
 
+  // Since the QuestionBody's are sending null if they are not answered yet we can loop through the
+  // results of the steps. 
+  // If any of them is null it means the participant can not proceed to the next step because not all the
+  // questions are answered.
   void checkReadyToProceed() {
     bool temp = true;
     stepResult.results.values.forEach((result) {
@@ -42,6 +46,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     super.initState();
   }
 
+  // Returning the according step body widget based on the answerFormat of each step
   Widget stepBody(String id, RPAnswerFormat answerFormat) {
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
@@ -52,7 +57,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody(answerFormat, (result) {
           (stepResult.results[id] as RPStepResult).setResult(result.value);
-//          stepResult.setResultForIdentifier(id, result);
           checkReadyToProceed();
         });
       default:

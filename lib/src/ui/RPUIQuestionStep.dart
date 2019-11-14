@@ -42,6 +42,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
     super.initState();
   }
 
+  // Returning the according step body widget based on the answerFormat of the step
   Widget stepBody(RPAnswerFormat answerFormat) {
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:

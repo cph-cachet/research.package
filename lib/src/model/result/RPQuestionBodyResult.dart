@@ -4,7 +4,7 @@ part of research_package_model;
 class RPQuestionBodyResult<T> {
   T _value;
 
-  RPQuestionBodyResult(this._value,);
+  RPQuestionBodyResult(this._value);
 
   /// The generic value of the result
   ///

@@ -40,12 +40,13 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     var nrOfQuestionSteps = 0;
     widget.task.steps.forEach((step) {
       stepWidgets.add(step.stepWidget);
+      // If there's a Consent Review Step among the steps it means the task is a Consent Task
       if (step.runtimeType == RPConsentReviewStep) consentTask = true;
       // Counting the Question or FormStep items
       if (step is RPQuestionStep) nrOfQuestionSteps++;
     });
 
-    // Sending the inital Task Progress so the Question UI can use it in the app bar
+    // Sending the initial Task Progress so the Question UI can use it in the app bar
     blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
 
     // Subscribe to step status changes so the navigation can be triggered
