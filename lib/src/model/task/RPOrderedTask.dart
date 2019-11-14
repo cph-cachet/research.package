@@ -1,7 +1,6 @@
 part of research_package_model;
 
 class RPOrderedTask extends RPTask {
-  // This can be a list of Steps or FormStep
   List<RPStep> _steps;
 
   RPOrderedTask(String identifier, this._steps, {bool closeAfterFinished = true})

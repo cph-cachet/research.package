@@ -13,6 +13,7 @@ class RPConsentSection {
   String _content;
 
   /// A custom illustration (an [Image] or [Icon] to show for Custom [RPConsentSectionType]
+  @JsonKey(ignore: true)
   Widget customIllustration;
 
   RPConsentSection();

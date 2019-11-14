@@ -14,57 +14,73 @@ class RPUIQuestionStep extends StatefulWidget {
 
 class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
-  RPQuestionBodyResult<dynamic> currentQuestionBodyResult;
+  RPQuestionBodyResult<dynamic> _currentQuestionBodyResult;
   bool readyToProceed;
   RPStepResult result;
   RPTaskProgress recentTaskProgress;
 
-  StreamSubscription<RPQuestionBodyResult> questionBodyResultSubscription;
+  set currentQuestionBodyResult(RPQuestionBodyResult currentQuestionBodyResult) {
+    this._currentQuestionBodyResult = currentQuestionBodyResult;
+    if (this._currentQuestionBodyResult != null) {
+      setState(() {
+        readyToProceed = true;
+      });
+    } else {
+      setState(() {
+        readyToProceed = false;
+      });
+    }
+  }
 
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
     result = RPStepResult.withParams(widget.step);
-//    questionType = widget.step.answerFormat.questionType;
     readyToProceed = false;
     recentTaskProgress = blocTask.lastProgressValue;
 
-    // Maybe not the best solution. Now we are updating the current result every time the user taps on a choice button
-    questionBodyResultSubscription = blocQuestion.resultValue.listen((questionBodyResult) {
-      setState(() {
-        currentQuestionBodyResult = questionBodyResult;
-      });
-    });
-
     super.initState();
+  }
+
+  // Returning the according step body widget based on the answerFormat of the step
+  Widget stepBody(RPAnswerFormat answerFormat) {
+    switch (answerFormat.runtimeType) {
+      case RPIntegerAnswerFormat:
+        return RPUIIntegerQuestionBody(answerFormat, (result) {
+          this.currentQuestionBodyResult = result;
+        });
+      case RPChoiceAnswerFormat:
+        return RPUIChoiceQuestionBody(answerFormat, (result) {
+          this.currentQuestionBodyResult = result;
+        });
+      default:
+        return Container();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
-//        title: StreamBuilder<RPTaskProgress>(
-//          stream: blocTask.taskProgress,
-//          initialData: blocTask.lastProgressValue,
-//          builder: (context, snapshot) {
-//            return Text("${snapshot.data.current} of ${snapshot.data.total}");
-//          },
-//        ),
         automaticallyImplyLeading: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
-          elevation: 4,
-          child: ListView(
-            padding: EdgeInsets.all(12),
-            children: <Widget>[
-              title(),
-              widget.step.answerFormat.questionBody,
-            ],
+      body: ListView(
+        padding: EdgeInsets.all(8),
+        children: [
+          title(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: stepBody(widget.step.answerFormat),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
       persistentFooterButtons: <Widget>[
         FlatButton(
@@ -74,35 +90,30 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
-        StreamBuilder<bool>(
-          stream: blocQuestion.questionReadyToProceed,
-          initialData: false,
-          builder: (context, snapshot) {
-            return RaisedButton(
-              color: Theme.of(context).accentColor,
-              textColor: Colors.white,
-              child: Text(
-                "NEXT",
-              ),
-              onPressed: snapshot.data
-                  ? () {
-                      // Communicating with the RPUITask Widget
-                      blocTask.sendStatus(StepStatus.Finished);
-                      createAndSendResult();
-                    }
-                  : null,
-            );
-          },
+
+        RaisedButton(
+          color: Theme.of(context).accentColor,
+          textColor: Colors.white,
+          child: Text(
+            "NEXT",
+          ),
+          onPressed: readyToProceed
+              ? () {
+                  // Communicating with the RPUITask Widget
+                  blocTask.sendStatus(StepStatus.Finished);
+                  createAndSendResult();
+                }
+              : null,
         ),
       ],
     );
   }
 
-  //Render the title above the questionBody
+  // Render the title above the questionBody
   Widget title() {
     if (widget.step.title != null) {
       return Padding(
-        padding: const EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
         child: Text(
           widget.step.title,
           style: RPStyles.h2,
@@ -117,13 +128,12 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   void createAndSendResult() {
 //    print("The last questionBody Result is: ${currentQuestionBodyResult.value}");
     // Populate the result object with value and end the time tracker (set endDate)
-    result.setResult(currentQuestionBodyResult.value);
+    result.setResult(_currentQuestionBodyResult.value);
     blocTask.sendStepResult(result);
   }
 
   @override
   void dispose() {
-    questionBodyResultSubscription.cancel();
     super.dispose();
   }
 }

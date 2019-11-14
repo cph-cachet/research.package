@@ -21,14 +21,6 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
     this._choices = choices;
   }
 
-  /// The widget (UI representation) of the Answer Format
-  ///
-  /// It returns the corresponding Question Body widget with this Answer Format as an input
-  @override
-  Widget get questionBody {
-    return RPUIChoiceQuestionBody(this);
-  }
-
   factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPChoiceAnswerFormatFromJson(json);
   Map<String, dynamic> toJson() => _$RPChoiceAnswerFormatToJson(this);
 }

@@ -139,6 +139,13 @@ Map<String, dynamic> _$RPChoiceToJson(RPChoice instance) {
   return val;
 }
 
+RPFormAnswerFormat _$RPFormAnswerFormatFromJson(Map<String, dynamic> json) {
+  return RPFormAnswerFormat();
+}
+
+Map<String, dynamic> _$RPFormAnswerFormatToJson(RPFormAnswerFormat instance) =>
+    <String, dynamic>{};
+
 RPConsentDocument _$RPConsentDocumentFromJson(Map<String, dynamic> json) {
   return RPConsentDocument()
     ..title = json['title'] as String

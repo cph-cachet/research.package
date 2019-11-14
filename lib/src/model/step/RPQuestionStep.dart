@@ -2,8 +2,8 @@ part of research_package_model;
 
 /// The concrete subclass of [RPStep] that represents a step in which a single question is presented to the user.
 ///
-/// When a Task Widget presents an Question Step object, it instantiates an [RPUIQuestionStep] object to present the step. The actual visual presentation depends on the answer format.
-/// When you need to present more than one question at the same time, it can be appropriate to use [RPFormStep] instead of [RPQuestionStep] (not implemented yet).
+/// When a Task Widget presents an Question Step object, it instantiates an [RPUIQuestionStep] object to present the step. The actual visual presentation depends on the answer format ([RPAnswerFormat]).
+/// When you need to present more than one question at the same time, it can be appropriate to use [RPFormStep] instead of [RPQuestionStep].
 class RPQuestionStep extends RPStep {
   RPAnswerFormat _answerFormat;
   String _placeholder;

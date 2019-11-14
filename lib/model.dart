@@ -11,7 +11,6 @@ library research_package_model;
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
-import 'dart:typed_data';
 import 'package:json_annotation/json_annotation.dart';
 
 // Importing the UI library from Research Package
@@ -21,6 +20,7 @@ import 'package:research_package/ui.dart';
 part 'src/model/answerformat/RPAnswerFormat.dart';
 part 'src/model/answerformat/RPIntegerAnswerFormat.dart';
 part 'src/model/answerformat/RPChoiceAnswerFormat.dart';
+part 'src/model/answerformat/RPFormAnswerFormat.dart';
 
 part 'src/model/consent/RPConsentDocument.dart';
 part 'src/model/consent/RPConsentSection.dart';
