@@ -92,7 +92,9 @@
 </section>
         
                 <section class="desc markdown">
-          <p>The widget (UI representation) of the step. Should be overridden to fit the different types of Steps.</p>
+          <p>The widget (UI representation) of the step. <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a>s don't have it because their UI representation depends on the Answer Format.
+Their Answer Format is assessed by <a href="research_package_ui/RPUIQuestionStep-class.html">RPUIQuestionStep</a> or <a href="research_package_ui/RPUIFormStep-class.html">RPUIFormStep</a> and they return the corresponding UI.</p>
+<p>When needed, it should be overridden to fit the different types of Steps.</p>
         </section>
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
@@ -109,7 +111,7 @@
 
 <footer>
   <span class="no-break">
-    research_package 0.0.2
+    research_package 0.0.4
   </span>
 
   

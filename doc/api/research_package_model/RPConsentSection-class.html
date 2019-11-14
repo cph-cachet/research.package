@@ -64,6 +64,8 @@
       <li><a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a></li>
       <li><a href="research_package_model/RPConsentSignature-class.html">RPConsentSignature</a></li>
       <li><a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a></li>
+      <li><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></li>
+      <li><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></li>
       <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
       <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
@@ -134,7 +136,7 @@
           <div class="constructor-modifier features">factory</div>
         </dd>
         <dt id="RPConsentSection.withParams" class="callable">
-          <span class="name"><a href="research_package_model/RPConsentSection/RPConsentSection.withParams.html">RPConsentSection.withParams</a></span><span class="signature">(<span class="parameter" id="withParams-param-type"><span class="type-annotation"><a href="research_package_model/RPConsentSectionType-class.html">RPConsentSectionType</a></span> <span class="parameter-name">type</span></span>)</span>
+          <span class="name"><a href="research_package_model/RPConsentSection/RPConsentSection.withParams.html">RPConsentSection.withParams</a></span><span class="signature">(<span class="parameter" id="withParams-param-type"><span class="type-annotation"><a href="research_package_model/RPConsentSectionType-class.html">RPConsentSectionType</a></span> <span class="parameter-name">type</span>, {</span> <span class="parameter" id="withParams-param-customIcon"><span class="type-annotation">Icon</span> <span class="parameter-name">customIcon</span>, </span> <span class="parameter" id="withParams-param-customImage"><span class="type-annotation">Image</span> <span class="parameter-name">customImage</span>, </span> <span class="parameter" id="withParams-param-customIllustration"><span class="type-annotation">Widget</span> <span class="parameter-name">customIllustration</span></span> })</span>
         </dt>
         <dd>
           Returns a populated object with the given <code>type</code>. <a href="research_package_model/RPConsentSection/RPConsentSection.withParams.html">[...]</a>
@@ -153,6 +155,14 @@
         <dd>
           A longer content text of the section. <a href="research_package_model/RPConsentSection/content.html">[...]</a>
                   <div class="features">read / write</div>
+</dd>
+        <dt id="customIllustration" class="property">
+          <span class="name"><a href="research_package_model/RPConsentSection/customIllustration.html">customIllustration</a></span>
+          <span class="signature">&#8596; Widget</span>         
+        </dt>
+        <dd>
+          A custom illustration (an <a href="dart-ui/Image-class.html">Image</a> or <code>Icon</code> to show for Custom <a href="research_package_model/RPConsentSectionType-class.html">RPConsentSectionType</a>
+                  <div class="features">@JsonKey(ignore: true), read / write</div>
 </dd>
         <dt id="formalTitle" class="property">
           <span class="name"><a href="research_package_model/RPConsentSection/formalTitle.html">formalTitle</a></span>
@@ -269,6 +279,7 @@
         <a href="research_package_model/RPConsentSection-class.html#instance-properties">Properties</a>
       </li>
       <li><a href="research_package_model/RPConsentSection/content.html">content</a></li>
+      <li><a href="research_package_model/RPConsentSection/customIllustration.html">customIllustration</a></li>
       <li><a href="research_package_model/RPConsentSection/formalTitle.html">formalTitle</a></li>
       <li><a href="research_package_model/RPConsentSection/summary.html">summary</a></li>
       <li><a href="research_package_model/RPConsentSection/title.html">title</a></li>
@@ -293,7 +304,7 @@
 
 <footer>
   <span class="no-break">
-    research_package 0.0.2
+    research_package 0.0.4
   </span>
 
   

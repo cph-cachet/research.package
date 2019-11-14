@@ -3,7 +3,7 @@ part of research_package_ui;
 class RPUIIntegerQuestionBody extends StatefulWidget {
 
   final RPIntegerAnswerFormat answerFormat;
-  final Function(RPQuestionBodyResult) onResultChange;
+  final Function(dynamic) onResultChange;
 
   RPUIIntegerQuestionBody(this.answerFormat, this.onResultChange);
 
@@ -48,7 +48,7 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> {
       widget.onResultChange(null);
       return;
     }
-    widget.onResultChange(RPQuestionBodyResult(text));
+    widget.onResultChange(text);
   }
 
   @override

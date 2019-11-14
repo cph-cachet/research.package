@@ -7,7 +7,6 @@ part of research_package_model;
 /// Whether your app is giving instructions, presenting a form or survey,
 /// obtaining consent, or running an active task, everything in the Research Package framework
 /// is a collection of steps ([RPStep] objects), which together form a task (an [RPTask] object)
-
 abstract class RPStep {
   final String _identifier;
 //  bool _optional;
@@ -39,7 +38,10 @@ abstract class RPStep {
   /// [RPQuestionStep] does not even use it.
   String get text => _text;
 
-  /// The widget (UI representation) of the step. Should be overridden to fit the different types of Steps.
+  /// The widget (UI representation) of the step. [RPQuestionStep]s don't have it because their UI representation depends on the Answer Format.
+  /// Their Answer Format is assessed by [RPUIQuestionStep] or [RPUIFormStep] and they return the corresponding UI.
+  ///
+  /// When needed, it should be overridden to fit the different types of Steps.
   Widget get stepWidget => _stepWidget;
 
 //  set optional(bool optional) {

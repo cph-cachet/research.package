@@ -64,6 +64,8 @@
       <li><a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a></li>
       <li><a href="research_package_model/RPConsentSignature-class.html">RPConsentSignature</a></li>
       <li><a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a></li>
+      <li><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></li>
+      <li><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></li>
       <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
       <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
@@ -103,7 +105,7 @@
 <p>Each <a href="research_package_model/RPStep-class.html">RPStep</a> object represents one logical piece of data entry or activity in a larger task.
 Whether your app is giving instructions, presenting a form or survey,
 obtaining consent, or running an active task, everything in the Research Package framework
-is a collection of steps (<a href="research_package_model/RPStep-class.html">RPStep</a> objects), which together form a task (an RPTask object)</p>
+is a collection of steps (<a href="research_package_model/RPStep-class.html">RPStep</a> objects), which together form a task (an <a href="research_package_model/RPTask-class.html">RPTask</a> object)</p>
     </section>
     
     <section>
@@ -159,7 +161,8 @@ is a collection of steps (<a href="research_package_model/RPStep-class.html">RPS
           <span class="signature">&#8594; Widget</span>         
         </dt>
         <dd>
-          The widget (UI representation) of the step. Should be overridden to fit the different types of Steps.
+          The widget (UI representation) of the step. <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a>s don't have it because their UI representation depends on the Answer Format.
+Their Answer Format is assessed by <a href="research_package_ui/RPUIQuestionStep-class.html">RPUIQuestionStep</a> or <a href="research_package_ui/RPUIFormStep-class.html">RPUIFormStep</a> and they return the corresponding UI. <a href="research_package_model/RPStep/stepWidget.html">[...]</a>
                   <div class="features">read-only</div>
 </dd>
         <dt id="text" class="property">
@@ -273,7 +276,7 @@ is a collection of steps (<a href="research_package_model/RPStep-class.html">RPS
 
 <footer>
   <span class="no-break">
-    research_package 0.0.2
+    research_package 0.0.4
   </span>
 
   

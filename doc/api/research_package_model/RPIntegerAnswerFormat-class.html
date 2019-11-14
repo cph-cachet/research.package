@@ -64,6 +64,8 @@
       <li><a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a></li>
       <li><a href="research_package_model/RPConsentSignature-class.html">RPConsentSignature</a></li>
       <li><a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a></li>
+      <li><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></li>
+      <li><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></li>
       <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
       <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
@@ -99,7 +101,7 @@
       <div><h1><span class="kind-class">RPIntegerAnswerFormat</span> class </h1></div>
 
     <section class="desc markdown">
-      <p>Not fully implemented yet</p>
+      <p>Class representing an Answer Format that lets participants input a number (integer)</p>
     </section>
     
     <section>
@@ -156,7 +158,7 @@
           <span class="signature">&#8596; <a href="dart-core/int-class.html">int</a></span>         
         </dt>
         <dd>
-          
+          The maximum value of the range. The participant can not proceed if the number is outside the range.
                   <div class="features">read / write</div>
 </dd>
         <dt id="minValue" class="property">
@@ -164,16 +166,8 @@
           <span class="signature">&#8596; <a href="dart-core/int-class.html">int</a></span>         
         </dt>
         <dd>
-          
+          The minimum value of the range. The participant can not proceed if the number is outside the range.
                   <div class="features">read / write</div>
-</dd>
-        <dt id="questionBody" class="property">
-          <span class="name"><a href="research_package_model/RPIntegerAnswerFormat/questionBody.html">questionBody</a></span>
-          <span class="signature">&#8594; Widget</span>         
-        </dt>
-        <dd>
-          The widget (UI representation) <a href="research_package_model/RPIntegerAnswerFormat/questionBody.html">[...]</a>
-                  <div class="features">read-only, override</div>
 </dd>
         <dt id="questionType" class="property">
           <span class="name"><a href="research_package_model/RPIntegerAnswerFormat/questionType.html">questionType</a></span>
@@ -275,7 +269,6 @@
       </li>
       <li><a href="research_package_model/RPIntegerAnswerFormat/maxValue.html">maxValue</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat/minValue.html">minValue</a></li>
-      <li><a href="research_package_model/RPIntegerAnswerFormat/questionBody.html">questionBody</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat/questionType.html">questionType</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat/suffix.html">suffix</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -298,7 +291,7 @@
 
 <footer>
   <span class="no-break">
-    research_package 0.0.2
+    research_package 0.0.4
   </span>
 
   

@@ -64,6 +64,8 @@
       <li><a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a></li>
       <li><a href="research_package_model/RPConsentSignature-class.html">RPConsentSignature</a></li>
       <li><a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a></li>
+      <li><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></li>
+      <li><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></li>
       <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
       <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
@@ -175,7 +177,9 @@
           <span class="signature">&#8594; const <a href="research_package_model/QuestionType-class.html">QuestionType</a></span>
                   </dt>
         <dd>
-          
+          <p>The AnswerFormat used by <a href="research_package_model/RPFormStep-class.html">RPFormStep</a>.
+It's only for indication that the step is not an <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a> but a Form Step which includes multiple items.
+<a href="research_package_model/RPFormStep-class.html">RPFormStep</a> knows automatically that this is it's QuestionType. There's no need of specifying it.</p>
                   
   <div>
             <span class="signature"><code>const QuestionType(15)</code></span>
@@ -412,7 +416,7 @@
 
 <footer>
   <span class="no-break">
-    research_package 0.0.2
+    research_package 0.0.4
   </span>
 
   

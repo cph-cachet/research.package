@@ -64,6 +64,8 @@
       <li><a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a></li>
       <li><a href="research_package_model/RPConsentSignature-class.html">RPConsentSignature</a></li>
       <li><a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a></li>
+      <li><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></li>
+      <li><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></li>
       <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
       <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
@@ -100,8 +102,8 @@
 
     <section class="desc markdown">
       <p>The concrete subclass of <a href="research_package_model/RPStep-class.html">RPStep</a> that represents a step in which a single question is presented to the user.</p>
-<p>When a Task Widget presents an Question Step object, it instantiates an <a href="research_package_ui/RPUIQuestionStep-class.html">RPUIQuestionStep</a> object to present the step. The actual visual presentation depends on the answer format.
-When you need to present more than one question at the same time, it can be appropriate to use <code>RPFormStep</code> instead of <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a> (not implemented yet).</p>
+<p>When a Task Widget presents an Question Step object, it instantiates an <a href="research_package_ui/RPUIQuestionStep-class.html">RPUIQuestionStep</a> object to present the step. The actual visual presentation depends on the answer format (<a href="research_package_model/RPAnswerFormat-class.html">RPAnswerFormat</a>).
+When you need to present more than one question at the same time, it can be appropriate to use <a href="research_package_model/RPFormStep-class.html">RPFormStep</a> instead of <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a>.</p>
     </section>
     
     <section>
@@ -115,6 +117,10 @@ When you need to present more than one question at the same time, it can be appr
 
 
 
+        <dt>Implementers</dt>
+        <dd><ul class="comma-separated clazz-relationships">
+          <li><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></li>
+        </ul></dd>
 
       </dl>
     </section>
@@ -295,7 +301,7 @@ actual layout depends
 
 <footer>
   <span class="no-break">
-    research_package 0.0.2
+    research_package 0.0.4
   </span>
 
   

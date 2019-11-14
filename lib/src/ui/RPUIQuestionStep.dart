@@ -14,12 +14,12 @@ class RPUIQuestionStep extends StatefulWidget {
 
 class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
-  RPQuestionBodyResult<dynamic> _currentQuestionBodyResult;
+  dynamic _currentQuestionBodyResult;
   bool readyToProceed;
   RPStepResult result;
   RPTaskProgress recentTaskProgress;
 
-  set currentQuestionBodyResult(RPQuestionBodyResult currentQuestionBodyResult) {
+  set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {
     this._currentQuestionBodyResult = currentQuestionBodyResult;
     if (this._currentQuestionBodyResult != null) {
       setState(() {
@@ -90,7 +90,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
-
         RaisedButton(
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
@@ -126,14 +125,8 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   @override
   void createAndSendResult() {
-//    print("The last questionBody Result is: ${currentQuestionBodyResult.value}");
     // Populate the result object with value and end the time tracker (set endDate)
-    result.setResult(_currentQuestionBodyResult.value);
+    result.setResult(_currentQuestionBodyResult);
     blocTask.sendStepResult(result);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

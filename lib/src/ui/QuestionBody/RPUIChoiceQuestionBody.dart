@@ -4,7 +4,7 @@ part of research_package_ui;
 /// Depending on the [RPChoiceAnswerFormat]'s [ChoiceAnswerStyle] property, the user can select only one or multiple options.
 class RPUIChoiceQuestionBody extends StatefulWidget {
   final RPChoiceAnswerFormat _answerFormat;
-  final Function(RPQuestionBodyResult) onResultChange;
+  final Function(dynamic) onResultChange;
 
   RPUIChoiceQuestionBody(this._answerFormat, this.onResultChange);
 
@@ -51,7 +51,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
     }
 
     selectedChoices.length != 0
-        ? widget.onResultChange(RPQuestionBodyResult(selectedChoices))
+        ? widget.onResultChange(selectedChoices)
         : widget.onResultChange(null);
   }
 

@@ -6,7 +6,7 @@ part of research_package_model;
 class BlocQuestion {
   final _questionStatusController = StreamController<bool>.broadcast();
   // Stream for the questionBody to send the actual answerValue to the questionContainer so that can create the stepresult object.
-  final _questionBodyResultController = BehaviorSubject<RPQuestionBodyResult>();
+//  final _questionBodyResultController = BehaviorSubject<RPQuestionBodyResult>();
 
   //Add data to stream
   /// The function to send a boolean through a stream
@@ -19,7 +19,7 @@ class BlocQuestion {
   ///
   /// Usually used by a QuestionBody like [RPUIQuestionBody] to convey it's result to its [RPUIQuestionStep] container.
   /// Use to send the actual AnswerValue to the QuestionContainer so that it can create the [RPStepResult] object.
-  Function(RPQuestionBodyResult) get sendResultValue => _questionBodyResultController.sink.add;
+//  Function(RPQuestionBodyResult) get sendResultValue => _questionBodyResultController.sink.add;
 
   //Retrieve data from stream
 
@@ -30,11 +30,11 @@ class BlocQuestion {
   /// The stream through which [RPQuestionBodyResult] is flowing
   ///
   /// The [RPUIQuestionStep] listens to this stream and creating the [RPStepResult] object based on the incoming data.
-  Stream<RPQuestionBodyResult> get resultValue => _questionBodyResultController.stream;
+//  Stream<RPQuestionBodyResult> get resultValue => _questionBodyResultController.stream;
 
   dispose() {
     _questionStatusController.close();
-    _questionBodyResultController.close();
+//    _questionBodyResultController.close();
   }
 }
 

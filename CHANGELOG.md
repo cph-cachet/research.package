@@ -1,5 +1,9 @@
+## 0.1.0
+ * Form Step feature added
+ * Bug fixing 
+
 ## 0.0.4
- * Example added
+ * Example application added
 
 ## 0.0.3
  * Initial release for Pub

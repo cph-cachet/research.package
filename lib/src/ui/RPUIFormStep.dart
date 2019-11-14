@@ -15,7 +15,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   RPTaskProgress recentTaskProgress;
 
   // Since the QuestionBody's are sending null if they are not answered yet we can loop through the
-  // results of the steps. 
+  // results of the steps.
   // If any of them is null it means the participant can not proceed to the next step because not all the
   // questions are answered.
   void checkReadyToProceed() {
@@ -51,12 +51,12 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
         return RPUIIntegerQuestionBody(answerFormat, (result) {
-          (stepResult.results[id] as RPStepResult).setResult(result.value);
+          (stepResult.results[id] as RPStepResult).setResult(result);
           checkReadyToProceed();
         });
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody(answerFormat, (result) {
-          (stepResult.results[id] as RPStepResult).setResult(result.value);
+          (stepResult.results[id] as RPStepResult).setResult(result);
           checkReadyToProceed();
         });
       default:
@@ -72,15 +72,25 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
-      child: Card(
-        elevation: 4,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: stepBody(
-            widget.formStep.steps[index].identifier,
-            widget.formStep.steps[index].answerFormat,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(widget.formStep.steps[index].title, style: RPStyles.h3,),
           ),
-        ),
+          Card(
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: stepBody(
+                widget.formStep.steps[index].identifier,
+                widget.formStep.steps[index].answerFormat,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -113,12 +123,11 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           child: Text(
             "NEXT",
           ),
-          // TODO: Make button enabled checking
           onPressed: readyToProceed
               ? () {
                   // Communicating with the RPUITask Widget
                   blocTask.sendStatus(StepStatus.Finished);
-                createAndSendResult();
+                  createAndSendResult();
                 }
               : null,
         ),

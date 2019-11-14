@@ -69,38 +69,36 @@
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
         <h1 id="research-package">Research Package</h1>
-<p>This is a Flutter package implementing support for surveys like <a href="http://researchstack.org/">ResearchStack</a> and <a href="http://researchkit.org/">ResearchKit</a>.</p>
-<p>The main modules of the above mentioned libraries are:</p><ul><li>
-<p>Consent - <a href="http://researchkit.org/docs/docs/InformedConsent/InformedConsent.html">How it's done in ResearchKit</a> - Implemented</p></li><li>
-<p>Survey - <a href="http://researchkit.org/docs/docs/Survey/CreatingSurveys.html">How it's done in ResearchKit</a> - Implemented</p></li><li>
-<p>Active Task - <a href="http://researchkit.org/docs/docs/ActiveTasks/ActiveTasks.html">How it's done in ResearchKit</a> - Can be implemented later with the help of flutter <a href="https://github.com/cph-cachet/flutter-plugins">plugins</a> by CACHET.</p>
-<p>The package tries to follow the <a href="http://researchstack.org/">ResearchStack</a> and <a href="http://researchkit.org/">ResearchKit</a> patterns and namings.</p></li></ul>
-<h2 id="current-stage">Current stage</h2>
-<p>The project is work in progress. New Answer Formats are being added to the survey modul of the framework constanly. 
-The available Answer Formats are the following at the moment:</p><ul><li>Single Choice</li><li>Multiple Choice</li><li>Integer</li></ul>
-<h2 id="use-cases">Use Cases</h2>
-<p>One of the goals for the package was to make it capable of handling a <a href="https://www.psykiatri-regionh.dk/who-5/Documents/WHO5_English.pdf">WHO5</a> survey. As an example at this point Research Package can obtain the informed consent from the participant, show the WHO5 survey questions and collect the results.</p>
+<p><a href="https://pub.dartlang.org/packages/research_package"><img src="https://img.shields.io/pub/v/research_package.svg" alt="pub package"></a></p>
+<p>This is a Flutter package implementing support for surveys and obtaining informed consent containing models, UI elements and screens. 
+The motivation is coming from two similar native libraries <a href="http://researchstack.org/">ResearchStack</a> and <a href="http://researchkit.org/">ResearchKit</a>.</p>
+<p>The main modules of the above mentioned libraries are:</p><ul><li>Consent - <a href="http://researchkit.org/docs/docs/InformedConsent/InformedConsent.html">How it's done in ResearchKit</a> - Implemented</li><li>Survey - <a href="http://researchkit.org/docs/docs/Survey/CreatingSurveys.html">How it's done in ResearchKit</a> - Implemented</li><li>Active Task - <a href="http://researchkit.org/docs/docs/ActiveTasks/ActiveTasks.html">How it's done in ResearchKit</a> - Can be implemented later with the help of flutter <a href="https://github.com/cph-cachet/flutter-plugins">plugins</a> by CACHET.</li></ul>
 <h2 id="getting-started">Getting Started</h2>
-<p>In order to use Research Package, you have to clone this repo and add it manually to your <code>pubspec.yaml</code> file</p>
-<pre class="language-dart"><code class="language-dart">  research_package:
-    path: *PATH*/research.package
-</code></pre>
+<p>Research Package is published to Pub: <a href="https://pub.dartlang.org/packages/research_package"><img src="https://img.shields.io/pub/v/research_package.svg" alt="pub package"></a> </p>
+<p>You can start using it by adding it to your dependecies.</p>
 <p>After you run the <code>flutter packages get</code> command you are able to import and start using Research Package. With the following line you have access both to the Model and the UI part of the package.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:research_package/model.dart';
 import 'package:research_package/ui.dart';
 </code></pre>
 <p>Remember, that objects starting with <code>RP</code> are part of the Model (like <code>RPConsentDocument</code>) while those which start with <code>RPUI</code> are part of the UI library (like <code>RPUIVisualConsentStep</code>).</p>
+<h2 id="similarity-to-researchkit-and-researchstack">Similarity to ResearchKit and ResearchStack</h2>
+<p>Research Package is clearly similar to these two existent framework. A goal with the package was to help developers enjoy the same features with Flutter's cross-platform framework. 
+The names, functionalities and most of the logic are similar or identical to the previously mentioned two framework. This way we believe that the transition for those who have used them before will be easier and smoother.</p>
+<h2 id="current-stage">Current stage</h2>
+<p>The project is work in progress. New Answer Formats are being added to the survey modul of the framework constanly. 
+The available Answer Formats are the following at the moment:</p><ul><li>Single Choice</li><li>Multiple Choice</li><li>Integer</li></ul>
+<h2 id="use-cases">Use Cases</h2>
+<p>One of the goals for the package was to make it capable of handling a <a href="https://www.psykiatri-regionh.dk/who-5/Documents/WHO5_English.pdf">WHO5</a> survey. As an example at this point Research Package can obtain the informed consent from the participant, show the WHO5 survey questions and collect the results.</p>
 <h3 id="naming">Naming</h3>
 <p>We are following Apple's pattern when it comes to naming. There's a prefix ORK (Open Research Kit) before the names of classes, types etc. in ResearchKit, so our names are starting with the RP prefix which stands for Research Package.</p>
 <p>For UI widgets we are using the RPUI (Research Package UI) prefix.</p>
-<h3 id="useful-links">Useful Links</h3><ul><li>
+<h3 id="useful-links">Useful Links</h3>
+<p>In order to familiarize with the Framework and potentially extend it, it's might worth to have a look at these links about Research Kit and Research Stack.  </p><ul><li>
 <p>ResearchKit</p><ul><li><a href="http://researchkit.org/docs/docs/Survey/CreatingSurveys.html">Official Tutorial on how to use ResearchKit in ObjectiveC</a>
 You can get a good understading of the flow and the basic concepts.
 Also there's a useful presentation of the different AnswerFormats.</li><li><a href="http://researchkit.org/docs/hierarchy.html">Hierarchy of objects in ResearchKit</a>
 This is a good representation of a possible file/class hierarchy for ResearchPackage.</li><li><a href="https://www.raywenderlich.com/1820-researchkit-tutorial-with-swift-getting-started">Tutorial on how to use ResearchKit in Swift</a></li><li><a href="https://github.com/ResearchKit/ResearchKit/tree/master/samples">Sample Apps for ResearchKit in Swift</a></li></ul></li><li>
 <p>ResearchStack</p><ul><li><a href="https://github.com/ResearchStack/SampleApp">Sample App for ResearchStack</a></li><li><a href="https://www.raywenderlich.com/637-researchstack-tutorial-getting-started">Tutorial on how to use ResearchStack in Java</a></li></ul></li></ul>
-<h3 id="challenges">Challenges</h3>
-<p><a href="http://researchstack.org/">ResearchStack</a> and <a href="http://researchkit.org/">ResearchKit</a> are built on native iOS and Android which have totally different architecture than the Widget-based <a href="flutter.io">Flutter</a>. It hopefully doesn't affect the domain model but for wiring up the model to the UI, we should definitely implement a different approach from ResearchKit and Stack.</p>
       </section>
       
         <section class="summary">
@@ -202,7 +200,7 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 
 <footer>
   <span class="no-break">
-    research_package 0.0.2
+    research_package 0.0.4
   </span>
 
   

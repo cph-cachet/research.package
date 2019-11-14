@@ -150,6 +150,18 @@
           Represents a signature applied to a given consent document.
 It indicates if a given consent document has been signed by a user.
         </dd>
+        <dt id="RPFormAnswerFormat">
+          <span class="name "><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing the Answer Format for Form Questions (Multiple questions at the same time on the same page)
+        </dd>
+        <dt id="RPFormStep">
+          <span class="name "><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></span>         
+        </dt>
+        <dd>
+          The <a href="research_package_model/RPFormStep-class.html">RPFormStep</a> class is a concrete subclass of <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a>, used for presenting multiple questions on a single scrollable page. <a href="research_package_model/RPFormStep-class.html">[...]</a>
+        </dd>
         <dt id="RPInstructionStep">
           <span class="name "><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></span>         
         </dt>
@@ -161,7 +173,7 @@ Usually it is used as the first step in a Task.
           <span class="name "><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></span>         
         </dt>
         <dd>
-          Not fully implemented yet
+          Class representing an Answer Format that lets participants input a number (integer)
         </dd>
         <dt id="RPOrderedTask">
           <span class="name "><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></span>         
@@ -247,6 +259,12 @@ Depending on the <a href="research_package_model/RPChoiceAnswerFormat-class.html
         </dt>
         <dd>
           The UI representation of <a href="research_package_model/RPConsentReviewStep-class.html">RPConsentReviewStep</a> <a href="research_package_ui/RPUIConsentReviewStep-class.html">[...]</a>
+        </dd>
+        <dt id="RPUIFormStep">
+          <span class="name "><a href="research_package_ui/RPUIFormStep-class.html">RPUIFormStep</a></span>         
+        </dt>
+        <dd>
+          
         </dd>
         <dt id="RPUIInstructionStep">
           <span class="name "><a href="research_package_ui/RPUIInstructionStep-class.html">RPUIInstructionStep</a></span>         
@@ -365,6 +383,8 @@ It presents the steps of an <a href="research_package_model/RPOrderedTask-class.
       <li><a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a></li>
       <li><a href="research_package_model/RPConsentSignature-class.html">RPConsentSignature</a></li>
       <li><a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a></li>
+      <li><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></li>
+      <li><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></li>
       <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
       <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
@@ -381,6 +401,7 @@ It presents the steps of an <a href="research_package_model/RPOrderedTask-class.
       <li><a href="research_package_ui/RPUIChoiceQuestionBody-class.html">RPUIChoiceQuestionBody</a></li>
       <li><a href="research_package_ui/RPUICompletionStep-class.html">RPUICompletionStep</a></li>
       <li><a href="research_package_ui/RPUIConsentReviewStep-class.html">RPUIConsentReviewStep</a></li>
+      <li><a href="research_package_ui/RPUIFormStep-class.html">RPUIFormStep</a></li>
       <li><a href="research_package_ui/RPUIInstructionStep-class.html">RPUIInstructionStep</a></li>
       <li><a href="research_package_ui/RPUIIntegerQuestionBody-class.html">RPUIIntegerQuestionBody</a></li>
       <li><a href="research_package_ui/RPUIOrderedTask-class.html">RPUIOrderedTask</a></li>
@@ -409,7 +430,7 @@ It presents the steps of an <a href="research_package_model/RPOrderedTask-class.
 
 <footer>
   <span class="no-break">
-    research_package 0.0.2
+    research_package 0.0.4
   </span>
 
   

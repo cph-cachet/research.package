@@ -107,8 +107,10 @@ time the participant spent the given Step.</p>
       <pre class="language-dart"><code class="language-dart">RPStepResult.withParams(RPStep step) : super.withIdentifier(step.identifier) {
   this._results = Map();
 
-  if (step.runtimeType == RPQuestionStep) {
+  try {
     this.answerFormat = (step as RPQuestionStep).answerFormat;
+  } catch (e) {
+    print(e);
   }
 
   startDate = DateTime.now();
@@ -124,7 +126,7 @@ time the participant spent the given Step.</p>
 
 <footer>
   <span class="no-break">
-    research_package 0.0.2
+    research_package 0.0.4
   </span>
 
   
