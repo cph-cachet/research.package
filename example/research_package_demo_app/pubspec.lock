@@ -91,10 +91,12 @@ packages:
   research_package:
     dependency: "direct main"
     description:
-      path: "/Users/barnabashomola/Developer/CACHET/research.package"
-      relative: false
-    source: path
-    version: "0.0.4"
+      path: "."
+      ref: HEAD
+      resolved-ref: e55db847b79198abb6349e05bdd7f3857b1ffdce
+      url: "git://github.com/cph-cachet/research.package.git"
+    source: git
+    version: "0.1.0"
   rxdart:
     dependency: transitive
     description:
