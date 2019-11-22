@@ -61,6 +61,7 @@ const _$QuestionTypeEnumMap = <QuestionType, dynamic>{
   QuestionType.TimeInterval: 'TimeInterval',
   QuestionType.Duration: 'Duration',
   QuestionType.Location: 'Location',
+  QuestionType.ImageChoice: 'ImageChoice',
   QuestionType.Form: 'Form'
 };
 
@@ -145,6 +146,52 @@ RPFormAnswerFormat _$RPFormAnswerFormatFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$RPFormAnswerFormatToJson(RPFormAnswerFormat instance) =>
     <String, dynamic>{};
+
+RPImageChoiceAnswerFormat _$RPImageChoiceAnswerFormatFromJson(
+    Map<String, dynamic> json) {
+  return RPImageChoiceAnswerFormat()
+    ..choices = (json['choices'] as List)
+        ?.map((e) => e == null
+            ? null
+            : RPImageChoice.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$RPImageChoiceAnswerFormatToJson(
+    RPImageChoiceAnswerFormat instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('choices', instance.choices);
+  return val;
+}
+
+RPImageChoice _$RPImageChoiceFromJson(Map<String, dynamic> json) {
+  return RPImageChoice()
+    ..text = json['text']
+    ..value = json['value']
+    ..image = json['image'];
+}
+
+Map<String, dynamic> _$RPImageChoiceToJson(RPImageChoice instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('text', instance.text);
+  writeNotNull('value', instance.value);
+  writeNotNull('image', instance.image);
+  return val;
+}
 
 RPConsentDocument _$RPConsentDocumentFromJson(Map<String, dynamic> json) {
   return RPConsentDocument()
