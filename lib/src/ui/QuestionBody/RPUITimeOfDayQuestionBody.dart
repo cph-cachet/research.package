@@ -22,7 +22,7 @@ class _RPUITimeOfDayQuestionBodyState extends State<RPUITimeOfDayQuestionBody> {
       alignment: Alignment.topLeft,
       child: CupertinoDatePicker(
         mode: CupertinoDatePickerMode.time,
-        use24hFormat: true,
+        use24hFormat: MediaQuery.of(context).alwaysUse24HourFormat,
         initialDateTime: DateTime.now(),
         onDateTimeChanged: (DateTime dateTime) {
           print(dateTime.toString());
