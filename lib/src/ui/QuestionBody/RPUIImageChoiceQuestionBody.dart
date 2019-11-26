@@ -58,14 +58,21 @@ class _RPUIImageChoiceQuestionBodyState
               borderRadius:
                   BorderRadius.all(Radius.circular(5 * 25 / items.length)),
               border: Border.all(
-                color: _selectedItem == item ? Colors.blue : Colors.white,
+                color: _selectedItem == item ? Colors.blue : Colors.transparent,
                 width: 3,
               ),
             ),
             // Scaling item size with number of choices
-            padding: EdgeInsets.all(3 * 10 / items.length),
-            width: (MediaQuery.of(context).size.width * 0.8) / items.length,
-            height: (MediaQuery.of(context).size.width * 0.8) / items.length,
+            // Max size is 125
+            padding: EdgeInsets.all(10 / items.length),
+            width:
+                (MediaQuery.of(context).size.width * 0.8) / items.length > 125
+                    ? 125
+                    : MediaQuery.of(context).size.width * 0.8 / items.length,
+            height:
+                (MediaQuery.of(context).size.width * 0.8) / items.length > 125
+                    ? 125
+                    : MediaQuery.of(context).size.width * 0.8 / items.length,
             child: item.image,
           ),
         ),
