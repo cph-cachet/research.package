@@ -23,7 +23,7 @@ class _RPUIImageChoiceQuestionBodyState
 
   @override
   Widget build(BuildContext context) {
-    String text = _selectedItem?.text ?? 'Select an image';
+    String text = _selectedItem?.description ?? 'Select an image';
     return Container(
         height: 150,
         child: Column(
@@ -53,6 +53,7 @@ class _RPUIImageChoiceQuestionBodyState
             widget.onResultChance(_selectedItem);
           },
           child: Container(
+            // Highlighting of chosen answer
             decoration: BoxDecoration(
               borderRadius:
                   BorderRadius.all(Radius.circular(5 * 25 / items.length)),
@@ -61,6 +62,7 @@ class _RPUIImageChoiceQuestionBodyState
                 width: 3,
               ),
             ),
+            // Scaling item size with number of choices
             padding: EdgeInsets.all(3 * 10 / items.length),
             width: (MediaQuery.of(context).size.width * 0.8) / items.length,
             height: (MediaQuery.of(context).size.width * 0.8) / items.length,
