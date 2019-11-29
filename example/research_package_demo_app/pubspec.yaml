@@ -48,13 +48,15 @@ flutter:
     - assets/images/cachet.png
     - assets/images/survey.png
     - assets/images/waving-hand.png
-
+    - assets/images/very-sad.png
+    - assets/images/sad.png
+    - assets/images/ok.png
+    - assets/images/happy.png
+    - assets/images/very-happy.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

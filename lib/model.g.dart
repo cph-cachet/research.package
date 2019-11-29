@@ -25,27 +25,39 @@ Map<String, dynamic> _$RPAnswerFormatToJson(RPAnswerFormat instance) {
   return val;
 }
 
-T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
+T _$enumDecode<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
   if (source == null) {
     throw ArgumentError('A value must be provided. Supported values: '
         '${enumValues.values.join(', ')}');
   }
-  return enumValues.entries
-      .singleWhere((e) => e.value == source,
-          orElse: () => throw ArgumentError(
-              '`$source` is not one of the supported values: '
-              '${enumValues.values.join(', ')}'))
-      .key;
+
+  final value = enumValues.entries
+      .singleWhere((e) => e.value == source, orElse: () => null)
+      ?.key;
+
+  if (value == null && unknownValue == null) {
+    throw ArgumentError('`$source` is not one of the supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+  return value ?? unknownValue;
 }
 
-T _$enumDecodeNullable<T>(Map<T, dynamic> enumValues, dynamic source) {
+T _$enumDecodeNullable<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
   if (source == null) {
     return null;
   }
-  return _$enumDecode<T>(enumValues, source);
+  return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$QuestionTypeEnumMap = <QuestionType, dynamic>{
+const _$QuestionTypeEnumMap = {
   QuestionType.None: 'None',
   QuestionType.Scale: 'Scale',
   QuestionType.SingleChoice: 'SingleChoice',
@@ -62,7 +74,7 @@ const _$QuestionTypeEnumMap = <QuestionType, dynamic>{
   QuestionType.Duration: 'Duration',
   QuestionType.Location: 'Location',
   QuestionType.ImageChoice: 'ImageChoice',
-  QuestionType.Form: 'Form'
+  QuestionType.Form: 'Form',
 };
 
 RPIntegerAnswerFormat _$RPIntegerAnswerFormatFromJson(
@@ -113,9 +125,9 @@ Map<String, dynamic> _$RPChoiceAnswerFormatToJson(
   return val;
 }
 
-const _$ChoiceAnswerStyleEnumMap = <ChoiceAnswerStyle, dynamic>{
+const _$ChoiceAnswerStyleEnumMap = {
   ChoiceAnswerStyle.SingleChoice: 'SingleChoice',
-  ChoiceAnswerStyle.MultipleChoice: 'MultipleChoice'
+  ChoiceAnswerStyle.MultipleChoice: 'MultipleChoice',
 };
 
 RPChoice _$RPChoiceFromJson(Map<String, dynamic> json) {
@@ -173,7 +185,7 @@ Map<String, dynamic> _$RPImageChoiceAnswerFormatToJson(
 
 RPImageChoice _$RPImageChoiceFromJson(Map<String, dynamic> json) {
   return RPImageChoice()
-    ..text = json['text']
+    ..description = json['description']
     ..value = json['value']
     ..image = json['image'];
 }
@@ -187,7 +199,7 @@ Map<String, dynamic> _$RPImageChoiceToJson(RPImageChoice instance) {
     }
   }
 
-  writeNotNull('text', instance.text);
+  writeNotNull('description', instance.description);
   writeNotNull('value', instance.value);
   writeNotNull('image', instance.image);
   return val;
@@ -251,7 +263,7 @@ Map<String, dynamic> _$RPConsentSectionToJson(RPConsentSection instance) {
   return val;
 }
 
-const _$RPConsentSectionTypeEnumMap = <RPConsentSectionType, dynamic>{
+const _$RPConsentSectionTypeEnumMap = {
   RPConsentSectionType.Overview: 'Overview',
   RPConsentSectionType.DataGathering: 'DataGathering',
   RPConsentSectionType.Privacy: 'Privacy',
@@ -260,7 +272,7 @@ const _$RPConsentSectionTypeEnumMap = <RPConsentSectionType, dynamic>{
   RPConsentSectionType.StudyTasks: 'StudyTasks',
   RPConsentSectionType.StudySurvey: 'StudySurvey',
   RPConsentSectionType.Withdrawing: 'Withdrawing',
-  RPConsentSectionType.Custom: 'Custom'
+  RPConsentSectionType.Custom: 'Custom',
 };
 
 RPConsentSignature _$RPConsentSignatureFromJson(Map<String, dynamic> json) {
