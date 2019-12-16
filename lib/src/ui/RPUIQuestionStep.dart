@@ -53,8 +53,8 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
         return RPUIChoiceQuestionBody(answerFormat, (result) {
           this.currentQuestionBodyResult = result;
         });
-      case RPTimeOfDayAnswerFormat:
-        return RPUITimeOfDayQuestionBody(answerFormat, (result) {
+      case RPDateTimeAnswerFormat:
+        return RPUIDateTimeQuestionBody(answerFormat, (result) {
           this.currentQuestionBodyResult = result;
         });
       default:

@@ -25,17 +25,38 @@ List<RPChoice> instruments = [
   RPChoice.withParams("Saxophone", 1),
 ];
 
-RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, timeChoices);
+// All types of DateTime answer formats
+RPDateTimeAnswerFormat timeOfDayAnswerFormat =
+    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.TimeOfDay);
+RPDateTimeAnswerFormat dateAndTimeAnswerFormat =
+    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.DateAndTime);
+RPDateTimeAnswerFormat dateAnswerFormat =
+    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
+
+RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(
+    ChoiceAnswerStyle.SingleChoice, timeChoices);
 
 RPChoiceAnswerFormat joyfulActivitiesAnswerFormat =
-    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
+    RPChoiceAnswerFormat.withParams(
+        ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
 
-RPChoiceAnswerFormat instrumentsAnswerFormat =
-RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, instruments);
+RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat.withParams(
+    ChoiceAnswerStyle.MultipleChoice, instruments);
 
-RPIntegerAnswerFormat weightIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 200, "KG");
+RPIntegerAnswerFormat weightIntegerAnswerFormat =
+    RPIntegerAnswerFormat.withParams(0, 200, "KG");
 
-RPIntegerAnswerFormat minutesIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
+RPIntegerAnswerFormat minutesIntegerAnswerFormat =
+    RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
+
+RPQuestionStep timeOfDayQuestionStep = RPQuestionStep.withAnswerFormat(
+    'timeOfDayQuestionStepID', 'When did you wake up?', timeOfDayAnswerFormat);
+RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep.withAnswerFormat(
+    'dateAndTimeQuestionStepID',
+    'When did you last eat unhealthy food?',
+    dateAndTimeAnswerFormat);
+RPQuestionStep dateQuestionStep = RPQuestionStep.withAnswerFormat(
+    'dateQuestionStepID', 'When did you last drink alcohol?', dateAnswerFormat);
 
 RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   "questionStep1ID",
@@ -43,19 +64,28 @@ RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   timeAnswerFormat,
 );
 
-RPQuestionStep instrumentChoiceQuestionStep =
-RPQuestionStep.withAnswerFormat("instrumentChoiceQuestionStepID", "Which instrument are you playing?", instrumentsAnswerFormat);
+RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+    "instrumentChoiceQuestionStepID",
+    "Which instrument are you playing?",
+    instrumentsAnswerFormat);
 
-RPQuestionStep happinessChoiceQuestionStep =
-    RPQuestionStep.withAnswerFormat("happinessChoiceQuestionStepID", "What makes you happy?", joyfulActivitiesAnswerFormat);
+RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+    "happinessChoiceQuestionStepID",
+    "What makes you happy?",
+    joyfulActivitiesAnswerFormat);
 
-RPQuestionStep weightQuestionStep =
-    RPQuestionStep.withAnswerFormat("weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
+RPQuestionStep weightQuestionStep = RPQuestionStep.withAnswerFormat(
+    "weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
 
-RPQuestionStep minutesQuestionStep =
-RPQuestionStep.withAnswerFormat("minutesQuestionStepID", "How many minutes do you spend practicing a week?", minutesIntegerAnswerFormat);
+RPQuestionStep minutesQuestionStep = RPQuestionStep.withAnswerFormat(
+    "minutesQuestionStepID",
+    "How many minutes do you spend practicing a week?",
+    minutesIntegerAnswerFormat);
 
-RPFormStep formStep = RPFormStep.withTitle("formstepID",[instrumentChoiceQuestionStep, minutesQuestionStep], "Questions about music");
+RPFormStep formStep = RPFormStep.withTitle(
+    "formstepID",
+    [instrumentChoiceQuestionStep, minutesQuestionStep],
+    "Questions about music");
 
 RPCompletionStep completionStep = RPCompletionStep("completionID")
   ..title = "Finished"
@@ -63,5 +93,14 @@ RPCompletionStep completionStep = RPCompletionStep("completionID")
 
 RPOrderedTask surveyTask = RPOrderedTask(
   "surveyTaskID",
-  [singleChoiceQuestionStep, happinessChoiceQuestionStep, weightQuestionStep, formStep, completionStep],
+  [
+    timeOfDayQuestionStep,
+    dateAndTimeQuestionStep,
+    dateQuestionStep,
+    //singleChoiceQuestionStep,
+    //happinessChoiceQuestionStep,
+    //weightQuestionStep,
+    //formStep,
+    completionStep
+  ],
 );
