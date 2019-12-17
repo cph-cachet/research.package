@@ -21,6 +21,7 @@ part 'src/model/answerformat/RPAnswerFormat.dart';
 part 'src/model/answerformat/RPIntegerAnswerFormat.dart';
 part 'src/model/answerformat/RPChoiceAnswerFormat.dart';
 part 'src/model/answerformat/RPFormAnswerFormat.dart';
+part 'src/model/answerformat/RPSliderAnswerFormat.dart';
 
 part 'src/model/consent/RPConsentDocument.dart';
 part 'src/model/consent/RPConsentSection.dart';

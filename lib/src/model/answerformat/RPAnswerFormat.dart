@@ -43,6 +43,7 @@ enum QuestionType {
   TimeInterval,
   Duration,
   Location,
+
   /// The AnswerFormat used by [RPFormStep].
   /// It's only for indication that the step is not an [RPQuestionStep] but a Form Step which includes multiple items.
   /// [RPFormStep] knows automatically that this is it's QuestionType. There's no need of specifying it.
