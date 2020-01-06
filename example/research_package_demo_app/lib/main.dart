@@ -9,9 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-//      theme: ThemeData.dark(),
+      theme: ThemeData.light().copyWith(primaryColor: Colors.deepPurple, accentColor: Colors.deepOrangeAccent),
       title: 'Research Package Demo',
       home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
