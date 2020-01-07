@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -52,7 +52,6 @@
     <h5>research_package_model library</h5>
     <ol>
       <li class="section-title"><a href="research_package_model/research_package_model-library.html#classes">Classes</a></li>
-      <li><a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></li>
       <li><a href="research_package_model/BlocTask-class.html">BlocTask</a></li>
       <li><a href="research_package_model/CanSaveResult-class.html">CanSaveResult</a></li>
       <li><a href="research_package_model/RPAnswerFormat-class.html">RPAnswerFormat</a></li>
@@ -69,7 +68,6 @@
       <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
       <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
-      <li><a href="research_package_model/RPQuestionBodyResult-class.html">RPQuestionBodyResult</a></li>
       <li><a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a></li>
       <li><a href="research_package_model/RPResult-class.html">RPResult</a></li>
       <li><a href="research_package_model/RPSignatureResult-class.html">RPSignatureResult</a></li>
@@ -82,8 +80,8 @@
     
     
     
+    
       <li class="section-title"><a href="research_package_model/research_package_model-library.html#properties">Properties</a></li>
-      <li><a href="research_package_model/blocQuestion.html">blocQuestion</a></li>
       <li><a href="research_package_model/blocTask.html">blocTask</a></li>
     
     
@@ -132,18 +130,18 @@
 </dd>
         <dt id="sendStatus" class="property">
           <span class="name"><a href="research_package_model/BlocTask/sendStatus.html">sendStatus</a></span>
-          <span class="signature">&#8594; dynamic Function<span class="signature">(<span class="parameter" id="sendStatus-param-"><span class="type-annotation"><a href="research_package_model/StepStatus-class.html">StepStatus</a></span></span>)</span></span>         
+          <span class="signature">&#8594; dynamic Function<span class="signature">(<span class="parameter" id="param-"><span class="type-annotation"><a href="research_package_model/StepStatus-class.html">StepStatus</a></span></span>)</span></span>         
         </dt>
         <dd>
-          
+          The function to update the current status of the question <a href="research_package_model/BlocTask/sendStatus.html">[...]</a>
                   <div class="features">read-only</div>
 </dd>
         <dt id="sendStepResult" class="property">
           <span class="name"><a href="research_package_model/BlocTask/sendStepResult.html">sendStepResult</a></span>
-          <span class="signature">&#8594; dynamic Function<span class="signature">(<span class="parameter" id="sendStepResult-param-"><span class="type-annotation"><a href="research_package_model/RPStepResult-class.html">RPStepResult</a></span></span>)</span></span>         
+          <span class="signature">&#8594; dynamic Function<span class="signature">(<span class="parameter" id="param-"><span class="type-annotation"><a href="research_package_model/RPStepResult-class.html">RPStepResult</a></span></span>)</span></span>         
         </dt>
         <dd>
-          
+          The function to send the latest result of the step to the task <a href="research_package_model/BlocTask/sendStepResult.html">[...]</a>
                   <div class="features">read-only</div>
 </dd>
         <dt id="stepResult" class="property">
@@ -151,7 +149,7 @@
           <span class="signature">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="research_package_model/RPStepResult-class.html">RPStepResult</a></span>&gt;</span></span>         
         </dt>
         <dd>
-          
+          The stream communicating the latest result of the current step
                   <div class="features">read-only</div>
 </dd>
         <dt id="stepStatus" class="property">
@@ -159,7 +157,7 @@
           <span class="signature">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="research_package_model/StepStatus-class.html">StepStatus</a></span>&gt;</span></span>         
         </dt>
         <dd>
-          
+          The stream conveying the current step status
                   <div class="features">read-only</div>
 </dd>
         <dt id="taskProgress" class="property">
@@ -167,15 +165,16 @@
           <span class="signature">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="research_package_model/RPTaskProgress-class.html">RPTaskProgress</a></span>&gt;</span></span>         
         </dt>
         <dd>
-          
+          The stream having the latest progress of the task
                   <div class="features">read-only</div>
 </dd>
         <dt id="updateTaskProgress" class="property">
           <span class="name"><a href="research_package_model/BlocTask/updateTaskProgress.html">updateTaskProgress</a></span>
-          <span class="signature">&#8594; dynamic Function<span class="signature">(<span class="parameter" id="updateTaskProgress-param-"><span class="type-annotation"><a href="research_package_model/RPTaskProgress-class.html">RPTaskProgress</a></span></span>)</span></span>         
+          <span class="signature">&#8594; dynamic Function<span class="signature">(<span class="parameter" id="param-"><span class="type-annotation"><a href="research_package_model/RPTaskProgress-class.html">RPTaskProgress</a></span></span>)</span></span>         
         </dt>
         <dd>
-          
+          The function to update the task progress. The task progress is shown in the appbar on top of the screen.
+It shows how many questions are there in total and where the participant stands in the process so far.
                   <div class="features">read-only</div>
 </dd>
         <dt id="hashCode" class="property inherited">
@@ -252,6 +251,7 @@
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="research_package_model/BlocTask-class.html#constructors">Constructors</a></li>
       <li><a href="research_package_model/BlocTask/BlocTask.html">BlocTask</a></li>
     
@@ -278,6 +278,7 @@
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -285,10 +286,11 @@
 
 <footer>
   <span class="no-break">
-    research_package 0.0.4
+    research_package
+      0.1.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -296,7 +298,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

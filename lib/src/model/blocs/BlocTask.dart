@@ -9,14 +9,31 @@ class BlocTask {
   final _taskProgressController = BehaviorSubject<RPTaskProgress>();
 
   //Add data to stream
+
+  /// The function to update the current status of the question
+  ///
+  /// Based on the status the task will navigate to the next question and manage the result of the question
   Function(StepStatus) get sendStatus => _stepStatusController.sink.add;
+
+  /// The function to send the latest result of the step to the task
+  ///
+  /// Usually it's called as part of the [createAndSendResult] implementation in those classes which are
+  /// implementing the [CanSaveResult] abstract class
   Function(RPStepResult) get sendStepResult => _stepResultController.add;
+
+  /// The function to update the task progress. The task progress is shown in the appbar on top of the screen.
+  /// It shows how many questions are there in total and where the participant stands in the process so far.
   Function(RPTaskProgress) get updateTaskProgress => _taskProgressController.add;
 
   //Retrieve data from stream
-  //TODO: .transform(StreamTransformer validator) do we need that?
+
+  /// The stream conveying the current step status
   Stream<StepStatus> get stepStatus => _stepStatusController.stream;
+
+  /// The stream communicating the latest result of the current step
   Stream<RPStepResult> get stepResult => _stepResultController.stream;
+
+  /// The stream having the latest progress of the task
   Stream<RPTaskProgress> get taskProgress => _taskProgressController.stream;
 
   // Other stream properties

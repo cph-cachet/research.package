@@ -49,7 +49,7 @@ part 'src/model/Abstracts.dart';
 
 // BLoCs
 part 'src/model/blocs/BlocTask.dart';
-part 'src/model/blocs/BlocQuestion.dart';
+//part 'src/model/blocs/BlocQuestion.dart';
 
 // JSON
 part 'model.g.dart';

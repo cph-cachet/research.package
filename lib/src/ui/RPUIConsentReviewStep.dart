@@ -335,7 +335,8 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       ),
       persistentFooterButtons: <Widget>[
         RaisedButton(
-//          color: Theme.of(context).accentColor,
+          color: Theme.of(context).accentColor,
+          textColor: Colors.white,
           onPressed: (_isNameFilled && _isSignatureAdded)
               ? () {
                   if (widget._consentSignature.requiresSignatureImage) {

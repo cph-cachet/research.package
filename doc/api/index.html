@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="generator" content="made with love by dartdoc 0.28.2">
+  <meta name="generator" content="made with love by dartdoc 0.29.1">
   <meta name="description" content="research_package API docs, for the Dart programming language.">
   <title>research_package - Dart API docs</title>
 
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -61,8 +61,13 @@
             <li class="section-subitem"><a href="dart-math/dart-math-library.html">dart:math</a></li>
             <li class="section-subitem"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></li>
           <li class="section-subtitle">VM</li>
+            <li class="section-subitem"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></li>
             <li class="section-subitem"><a href="dart-io/dart-io-library.html">dart:io</a></li>
             <li class="section-subitem"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></li>
+          <li class="section-subtitle">Web</li>
+            <li class="section-subitem"><a href="dart-html/dart-html-library.html">dart:html</a></li>
+            <li class="section-subitem"><a href="dart-js/dart-js-library.html">dart:js</a></li>
+            <li class="section-subitem"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></li>
     </ol>
   </div>
 
@@ -72,33 +77,61 @@
 <p><a href="https://pub.dartlang.org/packages/research_package"><img src="https://img.shields.io/pub/v/research_package.svg" alt="pub package"></a></p>
 <p>This is a Flutter package implementing support for surveys and obtaining informed consent containing models, UI elements and screens. 
 The motivation is coming from two similar native libraries <a href="http://researchstack.org/">ResearchStack</a> and <a href="http://researchkit.org/">ResearchKit</a>.</p>
-<p>The main modules of the above mentioned libraries are:</p><ul><li>Consent - <a href="http://researchkit.org/docs/docs/InformedConsent/InformedConsent.html">How it's done in ResearchKit</a> - Implemented</li><li>Survey - <a href="http://researchkit.org/docs/docs/Survey/CreatingSurveys.html">How it's done in ResearchKit</a> - Implemented</li><li>Active Task - <a href="http://researchkit.org/docs/docs/ActiveTasks/ActiveTasks.html">How it's done in ResearchKit</a> - Can be implemented later with the help of flutter <a href="https://github.com/cph-cachet/flutter-plugins">plugins</a> by CACHET.</li></ul>
+<p>The main modules of the above mentioned libraries are:</p>
+<ul>
+<li>Consent - <a href="http://researchkit.org/docs/docs/InformedConsent/InformedConsent.html">How it's done in ResearchKit</a> - Implemented</li>
+<li>Survey - <a href="http://researchkit.org/docs/docs/Survey/CreatingSurveys.html">How it's done in ResearchKit</a> - Implemented</li>
+<li>Active Task - <a href="http://researchkit.org/docs/docs/ActiveTasks/ActiveTasks.html">How it's done in ResearchKit</a> - Can be implemented later with the help of flutter <a href="https://github.com/cph-cachet/flutter-plugins">plugins</a> by CACHET.</li>
+</ul>
 <h2 id="getting-started">Getting Started</h2>
 <p>Research Package is published to Pub: <a href="https://pub.dartlang.org/packages/research_package"><img src="https://img.shields.io/pub/v/research_package.svg" alt="pub package"></a> </p>
-<p>You can start using it by adding it to your dependecies.</p>
+<p>You can start using it by adding it to your dependencies.</p>
 <p>After you run the <code>flutter packages get</code> command you are able to import and start using Research Package. With the following line you have access both to the Model and the UI part of the package.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:research_package/model.dart';
 import 'package:research_package/ui.dart';
 </code></pre>
 <p>Remember, that objects starting with <code>RP</code> are part of the Model (like <code>RPConsentDocument</code>) while those which start with <code>RPUI</code> are part of the UI library (like <code>RPUIVisualConsentStep</code>).</p>
+<h2 id="example-application">Example application</h2>
+<p>To get an overview of Research Package's features please have a look at the example application available <a href="https://github.com/cph-cachet/research.package/tree/master/example">in this folder</a>.</p>
 <h2 id="similarity-to-researchkit-and-researchstack">Similarity to ResearchKit and ResearchStack</h2>
 <p>Research Package is clearly similar to these two existent framework. A goal with the package was to help developers enjoy the same features with Flutter's cross-platform framework. 
 The names, functionalities and most of the logic are similar or identical to the previously mentioned two framework. This way we believe that the transition for those who have used them before will be easier and smoother.</p>
 <h2 id="current-stage">Current stage</h2>
-<p>The project is work in progress. New Answer Formats are being added to the survey modul of the framework constanly. 
-The available Answer Formats are the following at the moment:</p><ul><li>Single Choice</li><li>Multiple Choice</li><li>Integer</li></ul>
+<p>The project is work in progress. New Answer Formats are being added to the survey module of the framework constanly. 
+The available Answer Formats are the following at the moment:</p>
+<ul>
+<li>Single Choice</li>
+<li>Multiple Choice</li>
+<li>Integer</li>
+</ul>
 <h2 id="use-cases">Use Cases</h2>
 <p>One of the goals for the package was to make it capable of handling a <a href="https://www.psykiatri-regionh.dk/who-5/Documents/WHO5_English.pdf">WHO5</a> survey. As an example at this point Research Package can obtain the informed consent from the participant, show the WHO5 survey questions and collect the results.</p>
 <h3 id="naming">Naming</h3>
 <p>We are following Apple's pattern when it comes to naming. There's a prefix ORK (Open Research Kit) before the names of classes, types etc. in ResearchKit, so our names are starting with the RP prefix which stands for Research Package.</p>
 <p>For UI widgets we are using the RPUI (Research Package UI) prefix.</p>
 <h3 id="useful-links">Useful Links</h3>
-<p>In order to familiarize with the Framework and potentially extend it, it's might worth to have a look at these links about Research Kit and Research Stack.  </p><ul><li>
-<p>ResearchKit</p><ul><li><a href="http://researchkit.org/docs/docs/Survey/CreatingSurveys.html">Official Tutorial on how to use ResearchKit in ObjectiveC</a>
+<p>In order to familiarize with the Framework and potentially extend it, it's might worth to have a look at these links about Research Kit and Research Stack.  </p>
+<ul>
+<li>
+<p>ResearchKit</p>
+<ul>
+<li><a href="http://researchkit.org/docs/docs/Survey/CreatingSurveys.html">Official Tutorial on how to use ResearchKit in ObjectiveC</a>
 You can get a good understading of the flow and the basic concepts.
-Also there's a useful presentation of the different AnswerFormats.</li><li><a href="http://researchkit.org/docs/hierarchy.html">Hierarchy of objects in ResearchKit</a>
-This is a good representation of a possible file/class hierarchy for ResearchPackage.</li><li><a href="https://www.raywenderlich.com/1820-researchkit-tutorial-with-swift-getting-started">Tutorial on how to use ResearchKit in Swift</a></li><li><a href="https://github.com/ResearchKit/ResearchKit/tree/master/samples">Sample Apps for ResearchKit in Swift</a></li></ul></li><li>
-<p>ResearchStack</p><ul><li><a href="https://github.com/ResearchStack/SampleApp">Sample App for ResearchStack</a></li><li><a href="https://www.raywenderlich.com/637-researchstack-tutorial-getting-started">Tutorial on how to use ResearchStack in Java</a></li></ul></li></ul>
+Also there's a useful presentation of the different AnswerFormats.</li>
+<li><a href="http://researchkit.org/docs/hierarchy.html">Hierarchy of objects in ResearchKit</a>
+This is a good representation of a possible file/class hierarchy for ResearchPackage.</li>
+<li><a href="https://www.raywenderlich.com/1820-researchkit-tutorial-with-swift-getting-started">Tutorial on how to use ResearchKit in Swift</a></li>
+<li><a href="https://github.com/ResearchKit/ResearchKit/tree/master/samples">Sample Apps for ResearchKit in Swift</a></li>
+</ul>
+</li>
+<li>
+<p>ResearchStack</p>
+<ul>
+<li><a href="https://github.com/ResearchStack/SampleApp">Sample App for ResearchStack</a></li>
+<li><a href="https://www.raywenderlich.com/637-researchstack-tutorial-getting-started">Tutorial on how to use ResearchStack in Java</a></li>
+</ul>
+</li>
+</ul>
       </section>
       
         <section class="summary">
@@ -117,7 +150,7 @@ This is a good representation of a possible file/class hierarchy for ResearchPac
 Contains the "building blocks" for creating surveys and obtaining informed consents.
 Holds the different types of result classes.
 Also responsible for the streams and BLoC classes to provide communication channels
-between different parts of the package. (<a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a>, <a href="research_package_model/BlocTask-class.html">BlocTask</a>)
+between different parts of the package. (<code>BlocQuestion</code>, <a href="research_package_model/BlocTask-class.html">BlocTask</a>)
 For the UI representations of the classes visit the <a href="research_package_ui/research_package_ui-library.html">research_package_ui</a> library.
             </dd>            <dt id="research_package_ui">
               <span class="name"><a href="research_package_ui/research_package_ui-library.html">research_package_ui</a></span>             
@@ -175,7 +208,12 @@ and other core functionality for every Dart program. <a href="dart-core/dart-cor
                 Lists that efficiently handle fixed sized data
 (for example, unsigned 8 byte integers) and SIMD numeric types. <a href="dart-typed_data/dart-typed_data-library.html">[...]</a>
               </dd>            <h3>VM</h3>
-              <dt id="dart:io">
+              <dt id="dart:ffi">
+                <span class="name"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></span>               
+              </dt>
+              <dd>
+                Foreign Function Interface for interoperability with the C programming language. <a href="dart-ffi/dart-ffi-library.html">[...]</a>
+              </dd>              <dt id="dart:io">
                 <span class="name"><a href="dart-io/dart-io-library.html">dart:io</a></span>               
               </dt>
               <dd>
@@ -188,6 +226,27 @@ and other core functionality for every Dart program. <a href="dart-core/dart-cor
 independent workers that are similar to threads
 but don't share memory,
 communicating only via messages. <a href="dart-isolate/dart-isolate-library.html">[...]</a>
+              </dd>            <h3>Web</h3>
+              <dt id="dart:html">
+                <span class="name"><a href="dart-html/dart-html-library.html">dart:html</a></span>               
+              </dt>
+              <dd>
+                HTML elements and other resources for web-based applications that need to
+interact with the browser and the DOM (Document Object Model). <a href="dart-html/dart-html-library.html">[...]</a>
+              </dd>              <dt id="dart:js">
+                <span class="name"><a href="dart-js/dart-js-library.html">dart:js</a></span>               
+              </dt>
+              <dd>
+                Low-level support for interoperating with JavaScript. <a href="dart-js/dart-js-library.html">[...]</a>
+              </dd>              <dt id="dart:js_util">
+                <span class="name"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></span>               
+              </dt>
+              <dd>
+                Utility methods to efficiently manipulate typed JSInterop objects in cases
+where the name to call is not known at runtime. You should only use these
+methods when the same effect cannot be achieved with @JS annotations.
+These methods would be extension methods on JSObject if Dart supported
+extension methods.
               </dd>          </dl>
         </section>
 
@@ -200,10 +259,11 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 
 <footer>
   <span class="no-break">
-    research_package 0.0.4
+    research_package
+      0.1.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -211,7 +271,7 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

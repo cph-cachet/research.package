@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -64,8 +64,13 @@
             <li class="section-subitem"><a href="dart-math/dart-math-library.html">dart:math</a></li>
             <li class="section-subitem"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></li>
           <li class="section-subtitle">VM</li>
+            <li class="section-subitem"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></li>
             <li class="section-subitem"><a href="dart-io/dart-io-library.html">dart:io</a></li>
             <li class="section-subitem"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></li>
+          <li class="section-subtitle">Web</li>
+            <li class="section-subitem"><a href="dart-html/dart-html-library.html">dart:html</a></li>
+            <li class="section-subitem"><a href="dart-js/dart-js-library.html">dart:js</a></li>
+            <li class="section-subitem"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></li>
     </ol>
   </div>
 
@@ -111,6 +116,7 @@ immutable.
         </dd>
       </dl>
     </section>
+
 
 
     <section class="summary offset-anchor" id="constants">
@@ -241,7 +247,7 @@ immutable.
                   
 </dd>
         <dt id="atan2" class="callable">
-          <span class="name"><a href="dart-math/atan2.html">atan2</a></span><span class="signature">(<wbr><span class="parameter" id="atan2-param-a"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">a</span>, </span> <span class="parameter" id="atan2-param-b"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">b</span></span>)
+          <span class="name"><a href="dart-math/atan2.html">atan2</a></span><span class="signature">(<wbr><span class="parameter" id="atan2-param-a"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">a</span></span> <span class="parameter" id="atan2-param-b"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">b</span></span>)
             <span class="returntype parameter">&#8594; <a href="dart-core/double-class.html">double</a></span>
           </span>
                   </dt>
@@ -278,7 +284,7 @@ to the power <code>x</code>. <a href="dart-math/exp.html">[...]</a>
                   
 </dd>
         <dt id="max" class="callable">
-          <span class="name"><a href="dart-math/max.html">max</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="dart-core/num-class.html">num</a></span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="max-param-a"><span class="type-annotation">T</span> <span class="parameter-name">a</span>, </span> <span class="parameter" id="max-param-b"><span class="type-annotation">T</span> <span class="parameter-name">b</span></span>)
+          <span class="name"><a href="dart-math/max.html">max</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="dart-core/num-class.html">num</a></span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="max-param-a"><span class="type-annotation">T</span> <span class="parameter-name">a</span></span> <span class="parameter" id="max-param-b"><span class="type-annotation">T</span> <span class="parameter-name">b</span></span>)
             <span class="returntype parameter">&#8594; T</span>
           </span>
                   </dt>
@@ -287,7 +293,7 @@ to the power <code>x</code>. <a href="dart-math/exp.html">[...]</a>
                   
 </dd>
         <dt id="min" class="callable">
-          <span class="name"><a href="dart-math/min.html">min</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="dart-core/num-class.html">num</a></span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="min-param-a"><span class="type-annotation">T</span> <span class="parameter-name">a</span>, </span> <span class="parameter" id="min-param-b"><span class="type-annotation">T</span> <span class="parameter-name">b</span></span>)
+          <span class="name"><a href="dart-math/min.html">min</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="dart-core/num-class.html">num</a></span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="min-param-a"><span class="type-annotation">T</span> <span class="parameter-name">a</span></span> <span class="parameter" id="min-param-b"><span class="type-annotation">T</span> <span class="parameter-name">b</span></span>)
             <span class="returntype parameter">&#8594; T</span>
           </span>
                   </dt>
@@ -296,7 +302,7 @@ to the power <code>x</code>. <a href="dart-math/exp.html">[...]</a>
                   
 </dd>
         <dt id="pow" class="callable">
-          <span class="name"><a href="dart-math/pow.html">pow</a></span><span class="signature">(<wbr><span class="parameter" id="pow-param-x"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">x</span>, </span> <span class="parameter" id="pow-param-exponent"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">exponent</span></span>)
+          <span class="name"><a href="dart-math/pow.html">pow</a></span><span class="signature">(<wbr><span class="parameter" id="pow-param-x"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">x</span></span> <span class="parameter" id="pow-param-exponent"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">exponent</span></span>)
             <span class="returntype parameter">&#8594; <a href="dart-core/num-class.html">num</a></span>
           </span>
                   </dt>
@@ -350,6 +356,7 @@ value. <a href="dart-math/sqrt.html">[...]</a>
       <li><a href="dart-math/Rectangle-class.html">Rectangle</a></li>
     
     
+    
       <li class="section-title"><a href="dart-math/dart-math-library.html#constants">Constants</a></li>
       <li><a href="dart-math/e-constant.html">e</a></li>
       <li><a href="dart-math/ln2-constant.html">ln2</a></li>
@@ -385,10 +392,11 @@ value. <a href="dart-math/sqrt.html">[...]</a>
 
 <footer>
   <span class="no-break">
-    research_package 0.0.4
+    research_package
+      0.1.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -396,7 +404,7 @@ value. <a href="dart-math/sqrt.html">[...]</a>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

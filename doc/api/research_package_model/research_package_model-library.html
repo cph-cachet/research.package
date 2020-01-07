@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -64,8 +64,13 @@
             <li class="section-subitem"><a href="dart-math/dart-math-library.html">dart:math</a></li>
             <li class="section-subitem"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></li>
           <li class="section-subtitle">VM</li>
+            <li class="section-subitem"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></li>
             <li class="section-subitem"><a href="dart-io/dart-io-library.html">dart:io</a></li>
             <li class="section-subitem"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></li>
+          <li class="section-subtitle">Web</li>
+            <li class="section-subitem"><a href="dart-html/dart-html-library.html">dart:html</a></li>
+            <li class="section-subitem"><a href="dart-js/dart-js-library.html">dart:js</a></li>
+            <li class="section-subitem"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></li>
     </ol>
   </div>
 
@@ -77,7 +82,7 @@
 Contains the "building blocks" for creating surveys and obtaining informed consents.
 Holds the different types of result classes.
 Also responsible for the streams and BLoC classes to provide communication channels
-between different parts of the package. (<a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a>, <a href="research_package_model/BlocTask-class.html">BlocTask</a>)
+between different parts of the package. (<code>BlocQuestion</code>, <a href="research_package_model/BlocTask-class.html">BlocTask</a>)
 For the UI representations of the classes visit the <a href="research_package_ui/research_package_ui-library.html">research_package_ui</a> library.</p>
     </section>
     
@@ -85,12 +90,6 @@ For the UI representations of the classes visit the <a href="research_package_ui
       <h2>Classes</h2>
 
       <dl>
-        <dt id="BlocQuestion">
-          <span class="name "><a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></span>         
-        </dt>
-        <dd>
-          The BLoC file for the communication between the question container <a href="research_package_ui/RPUIQuestionStep-class.html">RPUIQuestionStep</a> and the question body <a href="research_package_model/BlocQuestion-class.html">[...]</a>
-        </dd>
         <dt id="BlocTask">
           <span class="name "><a href="research_package_model/BlocTask-class.html">BlocTask</a></span>         
         </dt>
@@ -189,12 +188,6 @@ Usually it is used as the first step in a Task.
         <dd>
           
         </dd>
-        <dt id="RPQuestionBodyResult">
-          <span class="name "><a href="research_package_model/RPQuestionBodyResult-class.html">RPQuestionBodyResult</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>         
-        </dt>
-        <dd>
-          The result which the Question Body is sending to it's container
-        </dd>
         <dt id="RPQuestionStep">
           <span class="name "><a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a></span>         
         </dt>
@@ -254,18 +247,11 @@ Usually it is used as the first step in a Task.
 
 
 
+
     <section class="summary offset-anchor" id="properties">
       <h2>Properties</h2>
 
       <dl class="properties">
-        <dt id="blocQuestion" class="property">
-          <span class="name"><a href="research_package_model/blocQuestion.html">blocQuestion</a></span>
-          <span class="signature">&#8594; <a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></span>         
-        </dt>
-        <dd>
-          The singleton object of the question BLoC class which can be accessed throughout Research Package.
-                  <div class="features">final</div>
-</dd>
         <dt id="blocTask" class="property">
           <span class="name"><a href="research_package_model/blocTask.html">blocTask</a></span>
           <span class="signature">&#8594; <a href="research_package_model/BlocTask-class.html">BlocTask</a></span>         
@@ -317,7 +303,6 @@ Usually it is used as the first step in a Task.
     <h5>research_package_model library</h5>
     <ol>
       <li class="section-title"><a href="research_package_model/research_package_model-library.html#classes">Classes</a></li>
-      <li><a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></li>
       <li><a href="research_package_model/BlocTask-class.html">BlocTask</a></li>
       <li><a href="research_package_model/CanSaveResult-class.html">CanSaveResult</a></li>
       <li><a href="research_package_model/RPAnswerFormat-class.html">RPAnswerFormat</a></li>
@@ -334,7 +319,6 @@ Usually it is used as the first step in a Task.
       <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
       <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
-      <li><a href="research_package_model/RPQuestionBodyResult-class.html">RPQuestionBodyResult</a></li>
       <li><a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a></li>
       <li><a href="research_package_model/RPResult-class.html">RPResult</a></li>
       <li><a href="research_package_model/RPSignatureResult-class.html">RPSignatureResult</a></li>
@@ -347,8 +331,8 @@ Usually it is used as the first step in a Task.
     
     
     
+    
       <li class="section-title"><a href="research_package_model/research_package_model-library.html#properties">Properties</a></li>
-      <li><a href="research_package_model/blocQuestion.html">blocQuestion</a></li>
       <li><a href="research_package_model/blocTask.html">blocTask</a></li>
     
     
@@ -366,10 +350,11 @@ Usually it is used as the first step in a Task.
 
 <footer>
   <span class="no-break">
-    research_package 0.0.4
+    research_package
+      0.1.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -377,7 +362,7 @@ Usually it is used as the first step in a Task.
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

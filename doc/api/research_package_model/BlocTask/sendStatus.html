@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,29 +53,32 @@
     
     <h5>BlocTask class</h5>
     <ol>
-      <li class="section-title"><a href="research_package_model/BlocTask-class.html#constructors">Constructors</a></li>
-      <li><a href="research_package_model/BlocTask/BlocTask.html">BlocTask</a></li>
     
-      <li class="section-title">
-        <a href="research_package_model/BlocTask-class.html#instance-properties">Properties</a>
-      </li>
-      <li><a href="research_package_model/BlocTask/lastProgressValue.html">lastProgressValue</a></li>
-      <li><a href="research_package_model/BlocTask/sendStatus.html">sendStatus</a></li>
-      <li><a href="research_package_model/BlocTask/sendStepResult.html">sendStepResult</a></li>
-      <li><a href="research_package_model/BlocTask/stepResult.html">stepResult</a></li>
-      <li><a href="research_package_model/BlocTask/stepStatus.html">stepStatus</a></li>
-      <li><a href="research_package_model/BlocTask/taskProgress.html">taskProgress</a></li>
-      <li><a href="research_package_model/BlocTask/updateTaskProgress.html">updateTaskProgress</a></li>
-      <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
+        <li class="section-title"><a href="research_package_model/BlocTask-class.html#constructors">Constructors</a></li>
+        <li><a href="research_package_model/BlocTask/BlocTask.html">BlocTask</a></li>
     
-      <li class="section-title"><a href="research_package_model/BlocTask-class.html#instance-methods">Methods</a></li>
-      <li><a href="research_package_model/BlocTask/dispose.html">dispose</a></li>
-      <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+        <li class="section-title">
+            <a href="research_package_model/BlocTask-class.html#instance-properties">Properties</a>
+        </li>
+        <li><a href="research_package_model/BlocTask/lastProgressValue.html">lastProgressValue</a></li>
+        <li><a href="research_package_model/BlocTask/sendStatus.html">sendStatus</a></li>
+        <li><a href="research_package_model/BlocTask/sendStepResult.html">sendStepResult</a></li>
+        <li><a href="research_package_model/BlocTask/stepResult.html">stepResult</a></li>
+        <li><a href="research_package_model/BlocTask/stepStatus.html">stepStatus</a></li>
+        <li><a href="research_package_model/BlocTask/taskProgress.html">taskProgress</a></li>
+        <li><a href="research_package_model/BlocTask/updateTaskProgress.html">updateTaskProgress</a></li>
+        <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title inherited"><a href="research_package_model/BlocTask-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title"><a href="research_package_model/BlocTask-class.html#instance-methods">Methods</a></li>
+        <li><a href="research_package_model/BlocTask/dispose.html">dispose</a></li>
+        <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="research_package_model/BlocTask-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+    
     
     
     
@@ -89,12 +92,16 @@
         <section id="getter">
         
         <section class="multi-line-signature">
-          <span class="returntype">dynamic Function<span class="signature">(<span class="parameter" id="sendStatus-param-"><span class="type-annotation"><a href="research_package_model/StepStatus-class.html">StepStatus</a></span></span>)</span></span>
+          <span class="returntype">dynamic Function<span class="signature">(<span class="parameter" id="param-"><span class="type-annotation"><a href="research_package_model/StepStatus-class.html">StepStatus</a></span></span>)</span></span>
                   <span class="name ">sendStatus</span>
           
 </section>
         
-                        <section class="summary source-code" id="source">
+                <section class="desc markdown">
+          <p>The function to update the current status of the question</p>
+<p>Based on the status the task will navigate to the next question and manage the result of the question</p>
+        </section>
+                <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
           <pre class="language-dart"><code class="language-dart">Function(StepStatus) get sendStatus =&gt; _stepStatusController.sink.add;</code></pre>
         </section>
@@ -109,10 +116,11 @@
 
 <footer>
   <span class="no-break">
-    research_package 0.0.4
+    research_package
+      0.1.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -120,7 +128,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

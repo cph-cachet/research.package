@@ -83,10 +83,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: SafeArea(
-          child: Image.asset(
+          child: Padding(
+            padding: const EdgeInsets.all(22.0),
+            child: Image.asset(
         "assets/images/cachet.png",
-        height: 50,
-      )),
+        height: 40,
+      ),
+          )),
     );
   }
 }

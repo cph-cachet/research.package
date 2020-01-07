@@ -24,8 +24,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   research_package:
-      git:
-        url: git://github.com/cph-cachet/research.package.git
+    path: /Users/barnabashomola/Developer/CACHET/research.package
+#      git:
+#        url: git://github.com/cph-cachet/research.package.git
 
 dev_dependencies:
   flutter_test:
