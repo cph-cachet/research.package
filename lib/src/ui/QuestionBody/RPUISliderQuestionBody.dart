@@ -28,7 +28,6 @@ class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody> {
               value: value ?? widget.answerFormat.minValue,
               onChanged: (double newValue) {
                 value = newValue;
-                print(value);
                 widget.onResultChange(value);
               },
               min: widget.answerFormat.minValue,

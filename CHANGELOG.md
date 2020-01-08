@@ -1,3 +1,11 @@
+## 0.1.2
+ * Support for new Answer Formats
+   * Slider
+   * Date and Time
+   * Image Choice
+ * `rx_dart` dependency updated to `^0.23.0`
+ * Small bug fixes and documentation update
+
 ## 0.1.1
  * `json_annotation` dependency updated to `^3.0.0`
  * `rx_dart` dependency updated to `^0.22.0`

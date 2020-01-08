@@ -1,7 +1,6 @@
 name: research_package
 description: A Flutter framework for obtaining informed consent, showing surveys and collecting results.
-version: 0.1.1
-author: CACHET Team <cph.cachet@gmail.com>
+version: 0.1.2
 homepage: https://github.com/cph-cachet/research.package
 
 environment:
