@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:research_package/model.dart';
 
 List<RPChoice> timeChoices = [
@@ -25,17 +26,34 @@ List<RPChoice> instruments = [
   RPChoice.withParams("Saxophone", 1),
 ];
 
-RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, timeChoices);
+List<RPImageChoice> images = [
+  RPImageChoice.withParams(
+      Image.asset('assets/images/very-sad.png'), 0, 'Feeling very sad'),
+  RPImageChoice.withParams(
+      Image.asset('assets/images/sad.png'), 0, 'Feeling sad'),
+  RPImageChoice.withParams(
+      Image.asset('assets/images/ok.png'), 0, 'Feeling ok'),
+  RPImageChoice.withParams(
+      Image.asset('assets/images/happy.png'), 0, 'Feeling happy'),
+  RPImageChoice.withParams(
+      Image.asset('assets/images/very-happy.png'), 0, 'Feeling very happy'),
+];
+
+RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(
+    ChoiceAnswerStyle.SingleChoice, timeChoices);
 
 RPChoiceAnswerFormat joyfulActivitiesAnswerFormat =
-    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
+    RPChoiceAnswerFormat.withParams(
+        ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
 
-RPChoiceAnswerFormat instrumentsAnswerFormat =
-RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, instruments);
+RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat.withParams(
+    ChoiceAnswerStyle.MultipleChoice, instruments);
 
-RPIntegerAnswerFormat weightIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 200, "KG");
+RPIntegerAnswerFormat weightIntegerAnswerFormat =
+    RPIntegerAnswerFormat.withParams(0, 200, "KG");
 
-RPIntegerAnswerFormat minutesIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
+RPIntegerAnswerFormat minutesIntegerAnswerFormat =
+    RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
 
 RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   "questionStep1ID",
@@ -43,19 +61,28 @@ RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   timeAnswerFormat,
 );
 
-RPQuestionStep instrumentChoiceQuestionStep =
-RPQuestionStep.withAnswerFormat("instrumentChoiceQuestionStepID", "Which instrument are you playing?", instrumentsAnswerFormat);
+RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+    "instrumentChoiceQuestionStepID",
+    "Which instrument are you playing?",
+    instrumentsAnswerFormat);
 
-RPQuestionStep happinessChoiceQuestionStep =
-    RPQuestionStep.withAnswerFormat("happinessChoiceQuestionStepID", "What makes you happy?", joyfulActivitiesAnswerFormat);
+RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+    "happinessChoiceQuestionStepID",
+    "What makes you happy?",
+    joyfulActivitiesAnswerFormat);
 
-RPQuestionStep weightQuestionStep =
-    RPQuestionStep.withAnswerFormat("weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
+RPQuestionStep weightQuestionStep = RPQuestionStep.withAnswerFormat(
+    "weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
 
-RPQuestionStep minutesQuestionStep =
-RPQuestionStep.withAnswerFormat("minutesQuestionStepID", "How many minutes do you spend practicing a week?", minutesIntegerAnswerFormat);
+RPQuestionStep minutesQuestionStep = RPQuestionStep.withAnswerFormat(
+    "minutesQuestionStepID",
+    "How many minutes do you spend practicing a week?",
+    minutesIntegerAnswerFormat);
 
-RPFormStep formStep = RPFormStep.withTitle("formstepID",[instrumentChoiceQuestionStep, minutesQuestionStep], "Questions about music");
+RPFormStep formStep = RPFormStep.withTitle(
+    "formstepID",
+    [instrumentChoiceQuestionStep, minutesQuestionStep],
+    "Questions about music");
 
 RPCompletionStep completionStep = RPCompletionStep("completionID")
   ..title = "Finished"
@@ -63,5 +90,12 @@ RPCompletionStep completionStep = RPCompletionStep("completionID")
 
 RPOrderedTask surveyTask = RPOrderedTask(
   "surveyTaskID",
-  [singleChoiceQuestionStep, happinessChoiceQuestionStep, weightQuestionStep, formStep, completionStep],
+  [
+    imageChoiceQuestionStep,
+    singleChoiceQuestionStep,
+    happinessChoiceQuestionStep,
+    weightQuestionStep,
+    formStep,
+    completionStep
+  ],
 );
