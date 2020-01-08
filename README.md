@@ -1,12 +1,12 @@
 # Research Package
 [![pub package](https://img.shields.io/pub/v/research_package.svg)](https://pub.dartlang.org/packages/research_package)
 
-This is a Flutter package implementing support for surveys and obtaining informed consent containing models, UI elements and screens. 
-The motivation is coming from two similar native libraries [ResearchStack](http://researchstack.org/) and [ResearchKit](http://researchkit.org/).
+Research Package is a Flutter package for creating surveys and obtaining informed consent containing models, UI elements and screens. 
+The motivation is coming from two similar native libraries [ResearchStack](http://researchstack.org/) on Android and [ResearchKit](http://researchkit.org/) on iOS.
 
-The main modules of the above mentioned libraries are:
-- Consent - [How it's done in ResearchKit](http://researchkit.org/docs/docs/InformedConsent/InformedConsent.html) - Implemented
-- Survey - [How it's done in ResearchKit](http://researchkit.org/docs/docs/Survey/CreatingSurveys.html) - Implemented
+The main modules of the above mentioned libraries are which are also the main features of Research Package:
+- Consent - [How it's done in ResearchKit](http://researchkit.org/docs/docs/InformedConsent/InformedConsent.html) - Implemented in RP
+- Survey - [How it's done in ResearchKit](http://researchkit.org/docs/docs/Survey/CreatingSurveys.html) - Implemented in RP
 - Active Task - [How it's done in ResearchKit](http://researchkit.org/docs/docs/ActiveTasks/ActiveTasks.html) - Can be implemented later with the help of flutter [plugins](https://github.com/cph-cachet/flutter-plugins) by CACHET.
   
 ## Getting Started
@@ -15,18 +15,31 @@ Research Package is published to Pub: [![pub package](https://img.shields.io/pub
 
 You can start using it by adding it to your dependencies.
 
-After you run the `flutter packages get` command you are able to import and start using Research Package. With the following line you have access both to the Model and the UI part of the package.
+After you run `flutter packages get` command you are able to import and start using Research Package. 
+You can import the whole package including the Model and UI libraries:
 
 ```dart
+import 'package:research_package/research_package.dart';
+```
+
+Or with the following lines you can decide which library of the package you want to gain access to:
+
+``` dart
 import 'package:research_package/model.dart';
 import 'package:research_package/ui.dart';
 ```
 
 Remember, that objects starting with `RP` are part of the Model (like `RPConsentDocument`) while those which start with `RPUI` are part of the UI library (like `RPUIVisualConsentStep`).
 
+## Documentation
+
+Visit the website of the project at [researchpackage.org](researchpackage.org) for more information and tutorials.
+
+You can find the API documentation generated for pub [here](https://pub.dev/documentation/research_package/latest/).
+
 ## Example application
 
-To get an overview of Research Package's features please have a look at the example application available [in this folder](https://github.com/cph-cachet/research.package/tree/master/example).
+To get an overview of Research Package's features have a look at the example application [here](https://pub.dev/packages/research_package#-example-tab-).
 
 ## Similarity to ResearchKit and ResearchStack
 
@@ -45,14 +58,9 @@ The available Answer Formats are the following at the moment:
 
 One of the goals for the package was to make it capable of handling a [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO5_English.pdf) survey. As an example at this point Research Package can obtain the informed consent from the participant, show the WHO5 survey questions and collect the results.
 
-### Naming
 
-We are following Apple's pattern when it comes to naming. There's a prefix ORK (Open Research Kit) before the names of classes, types etc. in ResearchKit, so our names are starting with the RP prefix which stands for Research Package.
-
-For UI widgets we are using the RPUI (Research Package UI) prefix.
-
-### Useful Links
-In order to familiarize with the Framework and potentially extend it, it's might worth to have a look at these links about Research Kit and Research Stack.  
+## Useful Links
+In order to familiarize with the framework and potentially extend it, it might worth to have a look at these links about Research Kit and Research Stack.  
 
 - ResearchKit
   - [Official Tutorial on how to use ResearchKit in ObjectiveC](http://researchkit.org/docs/docs/Survey/CreatingSurveys.html)
