@@ -8,6 +8,12 @@
       "languageVersion": "2.2"
     },
     {
+      "name": "analyzer_plugin",
+      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/analyzer_plugin-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "archive",
       "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/archive-2.0.11",
       "packageUri": "lib/",
@@ -33,9 +39,9 @@
     },
     {
       "name": "build",
-      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/build-1.2.0",
+      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/build-1.2.2",
       "packageUri": "lib/",
-      "languageVersion": "2.2"
+      "languageVersion": "2.3"
     },
     {
       "name": "build_config",
@@ -63,7 +69,7 @@
     },
     {
       "name": "build_runner_core",
-      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/build_runner_core-4.1.0",
+      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/build_runner_core-4.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.3"
     },
@@ -75,7 +81,13 @@
     },
     {
       "name": "built_value",
-      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/built_value-6.7.1",
+      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/built_value-6.8.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "built_value_generator",
+      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/built_value_generator-6.8.2",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -135,9 +147,9 @@
     },
     {
       "name": "fixnum",
-      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/fixnum-0.10.9",
+      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/fixnum-0.10.11",
       "packageUri": "lib/",
-      "languageVersion": "2.0"
+      "languageVersion": "2.1"
     },
     {
       "name": "flutter",
@@ -363,7 +375,7 @@
     },
     {
       "name": "signature",
-      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/signature-2.0.0",
+      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/signature-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -471,7 +483,7 @@
     },
     {
       "name": "watcher",
-      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/watcher-0.9.7+12",
+      "rootUri": "file:///Users/barnabashomola/.pub-cache/hosted/pub.dartlang.org/watcher-0.9.7+13",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -500,7 +512,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-01-07T12:37:12.930422Z",
+  "generated": "2020-01-08T14:44:54.393862Z",
   "generator": "pub",
   "generatorVersion": "2.7.0"
 }

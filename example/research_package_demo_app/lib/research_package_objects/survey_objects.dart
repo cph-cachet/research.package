@@ -35,18 +35,37 @@ List<RPImageChoice> images = [
 ];
 
 RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, timeChoices);
+// All types of DateTime answer formats
+RPDateTimeAnswerFormat timeOfDayAnswerFormat =
+    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.TimeOfDay);
+RPDateTimeAnswerFormat dateAndTimeAnswerFormat =
+    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.DateAndTime);
+RPDateTimeAnswerFormat dateAnswerFormat =
+    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
 
 RPChoiceAnswerFormat joyfulActivitiesAnswerFormat =
-    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
+    RPChoiceAnswerFormat.withParams(
+        ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
 
 RPChoiceAnswerFormat instrumentsAnswerFormat =
     RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, instruments);
 
-RPIntegerAnswerFormat weightIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 200, "KG");
+RPIntegerAnswerFormat weightIntegerAnswerFormat =
+    RPIntegerAnswerFormat.withParams(0, 200, "KG");
 
-RPIntegerAnswerFormat minutesIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
+RPIntegerAnswerFormat minutesIntegerAnswerFormat =
+    RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
 
 RPImageChoiceAnswerFormat imageChoiceAnswerFormat = RPImageChoiceAnswerFormat.withParams(images);
+
+RPQuestionStep timeOfDayQuestionStep = RPQuestionStep.withAnswerFormat(
+    'timeOfDayQuestionStepID', 'When did you wake up?', timeOfDayAnswerFormat);
+RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep.withAnswerFormat(
+    'dateAndTimeQuestionStepID',
+    'When did you last eat unhealthy food?',
+    dateAndTimeAnswerFormat);
+RPQuestionStep dateQuestionStep = RPQuestionStep.withAnswerFormat(
+    'dateQuestionStepID', 'When did you last drink alcohol?', dateAnswerFormat);
 
 RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   "questionStep1ID",
@@ -60,8 +79,8 @@ RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
 RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
     "happinessChoiceQuestionStepID", "What makes you happy?", joyfulActivitiesAnswerFormat);
 
-RPQuestionStep weightQuestionStep =
-    RPQuestionStep.withAnswerFormat("weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
+RPQuestionStep weightQuestionStep = RPQuestionStep.withAnswerFormat(
+    "weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
 
 RPQuestionStep minutesQuestionStep = RPQuestionStep.withAnswerFormat(
     "minutesQuestionStepID", "How many minutes do you spend practicing a week?", minutesIntegerAnswerFormat);
@@ -82,6 +101,9 @@ RPCompletionStep completionStep = RPCompletionStep("completionID")
 RPOrderedTask surveyTask = RPOrderedTask(
   "surveyTaskID",
   [
+    timeOfDayQuestionStep,
+    dateAndTimeQuestionStep,
+    dateQuestionStep,
     imageChoiceQuestionStep,
     singleChoiceQuestionStep,
     happinessChoiceQuestionStep,

@@ -22,6 +22,7 @@ part 'src/model/answerformat/RPIntegerAnswerFormat.dart';
 part 'src/model/answerformat/RPChoiceAnswerFormat.dart';
 part 'src/model/answerformat/RPFormAnswerFormat.dart';
 part 'src/model/answerformat/RPImageChoiceAnswerFormat.dart';
+part 'src/model/answerformat/RPDateTimeAnswerFormat.dart';
 
 part 'src/model/consent/RPConsentDocument.dart';
 part 'src/model/consent/RPConsentSection.dart';

@@ -205,6 +205,37 @@ Map<String, dynamic> _$RPImageChoiceToJson(RPImageChoice instance) {
   return val;
 }
 
+RPDateTimeAnswerFormat _$RPDateTimeAnswerFormatFromJson(
+    Map<String, dynamic> json) {
+  return RPDateTimeAnswerFormat()
+    ..questionType =
+        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type'])
+    ..dateTimeAnswerStyle = _$enumDecodeNullable(
+        _$DateTimeAnswerStyleEnumMap, json['date_time_answer_style']);
+}
+
+Map<String, dynamic> _$RPDateTimeAnswerFormatToJson(
+    RPDateTimeAnswerFormat instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('date_time_answer_style',
+      _$DateTimeAnswerStyleEnumMap[instance.dateTimeAnswerStyle]);
+  return val;
+}
+
+const _$DateTimeAnswerStyleEnumMap = {
+  DateTimeAnswerStyle.DateAndTime: 'DateAndTime',
+  DateTimeAnswerStyle.Date: 'Date',
+  DateTimeAnswerStyle.TimeOfDay: 'TimeOfDay',
+};
+
 RPConsentDocument _$RPConsentDocumentFromJson(Map<String, dynamic> json) {
   return RPConsentDocument()
     ..title = json['title'] as String

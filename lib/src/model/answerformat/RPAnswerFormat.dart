@@ -66,12 +66,13 @@ enum ChoiceAnswerStyle {
   MultipleChoice,
 }
 
-//enum DateAnswerStyle {
-//  DateAndTime,
-//  Date,
-//  TimeOfDay,
-//}
-//
+/// For choosing Date, Time or DateAndTime sub-answerformat
+enum DateTimeAnswerStyle {
+  DateAndTime,
+  Date,
+  TimeOfDay,
+}
+
 //enum NumberFormattingStyle {
 //  Default,
 //  Percent

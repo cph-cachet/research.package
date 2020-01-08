@@ -34,3 +34,4 @@ part 'src/ui/RPUIFormStep.dart';
 part 'src/ui/QuestionBody/RPUIIntegerQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIImageChoiceQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';
