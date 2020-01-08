@@ -159,6 +159,33 @@ RPFormAnswerFormat _$RPFormAnswerFormatFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$RPFormAnswerFormatToJson(RPFormAnswerFormat instance) =>
     <String, dynamic>{};
 
+RPSliderAnswerFormat _$RPSliderAnswerFormatFromJson(Map<String, dynamic> json) {
+  return RPSliderAnswerFormat()
+    ..maxValue = (json['max_value'] as num)?.toDouble()
+    ..minValue = (json['min_value'] as num)?.toDouble()
+    ..divisions = json['divisions'] as int
+    ..prefix = json['prefix'] as String
+    ..suffix = json['suffix'] as String;
+}
+
+Map<String, dynamic> _$RPSliderAnswerFormatToJson(
+    RPSliderAnswerFormat instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('max_value', instance.maxValue);
+  writeNotNull('min_value', instance.minValue);
+  writeNotNull('divisions', instance.divisions);
+  writeNotNull('prefix', instance.prefix);
+  writeNotNull('suffix', instance.suffix);
+  return val;
+}
+
 RPImageChoiceAnswerFormat _$RPImageChoiceAnswerFormatFromJson(
     Map<String, dynamic> json) {
   return RPImageChoiceAnswerFormat()

@@ -42,6 +42,10 @@ RPDateTimeAnswerFormat dateAndTimeAnswerFormat =
     RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.DateAndTime);
 RPDateTimeAnswerFormat dateAnswerFormat =
     RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
+// Slider
+RPSliderAnswerFormat sliderAnswerFormat = RPSliderAnswerFormat.withParams(
+    0, 100,
+    divisions: 10, prefix: "\$", suffix: " paid");
 
 RPChoiceAnswerFormat joyfulActivitiesAnswerFormat =
     RPChoiceAnswerFormat.withParams(
@@ -66,6 +70,12 @@ RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep.withAnswerFormat(
     dateAndTimeAnswerFormat);
 RPQuestionStep dateQuestionStep = RPQuestionStep.withAnswerFormat(
     'dateQuestionStepID', 'When did you last drink alcohol?', dateAnswerFormat);
+
+// Slider
+RPQuestionStep sliderQuestionStep = RPQuestionStep.withAnswerFormat(
+    "sliderQuestionsStepID",
+    "What did you pay for insulin?",
+    sliderAnswerFormat);
 
 RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   "questionStep1ID",
@@ -101,6 +111,7 @@ RPCompletionStep completionStep = RPCompletionStep("completionID")
 RPOrderedTask surveyTask = RPOrderedTask(
   "surveyTaskID",
   [
+    sliderQuestionStep,
     timeOfDayQuestionStep,
     dateAndTimeQuestionStep,
     dateQuestionStep,
