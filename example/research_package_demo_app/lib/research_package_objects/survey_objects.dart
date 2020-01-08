@@ -27,33 +27,26 @@ List<RPChoice> instruments = [
 ];
 
 List<RPImageChoice> images = [
-  RPImageChoice.withParams(
-      Image.asset('assets/images/very-sad.png'), 0, 'Feeling very sad'),
-  RPImageChoice.withParams(
-      Image.asset('assets/images/sad.png'), 0, 'Feeling sad'),
-  RPImageChoice.withParams(
-      Image.asset('assets/images/ok.png'), 0, 'Feeling ok'),
-  RPImageChoice.withParams(
-      Image.asset('assets/images/happy.png'), 0, 'Feeling happy'),
-  RPImageChoice.withParams(
-      Image.asset('assets/images/very-happy.png'), 0, 'Feeling very happy'),
+  RPImageChoice.withParams(Image.asset('assets/images/very-sad.png'), 0, 'Feeling very sad'),
+  RPImageChoice.withParams(Image.asset('assets/images/sad.png'), 0, 'Feeling sad'),
+  RPImageChoice.withParams(Image.asset('assets/images/ok.png'), 0, 'Feeling ok'),
+  RPImageChoice.withParams(Image.asset('assets/images/happy.png'), 0, 'Feeling happy'),
+  RPImageChoice.withParams(Image.asset('assets/images/very-happy.png'), 0, 'Feeling very happy'),
 ];
 
-RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(
-    ChoiceAnswerStyle.SingleChoice, timeChoices);
+RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, timeChoices);
 
 RPChoiceAnswerFormat joyfulActivitiesAnswerFormat =
-    RPChoiceAnswerFormat.withParams(
-        ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
+    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
 
-RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat.withParams(
-    ChoiceAnswerStyle.MultipleChoice, instruments);
+RPChoiceAnswerFormat instrumentsAnswerFormat =
+    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, instruments);
 
-RPIntegerAnswerFormat weightIntegerAnswerFormat =
-    RPIntegerAnswerFormat.withParams(0, 200, "KG");
+RPIntegerAnswerFormat weightIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 200, "KG");
 
-RPIntegerAnswerFormat minutesIntegerAnswerFormat =
-    RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
+RPIntegerAnswerFormat minutesIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
+
+RPImageChoiceAnswerFormat imageChoiceAnswerFormat = RPImageChoiceAnswerFormat.withParams(images);
 
 RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   "questionStep1ID",
@@ -62,27 +55,25 @@ RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
 );
 
 RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
-    "instrumentChoiceQuestionStepID",
-    "Which instrument are you playing?",
-    instrumentsAnswerFormat);
+    "instrumentChoiceQuestionStepID", "Which instrument are you playing?", instrumentsAnswerFormat);
 
 RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
-    "happinessChoiceQuestionStepID",
-    "What makes you happy?",
-    joyfulActivitiesAnswerFormat);
+    "happinessChoiceQuestionStepID", "What makes you happy?", joyfulActivitiesAnswerFormat);
 
-RPQuestionStep weightQuestionStep = RPQuestionStep.withAnswerFormat(
-    "weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
+RPQuestionStep weightQuestionStep =
+    RPQuestionStep.withAnswerFormat("weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
 
 RPQuestionStep minutesQuestionStep = RPQuestionStep.withAnswerFormat(
-    "minutesQuestionStepID",
-    "How many minutes do you spend practicing a week?",
-    minutesIntegerAnswerFormat);
+    "minutesQuestionStepID", "How many minutes do you spend practicing a week?", minutesIntegerAnswerFormat);
 
-RPFormStep formStep = RPFormStep.withTitle(
-    "formstepID",
-    [instrumentChoiceQuestionStep, minutesQuestionStep],
-    "Questions about music");
+RPQuestionStep imageChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+  "imageStepID",
+  "Indicate you mood by selecting a picture!",
+  imageChoiceAnswerFormat,
+);
+
+RPFormStep formStep =
+    RPFormStep.withTitle("formstepID", [instrumentChoiceQuestionStep, minutesQuestionStep], "Questions about music");
 
 RPCompletionStep completionStep = RPCompletionStep("completionID")
   ..title = "Finished"
