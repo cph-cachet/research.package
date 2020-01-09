@@ -9,7 +9,7 @@ The main modules of the above mentioned libraries are which are also the main fe
 - Survey - [How it's done in ResearchKit](http://researchkit.org/docs/docs/Survey/CreatingSurveys.html) - Implemented in RP
 - Active Task - [How it's done in ResearchKit](http://researchkit.org/docs/docs/ActiveTasks/ActiveTasks.html) - Can be implemented later with the help of flutter [plugins](https://github.com/cph-cachet/flutter-plugins) by CACHET.
 
-To find out more visit Research Package's website at [researchpackage.org](researchpackage.org).
+To find out more visit [Research Package's website](http://researchpackage.org).
   
 ## Getting Started
 
