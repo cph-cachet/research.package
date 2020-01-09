@@ -9,7 +9,7 @@ The main modules of the above mentioned libraries are which are also the main fe
 - Survey - [How it's done in ResearchKit](http://researchkit.org/docs/docs/Survey/CreatingSurveys.html) - Implemented in RP
 - Active Task - [How it's done in ResearchKit](http://researchkit.org/docs/docs/ActiveTasks/ActiveTasks.html) - Can be implemented later with the help of flutter [plugins](https://github.com/cph-cachet/flutter-plugins) by CACHET.
 
-To find out more visit [Research Package's website](http://researchpackage.org).
+To find out more visit [Research Package's website](https://www.researchpackage.org).
   
 ## Getting Started
 
@@ -35,7 +35,7 @@ Remember, that objects starting with `RP` are part of the Model (like `RPConsent
 
 ## Documentation
 
-Visit the website of the project at [researchpackage.org](researchpackage.org) for more information and tutorials.
+Visit the website of the project at [researchpackage.org](https://www.researchpackage.org) for more information and tutorials.
 
 You can find the API documentation generated for pub [here](https://pub.dev/documentation/research_package/latest/).
 
