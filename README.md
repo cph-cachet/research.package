@@ -60,6 +60,13 @@ The available Answer Formats are the following at the moment:
 
 One of the goals for the package was to make it capable of handling a [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO5_English.pdf) survey. As an example at this point Research Package can obtain the informed consent from the participant, show the WHO5 survey questions and collect the results.
 
+## Who is backing this project?
+
+Research Package is made by [CACHET - Copenhagen Center for Health Technology](http://www.cachet.dk/).
+
+## How can I contribute?
+
+We are more than happy to take contributions and feedback. Use the [Issues](https://github.com/cph-cachet/research.package/issues) page to file an issue or feature request.
 
 ## Useful Links
 In order to familiarize with the framework and potentially extend it, it might worth to have a look at these links about Research Kit and Research Stack.  
