@@ -219,7 +219,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
   final _lastNameController = TextEditingController();
 
   var _signature = Signature(
-    height: 150,
+    height: 200,
     width: 300,
     backgroundColor: Colors.transparent,
   );
@@ -232,6 +232,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       onPanStart: (e) {
         FocusScope.of(context).requestFocus(new FocusNode());
       },
+      onTap: () {
+        setState(() {
+          if (_signature.isNotEmpty) {
+            _isSignatureAdded = true;
+          }
+        });
+      },
       onPanEnd: (e) {
         setState(() {
           if (_signature.isNotEmpty) {
@@ -241,14 +248,6 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       },
       child: Container(
         child: _signature,
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: Colors.grey,
-              width: 2,
-            ),
-          ),
-        ),
       ),
     );
   }
@@ -300,7 +299,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
             ),
             Padding(
               padding: EdgeInsets.all(24.0),
-              child: _signatureCanvas(),
+              child: Stack(children: [
+                  Positioned(
+                    bottom: 40,
+                    child: Container(height: 2, width: MediaQuery.of(context).size.width * 0.8, color: Colors.grey),
+                  ),
+                _signatureCanvas(),
+              ]),
             ),
             FlatButton(
               child: Text("Clear"),
