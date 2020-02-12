@@ -42,6 +42,9 @@ part 'src/model/task/RPNavigableOrderedTask.dart';
 part 'src/model/task/RPStepNavigationRule.dart';
 part 'src/model/task/RPDirectStepNavigationRule.dart';
 part 'src/model/task/RPPredicateStepNavigationRule.dart';
+part 'src/model/task/RPSkipStepNavigationRule.dart';
+part 'src/model/task/RPStepModifier.dart';
+part 'src/model/task/RPResultPredicate.dart';
 part 'src/model/task/RPTask.dart';
 
 part 'src/model/result/RPResult.dart';

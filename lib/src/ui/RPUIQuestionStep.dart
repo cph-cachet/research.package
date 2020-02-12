@@ -73,7 +73,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
         automaticallyImplyLeading: false,

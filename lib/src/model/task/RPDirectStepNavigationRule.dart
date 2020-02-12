@@ -1,5 +1,6 @@
 part of research_package_model;
 
+// TODO: Documentation
 class RPDirectStepNavigationRule extends RPStepNavigationRule {
   RPDirectStepNavigationRule(this._destinationStepIdentifier);
 

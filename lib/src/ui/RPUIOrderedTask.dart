@@ -87,7 +87,6 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     });
     stepResultSubscription = blocTask.stepResult.listen((stepResult) {
       taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
-//      print("This is the taskresult so far: ${taskResult.results}");
     });
 
     // Getting the first step
@@ -109,7 +108,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Discard results and quit?"),
+          title: Text(consentTask ? "Cancel?" : "Discard results and quit?"),
           actions: <Widget>[
             FlatButton(
               child: Text("NO"),
@@ -118,7 +117,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
             FlatButton(
               child: Text("YES"),
               onPressed: () {
-                // TODO: Do something with the result
+                // TODO: Store the result
                 // Popup dismiss
                 Navigator.of(context).pop();
                 // Exit the Ordered Task
