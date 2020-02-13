@@ -36,46 +36,39 @@ List<RPImageChoice> images = [
 
 RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, timeChoices);
 // All types of DateTime answer formats
-RPDateTimeAnswerFormat timeOfDayAnswerFormat =
-    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.TimeOfDay);
-RPDateTimeAnswerFormat dateAndTimeAnswerFormat =
-    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.DateAndTime);
-RPDateTimeAnswerFormat dateAnswerFormat =
-    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
+RPDateTimeAnswerFormat timeOfDayAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.TimeOfDay);
+RPDateTimeAnswerFormat dateAndTimeAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.DateAndTime);
+RPDateTimeAnswerFormat dateAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
 // Slider
-RPSliderAnswerFormat sliderAnswerFormat = RPSliderAnswerFormat.withParams(
-    0, 100,
-    divisions: 10, prefix: "\$", suffix: " paid");
+RPSliderAnswerFormat sliderAnswerFormat =
+    RPSliderAnswerFormat.withParams(0, 100, divisions: 10, prefix: "\$", suffix: " paid");
 
 RPChoiceAnswerFormat joyfulActivitiesAnswerFormat =
-    RPChoiceAnswerFormat.withParams(
-        ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
+    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
 
 RPChoiceAnswerFormat instrumentsAnswerFormat =
     RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, instruments);
 
-RPIntegerAnswerFormat weightIntegerAnswerFormat =
-    RPIntegerAnswerFormat.withParams(0, 200, "KG");
+RPIntegerAnswerFormat weightIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 200, "KG");
 
-RPIntegerAnswerFormat minutesIntegerAnswerFormat =
-    RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
+RPIntegerAnswerFormat minutesIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
 
 RPImageChoiceAnswerFormat imageChoiceAnswerFormat = RPImageChoiceAnswerFormat.withParams(images);
 
-RPQuestionStep timeOfDayQuestionStep = RPQuestionStep.withAnswerFormat(
-    'timeOfDayQuestionStepID', 'When did you wake up?', timeOfDayAnswerFormat);
+RPQuestionStep timeOfDayQuestionStep =
+    RPQuestionStep.withAnswerFormat('timeOfDayQuestionStepID', 'When did you wake up?', timeOfDayAnswerFormat);
 RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep.withAnswerFormat(
-    'dateAndTimeQuestionStepID',
-    'When did you last eat unhealthy food?',
-    dateAndTimeAnswerFormat);
-RPQuestionStep dateQuestionStep = RPQuestionStep.withAnswerFormat(
-    'dateQuestionStepID', 'When did you last drink alcohol?', dateAnswerFormat);
+    'dateAndTimeQuestionStepID', 'When did you last eat unhealthy food?', dateAndTimeAnswerFormat);
+RPQuestionStep dateQuestionStep =
+    RPQuestionStep.withAnswerFormat('dateQuestionStepID', 'When did you last drink alcohol?', dateAnswerFormat);
 
 // Slider
 RPQuestionStep sliderQuestionStep = RPQuestionStep.withAnswerFormat(
-    "sliderQuestionsStepID",
-    "What did you pay for insulin?",
-    sliderAnswerFormat);
+  "sliderQuestionsStepID",
+  "What did you pay for insulin?",
+  sliderAnswerFormat,
+  optional: true,
+);
 
 RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   "questionStep1ID",
@@ -89,8 +82,8 @@ RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
 RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
     "happinessChoiceQuestionStepID", "What makes you happy?", joyfulActivitiesAnswerFormat);
 
-RPQuestionStep weightQuestionStep = RPQuestionStep.withAnswerFormat(
-    "weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
+RPQuestionStep weightQuestionStep =
+    RPQuestionStep.withAnswerFormat("weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
 
 RPQuestionStep minutesQuestionStep = RPQuestionStep.withAnswerFormat(
     "minutesQuestionStepID", "How many minutes do you spend practicing a week?", minutesIntegerAnswerFormat);
@@ -101,8 +94,12 @@ RPQuestionStep imageChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   imageChoiceAnswerFormat,
 );
 
-RPFormStep formStep =
-    RPFormStep.withTitle("formstepID", [instrumentChoiceQuestionStep, minutesQuestionStep], "Questions about music");
+RPFormStep formStep = RPFormStep.withTitle(
+  "formstepID",
+  [instrumentChoiceQuestionStep, minutesQuestionStep],
+  "Questions about music",
+  optional: true,
+);
 
 RPCompletionStep completionStep = RPCompletionStep("completionID")
   ..title = "Finished"
@@ -112,13 +109,13 @@ RPOrderedTask surveyTask = RPOrderedTask(
   "surveyTaskID",
   [
     sliderQuestionStep,
-    timeOfDayQuestionStep,
-    dateAndTimeQuestionStep,
-    dateQuestionStep,
-    imageChoiceQuestionStep,
-    singleChoiceQuestionStep,
-    happinessChoiceQuestionStep,
-    weightQuestionStep,
+//    timeOfDayQuestionStep,
+//    dateAndTimeQuestionStep,
+//    dateQuestionStep,
+//    imageChoiceQuestionStep,
+//    singleChoiceQuestionStep,
+//    happinessChoiceQuestionStep,
+//    weightQuestionStep,
     formStep,
     completionStep
   ],

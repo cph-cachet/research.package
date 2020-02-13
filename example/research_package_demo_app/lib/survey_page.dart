@@ -13,7 +13,7 @@ class SurveyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RPUIOrderedTask(
+    return RPUITask(
       task: surveyTask,
       onSubmit: (result) {
         resultCallback(result);

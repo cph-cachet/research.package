@@ -36,6 +36,7 @@ class RPStepResult extends RPResult {
     startDate = DateTime.now();
   }
 
+  // TODO: Documentation on skipped question result
   /// The map of results with a String as identifier and generic type as value
   Map<String, dynamic> get results => _results;
 

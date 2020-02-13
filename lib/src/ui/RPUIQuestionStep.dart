@@ -32,6 +32,12 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
     }
   }
 
+  skipQuestion() {
+    blocTask.sendStatus(StepStatus.Finished);
+//    this.currentQuestionBodyResult = RPStep.QUESTION_SKIPPED;
+    createAndSendResult();
+  }
+
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
@@ -72,68 +78,91 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
-        automaticallyImplyLeading: false,
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(8),
-        children: [
-          title(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: stepBody(widget.step.answerFormat),
+      return Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
+          automaticallyImplyLeading: false,
+          actions: <Widget>[
+            IconButton(
+              onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+              icon: Icon(
+                Icons.cancel,
+                color: Theme.of(context).accentColor,
               ),
             ),
+          ],
+        ),
+        body: ListView(
+          padding: EdgeInsets.all(8),
+          children: [
+            Title(widget.step.title),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: stepBody(widget.step.answerFormat),
+                ),
+              ),
+            ),
+            widget.step.optional
+                ? FlatButton(
+                    onPressed: () => skipQuestion(),
+                    child: Text("Skip this question"),
+                  )
+                : Container(),
+          ],
+        ),
+        persistentFooterButtons: <Widget>[
+//        FlatButton(
+//          onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+//          child: Text(
+//            "CANCEL",
+//            style: TextStyle(color: Colors.redAccent),
+//          ),
+//        ),
+          FlatButton(
+            onPressed: () => blocTask.sendStatus(StepStatus.Back), // TODO
+            child: Text(
+              "BACK",
+              style: TextStyle(color: Colors.redAccent),
+            ),
+          ),
+          RaisedButton(
+            color: Theme.of(context).accentColor,
+            textColor: Colors.white,
+            child: Text(
+              "NEXT",
+            ),
+            onPressed: readyToProceed
+                ? () {
+                    // Communicating with the RPUITask Widget
+                    blocTask.sendStatus(StepStatus.Finished);
+                    createAndSendResult();
+                  }
+                : null,
           ),
         ],
-      ),
-      persistentFooterButtons: <Widget>[
-        FlatButton(
-          onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-          child: Text(
-            "CANCEL",
-            style: TextStyle(color: Colors.redAccent),
-          ),
-        ),
-        RaisedButton(
-          color: Theme.of(context).accentColor,
-          textColor: Colors.white,
-          child: Text(
-            "NEXT",
-          ),
-          onPressed: readyToProceed
-              ? () {
-                  // Communicating with the RPUITask Widget
-                  blocTask.sendStatus(StepStatus.Finished);
-                  createAndSendResult();
-                }
-              : null,
-        ),
-      ],
+//      ),
     );
   }
 
-  // Render the title above the questionBody
-  Widget title() {
-    if (widget.step.title != null) {
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
-        child: Text(
-          widget.step.title,
-          style: RPStyles.h2,
-          textAlign: TextAlign.left,
-        ),
-      );
-    }
-    return null;
-  }
+//  // Render the title above the questionBody
+//  Widget title() {
+//    if (widget.step.title != null) {
+//      return Padding(
+//        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+//        child: Text(
+//          widget.step.title,
+//          style: RPStyles.h2,
+//          textAlign: TextAlign.left,
+//        ),
+//      );
+//    }
+//    return null;
+//  }
 
   @override
   void createAndSendResult() {
@@ -142,3 +171,25 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
     blocTask.sendStepResult(result);
   }
 }
+
+// Render the title above the questionBody
+class Title extends StatelessWidget {
+  final String title;
+  Title(this.title);
+
+  @override
+  Widget build(BuildContext context) {
+    if (title != null) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+        child: Text(
+          title,
+          style: RPStyles.h2,
+          textAlign: TextAlign.left,
+        ),
+      );
+    }
+    return Container();
+  }
+}
+

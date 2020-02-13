@@ -64,11 +64,28 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     }
   }
 
+  skipQuestion() {
+    stepResult.results.keys.forEach((key) {
+      (stepResult.results[key] as RPStepResult).setResult(null);
+    });
+    blocTask.sendStatus(StepStatus.Finished);
+    createAndSendResult();
+  }
+
   Widget formItemBuilder(context, index) {
     if (index == 0) {
-      return title();
+      return Title(widget.formStep.title);
     }
     index -= 1;
+
+    if (index == widget.formStep.steps.length) {
+      return widget.formStep.optional
+          ? FlatButton(
+              onPressed: () => skipQuestion(),
+              child: Text("Skip these questions"),
+            )
+          : Container();
+    }
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
@@ -78,7 +95,10 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(widget.formStep.steps[index].title, style: RPStyles.h3,),
+            child: Text(
+              widget.formStep.steps[index].title,
+              style: RPStyles.h3,
+            ),
           ),
           Card(
             elevation: 4,
@@ -101,12 +121,21 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
       appBar: AppBar(
         title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
         automaticallyImplyLeading: false,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+            icon: Icon(
+              Icons.cancel,
+              color: Theme.of(context).accentColor,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
           itemBuilder: formItemBuilder,
-          itemCount: widget.formStep.steps.length + 1,
+          itemCount: widget.formStep.steps.length + 2,
         ),
       ),
       persistentFooterButtons: <Widget>[
@@ -135,24 +164,30 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     );
   }
 
-  //Render the title above the questionBody
-  Widget title() {
-    if (widget.formStep.title != null) {
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
-        child: Text(
-          widget.formStep.title,
-          style: RPStyles.h2,
-          textAlign: TextAlign.left,
-        ),
-      );
-    }
-    return null;
-  }
-
   @override
   void createAndSendResult() {
     // In this case the result is already created, the only needed thing left is to send it
     blocTask.sendStepResult(stepResult);
   }
 }
+
+//// Render the title above the questionBody
+//class Title extends StatelessWidget {
+//  final String title;
+//  Title(this.title);
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    if (title != null) {
+//      return Padding(
+//        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+//        child: Text(
+//          title,
+//          style: RPStyles.h2,
+//          textAlign: TextAlign.left,
+//        ),
+//      );
+//    }
+//    return Container();
+//  }
+//}

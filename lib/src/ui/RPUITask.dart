@@ -2,9 +2,9 @@ part of research_package_ui;
 
 /// This class is the primary entry point for the presentation of the Research Package framework UI.
 /// It presents the steps of an [RPOrderedTask] and then provides the [RPTaskResult] object.
-class RPUIOrderedTask extends StatefulWidget {
+class RPUITask extends StatefulWidget {
   /// The task to present
-  /// The [RPUIOrderedTask] presents its steps after each other and creates an [RPTaskResult] object with the same
+  /// The [RPUITask] presents its steps after each other and creates an [RPTaskResult] object with the same
   /// identifier as the [task]'s identifier.
   final RPOrderedTask task;
 
@@ -12,13 +12,13 @@ class RPUIOrderedTask extends StatefulWidget {
   /// This function is called when the participant has finished the last step.
   final void Function(RPTaskResult) onSubmit;
 
-  RPUIOrderedTask({this.task, this.onSubmit});
+  RPUITask({this.task, this.onSubmit});
 
   @override
-  _RPUIOrderedTaskState createState() => _RPUIOrderedTaskState();
+  _RPUITaskState createState() => _RPUITaskState();
 }
 
-class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
+class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   RPTaskResult taskResult;
   List<Widget> stepWidgets = [];
 
@@ -78,7 +78,16 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
           _showCancelConfirmationDialog();
           break;
         case StepStatus.Back:
-          print('back');
+          // TODO
+          if (currentStep == widget.task.steps.first) {
+            break;
+          } else {
+            currentStep = widget.task.getStepBeforeStep(currentStep, null);
+            currentQuestionIndex--;
+            blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+            taskPageViewController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+            print('back');
+          }
           break;
         case StepStatus.Ongoing:
           print('ongoing');
@@ -134,12 +143,24 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context),
-      child: PageView(
-        children: stepWidgets,
-        controller: taskPageViewController,
-        physics: NeverScrollableScrollPhysics(),
+    return WillPopScope(
+      onWillPop: () => blocTask.sendStatus(StepStatus.Canceled),
+      child: Theme(
+        data: Theme.of(context),
+//      child: PageView(
+//        children: stepWidgets,
+//        controller: taskPageViewController,
+//        physics: NeverScrollableScrollPhysics(),
+//      ),
+        child: PageView.builder(
+          itemBuilder: (BuildContext context, int position) {
+//          return widget.task.steps[index].stepWidget;
+            return stepWidgets[position];
+          },
+          itemCount: stepWidgets.length,
+          controller: taskPageViewController,
+          physics: NeverScrollableScrollPhysics(),
+        ),
       ),
     );
   }
@@ -148,6 +169,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   dispose() {
     stepStatusSubscription.cancel();
     stepResultSubscription.cancel();
+    taskPageViewController.dispose();
     super.dispose();
   }
 }

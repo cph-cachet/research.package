@@ -9,15 +9,14 @@ class RPQuestionStep extends RPStep {
   String _placeholder;
 
   /// The basic constructor which returns a Question Step with only the identifier filled out
-  RPQuestionStep(String identifier) : super(identifier);
+  RPQuestionStep(String identifier, {bool optional = false}) : super(identifier, optional: optional);
 
   /// Returns a Question Step populated with title (text of the question)
-  RPQuestionStep.withTitle(String identifier, String title) : super.withTitle(identifier, title);
+  RPQuestionStep.withTitle(String identifier, String title, {bool optional = false}) : super.withTitle(identifier, title, optional: optional);
 
   /// Returns a Question Step populated with title (text of the question) and answer format on which the
   /// actual layout depends
-  RPQuestionStep.withAnswerFormat(String identifier, String title, this._answerFormat)
-      : super.withTitle(identifier, title);
+  RPQuestionStep.withAnswerFormat(String identifier, String title, this._answerFormat, {bool optional = false}) : super.withTitle(identifier, title, optional: optional);
 
   /// The answer format which describes the format how a question can be answered.
   RPAnswerFormat get answerFormat => _answerFormat;
@@ -35,7 +34,7 @@ class RPQuestionStep extends RPStep {
 
   /// The widget (UI representation) of the step.
   ///
-  /// This gets initialized when a Question Step has been added to a Task which is later presented by an [RPUIOrderedTask] widget.
+  /// This gets initialized when a Question Step has been added to a Task which is later presented by an [RPUITask] widget.
   @override
   Widget get stepWidget => RPUIQuestionStep(this);
 }
