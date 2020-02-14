@@ -31,20 +31,6 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
     );
   }
 
-  Widget _buildImage() {
-    if (widget.step.imagePath != null) {
-      return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Image.asset(
-          widget.step.imagePath,
-          width: MediaQuery.of(context).size.width / 2,
-        ),
-      );
-    } else {
-      return Container();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +43,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             // If image is provided show it
-            _buildImage(),
+            InstructionImage(widget.step.imagePath),
             Column(
               children: <Widget>[
                 Container(
@@ -130,3 +116,25 @@ class _DetailTextRoute extends StatelessWidget {
     );
   }
 }
+
+class InstructionImage extends StatelessWidget {
+  final String _imagePath;
+
+  InstructionImage(this._imagePath);
+
+  @override
+  Widget build(BuildContext context) {
+    if (_imagePath != null) {
+      return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Image.asset(
+          _imagePath,
+          width: MediaQuery.of(context).size.width / 2,
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
+}
+

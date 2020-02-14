@@ -80,9 +80,12 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
     if (index == widget.formStep.steps.length) {
       return widget.formStep.optional
-          ? FlatButton(
-              onPressed: () => skipQuestion(),
-              child: Text("Skip these questions"),
+          ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FlatButton(
+                onPressed: () => skipQuestion(),
+                child: Text("Skip these questions"),
+              ),
             )
           : Container();
     }
@@ -140,9 +143,9 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
       ),
       persistentFooterButtons: <Widget>[
         FlatButton(
-          onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+          onPressed: () => blocTask.sendStatus(StepStatus.Back),
           child: Text(
-            "CANCEL",
+            "BACK",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),

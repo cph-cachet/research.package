@@ -34,7 +34,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   skipQuestion() {
     blocTask.sendStatus(StepStatus.Finished);
-//    this.currentQuestionBodyResult = RPStep.QUESTION_SKIPPED;
+    this.currentQuestionBodyResult = null;
     createAndSendResult();
   }
 
@@ -124,7 +124,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 //          ),
 //        ),
           FlatButton(
-            onPressed: () => blocTask.sendStatus(StepStatus.Back), // TODO
+            onPressed: () => blocTask.sendStatus(StepStatus.Back),
             child: Text(
               "BACK",
               style: TextStyle(color: Colors.redAccent),

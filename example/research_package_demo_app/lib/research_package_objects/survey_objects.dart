@@ -105,17 +105,26 @@ RPCompletionStep completionStep = RPCompletionStep("completionID")
   ..title = "Finished"
   ..text = "Thank you for filling out the survey!";
 
+RPInstructionStep instructionStep = RPInstructionStep(
+  identifier: "instructionID",
+  title: "Welcome!",
+  detailText:
+  "For the sake of science of course..."
+)..text =
+    "Please fill out this questionnaire!";
+
 RPOrderedTask surveyTask = RPOrderedTask(
   "surveyTaskID",
   [
+    instructionStep,
     sliderQuestionStep,
 //    timeOfDayQuestionStep,
 //    dateAndTimeQuestionStep,
 //    dateQuestionStep,
 //    imageChoiceQuestionStep,
-//    singleChoiceQuestionStep,
-//    happinessChoiceQuestionStep,
-//    weightQuestionStep,
+    singleChoiceQuestionStep,
+    happinessChoiceQuestionStep,
+    weightQuestionStep,
     formStep,
     completionStep
   ],

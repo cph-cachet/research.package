@@ -86,7 +86,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             currentQuestionIndex--;
             blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
             taskPageViewController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
-            print('back');
           }
           break;
         case StepStatus.Ongoing:
@@ -139,7 +138,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     );
   }
 
-  PageController taskPageViewController = PageController();
+  PageController taskPageViewController = PageController(keepPage: false);
 
   @override
   Widget build(BuildContext context) {
@@ -147,14 +146,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       onWillPop: () => blocTask.sendStatus(StepStatus.Canceled),
       child: Theme(
         data: Theme.of(context),
-//      child: PageView(
-//        children: stepWidgets,
-//        controller: taskPageViewController,
-//        physics: NeverScrollableScrollPhysics(),
-//      ),
         child: PageView.builder(
           itemBuilder: (BuildContext context, int position) {
-//          return widget.task.steps[index].stepWidget;
             return stepWidgets[position];
           },
           itemCount: stepWidgets.length,

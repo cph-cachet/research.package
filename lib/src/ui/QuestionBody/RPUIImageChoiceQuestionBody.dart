@@ -12,7 +12,7 @@ class RPUIImageChoiceQuestionBody extends StatefulWidget {
 }
 
 class _RPUIImageChoiceQuestionBodyState
-    extends State<RPUIImageChoiceQuestionBody> {
+    extends State<RPUIImageChoiceQuestionBody> with AutomaticKeepAliveClientMixin<RPUIImageChoiceQuestionBody> {
   String _errorMessage;
   RPImageChoice _selectedItem;
 
@@ -23,6 +23,7 @@ class _RPUIImageChoiceQuestionBodyState
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     String text = _selectedItem?.description ?? 'Select an image';
     return Container(
         height: 150,
@@ -83,4 +84,7 @@ class _RPUIImageChoiceQuestionBodyState
       children: list,
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
