@@ -36,3 +36,4 @@ part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUISliderQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIImageChoiceQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUIBooleanQuestionBody.dart';

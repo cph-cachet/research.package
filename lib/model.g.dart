@@ -263,6 +263,28 @@ const _$DateTimeAnswerStyleEnumMap = {
   DateTimeAnswerStyle.TimeOfDay: 'TimeOfDay',
 };
 
+RPBooleanAnswerFormat _$RPBooleanAnswerFormatFromJson(
+    Map<String, dynamic> json) {
+  return RPBooleanAnswerFormat()
+    ..trueText = json['true_text'] as String
+    ..falseText = json['false_text'] as String;
+}
+
+Map<String, dynamic> _$RPBooleanAnswerFormatToJson(
+    RPBooleanAnswerFormat instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('true_text', instance.trueText);
+  writeNotNull('false_text', instance.falseText);
+  return val;
+}
+
 RPConsentDocument _$RPConsentDocumentFromJson(Map<String, dynamic> json) {
   return RPConsentDocument()
     ..title = json['title'] as String

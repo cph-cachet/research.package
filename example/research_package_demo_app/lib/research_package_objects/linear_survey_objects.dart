@@ -39,6 +39,7 @@ RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(ChoiceAn
 RPDateTimeAnswerFormat timeOfDayAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.TimeOfDay);
 RPDateTimeAnswerFormat dateAndTimeAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.DateAndTime);
 RPDateTimeAnswerFormat dateAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
+
 // Slider
 RPSliderAnswerFormat sliderAnswerFormat =
     RPSliderAnswerFormat.withParams(0, 100, divisions: 10, prefix: "\$", suffix: " paid");
@@ -51,14 +52,18 @@ RPChoiceAnswerFormat instrumentsAnswerFormat =
 
 RPIntegerAnswerFormat weightIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 200, "KG");
 
+RPBooleanAnswerFormat smokingBooleanAnswerFormat = RPBooleanAnswerFormat.withParams("Yes, absolutely", "No, never");
+
 RPIntegerAnswerFormat minutesIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
 
 RPImageChoiceAnswerFormat imageChoiceAnswerFormat = RPImageChoiceAnswerFormat.withParams(images);
 
 RPQuestionStep timeOfDayQuestionStep =
     RPQuestionStep.withAnswerFormat('timeOfDayQuestionStepID', 'When did you wake up?', timeOfDayAnswerFormat);
+
 RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep.withAnswerFormat(
     'dateAndTimeQuestionStepID', 'When did you last eat unhealthy food?', dateAndTimeAnswerFormat);
+
 RPQuestionStep dateQuestionStep =
     RPQuestionStep.withAnswerFormat('dateQuestionStepID', 'When did you last drink alcohol?', dateAnswerFormat);
 
@@ -74,6 +79,12 @@ RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   "questionStep1ID",
   "I have felt cheerful and in good spirits",
   timeAnswerFormat,
+);
+
+RPQuestionStep smokingQuestionStep = RPQuestionStep.withAnswerFormat(
+  "booleanQuestionStepID",
+  "Do you smoke?",
+  smokingBooleanAnswerFormat,
 );
 
 RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
@@ -117,6 +128,7 @@ RPOrderedTask linearSurveyTask = RPOrderedTask(
   "surveyTaskID",
   [
     instructionStep,
+    smokingQuestionStep,
     sliderQuestionStep,
 //    timeOfDayQuestionStep,
 //    dateAndTimeQuestionStep,
