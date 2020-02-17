@@ -111,9 +111,9 @@ RPInstructionStep instructionStep = RPInstructionStep(
   detailText:
   "For the sake of science of course..."
 )..text =
-    "Please fill out this questionnaire!";
+    "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.";
 
-RPOrderedTask surveyTask = RPOrderedTask(
+RPOrderedTask linearSurveyTask = RPOrderedTask(
   "surveyTaskID",
   [
     instructionStep,

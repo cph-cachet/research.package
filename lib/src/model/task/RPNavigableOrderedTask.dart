@@ -6,8 +6,8 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   List<RPStepModifier> _stepModifiers;
   bool shouldReportProgress;
 
-  RPNavigableOrderedTask(String identifier, steps, this._stepNavigationRules, closeAfterFinished,
-      {shouldReportProgress = true})
+  RPNavigableOrderedTask(String identifier, steps, this._stepNavigationRules,
+      {closeAfterFinished = true, shouldReportProgress = true})
       : super(identifier, steps, closeAfterFinished: closeAfterFinished);
 
   List<RPStepNavigationRule> get stepNavigationRules => this._stepNavigationRules;
@@ -18,11 +18,15 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   @override
   RPStep getStepAfterStep(RPStep step, RPTaskResult result) {
     // TODO
+    // step -> look up it's id in the navigationRule list
+    // check the rule and return the right step afterwards
   }
 
   @override
   RPStep getStepBeforeStep(RPStep step, RPTaskResult result) {
     // TODO
+    // step -> look up it's id in the navigationRule list
+    // check the rule and return the right step afterwards
   }
 
   setNavigationRule(RPStepNavigationRule stepNavigationRule, String forTriggerStepIdentifier) {

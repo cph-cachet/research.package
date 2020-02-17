@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:research_package/research_package.dart';
-import 'research_package_objects/survey_objects.dart';
+import 'research_package_objects/linear_survey_objects.dart';
 import 'dart:convert';
 
-class SurveyPage extends StatelessWidget {
+class LinearSurveyPage extends StatelessWidget {
   String _encode(Object object) => const JsonEncoder.withIndent(' ').convert(object);
 
   void resultCallback(RPTaskResult result) {
@@ -14,7 +14,7 @@ class SurveyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RPUITask(
-      task: surveyTask,
+      task: linearSurveyTask,
       onSubmit: (result) {
         resultCallback(result);
       },

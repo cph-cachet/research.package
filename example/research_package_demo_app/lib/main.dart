@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'informed_consent_page.dart';
-import 'survey_page.dart';
+import 'linear_survey_page.dart';
+import 'navigable_survey_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,22 +30,23 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("Research Package Demo"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
-              child: Text(
-                "With Research Package you can obtain informed consent, create surveys and collect their results",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
+                child: Text(
+                  "With Research Package you can obtain informed consent, create surveys and collect their results",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width / 1.1,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: OutlineButton(
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -59,27 +61,40 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width / 1.1,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: OutlineButton(
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    "Survey",
+                    "Survey (Linear)",
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SurveyPage()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LinearSurveyPage()));
                   },
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: OutlineButton(
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    "Survey (Branching)",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => NavigableSurveyPage()));
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: SafeArea(

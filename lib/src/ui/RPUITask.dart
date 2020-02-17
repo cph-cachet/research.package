@@ -71,6 +71,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           // Calculating next step and then navigate there
           currentStep = widget.task.getStepAfterStep(currentStep, null);
           currentStepIndex++;
+          // TODO: navigatable - get the return value from getStepAfterStep and use .animateTo
           taskPageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
           break;
 
@@ -85,6 +86,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             currentStep = widget.task.getStepBeforeStep(currentStep, null);
             currentQuestionIndex--;
             blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+            // TODO: navigatable - get the return value from getStepBeforeStep and use .animateTo
             taskPageViewController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
           }
           break;
