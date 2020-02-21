@@ -132,7 +132,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         FlatButton(
           onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
           child: Text(
-            locale?.translate('cancel') ?? "CANCEL",
+            locale?.translate('CANCEL') ?? "CANCEL",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
@@ -140,7 +140,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
           child: Text(
-            locale?.translate('next') ?? "NEXT",
+            locale?.translate('NEXT') ?? "NEXT",
           ),
           onPressed: readyToProceed
               ? () {

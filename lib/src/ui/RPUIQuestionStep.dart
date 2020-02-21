@@ -111,7 +111,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
         FlatButton(
           onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
           child: Text(
-            RPLocalizations.of(context)?.translate('cancel') ?? "CANCEL",
+            RPLocalizations.of(context)?.translate('CANCEL') ?? "CANCEL",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
@@ -119,7 +119,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
           child: Text(
-            RPLocalizations.of(context)?.translate('next') ?? "NEXT",
+            RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
           ),
           onPressed: readyToProceed
               ? () {
@@ -131,11 +131,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
         ),
       ],
     );
-  }
-
-  // Render the title above the questionBody
-  Widget title() {
-    return null;
   }
 
   @override

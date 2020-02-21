@@ -116,16 +116,16 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
       builder: (BuildContext context) {
         RPLocalizations locale = RPLocalizations.of(context);
         return AlertDialog(
-          title:
-              Text(locale?.translate('discard') ?? "Discard results and quit?"),
+          title: Text(locale?.translate('Discard results and quit?') ??
+              "Discard results and quit?"),
           actions: <Widget>[
             FlatButton(
-              child: Text(locale?.translate('no') ?? "NO"),
+              child: Text(locale?.translate('NO') ?? "NO"),
               onPressed: () =>
                   Navigator.of(context).pop(), // Dismissing the pop-up
             ),
             FlatButton(
-              child: Text(locale?.translate('yes') ?? "YES"),
+              child: Text(locale?.translate('YES') ?? "YES"),
               onPressed: () {
                 // TODO: Do something with the result
                 // Popup dismiss

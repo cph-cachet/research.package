@@ -72,8 +72,8 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 widget.step.detailText != null
                     ? FlatButton(
                         textTheme: ButtonTextTheme.accent,
-                        child: Text(locale?.translate('learn_more') ??
-                            "Learn more..."), // TODO: Localization
+                        child: Text(locale?.translate('Learn more...') ??
+                            "Learn more..."),
                         onPressed: _pushDetailTextRoute,
                       )
                     : Container(),
@@ -97,7 +97,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
         FlatButton(
           onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
           child: Text(
-            locale?.translate('cancel') ?? "CANCEL",
+            locale?.translate('CANCEL') ?? "CANCEL",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
@@ -105,7 +105,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
           child: Text(
-            locale?.translate('get_started') ?? "GET STARTED",
+            locale?.translate('GET STARTED') ?? "GET STARTED",
           ),
           onPressed: () => blocTask.sendStatus(StepStatus.Finished),
         ),

@@ -149,7 +149,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                 FlatButton(
                   textTheme: ButtonTextTheme.accent,
                   child: Text(
-                      RPLocalizations.of(context)?.translate('learn_more') ??
+                      RPLocalizations.of(context)?.translate('Learn more...') ??
                           "Learn more..."), // TODO: Localization
                   onPressed: () => _pushContent(
                     section.title,
@@ -175,14 +175,14 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                 "Are you sure you want to quit?"),
             actions: <Widget>[
               FlatButton(
-                child: Text(locale?.translate('yes') ?? "YES"),
+                child: Text(locale?.translate('YES') ?? "YES"),
                 onPressed: () {
                   Navigator.of(context).pop(); // Pop the popup
                   Navigator.of(context).pop(); // Pop the screen
                 },
               ),
               FlatButton(
-                  child: Text(locale?.translate('no') ?? "NO"),
+                  child: Text(locale?.translate('NO') ?? "NO"),
                   onPressed: () => Navigator.of(context).pop() // Pop the popup,
                   )
             ],
@@ -222,7 +222,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
             child: FlatButton(
               padding: EdgeInsets.all(10.0),
               child: Text(
-                RPLocalizations.of(context)?.translate('cancel') ?? "CANCEL",
+                RPLocalizations.of(context)?.translate('CANCEL') ?? "CANCEL",
                 style: TextStyle(color: Theme.of(context).accentColor),
               ),
               onPressed: () => _showCancelDialog(),
