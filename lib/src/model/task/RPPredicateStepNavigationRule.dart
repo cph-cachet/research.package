@@ -2,16 +2,15 @@ part of research_package_model;
 
 // TODO: Documentation
 class RPPredicateStepNavigationRule extends RPStepNavigationRule {
-  final List<RPResultPredicate> _resultPredicates;
-  final List<String> _destinationStepIdentifiers;
   final String _defaultStepIdentifier;
+  final Map<RPResultPredicate, String> _resultPredicatesWithDestinationIdentifiers;
 
-  RPPredicateStepNavigationRule(this._destinationStepIdentifiers, this._resultPredicates,
-      [this._defaultStepIdentifier]);
+  RPPredicateStepNavigationRule(this._resultPredicatesWithDestinationIdentifiers, [this._defaultStepIdentifier]);
 
-  List<RPResultPredicate> get resultPredicates => this._resultPredicates;
-  List<String> get destinationStepIdentifiers => this._destinationStepIdentifiers;
   String get defaultStepIdentifier => this._defaultStepIdentifier;
+
+  Map<RPResultPredicate, String> get resultPredicatesWithDestinationIdentifiers =>
+      this._resultPredicatesWithDestinationIdentifiers;
 
   @override
   String identifierForDestinationStepWithTaskResult(RPTaskResult taskResult) {

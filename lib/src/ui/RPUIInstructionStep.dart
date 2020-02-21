@@ -88,7 +88,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
           child: Text(
-            "GET STARTED",
+            "CONTINUE",
           ),
           onPressed: () => blocTask.sendStatus(StepStatus.Finished),
         ),

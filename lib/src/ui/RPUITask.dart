@@ -30,6 +30,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   StreamSubscription<RPStepResult> stepResultSubscription;
 
   bool consentTask = false;
+  bool navigatableTask = false;
 
   @override
   initState() {
@@ -46,8 +47,14 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       if (step is RPQuestionStep) nrOfQuestionSteps++;
     });
 
-    // Sending the initial Task Progress so the Question UI can use it in the app bar
-    blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+    // If it's navigable we don't want to show result on appbar
+    if (widget.task.runtimeType == RPNavigableOrderedTask) {
+      blocTask.updateTaskProgress(null);
+      navigatableTask = true;
+    } else {
+      // Sending the initial Task Progress so the Question UI can use it in the app bar
+      blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+    }
 
     // Subscribe to step status changes so the navigation can be triggered
     stepStatusSubscription = blocTask.stepStatus.listen((data) {
@@ -65,14 +72,17 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           // Updating taskProgress stream
           if (currentStep.runtimeType == RPQuestionStep) {
             currentQuestionIndex++;
-            blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+            // TODO: calculate the stepprogress differently for navigableTask
+            if (!navigatableTask) blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
           }
 
           // Calculating next step and then navigate there
           currentStep = widget.task.getStepAfterStep(currentStep, null);
           currentStepIndex++;
+
           // TODO: navigatable - get the return value from getStepAfterStep and use .animateTo
-          taskPageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+          taskPageViewController.animateToPage(widget.task.steps.indexOf(currentStep), duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+//          taskPageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
           break;
 
         case StepStatus.Canceled:
@@ -85,7 +95,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           } else {
             currentStep = widget.task.getStepBeforeStep(currentStep, null);
             currentQuestionIndex--;
-            blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+            // TODO: calculate the stepprogress differently for navigableTask
+            if (!navigatableTask) blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
             // TODO: navigatable - get the return value from getStepBeforeStep and use .animateTo
             taskPageViewController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
           }
@@ -97,6 +108,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     });
     stepResultSubscription = blocTask.stepResult.listen((stepResult) {
       taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
+      blocTask.updateTaskResult(taskResult);
     });
 
     // Getting the first step

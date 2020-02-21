@@ -85,7 +85,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
       return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
+          title: Text(recentTaskProgress != null ? "${recentTaskProgress.current} of ${recentTaskProgress.total}" : ""),
           automaticallyImplyLeading: false,
           actions: <Widget>[
             IconButton(
@@ -143,8 +143,9 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
             onPressed: readyToProceed
                 ? () {
                     // Communicating with the RPUITask Widget
-                    blocTask.sendStatus(StepStatus.Finished);
+              // TODO: These two statements are shifted. Might cause problems
                     createAndSendResult();
+                    blocTask.sendStatus(StepStatus.Finished);
                   }
                 : null,
           ),

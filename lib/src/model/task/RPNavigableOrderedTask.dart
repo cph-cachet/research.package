@@ -1,25 +1,81 @@
 part of research_package_model;
 
 class RPNavigableOrderedTask extends RPOrderedTask {
-  List<RPStepNavigationRule> _stepNavigationRules; // TODO: Might be a dictionary
+  Map<String, RPStepNavigationRule> _stepNavigationRules;
   List<RPSkipStepNavigationRule> _skipStepNavigationRules;
   List<RPStepModifier> _stepModifiers;
   bool shouldReportProgress;
 
-  RPNavigableOrderedTask(String identifier, steps, this._stepNavigationRules,
-      {closeAfterFinished = true, shouldReportProgress = true})
-      : super(identifier, steps, closeAfterFinished: closeAfterFinished);
+  RPNavigableOrderedTask(String identifier, steps, {closeAfterFinished = true, shouldReportProgress = true})
+      : super(identifier, steps, closeAfterFinished: closeAfterFinished) {
+    _stepNavigationRules = Map<String, RPStepNavigationRule>();
+  }
 
-  List<RPStepNavigationRule> get stepNavigationRules => this._stepNavigationRules;
+  Map<String, RPStepNavigationRule> get stepNavigationRules => this._stepNavigationRules;
   List<RPSkipStepNavigationRule> get skipStepNavigationRules => this._skipStepNavigationRules;
   List<RPStepModifier> get stepModifiers => this._stepModifiers;
 //  bool get shouldReportProgress => this._shouldReportProgress;
 
   @override
   RPStep getStepAfterStep(RPStep step, RPTaskResult result) {
+    RPStep _stepToReturn;
+
+    _returnNextQuestion() {
+      int nextIndex = _steps.indexOf(step) + 1;
+
+      if (nextIndex < _steps.length) {
+        _stepToReturn = _steps[nextIndex];
+      } else {
+        _stepToReturn = null;
+      }
+    }
+
     // TODO
     // step -> look up it's id in the navigationRule list
     // check the rule and return the right step afterwards
+    if (step == null) {
+      _stepToReturn = _steps.first;
+      return _stepToReturn;
+    }
+
+    if (_stepNavigationRules.containsKey(step.identifier)) {
+      RPStepNavigationRule rule = _stepNavigationRules[step.identifier];
+
+      switch (rule.runtimeType) {
+        case RPPredicateStepNavigationRule:
+          (rule as RPPredicateStepNavigationRule)
+              .resultPredicatesWithDestinationIdentifiers
+              .forEach((resultPredicate, destinationStepIdentifier) {
+            // Catching the first
+            if (resultPredicate.predictionResult) {
+              _steps.forEach((step) {
+                if (step.identifier == destinationStepIdentifier) {
+                  _stepToReturn = step;
+                }
+              });
+            } else {
+              _returnNextQuestion();
+            }
+          });
+          break;
+        case RPDirectStepNavigationRule:
+          // TODO
+          String destinationStepIdentifier = (rule as RPDirectStepNavigationRule).destinationStepIdentifier;
+          _steps.forEach((step) {
+            if (step.identifier == destinationStepIdentifier) {
+              _stepToReturn = step;
+            }
+          });
+          break;
+        default:
+          throw ("Navigation Rule's type ${_stepNavigationRules[step.identifier].runtimeType} is not a navigation rule type");
+          break;
+      }
+    } else {
+      _returnNextQuestion();
+    }
+
+    return _stepToReturn;
   }
 
   @override
@@ -29,19 +85,19 @@ class RPNavigableOrderedTask extends RPOrderedTask {
     // check the rule and return the right step afterwards
   }
 
-  setNavigationRule(RPStepNavigationRule stepNavigationRule, String forTriggerStepIdentifier) {
-    // TODO
+  setNavigationRuleForTriggerStepIdentifier(RPStepNavigationRule stepNavigationRule, String triggerStepIdentifier) {
+    _stepNavigationRules[triggerStepIdentifier] = stepNavigationRule;
   }
 
   RPStepNavigationRule navigationRuleForTriggerStepIdentifier(String triggerStepIdentifier) {
-    // TODO
+    return _stepNavigationRules[triggerStepIdentifier];
   }
 
   removeNavigationRuleForTriggerStepIdentifier(String triggerStepIdentifier) {
-    // TODO
+    _stepNavigationRules.remove(triggerStepIdentifier);
   }
 
-  setSkipNavigationRule(RPSkipStepNavigationRule skipStepNavigationRule, String forStepIdentifier) {
+  setSkipNavigationRule(RPSkipStepNavigationRule skipStepNavigationRule, String stepIdentifier) {
     // TODO
   }
 
@@ -53,7 +109,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
     // TODO
   }
 
-  setStepModifier(RPStepModifier stepModifier, String forStepIdentifier) {
+  setStepModifier(RPStepModifier stepModifier, String stepIdentifier) {
     // TODO
   }
 
