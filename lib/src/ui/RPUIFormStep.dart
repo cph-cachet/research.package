@@ -37,7 +37,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
     // Filling up the results with nulls
     widget.formStep.steps.forEach((item) {
-      stepResult.setResultForIdentifier(item.identifier, RPStepResult.withParams(item));
+      stepResult.setResultForIdentifier(
+          item.identifier, RPStepResult.withParams(item));
     });
 
     readyToProceed = false;
@@ -66,7 +67,18 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   Widget formItemBuilder(context, index) {
     if (index == 0) {
-      return title();
+      return (widget.formStep.title != null)
+          ? Padding(
+              padding:
+                  const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+              child: Text(
+                RPLocalizations.of(context)?.translate(widget.formStep.title) ??
+                    widget.formStep.title,
+                style: RPStyles.h2,
+                textAlign: TextAlign.left,
+              ),
+            )
+          : null;
     }
     index -= 1;
 
@@ -78,7 +90,12 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(widget.formStep.steps[index].title, style: RPStyles.h3,),
+            child: Text(
+              RPLocalizations.of(context)
+                      ?.translate(widget.formStep.steps[index].title) ??
+                  widget.formStep.steps[index].title,
+              style: RPStyles.h3,
+            ),
           ),
           Card(
             elevation: 4,
@@ -97,9 +114,11 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
+        title: Text(
+            "${recentTaskProgress.current} ${locale?.translate('of') ?? "of"} ${recentTaskProgress.total}"),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -113,7 +132,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         FlatButton(
           onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
           child: Text(
-            "CANCEL",
+            locale?.translate('cancel') ?? "CANCEL",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
@@ -121,7 +140,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
           child: Text(
-            "NEXT",
+            locale?.translate('next') ?? "NEXT",
           ),
           onPressed: readyToProceed
               ? () {
@@ -133,21 +152,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         ),
       ],
     );
-  }
-
-  //Render the title above the questionBody
-  Widget title() {
-    if (widget.formStep.title != null) {
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
-        child: Text(
-          widget.formStep.title,
-          style: RPStyles.h2,
-          textAlign: TextAlign.left,
-        ),
-      );
-    }
-    return null;
   }
 
   @override

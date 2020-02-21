@@ -15,10 +15,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:signature/signature.dart';
 import 'dart:async';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 import 'package:research_package/model.dart';
 
 // Library elements
+part 'src/localization/RPLocalization.dart';
+
 part 'src/ui/RPStyles.dart';
 
 part 'src/ui/RPUIOrderedTask.dart';

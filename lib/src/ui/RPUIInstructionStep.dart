@@ -47,9 +47,10 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.step.title),
+        title: Text(locale?.translate(widget.step.title) ?? widget.step.title),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
@@ -63,7 +64,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 Container(
                   padding: EdgeInsets.all(16),
                   child: Text(
-                    widget.step.text,
+                    locale?.translate(widget.step.text) ?? widget.step.text,
                     textAlign: TextAlign.left,
                     style: RPStyles.h3,
                   ),
@@ -71,7 +72,8 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 widget.step.detailText != null
                     ? FlatButton(
                         textTheme: ButtonTextTheme.accent,
-                        child: Text("Learn more..."), // TODO: Localization
+                        child: Text(locale?.translate('learn_more') ??
+                            "Learn more..."), // TODO: Localization
                         onPressed: _pushDetailTextRoute,
                       )
                     : Container(),
@@ -81,7 +83,8 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 ? Container(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      widget.step.footnote,
+                      locale?.translate(widget.step.footnote) ??
+                          widget.step.footnote,
                       style: RPStyles.bodyText,
                       textAlign: TextAlign.left,
                     ),
@@ -94,7 +97,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
         FlatButton(
           onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
           child: Text(
-            "CANCEL",
+            locale?.translate('cancel') ?? "CANCEL",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
@@ -102,7 +105,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
           child: Text(
-            "GET STARTED",
+            locale?.translate('get_started') ?? "GET STARTED",
           ),
           onPressed: () => blocTask.sendStatus(StepStatus.Finished),
         ),
@@ -119,13 +122,14 @@ class _DetailTextRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.title),
+        title: Text(locale?.translate(this.title) ?? this.title),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: Text(this.content),
+        child: Text(locale?.translate(this.content) ?? this.content),
       ),
     );
   }

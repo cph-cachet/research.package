@@ -12,7 +12,10 @@ class RPUIOrderedTask extends StatefulWidget {
   /// This function is called when the participant has finished the last step.
   final void Function(RPTaskResult) onSubmit;
 
-  RPUIOrderedTask({this.task, this.onSubmit});
+  RPUIOrderedTask({
+    this.task,
+    this.onSubmit,
+  });
 
   @override
   _RPUIOrderedTaskState createState() => _RPUIOrderedTaskState();
@@ -47,7 +50,8 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     });
 
     // Sending the initial Task Progress so the Question UI can use it in the app bar
-    blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+    blocTask.updateTaskProgress(
+        RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
 
     // Subscribe to step status changes so the navigation can be triggered
     stepStatusSubscription = blocTask.stepStatus.listen((data) {
@@ -65,13 +69,15 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
           // Updating taskProgress stream
           if (currentStep.runtimeType == RPQuestionStep) {
             currentQuestionIndex++;
-            blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+            blocTask.updateTaskProgress(
+                RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
           }
 
           // Calculating next step and then navigate there
           currentStep = widget.task.getStepAfterStep(currentStep, null);
           currentStepIndex++;
-          taskPageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+          taskPageViewController.nextPage(
+              duration: Duration(milliseconds: 300), curve: Curves.decelerate);
           break;
 
         case StepStatus.Canceled:
@@ -108,15 +114,18 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
+        RPLocalizations locale = RPLocalizations.of(context);
         return AlertDialog(
-          title: Text("Discard results and quit?"),
+          title:
+              Text(locale?.translate('discard') ?? "Discard results and quit?"),
           actions: <Widget>[
             FlatButton(
-              child: Text("NO"),
-              onPressed: () => Navigator.of(context).pop(), // Dismissing the pop-up
+              child: Text(locale?.translate('no') ?? "NO"),
+              onPressed: () =>
+                  Navigator.of(context).pop(), // Dismissing the pop-up
             ),
             FlatButton(
-              child: Text("YES"),
+              child: Text(locale?.translate('yes') ?? "YES"),
               onPressed: () {
                 // TODO: Do something with the result
                 // Popup dismiss

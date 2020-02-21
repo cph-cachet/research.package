@@ -12,7 +12,8 @@ class RPUIQuestionStep extends StatefulWidget {
   _RPUIQuestionStepState createState() => _RPUIQuestionStepState();
 }
 
-class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
+class _RPUIQuestionStepState extends State<RPUIQuestionStep>
+    with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
   dynamic _currentQuestionBodyResult;
   bool readyToProceed;
@@ -72,16 +73,28 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
+        title: Text(
+            "${recentTaskProgress.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress.total}"),
         automaticallyImplyLeading: false,
       ),
       body: ListView(
         padding: EdgeInsets.all(8),
         children: [
-          title(),
+          (widget.step.title != null)
+              ? Padding(
+                  padding: const EdgeInsets.only(
+                      bottom: 24, left: 8, right: 8, top: 8),
+                  child: Text(
+                    locale?.translate(widget.step.title) ?? widget.step.title,
+                    style: RPStyles.h2,
+                    textAlign: TextAlign.left,
+                  ),
+                )
+              : null,
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -98,7 +111,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
         FlatButton(
           onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
           child: Text(
-            "CANCEL",
+            RPLocalizations.of(context)?.translate('cancel') ?? "CANCEL",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
@@ -106,7 +119,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
           child: Text(
-            "NEXT",
+            RPLocalizations.of(context)?.translate('next') ?? "NEXT",
           ),
           onPressed: readyToProceed
               ? () {
@@ -122,16 +135,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   // Render the title above the questionBody
   Widget title() {
-    if (widget.step.title != null) {
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
-        child: Text(
-          widget.step.title,
-          style: RPStyles.h2,
-          textAlign: TextAlign.left,
-        ),
-      );
-    }
     return null;
   }
 
