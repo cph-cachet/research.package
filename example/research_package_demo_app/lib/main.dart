@@ -3,7 +3,6 @@ import 'informed_consent_page.dart';
 import 'survey_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:research_package/research_package.dart';
-//import 'package:research_package/ui.dart';
 
 void main() => runApp(MyApp());
 
