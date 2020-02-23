@@ -30,9 +30,6 @@ class RPNavigableOrderedTask extends RPOrderedTask {
       }
     }
 
-    // TODO
-    // step -> look up it's id in the navigationRule list
-    // check the rule and return the right step afterwards
     if (step == null) {
       _stepToReturn = _steps.first;
       return _stepToReturn;
@@ -59,7 +56,6 @@ class RPNavigableOrderedTask extends RPOrderedTask {
           });
           break;
         case RPDirectStepNavigationRule:
-          // TODO
           String destinationStepIdentifier = (rule as RPDirectStepNavigationRule).destinationStepIdentifier;
           _steps.forEach((step) {
             if (step.identifier == destinationStepIdentifier) {

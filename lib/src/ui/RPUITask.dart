@@ -1,7 +1,7 @@
 part of research_package_ui;
 
 /// This class is the primary entry point for the presentation of the Research Package framework UI.
-/// It presents the steps of an [RPOrderedTask] and then provides the [RPTaskResult] object.
+/// It presents the steps of an [RPOrderedTask] (either navigable or just linear) and then provides the [RPTaskResult] object.
 class RPUITask extends StatefulWidget {
   /// The task to present
   /// The [RPUITask] presents its steps after each other and creates an [RPTaskResult] object with the same
@@ -22,6 +22,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   RPTaskResult taskResult;
   List<Widget> stepWidgets = [];
 
+  RPStep previousStep;
   RPStep currentStep;
   int currentStepIndex = 0;
   int currentQuestionIndex = 1;
@@ -29,35 +30,24 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   StreamSubscription<StepStatus> stepStatusSubscription;
   StreamSubscription<RPStepResult> stepResultSubscription;
 
-  bool consentTask = false;
-  bool navigatableTask = false;
+  bool navigableTask = false;
 
   @override
   initState() {
     // Instantiate the taskresult so it starts tracking time
     taskResult = RPTaskResult.withParams(widget.task.identifier);
 
-    // Calculating the number of question steps because we only want to display their count
-    var nrOfQuestionSteps = 0;
-    widget.task.steps.forEach((step) {
-      stepWidgets.add(step.stepWidget);
-      // If there's a Consent Review Step among the steps it means the task is a Consent Task
-      if (step.runtimeType == RPConsentReviewStep) consentTask = true;
-      // Counting the Question or FormStep items
-      if (step is RPQuestionStep) nrOfQuestionSteps++;
-    });
-
     // If it's navigable we don't want to show result on appbar
     if (widget.task.runtimeType == RPNavigableOrderedTask) {
       blocTask.updateTaskProgress(null);
-      navigatableTask = true;
+      navigableTask = true;
     } else {
       // Sending the initial Task Progress so the Question UI can use it in the app bar
-      blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+      blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
     }
 
     // Subscribe to step status changes so the navigation can be triggered
-    stepStatusSubscription = blocTask.stepStatus.listen((data) {
+    stepStatusSubscription = blocTask.stepStatus.listen((data) async {
       switch (data) {
         case StepStatus.Finished:
           // In case of last step we save the result and close the task
@@ -73,18 +63,20 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           if (currentStep.runtimeType == RPQuestionStep) {
             currentQuestionIndex++;
             // TODO: calculate the stepprogress differently for navigableTask
-            if (!navigatableTask) blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+            if (!navigableTask)
+              blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
           }
 
           // Calculating next step and then navigate there
+          previousStep = currentStep;
           currentStep = widget.task.getStepAfterStep(currentStep, null);
+          setState(() {
+            stepWidgets.add(currentStep.stepWidget);
+          });
           currentStepIndex++;
 
-          // TODO: navigatable - get the return value from getStepAfterStep and use .animateTo
-          taskPageViewController.animateToPage(widget.task.steps.indexOf(currentStep), duration: Duration(milliseconds: 300), curve: Curves.decelerate);
-//          taskPageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+          taskPageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
           break;
-
         case StepStatus.Canceled:
           _showCancelConfirmationDialog();
           break;
@@ -93,12 +85,17 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           if (currentStep == widget.task.steps.first) {
             break;
           } else {
-            currentStep = widget.task.getStepBeforeStep(currentStep, null);
             currentQuestionIndex--;
             // TODO: calculate the stepprogress differently for navigableTask
-            if (!navigatableTask) blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
-            // TODO: navigatable - get the return value from getStepBeforeStep and use .animateTo
-            taskPageViewController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+            if (!navigableTask)
+              blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
+            // await because we can only update the stepWidgets list while the current step is ot on the screen
+            await taskPageViewController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+
+            setState(() {
+              stepWidgets.removeLast();
+            });
+            currentStep = previousStep;
           }
           break;
         case StepStatus.Ongoing:
@@ -113,6 +110,9 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
     // Getting the first step
     currentStep = widget.task.getStepAfterStep(null, null);
+    setState(() {
+      stepWidgets.add(currentStep.stepWidget);
+    });
 
     super.initState();
   }
@@ -130,7 +130,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(consentTask ? "Cancel?" : "Discard results and quit?"),
+          title: Text(widget.task.isConsentTask ? "Cancel?" : "Discard results and quit?"),
           actions: <Widget>[
             FlatButton(
               child: Text("NO"),
