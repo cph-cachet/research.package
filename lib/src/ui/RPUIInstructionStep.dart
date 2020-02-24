@@ -81,9 +81,9 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
       ),
       persistentFooterButtons: <Widget>[
         FlatButton(
-          onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+          onPressed: () => blocTask.sendStatus(StepStatus.Back),
           child: Text(
-            locale?.translate('CANCEL') ?? "CANCEL",
+            locale?.translate('BACK') ?? "BACK",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
