@@ -1,12 +1,5 @@
 part of research_package_model;
 
-/*
-  This is an abstract class (interface/protocol) for Task.
-
-  Task is the "parent" object which contains [Step] and basically everything is a Step. (e.g. Instruction, Question)
-
-*/
-
 /// The [RPTask] abstract class defines a task to be carried out by a participant in a research study.
 ///
 /// Extend this protocol to enable dynamic selection of the steps for a given task.

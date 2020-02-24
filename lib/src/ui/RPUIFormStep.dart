@@ -37,8 +37,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
     // Filling up the results with nulls
     widget.formStep.steps.forEach((item) {
-      stepResult.setResultForIdentifier(
-          item.identifier, RPStepResult.withParams(item));
+      stepResult.setResultForIdentifier(item.identifier, RPStepResult.withParams(item));
     });
 
     readyToProceed = false;
@@ -65,15 +64,21 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     }
   }
 
+  skipQuestion() {
+    stepResult.results.keys.forEach((key) {
+      (stepResult.results[key] as RPStepResult).setResult(null);
+    });
+    blocTask.sendStatus(StepStatus.Finished);
+    createAndSendResult();
+  }
+
   Widget formItemBuilder(context, index) {
     if (index == 0) {
       return (widget.formStep.title != null)
           ? Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+              padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
               child: Text(
-                RPLocalizations.of(context)?.translate(widget.formStep.title) ??
-                    widget.formStep.title,
+                RPLocalizations.of(context)?.translate(widget.formStep.title) ?? widget.formStep.title,
                 style: RPStyles.h2,
                 textAlign: TextAlign.left,
               ),
@@ -81,6 +86,18 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           : null;
     }
     index -= 1;
+
+    if (index == widget.formStep.steps.length) {
+      return widget.formStep.optional
+          ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FlatButton(
+                onPressed: () => skipQuestion(),
+                child: Text("Skip these questions"),
+              ),
+            )
+          : Container();
+    }
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
@@ -91,8 +108,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              RPLocalizations.of(context)
-                      ?.translate(widget.formStep.steps[index].title) ??
+              RPLocalizations.of(context)?.translate(widget.formStep.steps[index].title) ??
                   widget.formStep.steps[index].title,
               style: RPStyles.h3,
             ),
@@ -117,22 +133,30 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            "${recentTaskProgress.current} ${locale?.translate('of') ?? "of"} ${recentTaskProgress.total}"),
+        title: Text("${recentTaskProgress.current} ${locale?.translate('of') ?? "of"} ${recentTaskProgress.total}"),
         automaticallyImplyLeading: false,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+            icon: Icon(
+              Icons.cancel,
+              color: Theme.of(context).accentColor,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
           itemBuilder: formItemBuilder,
-          itemCount: widget.formStep.steps.length + 1,
+          itemCount: widget.formStep.steps.length + 2,
         ),
       ),
       persistentFooterButtons: <Widget>[
         FlatButton(
-          onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+          onPressed: () => blocTask.sendStatus(StepStatus.Back),
           child: Text(
-            locale?.translate('CANCEL') ?? "CANCEL",
+            RPLocalizations.of(context)?.translate('BACK') ?? "BACK",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
@@ -160,3 +184,24 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     blocTask.sendStepResult(stepResult);
   }
 }
+
+//// Render the title above the questionBody
+//class Title extends StatelessWidget {
+//  final String title;
+//  Title(this.title);
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    if (title != null) {
+//      return Padding(
+//        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+//        child: Text(
+//          title,
+//          style: RPStyles.h2,
+//          textAlign: TextAlign.left,
+//        ),
+//      );
+//    }
+//    return Container();
+//  }
+//}

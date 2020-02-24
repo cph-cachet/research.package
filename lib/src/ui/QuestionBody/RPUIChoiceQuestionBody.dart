@@ -12,7 +12,8 @@ class RPUIChoiceQuestionBody extends StatefulWidget {
   _RPUIChoiceQuestionBodyState createState() => _RPUIChoiceQuestionBodyState();
 }
 
-class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
+class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
+    with AutomaticKeepAliveClientMixin<RPUIChoiceQuestionBody> {
   List<RPChoice> selectedChoices;
 
   @override
@@ -50,9 +51,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
       }
     }
 
-    selectedChoices.length != 0
-        ? widget.onResultChange(selectedChoices)
-        : widget.onResultChange(null);
+    selectedChoices.length != 0 ? widget.onResultChange(selectedChoices) : widget.onResultChange(null);
   }
 
   Widget _choiceCellBuilder(BuildContext context, int index) {
@@ -68,6 +67,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     RPLocalizations locale = RPLocalizations.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -91,6 +91,9 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody> {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _ChoiceButton extends StatefulWidget {

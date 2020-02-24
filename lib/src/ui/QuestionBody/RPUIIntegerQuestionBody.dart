@@ -11,7 +11,7 @@ class RPUIIntegerQuestionBody extends StatefulWidget {
       _RPUIIntegerQuestionBodyState();
 }
 
-class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> {
+class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> with AutomaticKeepAliveClientMixin<RPUIIntegerQuestionBody> {
   TextEditingController _textEditingController;
   String _errorMessage;
   bool _valid;
@@ -55,6 +55,7 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     RPLocalizations locale = RPLocalizations.of(context);
     return Container(
       padding: EdgeInsets.all(8),
@@ -83,4 +84,7 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> {
     _textEditingController.dispose();
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

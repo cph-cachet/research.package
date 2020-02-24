@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:research_package/research_package.dart';
-import 'research_package_objects/infomed_consent_objects.dart';
+import 'research_package_objects/navigable_survey_objects.dart';
 import 'dart:convert';
 
-class InformedConsentPage extends StatelessWidget {
+class NavigableSurveyPage extends StatelessWidget {
   String _encode(Object object) => const JsonEncoder.withIndent(' ').convert(object);
 
   void resultCallback(RPTaskResult result) {
@@ -14,7 +14,7 @@ class InformedConsentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RPUITask(
-      task: consentTask,
+      task: navigableSurveyTask,
       onSubmit: (result) {
         resultCallback(result);
       },

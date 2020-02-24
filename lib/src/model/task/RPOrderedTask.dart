@@ -2,9 +2,23 @@ part of research_package_model;
 
 class RPOrderedTask extends RPTask {
   List<RPStep> _steps;
+  int _numberOfQuestionSteps;
+  bool _isConsentTask;
 
   RPOrderedTask(String identifier, this._steps, {bool closeAfterFinished = true})
-      : super(identifier, closeAfterFinished: closeAfterFinished);
+      : super(identifier, closeAfterFinished: closeAfterFinished) {
+    this._numberOfQuestionSteps = 0;
+    this._isConsentTask = false;
+
+    steps.forEach((step) {
+      // Counting the Question or FormStep items
+      if (step is RPQuestionStep) this._numberOfQuestionSteps++;
+      // If there's a Consent Review Step among the steps it means the task is a Consent Task
+      if (step.runtimeType == RPConsentReviewStep) {
+        _isConsentTask = true;
+      }
+    });
+  }
 
   /// The list of [RPStep]s of the task
   List<RPStep> get steps => this._steps;
@@ -68,4 +82,10 @@ class RPOrderedTask extends RPTask {
   String getTitleForStep(RPStep step) {
     return step.title;
   }
+
+  /// Returns ```true``` if the task is a Consent Task. It is considered a Consent Task if it has an [RPConsentReviewStep]
+  bool get isConsentTask => this._isConsentTask;
+
+  /// Returns the number of question steps in the task
+  int get numberOfQuestionSteps => this._numberOfQuestionSteps;
 }

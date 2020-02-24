@@ -1,12 +1,13 @@
 part of research_package_model;
 
 // Note: The streams are open for the whole application run. Maybe the singleton solution is not the best and a new bloc instance is better to create each time it's needed.
-/// The BLoC file for the communication between the task [RPUIOrderedTask] and its steps [RPStep].
+/// The BLoC file for the communication between the task [RPUITask] and its steps [RPStep].
 class BlocTask {
   final _stepStatusController = StreamController<StepStatus>.broadcast();
   // Need to get the information after adding to the sink, that's why BehaviorSubject
   final _stepResultController = StreamController<RPStepResult>.broadcast();
   final _taskProgressController = BehaviorSubject<RPTaskProgress>();
+  final _taskResultController = BehaviorSubject<RPTaskResult>.seeded(RPTaskResult());
 
   //Add data to stream
 
@@ -25,6 +26,9 @@ class BlocTask {
   /// It shows how many questions are there in total and where the participant stands in the process so far.
   Function(RPTaskProgress) get updateTaskProgress => _taskProgressController.add;
 
+  // TODO: Documentation
+  Function(RPTaskResult) get updateTaskResult => _taskResultController.add;
+
   //Retrieve data from stream
 
   /// The stream conveying the current step status
@@ -39,10 +43,13 @@ class BlocTask {
   // Other stream properties
   RPTaskProgress get lastProgressValue => _taskProgressController.stream.value;
 
+  RPTaskResult get lastTaskResult => _taskResultController.stream.value;
+
   dispose() {
     _stepStatusController.close();
     _stepResultController.close();
     _taskProgressController.close();
+    _taskResultController.close();
   }
 }
 

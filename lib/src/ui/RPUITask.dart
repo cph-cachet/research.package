@@ -1,10 +1,10 @@
 part of research_package_ui;
 
 /// This class is the primary entry point for the presentation of the Research Package framework UI.
-/// It presents the steps of an [RPOrderedTask] and then provides the [RPTaskResult] object.
-class RPUIOrderedTask extends StatefulWidget {
+/// It presents the steps of an [RPOrderedTask] (either navigable or just linear) and then provides the [RPTaskResult] object.
+class RPUITask extends StatefulWidget {
   /// The task to present
-  /// The [RPUIOrderedTask] presents its steps after each other and creates an [RPTaskResult] object with the same
+  /// The [RPUITask] presents its steps after each other and creates an [RPTaskResult] object with the same
   /// identifier as the [task]'s identifier.
   final RPOrderedTask task;
 
@@ -12,19 +12,17 @@ class RPUIOrderedTask extends StatefulWidget {
   /// This function is called when the participant has finished the last step.
   final void Function(RPTaskResult) onSubmit;
 
-  RPUIOrderedTask({
-    this.task,
-    this.onSubmit,
-  });
+  RPUITask({this.task, this.onSubmit});
 
   @override
-  _RPUIOrderedTaskState createState() => _RPUIOrderedTaskState();
+  _RPUITaskState createState() => _RPUITaskState();
 }
 
-class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
+class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   RPTaskResult taskResult;
   List<Widget> stepWidgets = [];
 
+  RPStep previousStep;
   RPStep currentStep;
   int currentStepIndex = 0;
   int currentQuestionIndex = 1;
@@ -32,29 +30,24 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   StreamSubscription<StepStatus> stepStatusSubscription;
   StreamSubscription<RPStepResult> stepResultSubscription;
 
-  bool consentTask = false;
+  bool navigableTask = false;
 
   @override
   initState() {
     // Instantiate the taskresult so it starts tracking time
     taskResult = RPTaskResult.withParams(widget.task.identifier);
 
-    // Calculating the number of question steps because we only want to display their count
-    var nrOfQuestionSteps = 0;
-    widget.task.steps.forEach((step) {
-      stepWidgets.add(step.stepWidget);
-      // If there's a Consent Review Step among the steps it means the task is a Consent Task
-      if (step.runtimeType == RPConsentReviewStep) consentTask = true;
-      // Counting the Question or FormStep items
-      if (step is RPQuestionStep) nrOfQuestionSteps++;
-    });
-
-    // Sending the initial Task Progress so the Question UI can use it in the app bar
-    blocTask.updateTaskProgress(
-        RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+    // If it's navigable we don't want to show result on appbar
+    if (widget.task.runtimeType == RPNavigableOrderedTask) {
+      blocTask.updateTaskProgress(null);
+      navigableTask = true;
+    } else {
+      // Sending the initial Task Progress so the Question UI can use it in the app bar
+      blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
+    }
 
     // Subscribe to step status changes so the navigation can be triggered
-    stepStatusSubscription = blocTask.stepStatus.listen((data) {
+    stepStatusSubscription = blocTask.stepStatus.listen((data) async {
       switch (data) {
         case StepStatus.Finished:
           // In case of last step we save the result and close the task
@@ -69,22 +62,41 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
           // Updating taskProgress stream
           if (currentStep.runtimeType == RPQuestionStep) {
             currentQuestionIndex++;
-            blocTask.updateTaskProgress(
-                RPTaskProgress(currentQuestionIndex, nrOfQuestionSteps));
+            // TODO: calculate the stepprogress differently for navigableTask
+            if (!navigableTask)
+              blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
           }
 
           // Calculating next step and then navigate there
+          previousStep = currentStep;
           currentStep = widget.task.getStepAfterStep(currentStep, null);
+          setState(() {
+            stepWidgets.add(currentStep.stepWidget);
+          });
           currentStepIndex++;
-          taskPageViewController.nextPage(
-              duration: Duration(milliseconds: 300), curve: Curves.decelerate);
-          break;
 
+          taskPageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+          break;
         case StepStatus.Canceled:
           _showCancelConfirmationDialog();
           break;
         case StepStatus.Back:
-          print('back');
+          // TODO
+          if (currentStep == widget.task.steps.first) {
+            break;
+          } else {
+            currentQuestionIndex--;
+            // TODO: calculate the stepprogress differently for navigableTask
+            if (!navigableTask)
+              blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
+            // await because we can only update the stepWidgets list while the current step is ot on the screen
+            await taskPageViewController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+
+            setState(() {
+              stepWidgets.removeLast();
+            });
+            currentStep = previousStep;
+          }
           break;
         case StepStatus.Ongoing:
           print('ongoing');
@@ -93,11 +105,14 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     });
     stepResultSubscription = blocTask.stepResult.listen((stepResult) {
       taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
-//      print("This is the taskresult so far: ${taskResult.results}");
+      blocTask.updateTaskResult(taskResult);
     });
 
     // Getting the first step
     currentStep = widget.task.getStepAfterStep(null, null);
+    setState(() {
+      stepWidgets.add(currentStep.stepWidget);
+    });
 
     super.initState();
   }
@@ -114,20 +129,17 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        RPLocalizations locale = RPLocalizations.of(context);
         return AlertDialog(
-          title: Text(locale?.translate('Discard results and quit?') ??
-              "Discard results and quit?"),
+          title: Text(widget.task.isConsentTask ? "Cancel?" : "Discard results and quit?"),
           actions: <Widget>[
             FlatButton(
-              child: Text(locale?.translate('NO') ?? "NO"),
-              onPressed: () =>
-                  Navigator.of(context).pop(), // Dismissing the pop-up
+              child: Text("NO"),
+              onPressed: () => Navigator.of(context).pop(), // Dismissing the pop-up
             ),
             FlatButton(
-              child: Text(locale?.translate('YES') ?? "YES"),
+              child: Text("YES"),
               onPressed: () {
-                // TODO: Do something with the result
+                // TODO: Store the result
                 // Popup dismiss
                 Navigator.of(context).pop();
                 // Exit the Ordered Task
@@ -140,16 +152,22 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
     );
   }
 
-  PageController taskPageViewController = PageController();
+  PageController taskPageViewController = PageController(keepPage: false);
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context),
-      child: PageView(
-        children: stepWidgets,
-        controller: taskPageViewController,
-        physics: NeverScrollableScrollPhysics(),
+    return WillPopScope(
+      onWillPop: () => blocTask.sendStatus(StepStatus.Canceled),
+      child: Theme(
+        data: Theme.of(context),
+        child: PageView.builder(
+          itemBuilder: (BuildContext context, int position) {
+            return stepWidgets[position];
+          },
+          itemCount: stepWidgets.length,
+          controller: taskPageViewController,
+          physics: NeverScrollableScrollPhysics(),
+        ),
       ),
     );
   }
@@ -158,6 +176,7 @@ class _RPUIOrderedTaskState extends State<RPUIOrderedTask> with CanSaveResult {
   dispose() {
     stepStatusSubscription.cancel();
     stepResultSubscription.cancel();
+    taskPageViewController.dispose();
     super.dispose();
   }
 }

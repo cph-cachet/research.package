@@ -10,11 +10,12 @@ class RPUISliderQuestionBody extends StatefulWidget {
   _RPUISliderQuestionBodyState createState() => _RPUISliderQuestionBodyState();
 }
 
-class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody> {
+class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody> with AutomaticKeepAliveClientMixin<RPUISliderQuestionBody> {
   double value;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     RPLocalizations locale = RPLocalizations.of(context);
     return Container(
         padding: EdgeInsets.all(8),
@@ -38,4 +39,7 @@ class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody> {
           ],
         ));
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
