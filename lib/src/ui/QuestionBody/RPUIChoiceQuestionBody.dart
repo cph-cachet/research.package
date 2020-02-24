@@ -125,12 +125,15 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              locale?.translate(widget.choice.text) ?? widget.choice.text,
-              style: widget.selected
-                  ? RPStyles.choiceAnswerText
-                      .copyWith(fontWeight: FontWeight.w500)
-                  : RPStyles.choiceAnswerText,
+            Flexible(
+              child: Text(
+                locale?.translate(widget.choice.text) ?? widget.choice.text,
+                style: widget.selected
+                    ? RPStyles.choiceAnswerText
+                        .copyWith(fontWeight: FontWeight.w500)
+                    : RPStyles.choiceAnswerText,
+                softWrap: true,
+              ),
             ),
             Icon(widget.selected ? Icons.check : null, color: Colors.black),
           ],
