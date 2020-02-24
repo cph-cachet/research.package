@@ -86,7 +86,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Text("${recentTaskProgress.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress.total}"),
+        title: Text(recentTaskProgress != null ? "${recentTaskProgress?.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress?.total}" : ""),
         automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
@@ -124,7 +124,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
           widget.step.optional
               ? FlatButton(
                   onPressed: () => skipQuestion(),
-                  child: Text("Skip this question"),
+                  child: Text("Skip this question"), // TODO: Localization
                 )
               : Container(),
         ],
@@ -141,7 +141,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
           child: Text(
-            "NEXT",
+            RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
           ),
           onPressed: readyToProceed
               ? () {

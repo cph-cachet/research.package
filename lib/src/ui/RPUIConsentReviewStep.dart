@@ -169,7 +169,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
     return Scaffold(
       appBar: AppBar(
         title:
-            Text(locale?.translate('Review') ?? 'Review'), //TODO: Localization
+            Text(locale?.translate('Review') ?? 'Review'),
         automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
@@ -210,7 +210,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                     blocTask.sendStatus(StepStatus.Finished);
                   },
           ),
-        ), //TODO: Localization
+        ),
       ],
     );
   }

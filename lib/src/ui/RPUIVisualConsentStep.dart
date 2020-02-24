@@ -150,7 +150,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                   textTheme: ButtonTextTheme.accent,
                   child: Text(
                       RPLocalizations.of(context)?.translate('Learn more...') ??
-                          "Learn more..."), // TODO: Localization
+                          "Learn more..."),
                   onPressed: () => _pushContent(
                     section.title,
                     section.content,

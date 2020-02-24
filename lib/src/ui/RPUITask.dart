@@ -130,14 +130,14 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(widget.task.isConsentTask ? "Cancel?" : "Discard results and quit?"),
+          title: Text(widget.task.isConsentTask ? RPLocalizations.of(context)?.translate('Cancel?') ?? "Cancel?" : RPLocalizations.of(context)?.translate('Discard results and quit?') ?? "Discard results and quit?"), // TODO: Localization
           actions: <Widget>[
             FlatButton(
-              child: Text("NO"),
+              child: Text(RPLocalizations.of(context)?.translate('NO') ?? "NO"),
               onPressed: () => Navigator.of(context).pop(), // Dismissing the pop-up
             ),
             FlatButton(
-              child: Text("YES"),
+              child: Text(RPLocalizations.of(context)?.translate('YES') ?? "YES"),
               onPressed: () {
                 // TODO: Store the result
                 // Popup dismiss
