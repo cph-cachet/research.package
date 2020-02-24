@@ -7,7 +7,8 @@ class RPUIBooleanQuestionBody extends StatefulWidget {
   RPUIBooleanQuestionBody(this.answerFormat, this.onResultChange);
 
   @override
-  _RPUIBooleanQuestionBodyState createState() => _RPUIBooleanQuestionBodyState();
+  _RPUIBooleanQuestionBodyState createState() =>
+      _RPUIBooleanQuestionBodyState();
 }
 
 class _RPUIBooleanQuestionBodyState extends State<RPUIBooleanQuestionBody>
@@ -71,7 +72,8 @@ class _BooleanButtonState extends State<_BooleanButton> {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(6))),
         padding: EdgeInsets.all(14),
         onPressed: () {
           widget.selectedCallBack(widget.value);
@@ -80,9 +82,11 @@ class _BooleanButtonState extends State<_BooleanButton> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
-              widget.text,
+              RPLocalizations.of(context)?.translate(widget.text) ??
+                  widget.text,
               style: widget.selected
-                  ? RPStyles.choiceAnswerText.copyWith(fontWeight: FontWeight.w500)
+                  ? RPStyles.choiceAnswerText
+                      .copyWith(fontWeight: FontWeight.w500)
                   : RPStyles.choiceAnswerText,
             ),
             Icon(widget.selected ? Icons.check : null, color: Colors.black),
