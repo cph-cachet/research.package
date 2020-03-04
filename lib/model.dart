@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:collection/collection.dart';
 
 // Importing the UI library from Research Package
 import 'package:research_package/ui.dart';

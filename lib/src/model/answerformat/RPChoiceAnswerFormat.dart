@@ -29,13 +29,13 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPChoice {
   String _text;
-  dynamic _value;
+  int _value;
   String _detailText;
 
   RPChoice();
 
   /// Default constructor with [detailText] set to ```null```.
-  RPChoice.withParams(String text, dynamic value) {
+  RPChoice.withParams(String text, int value) {
     this._text = text;
     this._value = value;
     this._detailText = null;

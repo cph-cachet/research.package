@@ -292,3 +292,5 @@ DerivedData/
 
 # End of https://www.gitignore.io/api/xcode,flutter,android,intellij,androidstudio
 .dart_tool/package_config.json
+
+.dart_tool/build_resolvers/sdk.sum.deps

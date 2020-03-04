@@ -9,9 +9,31 @@ List<RPImageChoice> images = [
   RPImageChoice.withParams(Image.asset('assets/images/very-happy.png'), 0, 'Feeling very happy'),
 ];
 
+List<RPChoice> joyfulActivities = [
+  RPChoice.withParams("Playing games", 6),
+  RPChoice.withParams("Jogging", 5),
+  RPChoice.withParams("Playing an instrument", 4),
+  RPChoice.withParams("Family and friends", 3),
+  RPChoice.withParams("Doing sports", 2),
+  RPChoice.withParams("Reading", 1),
+  RPChoice.withParams("Being productive", 0),
+];
+
+List<RPChoice> who5Choices = [
+  RPChoice.withParams("All of the time", 5),
+  RPChoice.withParams("Most of the time", 4),
+  RPChoice.withParams("More than half of the time", 3),
+  RPChoice.withParams("Less than half of the time", 2),
+  RPChoice.withParams("Some of the time", 1),
+  RPChoice.withParams("At no time", 0),
+];
+
 RPBooleanAnswerFormat yesNoAnswerFormat = RPBooleanAnswerFormat.withParams("Yes", "No");
 RPImageChoiceAnswerFormat imageChoiceAnswerFormat = RPImageChoiceAnswerFormat.withParams(images);
 RPIntegerAnswerFormat nrOfCigarettesAnswerFormat = RPIntegerAnswerFormat.withParams(0, 200, "cigarettes");
+RPChoiceAnswerFormat who5AnswerFormat = RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, who5Choices);
+RPChoiceAnswerFormat joyfulActivitiesAnswerFormat =
+    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
 
 RPQuestionStep smokingQuestion =
     RPQuestionStep.withAnswerFormat("smokingQuestionId", "Do you smoke?", yesNoAnswerFormat);
@@ -22,12 +44,8 @@ RPQuestionStep imageChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   imageChoiceAnswerFormat,
 );
 
-RPQuestionStep nrOfCigarettesQuestionStep =
-RPQuestionStep.withAnswerFormat("nrOfCigarettesQuestionStepID", "How many cigarettes do you smoke a day?", nrOfCigarettesAnswerFormat);
-
-RPCompletionStep completionStep = RPCompletionStep("completionID")
-  ..title = "Finished"
-  ..text = "Thank you for filling out the survey!";
+RPQuestionStep nrOfCigarettesQuestionStep = RPQuestionStep.withAnswerFormat(
+    "nrOfCigarettesQuestionStepID", "How many cigarettes do you smoke a day?", nrOfCigarettesAnswerFormat);
 
 RPInstructionStep instructionStep = RPInstructionStep(
   identifier: "instructionID",
@@ -48,6 +66,24 @@ RPInstructionStep afterNoSmokingStep = RPInstructionStep(
   detailText: "Keep it up!",
 )..text = "You are a healthy dude";
 
+RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+  "singleChoiceQuestionStepID",
+  "I have felt cheerful and in good spirits",
+  who5AnswerFormat,
+);
+
+RPQuestionStep multiChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+  "multiChoiceQuestionStepID",
+  "What makes you happy?",
+  joyfulActivitiesAnswerFormat,
+);
+
+RPResultPredicate singleChoicePredicate = RPResultPredicate.forChoiceQuestionResult(
+    resultSelector: RPResultSelector.forStepId("singleChoiceQuestionStepID"), expectedValue: [5]);
+
+RPResultPredicate multiChoicePredicate = RPResultPredicate.forChoiceQuestionResult(
+    resultSelector: RPResultSelector.forStepId("multiChoiceQuestionStepID"), expectedValue: [0,6]);
+
 RPResultPredicate yesSmokingPredicate = RPResultPredicate.forBooleanQuestionResult(
     resultSelector: RPResultSelector.forStepId("smokingQuestionId"), expectedValue: true);
 
@@ -61,12 +97,28 @@ RPPredicateStepNavigationRule smokingNavigationRule = RPPredicateStepNavigationR
   },
 );
 
-RPDirectStepNavigationRule navigationRuleAfterSmokingResult = RPDirectStepNavigationRule(imageChoiceQuestionStep.identifier);
+RPPredicateStepNavigationRule singleChoiceNavigationRule = RPPredicateStepNavigationRule(
+  {
+    singleChoicePredicate: imageChoiceQuestionStep.identifier,
+  },
+);
+
+RPPredicateStepNavigationRule multiChoiceNavigationRule = RPPredicateStepNavigationRule(
+  {
+    multiChoicePredicate: imageChoiceQuestionStep.identifier,
+  },
+);
+
+RPCompletionStep completionStep = RPCompletionStep("completionID")
+  ..title = "Finished"
+  ..text = "Thank you for filling out the survey!";
 
 RPNavigableOrderedTask navigableSurveyTask = RPNavigableOrderedTask(
   "NavigableTaskID",
   [
     instructionStep,
+    multiChoiceQuestionStep,
+    singleChoiceQuestionStep,
     smokingQuestion,
     nrOfCigarettesQuestionStep,
     imageChoiceQuestionStep,
@@ -74,5 +126,9 @@ RPNavigableOrderedTask navigableSurveyTask = RPNavigableOrderedTask(
   ],
 )
   ..setNavigationRuleForTriggerStepIdentifier(smokingNavigationRule, smokingQuestion.identifier)
-  ..setNavigationRuleForTriggerStepIdentifier(navigationRuleAfterSmokingResult, afterYesSmokingStep.identifier)
-  ..setNavigationRuleForTriggerStepIdentifier(navigationRuleAfterSmokingResult, afterNoSmokingStep.identifier);
+  ..setNavigationRuleForTriggerStepIdentifier(singleChoiceNavigationRule, singleChoiceQuestionStep.identifier)
+  ..setNavigationRuleForTriggerStepIdentifier(multiChoiceNavigationRule, multiChoiceQuestionStep.identifier);
+
+
+//RPDirectStepNavigationRule navigationRuleAfterSmokingResult =
+//    RPDirectStepNavigationRule(imageChoiceQuestionStep.identifier);

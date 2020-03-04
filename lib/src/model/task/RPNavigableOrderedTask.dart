@@ -44,7 +44,8 @@ class RPNavigableOrderedTask extends RPOrderedTask {
               .resultPredicatesWithDestinationIdentifiers
               .forEach((resultPredicate, destinationStepIdentifier) {
             // Catching the first
-            if (resultPredicate.predictionResult) {
+//            if (resultPredicate.predictionResult) {
+            if (resultPredicate.getPredictionResult()) {
               _steps.forEach((step) {
                 if (step.identifier == destinationStepIdentifier) {
                   _stepToReturn = step;
