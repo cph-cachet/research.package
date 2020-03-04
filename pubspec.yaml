@@ -12,6 +12,8 @@ dependencies:
   signature: ^2.0.0
   rxdart: ^0.23.0
   json_annotation: ^3.0.0
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

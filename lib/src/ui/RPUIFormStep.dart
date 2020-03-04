@@ -74,7 +74,16 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   Widget formItemBuilder(context, index) {
     if (index == 0) {
-      return Title(widget.formStep.title);
+      return (widget.formStep.title != null)
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+              child: Text(
+                RPLocalizations.of(context)?.translate(widget.formStep.title) ?? widget.formStep.title,
+                style: RPStyles.h2,
+                textAlign: TextAlign.left,
+              ),
+            )
+          : null;
     }
     index -= 1;
 
@@ -84,7 +93,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               padding: const EdgeInsets.all(8.0),
               child: FlatButton(
                 onPressed: () => skipQuestion(),
-                child: Text("Skip these questions"),
+                child: Text("Skip these questions"), // TODO: Localization
               ),
             )
           : Container();
@@ -99,7 +108,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              widget.formStep.steps[index].title,
+              RPLocalizations.of(context)?.translate(widget.formStep.steps[index].title) ??
+                  widget.formStep.steps[index].title,
               style: RPStyles.h3,
             ),
           ),
@@ -120,9 +130,10 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("${recentTaskProgress.current} of ${recentTaskProgress.total}"),
+        title: Text("${recentTaskProgress.current} ${locale?.translate('of') ?? "of"} ${recentTaskProgress.total}"),
         automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
@@ -145,7 +156,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         FlatButton(
           onPressed: () => blocTask.sendStatus(StepStatus.Back),
           child: Text(
-            "BACK",
+            RPLocalizations.of(context)?.translate('BACK') ?? "BACK",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
@@ -153,7 +164,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           color: Theme.of(context).accentColor,
           textColor: Colors.white,
           child: Text(
-            "NEXT",
+            locale?.translate('NEXT') ?? "NEXT",
           ),
           onPressed: readyToProceed
               ? () {

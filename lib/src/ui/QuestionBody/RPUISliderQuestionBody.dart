@@ -16,13 +16,14 @@ class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody> with Au
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    RPLocalizations locale = RPLocalizations.of(context);
     return Container(
         padding: EdgeInsets.all(8),
         alignment: Alignment.topLeft,
         child: Column(
           children: <Widget>[
             Text(
-              '${widget.answerFormat.prefix}${value ?? widget.answerFormat.minValue}${widget.answerFormat.suffix}',
+              '${locale?.translate(widget.answerFormat.prefix) ?? widget.answerFormat.prefix}${value ?? widget.answerFormat.minValue}${locale?.translate(widget.answerFormat.suffix) ?? widget.answerFormat.suffix}',
               style: TextStyle(fontSize: 18),
             ),
             Slider(

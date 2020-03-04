@@ -24,7 +24,10 @@ class _RPUIImageChoiceQuestionBodyState
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    String text = _selectedItem?.description ?? 'Select an image';
+    RPLocalizations locale = RPLocalizations.of(context);
+    String text = (locale?.translate(_selectedItem?.description) ??
+            _selectedItem?.description) ??
+        (locale?.translate('Select an image') ?? 'Select an image');
     return Container(
         height: 150,
         child: Column(

@@ -13,7 +13,8 @@ class RPUICompletionStep extends StatefulWidget {
   _RPUICompletionStepState createState() => _RPUICompletionStepState();
 }
 
-class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTickerProviderStateMixin {
+class _RPUICompletionStepState extends State<RPUICompletionStep>
+    with SingleTickerProviderStateMixin {
   Animation<double> _scale;
   AnimationController _controller;
 
@@ -21,13 +22,17 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
   void initState() {
     super.initState();
 
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 350));
-    _scale = Tween(begin: 0.3, end: 1.1).chain(CurveTween(curve: Curves.easeInOut)).animate(_controller);
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 350));
+    _scale = Tween(begin: 0.3, end: 1.1)
+        .chain(CurveTween(curve: Curves.easeInOut))
+        .animate(_controller);
     _controller.forward();
   }
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       body: Center(
         child: Column(
@@ -36,14 +41,14 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
             Column(
               children: <Widget>[
                 Text(
-                  widget.step.title,
+                  locale?.translate(widget.step.title) ?? widget.step.title,
                   style: RPStyles.h2,
                 ),
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
-                      widget.step.text,
+                      locale?.translate(widget.step.text) ?? widget.step.text,
                       style: RPStyles.h3,
                       textAlign: TextAlign.center,
                     ),
@@ -67,7 +72,8 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
                 onPressed: () {
                   blocTask.sendStatus(StepStatus.Finished);
                 },
-                child: Text("DONE"), //TODO: Localization
+                child: Text(RPLocalizations.of(context)?.translate('DONE') ??
+                    "DONE"),
               ),
             )
           ],

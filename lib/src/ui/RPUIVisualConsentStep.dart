@@ -13,7 +13,8 @@ class RPUIVisualConsentStep extends StatefulWidget {
   _RPUIVisualConsentStep createState() => _RPUIVisualConsentStep();
 }
 
-class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTickerProviderStateMixin {
+class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
+    with SingleTickerProviderStateMixin {
   Animation<double> _scale;
   AnimationController _controller;
   int _pageNr = 0;
@@ -22,7 +23,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 400));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
     _scale = Tween(begin: 0.6, end: 1.0)
         .chain(
           CurveTween(
@@ -54,7 +56,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
 
   Widget _illustrationForType(RPConsentSection section) {
     double iconSize = 80.0;
-    
+
     switch (section.type) {
       case RPConsentSectionType.Overview:
         return null;
@@ -111,6 +113,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
 
   Widget _consentSectionPageBuilder(BuildContext context, int index) {
     RPConsentSection section = widget.consentDocument.sections[index];
+    RPLocalizations locale = RPLocalizations.of(context);
     if (section.title == null) {
       throw Exception(
           "No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text");
@@ -125,7 +128,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text(
-              section.title,
+              locale?.translate(section.title) ?? section.title,
               style: RPStyles.h1,
               textAlign: TextAlign.center,
             ),
@@ -138,14 +141,16 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    section.summary,
+                    locale?.translate(section.summary) ?? section.summary,
                     style: RPStyles.h3,
                     textAlign: TextAlign.center,
                   ),
                 ),
                 FlatButton(
                   textTheme: ButtonTextTheme.accent,
-                  child: Text("Learn more..."), // TODO: Localization
+                  child: Text(
+                      RPLocalizations.of(context)?.translate('Learn more...') ??
+                          "Learn more..."),
                   onPressed: () => _pushContent(
                     section.title,
                     section.content,
@@ -164,17 +169,21 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
       showDialog(
         context: context,
         builder: (context) {
+          RPLocalizations locale = RPLocalizations.of(context);
           return AlertDialog(
-            content: Text("Are you sure you want to quit?"),
+            content: Text(locale?.translate('quit_confirmation') ??
+                "Are you sure you want to quit?"),
             actions: <Widget>[
               FlatButton(
-                child: Text("YES"),
+                child: Text(locale?.translate('YES') ?? "YES"),
                 onPressed: () {
                   Navigator.of(context).pop(); // Pop the popup
                   Navigator.of(context).pop(); // Pop the screen
                 },
               ),
-              FlatButton(child: Text("NO"), onPressed: () => Navigator.of(context).pop() // Pop the popup,
+              FlatButton(
+                  child: Text(locale?.translate('NO') ?? "NO"),
+                  onPressed: () => Navigator.of(context).pop() // Pop the popup,
                   )
             ],
           );
@@ -193,16 +202,19 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               padding: EdgeInsets.all(10.0),
               child: _lastPage
                   ? Text(
-                      "SEE SUMMARY",
+                      RPLocalizations.of(context)?.translate('see_summary') ??
+                          "SEE SUMMARY",
                       style: RPStyles.whiteText,
                     )
                   : Text(
-                      "NEXT",
+                      RPLocalizations.of(context)?.translate('next') ?? "NEXT",
                       style: RPStyles.whiteText,
                     ),
               onPressed: _lastPage
                   ? () => blocTask.sendStatus(StepStatus.Finished)
-                  : () => controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
+                  : () => controller.nextPage(
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.fastOutSlowIn),
             ),
           ),
           ButtonTheme(
@@ -210,7 +222,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
             child: FlatButton(
               padding: EdgeInsets.all(10.0),
               child: Text(
-                "CANCEL",
+                RPLocalizations.of(context)?.translate('CANCEL') ?? "CANCEL",
                 style: TextStyle(color: Theme.of(context).accentColor),
               ),
               onPressed: () => _showCancelDialog(),
@@ -223,13 +235,15 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     PageController controller = PageController();
 
     return WillPopScope(
       onWillPop: () => null,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.consentDocument.title),
+          title: Text(locale?.translate(widget.consentDocument.title) ??
+              widget.consentDocument.title),
           automaticallyImplyLeading: false,
         ),
         body: Column(
@@ -263,13 +277,15 @@ class _ContentRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.title),
+        title: Text(locale?.translate(this.title) ?? this.title),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: SingleChildScrollView(child: Text(this.content)),
+        child: SingleChildScrollView(
+            child: Text(locale?.translate(this.content) ?? this.content)),
       ),
     );
   }

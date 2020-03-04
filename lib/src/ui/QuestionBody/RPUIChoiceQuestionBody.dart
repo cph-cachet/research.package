@@ -58,7 +58,9 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
     return _ChoiceButton(
       choice: widget._answerFormat.choices[index],
       selectedCallBack: _buttonCallBack,
-      selected: selectedChoices.contains(widget._answerFormat.choices[index]) ? true : false,
+      selected: selectedChoices.contains(widget._answerFormat.choices[index])
+          ? true
+          : false,
       index: index,
     );
   }
@@ -66,15 +68,19 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    RPLocalizations locale = RPLocalizations.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(widget._answerFormat.answerStyle == ChoiceAnswerStyle.MultipleChoice
-              ? "(Choose one or more option)"
-              : "(Choose one option)"), //TODO: Localization
+          child: Text(widget._answerFormat.answerStyle ==
+                  ChoiceAnswerStyle.MultipleChoice
+              ? (locale?.translate('(Choose one or more options)') ??
+                  "(Choose one or more options)")
+              : (locale?.translate('(Choose one option)') ??
+                  "(Choose one option)")),
         ),
         ListView.builder(
           shrinkWrap: true,
@@ -96,7 +102,8 @@ class _ChoiceButton extends StatefulWidget {
   final bool selected;
   final int index;
 
-  _ChoiceButton({this.choice, this.selectedCallBack, this.selected, this.index});
+  _ChoiceButton(
+      {this.choice, this.selectedCallBack, this.selected, this.index});
 
   @override
   _ChoiceButtonState createState() => _ChoiceButtonState();
@@ -105,10 +112,12 @@ class _ChoiceButton extends StatefulWidget {
 class _ChoiceButtonState extends State<_ChoiceButton> {
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: OutlineButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(6))),
         padding: EdgeInsets.all(14),
         onPressed: () {
           widget.selectedCallBack(widget.choice);
@@ -116,11 +125,15 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              widget.choice.text,
-              style: widget.selected
-                  ? RPStyles.choiceAnswerText.copyWith(fontWeight: FontWeight.w500)
-                  : RPStyles.choiceAnswerText,
+            Flexible(
+              child: Text(
+                locale?.translate(widget.choice.text) ?? widget.choice.text,
+                style: widget.selected
+                    ? RPStyles.choiceAnswerText
+                        .copyWith(fontWeight: FontWeight.w500)
+                    : RPStyles.choiceAnswerText,
+                softWrap: true,
+              ),
             ),
             Icon(widget.selected ? Icons.check : null, color: Colors.black),
           ],
