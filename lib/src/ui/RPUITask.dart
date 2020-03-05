@@ -75,13 +75,16 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           });
           currentStepIndex++;
 
-          taskPageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+          taskPageViewController.nextPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
           break;
         case StepStatus.Canceled:
           _showCancelConfirmationDialog();
           break;
         case StepStatus.Back:
           // TODO
+          if (stepWidgets.length == 1) {
+            break;
+          }
           if (currentStep == widget.task.steps.first) {
             break;
           } else {
@@ -89,8 +92,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             // TODO: calculate the stepprogress differently for navigableTask
             if (!navigableTask)
               blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
-            // await because we can only update the stepWidgets list while the current step is ot on the screen
-            await taskPageViewController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+            // await because we can only update the stepWidgets list while the current step is out of the screen
+            await taskPageViewController.previousPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
 
             setState(() {
               stepWidgets.removeLast();
