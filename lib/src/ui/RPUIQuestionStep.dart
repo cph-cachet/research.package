@@ -133,7 +133,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
         FlatButton(
           onPressed: () => blocTask.sendStatus(StepStatus.Back),
           child: Text(
-            RPLocalizations.of(context)?.translate('BACK') ?? "BACK",
+            RPLocalizations.of(context)?.translate('PREVIOUS') ?? "PREVIOUS",
             style: TextStyle(color: Theme.of(context).primaryColor),
           ),
         ),

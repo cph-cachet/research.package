@@ -83,7 +83,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
         FlatButton(
           onPressed: () => blocTask.sendStatus(StepStatus.Back),
           child: Text(
-            locale?.translate('BACK') ?? "BACK",
+            locale?.translate('PREVIOUS') ?? "PREVIOUS",
             style: TextStyle(color: Colors.redAccent),
           ),
         ),
