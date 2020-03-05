@@ -82,6 +82,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           break;
         case StepStatus.Back:
           // TODO
+          // If the stepWidgets list only has 1 element it means the user is on the first question, so no back navigation is enabled
           if (stepWidgets.length == 1) {
             break;
           }

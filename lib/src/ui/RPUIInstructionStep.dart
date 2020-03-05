@@ -52,7 +52,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                   child: Text(
                     locale?.translate(widget.step.text) ?? widget.step.text,
                     textAlign: TextAlign.left,
-                    style: RPStyles.h3,
+                    style: RPStyles.h2,
                   ),
                 ),
                 widget.step.detailText != null
