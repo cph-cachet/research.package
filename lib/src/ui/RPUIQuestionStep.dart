@@ -124,7 +124,8 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
           widget.step.optional
               ? FlatButton(
                   onPressed: () => skipQuestion(),
-                  child: Text("Skip this question"), // TODO: Localization
+                  child: Text(locale?.translate("Skip this question") ??
+                      "Skip this question"),
                 )
               : Container(),
         ],

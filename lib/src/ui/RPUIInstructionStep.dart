@@ -84,7 +84,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           onPressed: () => blocTask.sendStatus(StepStatus.Back),
           child: Text(
             locale?.translate('PREVIOUS') ?? "PREVIOUS",
-            style: TextStyle(color: Colors.redAccent),
+            style: TextStyle(color: Theme.of(context).primaryColor),
           ),
         ),
         RaisedButton(
@@ -141,4 +141,3 @@ class InstructionImage extends StatelessWidget {
     }
   }
 }
-
