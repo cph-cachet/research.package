@@ -19,23 +19,26 @@ class RPUITask extends StatefulWidget {
 }
 
 class _RPUITaskState extends State<RPUITask> with CanSaveResult {
-  RPTaskResult taskResult;
-  List<Widget> stepWidgets = [];
+  RPTaskResult _taskResult;
+  /// A list of actual steps to show in the task.
+  /// If the task is a [RPNavigableOrderedTask] not all the questions necessarily show up because of branching.
+  /// (Some questions could be skipped based on previous answers.)
+  /// It is a dynamic list which grows and shrinks according to the forward of back navigation of the task.
+  List<RPStep> _activeSteps = [];
 
-  RPStep previousStep;
-  RPStep currentStep;
-  int currentStepIndex = 0;
-  int currentQuestionIndex = 1;
+  RPStep _currentStep;
+  int _currentStepIndex = 0;
+  int _currentQuestionIndex = 1;
 
-  StreamSubscription<StepStatus> stepStatusSubscription;
-  StreamSubscription<RPStepResult> stepResultSubscription;
+  StreamSubscription<StepStatus> _stepStatusSubscription;
+  StreamSubscription<RPStepResult> _stepResultSubscription;
 
   bool navigableTask = false;
 
   @override
   initState() {
     // Instantiate the taskresult so it starts tracking time
-    taskResult = RPTaskResult.withParams(widget.task.identifier);
+    _taskResult = RPTaskResult.withParams(widget.task.identifier);
 
     // If it's navigable we don't want to show result on appbar
     if (widget.task.runtimeType == RPNavigableOrderedTask) {
@@ -43,15 +46,15 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       navigableTask = true;
     } else {
       // Sending the initial Task Progress so the Question UI can use it in the app bar
-      blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
+      blocTask.updateTaskProgress(RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
     }
 
     // Subscribe to step status changes so the navigation can be triggered
-    stepStatusSubscription = blocTask.stepStatus.listen((data) async {
+    _stepStatusSubscription = blocTask.stepStatus.listen((data) async {
       switch (data) {
         case StepStatus.Finished:
           // In case of last step we save the result and close the task
-          if (currentStep == widget.task.steps.last) {
+          if (_currentStep == widget.task.steps.last) {
             //Creating and sending the task level of result to a stream to which anybody can subscribe
             createAndSendResult();
             if (widget.task.closeAfterFinished) {
@@ -60,20 +63,20 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             break;
           }
           // Updating taskProgress stream
-          if (currentStep.runtimeType == RPQuestionStep) {
-            currentQuestionIndex++;
+          if (_currentStep.runtimeType == RPQuestionStep) {
+            _currentQuestionIndex++;
             // TODO: calculate the stepprogress differently for navigableTask
             if (!navigableTask)
-              blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
+              blocTask.updateTaskProgress(RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
           }
 
           // Calculating next step and then navigate there
-          previousStep = currentStep;
-          currentStep = widget.task.getStepAfterStep(currentStep, null);
+          _currentStep = _activeSteps.last;
+          _currentStep = widget.task.getStepAfterStep(_currentStep, null);
           setState(() {
-            stepWidgets.add(currentStep.stepWidget);
+            _activeSteps.add(_currentStep);
           });
-          currentStepIndex++;
+          _currentStepIndex++;
 
           taskPageViewController.nextPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
           break;
@@ -83,23 +86,22 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
         case StepStatus.Back:
           // TODO
           // If the stepWidgets list only has 1 element it means the user is on the first question, so no back navigation is enabled
-          if (stepWidgets.length == 1) {
+          if (_activeSteps.length == 1) {
             break;
           }
-          if (currentStep == widget.task.steps.first) {
+          if (_currentStep == widget.task.steps.first) {
             break;
           } else {
-            currentQuestionIndex--;
+            _currentQuestionIndex--;
             // TODO: calculate the stepprogress differently for navigableTask
             if (!navigableTask)
-              blocTask.updateTaskProgress(RPTaskProgress(currentQuestionIndex, widget.task.numberOfQuestionSteps));
+              blocTask.updateTaskProgress(RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
             // await because we can only update the stepWidgets list while the current step is out of the screen
             await taskPageViewController.previousPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
 
             setState(() {
-              stepWidgets.removeLast();
+              _activeSteps.removeLast();
             });
-            currentStep = previousStep;
           }
           break;
         case StepStatus.Ongoing:
@@ -107,15 +109,15 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           break;
       }
     });
-    stepResultSubscription = blocTask.stepResult.listen((stepResult) {
-      taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
-      blocTask.updateTaskResult(taskResult);
+    _stepResultSubscription = blocTask.stepResult.listen((stepResult) {
+      _taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
+      blocTask.updateTaskResult(_taskResult);
     });
 
     // Getting the first step
-    currentStep = widget.task.getStepAfterStep(null, null);
+    _currentStep = widget.task.getStepAfterStep(null, null);
     setState(() {
-      stepWidgets.add(currentStep.stepWidget);
+      _activeSteps.add(_currentStep);
     });
 
     super.initState();
@@ -124,8 +126,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   @override
   createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate)
-    taskResult.endDate = DateTime.now();
-    widget.onSubmit(taskResult);
+    _taskResult.endDate = DateTime.now();
+    widget.onSubmit(_taskResult);
   }
 
   void _showCancelConfirmationDialog() {
@@ -134,7 +136,10 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(widget.task.isConsentTask ? RPLocalizations.of(context)?.translate('Cancel?') ?? "Cancel?" : RPLocalizations.of(context)?.translate('Discard results and quit?') ?? "Discard results and quit?"), // TODO: Localization
+          title: Text(widget.task.isConsentTask
+              ? RPLocalizations.of(context)?.translate('Cancel?') ?? "Cancel?"
+              : RPLocalizations.of(context)?.translate('Discard results and quit?') ??
+                  "Discard results and quit?"), // TODO: Localization
           actions: <Widget>[
             FlatButton(
               child: Text(RPLocalizations.of(context)?.translate('NO') ?? "NO"),
@@ -166,9 +171,9 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
         data: Theme.of(context),
         child: PageView.builder(
           itemBuilder: (BuildContext context, int position) {
-            return stepWidgets[position];
+            return _activeSteps[position].stepWidget;
           },
-          itemCount: stepWidgets.length,
+          itemCount: _activeSteps.length,
           controller: taskPageViewController,
           physics: NeverScrollableScrollPhysics(),
         ),
@@ -178,8 +183,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
   @override
   dispose() {
-    stepStatusSubscription.cancel();
-    stepResultSubscription.cancel();
+    _stepStatusSubscription.cancel();
+    _stepResultSubscription.cancel();
     taskPageViewController.dispose();
     super.dispose();
   }
