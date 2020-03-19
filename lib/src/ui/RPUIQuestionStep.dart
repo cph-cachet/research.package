@@ -21,21 +21,17 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {
     this._currentQuestionBodyResult = currentQuestionBodyResult;
+    createAndSendResult();
     if (this._currentQuestionBodyResult != null) {
-      setState(() {
-        readyToProceed = true;
-      });
+      blocQuestion.sendReadyToProceed(true);
     } else {
-      setState(() {
-        readyToProceed = false;
-      });
+      blocQuestion.sendReadyToProceed(false);
     }
   }
 
   skipQuestion() {
     blocTask.sendStatus(StepStatus.Finished);
     this.currentQuestionBodyResult = null;
-    createAndSendResult();
   }
 
   @override
@@ -43,6 +39,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
     // Instantiating the result object here to start the time counter (startDate)
     result = RPStepResult.withParams(widget.step);
     readyToProceed = false;
+    blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
 
     super.initState();
@@ -83,76 +80,35 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   @override
   Widget build(BuildContext context) {
     RPLocalizations locale = RPLocalizations.of(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        title: Text(recentTaskProgress != null ? "${recentTaskProgress?.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress?.total}" : ""),
-        automaticallyImplyLeading: false,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.cancel,
-              color: Theme.of(context).accentColor,
-            ),
-            onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-          )
-        ],
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(8),
-        children: [
-          (widget.step.title != null)
-              ? Padding(
-                  padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
-                  child: Text(
-                    locale?.translate(widget.step.title) ?? widget.step.title,
-                    style: RPStyles.h2,
-                    textAlign: TextAlign.left,
-                  ),
-                )
-              : null,
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: stepBody(widget.step.answerFormat),
-              ),
+    return ListView(
+      padding: EdgeInsets.all(8),
+      children: [
+        (widget.step.title != null)
+            ? Padding(
+                padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+                child: Text(
+                  locale?.translate(widget.step.title) ?? widget.step.title,
+                  style: RPStyles.h2,
+                  textAlign: TextAlign.left,
+                ),
+              )
+            : null,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: stepBody(widget.step.answerFormat),
             ),
           ),
-          widget.step.optional
-              ? FlatButton(
-                  onPressed: () => skipQuestion(),
-                  child: Text(locale?.translate("Skip this question") ??
-                      "Skip this question"),
-                )
-              : Container(),
-        ],
-      ),
-      persistentFooterButtons: <Widget>[
-        FlatButton(
-          onPressed: () => blocTask.sendStatus(StepStatus.Back),
-          child: Text(
-            RPLocalizations.of(context)?.translate('PREVIOUS') ?? "PREVIOUS",
-            style: TextStyle(color: Theme.of(context).primaryColor),
-          ),
         ),
-        RaisedButton(
-          color: Theme.of(context).accentColor,
-          textColor: Colors.white,
-          child: Text(
-            RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
-          ),
-          onPressed: readyToProceed
-              ? () {
-                  // Communicating with the RPUITask Widget
-                  // TODO: These two statements are shifted. Might cause problems
-                  createAndSendResult();
-                  blocTask.sendStatus(StepStatus.Finished);
-                }
-              : null,
-        ),
+        widget.step.optional
+            ? FlatButton(
+                onPressed: () => skipQuestion(),
+                child: Text(locale?.translate("Skip this question") ?? "Skip this question"),
+              )
+            : Container(),
       ],
     );
   }

@@ -28,6 +28,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     setState(() {
       readyToProceed = temp;
     });
+    createAndSendResult();
+    blocQuestion.sendReadyToProceed(temp);
   }
 
   @override
@@ -130,51 +132,12 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("${recentTaskProgress.current} ${locale?.translate('of') ?? "of"} ${recentTaskProgress.total}"),
-        automaticallyImplyLeading: false,
-        actions: <Widget>[
-          IconButton(
-            onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-            icon: Icon(
-              Icons.cancel,
-              color: Theme.of(context).accentColor,
-            ),
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+        itemBuilder: formItemBuilder,
+        itemCount: widget.formStep.steps.length + 2,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemBuilder: formItemBuilder,
-          itemCount: widget.formStep.steps.length + 2,
-        ),
-      ),
-      persistentFooterButtons: <Widget>[
-        FlatButton(
-          onPressed: () => blocTask.sendStatus(StepStatus.Back),
-          child: Text(
-            RPLocalizations.of(context)?.translate('BACK') ?? "BACK",
-            style: TextStyle(color: Colors.redAccent),
-          ),
-        ),
-        RaisedButton(
-          color: Theme.of(context).accentColor,
-          textColor: Colors.white,
-          child: Text(
-            locale?.translate('NEXT') ?? "NEXT",
-          ),
-          onPressed: readyToProceed
-              ? () {
-                  // Communicating with the RPUITask Widget
-                  blocTask.sendStatus(StepStatus.Finished);
-                  createAndSendResult();
-                }
-              : null,
-        ),
-      ],
     );
   }
 

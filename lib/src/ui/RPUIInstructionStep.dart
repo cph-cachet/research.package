@@ -18,6 +18,12 @@ class RPUIInstructionStep extends StatefulWidget {
 }
 
 class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
+  @override
+  void initState() {
+    blocQuestion.sendReadyToProceed(true);
+    super.initState();
+  }
+
   _pushDetailTextRoute() {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -34,68 +40,43 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
   @override
   Widget build(BuildContext context) {
     RPLocalizations locale = RPLocalizations.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(locale?.translate(widget.step.title) ?? widget.step.title),
-        automaticallyImplyLeading: false,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            // If image is provided show it
-            InstructionImage(widget.step.imagePath),
-            Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                    locale?.translate(widget.step.text) ?? widget.step.text,
-                    textAlign: TextAlign.left,
-                    style: RPStyles.h2,
-                  ),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          // If image is provided show it
+          InstructionImage(widget.step.imagePath),
+          Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(16),
+                child: Text(
+                  locale?.translate(widget.step.text) ?? widget.step.text,
+                  textAlign: TextAlign.left,
+                  style: RPStyles.h2,
                 ),
-                widget.step.detailText != null
-                    ? FlatButton(
-                        textTheme: ButtonTextTheme.accent,
-                        child: Text(locale?.translate('Learn more...') ??
-                            "Learn more..."),
-                        onPressed: _pushDetailTextRoute,
-                      )
-                    : Container(),
-              ],
-            ),
-            widget.step.footnote != null
-                ? Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      locale?.translate(widget.step.footnote) ??
-                          widget.step.footnote,
-                      style: RPStyles.bodyText,
-                      textAlign: TextAlign.left,
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
+              ),
+              widget.step.detailText != null
+                  ? FlatButton(
+                      textTheme: ButtonTextTheme.accent,
+                      child: Text(locale?.translate('Learn more...') ?? "Learn more..."),
+                      onPressed: _pushDetailTextRoute,
+                    )
+                  : Container(),
+            ],
+          ),
+          widget.step.footnote != null
+              ? Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    locale?.translate(widget.step.footnote) ?? widget.step.footnote,
+                    style: RPStyles.bodyText,
+                    textAlign: TextAlign.left,
+                  ),
+                )
+              : Container(),
+        ],
       ),
-      persistentFooterButtons: <Widget>[
-        FlatButton(
-          onPressed: () => blocTask.sendStatus(StepStatus.Back),
-          child: Text(
-            locale?.translate('PREVIOUS') ?? "PREVIOUS",
-            style: TextStyle(color: Theme.of(context).primaryColor),
-          ),
-        ),
-        RaisedButton(
-          color: Theme.of(context).accentColor,
-          textColor: Colors.white,
-          child: Text(
-            locale?.translate('CONTINUE') ?? "CONTINUE",
-          ),
-          onPressed: () => blocTask.sendStatus(StepStatus.Finished),
-        ),
-      ],
     );
   }
 }

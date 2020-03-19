@@ -128,16 +128,16 @@ RPOrderedTask linearSurveyTask = RPOrderedTask(
   "surveyTaskID",
   [
     instructionStep,
+    formStep,
     smokingQuestionStep,
     sliderQuestionStep,
-//    timeOfDayQuestionStep,
-//    dateAndTimeQuestionStep,
-//    dateQuestionStep,
-//    imageChoiceQuestionStep,
+    timeOfDayQuestionStep,
+    dateAndTimeQuestionStep,
+    dateQuestionStep,
+    imageChoiceQuestionStep,
     singleChoiceQuestionStep,
     happinessChoiceQuestionStep,
-    weightQuestionStep,
-    formStep,
+//    weightQuestionStep,
     completionStep
   ],
 );

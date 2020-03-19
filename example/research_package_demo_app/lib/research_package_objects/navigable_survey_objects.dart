@@ -82,7 +82,7 @@ RPResultPredicate singleChoicePredicate = RPResultPredicate.forChoiceQuestionRes
     resultSelector: RPResultSelector.forStepId("singleChoiceQuestionStepID"), expectedValue: [5]);
 
 RPResultPredicate multiChoicePredicate = RPResultPredicate.forChoiceQuestionResult(
-    resultSelector: RPResultSelector.forStepId("multiChoiceQuestionStepID"), expectedValue: [0,6]);
+    resultSelector: RPResultSelector.forStepId("multiChoiceQuestionStepID"), expectedValue: [0, 6]);
 
 RPResultPredicate yesSmokingPredicate = RPResultPredicate.forBooleanQuestionResult(
     resultSelector: RPResultSelector.forStepId("smokingQuestionId"), expectedValue: true);
@@ -93,7 +93,8 @@ RPResultPredicate noSmokingPredicate = RPResultPredicate.forBooleanQuestionResul
 RPPredicateStepNavigationRule smokingNavigationRule = RPPredicateStepNavigationRule(
   {
 //    yesSmokingPredicate: nrOfCigarettesQuestionStep.identifier,
-    noSmokingPredicate: imageChoiceQuestionStep.identifier,
+//    noSmokingPredicate: imageChoiceQuestionStep.identifier,
+    noSmokingPredicate: afterNoSmokingStep.identifier,
   },
 );
 
@@ -117,18 +118,19 @@ RPNavigableOrderedTask navigableSurveyTask = RPNavigableOrderedTask(
   "NavigableTaskID",
   [
     instructionStep,
-    multiChoiceQuestionStep,
-    singleChoiceQuestionStep,
+//    multiChoiceQuestionStep,
+//    singleChoiceQuestionStep,
     smokingQuestion,
     nrOfCigarettesQuestionStep,
-    imageChoiceQuestionStep,
+//    imageChoiceQuestionStep,
+    afterNoSmokingStep,
+    afterYesSmokingStep,
     completionStep,
   ],
 )
   ..setNavigationRuleForTriggerStepIdentifier(smokingNavigationRule, smokingQuestion.identifier)
   ..setNavigationRuleForTriggerStepIdentifier(singleChoiceNavigationRule, singleChoiceQuestionStep.identifier)
   ..setNavigationRuleForTriggerStepIdentifier(multiChoiceNavigationRule, multiChoiceQuestionStep.identifier);
-
 
 //RPDirectStepNavigationRule navigationRuleAfterSmokingResult =
 //    RPDirectStepNavigationRule(imageChoiceQuestionStep.identifier);

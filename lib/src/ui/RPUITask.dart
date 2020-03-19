@@ -20,6 +20,7 @@ class RPUITask extends StatefulWidget {
 
 class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   RPTaskResult _taskResult;
+
   /// A list of actual steps to show in the task.
   /// If the task is a [RPNavigableOrderedTask] not all the questions necessarily show up because of branching.
   /// (Some questions could be skipped based on previous answers.)
@@ -41,7 +42,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     _taskResult = RPTaskResult.withParams(widget.task.identifier);
 
     // If it's navigable we don't want to show result on appbar
-    if (widget.task.runtimeType == RPNavigableOrderedTask) {
+    if (widget.task is RPNavigableOrderedTask) {
       blocTask.updateTaskProgress(null);
       navigableTask = true;
     } else {
@@ -71,9 +72,9 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           }
 
           // Calculating next step and then navigate there
-          _currentStep = _activeSteps.last;
-          _currentStep = widget.task.getStepAfterStep(_currentStep, null);
           setState(() {
+            _currentStep = _activeSteps.last;
+            _currentStep = widget.task.getStepAfterStep(_currentStep, null);
             _activeSteps.add(_currentStep);
           });
           _currentStepIndex++;
@@ -101,22 +102,27 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
             setState(() {
               _activeSteps.removeLast();
+              _currentStep = _activeSteps.last;
             });
           }
+          blocQuestion.sendReadyToProceed(true);
           break;
         case StepStatus.Ongoing:
           print('ongoing');
           break;
+        default:
+          break;
       }
     });
+
     _stepResultSubscription = blocTask.stepResult.listen((stepResult) {
       _taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
       blocTask.updateTaskResult(_taskResult);
     });
 
-    // Getting the first step
-    _currentStep = widget.task.getStepAfterStep(null, null);
     setState(() {
+      // Getting the first step
+      _currentStep = widget.task.getStepAfterStep(null, null);
       _activeSteps.add(_currentStep);
     });
 
@@ -165,17 +171,118 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
+
+    AppBar _taskAppBar(RPStep step) {
+      switch (step.runtimeType) {
+        case RPQuestionStep:
+          return AppBar(
+//            title: Text(recentTaskProgress != null ? "${recentTaskProgress?.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress?.total}" : ""),
+            automaticallyImplyLeading: false,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.cancel,
+                  color: Theme.of(context).accentColor,
+                ),
+                onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+              )
+            ],
+          );
+          break;
+        case RPFormStep:
+          return AppBar(
+//            title: Text(recentTaskProgress != null ? "${recentTaskProgress?.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress?.total}" : ""),
+            automaticallyImplyLeading: false,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.cancel,
+                  color: Theme.of(context).accentColor,
+                ),
+                onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+              )
+            ],
+          );
+          break;
+        case RPInstructionStep:
+          return AppBar(
+            title: Text(locale?.translate(step.title) ?? step.title),
+            automaticallyImplyLeading: false,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.cancel,
+                  color: Theme.of(context).accentColor,
+                ),
+                onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+              )
+            ],
+          );
+          break;
+        default:
+          return null;
+          break;
+      }
+    }
+
+    List<Widget> _taskPersistentFooterButtons(RPStep step) {
+      switch (step.runtimeType) {
+        case RPCompletionStep:
+          return null;
+          break;
+        default:
+          return <Widget>[
+            _activeSteps.length == 1
+                ? null
+                : FlatButton(
+                    onPressed: () => blocTask.sendStatus(StepStatus.Back),
+                    child: Text(
+                      RPLocalizations.of(context)?.translate('PREVIOUS') ?? "PREVIOUS",
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                  ),
+            StreamBuilder<bool>(
+              stream: blocQuestion.questionReadyToProceed,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return RaisedButton(
+                    color: Theme.of(context).accentColor,
+                    textColor: Colors.white,
+                    child: Text(
+                      RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
+                    ),
+                    onPressed: snapshot.data
+                        ? () {
+                            blocTask.sendStatus(StepStatus.Finished);
+                          }
+                        : null,
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
+          ];
+      }
+    }
+
     return WillPopScope(
       onWillPop: () => blocTask.sendStatus(StepStatus.Canceled),
       child: Theme(
         data: Theme.of(context),
-        child: PageView.builder(
-          itemBuilder: (BuildContext context, int position) {
-            return _activeSteps[position].stepWidget;
-          },
-          itemCount: _activeSteps.length,
-          controller: taskPageViewController,
-          physics: NeverScrollableScrollPhysics(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          appBar: _taskAppBar(_currentStep),
+          body: PageView.builder(
+            itemBuilder: (BuildContext context, int position) {
+              return _activeSteps[position].stepWidget;
+            },
+            itemCount: _activeSteps.length,
+            controller: taskPageViewController,
+            physics: NeverScrollableScrollPhysics(),
+          ),
+          persistentFooterButtons: _taskPersistentFooterButtons(_currentStep),
         ),
       ),
     );
