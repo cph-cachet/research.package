@@ -5,6 +5,7 @@ class RPStyles {
   static final h2 = TextStyle(fontSize: 24, fontWeight: FontWeight.w500);
   static final h3 = TextStyle(fontSize: 18, fontWeight: FontWeight.w400);
 
+  static final instructionText = TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
   static final bodyText = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
   static final whiteText = TextStyle(color: Colors.white);
 

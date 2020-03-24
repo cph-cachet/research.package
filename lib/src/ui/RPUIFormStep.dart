@@ -43,6 +43,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     });
 
     readyToProceed = false;
+    blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
 
     super.initState();

@@ -79,7 +79,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           });
           _currentStepIndex++;
 
-          taskPageViewController.nextPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
+          _taskPageViewController.nextPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
           break;
         case StepStatus.Canceled:
           _showCancelConfirmationDialog();
@@ -98,7 +98,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             if (!navigableTask)
               blocTask.updateTaskProgress(RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
             // await because we can only update the stepWidgets list while the current step is out of the screen
-            await taskPageViewController.previousPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
+            await _taskPageViewController.previousPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
 
             setState(() {
               _activeSteps.removeLast();
@@ -167,7 +167,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     );
   }
 
-  PageController taskPageViewController = PageController(keepPage: false);
+  PageController _taskPageViewController = PageController(keepPage: false);
 
   @override
   Widget build(BuildContext context) {
@@ -227,44 +227,51 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     }
 
     List<Widget> _taskPersistentFooterButtons(RPStep step) {
-      switch (step.runtimeType) {
-        case RPCompletionStep:
-          return null;
-          break;
-        default:
-          return <Widget>[
-            _activeSteps.length == 1
-                ? null
-                : FlatButton(
-                    onPressed: () => blocTask.sendStatus(StepStatus.Back),
-                    child: Text(
-                      RPLocalizations.of(context)?.translate('PREVIOUS') ?? "PREVIOUS",
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+        switch (step.runtimeType) {
+          case RPCompletionStep:
+            return null;
+            break;
+          case RPVisualConsentStep:
+            return null;
+            break;
+          case RPConsentReviewStep:
+            return null;
+            break;
+          default:
+            return <Widget>[
+              _activeSteps.length == 1 || !navigableTask
+                  ? null
+                  : FlatButton(
+                      onPressed: () => blocTask.sendStatus(StepStatus.Back),
+                      child: Text(
+                        RPLocalizations.of(context)?.translate('PREVIOUS') ?? "PREVIOUS",
+                        style: TextStyle(color: Theme.of(context).primaryColor),
+                      ),
                     ),
-                  ),
-            StreamBuilder<bool>(
-              stream: blocQuestion.questionReadyToProceed,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return RaisedButton(
-                    color: Theme.of(context).accentColor,
-                    textColor: Colors.white,
-                    child: Text(
-                      RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
-                    ),
-                    onPressed: snapshot.data
-                        ? () {
-                            blocTask.sendStatus(StepStatus.Finished);
-                          }
-                        : null,
-                  );
-                } else {
-                  return Container();
-                }
-              },
-            ),
-          ];
-      }
+              StreamBuilder<bool>(
+                stream: blocQuestion.questionReadyToProceed,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return RaisedButton(
+                      color: Theme.of(context).accentColor,
+                      textColor: Colors.white,
+                      child: Text(
+                        RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
+                      ),
+                      onPressed: snapshot.data
+                          ? () {
+                              blocTask.sendStatus(StepStatus.Finished);
+                            }
+                          : null,
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
+            ];
+        }
+
     }
 
     return WillPopScope(
@@ -279,7 +286,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
               return _activeSteps[position].stepWidget;
             },
             itemCount: _activeSteps.length,
-            controller: taskPageViewController,
+            controller: _taskPageViewController,
             physics: NeverScrollableScrollPhysics(),
           ),
           persistentFooterButtons: _taskPersistentFooterButtons(_currentStep),
@@ -292,7 +299,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   dispose() {
     _stepStatusSubscription.cancel();
     _stepResultSubscription.cancel();
-    taskPageViewController.dispose();
+    _taskPageViewController.dispose();
     super.dispose();
   }
 }

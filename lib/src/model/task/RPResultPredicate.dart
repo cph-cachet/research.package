@@ -77,12 +77,38 @@ class RPResultSelector {
     };
   }
 
+  RPResultSelector.forStepIdInFormStep(String stepId) {
+    getResult = () {
+      return _resultForStepIdInFormStep(stepId);
+    };
+  }
+
   RPStepResult _resultForStepId(String stepIdentifier) {
     RPTaskResult _recentTaskResult = blocTask.lastTaskResult;
     RPStepResult _foundStepResult;
 
     if (_recentTaskResult != null) {
       _foundStepResult = _recentTaskResult.results[stepIdentifier];
+    } else {
+      throw ("Error: No task result is available");
+    }
+
+    return _foundStepResult;
+  }
+
+  RPStepResult _resultForStepIdInFormStep(String stepIdentifier) {
+    RPTaskResult _recentTaskResult = blocTask.lastTaskResult;
+    RPStepResult _foundStepResult;
+
+    if (_recentTaskResult != null) {
+      _recentTaskResult.results.forEach((key, stepResult) {
+        try {
+          // By doing this we ensure that we are looking up only until the first match
+          _foundStepResult = _foundStepResult ?? stepResult.results[stepIdentifier];
+        } catch(e) {
+          print("No matching result found in this FormStep, proceeding to the next one (if any)");
+        }
+      });
     } else {
       throw ("Error: No task result is available");
     }
