@@ -35,6 +35,7 @@ class RPFormStep extends RPQuestionStep {
   /// The widget (UI representation) of Form Step.
   ///
   /// This gets initialized when a Form Step has been added to a Task which is later presented by an [RPUITask] widget.
+  /// It shows the FormStep's [steps] in a scrollable list
   @override
   Widget get stepWidget => RPUIFormStep(this);
 }

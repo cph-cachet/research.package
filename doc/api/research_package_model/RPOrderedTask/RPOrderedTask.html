@@ -60,6 +60,8 @@
       <li class="section-title">
         <a href="research_package_model/RPOrderedTask-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="research_package_model/RPOrderedTask/isConsentTask.html">isConsentTask</a></li>
+      <li><a href="research_package_model/RPOrderedTask/numberOfQuestionSteps.html">numberOfQuestionSteps</a></li>
       <li><a href="research_package_model/RPOrderedTask/steps.html">steps</a></li>
       <li class="inherited"><a href="research_package_model/RPTask/closeAfterFinished.html">closeAfterFinished</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -95,7 +97,19 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">RPOrderedTask(String identifier, this._steps, {bool closeAfterFinished = true})
-    : super(identifier, closeAfterFinished: closeAfterFinished);</code></pre>
+    : super(identifier, closeAfterFinished: closeAfterFinished) {
+  this._numberOfQuestionSteps = 0;
+  this._isConsentTask = false;
+
+  steps.forEach((step) {
+    &#47;&#47; Counting the Question or FormStep items
+    if (step is RPQuestionStep) this._numberOfQuestionSteps++;
+    &#47;&#47; If there&#39;s a Consent Review Step among the steps it means the task is a Consent Task
+    if (step.runtimeType == RPConsentReviewStep) {
+      _isConsentTask = true;
+    }
+  });
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -108,7 +122,7 @@
 <footer>
   <span class="no-break">
     research_package
-      0.1.1
+      0.2.0
   </span>
 
   <!-- footer-text placeholder -->

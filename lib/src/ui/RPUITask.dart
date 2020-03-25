@@ -3,7 +3,7 @@ part of research_package_ui;
 /// This class is the primary entry point for the presentation of the Research Package framework UI.
 /// It presents the steps of an [RPOrderedTask] (either navigable or just linear) and then provides the [RPTaskResult] object.
 class RPUITask extends StatefulWidget {
-  /// The task to present
+  /// The task to present. It can be either an [RPOrderedTask] or an [RPNavigableOrderedTask].
   /// The [RPUITask] presents its steps after each other and creates an [RPTaskResult] object with the same
   /// identifier as the [task]'s identifier.
   final RPOrderedTask task;
@@ -66,7 +66,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           // Updating taskProgress stream
           if (_currentStep.runtimeType == RPQuestionStep) {
             _currentQuestionIndex++;
-            // TODO: calculate the stepprogress differently for navigableTask
+            // TODO: calculate the stepProgress differently for navigableTask
             if (!navigableTask)
               blocTask.updateTaskProgress(RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
           }
@@ -85,7 +85,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           _showCancelConfirmationDialog();
           break;
         case StepStatus.Back:
-          // TODO
           // If the stepWidgets list only has 1 element it means the user is on the first question, so no back navigation is enabled
           if (_activeSteps.length == 1) {
             break;
@@ -144,8 +143,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
         return AlertDialog(
           title: Text(widget.task.isConsentTask
               ? RPLocalizations.of(context)?.translate('Cancel?') ?? "Cancel?"
-              : RPLocalizations.of(context)?.translate('Discard results and quit?') ??
-                  "Discard results and quit?"), // TODO: Localization
+              : RPLocalizations.of(context)?.translate('Discard results and quit?') ?? "Discard results and quit?"),
           actions: <Widget>[
             FlatButton(
               child: Text(RPLocalizations.of(context)?.translate('NO') ?? "NO"),
@@ -227,51 +225,50 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     }
 
     List<Widget> _taskPersistentFooterButtons(RPStep step) {
-        switch (step.runtimeType) {
-          case RPCompletionStep:
-            return null;
-            break;
-          case RPVisualConsentStep:
-            return null;
-            break;
-          case RPConsentReviewStep:
-            return null;
-            break;
-          default:
-            return <Widget>[
-              _activeSteps.length == 1 || !navigableTask
-                  ? null
-                  : FlatButton(
-                      onPressed: () => blocTask.sendStatus(StepStatus.Back),
-                      child: Text(
-                        RPLocalizations.of(context)?.translate('PREVIOUS') ?? "PREVIOUS",
-                        style: TextStyle(color: Theme.of(context).primaryColor),
-                      ),
+      switch (step.runtimeType) {
+        case RPCompletionStep:
+          return null;
+          break;
+        case RPVisualConsentStep:
+          return null;
+          break;
+        case RPConsentReviewStep:
+          return null;
+          break;
+        default:
+          return <Widget>[
+            _activeSteps.length == 1 || !navigableTask
+                ? null
+                : FlatButton(
+                    onPressed: () => blocTask.sendStatus(StepStatus.Back),
+                    child: Text(
+                      RPLocalizations.of(context)?.translate('PREVIOUS') ?? "PREVIOUS",
+                      style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
-              StreamBuilder<bool>(
-                stream: blocQuestion.questionReadyToProceed,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return RaisedButton(
-                      color: Theme.of(context).accentColor,
-                      textColor: Colors.white,
-                      child: Text(
-                        RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
-                      ),
-                      onPressed: snapshot.data
-                          ? () {
-                              blocTask.sendStatus(StepStatus.Finished);
-                            }
-                          : null,
-                    );
-                  } else {
-                    return Container();
-                  }
-                },
-              ),
-            ];
-        }
-
+                  ),
+            StreamBuilder<bool>(
+              stream: blocQuestion.questionReadyToProceed,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return RaisedButton(
+                    color: Theme.of(context).accentColor,
+                    textColor: Colors.white,
+                    child: Text(
+                      RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
+                    ),
+                    onPressed: snapshot.data
+                        ? () {
+                            blocTask.sendStatus(StepStatus.Finished);
+                          }
+                        : null,
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
+          ];
+      }
     }
 
     return WillPopScope(

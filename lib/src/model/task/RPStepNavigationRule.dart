@@ -1,8 +1,6 @@
 part of research_package_model;
 
-// TODO: Documentation
+/// Super class of the navigation rules ([RPPredicateStepNavigationRule] and [RPDirectStepNavigationRule]).
 abstract class RPStepNavigationRule{
   RPStepNavigationRule();
-
-  String identifierForDestinationStepWithTaskResult(RPTaskResult taskResult);
 }

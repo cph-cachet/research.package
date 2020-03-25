@@ -13,7 +13,7 @@ abstract class RPStep {
   String _text;
   Widget _stepWidget;
 
-  // TODO: Documentation
+  /// If set to ```true``` the step can be skipped. In that case the result for the step will be ```null```.
   bool optional;
 
   /// Default constructor. Returns a step with the given identifier

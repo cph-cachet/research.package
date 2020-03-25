@@ -1,13 +1,15 @@
 part of research_package_model;
 
-// TODO: Documentation
+/// This class examines a prediction and communicates its result to an [RPStepNavigationRule].
+///
+/// It checks whether the [expectedValue] is identical to the result's value. It digs down the result hierarchy with the help of [RPResultSelector].
 class RPResultPredicate {
   dynamic expectedValue;
   RPResultSelector _resultSelector;
   bool Function() getPredictionResult;
   bool _predictionResult;
 
-  // TODO: Documentation
+  /// Result predicate for the boolean answer format [RPBooleanAnswerFormat]. The [expectedValue] here should be a boolean.
   RPResultPredicate.forBooleanQuestionResult(
       {@required RPResultSelector resultSelector, @required bool expectedValue}) {
     this._resultSelector = resultSelector;
@@ -16,8 +18,7 @@ class RPResultPredicate {
     getPredictionResult = directPredictionResult;
   }
 
-  // TODO: Documentation
-  /// Result predicate for choice question types. The [expectedValue] here should correspond to the value of an [RPChoice] object.
+  /// Result predicate for choice question types. The [expectedValue] here should correspond to the [value] of an [RPChoice] object.
   RPResultPredicate.forChoiceQuestionResult(
       {@required RPResultSelector resultSelector, @required List<int> expectedValue}) {
     this._resultSelector = resultSelector;
@@ -27,9 +28,6 @@ class RPResultPredicate {
   }
 
   bool directPredictionResult() {
-    // TODO: what happens with the form step?
-    // it's result dictionary has multiple items
-
     RPStepResult resultFromResultSelector = _resultSelector.getResult();
 
     if (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] == expectedValue) {
@@ -42,9 +40,6 @@ class RPResultPredicate {
   }
 
   bool choiceValuePredictionResult() {
-    // TODO: what happens with the form step?
-    // it's result dictionary has multiple items
-
     Function eq = const ListEquality().equals;
     (expectedValue as List<int>).sort();
     RPStepResult resultFromResultSelector = _resultSelector.getResult();
@@ -68,15 +63,18 @@ class RPResultPredicate {
   }
 }
 
+/// This class identifies the needed test result for the [RPResultPredicate]
 class RPResultSelector {
   Function() getResult;
 
+  /// Use this constructor if the step which the navigation rule is bound to, is a regular step
   RPResultSelector.forStepId(String stepId) {
     getResult = () {
       return _resultForStepId(stepId);
     };
   }
 
+  /// Use this constructor if the step the navigation rule is bound to is part of a Form Step. (Form Steps have different result structure)
   RPResultSelector.forStepIdInFormStep(String stepId) {
     getResult = () {
       return _resultForStepIdInFormStep(stepId);

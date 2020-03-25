@@ -152,10 +152,10 @@ packages:
   research_package:
     dependency: "direct main"
     description:
-      path: "/Users/barnabashomola/Developer/CACHET/research.package"
-      relative: false
+      path: "../.."
+      relative: true
     source: path
-    version: "0.1.2"
+    version: "0.2.0"
   rxdart:
     dependency: transitive
     description:

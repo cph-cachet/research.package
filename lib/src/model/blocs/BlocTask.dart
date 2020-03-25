@@ -26,7 +26,7 @@ class BlocTask {
   /// It shows how many questions are there in total and where the participant stands in the process so far.
   Function(RPTaskProgress) get updateTaskProgress => _taskProgressController.add;
 
-  // TODO: Documentation
+  /// The function to update the task result which is shown in the AppBar for [RPOrderedTask]
   Function(RPTaskResult) get updateTaskResult => _taskResultController.add;
 
   //Retrieve data from stream
@@ -43,6 +43,7 @@ class BlocTask {
   // Other stream properties
   RPTaskProgress get lastProgressValue => _taskProgressController.stream.value;
 
+  /// The current state of the Task Result which can be accessed throughout the framework
   RPTaskResult get lastTaskResult => _taskResultController.stream.value;
 
   dispose() {
@@ -53,5 +54,5 @@ class BlocTask {
   }
 }
 
-/// The singleton object of the task BLoC class which can be accessed throughout Research Package.
+/// The singleton object of the task BLoC class which can be accessed throughout Research Package
 final blocTask = BlocTask();

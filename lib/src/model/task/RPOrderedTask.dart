@@ -1,5 +1,9 @@
 part of research_package_model;
 
+/// A simple linear task which implement the [RPTask] protocol. It shows the steps one after another without the option of going back or branching.
+///
+/// For simple tasks the [RPOrderedTask] is perfect.
+/// For more features (going back to previous questions, branching...) consider using [RPNavigableOrderedTask] which inherited from this class.
 class RPOrderedTask extends RPTask {
   List<RPStep> _steps;
   int _numberOfQuestionSteps;
@@ -86,6 +90,6 @@ class RPOrderedTask extends RPTask {
   /// Returns ```true``` if the task is a Consent Task. It is considered a Consent Task if it has an [RPConsentReviewStep]
   bool get isConsentTask => this._isConsentTask;
 
-  /// Returns the number of question steps in the task
+  /// The number of question steps in the task
   int get numberOfQuestionSteps => this._numberOfQuestionSteps;
 }
