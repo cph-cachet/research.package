@@ -18,6 +18,12 @@ class RPUIInstructionStep extends StatefulWidget {
 }
 
 class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
+  @override
+  void initState() {
+    blocQuestion.sendReadyToProceed(true);
+    super.initState();
+  }
+
   _pushDetailTextRoute() {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -31,82 +37,46 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
     );
   }
 
-  Widget _buildImage() {
-    if (widget.step.imagePath != null) {
-      return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Image.asset(
-          widget.step.imagePath,
-          width: MediaQuery.of(context).size.width / 2,
-        ),
-      );
-    } else {
-      return Container();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.step.title),
-        automaticallyImplyLeading: false,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            // If image is provided show it
-            _buildImage(),
-            Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                    widget.step.text,
-                    textAlign: TextAlign.left,
-                    style: RPStyles.h3,
-                  ),
+    RPLocalizations locale = RPLocalizations.of(context);
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          // If image is provided show it
+          InstructionImage(widget.step.imagePath),
+          Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(16),
+                child: Text(
+                  locale?.translate(widget.step.text) ?? widget.step.text,
+                  textAlign: TextAlign.left,
+                  style: RPStyles.instructionText,
                 ),
-                widget.step.detailText != null
-                    ? FlatButton(
-                        textTheme: ButtonTextTheme.accent,
-                        child: Text("Learn more..."), // TODO: Localization
-                        onPressed: _pushDetailTextRoute,
-                      )
-                    : Container(),
-              ],
-            ),
-            widget.step.footnote != null
-                ? Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      widget.step.footnote,
-                      style: RPStyles.bodyText,
-                      textAlign: TextAlign.left,
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
+              ),
+              widget.step.detailText != null
+                  ? FlatButton(
+                      textTheme: ButtonTextTheme.accent,
+                      child: Text(locale?.translate('Learn more...') ?? "Learn more..."),
+                      onPressed: _pushDetailTextRoute,
+                    )
+                  : Container(),
+            ],
+          ),
+          widget.step.footnote != null
+              ? Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    locale?.translate(widget.step.footnote) ?? widget.step.footnote,
+                    style: RPStyles.bodyText,
+                    textAlign: TextAlign.left,
+                  ),
+                )
+              : Container(),
+        ],
       ),
-      persistentFooterButtons: <Widget>[
-        FlatButton(
-          onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-          child: Text(
-            "CANCEL",
-            style: TextStyle(color: Colors.redAccent),
-          ),
-        ),
-        RaisedButton(
-          color: Theme.of(context).accentColor,
-          textColor: Colors.white,
-          child: Text(
-            "GET STARTED",
-          ),
-          onPressed: () => blocTask.sendStatus(StepStatus.Finished),
-        ),
-      ],
     );
   }
 }
@@ -119,14 +89,36 @@ class _DetailTextRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.title),
+        title: Text(locale?.translate(this.title) ?? this.title),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: Text(this.content),
+        child: Text(locale?.translate(this.content) ?? this.content),
       ),
     );
+  }
+}
+
+class InstructionImage extends StatelessWidget {
+  final String _imagePath;
+
+  InstructionImage(this._imagePath);
+
+  @override
+  Widget build(BuildContext context) {
+    if (_imagePath != null) {
+      return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Image.asset(
+          _imagePath,
+          width: MediaQuery.of(context).size.width / 2,
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 }

@@ -13,7 +13,7 @@ class InformedConsentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RPUIOrderedTask(
+    return RPUITask(
       task: consentTask,
       onSubmit: (result) {
         resultCallback(result);

@@ -9,11 +9,12 @@ class RPFormStep extends RPQuestionStep {
   List<RPQuestionStep> _formSteps;
   RPAnswerFormat _answerFormat;
 
-  RPFormStep(String identifier, this._formSteps) : super(identifier) {
+  RPFormStep(String identifier, this._formSteps, {bool optional = false}) : super(identifier, optional: optional) {
     this._answerFormat = RPFormAnswerFormat();
   }
 
-  RPFormStep.withTitle(String identifier, this._formSteps, String title) : super.withTitle(identifier, title) {
+  RPFormStep.withTitle(String identifier, this._formSteps, String title, {bool optional = false})
+      : super.withTitle(identifier, title,optional: optional) {
     this._answerFormat = RPFormAnswerFormat();
   }
 
@@ -33,7 +34,8 @@ class RPFormStep extends RPQuestionStep {
 
   /// The widget (UI representation) of Form Step.
   ///
-  /// This gets initialized when a Form Step has been added to a Task which is later presented by an [RPUIOrderedTask] widget.
+  /// This gets initialized when a Form Step has been added to a Task which is later presented by an [RPUITask] widget.
+  /// It shows the FormStep's [steps] in a scrollable list
   @override
   Widget get stepWidget => RPUIFormStep(this);
 }

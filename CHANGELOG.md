@@ -1,3 +1,17 @@
+## 0.2.0
+ * Support for Navigable Tasks
+    * Branching support with `RPDirectStepNavigationRule` and `RPPredicateStepNavigationRule`
+    * Navigation to previous questions
+    * Currently supports:
+        * Boolean Answer Format
+        * Choice Answer Format
+ * Localization added
+    * Demo app available now in English and Danish
+ * Support for new Answer Format
+    * Boolean
+ * UI updates, bug fixes
+     
+
 ## 0.1.2
  * Support for new Answer Formats
    * Slider

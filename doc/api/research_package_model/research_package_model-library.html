@@ -82,7 +82,7 @@
 Contains the "building blocks" for creating surveys and obtaining informed consents.
 Holds the different types of result classes.
 Also responsible for the streams and BLoC classes to provide communication channels
-between different parts of the package. (<code>BlocQuestion</code>, <a href="research_package_model/BlocTask-class.html">BlocTask</a>)
+between different parts of the package. (<a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a>, <a href="research_package_model/BlocTask-class.html">BlocTask</a>)
 For the UI representations of the classes visit the <a href="research_package_ui/research_package_ui-library.html">research_package_ui</a> library.</p>
     </section>
     
@@ -90,11 +90,17 @@ For the UI representations of the classes visit the <a href="research_package_ui
       <h2>Classes</h2>
 
       <dl>
+        <dt id="BlocQuestion">
+          <span class="name "><a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></span>         
+        </dt>
+        <dd>
+          The BLoC file for the communication between the question container <a href="research_package_ui/RPUIQuestionStep-class.html">RPUIQuestionStep</a> and the question body <a href="research_package_model/BlocQuestion-class.html">[...]</a>
+        </dd>
         <dt id="BlocTask">
           <span class="name "><a href="research_package_model/BlocTask-class.html">BlocTask</a></span>         
         </dt>
         <dd>
-          The BLoC file for the communication between the task <a href="research_package_ui/RPUIOrderedTask-class.html">RPUIOrderedTask</a> and its steps <a href="research_package_model/RPStep-class.html">RPStep</a>.
+          The BLoC file for the communication between the task <a href="research_package_ui/RPUITask-class.html">RPUITask</a> and its steps <a href="research_package_model/RPStep-class.html">RPStep</a>.
         </dd>
         <dt id="CanSaveResult">
           <span class="name "><a href="research_package_model/CanSaveResult-class.html">CanSaveResult</a></span>         
@@ -107,6 +113,12 @@ For the UI representations of the classes visit the <a href="research_package_ui
         </dt>
         <dd>
           A base (abstract) class for different Answer Formats. <a href="research_package_model/RPAnswerFormat-class.html">[...]</a>
+        </dd>
+        <dt id="RPBooleanAnswerFormat">
+          <span class="name "><a href="research_package_model/RPBooleanAnswerFormat-class.html">RPBooleanAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants choose between true or false (yes or no) options
         </dd>
         <dt id="RPChoice">
           <span class="name "><a href="research_package_model/RPChoice-class.html">RPChoice</a></span>         
@@ -157,6 +169,18 @@ For the UI representations of the classes visit the <a href="research_package_ui
           Represents a signature applied to a given consent document.
 It indicates if a given consent document has been signed by a user.
         </dd>
+        <dt id="RPDateTimeAnswerFormat">
+          <span class="name "><a href="research_package_model/RPDateTimeAnswerFormat-class.html">RPDateTimeAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants choose from a fixed set of choices.
+        </dd>
+        <dt id="RPDirectStepNavigationRule">
+          <span class="name "><a href="research_package_model/RPDirectStepNavigationRule-class.html">RPDirectStepNavigationRule</a></span>         
+        </dt>
+        <dd>
+          The <a href="research_package_model/RPDirectStepNavigationRule-class.html">RPDirectStepNavigationRule</a> class can be used to unconditionally jump to a destination step specified by its identifier or to finish the task early.
+        </dd>
         <dt id="RPFormAnswerFormat">
           <span class="name "><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></span>         
         </dt>
@@ -169,12 +193,24 @@ It indicates if a given consent document has been signed by a user.
         <dd>
           The <a href="research_package_model/RPFormStep-class.html">RPFormStep</a> class is a concrete subclass of <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a>, used for presenting multiple questions on a single scrollable page. <a href="research_package_model/RPFormStep-class.html">[...]</a>
         </dd>
+        <dt id="RPImageChoice">
+          <span class="name "><a href="research_package_model/RPImageChoice-class.html">RPImageChoice</a></span>         
+        </dt>
+        <dd>
+          The image choice object which the participants can choose from, during a <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a> with <a href="research_package_model/RPImageChoiceAnswerFormat-class.html">RPImageChoiceAnswerFormat</a>
+        </dd>
+        <dt id="RPImageChoiceAnswerFormat">
+          <span class="name "><a href="research_package_model/RPImageChoiceAnswerFormat-class.html">RPImageChoiceAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants choose an image from a set of images.
+        </dd>
         <dt id="RPInstructionStep">
           <span class="name "><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></span>         
         </dt>
         <dd>
-          A step which can be used to communicate instructions to the participants
-Usually it is used as the first step in a Task.
+          A step which can be used to communicate instructions and other information to the participants.
+Usually it is used as the first step in a Task explaining the task.
         </dd>
         <dt id="RPIntegerAnswerFormat">
           <span class="name "><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></span>         
@@ -182,11 +218,23 @@ Usually it is used as the first step in a Task.
         <dd>
           Class representing an Answer Format that lets participants input a number (integer)
         </dd>
+        <dt id="RPNavigableOrderedTask">
+          <span class="name "><a href="research_package_model/RPNavigableOrderedTask-class.html">RPNavigableOrderedTask</a></span>         
+        </dt>
+        <dd>
+          The <a href="research_package_model/RPNavigableOrderedTask-class.html">RPNavigableOrderedTask</a> class adds conditional step navigation to the behavior inherited from the <a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a> class. <a href="research_package_model/RPNavigableOrderedTask-class.html">[...]</a>
+        </dd>
         <dt id="RPOrderedTask">
           <span class="name "><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></span>         
         </dt>
         <dd>
-          
+          A simple linear task which implement the <a href="research_package_model/RPTask-class.html">RPTask</a> protocol. It shows the steps one after another without the option of going back or branching. <a href="research_package_model/RPOrderedTask-class.html">[...]</a>
+        </dd>
+        <dt id="RPPredicateStepNavigationRule">
+          <span class="name "><a href="research_package_model/RPPredicateStepNavigationRule-class.html">RPPredicateStepNavigationRule</a></span>         
+        </dt>
+        <dd>
+          A navigation rule which based on predicate(s)'s (<a href="research_package_model/RPResultPredicate-class.html">RPResultPredicate</a>) result(s). <a href="research_package_model/RPPredicateStepNavigationRule-class.html">[...]</a>
         </dd>
         <dt id="RPQuestionStep">
           <span class="name "><a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a></span>         
@@ -200,17 +248,41 @@ Usually it is used as the first step in a Task.
         <dd>
           The superclass for results. It defines the attributes which all the more specialized results classes should have.
         </dd>
+        <dt id="RPResultPredicate">
+          <span class="name "><a href="research_package_model/RPResultPredicate-class.html">RPResultPredicate</a></span>         
+        </dt>
+        <dd>
+          This class examines a prediction and communicates its result to an <a href="research_package_model/RPStepNavigationRule-class.html">RPStepNavigationRule</a>. <a href="research_package_model/RPResultPredicate-class.html">[...]</a>
+        </dd>
+        <dt id="RPResultSelector">
+          <span class="name "><a href="research_package_model/RPResultSelector-class.html">RPResultSelector</a></span>         
+        </dt>
+        <dd>
+          This class identifies the needed test result for the <a href="research_package_model/RPResultPredicate-class.html">RPResultPredicate</a>
+        </dd>
         <dt id="RPSignatureResult">
           <span class="name "><a href="research_package_model/RPSignatureResult-class.html">RPSignatureResult</a></span>         
         </dt>
         <dd>
           The signature used in <a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a> <a href="research_package_model/RPSignatureResult-class.html">[...]</a>
         </dd>
+        <dt id="RPSliderAnswerFormat">
+          <span class="name "><a href="research_package_model/RPSliderAnswerFormat-class.html">RPSliderAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants use a slider to choose a value.
+        </dd>
         <dt id="RPStep">
           <span class="name "><a href="research_package_model/RPStep-class.html">RPStep</a></span>         
         </dt>
         <dd>
           The base class for steps which can compose a task. <a href="research_package_model/RPStep-class.html">[...]</a>
+        </dd>
+        <dt id="RPStepNavigationRule">
+          <span class="name "><a href="research_package_model/RPStepNavigationRule-class.html">RPStepNavigationRule</a></span>         
+        </dt>
+        <dd>
+          Super class of the navigation rules (<a href="research_package_model/RPPredicateStepNavigationRule-class.html">RPPredicateStepNavigationRule</a> and <a href="research_package_model/RPDirectStepNavigationRule-class.html">RPDirectStepNavigationRule</a>).
         </dd>
         <dt id="RPStepResult">
           <span class="name "><a href="research_package_model/RPStepResult-class.html">RPStepResult</a></span>         
@@ -252,12 +324,20 @@ Usually it is used as the first step in a Task.
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="blocQuestion" class="property">
+          <span class="name"><a href="research_package_model/blocQuestion.html">blocQuestion</a></span>
+          <span class="signature">&#8594; <a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></span>         
+        </dt>
+        <dd>
+          The singleton object of the question BLoC class which can be accessed throughout Research Package.
+                  <div class="features">final</div>
+</dd>
         <dt id="blocTask" class="property">
           <span class="name"><a href="research_package_model/blocTask.html">blocTask</a></span>
           <span class="signature">&#8594; <a href="research_package_model/BlocTask-class.html">BlocTask</a></span>         
         </dt>
         <dd>
-          The singleton object of the task BLoC class which can be accessed throughout Research Package.
+          The singleton object of the task BLoC class which can be accessed throughout Research Package
                   <div class="features">final</div>
 </dd>
       </dl>
@@ -273,6 +353,12 @@ Usually it is used as the first step in a Task.
         </dt>
         <dd>
           Available types for <a href="research_package_model/RPChoiceAnswerFormat-class.html">RPChoiceAnswerFormat</a>
+        </dd>
+        <dt id="DateTimeAnswerStyle">
+          <span class="name "><a href="research_package_model/DateTimeAnswerStyle-class.html">DateTimeAnswerStyle</a></span>         
+        </dt>
+        <dd>
+          For choosing Date, Time or DateAndTime sub-answerformat
         </dd>
         <dt id="QuestionType">
           <span class="name "><a href="research_package_model/QuestionType-class.html">QuestionType</a></span>         
@@ -303,9 +389,11 @@ Usually it is used as the first step in a Task.
     <h5>research_package_model library</h5>
     <ol>
       <li class="section-title"><a href="research_package_model/research_package_model-library.html#classes">Classes</a></li>
+      <li><a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></li>
       <li><a href="research_package_model/BlocTask-class.html">BlocTask</a></li>
       <li><a href="research_package_model/CanSaveResult-class.html">CanSaveResult</a></li>
       <li><a href="research_package_model/RPAnswerFormat-class.html">RPAnswerFormat</a></li>
+      <li><a href="research_package_model/RPBooleanAnswerFormat-class.html">RPBooleanAnswerFormat</a></li>
       <li><a href="research_package_model/RPChoice-class.html">RPChoice</a></li>
       <li><a href="research_package_model/RPChoiceAnswerFormat-class.html">RPChoiceAnswerFormat</a></li>
       <li><a href="research_package_model/RPCompletionStep-class.html">RPCompletionStep</a></li>
@@ -314,15 +402,25 @@ Usually it is used as the first step in a Task.
       <li><a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a></li>
       <li><a href="research_package_model/RPConsentSignature-class.html">RPConsentSignature</a></li>
       <li><a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a></li>
+      <li><a href="research_package_model/RPDateTimeAnswerFormat-class.html">RPDateTimeAnswerFormat</a></li>
+      <li><a href="research_package_model/RPDirectStepNavigationRule-class.html">RPDirectStepNavigationRule</a></li>
       <li><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></li>
       <li><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></li>
+      <li><a href="research_package_model/RPImageChoice-class.html">RPImageChoice</a></li>
+      <li><a href="research_package_model/RPImageChoiceAnswerFormat-class.html">RPImageChoiceAnswerFormat</a></li>
       <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
       <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
+      <li><a href="research_package_model/RPNavigableOrderedTask-class.html">RPNavigableOrderedTask</a></li>
       <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
+      <li><a href="research_package_model/RPPredicateStepNavigationRule-class.html">RPPredicateStepNavigationRule</a></li>
       <li><a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a></li>
       <li><a href="research_package_model/RPResult-class.html">RPResult</a></li>
+      <li><a href="research_package_model/RPResultPredicate-class.html">RPResultPredicate</a></li>
+      <li><a href="research_package_model/RPResultSelector-class.html">RPResultSelector</a></li>
       <li><a href="research_package_model/RPSignatureResult-class.html">RPSignatureResult</a></li>
+      <li><a href="research_package_model/RPSliderAnswerFormat-class.html">RPSliderAnswerFormat</a></li>
       <li><a href="research_package_model/RPStep-class.html">RPStep</a></li>
+      <li><a href="research_package_model/RPStepNavigationRule-class.html">RPStepNavigationRule</a></li>
       <li><a href="research_package_model/RPStepResult-class.html">RPStepResult</a></li>
       <li><a href="research_package_model/RPTask-class.html">RPTask</a></li>
       <li><a href="research_package_model/RPTaskProgress-class.html">RPTaskProgress</a></li>
@@ -333,11 +431,13 @@ Usually it is used as the first step in a Task.
     
     
       <li class="section-title"><a href="research_package_model/research_package_model-library.html#properties">Properties</a></li>
+      <li><a href="research_package_model/blocQuestion.html">blocQuestion</a></li>
       <li><a href="research_package_model/blocTask.html">blocTask</a></li>
     
     
       <li class="section-title"><a href="research_package_model/research_package_model-library.html#enums">Enums</a></li>
       <li><a href="research_package_model/ChoiceAnswerStyle-class.html">ChoiceAnswerStyle</a></li>
+      <li><a href="research_package_model/DateTimeAnswerStyle-class.html">DateTimeAnswerStyle</a></li>
       <li><a href="research_package_model/QuestionType-class.html">QuestionType</a></li>
       <li><a href="research_package_model/RPConsentSectionType-class.html">RPConsentSectionType</a></li>
       <li><a href="research_package_model/StepStatus-class.html">StepStatus</a></li>
@@ -351,7 +451,7 @@ Usually it is used as the first step in a Task.
 <footer>
   <span class="no-break">
     research_package
-      0.1.1
+      0.2.0
   </span>
 
   <!-- footer-text placeholder -->

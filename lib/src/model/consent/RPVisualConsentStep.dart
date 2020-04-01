@@ -8,7 +8,7 @@ part of research_package_model;
 ///
 /// To use a visual consent step, first create a consent document ([RPConsentDocument]) with at least one section
 /// and attach the document to a visual consent step.
-/// Put the visual consent step into a Research Package task, and present it with an [RPUIOrderedTask].
+/// Put the visual consent step into a Research Package task, and present it with an [RPUITask].
 class RPVisualConsentStep extends RPStep {
   RPConsentDocument _consentDocument;
 

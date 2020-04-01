@@ -1,7 +1,7 @@
 part of research_package_model;
 
-/// A step which can be used to communicate instructions to the participants
-/// Usually it is used as the first step in a Task.
+/// A step which can be used to communicate instructions and other information to the participants.
+/// Usually it is used as the first step in a Task explaining the task.
 class RPInstructionStep extends RPStep {
   String _detailText;
   String _footnote;

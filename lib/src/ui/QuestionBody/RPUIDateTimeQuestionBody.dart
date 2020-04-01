@@ -18,11 +18,12 @@ class RPUIDateTimeQuestionBody extends StatefulWidget {
       _RPUIDateTimeQuestionBodyState();
 }
 
-class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody> {
+class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody> with AutomaticKeepAliveClientMixin<RPUIDateTimeQuestionBody> {
   String _errorMessage;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       height: 170,
       padding: EdgeInsets.all(8),
@@ -37,4 +38,7 @@ class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

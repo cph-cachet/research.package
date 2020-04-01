@@ -1,4 +1,4 @@
-# research_package_demo_app
+# ResearchPackage Demo App
 
 A demo application for Research Package
 

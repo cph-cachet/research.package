@@ -9,22 +9,21 @@ part of research_package_model;
 /// is a collection of steps ([RPStep] objects), which together form a task (an [RPTask] object)
 abstract class RPStep {
   final String _identifier;
-//  bool _optional;
   String _title;
   String _text;
   Widget _stepWidget;
 
+  /// If set to ```true``` the step can be skipped. In that case the result for the step will be ```null```.
+  bool optional;
+
   /// Default constructor. Returns a step with the given identifier
-  RPStep(this._identifier);
+  RPStep(this._identifier, {this.optional});
 
   /// Returns a step object with the given [title]. Different types of Steps are using the [title] text differently.
-  RPStep.withTitle(this._identifier, this._title);
+  RPStep.withTitle(this._identifier, this._title, {this.optional});
 
   /// A unique identifier of the Step. This identifier connects the Step to its result ([RPResult]) object.
   String get identifier => _identifier;
-
-//  /// Not implemented yet
-//  bool get optional => _optional;
 
   /// The title text. Different types of Steps are using the [title] text differently.
   ///
@@ -43,10 +42,6 @@ abstract class RPStep {
   ///
   /// When needed, it should be overridden to fit the different types of Steps.
   Widget get stepWidget => _stepWidget;
-
-//  set optional(bool optional) {
-//    this._optional = optional;
-//  }
 
   set title(String title) {
     this._title = title;

@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:collection/collection.dart';
 
 // Importing the UI library from Research Package
 import 'package:research_package/ui.dart';
@@ -24,6 +25,7 @@ part 'src/model/answerformat/RPFormAnswerFormat.dart';
 part 'src/model/answerformat/RPSliderAnswerFormat.dart';
 part 'src/model/answerformat/RPImageChoiceAnswerFormat.dart';
 part 'src/model/answerformat/RPDateTimeAnswerFormat.dart';
+part 'src/model/answerformat/RPBooleanAnswerFormat.dart';
 
 part 'src/model/consent/RPConsentDocument.dart';
 part 'src/model/consent/RPConsentSection.dart';
@@ -38,6 +40,13 @@ part 'src/model/step/RPInstructionStep.dart';
 part 'src/model/step/RPCompletionStep.dart';
 
 part 'src/model/task/RPOrderedTask.dart';
+part 'src/model/task/RPNavigableOrderedTask.dart';
+part 'src/model/task/RPStepNavigationRule.dart';
+part 'src/model/task/RPDirectStepNavigationRule.dart';
+part 'src/model/task/RPPredicateStepNavigationRule.dart';
+//part 'src/model/task/RPSkipStepNavigationRule.dart';
+//part 'src/model/task/RPStepModifier.dart';
+part 'src/model/task/RPResultPredicate.dart';
 part 'src/model/task/RPTask.dart';
 
 part 'src/model/result/RPResult.dart';
@@ -52,7 +61,7 @@ part 'src/model/Abstracts.dart';
 
 // BLoCs
 part 'src/model/blocs/BlocTask.dart';
-//part 'src/model/blocs/BlocQuestion.dart';
+part 'src/model/blocs/BlocQuestion.dart';
 
 // JSON
 part 'model.g.dart';

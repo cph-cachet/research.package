@@ -80,7 +80,7 @@
     <section class="desc markdown">
       <p>The UI library of Research Package.</p>
 <p>Normally you don't need to use these widgets directly. After creating the model objects from <a href="research_package_model/research_package_model-library.html">research_package_model</a>
-and adding them to an <a href="research_package_model/RPTask-class.html">RPTask</a> you can present the different elements by passing it to an <a href="research_package_ui/RPUIOrderedTask-class.html">RPUIOrderedTask</a>.</p>
+and adding them to an <a href="research_package_model/RPTask-class.html">RPTask</a> you can present the different elements by passing it to an <a href="research_package_ui/RPUITask-class.html">RPUITask</a>.</p>
 <p>This library contains various UI representations (Widgets) of the objects declared in <a href="research_package_model/research_package_model-library.html">research_package_model</a>.
 Many of these Widgets are responsible for making the collected results accessible to others.
 Also contains general styles, UI statics used in Research Package UI in <a href="research_package_ui/RPStyles-class.html">RPStyles</a>.</p>
@@ -90,8 +90,26 @@ Also contains general styles, UI statics used in Research Package UI in <a href=
       <h2>Classes</h2>
 
       <dl>
+        <dt id="InstructionImage">
+          <span class="name "><a href="research_package_ui/InstructionImage-class.html">InstructionImage</a></span>         
+        </dt>
+        <dd>
+          
+        </dd>
+        <dt id="RPLocalizations">
+          <span class="name "><a href="research_package_ui/RPLocalizations-class.html">RPLocalizations</a></span>         
+        </dt>
+        <dd>
+          
+        </dd>
         <dt id="RPStyles">
           <span class="name "><a href="research_package_ui/RPStyles-class.html">RPStyles</a></span>         
+        </dt>
+        <dd>
+          
+        </dd>
+        <dt id="RPUIBooleanQuestionBody">
+          <span class="name "><a href="research_package_ui/RPUIBooleanQuestionBody-class.html">RPUIBooleanQuestionBody</a></span>         
         </dt>
         <dd>
           
@@ -115,8 +133,20 @@ Depending on the <a href="research_package_model/RPChoiceAnswerFormat-class.html
         <dd>
           The UI representation of <a href="research_package_model/RPConsentReviewStep-class.html">RPConsentReviewStep</a> <a href="research_package_ui/RPUIConsentReviewStep-class.html">[...]</a>
         </dd>
+        <dt id="RPUIDateTimeQuestionBody">
+          <span class="name "><a href="research_package_ui/RPUIDateTimeQuestionBody-class.html">RPUIDateTimeQuestionBody</a></span>         
+        </dt>
+        <dd>
+          
+        </dd>
         <dt id="RPUIFormStep">
           <span class="name "><a href="research_package_ui/RPUIFormStep-class.html">RPUIFormStep</a></span>         
+        </dt>
+        <dd>
+          
+        </dd>
+        <dt id="RPUIImageChoiceQuestionBody">
+          <span class="name "><a href="research_package_ui/RPUIImageChoiceQuestionBody-class.html">RPUIImageChoiceQuestionBody</a></span>         
         </dt>
         <dd>
           
@@ -133,24 +163,36 @@ Depending on the <a href="research_package_model/RPChoiceAnswerFormat-class.html
         <dd>
           
         </dd>
-        <dt id="RPUIOrderedTask">
-          <span class="name "><a href="research_package_ui/RPUIOrderedTask-class.html">RPUIOrderedTask</a></span>         
-        </dt>
-        <dd>
-          This class is the primary entry point for the presentation of the Research Package framework UI.
-It presents the steps of an <a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a> and then provides the <a href="research_package_model/RPTaskResult-class.html">RPTaskResult</a> object.
-        </dd>
         <dt id="RPUIQuestionStep">
           <span class="name "><a href="research_package_ui/RPUIQuestionStep-class.html">RPUIQuestionStep</a></span>         
         </dt>
         <dd>
           The UI representation of the <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a>. This widget is the container, the concrete content depends on the input step's <a href="research_package_model/RPAnswerFormat-class.html">RPAnswerFormat</a>. <a href="research_package_ui/RPUIQuestionStep-class.html">[...]</a>
         </dd>
+        <dt id="RPUISliderQuestionBody">
+          <span class="name "><a href="research_package_ui/RPUISliderQuestionBody-class.html">RPUISliderQuestionBody</a></span>         
+        </dt>
+        <dd>
+          
+        </dd>
+        <dt id="RPUITask">
+          <span class="name "><a href="research_package_ui/RPUITask-class.html">RPUITask</a></span>         
+        </dt>
+        <dd>
+          This class is the primary entry point for the presentation of the Research Package framework UI.
+It presents the steps of an <a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a> (either navigable or just linear) and then provides the <a href="research_package_model/RPTaskResult-class.html">RPTaskResult</a> object.
+        </dd>
         <dt id="RPUIVisualConsentStep">
           <span class="name "><a href="research_package_ui/RPUIVisualConsentStep-class.html">RPUIVisualConsentStep</a></span>         
         </dt>
         <dd>
           The UI representation of <a href="research_package_model/RPVisualConsentStep-class.html">RPVisualConsentStep</a> <a href="research_package_ui/RPUIVisualConsentStep-class.html">[...]</a>
+        </dd>
+        <dt id="Title">
+          <span class="name "><a href="research_package_ui/Title-class.html">Title</a></span>         
+        </dt>
+        <dd>
+          
         </dd>
       </dl>
     </section>
@@ -169,16 +211,23 @@ It presents the steps of an <a href="research_package_model/RPOrderedTask-class.
     <h5>research_package_ui library</h5>
     <ol>
       <li class="section-title"><a href="research_package_ui/research_package_ui-library.html#classes">Classes</a></li>
+      <li><a href="research_package_ui/InstructionImage-class.html">InstructionImage</a></li>
+      <li><a href="research_package_ui/RPLocalizations-class.html">RPLocalizations</a></li>
       <li><a href="research_package_ui/RPStyles-class.html">RPStyles</a></li>
+      <li><a href="research_package_ui/RPUIBooleanQuestionBody-class.html">RPUIBooleanQuestionBody</a></li>
       <li><a href="research_package_ui/RPUIChoiceQuestionBody-class.html">RPUIChoiceQuestionBody</a></li>
       <li><a href="research_package_ui/RPUICompletionStep-class.html">RPUICompletionStep</a></li>
       <li><a href="research_package_ui/RPUIConsentReviewStep-class.html">RPUIConsentReviewStep</a></li>
+      <li><a href="research_package_ui/RPUIDateTimeQuestionBody-class.html">RPUIDateTimeQuestionBody</a></li>
       <li><a href="research_package_ui/RPUIFormStep-class.html">RPUIFormStep</a></li>
+      <li><a href="research_package_ui/RPUIImageChoiceQuestionBody-class.html">RPUIImageChoiceQuestionBody</a></li>
       <li><a href="research_package_ui/RPUIInstructionStep-class.html">RPUIInstructionStep</a></li>
       <li><a href="research_package_ui/RPUIIntegerQuestionBody-class.html">RPUIIntegerQuestionBody</a></li>
-      <li><a href="research_package_ui/RPUIOrderedTask-class.html">RPUIOrderedTask</a></li>
       <li><a href="research_package_ui/RPUIQuestionStep-class.html">RPUIQuestionStep</a></li>
+      <li><a href="research_package_ui/RPUISliderQuestionBody-class.html">RPUISliderQuestionBody</a></li>
+      <li><a href="research_package_ui/RPUITask-class.html">RPUITask</a></li>
       <li><a href="research_package_ui/RPUIVisualConsentStep-class.html">RPUIVisualConsentStep</a></li>
+      <li><a href="research_package_ui/Title-class.html">Title</a></li>
     
     
     
@@ -195,7 +244,7 @@ It presents the steps of an <a href="research_package_model/RPOrderedTask-class.
 <footer>
   <span class="no-break">
     research_package
-      0.1.1
+      0.2.0
   </span>
 
   <!-- footer-text placeholder -->
