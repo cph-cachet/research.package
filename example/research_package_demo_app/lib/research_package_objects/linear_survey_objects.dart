@@ -107,7 +107,7 @@ RPQuestionStep imageChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
 
 RPFormStep formStep = RPFormStep.withTitle(
   "formstepID",
-  [instrumentChoiceQuestionStep, minutesQuestionStep],
+  [instrumentChoiceQuestionStep, minutesQuestionStep, dateQuestionStep],
   "Questions about music",
   optional: true,
 );
@@ -137,7 +137,7 @@ RPOrderedTask linearSurveyTask = RPOrderedTask(
     imageChoiceQuestionStep,
     singleChoiceQuestionStep,
     happinessChoiceQuestionStep,
-//    weightQuestionStep,
+    weightQuestionStep,
     completionStep
   ],
 );

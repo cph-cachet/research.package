@@ -62,6 +62,26 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           (stepResult.results[id] as RPStepResult).setResult(result);
           checkReadyToProceed();
         });
+      case RPSliderAnswerFormat:
+        return RPUISliderQuestionBody(answerFormat, (result) {
+          (stepResult.results[id] as RPStepResult).setResult(result);
+          checkReadyToProceed();
+        });
+      case RPImageChoiceAnswerFormat:
+        return RPUIImageChoiceQuestionBody(answerFormat, (result) {
+          (stepResult.results[id] as RPStepResult).setResult(result);
+          checkReadyToProceed();
+        });
+      case RPDateTimeAnswerFormat:
+        return RPUIDateTimeQuestionBody(answerFormat, (result) {
+          (stepResult.results[id] as RPStepResult).setResult(result);
+          checkReadyToProceed();
+        });
+      case RPBooleanAnswerFormat:
+        return RPUIBooleanQuestionBody(answerFormat, (result) {
+          (stepResult.results[id] as RPStepResult).setResult(result);
+          checkReadyToProceed();
+        });
       default:
         return Container();
     }

@@ -1,3 +1,6 @@
+## 0.2.1
+ * FormStep now supports Slider, Image, Date and Boolean Answer Formats as well
+ 
 ## 0.2.0
  * Support for Navigable Tasks
     * Branching support with `RPDirectStepNavigationRule` and `RPPredicateStepNavigationRule`
