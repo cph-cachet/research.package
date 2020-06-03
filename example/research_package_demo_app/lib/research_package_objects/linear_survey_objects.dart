@@ -11,7 +11,7 @@ List<RPChoice> timeChoices = [
 ];
 
 List<RPChoice> joyfulActivities = [
-  RPChoice.withParams("Playing games", 6),
+  RPChoice.withParams("Playing games", 6, true),
   RPChoice.withParams("Jogging", 5),
   RPChoice.withParams("Playing an instrument", 4),
   RPChoice.withParams("Family and friends", 3),

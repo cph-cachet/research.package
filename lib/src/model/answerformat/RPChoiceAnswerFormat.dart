@@ -31,11 +31,12 @@ class RPChoice {
   String _text;
   int _value;
   String _detailText;
+  bool _isFreeText;
 
   RPChoice();
 
   /// Default constructor with [detailText] set to ```null```.
-  RPChoice.withParams(String text, int value) {
+  RPChoice.withParams(String text, int value, [this._isFreeText = false]) {
     this._text = text;
     this._value = value;
     this._detailText = null;
@@ -44,12 +45,15 @@ class RPChoice {
   /// Constructor with the option to provide [detailText]
   RPChoice.withDetailText(this._text, this._value, this._detailText);
 
-  /// The text to display
+  /// The text to display.
   get text => this._text;
 
   set text(String text) {
     this._text = text;
   }
+
+  /// If set to true, then the user can enter the text instead of the default [text] which was provided. The [value] remains the same. By default it is set to false.
+  get isFreeText => this._isFreeText;
 
   /// The value of the choice
   get value => this._value;
