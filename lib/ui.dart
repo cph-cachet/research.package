@@ -13,6 +13,7 @@ library research_package_ui;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:signature/signature.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -49,16 +50,3 @@ part 'src/ui/RPUIQuestionStep.dart';
 part 'src/ui/RPUITask.dart';
 
 part 'src/ui/RPUIVisualConsentStep.dart';
-part 'src/ui/RPUIConsentReviewStep.dart';
-
-part 'src/ui/RPUIQuestionStep.dart';
-part 'src/ui/RPUIInstructionStep.dart';
-part 'src/ui/RPUICompletionStep.dart';
-part 'src/ui/RPUIFormStep.dart';
-
-part 'src/ui/QuestionBody/RPUIIntegerQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUISliderQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIImageChoiceQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIBooleanQuestionBody.dart';
