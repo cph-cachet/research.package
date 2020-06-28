@@ -8,6 +8,7 @@ class RPResultPredicate {
   RPResultSelector _resultSelector;
   bool Function() getPredictionResult;
   bool _predictionResult;
+  ChoiceQuestionResultPredicateMode _choiceQuestionResultPredicateMode;
 
   /// Result predicate for the boolean answer format [RPBooleanAnswerFormat]. The [expectedValue] here should be a boolean.
   RPResultPredicate.forBooleanQuestionResult(
@@ -20,9 +21,12 @@ class RPResultPredicate {
 
   /// Result predicate for choice question types. The [expectedValue] here should correspond to the [value] of an [RPChoice] object.
   RPResultPredicate.forChoiceQuestionResult(
-      {@required RPResultSelector resultSelector, @required List<int> expectedValue}) {
+      {@required RPResultSelector resultSelector,
+      @required List<int> expectedValue,
+      @required ChoiceQuestionResultPredicateMode choiceQuestionResultPredicateMode}) {
     this._resultSelector = resultSelector;
     this.expectedValue = expectedValue;
+    this._choiceQuestionResultPredicateMode = choiceQuestionResultPredicateMode;
 
     getPredictionResult = choiceValuePredictionResult;
   }
@@ -40,25 +44,54 @@ class RPResultPredicate {
   }
 
   bool choiceValuePredictionResult() {
-    Function eq = const ListEquality().equals;
-    (expectedValue as List<int>).sort();
-    RPStepResult resultFromResultSelector = _resultSelector.getResult();
     this._predictionResult = false;
 
-    try {
-      List<int> results = List<int>();
-      (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] as List<RPChoice>).forEach((choice) {
-        results.add(choice.value);
-      });
-      results.sort();
+    switch (this._choiceQuestionResultPredicateMode) {
+      case ChoiceQuestionResultPredicateMode.ExactMatch:
+        {
+          Function eq = const ListEquality().equals;
+          (expectedValue as List<int>).sort();
+          RPStepResult resultFromResultSelector = _resultSelector.getResult();
+          this._predictionResult = false;
 
-      if (eq(results,expectedValue)) {
-        this._predictionResult = true;
-      }
-    } catch (e) {
-      this._predictionResult = false;
+          try {
+            List<int> results = List<int>();
+            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] as List<RPChoice>).forEach((choice) {
+              results.add(choice.value);
+            });
+            results.sort();
+
+            if (eq(results, expectedValue)) {
+              this._predictionResult = true;
+            }
+          } catch (e) {
+            this._predictionResult = false;
+          }
+          break;
+        }
+      case ChoiceQuestionResultPredicateMode.Containing:
+        {
+          RPStepResult resultFromResultSelector = _resultSelector.getResult();
+          this._predictionResult = true;
+
+          try {
+            List<int> results = List<int>();
+            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] as List<RPChoice>).forEach((choice) {
+              results.add(choice.value);
+            });
+            results.sort();
+
+            (expectedValue as List<int>).forEach((element) {
+              if (!results.contains(element)) {
+                this._predictionResult = false;
+              }
+            });
+          } catch (e) {
+            this._predictionResult = false;
+          }
+          break;
+        }
     }
-
     return this._predictionResult;
   }
 }
@@ -103,7 +136,7 @@ class RPResultSelector {
         try {
           // By doing this we ensure that we are looking up only until the first match
           _foundStepResult = _foundStepResult ?? stepResult.results[stepIdentifier];
-        } catch(e) {
+        } catch (e) {
           print("No matching result found in this FormStep, proceeding to the next one (if any)");
         }
       });
@@ -134,3 +167,5 @@ class RPResultSelector {
 //    _returnedStepResult = RPStepResult();
 //  }
 }
+
+enum ChoiceQuestionResultPredicateMode { ExactMatch, Containing }

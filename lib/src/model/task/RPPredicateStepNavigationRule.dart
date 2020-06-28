@@ -3,7 +3,7 @@ part of research_package_model;
 /// A navigation rule which based on predicate(s)'s ([RPResultPredicate]) result(s).
 ///
 /// By using [RPPredicateStepNavigationRule] different questions can be shown based on the result of previously answered questions.
-/// What the [RPPredicateStepNavigationRule] does is that it checks the predicate [RPResultPredicate] and if it's true, puts the
+/// The [RPPredicateStepNavigationRule] checks the predicate [RPResultPredicate] and if it's true, puts the
 /// destination step as next in the sequence. (Destination step identifiers are declared in the [resultPredicatesWithDestinationIdentifiers])
 class RPPredicateStepNavigationRule extends RPStepNavigationRule {
   final String _defaultStepIdentifier;

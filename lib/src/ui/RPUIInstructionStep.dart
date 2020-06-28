@@ -48,14 +48,16 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           InstructionImage(widget.step.imagePath),
           Column(
             children: <Widget>[
-              Container(
-                padding: EdgeInsets.all(16),
-                child: Text(
-                  locale?.translate(widget.step.text) ?? widget.step.text,
-                  textAlign: TextAlign.left,
-                  style: RPStyles.instructionText,
-                ),
-              ),
+              widget.step.text != null
+                  ? Container(
+                      padding: EdgeInsets.all(16),
+                      child: Text(
+                        locale?.translate(widget.step.text) ?? widget.step.text,
+                        textAlign: TextAlign.left,
+                        style: RPStyles.instructionText,
+                      ),
+                    )
+                  : Container(),
               widget.step.detailText != null
                   ? FlatButton(
                       textTheme: ButtonTextTheme.accent,

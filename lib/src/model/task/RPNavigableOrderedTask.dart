@@ -22,7 +22,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
 //  List<RPStepModifier> get stepModifiers => this._stepModifiers;
 //  bool get shouldReportProgress => this._shouldReportProgress;
 
-  /// Returns the step after a specified step if there's any taking the [RPStepNavigationRule]s into consideration.
+  /// Returns the step after a specified step if there's any, taking the [RPStepNavigationRule]s into consideration.
   ///
   /// If the specified step is ```null``` then it returns the first step.
   /// Returns ```null``` if [step] was the last one in the sequence.
@@ -49,6 +49,19 @@ class RPNavigableOrderedTask extends RPOrderedTask {
       RPStepNavigationRule rule = _stepNavigationRules[step.identifier];
 
       switch (rule.runtimeType) {
+        case RPStepReorganizerRule:
+          RPStepResult tempResult = (rule as RPStepReorganizerRule).resultSelector.getResult();
+          List identifiersToKeep = [];
+          (tempResult.results["answer"] as List<RPChoice>).forEach((element) {
+            String id = (rule as RPStepReorganizerRule)._removalMap[element.value];
+            identifiersToKeep.add(id);
+          });
+
+          steps.removeWhere((step) => !identifiersToKeep.contains(step.identifier));
+
+          _returnNextQuestion();
+
+          break;
         case RPPredicateStepNavigationRule:
           (rule as RPPredicateStepNavigationRule)
               .resultPredicatesWithDestinationIdentifiers
