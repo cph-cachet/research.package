@@ -32,7 +32,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   int _currentQuestionIndex = 1;
 
   StreamSubscription<StepStatus> _stepStatusSubscription;
-  StreamSubscription<RPStepResult> _stepResultSubscription;
+  StreamSubscription<RPResult> _stepResultSubscription;
 
   bool navigableTask = false;
 

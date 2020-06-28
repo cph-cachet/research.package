@@ -13,31 +13,40 @@ library research_package_ui;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:signature/signature.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'dart:math';
 
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:research_package/model.dart';
 
 // Library elements
 part 'src/localization/RPLocalization.dart';
-
+part 'src/loggers/RPActivityEventLogger.dart';
+part 'src/ui/ActivityBody/RPUICorsiBlockTappingActivityBody.dart';
+part 'src/ui/ActivityBody/RPUILetterTappingActivityBody.dart';
+part 'src/ui/ActivityBody/RPUIPairedAssociatesLearningActivityBody.dart';
+part 'src/ui/ActivityBody/RPUIRapidVisualInfoProcessingActivityBody.dart';
+part 'src/ui/ActivityBody/RPUIReactionTimeActivityBody.dart';
+part 'src/ui/ActivityBody/RPUIStroopEffectActivityBody.dart';
+part 'src/ui/ActivityBody/RPUITappingActivityBody.dart';
+part 'src/ui/ActivityBody/RPUITrailMakingActivityBody.dart';
+part 'src/ui/QuestionBody/RPUIBooleanQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUIImageChoiceQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUIIntegerQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUISliderQuestionBody.dart';
 part 'src/ui/RPStyles.dart';
-
+part 'src/ui/RPUIActivityStep.dart';
+part 'src/ui/RPUICompletionStep.dart';
+part 'src/ui/RPUIConsentReviewStep.dart';
+part 'src/ui/RPUIFormStep.dart';
+part 'src/ui/RPUIInstructionStep.dart';
+part 'src/ui/RPUIQuestionStep.dart';
 part 'src/ui/RPUITask.dart';
 
 part 'src/ui/RPUIVisualConsentStep.dart';
-part 'src/ui/RPUIConsentReviewStep.dart';
-
-part 'src/ui/RPUIQuestionStep.dart';
-part 'src/ui/RPUIInstructionStep.dart';
-part 'src/ui/RPUICompletionStep.dart';
-part 'src/ui/RPUIFormStep.dart';
-
-part 'src/ui/QuestionBody/RPUIIntegerQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUISliderQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIImageChoiceQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIBooleanQuestionBody.dart';

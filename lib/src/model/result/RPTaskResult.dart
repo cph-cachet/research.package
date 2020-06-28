@@ -7,7 +7,7 @@ class RPTaskResult extends RPResult {
   ///
   /// Each entry represents a Step's result ([RPStepResult]).
   /// The keys are strings with the identifiers of the corresponding Step.
-  Map<String, RPStepResult> results;
+  Map<String, dynamic> results;
 
   RPTaskResult();
 
@@ -17,16 +17,17 @@ class RPTaskResult extends RPResult {
   /// It sets [startDate] to the ```DateTime.now()```. Since these objects are instantiated
   /// together with the Task it belongs to so it can be used for measuring
   /// how much time the participant spent the given Task.
-  RPTaskResult.withParams(String identifier) : super.withIdentifier(identifier) {
-    this.results = Map<String, RPStepResult>();
+  RPTaskResult.withParams(String identifier)
+      : super.withIdentifier(identifier) {
+    this.results = Map<String, RPResult>();
     startDate = DateTime.now();
   }
 
   /// Returns result value for the given identifier from the [results] map
-  RPStepResult getStepResultForIdentifier(String identifier) => results[identifier];
+  RPResult getStepResultForIdentifier(String identifier) => results[identifier];
 
   /// Adds a result to the result map with the given identifier.
-  void setStepResultForIdentifier(String identifier, RPStepResult stepResult) {
+  void setStepResultForIdentifier(String identifier, RPResult stepResult) {
     results[identifier] = stepResult;
   }
 
