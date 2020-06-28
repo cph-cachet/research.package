@@ -3,6 +3,9 @@ part of research_package_model;
 /// The result object a Step creates
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPStepResult extends RPResult {
+  /// The title of the question. It is set by the [RPUIStep] and [RPUIFormStep] so it's easier to trace back the answer result in the result JSON.
+  String questionTitle;
+
   Map<String, dynamic> _results;
 
   /// The Answer Format ([RPAnswerFormat]) which generated this result.

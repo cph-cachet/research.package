@@ -419,6 +419,7 @@ RPStepResult _$RPStepResultFromJson(Map<String, dynamic> json) {
     ..endDate = json['end_date'] == null
         ? null
         : DateTime.parse(json['end_date'] as String)
+    ..questionTitle = json['question_title'] as String
     ..answerFormat = json['answer_format'] == null
         ? null
         : RPAnswerFormat.fromJson(json['answer_format'] as Map<String, dynamic>)
@@ -437,6 +438,7 @@ Map<String, dynamic> _$RPStepResultToJson(RPStepResult instance) {
   writeNotNull('identifier', instance.identifier);
   writeNotNull('start_date', instance.startDate?.toIso8601String());
   writeNotNull('end_date', instance.endDate?.toIso8601String());
+  writeNotNull('question_title', instance.questionTitle);
   writeNotNull('answer_format', instance.answerFormat);
   writeNotNull('results', instance.results);
   return val;

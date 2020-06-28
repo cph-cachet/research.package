@@ -115,7 +115,8 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
 
   @override
   void createAndSendResult() {
-    // Populate the result object with value and end the time tracker (set endDate)
+    // Populate the result object with value and end the time tracker (set endDate). Set questionTitle
+    result.questionTitle = widget.step.title;
     result.setResult(_currentQuestionBodyResult);
     blocTask.sendStepResult(result);
   }
