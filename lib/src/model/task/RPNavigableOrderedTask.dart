@@ -57,7 +57,14 @@ class RPNavigableOrderedTask extends RPOrderedTask {
             identifiersToKeep.add(id);
           });
 
+          RPStep _lastStep;
+          if (steps.last.runtimeType == RPCompletionStep) {
+            _lastStep = steps.last;
+          }
+
           steps.removeWhere((step) => !identifiersToKeep.contains(step.identifier));
+
+          steps.add(_lastStep);
 
           _returnNextQuestion();
 
