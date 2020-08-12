@@ -1,3 +1,6 @@
+## 0.3.1
+- `onCancel` callback added to Tasks
+
 ## 0.3.0
 
 - `RPActivityStep` and `RPActivityResult` added with including UI.

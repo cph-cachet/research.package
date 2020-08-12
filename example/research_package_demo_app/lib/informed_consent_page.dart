@@ -11,12 +11,20 @@ class InformedConsentPage extends StatelessWidget {
     print(_encode(result));
   }
 
+  void cancelCallBack() {
+    // Do anything with the result at the moment of the cancellation
+    print("Cancelled");
+  }
+
   @override
   Widget build(BuildContext context) {
     return RPUITask(
       task: consentTask,
       onSubmit: (result) {
         resultCallback(result);
+      },
+      onCancel: ([result]) {
+        cancelCallBack();
       },
     );
   }
