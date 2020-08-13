@@ -20,6 +20,8 @@ class RPUITask extends StatefulWidget {
   ///        cancelCallBack();
   ///      },
   /// ```
+  ///
+  /// It's only optional. If nothing is provided (is ```null```) the survey just quits without doing anything with the result.
   final void Function([RPTaskResult result]) onCancel;
 
   RPUITask({this.task, this.onSubmit, this.onCancel});
@@ -163,7 +165,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
               child: Text(RPLocalizations.of(context)?.translate('YES') ?? "YES"),
               onPressed: () {
                 // Calling the onCancel method with which the developer can for e.g. save the result on the device.
-                widget.onCancel(_taskResult);
+                // Only call it if it's not null
+                widget.onCancel?.call(_taskResult);
                 // Popup dismiss
                 Navigator.of(context).pop();
                 // Exit the Ordered Task
