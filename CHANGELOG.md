@@ -1,3 +1,6 @@
+## 0.3.1+1
+- `onCancel` callback changed to only optional
+
 ## 0.3.1
 - `onCancel` callback added to Tasks
 

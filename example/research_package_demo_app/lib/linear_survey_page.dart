@@ -23,9 +23,8 @@ class LinearSurveyPage extends StatelessWidget {
       onSubmit: (result) {
         resultCallback(result);
       },
-      onCancel: ([result]) {
-        cancelCallBack(result);
-      },
+      // No onCancel
+      // If there's no onCancel provided the survey just quits
     );
   }
 }
