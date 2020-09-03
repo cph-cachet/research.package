@@ -14,7 +14,6 @@ dependencies:
   json_annotation: ^3.0.0
   flutter_localizations:
     sdk: flutter
-  audioplayers: ^0.15.1
   collection: ^1.14.11
 
 dev_dependencies:
@@ -30,54 +29,8 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   # To add assets to your package, add an assets section, like this:
-  assets:
-    #mp files for letter A tapping test
-    - packages/research_package/assets/sounds/A.mp3
-    - packages/research_package/assets/sounds/B.mp3
-    - packages/research_package/assets/sounds/C.mp3
-    - packages/research_package/assets/sounds/D.mp3
-    - packages/research_package/assets/sounds/E.mp3
-    - packages/research_package/assets/sounds/F.mp3
-    - packages/research_package/assets/sounds/G.mp3
-    - packages/research_package/assets/sounds/H.mp3
-    - packages/research_package/assets/sounds/I.mp3
-    - packages/research_package/assets/sounds/J.mp3
-    - packages/research_package/assets/sounds/K.mp3
-    - packages/research_package/assets/sounds/L.mp3
-    - packages/research_package/assets/sounds/M.mp3
-    - packages/research_package/assets/sounds/N.mp3
-    - packages/research_package/assets/sounds/O.mp3
-    - packages/research_package/assets/sounds/P.mp3
-    - packages/research_package/assets/sounds/Q.mp3
-    - packages/research_package/assets/sounds/R.mp3
-    - packages/research_package/assets/sounds/S.mp3
-    - packages/research_package/assets/sounds/T.mp3
-    - packages/research_package/assets/sounds/U.mp3
-    - packages/research_package/assets/sounds/V.mp3
-    - packages/research_package/assets/sounds/W.mp3
-    - packages/research_package/assets/sounds/X.mp3
-    - packages/research_package/assets/sounds/Y.mp3
-    - packages/research_package/assets/sounds/Z.mp3
-
-    # Test image assets for PAL
-    - packages/research_package/assets/images/nothing.png
-    - packages/research_package/assets/images/hidden.png
-    - packages/research_package/assets/images/shape1.png
-    - packages/research_package/assets/images/shape2.png
-    - packages/research_package/assets/images/shape3.png
-    - packages/research_package/assets/images/shape4.png
-    - packages/research_package/assets/images/shape5.png
-
-    # Test intro images
-    - packages/research_package/assets/images/PALintro.png
-    - packages/research_package/assets/images/Corsiintro.png
-    - packages/research_package/assets/images/Reactionintro.png
-    - packages/research_package/assets/images/RVIPintro.png
-    - packages/research_package/assets/images/Stroopintro.png
-    - packages/research_package/assets/images/Tappingintro.png
-    - packages/research_package/assets/images/trailtype-a.png
-    - packages/research_package/assets/images/trailtype-b.png
-    - packages/research_package/assets/images/Letterintro.png
+  # assets:
+  #   - assets/
   #  - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see
