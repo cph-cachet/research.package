@@ -22,7 +22,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: Duration(milliseconds: 400), TickerProvider: this);
+    _controller = AnimationController(duration: Duration(milliseconds: 400), vsync: this);
     _scale = Tween(begin: 0.6, end: 1.0)
         .chain(
           CurveTween(

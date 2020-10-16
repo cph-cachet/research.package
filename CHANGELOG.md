@@ -1,3 +1,7 @@
+## 0.3.2+1
+
+- Revert of AnimationController
+
 ## 0.3.2
 
 - Updated `AnimationController`s to Flutter 1.22
