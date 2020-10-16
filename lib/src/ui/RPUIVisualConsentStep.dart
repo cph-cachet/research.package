@@ -13,8 +13,7 @@ class RPUIVisualConsentStep extends StatefulWidget {
   _RPUIVisualConsentStep createState() => _RPUIVisualConsentStep();
 }
 
-class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
-    with SingleTickerProviderStateMixin {
+class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTickerProviderStateMixin {
   Animation<double> _scale;
   AnimationController _controller;
   int _pageNr = 0;
@@ -23,8 +22,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
+    _controller = AnimationController(duration: Duration(milliseconds: 400), TickerProvider: this);
     _scale = Tween(begin: 0.6, end: 1.0)
         .chain(
           CurveTween(
@@ -148,9 +146,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                 ),
                 FlatButton(
                   textTheme: ButtonTextTheme.accent,
-                  child: Text(
-                      RPLocalizations.of(context)?.translate('Learn more...') ??
-                          "Learn more..."),
+                  child: Text(RPLocalizations.of(context)?.translate('Learn more...') ?? "Learn more..."),
                   onPressed: () => _pushContent(
                     section.title,
                     section.content,
@@ -171,8 +167,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
         builder: (context) {
           RPLocalizations locale = RPLocalizations.of(context);
           return AlertDialog(
-            content: Text(locale?.translate('quit_confirmation') ??
-                "Are you sure you want to quit?"),
+            content: Text(locale?.translate('quit_confirmation') ?? "Are you sure you want to quit?"),
             actions: <Widget>[
               FlatButton(
                 child: Text(locale?.translate('YES') ?? "YES"),
@@ -202,8 +197,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
               padding: EdgeInsets.all(10.0),
               child: _lastPage
                   ? Text(
-                      RPLocalizations.of(context)?.translate('see_summary') ??
-                          "SEE SUMMARY",
+                      RPLocalizations.of(context)?.translate('see_summary') ?? "SEE SUMMARY",
                       style: RPStyles.whiteText,
                     )
                   : Text(
@@ -212,9 +206,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                     ),
               onPressed: _lastPage
                   ? () => blocTask.sendStatus(StepStatus.Finished)
-                  : () => controller.nextPage(
-                      duration: Duration(milliseconds: 400),
-                      curve: Curves.fastOutSlowIn),
+                  : () =>
+                      controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
             ),
           ),
           ButtonTheme(
@@ -242,8 +235,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
       onWillPop: () => null,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(locale?.translate(widget.consentDocument.title) ??
-              widget.consentDocument.title),
+          title: Text(locale?.translate(widget.consentDocument.title) ?? widget.consentDocument.title),
           automaticallyImplyLeading: false,
         ),
         body: Column(
@@ -284,8 +276,7 @@ class _ContentRoute extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: SingleChildScrollView(
-            child: Text(locale?.translate(this.content) ?? this.content)),
+        child: SingleChildScrollView(child: Text(locale?.translate(this.content) ?? this.content)),
       ),
     );
   }

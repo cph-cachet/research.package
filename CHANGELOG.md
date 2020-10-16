@@ -1,7 +1,16 @@
+## 0.3.2
+
+- Updated `AnimationController`s to Flutter 1.22
+- Removed "Activity Steps" to be released in a separate package
+- Merged small-scale branching feature
+- Minor bugfixes
+
 ## 0.3.1+1
+
 - `onCancel` callback changed to only optional
 
 ## 0.3.1
+
 - `onCancel` callback added to Tasks
 
 ## 0.3.0

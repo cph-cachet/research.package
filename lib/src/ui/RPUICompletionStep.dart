@@ -21,7 +21,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
   void initState() {
     super.initState();
 
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 350));
+    _controller = AnimationController(TickerProvider: this, duration: Duration(milliseconds: 350));
     _scale = Tween(begin: 0.3, end: 1.1).chain(CurveTween(curve: Curves.easeInOut)).animate(_controller);
     _controller.forward();
   }
