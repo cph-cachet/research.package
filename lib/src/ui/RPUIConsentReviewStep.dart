@@ -168,8 +168,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
 
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(locale?.translate('Review') ?? 'Review'),
+        title: Text(locale?.translate('Review') ?? 'Review'),
         automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
@@ -233,11 +232,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
 
-  var _signature = Signature(
-    height: 200,
-    width: 300,
-    backgroundColor: Colors.transparent,
+  final SignatureController _signatureController = SignatureController(
+    penStrokeWidth: 5,
+    penColor: Colors.red,
+    exportBackgroundColor: Colors.blue,
   );
+
+  Signature _signature;
 
   Widget _signatureCanvas() {
     return GestureDetector(
@@ -249,14 +250,14 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       },
       onTap: () {
         setState(() {
-          if (_signature.isNotEmpty) {
+          if (_signatureController.isNotEmpty) {
             _isSignatureAdded = true;
           }
         });
       },
       onPanEnd: (e) {
         setState(() {
-          if (_signature.isNotEmpty) {
+          if (_signatureController.isNotEmpty) {
             _isSignatureAdded = true;
           }
         });
@@ -276,6 +277,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   @override
   void initState() {
+    _signature = Signature(
+      controller: _signatureController,
+      height: 200,
+      width: 300,
+      backgroundColor: Colors.transparent,
+    );
+
     widget._consentSignature.requiresSignatureImage
         ? _isSignatureAdded = false
         : _isSignatureAdded = true;
@@ -339,7 +347,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
               child: Text(locale?.translate('Clear') ?? "Clear"),
               onPressed: _isSignatureAdded
                   ? () {
-                      _signature.clear();
+                      _signatureController.clear();
                       setState(() {
                         _isSignatureAdded = false;
                       });
@@ -378,7 +386,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           onPressed: (_isNameFilled && _isSignatureAdded)
               ? () {
                   if (widget._consentSignature.requiresSignatureImage) {
-                    _signature.exportBytes().then(
+                    _signatureController.toPngBytes().then(
                       (image) {
                         widget._onFinished(
                           RPSignatureResult.withParams(
