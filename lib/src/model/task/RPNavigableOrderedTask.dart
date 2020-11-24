@@ -69,6 +69,14 @@ class RPNavigableOrderedTask extends RPOrderedTask {
           _returnNextQuestion();
 
           break;
+        case RPStepJumpRule:
+          RPStepJumpRule jumpRule = (rule as RPStepJumpRule);
+          RPStepResult tempResult = (rule as RPStepJumpRule).resultSelector.getResult();
+
+          _stepToReturn = _steps.firstWhere(
+              (step) => step.identifier == jumpRule._answerMap[tempResult.results["answer"].first.value]);
+
+          break;
         case RPPredicateStepNavigationRule:
           (rule as RPPredicateStepNavigationRule)
               .resultPredicatesWithDestinationIdentifiers
@@ -117,7 +125,8 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   ///   )
   ///   ..setNavigationRuleForTriggerStepIdentifier(someNavigationRule, questionStep1.identifier);
   /// ```
-  setNavigationRuleForTriggerStepIdentifier(RPStepNavigationRule stepNavigationRule, String triggerStepIdentifier) {
+  setNavigationRuleForTriggerStepIdentifier(
+      RPStepNavigationRule stepNavigationRule, String triggerStepIdentifier) {
     _stepNavigationRules[triggerStepIdentifier] = stepNavigationRule;
   }
 
