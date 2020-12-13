@@ -40,9 +40,11 @@ class MyApp extends StatelessWidget {
         // from the list (English, in this case).
         return supportedLocales.first;
       },
-      theme: ThemeData.light().copyWith(
-          primaryColor: Colors.deepPurple,
-          accentColor: Colors.deepOrangeAccent),
+      // theme: ThemeData.light().copyWith(
+      //     primaryColor: Colors.deepPurple,
+      //     accentColor: Colors.deepOrangeAccent),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
@@ -70,7 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
                 child: Text(
                   "With Research Package you can obtain informed consent, create surveys and collect their results",
                   textAlign: TextAlign.center,
@@ -106,7 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LinearSurveyPage()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => LinearSurveyPage()));
                   },
                 ),
               ),
@@ -122,7 +126,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => NavigableSurveyPage()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => NavigableSurveyPage()));
                   },
                 ),
               ),
