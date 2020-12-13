@@ -12,7 +12,8 @@ The main features of ResearchPackage are:
 - [Obtaining informed consent](https://www.researchpackage.org/consent) from participants, including support for a signature.
 - [Creating surveys](https://www.researchpackage.org/survey) and questionnaires with a wide range of answer formats (e.g., likert scale, date pickers, image pickers, etc.), such as the [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO5_English.pdf) survey.
 
-ResearchPackage is part of the overall CACHET Research Platform (CARP) with also provides a Flutter package for mobile and wearable sensing -- called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing). By combining ResearchPackage with CARP Mobile Sensing, support for what is called ["Active Tasks"](https://www.researchandcare.org/researchkit/) in ResearchKit can be implemented.
+ResearchPackage is part of the overall CACHET Research Platform (CARP) with also provides a Flutter package for mobile and wearable sensing called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing). 
+The CACHET [Pulmonary Monitor](https://github.com/cph-cachet/pulmonary_monitor_app) app shows how mobile sensing can be combined with collection of survery data from users.
 
 ResearchPackage has a series of **8** cognitive tests as part of its library. Some of the cognitive tests are implementations of ReseachKit's ["Active Tasks"](https://www.researchandcare.org/researchkit/). [Detailed information](https://www.researchpackage.org/cognitive-tests) about the test is available online.
 
@@ -29,12 +30,23 @@ The [ResearchPackage Flutter API](https://pub.dev/documentation/research_package
 
 ## Example Application
 
-There is an [example application](https://github.com/cph-cachet/research.package/tree/master/example/research_package_demo_app) which demonstrates the different features of ResearchPackage as implemented in a Flutter app.
+There is an [example app](https://github.com/cph-cachet/research.package/tree/master/example) which demonstrates the different features of ResearchPackage as implemented in a Flutter app.
 
 ## Who is backing this project?
 
-Research Package is made by the [Copenhagen Center for Health Technology (CACHET)](http://www.cachet.dk/) and is used in a number of applications and studies. The current project maintainers are [Barnabás Homola](https://github.com/barnabashomola), [Mads Vedel Saaby Christensen](https://github.com/MadsVSChristensen), and [Jakob E. Bardram](http://www.bardram.net).
+Research Package is made by the [Copenhagen Center for Health Technology (CACHET)](http://www.cachet.dk/) and is an important component in the [CACHET Research Platform (CARP)](https://carp.cachet.dk), which is used 
+in a number of applications and studies. 
+The current project maintainers are [Barnabás Homola](https://github.com/barnabashomola), [Mads Vedel Saaby Christensen](https://github.com/MadsVSChristensen), and [Jakob E. Bardram](http://www.bardram.net).
 
 ## How can I contribute?
 
-We are more than happy to take contributions and feedback. Use the [Issues](https://github.com/cph-cachet/research.package/issues) page to file an issue or feature request. Besides general help for enhacement and quality assurance (bug fixing), we welcome input on new answer types.
+We are more than happy to take contributions and feedback. 
+Use the [Issues](https://github.com/cph-cachet/research.package/issues) page to file an issue or feature request. 
+Besides general help for enhacement and quality assurance (bug fixing), we welcome input on new answer types.
+
+## License
+
+This software is copyright (c) [Copenhagen Center for Health Technology (CACHET)](https://www.cachet.dk/) 
+at the [Technical University of Denmark (DTU)](https://www.dtu.dk).
+This software is available 'as-is' under a [MIT license](https://github.com/cph-cachet/research.package/blob/master/LICENSE).
+
