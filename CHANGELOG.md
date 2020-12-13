@@ -1,4 +1,4 @@
-## 0.3.2+2
+## 0.3.2+3
 
 - updates to documentation of RP and example app
 
