@@ -1,3 +1,7 @@
+## 0.3.2+3
+
+- updates to documentation of RP and example app
+
 ## 0.3.2+1
 
 - Revert of AnimationController
