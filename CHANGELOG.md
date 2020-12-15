@@ -1,3 +1,7 @@
+## 0.3.2+2
+
+- Added RPJumpStepRule - A navigation rule to jump to questions based on the chosen answer to the question.
+
 ## 0.3.2+1
 
 - Revert of AnimationController
