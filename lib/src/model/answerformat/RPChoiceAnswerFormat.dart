@@ -10,12 +10,13 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 
   /// Returns an initialized choice answer format with the given [ChoiceAnswerStyle] and the set of [RPChoice]s.
   RPChoiceAnswerFormat.withParams(this.answerStyle, this._choices) {
-    questionType =
-        answerStyle == ChoiceAnswerStyle.SingleChoice ? QuestionType.SingleChoice : QuestionType.MultipleChoice;
+    questionType = answerStyle == ChoiceAnswerStyle.SingleChoice
+        ? QuestionType.SingleChoice
+        : QuestionType.MultipleChoice;
   }
 
   /// An array of available [RPChoice] objects which represent the choices to the participant.
-  get choices => this._choices;
+  List<RPChoice> get choices => this._choices;
 
   set choices(List<RPChoice> choices) {
     this._choices = choices;

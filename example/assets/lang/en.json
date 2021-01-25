@@ -77,5 +77,11 @@
   "Questions about music": "Questions about music",
 
   "Finished": "Finished",
-  "Thank you for filling out the survey!": "Thank you for filling out the survey!"
+  "Thank you for filling out the survey!": "Thank you for filling out the survey!",
+
+  "Tap to edit:": "Tap to edit:",
+  "Press to input date": "Press to input date",
+  "Press to input time": "Press to input time",
+  "Press to input date range": "Press to input date range"
+
 }

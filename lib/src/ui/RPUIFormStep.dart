@@ -58,7 +58,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 //      result.setResult(result);
 //    }
 
-  // TODO: Let's convert these operations into a function
+    // TODO: Let's convert these operations into a function
 
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
@@ -169,16 +169,18 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               style: RPStyles.h3,
             ),
           ),
-          Card(
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: stepBody(
-                widget.formStep.steps[index].identifier,
-                widget.formStep.steps[index].answerFormat,
-              ),
+          // Card(
+          //   elevation: 4,
+          //   child:
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: stepBody(
+              widget.formStep.steps[index].identifier,
+              widget.formStep.steps[index].answerFormat,
             ),
           ),
+          // ),
+          Divider(indent: 1, endIndent: 1, color: Colors.grey, thickness: 2)
         ],
       ),
     );
@@ -186,11 +188,41 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView.builder(
-        itemBuilder: formItemBuilder,
-        itemCount: widget.formStep.steps.length + 2,
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+        child: Column(
+          children: [
+            // Top bar with close-button
+            // Container(
+            //   height: AppBar().preferredSize.height,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.end,
+            //     children: [
+            //       // Close button
+            //       IconButton(
+            //         icon: Icon(
+            //           Icons.highlight_off,
+            //           color: Theme.of(context).primaryColor,
+            //         ),
+            //         // onPressed: _showCancelConfirmationDialog,
+            //         onPressed: () {
+            //           print('Canceled send');
+            //           blocTask.sendStatus(StepStatus.Canceled);
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // body
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: formItemBuilder,
+                itemCount: widget.formStep.steps.length + 2,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

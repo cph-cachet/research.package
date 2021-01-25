@@ -7,8 +7,7 @@ class RPUIBooleanQuestionBody extends StatefulWidget {
   RPUIBooleanQuestionBody(this.answerFormat, this.onResultChange);
 
   @override
-  _RPUIBooleanQuestionBodyState createState() =>
-      _RPUIBooleanQuestionBodyState();
+  _RPUIBooleanQuestionBodyState createState() => _RPUIBooleanQuestionBodyState();
 }
 
 class _RPUIBooleanQuestionBodyState extends State<RPUIBooleanQuestionBody>
@@ -37,13 +36,13 @@ class _RPUIBooleanQuestionBodyState extends State<RPUIBooleanQuestionBody>
             value: true,
             text: widget.answerFormat.trueText,
             selectedCallBack: _buttonCallBack,
-            selected: _selectedValue == true ? true : false,
+            selectedVal: _selectedValue,
           ),
           _BooleanButton(
             value: false,
             text: widget.answerFormat.falseText,
             selectedCallBack: _buttonCallBack,
-            selected: _selectedValue == false ? true : false,
+            selectedVal: _selectedValue,
           ),
         ],
       ),
@@ -58,9 +57,9 @@ class _BooleanButton extends StatefulWidget {
   final String text;
   final bool value;
   final Function selectedCallBack;
-  final bool selected;
+  final bool selectedVal;
 
-  _BooleanButton({this.text, this.value, this.selectedCallBack, this.selected});
+  _BooleanButton({this.text, this.value, this.selectedCallBack, this.selectedVal});
 
   @override
   _BooleanButtonState createState() => _BooleanButtonState();
@@ -70,29 +69,54 @@ class _BooleanButtonState extends State<_BooleanButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: OutlineButton(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(6))),
-        padding: EdgeInsets.all(14),
-        onPressed: () {
-          widget.selectedCallBack(widget.value);
-        },
+      padding: const EdgeInsets.only(left: 4.0, right: 4),
+      child: InkWell(
+        onTap: () => widget.selectedCallBack(widget.value),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              RPLocalizations.of(context)?.translate(widget.text) ??
-                  widget.text,
-              style: widget.selected
-                  ? RPStyles.choiceAnswerText
-                      .copyWith(fontWeight: FontWeight.w500)
-                  : RPStyles.choiceAnswerText,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Radio(value: widget.value, groupValue: widget.selectedVal, onChanged: null),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.only(bottom: 13),
+                decoration: !widget.value == false
+                    ? BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)))
+                    : null,
+                child: Text(
+                  RPLocalizations.of(context)?.translate(widget.text) ?? widget.text,
+                  style:
+                      // widget.selected
+                      //     ? RPStyles.choiceAnswerText.copyWith(fontWeight: FontWeight.w500)
+                      //     :
+                      RPStyles.choiceAnswerText,
+                ),
+              ),
             ),
-            Icon(widget.selected ? Icons.check : null, color: Colors.black),
           ],
         ),
       ),
+      // child: OutlineButton(
+      //   shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.all(Radius.circular(6))),
+      //   padding: EdgeInsets.all(14),
+      //   onPressed: () {
+      //     widget.selectedCallBack(widget.value);
+      //   },
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: <Widget>[
+      //       Text(
+      //         RPLocalizations.of(context)?.translate(widget.text) ??
+      //             widget.text,
+      //         style: widget.selected
+      //             ? RPStyles.choiceAnswerText
+      //                 .copyWith(fontWeight: FontWeight.w500)
+      //             : RPStyles.choiceAnswerText,
+      //       ),
+      //       Icon(widget.selected ? Icons.check : null, color: Colors.black),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

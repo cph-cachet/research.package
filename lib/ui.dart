@@ -17,7 +17,6 @@ import 'package:flutter/services.dart';
 import 'package:signature/signature.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:research_package/model.dart';
 

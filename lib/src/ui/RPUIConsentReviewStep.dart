@@ -13,8 +13,7 @@ class RPUIConsentReviewStep extends StatefulWidget {
   _RPUIConsentReviewStepState createState() => _RPUIConsentReviewStepState();
 }
 
-class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
-    with CanSaveResult {
+class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanSaveResult {
   RPConsentSignatureResult consentSignatureResult;
   RPSignatureResult signatureResult;
   RPStepResult result;
@@ -40,11 +39,9 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
       ..endDate = DateTime.now();
 
     consentSignatureResult.consentDocument.signatures == null
-        ? result.setResultForIdentifier(
-            "no signature collected", consentSignatureResult)
+        ? result.setResultForIdentifier("no signature collected", consentSignatureResult)
         : //TODO: modify identifier to match the id of rpconsentsignature
-        result.setResultForIdentifier(
-            consentSignatureResult.consentDocument.signatures.first.identifier,
+        result.setResultForIdentifier(consentSignatureResult.consentDocument.signatures.first.identifier,
             consentSignatureResult); //TODO: modify identifier to match the id of RPConsentSignature
 
     blocTask.sendStepResult(result);
@@ -58,8 +55,8 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
         WidgetBuilder builder;
         switch (settings.name) {
           case 'consent_review/text':
-            builder = (BuildContext _) => _TextPresenterRoute(widget.step,
-                (signatureResult) => _setSignatureResult(signatureResult));
+            builder = (BuildContext _) =>
+                _TextPresenterRoute(widget.step, (signatureResult) => _setSignatureResult(signatureResult));
             break;
           case 'consent_review/signature':
             builder = (BuildContext _) => _SignatureRoute(
@@ -97,8 +94,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 64.0),
             child: Text(
-              locale?.translate(
-                      'Review this form below, and tap AGREE if you\'re ready to continue.') ??
+              locale?.translate('Review this form below, and tap AGREE if you\'re ready to continue.') ??
                   'Review this form below, and tap AGREE if you\'re ready to continue.',
               style: TextStyle(fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
@@ -109,22 +105,88 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
     }
     index -= 1;
 
+    if (widget.step.consentDocument.sections[index].type == RPConsentSectionType.PassiveDataCollection ||
+        widget.step.consentDocument.sections[index].type == RPConsentSectionType.UserDataCollection) {
+      return Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Text(
+                locale?.translate(widget.step.consentDocument.sections[index].title) ??
+                    widget.step.consentDocument.sections[index].title,
+                style: RPStyles.h2,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Column(
+              // shrinkWrap: true,
+              children: widget.step.consentDocument.sections[index].dataTypes.map((e) {
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 5, top: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        locale?.translate(e.dataName) ?? e.dataName,
+                        style: RPStyles.h3,
+                        textAlign: TextAlign.start,
+                      ),
+                      Text(
+                        locale?.translate(e.dataInformation) ?? e.dataInformation,
+                        textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+
+            // ListView.builder(
+            //   shrinkWrap: true,
+            //   itemCount: widget.step.consentDocument.sections[index].dataTypes.length,
+            //   itemBuilder: (context, dataIndex) {
+            //     return Column(
+            //       mainAxisSize: MainAxisSize.min,
+            //       children: [
+            //         Text(
+            //           locale?.translate(
+            //                   widget.step.consentDocument.sections[index].dataTypes[dataIndex].dataName) ??
+            //               widget.step.consentDocument.sections[index].dataTypes[dataIndex].dataName,
+            //           style: RPStyles.h2,
+            //           textAlign: TextAlign.center,
+            //         ),
+            //         Text(
+            //           locale?.translate(widget
+            //                   .step.consentDocument.sections[index].dataTypes[dataIndex].dataInformation) ??
+            //               widget.step.consentDocument.sections[index].dataTypes[dataIndex].dataInformation,
+            //           textAlign: TextAlign.start,
+            //         ),
+            //       ],
+            //     );
+            //   },
+            // ),
+          ],
+        ),
+      );
+    }
+
     return Container(
       child: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              locale?.translate(
-                      widget.step.consentDocument.sections[index].title) ??
+              locale?.translate(widget.step.consentDocument.sections[index].title) ??
                   widget.step.consentDocument.sections[index].title,
               style: RPStyles.h2,
               textAlign: TextAlign.center,
             ),
           ),
           Text(
-            locale?.translate(
-                    widget.step.consentDocument.sections[index].content) ??
+            locale?.translate(widget.step.consentDocument.sections[index].content) ??
                 widget.step.consentDocument.sections[index].content,
             style: TextStyle(height: 1.1),
           ),
@@ -141,12 +203,10 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title:
-                Text(locale?.translate(widget.step.text) ?? widget.step.text),
-            content: Text(locale?.translate(widget.step.reasonForConsent) ??
-                widget.step.reasonForConsent),
+            title: Text(locale?.translate(widget.step.text) ?? widget.step.text),
+            content: Text(locale?.translate(widget.step.reasonForConsent) ?? widget.step.reasonForConsent),
             actions: <Widget>[
-              FlatButton(
+              OutlineButton(
                 child: Text(
                   locale?.translate('CANCEL') ?? "CANCEL",
                   style: TextStyle(color: Theme.of(context).primaryColor),
@@ -154,9 +214,10 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                 onPressed: () => Navigator.of(context).pop(),
               ),
               FlatButton(
+                color: Theme.of(context).primaryColor,
                 child: Text(
                   locale?.translate('AGREE') ?? "AGREE",
-                  style: TextStyle(color: Theme.of(context).accentColor),
+                  style: RPStyles.whiteText,
                 ),
                 onPressed: onPressedCallback,
               ),
@@ -167,18 +228,15 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title:
-            Text(locale?.translate('Review') ?? 'Review'),
-        automaticallyImplyLeading: false,
-      ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(16),
-        itemCount: widget.step.consentDocument.sections.length + 1,
-        itemBuilder: _reviewCellBuilder,
+      body: SafeArea(
+        child: ListView.builder(
+          padding: EdgeInsets.all(16),
+          itemCount: widget.step.consentDocument.sections.length + 1,
+          itemBuilder: _reviewCellBuilder,
+        ),
       ),
       persistentFooterButtons: <Widget>[
-        FlatButton(
+        OutlineButton(
           child: Text(
             locale?.translate('DISAGREE') ?? "DISAGREE",
             style: TextStyle(
@@ -200,8 +258,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                 ? () {
                     // Dismiss pop-up. It uses the root Navigator since it's an overlay
                     Navigator.of(context, rootNavigator: true).pop();
-                    Navigator.of(context)
-                        .pushReplacementNamed('consent_review/signature');
+                    Navigator.of(context).pushReplacementNamed('consent_review/signature');
                   }
                 : () {
                     // Dismiss pop-up. It uses the root Navigator since it's an overlay
@@ -269,19 +326,14 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   void _checkNameIsNotEmpty() {
     setState(() {
-      _isNameFilled =
-          (_firstNameController.text != '' && _lastNameController.text != '');
+      _isNameFilled = (_firstNameController.text != '' && _lastNameController.text != '');
     });
   }
 
   @override
   void initState() {
-    widget._consentSignature.requiresSignatureImage
-        ? _isSignatureAdded = false
-        : _isSignatureAdded = true;
-    widget._consentSignature.requiresName
-        ? _isNameFilled = false
-        : _isNameFilled = true;
+    widget._consentSignature.requiresSignatureImage ? _isSignatureAdded = false : _isSignatureAdded = true;
+    widget._consentSignature.requiresName ? _isNameFilled = false : _isNameFilled = true;
     _firstNameController.addListener(_checkNameIsNotEmpty);
     _lastNameController.addListener(_checkNameIsNotEmpty);
 
@@ -301,8 +353,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         ),
         TextFormField(
           controller: _lastNameController,
-          decoration: InputDecoration(
-              labelText: locale?.translate('Last Name') ?? "Last Name"),
+          decoration: InputDecoration(labelText: locale?.translate('Last Name') ?? "Last Name"),
         ),
       ],
     );
@@ -316,8 +367,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         child: Column(
           children: <Widget>[
             Text(
-              locale?.translate(
-                      'Please sign using your finger on the line below') ??
+              locale?.translate('Please sign using your finger on the line below') ??
                   'Please sign using your finger on the line below',
               style: RPStyles.bodyText,
               textAlign: TextAlign.center,
@@ -328,9 +378,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                 Positioned(
                   bottom: 40,
                   child: Container(
-                      height: 2,
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      color: Colors.grey),
+                      height: 2, width: MediaQuery.of(context).size.width * 0.8, color: Colors.grey),
                 ),
                 _signatureCanvas(),
               ]),
@@ -356,20 +404,15 @@ class _SignatureRouteState extends State<_SignatureRoute> {
   Widget build(BuildContext context) {
     RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(locale?.translate(widget._title) ?? widget._title),
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(12),
-        physics: NeverScrollableScrollPhysics(),
-        children: <Widget>[
-          widget._consentSignature.requiresName
-              ? _nameFields(context)
-              : Container(),
-          widget._consentSignature.requiresSignatureImage
-              ? _signingField(context)
-              : Container(),
-        ],
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.all(12),
+          physics: NeverScrollableScrollPhysics(),
+          children: <Widget>[
+            widget._consentSignature.requiresName ? _nameFields(context) : Container(),
+            widget._consentSignature.requiresSignatureImage ? _signingField(context) : Container(),
+          ],
+        ),
       ),
       persistentFooterButtons: <Widget>[
         RaisedButton(
