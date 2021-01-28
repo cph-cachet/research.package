@@ -241,114 +241,13 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   Widget build(BuildContext context) {
     RPLocalizations locale = RPLocalizations.of(context);
 
-//     AppBar _taskAppBar(RPStep step) {
-//       switch (step.runtimeType) {
-//         case RPQuestionStep:
-//           return AppBar(
-// //            title: Text(recentTaskProgress != null ? "${recentTaskProgress?.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress?.total}" : ""),
-//             automaticallyImplyLeading: false,
-//             actions: <Widget>[
-//               IconButton(
-//                 icon: Icon(
-//                   Icons.cancel,
-//                   color: Theme.of(context).accentColor,
-//                 ),
-//                 onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-//               )
-//             ],
-//           );
-//           break;
-//         case RPFormStep:
-//           return AppBar(
-// //            title: Text(recentTaskProgress != null ? "${recentTaskProgress?.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress?.total}" : ""),
-//             automaticallyImplyLeading: false,
-//             actions: <Widget>[
-//               IconButton(
-//                 icon: Icon(
-//                   Icons.cancel,
-//                   color: Theme.of(context).accentColor,
-//                 ),
-//                 onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-//               )
-//             ],
-//           );
-//           break;
-//         case RPInstructionStep:
-//           return AppBar(
-//             title: Text(locale?.translate(step.title) ?? step.title),
-//             automaticallyImplyLeading: false,
-//             actions: <Widget>[
-//               IconButton(
-//                 icon: Icon(
-//                   Icons.cancel,
-//                   color: Theme.of(context).accentColor,
-//                 ),
-//                 onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-//               )
-//             ],
-//           );
-//           break;
-//         default:
-//           return null;
-//           break;
-//       }
-//     }
-
-//     List<Widget> _taskPersistentFooterButtons(RPStep step) {
-//       switch (step.runtimeType) {
-//         case RPCompletionStep:
-//           return null;
-//           break;
-//         case RPVisualConsentStep:
-//           return null;
-//           break;
-//         case RPConsentReviewStep:
-//           return null;
-//           break;
-//         default:
-//           return <Widget>[
-//             _activeSteps.length == 1 || !navigableTask
-//                 ? null
-//                 : FlatButton(
-//                     onPressed: () => blocTask.sendStatus(StepStatus.Back),
-//                     child: Text(
-//                       RPLocalizations.of(context)?.translate('BACK') ?? "BACK",
-//                       style: TextStyle(color: Theme.of(context).primaryColor),
-//                     ),
-//                   ),
-//             StreamBuilder<bool>(
-//               stream: blocQuestion.questionReadyToProceed,
-//               builder: (context, snapshot) {
-//                 if (snapshot.hasData) {
-//                   return RaisedButton(
-//                     color: Theme.of(context).accentColor,
-//                     textColor: Colors.white,
-//                     child: Text(
-//                       RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
-//                     ),
-//                     onPressed: snapshot.data
-//                         ? () {
-//                             blocTask.sendStatus(StepStatus.Finished);
-//                           }
-//                         : null,
-//                   );
-//                 } else {
-//                   return Container();
-//                 }
-//               },
-//             ),
-//           ];
-//       }
-//     }
-
     return WillPopScope(
       onWillPop: () => blocTask.sendStatus(StepStatus.Canceled),
       child: Theme(
         data: Theme.of(context),
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).backgroundColor,
           resizeToAvoidBottomInset: true,
-          // appBar: _taskAppBar(_currentStep),
           body: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -366,9 +265,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                     physics: NeverScrollableScrollPhysics(),
                   ),
                 ),
-                // Buttom navigation
-                // Expanded(
-                //   child:
+                // Bottom navigation
                 if (![RPCompletionStep, RPVisualConsentStep, RPConsentReviewStep]
                     .contains(_currentStep.runtimeType))
                   Padding(
@@ -376,7 +273,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _activeSteps.length == 1 || !navigableTask
+                        _currentStepIndex != 0 || !navigableTask
                             ? Container()
                             : FlatButton(
                                 onPressed: () => blocTask.sendStatus(StepStatus.Back),
@@ -390,7 +287,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               return RaisedButton(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).primaryColor,
                                 textColor: Colors.white,
                                 child: Text(
                                   RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
@@ -409,10 +306,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                       ],
                     ),
                   ),
-                // ),
               ],
             ),
-            // persistentFooterButtons: _taskPersistentFooterButtons(_currentStep),
           ),
         ),
       ),

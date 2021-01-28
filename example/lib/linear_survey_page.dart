@@ -18,14 +18,24 @@ class LinearSurveyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RPUITask(
-      task: linearSurveyTask,
-      onSubmit: (result) {
-        resultCallback(result);
-      },
-      onCancel: ([res]) => print('survey canceled'),
-      // No onCancel
-      // If there's no onCancel provided the survey just quits
+    bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    return Theme(
+      data: ThemeData(
+        primaryColor: isDarkMode ? Colors.orange : Colors.red,
+        accentColor: isDarkMode ? Colors.blue : Colors.green,
+        backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
+        dividerColor: isDarkMode ? Colors.grey[600] : Colors.grey,
+        textTheme: isDarkMode ? Typography.whiteMountainView : Typography.blackMountainView,
+      ),
+      child: RPUITask(
+        task: linearSurveyTask,
+        onSubmit: (result) {
+          resultCallback(result);
+        },
+        onCancel: ([res]) => print('survey canceled'),
+        // No onCancel
+        // If there's no onCancel provided the survey just quits
+      ),
     );
   }
 }

@@ -53,7 +53,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
     }
 
     selectedChoices.length != 0 ? widget.onResultChange(selectedChoices) : widget.onResultChange(null);
-    print(selectedChoices);
+    print("You seleceted: $selectedChoices");
   }
 
   Widget _choiceCellBuilder(BuildContext context, int index) {
@@ -119,58 +119,47 @@ class _ChoiceButton extends StatefulWidget {
 }
 
 class _ChoiceButtonState extends State<_ChoiceButton> {
-  RPChoice choice;
   RPChoice grpChoice;
-  // bool isSelected;
-
-  @override
-  void initState() {
-    choice = widget.choice;
-    // isSelected = widget.currentChoices.contains(choice);
-    grpChoice = widget.selected ? choice : null;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    print('---');
-    // print(isSelected);
-    print(widget.selected);
-    print(grpChoice);
-    print(widget.currentChoices);
-    print('---');
+    grpChoice = widget.selected ? widget.choice : null;
     RPLocalizations locale = RPLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.only(left: 4, right: 4),
       child: InkWell(
-        onTap: () => widget.selectedCallBack(choice),
+        onTap: () => widget.selectedCallBack(widget.choice),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             (widget.answerStyle == ChoiceAnswerStyle.SingleChoice)
-                ? Radio(value: choice, groupValue: grpChoice, onChanged: null)
-                : Checkbox(value: widget.selected, onChanged: null),
+                ? Radio(
+                    value: widget.choice,
+                    groupValue: grpChoice,
+                    onChanged: (x) => widget.selectedCallBack(widget.choice),
+                    activeColor: Theme.of(context).primaryColor)
+                : Checkbox(
+                    value: widget.selected,
+                    onChanged: (x) => widget.selectedCallBack(widget.choice),
+                    activeColor: Theme.of(context).primaryColor,
+                  ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.only(bottom: 13),
+                padding: widget.choice.isFreeText ? null : EdgeInsets.only(bottom: 13),
                 decoration: !widget.isLastChoice
-                    ? BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)))
+                    ? BoxDecoration(border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)))
                     : null,
                 child: widget.choice.isFreeText
                     ? Container(
                         child: TextField(
-                          onChanged: (newText) => choice.text = newText,
-                          decoration:
-                              InputDecoration(hintText: RPLocalizations.of(context).translate("Other")),
+                          onChanged: (newText) => widget.choice.text = newText,
+                          decoration: InputDecoration(
+                              hintText: RPLocalizations.of(context).translate("Other") ?? "Other"),
                         ),
                       )
                     : Text(
                         locale?.translate(widget.choice.text) ?? widget.choice.text,
-                        style:
-                            // isSelected
-                            //     ? RPStyles.choiceAnswerText.copyWith(fontWeight: FontWeight.w500)
-                            //     :
-                            RPStyles.choiceAnswerText,
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                         softWrap: true,
                       ),
               ),
@@ -178,39 +167,6 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
           ],
         ),
       ),
-      // child: OutlineButton(
-      //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
-      //   padding: EdgeInsets.all(14),
-      //   onPressed: () {
-      //     widget.selectedCallBack(choice);
-      //   },
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     children: <Widget>[
-      //       Flexible(
-      //         flex: 2,
-      //         child: widget.choice.isFreeText
-      //             ? Container(
-      //                 child: TextField(
-      //                   onChanged: (newText) => choice.text = newText,
-      //                   decoration: InputDecoration(hintText: RPLocalizations.of(context).translate("Other")),
-      //                 ),
-      //               )
-      //             : Text(
-      //                 locale?.translate(widget.choice.text) ?? widget.choice.text,
-      //                 style: widget.selected
-      //                     ? RPStyles.choiceAnswerText.copyWith(fontWeight: FontWeight.w500)
-      //                     : RPStyles.choiceAnswerText,
-      //                 softWrap: true,
-      //               ),
-      //       ),
-      //       Flexible(
-      //         flex: 1,
-      //         child: Icon(widget.selected ? Icons.check : null, color: Colors.black),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

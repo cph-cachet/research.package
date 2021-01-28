@@ -149,7 +149,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               padding: const EdgeInsets.all(8.0),
               child: FlatButton(
                 onPressed: () => skipQuestion(),
-                child: Text("Skip these questions"), // TODO: Localization
+                child: Text(
+                    RPLocalizations.of(context).translate("Skip these questions") ?? "Skip these questions"),
               ),
             )
           : Container();
@@ -169,9 +170,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               style: RPStyles.h3,
             ),
           ),
-          // Card(
-          //   elevation: 4,
-          //   child:
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: stepBody(
@@ -179,8 +177,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               widget.formStep.steps[index].answerFormat,
             ),
           ),
-          // ),
-          Divider(indent: 1, endIndent: 1, color: Colors.grey, thickness: 2)
+          Divider(indent: 1, endIndent: 1, color: Theme.of(context).dividerColor, thickness: 2)
         ],
       ),
     );
@@ -193,28 +190,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
         child: Column(
           children: [
-            // Top bar with close-button
-            // Container(
-            //   height: AppBar().preferredSize.height,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.end,
-            //     children: [
-            //       // Close button
-            //       IconButton(
-            //         icon: Icon(
-            //           Icons.highlight_off,
-            //           color: Theme.of(context).primaryColor,
-            //         ),
-            //         // onPressed: _showCancelConfirmationDialog,
-            //         onPressed: () {
-            //           print('Canceled send');
-            //           blocTask.sendStatus(StepStatus.Canceled);
-            //         },
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // body
             Expanded(
               child: ListView.builder(
                 itemBuilder: formItemBuilder,
@@ -233,24 +208,3 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     blocTask.sendStepResult(stepResult);
   }
 }
-
-//// Render the title above the questionBody
-//class Title extends StatelessWidget {
-//  final String title;
-//  Title(this.title);
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    if (title != null) {
-//      return Padding(
-//        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
-//        child: Text(
-//          title,
-//          style: RPStyles.h2,
-//          textAlign: TextAlign.left,
-//        ),
-//      );
-//    }
-//    return Container();
-//  }
-//}

@@ -217,7 +217,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                 color: Theme.of(context).primaryColor,
                 child: Text(
                   locale?.translate('AGREE') ?? "AGREE",
-                  style: RPStyles.whiteText,
+                  style: TextStyle(color: Colors.white),
                 ),
                 onPressed: onPressedCallback,
               ),
@@ -251,7 +251,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           color: Theme.of(context).primaryColor,
           child: Text(
             locale?.translate('AGREE') ?? "AGREE",
-            style: RPStyles.whiteText,
+            style: TextStyle(color: Colors.white),
           ),
           onPressed: () => _showConsentDialog(
             widget.step.consentDocument.signatures != null
@@ -378,7 +378,10 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                 Positioned(
                   bottom: 40,
                   child: Container(
-                      height: 2, width: MediaQuery.of(context).size.width * 0.8, color: Colors.grey),
+                    height: 2,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    color: Theme.of(context).dividerColor,
+                  ),
                 ),
                 _signatureCanvas(),
               ]),

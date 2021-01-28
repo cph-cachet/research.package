@@ -75,48 +75,27 @@ class _BooleanButtonState extends State<_BooleanButton> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Radio(value: widget.value, groupValue: widget.selectedVal, onChanged: null),
+            Radio(
+              value: widget.value,
+              groupValue: widget.selectedVal,
+              onChanged: (x) => widget.selectedCallBack(widget.value),
+              activeColor: Theme.of(context).primaryColor,
+            ),
             Expanded(
               child: Container(
                 padding: EdgeInsets.only(bottom: 13),
                 decoration: !widget.value == false
-                    ? BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)))
+                    ? BoxDecoration(border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)))
                     : null,
                 child: Text(
                   RPLocalizations.of(context)?.translate(widget.text) ?? widget.text,
-                  style:
-                      // widget.selected
-                      //     ? RPStyles.choiceAnswerText.copyWith(fontWeight: FontWeight.w500)
-                      //     :
-                      RPStyles.choiceAnswerText,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 ),
               ),
             ),
           ],
         ),
       ),
-      // child: OutlineButton(
-      //   shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.all(Radius.circular(6))),
-      //   padding: EdgeInsets.all(14),
-      //   onPressed: () {
-      //     widget.selectedCallBack(widget.value);
-      //   },
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     children: <Widget>[
-      //       Text(
-      //         RPLocalizations.of(context)?.translate(widget.text) ??
-      //             widget.text,
-      //         style: widget.selected
-      //             ? RPStyles.choiceAnswerText
-      //                 .copyWith(fontWeight: FontWeight.w500)
-      //             : RPStyles.choiceAnswerText,
-      //       ),
-      //       Icon(widget.selected ? Icons.check : null, color: Colors.black),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
