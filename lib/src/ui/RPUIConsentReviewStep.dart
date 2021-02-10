@@ -121,7 +121,6 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
               ),
             ),
             Column(
-              // shrinkWrap: true,
               children: widget.step.consentDocument.sections[index].dataTypes.map((e) {
                 return Padding(
                   padding: EdgeInsets.only(bottom: 5, top: 5),
@@ -143,31 +142,6 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                 );
               }).toList(),
             ),
-
-            // ListView.builder(
-            //   shrinkWrap: true,
-            //   itemCount: widget.step.consentDocument.sections[index].dataTypes.length,
-            //   itemBuilder: (context, dataIndex) {
-            //     return Column(
-            //       mainAxisSize: MainAxisSize.min,
-            //       children: [
-            //         Text(
-            //           locale?.translate(
-            //                   widget.step.consentDocument.sections[index].dataTypes[dataIndex].dataName) ??
-            //               widget.step.consentDocument.sections[index].dataTypes[dataIndex].dataName,
-            //           style: RPStyles.h2,
-            //           textAlign: TextAlign.center,
-            //         ),
-            //         Text(
-            //           locale?.translate(widget
-            //                   .step.consentDocument.sections[index].dataTypes[dataIndex].dataInformation) ??
-            //               widget.step.consentDocument.sections[index].dataTypes[dataIndex].dataInformation,
-            //           textAlign: TextAlign.start,
-            //         ),
-            //       ],
-            //     );
-            //   },
-            // ),
           ],
         ),
       );

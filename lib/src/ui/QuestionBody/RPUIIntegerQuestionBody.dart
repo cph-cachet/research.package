@@ -54,20 +54,20 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
 
   @override
   Widget build(BuildContext context) {
+    print(Theme.of(context).textTheme.bodyText1.color);
     super.build(context);
     RPLocalizations locale = RPLocalizations.of(context);
     return Container(
       padding: EdgeInsets.all(8),
       alignment: Alignment.topLeft,
-      // child: SizedBox(
-      //   width: MediaQuery.of(context).size.width / 2,
       child: Container(
         child: TextFormField(
           controller: _textEditingController,
           decoration: InputDecoration(
-            fillColor: Colors.grey[300],
+            fillColor: Theme.of(context).backgroundColor,
             filled: true,
             hintText: locale?.translate('Tap to answer') ?? "Tap to answer",
+            helperStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
             suffix: widget.answerFormat.suffix != null
                 ? Text(locale?.translate(widget.answerFormat.suffix) ?? widget.answerFormat.suffix)
                 : null,

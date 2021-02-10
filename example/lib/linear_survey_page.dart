@@ -20,13 +20,17 @@ class LinearSurveyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Theme(
-      data: ThemeData(
-        primaryColor: isDarkMode ? Colors.orange : Colors.red,
-        accentColor: isDarkMode ? Colors.blue : Colors.green,
-        backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
-        dividerColor: isDarkMode ? Colors.grey[600] : Colors.grey,
-        textTheme: isDarkMode ? Typography.whiteMountainView : Typography.blackMountainView,
-      ),
+      data: isDarkMode
+          // Dark mode
+          ? ThemeData.dark()
+          // Your styling
+          : ThemeData(
+              primaryColor: Colors.red,
+              accentColor: Colors.green,
+              backgroundColor: Colors.white,
+              dividerColor: Colors.grey,
+              textTheme: Typography.blackMountainView,
+            ),
       child: RPUITask(
         task: linearSurveyTask,
         onSubmit: (result) {

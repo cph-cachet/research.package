@@ -28,7 +28,7 @@ class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody>
       height: 200,
       padding: EdgeInsets.all(8),
       alignment: Alignment.topLeft,
-      // TODO: Rendering bug in Flutter - find fix: https://github.com/flutter/flutter/issues/50193
+      // TODO: Rendering bug in Flutter - https://github.com/flutter/flutter/issues/50193
       // child: CupertinoTheme(
       //   data: CupertinoThemeData(
       //     textTheme: CupertinoTextThemeData(

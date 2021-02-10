@@ -52,18 +52,11 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   // Returning the according step body widget based on the answerFormat of each step
   Widget stepBody(String id, RPAnswerFormat answerFormat) {
-//    void setResult(RPStepResult result) {
-//      result = stepResult.results[id] as RPStepResult;
-//      result.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
-//      result.setResult(result);
-//    }
-
     // TODO: Let's convert these operations into a function
 
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
         return RPUIIntegerQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -72,7 +65,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -81,7 +73,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPSliderAnswerFormat:
         return RPUISliderQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -90,7 +81,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPImageChoiceAnswerFormat:
         return RPUIImageChoiceQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -99,7 +89,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPDateTimeAnswerFormat:
         return RPUIDateTimeQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -108,7 +97,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPBooleanAnswerFormat:
         return RPUIBooleanQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);

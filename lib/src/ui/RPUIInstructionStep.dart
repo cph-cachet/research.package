@@ -42,10 +42,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
     RPLocalizations locale = RPLocalizations.of(context);
     return SafeArea(
       child: SingleChildScrollView(
-        child:
-            // Expanded(
-            //   child:
-            Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -88,7 +85,6 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           ],
         ),
       ),
-      // ),
     );
   }
 }
