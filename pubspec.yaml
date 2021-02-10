@@ -29,9 +29,20 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   # To add assets to your package, add an assets section, like this:
-  # assets:
-  #   - assets/
-  #  - images/a_dot_ham.jpeg
+  assets:
+    - assets/icons/
+    # - assets/icons/analysis.png
+    - assets/icons/analysis.png
+    - assets/icons/archive.png
+    - assets/icons/deadline.png
+    - assets/icons/document.png
+    - assets/icons/handshake.png
+    - assets/icons/id.png
+    - assets/icons/management.png
+    - assets/icons/networking.png
+    - assets/icons/settings.png
+    - assets/icons/target.png
+    - assets/icons/id.png
   #
   # For details regarding assets in packages, see
   # https://flutter.io/assets-and-images/#from-packages

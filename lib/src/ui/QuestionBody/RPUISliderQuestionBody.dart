@@ -28,6 +28,8 @@ class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
             style: TextStyle(fontSize: 18),
           ),
           Slider(
+            activeColor: Theme.of(context).primaryColor,
+            inactiveColor: Theme.of(context).primaryColor.withOpacity(0.2),
             value: value ?? widget.answerFormat.minValue,
             onChanged: (double newValue) {
               setState(() {

@@ -52,18 +52,11 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   // Returning the according step body widget based on the answerFormat of each step
   Widget stepBody(String id, RPAnswerFormat answerFormat) {
-//    void setResult(RPStepResult result) {
-//      result = stepResult.results[id] as RPStepResult;
-//      result.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
-//      result.setResult(result);
-//    }
-
-  // TODO: Let's convert these operations into a function
+    // TODO: Let's convert these operations into a function
 
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
         return RPUIIntegerQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -72,7 +65,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -81,7 +73,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPSliderAnswerFormat:
         return RPUISliderQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -90,7 +81,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPImageChoiceAnswerFormat:
         return RPUIImageChoiceQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -99,7 +89,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPDateTimeAnswerFormat:
         return RPUIDateTimeQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -108,7 +97,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPBooleanAnswerFormat:
         return RPUIBooleanQuestionBody(answerFormat, (result) {
-//          (stepResult.results[id] as RPStepResult).setResult(result);
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps.where((step) => step.identifier == id).first.title;
           tempResult.setResult(result);
@@ -149,7 +137,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               padding: const EdgeInsets.all(8.0),
               child: FlatButton(
                 onPressed: () => skipQuestion(),
-                child: Text("Skip these questions"), // TODO: Localization
+                child: Text(
+                    RPLocalizations.of(context).translate("Skip these questions") ?? "Skip these questions"),
               ),
             )
           : Container();
@@ -169,16 +158,14 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               style: RPStyles.h3,
             ),
           ),
-          Card(
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: stepBody(
-                widget.formStep.steps[index].identifier,
-                widget.formStep.steps[index].answerFormat,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: stepBody(
+              widget.formStep.steps[index].identifier,
+              widget.formStep.steps[index].answerFormat,
             ),
           ),
+          Divider(indent: 1, endIndent: 1, color: Theme.of(context).dividerColor, thickness: 2)
         ],
       ),
     );
@@ -186,11 +173,19 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView.builder(
-        itemBuilder: formItemBuilder,
-        itemCount: widget.formStep.steps.length + 2,
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: formItemBuilder,
+                itemCount: widget.formStep.steps.length + 2,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -201,24 +196,3 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     blocTask.sendStepResult(stepResult);
   }
 }
-
-//// Render the title above the questionBody
-//class Title extends StatelessWidget {
-//  final String title;
-//  Title(this.title);
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    if (title != null) {
-//      return Padding(
-//        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
-//        child: Text(
-//          title,
-//          style: RPStyles.h2,
-//          textAlign: TextAlign.left,
-//        ),
-//      );
-//    }
-//    return Container();
-//  }
-//}

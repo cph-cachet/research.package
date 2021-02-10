@@ -80,36 +80,33 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
   @override
   Widget build(BuildContext context) {
     RPLocalizations locale = RPLocalizations.of(context);
-    return ListView(
-      padding: EdgeInsets.all(8),
-      children: [
-        (widget.step.title != null)
-            ? Padding(
-                padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
-                child: Text(
-                  locale?.translate(widget.step.title) ?? widget.step.title,
-                  style: RPStyles.h2,
-                  textAlign: TextAlign.left,
-                ),
-              )
-            : null,
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: stepBody(widget.step.answerFormat),
-            ),
+    return SafeArea(
+      child: ListView(
+        padding: EdgeInsets.all(8),
+        children: [
+          // Title
+          (widget.step.title != null)
+              ? Padding(
+                  padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 0),
+                  child: Text(
+                    locale?.translate(widget.step.title) ?? widget.step.title,
+                    style: RPStyles.h2,
+                    textAlign: TextAlign.left,
+                  ),
+                )
+              : Container(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: stepBody(widget.step.answerFormat),
           ),
-        ),
-        widget.step.optional
-            ? FlatButton(
-                onPressed: () => skipQuestion(),
-                child: Text(locale?.translate("Skip this question") ?? "Skip this question"),
-              )
-            : Container(),
-      ],
+          widget.step.optional
+              ? FlatButton(
+                  onPressed: () => skipQuestion(),
+                  child: Text(locale?.translate("Skip this question") ?? "Skip this question"),
+                )
+              : Container(),
+        ],
+      ),
     );
   }
 

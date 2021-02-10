@@ -7,11 +7,11 @@ class RPUIIntegerQuestionBody extends StatefulWidget {
   RPUIIntegerQuestionBody(this.answerFormat, this.onResultChange);
 
   @override
-  _RPUIIntegerQuestionBodyState createState() =>
-      _RPUIIntegerQuestionBodyState();
+  _RPUIIntegerQuestionBodyState createState() => _RPUIIntegerQuestionBodyState();
 }
 
-class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> with AutomaticKeepAliveClientMixin<RPUIIntegerQuestionBody> {
+class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
+    with AutomaticKeepAliveClientMixin<RPUIIntegerQuestionBody> {
   TextEditingController _textEditingController;
   String _errorMessage;
   bool _valid;
@@ -23,7 +23,7 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> with 
     super.initState();
   }
 
-  _validate(String text, RPLocalizations locale) {
+  void _validate(String text, RPLocalizations locale) {
     int value;
     try {
       value = int.parse(text);
@@ -36,8 +36,7 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> with 
       return;
     }
 
-    if (value >= widget.answerFormat.minValue &&
-        value <= widget.answerFormat.maxValue) {
+    if (value >= widget.answerFormat.minValue && value <= widget.answerFormat.maxValue) {
       setState(() {
         _valid = true;
       });
@@ -55,27 +54,29 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody> with 
 
   @override
   Widget build(BuildContext context) {
+    print(Theme.of(context).textTheme.bodyText1.color);
     super.build(context);
     RPLocalizations locale = RPLocalizations.of(context);
     return Container(
       padding: EdgeInsets.all(8),
       alignment: Alignment.topLeft,
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width / 2,
-        child: TextField(
+      child: Container(
+        child: TextFormField(
           controller: _textEditingController,
-//          textAlign: TextAlign.right,
           decoration: InputDecoration(
+            fillColor: Theme.of(context).backgroundColor,
+            filled: true,
             hintText: locale?.translate('Tap to answer') ?? "Tap to answer",
+            helperStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
             suffix: widget.answerFormat.suffix != null
-                ? Text(locale?.translate(widget.answerFormat.suffix) ??
-                    widget.answerFormat.suffix)
+                ? Text(locale?.translate(widget.answerFormat.suffix) ?? widget.answerFormat.suffix)
                 : null,
             errorText: _valid ? null : _errorMessage,
           ),
           onChanged: (text) => _validate(text, locale),
         ),
       ),
+      // ),
     );
   }
 

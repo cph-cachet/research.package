@@ -40,44 +40,50 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
   @override
   Widget build(BuildContext context) {
     RPLocalizations locale = RPLocalizations.of(context);
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          // If image is provided show it
-          InstructionImage(widget.step.imagePath),
-          Column(
-            children: <Widget>[
-              widget.step.text != null
-                  ? Container(
-                      padding: EdgeInsets.all(16),
-                      child: Text(
-                        locale?.translate(widget.step.text) ?? widget.step.text,
-                        textAlign: TextAlign.left,
-                        style: RPStyles.instructionText,
-                      ),
-                    )
-                  : Container(),
-              widget.step.detailText != null
-                  ? FlatButton(
-                      textTheme: ButtonTextTheme.accent,
-                      child: Text(locale?.translate('Learn more...') ?? "Learn more..."),
-                      onPressed: _pushDetailTextRoute,
-                    )
-                  : Container(),
-            ],
-          ),
-          widget.step.footnote != null
-              ? Container(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    locale?.translate(widget.step.footnote) ?? widget.step.footnote,
-                    style: RPStyles.bodyText,
-                    textAlign: TextAlign.left,
-                  ),
-                )
-              : Container(),
-        ],
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            // If image is provided show it
+            Center(
+              child: InstructionImage(widget.step.imagePath),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                widget.step.text != null
+                    ? Container(
+                        padding: EdgeInsets.all(16),
+                        child: Text(
+                          locale?.translate(widget.step.text) ?? widget.step.text,
+                          textAlign: TextAlign.left,
+                          style: RPStyles.instructionText,
+                        ),
+                      )
+                    : Container(),
+                widget.step.detailText != null
+                    ? FlatButton(
+                        textColor: Theme.of(context).primaryColor,
+                        child: Text(locale?.translate('Learn more...') ?? "Learn more..."),
+                        onPressed: _pushDetailTextRoute,
+                      )
+                    : Container(),
+              ],
+            ),
+            widget.step.footnote != null
+                ? Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      locale?.translate(widget.step.footnote) ?? widget.step.footnote,
+                      style: RPStyles.bodyText,
+                      textAlign: TextAlign.start,
+                    ),
+                  )
+                : Container(),
+          ],
+        ),
       ),
     );
   }
@@ -94,7 +100,8 @@ class _DetailTextRoute extends StatelessWidget {
     RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(locale?.translate(this.title) ?? this.title),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(locale?.translate('Learn more') ?? 'Learn more'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),

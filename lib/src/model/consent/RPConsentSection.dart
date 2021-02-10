@@ -12,6 +12,9 @@ class RPConsentSection {
   String _summary;
   String _content;
 
+  /// The data type sections that will be displayed if the consent section is of type UserDataCollection or PassiveDataCollection.
+  List<RPDataTypeSection> dataTypes;
+
   /// A custom illustration (an [Image] or [Icon] to show for Custom [RPConsentSectionType]
   @JsonKey(ignore: true)
   Widget customIllustration;
@@ -25,7 +28,7 @@ class RPConsentSection {
   RPConsentSection.withParams(RPConsentSectionType type,
       {Icon customIcon, Image customImage, Widget customIllustration})
 //      : assert(customIllustration.runtimeType == Icon || customIllustration.runtimeType == Image)
-      {
+  {
     this._type = type;
     this._summary = null;
     this._title = _localizedTitleForConsentSectionType(type);
@@ -81,14 +84,22 @@ enum RPConsentSectionType {
   DataGathering,
   Privacy,
   DataUse,
-  TimeCommitment,
+  TimeCommitment, // similar to Duration
+  Duration,
   StudyTasks,
   StudySurvey,
-  Withdrawing,
+  Withdrawing, // Similar to Your Rights
+  YourRights,
+  Welcome,
+  AboutUs,
+  Goals,
+  Benefits,
+  DataHandling,
+  UserDataCollection,
+  PassiveDataCollection,
   Custom
 }
 
-//TODO: Localization
 String _localizedTitleForConsentSectionType(RPConsentSectionType type) {
   switch (type) {
     case RPConsentSectionType.Overview:
@@ -114,6 +125,33 @@ String _localizedTitleForConsentSectionType(RPConsentSectionType type) {
       break;
     case RPConsentSectionType.Withdrawing:
       return "Withdrawing";
+      break;
+    case RPConsentSectionType.Welcome:
+      return "Welcome";
+      break;
+    case RPConsentSectionType.AboutUs:
+      return "About us";
+      break;
+    case RPConsentSectionType.Goals:
+      return "Our goal";
+      break;
+    case RPConsentSectionType.Benefits:
+      return "Benefits for you";
+      break;
+    case RPConsentSectionType.DataHandling:
+      return "Data handling";
+      break;
+    case RPConsentSectionType.Duration:
+      return "Study duration";
+      break;
+    case RPConsentSectionType.YourRights:
+      return "Data handling";
+      break;
+    case RPConsentSectionType.UserDataCollection:
+      return "Data collection from you";
+      break;
+    case RPConsentSectionType.PassiveDataCollection:
+      return "Passive data collection";
       break;
     case RPConsentSectionType.Custom:
       return null;

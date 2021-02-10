@@ -80,7 +80,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             _currentQuestionIndex++;
             // TODO: calculate the stepProgress differently for navigableTask
             if (!navigableTask)
-              blocTask.updateTaskProgress(RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
+              blocTask.updateTaskProgress(
+                  RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
           }
 
           // Calculating next step and then navigate there
@@ -107,9 +108,11 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             _currentQuestionIndex--;
             // TODO: calculate the stepprogress differently for navigableTask
             if (!navigableTask)
-              blocTask.updateTaskProgress(RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
+              blocTask.updateTaskProgress(
+                  RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
             // await because we can only update the stepWidgets list while the current step is out of the screen
-            await _taskPageViewController.previousPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
+            await _taskPageViewController.previousPage(
+                duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
 
             setState(() {
               _activeSteps.removeLast();
@@ -155,7 +158,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
         return AlertDialog(
           title: Text(widget.task.isConsentTask
               ? RPLocalizations.of(context)?.translate('Cancel?') ?? "Cancel?"
-              : RPLocalizations.of(context)?.translate('Discard results and quit?') ?? "Discard results and quit?"),
+              : RPLocalizations.of(context)?.translate('Discard results and quit?') ??
+                  "Discard results and quit?"),
           actions: <Widget>[
             FlatButton(
               child: Text(RPLocalizations.of(context)?.translate('NO') ?? "NO"),
@@ -181,126 +185,130 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
   PageController _taskPageViewController = PageController(keepPage: false);
 
+  Widget _carouselBar() {
+    return Container(
+      height: AppBar().preferredSize.height,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // Spacer
+          // TODO:
+          Expanded(
+            child: Container(),
+            flex: 1,
+          ),
+          // Carousel indicator
+          Expanded(
+            flex: 2,
+            child: (!navigableTask)
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: widget.task.steps.map(
+                      (step) {
+                        var index = widget.task.steps.indexOf(step);
+                        return Container(
+                          width: 7.0,
+                          height: 7.0,
+                          margin: EdgeInsets.symmetric(horizontal: 6.0),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: index <= _currentQuestionIndex
+                                  ? Theme.of(context).primaryColor
+                                  : Theme.of(context).primaryColor.withOpacity(0.5)),
+                        );
+                      },
+                    ).toList(),
+                  )
+                : Container(),
+          ),
+          // Close button
+          Expanded(
+            flex: 1,
+            child: IconButton(
+              icon: Icon(
+                Icons.highlight_off,
+                color: Theme.of(context).primaryColor,
+              ),
+              onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     RPLocalizations locale = RPLocalizations.of(context);
-
-    AppBar _taskAppBar(RPStep step) {
-      switch (step.runtimeType) {
-        case RPQuestionStep:
-          return AppBar(
-//            title: Text(recentTaskProgress != null ? "${recentTaskProgress?.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress?.total}" : ""),
-            automaticallyImplyLeading: false,
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.cancel,
-                  color: Theme.of(context).accentColor,
-                ),
-                onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-              )
-            ],
-          );
-          break;
-        case RPFormStep:
-          return AppBar(
-//            title: Text(recentTaskProgress != null ? "${recentTaskProgress?.current} ${locale?.translate('of') ?? 'of'} ${recentTaskProgress?.total}" : ""),
-            automaticallyImplyLeading: false,
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.cancel,
-                  color: Theme.of(context).accentColor,
-                ),
-                onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-              )
-            ],
-          );
-          break;
-        case RPInstructionStep:
-          return AppBar(
-            title: Text(locale?.translate(step.title) ?? step.title),
-            automaticallyImplyLeading: false,
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.cancel,
-                  color: Theme.of(context).accentColor,
-                ),
-                onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
-              )
-            ],
-          );
-          break;
-        default:
-          return null;
-          break;
-      }
-    }
-
-    List<Widget> _taskPersistentFooterButtons(RPStep step) {
-      switch (step.runtimeType) {
-        case RPCompletionStep:
-          return null;
-          break;
-        case RPVisualConsentStep:
-          return null;
-          break;
-        case RPConsentReviewStep:
-          return null;
-          break;
-        default:
-          return <Widget>[
-            _activeSteps.length == 1 || !navigableTask
-                ? null
-                : FlatButton(
-                    onPressed: () => blocTask.sendStatus(StepStatus.Back),
-                    child: Text(
-                      RPLocalizations.of(context)?.translate('PREVIOUS') ?? "PREVIOUS",
-                      style: TextStyle(color: Theme.of(context).primaryColor),
-                    ),
-                  ),
-            StreamBuilder<bool>(
-              stream: blocQuestion.questionReadyToProceed,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return RaisedButton(
-                    color: Theme.of(context).accentColor,
-                    textColor: Colors.white,
-                    child: Text(
-                      RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
-                    ),
-                    onPressed: snapshot.data
-                        ? () {
-                            blocTask.sendStatus(StepStatus.Finished);
-                          }
-                        : null,
-                  );
-                } else {
-                  return Container();
-                }
-              },
-            ),
-          ];
-      }
-    }
 
     return WillPopScope(
       onWillPop: () => blocTask.sendStatus(StepStatus.Canceled),
       child: Theme(
         data: Theme.of(context),
         child: Scaffold(
+          backgroundColor: Theme.of(context).backgroundColor,
           resizeToAvoidBottomInset: true,
-          appBar: _taskAppBar(_currentStep),
-          body: PageView.builder(
-            itemBuilder: (BuildContext context, int position) {
-              return _activeSteps[position].stepWidget;
-            },
-            itemCount: _activeSteps.length,
-            controller: _taskPageViewController,
-            physics: NeverScrollableScrollPhysics(),
+          body: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // top bar
+                _carouselBar(),
+                // Body
+                Expanded(
+                  child: PageView.builder(
+                    itemBuilder: (BuildContext context, int position) {
+                      return _activeSteps[position].stepWidget;
+                    },
+                    itemCount: _activeSteps.length,
+                    controller: _taskPageViewController,
+                    physics: NeverScrollableScrollPhysics(),
+                  ),
+                ),
+                // Bottom navigation
+                if (![RPCompletionStep, RPVisualConsentStep, RPConsentReviewStep]
+                    .contains(_currentStep.runtimeType))
+                  Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _currentStepIndex != 0 || !navigableTask
+                            ? Container()
+                            : FlatButton(
+                                onPressed: () => blocTask.sendStatus(StepStatus.Back),
+                                child: Text(
+                                  RPLocalizations.of(context)?.translate('BACK') ?? "BACK",
+                                  style: TextStyle(color: Theme.of(context).primaryColor),
+                                ),
+                              ),
+                        StreamBuilder<bool>(
+                          stream: blocQuestion.questionReadyToProceed,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return RaisedButton(
+                                color: Theme.of(context).primaryColor,
+                                textColor: Colors.white,
+                                child: Text(
+                                  RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
+                                ),
+                                onPressed: snapshot.data
+                                    ? () {
+                                        blocTask.sendStatus(StepStatus.Finished);
+                                      }
+                                    : null,
+                              );
+                            } else {
+                              return Container();
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
           ),
-          persistentFooterButtons: _taskPersistentFooterButtons(_currentStep),
         ),
       ),
     );

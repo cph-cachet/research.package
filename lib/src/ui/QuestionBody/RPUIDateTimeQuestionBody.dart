@@ -14,20 +14,26 @@ class RPUIDateTimeQuestionBody extends StatefulWidget {
   }
 
   @override
-  _RPUIDateTimeQuestionBodyState createState() =>
-      _RPUIDateTimeQuestionBodyState();
+  _RPUIDateTimeQuestionBodyState createState() => _RPUIDateTimeQuestionBodyState();
 }
 
-class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody> with AutomaticKeepAliveClientMixin<RPUIDateTimeQuestionBody> {
+class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody>
+    with AutomaticKeepAliveClientMixin<RPUIDateTimeQuestionBody> {
   String _errorMessage;
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Container(
-      height: 170,
+      height: 200,
       padding: EdgeInsets.all(8),
       alignment: Alignment.topLeft,
+      // TODO: Rendering bug in Flutter - https://github.com/flutter/flutter/issues/50193
+      // child: CupertinoTheme(
+      //   data: CupertinoThemeData(
+      //     textTheme: CupertinoTextThemeData(
+      //         dateTimePickerTextStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1.color)),
+      //   ),
       child: CupertinoDatePicker(
         mode: widget.mode,
         use24hFormat: MediaQuery.of(context).alwaysUse24HourFormat,
@@ -36,6 +42,7 @@ class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody> wit
           widget.onResultChange(dateTime.toString());
         },
       ),
+      // ),
     );
   }
 
