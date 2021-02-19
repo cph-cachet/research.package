@@ -15,6 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   collection: ^1.14.11
+  simple_html_css: ^2.0.2
 
 dev_dependencies:
   flutter_test:

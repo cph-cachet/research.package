@@ -18,6 +18,7 @@ import 'package:research_package/research_package.dart';
 import 'package:signature/signature.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:simple_html_css/simple_html_css.dart';
 
 import 'package:research_package/model.dart';
 
