@@ -97,7 +97,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 64.0),
             child: Text(
-              locale?.translate(
+              locale.translate(
                       'Review this form below, and tap AGREE if you\'re ready to continue.') ??
                   'Review this form below, and tap AGREE if you\'re ready to continue.',
               style: TextStyle(fontWeight: FontWeight.w600),
@@ -120,7 +120,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Text(
-                locale?.translate(
+                locale.translate(
                         widget.step.consentDocument.sections[index].title) ??
                     widget.step.consentDocument.sections[index].title,
                 style: RPStyles.h2,
@@ -137,12 +137,12 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        locale?.translate(e.dataName) ?? e.dataName,
+                        locale.translate(e.dataName) ?? e.dataName,
                         style: RPStyles.h3,
                         textAlign: TextAlign.start,
                       ),
                       Text(
-                        locale?.translate(e.dataInformation) ??
+                        locale.translate(e.dataInformation) ??
                             e.dataInformation,
                         textAlign: TextAlign.start,
                       ),
@@ -162,7 +162,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              locale?.translate(
+              locale.translate(
                       widget.step.consentDocument.sections[index].title) ??
                   widget.step.consentDocument.sections[index].title,
               style: RPStyles.h2,
@@ -170,7 +170,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             ),
           ),
           Text(
-            locale?.translate(
+            locale.translate(
                     widget.step.consentDocument.sections[index].content) ??
                 widget.step.consentDocument.sections[index].content,
             style: TextStyle(height: 1.1),
@@ -188,20 +188,19 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title:
-                Text(locale?.translate(widget.step.text) ?? widget.step.text),
-            content: Text(locale?.translate(widget.step.reasonForConsent) ??
+            title: Text(locale.translate(widget.step.text) ?? widget.step.text),
+            content: Text(locale.translate(widget.step.reasonForConsent) ??
                 widget.step.reasonForConsent),
             actions: <Widget>[
               OutlinedButton(
                 child: Text(
-                  locale?.translate('CANCEL') ?? "CANCEL",
+                  locale.translate('CANCEL') ?? "CANCEL",
                 ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               TextButton(
                 child: Text(
-                  locale?.translate('AGREE') ?? "AGREE",
+                  locale.translate('AGREE') ?? "AGREE",
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: onPressedCallback,
@@ -221,9 +220,9 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         ),
       ),
       persistentFooterButtons: <Widget>[
-        OutlineButton(
+        OutlinedButton(
           child: Text(
-            locale?.translate('DISAGREE') ?? "DISAGREE",
+            locale.translate('DISAGREE') ?? "DISAGREE",
             style: TextStyle(
               color: Theme.of(context).accentColor,
             ),
@@ -232,10 +231,9 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             blocTask.sendStatus(StepStatus.Canceled);
           },
         ),
-        RaisedButton(
-          color: Theme.of(context).primaryColor,
+        ElevatedButton(
           child: Text(
-            locale?.translate('AGREE') ?? "AGREE",
+            locale.translate('AGREE') ?? "AGREE",
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () => _showConsentDialog(
@@ -260,11 +258,10 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
 }
 
 class _SignatureRoute extends StatefulWidget {
-  final String _title;
   final RPConsentSignature _consentSignature;
   final void Function(RPSignatureResult) _onFinished;
 
-  _SignatureRoute(this._title, this._consentSignature, this._onFinished);
+  _SignatureRoute(_, this._consentSignature, this._onFinished);
 
   @override
   _SignatureRouteState createState() => _SignatureRouteState();
@@ -276,11 +273,12 @@ class _SignatureRouteState extends State<_SignatureRoute> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
 
-  var _signature = Signature(
-    height: 200,
-    width: 300,
-    backgroundColor: Colors.transparent,
+  final SignatureController _signatureController = SignatureController(
+    penStrokeWidth: 5,
+    penColor: Colors.red,
+    exportBackgroundColor: Colors.blue,
   );
+  Signature _signature;
 
   Widget _signatureCanvas() {
     return GestureDetector(
@@ -292,14 +290,14 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       },
       onTap: () {
         setState(() {
-          if (_signature.isNotEmpty) {
+          if (_signatureController.isNotEmpty) {
             _isSignatureAdded = true;
           }
         });
       },
       onPanEnd: (e) {
         setState(() {
-          if (_signature.isNotEmpty) {
+          if (_signatureController.isNotEmpty) {
             _isSignatureAdded = true;
           }
         });
@@ -319,6 +317,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   @override
   void initState() {
+    _signature = Signature(
+      controller: _signatureController,
+      height: 200,
+      width: 300,
+      backgroundColor: Colors.transparent,
+    );
+
     widget._consentSignature.requiresSignatureImage
         ? _isSignatureAdded = false
         : _isSignatureAdded = true;
@@ -339,13 +344,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           autofocus: true,
           controller: _firstNameController,
           decoration: InputDecoration(
-            labelText: locale?.translate('First Name') ?? "First Name",
+            labelText: locale.translate('First Name') ?? "First Name",
           ),
         ),
         TextFormField(
           controller: _lastNameController,
           decoration: InputDecoration(
-              labelText: locale?.translate('Last Name') ?? "Last Name"),
+              labelText: locale.translate('Last Name') ?? "Last Name"),
         ),
       ],
     );
@@ -359,7 +364,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         child: Column(
           children: <Widget>[
             Text(
-              locale?.translate(
+              locale.translate(
                       'Please sign using your finger on the line below') ??
                   'Please sign using your finger on the line below',
               style: RPStyles.bodyText,
@@ -380,10 +385,10 @@ class _SignatureRouteState extends State<_SignatureRoute> {
               ]),
             ),
             TextButton(
-              child: Text(locale?.translate('Clear') ?? "Clear"),
+              child: Text(locale.translate('Clear') ?? "Clear"),
               onPressed: _isSignatureAdded
                   ? () {
-                      _signature.clear();
+                      _signatureController.clear();
                       setState(() {
                         _isSignatureAdded = false;
                       });
@@ -415,13 +420,11 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         ),
       ),
       persistentFooterButtons: <Widget>[
-        RaisedButton(
-          color: Theme.of(context).accentColor,
-          textColor: Colors.white,
+        ElevatedButton(
           onPressed: (_isNameFilled && _isSignatureAdded)
               ? () {
                   if (widget._consentSignature.requiresSignatureImage) {
-                    _signature.exportBytes().then(
+                    _signatureController.toPngBytes().then(
                       (image) {
                         widget._onFinished(
                           RPSignatureResult.withParams(
@@ -446,7 +449,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                   blocTask.sendStatus(StepStatus.Finished);
                 }
               : null,
-          child: Text(locale?.translate('NEXT') ?? 'NEXT'),
+          child: Text(locale.translate('NEXT') ?? 'NEXT'),
         )
       ],
     );

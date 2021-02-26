@@ -63,14 +63,14 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           content: Text(locale?.translate('quit_confirmation') ??
               "Are you sure you want to quit?"),
           actions: <Widget>[
-            FlatButton(
+            OutlinedButton(
               child: Text(locale?.translate('YES') ?? "YES"),
               onPressed: () {
                 Navigator.of(context).pop(); // Pop the popup
                 Navigator.of(context).pop(); // Pop the screen
               },
             ),
-            FlatButton(
+            ElevatedButton(
                 child: Text(locale?.translate('NO') ?? "NO"),
                 onPressed: () => Navigator.of(context).pop() // Pop the popup,
                 )
@@ -267,7 +267,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     RPLocalizations locale = RPLocalizations.of(context);
     if (section.title == null) {
       throw Exception(
-          "No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text");
+          'No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text');
     }
 
     // Display the list builder if type is of these types otherwise show normal.
@@ -332,8 +332,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                   ),
                   child: Text(
                     RPLocalizations.of(context)?.translate('Learn more...') ??
-                        "Learn more...",
-                    style: TextStyle(color: Theme.of(context).primaryColor),
+                        'Learn more...',
                   ),
                 ),
               ],
@@ -349,38 +348,27 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          ButtonTheme(
-            minWidth: 70,
-            child: OutlineButton(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                RPLocalizations.of(context)?.translate('CANCEL') ?? "CANCEL",
-                style: TextStyle(color: Theme.of(context).primaryColor),
-              ),
-              onPressed: () => _showCancelDialog(),
+          OutlinedButton(
+            child: Text(
+              RPLocalizations.of(context)?.translate('CANCEL') ?? 'CANCEL',
+              style: TextStyle(color: Theme.of(context).primaryColor),
             ),
+            onPressed: () => _showCancelDialog(),
           ),
-          ButtonTheme(
-            minWidth: 70,
-            child: FlatButton(
-              color: Theme.of(context).primaryColor,
-              padding: EdgeInsets.all(10.0),
-              child: _lastPage
-                  ? Text(
-                      RPLocalizations.of(context)?.translate('see_summary') ??
-                          "SEE SUMMARY",
-                      style: TextStyle(color: Colors.white),
-                    )
-                  : Text(
-                      RPLocalizations.of(context)?.translate('next') ?? "NEXT",
-                      style: TextStyle(color: Colors.white),
-                    ),
-              onPressed: _lastPage
-                  ? () => blocTask.sendStatus(StepStatus.Finished)
-                  : () => controller.nextPage(
-                      duration: Duration(milliseconds: 400),
-                      curve: Curves.fastOutSlowIn),
-            ),
+          ElevatedButton(
+            child: _lastPage
+                ? Text(
+                    RPLocalizations.of(context)?.translate('see_summary') ??
+                        'SEE SUMMARY',
+                  )
+                : Text(
+                    RPLocalizations.of(context)?.translate('next') ?? 'NEXT',
+                  ),
+            onPressed: _lastPage
+                ? () => blocTask.sendStatus(StepStatus.Finished)
+                : () => controller.nextPage(
+                    duration: Duration(milliseconds: 400),
+                    curve: Curves.fastOutSlowIn),
           ),
         ],
       ),
@@ -389,7 +377,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
     PageController controller = PageController();
 
     return WillPopScope(
