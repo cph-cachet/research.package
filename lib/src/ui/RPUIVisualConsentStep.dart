@@ -61,7 +61,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
         RPLocalizations locale = RPLocalizations.of(context);
         return AlertDialog(
           content: Text(locale?.translate('quit_confirmation') ??
-              "Are you sure you want to quit?"),
+              'Are you sure you want to quit?'),
           actions: <Widget>[
             OutlinedButton(
               child: Text(locale?.translate('YES') ?? "YES"),
@@ -71,7 +71,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
               },
             ),
             ElevatedButton(
-                child: Text(locale?.translate('NO') ?? "NO"),
+                child: Text(locale?.translate('NO') ?? 'NO'),
                 onPressed: () => Navigator.of(context).pop() // Pop the popup,
                 )
           ],
@@ -105,10 +105,11 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                     height: 7.0,
                     margin: EdgeInsets.symmetric(horizontal: 6.0),
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: index <= _pageNr
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).primaryColor.withOpacity(0.5)),
+                      shape: BoxShape.circle,
+                      color: index <= _pageNr
+                          ? Theme.of(context).accentColor
+                          : Theme.of(context).unselectedWidgetColor,
+                    ),
                   );
                 },
               ).toList(),
@@ -120,7 +121,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
             child: IconButton(
               icon: Icon(
                 Icons.highlight_off,
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
               ),
               onPressed: _showCancelDialog,
             ),
