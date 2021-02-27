@@ -82,12 +82,14 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(widget._answerFormat.answerStyle ==
-                  ChoiceAnswerStyle.MultipleChoice
-              ? (locale?.translate('(Choose one or more options)') ??
-                  "(Choose one or more options)")
-              : (locale?.translate('(Choose one option)') ??
-                  "(Choose one option)")),
+          child: Text(
+              widget._answerFormat.answerStyle ==
+                      ChoiceAnswerStyle.MultipleChoice
+                  ? (locale?.translate('(Choose one or more options)') ??
+                      "(Choose one or more options)")
+                  : (locale?.translate('(Choose one option)') ??
+                      "(Choose one option)"),
+              style: Theme.of(context).textTheme.overline),
         ),
         ListView.builder(
           shrinkWrap: true,

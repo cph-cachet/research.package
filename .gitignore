@@ -298,3 +298,8 @@ DerivedData/
 .dart_tool/version
 example/ios/Flutter/flutter_export_environment.sh
 example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+
+# As per recommendation by Google: https://dart.dev/guides/libraries/private-files
+pubspec.lock
+doc/api
+

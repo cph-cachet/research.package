@@ -164,12 +164,12 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                       ?.translate('Discard results and quit?') ??
                   "Discard results and quit?"),
           actions: <Widget>[
-            TextButton(
+            ElevatedButton(
               child: Text(RPLocalizations.of(context)?.translate('NO') ?? "NO"),
               onPressed: () =>
                   Navigator.of(context).pop(), // Dismissing the pop-up
             ),
-            TextButton(
+            OutlinedButton(
               child:
                   Text(RPLocalizations.of(context)?.translate('YES') ?? "YES"),
               onPressed: () {

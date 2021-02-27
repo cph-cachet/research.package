@@ -9,13 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  signature: ^2.0.0 # ^3.2.0
+  signature: ^4.0.0-nullsafety
   rxdart: ^0.25.0
   json_annotation: ^3.1.0
   flutter_localizations:
     sdk: flutter
   collection: ^1.14.11
-  simple_html_css: ^2.0.2
+  simple_html_css: ^3.0.0
 
 dev_dependencies:
   flutter_test:

@@ -72,17 +72,16 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                   ),
               ],
             ),
-            widget.step.footnote != null
-                ? Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      locale?.translate(widget.step.footnote) ??
-                          widget.step.footnote,
-                      style: RPStyles.bodyText,
-                      textAlign: TextAlign.start,
-                    ),
-                  )
-                : Container(),
+            if (widget.step.footnote != null)
+              Container(
+                padding: const EdgeInsets.fromLTRB(16.0, 8, 0, 8),
+                child: Text(
+                  locale?.translate(widget.step.footnote) ??
+                      widget.step.footnote,
+                  style: Theme.of(context).textTheme.caption,
+                  textAlign: TextAlign.start,
+                ),
+              ),
           ],
         ),
       ),
@@ -101,12 +100,12 @@ class _DetailTextRoute extends StatelessWidget {
     RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
         title: Text(locale?.translate('Learn more') ?? 'Learn more'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: Text(locale?.translate(this.content) ?? this.content),
+        child: Text(locale?.translate(this.content) ?? this.content,
+            style: Theme.of(context).textTheme.bodyText1),
       ),
     );
   }
