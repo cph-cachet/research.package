@@ -7,7 +7,8 @@ class RPUIIntegerQuestionBody extends StatefulWidget {
   RPUIIntegerQuestionBody(this.answerFormat, this.onResultChange);
 
   @override
-  _RPUIIntegerQuestionBodyState createState() => _RPUIIntegerQuestionBodyState();
+  _RPUIIntegerQuestionBodyState createState() =>
+      _RPUIIntegerQuestionBodyState();
 }
 
 class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
@@ -36,7 +37,8 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
       return;
     }
 
-    if (value >= widget.answerFormat.minValue && value <= widget.answerFormat.maxValue) {
+    if (value >= widget.answerFormat.minValue &&
+        value <= widget.answerFormat.maxValue) {
       setState(() {
         _valid = true;
       });
@@ -54,7 +56,6 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
 
   @override
   Widget build(BuildContext context) {
-    print(Theme.of(context).textTheme.bodyText1.color);
     super.build(context);
     RPLocalizations locale = RPLocalizations.of(context);
     return Container(
@@ -64,12 +65,11 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
         child: TextFormField(
           controller: _textEditingController,
           decoration: InputDecoration(
-            fillColor: Theme.of(context).backgroundColor,
             filled: true,
-            hintText: locale?.translate('Tap to answer') ?? "Tap to answer",
-            helperStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
+            hintText: locale?.translate('Tap to answer') ?? 'Tap to answer',
             suffix: widget.answerFormat.suffix != null
-                ? Text(locale?.translate(widget.answerFormat.suffix) ?? widget.answerFormat.suffix)
+                ? Text(locale?.translate(widget.answerFormat.suffix) ??
+                    widget.answerFormat.suffix)
                 : null,
             errorText: _valid ? null : _errorMessage,
           ),
