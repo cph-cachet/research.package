@@ -78,7 +78,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                     child: Text(
                       locale?.translate(widget.step.footnote) ??
                           widget.step.footnote,
-                      style: RPStyles.bodyText,
+                      style: Theme.of(context).textTheme.caption,
                       textAlign: TextAlign.start,
                     ),
                   )
@@ -101,7 +101,6 @@ class _DetailTextRoute extends StatelessWidget {
     RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
         title: Text(locale?.translate('Learn more') ?? 'Learn more'),
       ),
       body: Container(

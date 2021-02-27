@@ -131,47 +131,48 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
   }
 
   Widget _illustrationForType(RPConsentSection section) {
-    // double iconSize = 80.0;
+    const double iconSize = 80.0;
+    const double largeIconSize = 200.0;
 
     switch (section.type) {
       case RPConsentSectionType.Overview:
         return Image.asset(
           'assets/icons/handshake.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: largeIconSize,
+          height: largeIconSize,
         );
         break;
       case RPConsentSectionType.DataUse:
         return Image.asset(
           'assets/icons/document.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.TimeCommitment:
         return Image.asset(
           'assets/icons/deadline.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: largeIconSize,
+          height: largeIconSize,
         );
         break;
       case RPConsentSectionType.StudySurvey:
         return Image.asset(
           'assets/icons/analysis.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Withdrawing:
         return Image.asset(
           'assets/icons/networking.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Custom:
@@ -181,80 +182,80 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
         return Image.asset(
           'assets/icons/management.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Privacy:
         return Image.asset(
           'assets/icons/archive.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.StudyTasks:
         return Image.asset(
           'assets/icons/task.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Welcome:
         return Image.asset(
           'assets/icons/handshake.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.AboutUs:
         return Image.asset(
           'assets/icons/id.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: largeIconSize,
+          height: largeIconSize,
         );
         break;
       case RPConsentSectionType.Goals:
         return Image.asset(
           'assets/icons/target.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Benefits:
         return Image.asset(
           'assets/icons/analysis.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.DataHandling:
         return Image.asset(
           'assets/icons/archive.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Duration:
         return Image.asset(
           'assets/icons/deadline.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.YourRights:
         return Image.asset(
           'assets/icons/networking.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       default:
@@ -280,12 +281,12 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           children: [
             Text(
               locale?.translate(section.title) ?? section.title,
-              style: RPStyles.h2,
+              style: Theme.of(context).textTheme.headline4,
               textAlign: TextAlign.start,
             ),
             Text(
               locale?.translate(section.summary) ?? section.summary,
-              // style: RPStyles.h3,
+              style: Theme.of(context).textTheme.bodyText1,
               textAlign: TextAlign.start,
             ),
             Expanded(
@@ -320,19 +321,21 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                   style: RPStyles.h1,
                   textAlign: TextAlign.start,
                 ),
-                Text(
-                  locale?.translate(section.summary) ?? section.summary,
-                  style: RPStyles.h3,
-                  textAlign: TextAlign.start,
+                SingleChildScrollView(
+                  child: Text(
+                    locale?.translate(section.summary) ?? section.summary,
+                    style: RPStyles.h3,
+                    textAlign: TextAlign.start,
+                  ),
                 ),
-                GestureDetector(
-                  onTap: () => _pushContent(
+                OutlinedButton.icon(
+                  icon: Icon(Icons.help),
+                  label: Text(
+                    locale?.translate('Learn more...') ?? 'Learn more...',
+                  ),
+                  onPressed: () => _pushContent(
                     section.title,
                     section.content,
-                  ),
-                  child: Text(
-                    RPLocalizations.of(context)?.translate('Learn more...') ??
-                        'Learn more...',
                   ),
                 ),
               ],
@@ -351,7 +354,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           OutlinedButton(
             child: Text(
               RPLocalizations.of(context)?.translate('CANCEL') ?? 'CANCEL',
-              style: TextStyle(color: Theme.of(context).primaryColor),
             ),
             onPressed: () => _showCancelDialog(),
           ),
@@ -424,7 +426,10 @@ class _ContentRoute extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.all(15.0),
         child: SingleChildScrollView(
-            child: Text(locale?.translate(this.content) ?? this.content)),
+            child: Text(
+          locale?.translate(this.content) ?? this.content,
+          style: Theme.of(context).textTheme.bodyText1,
+        )),
       ),
     );
   }
@@ -449,6 +454,7 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
         title: Text(
           locale?.translate(widget.dataTypeSection.dataName) ??
               widget.dataTypeSection.dataName,
+          style: Theme.of(context).textTheme.subtitle1,
           textAlign: TextAlign.start,
         ),
         childrenPadding: EdgeInsets.only(left: 15, right: 15, bottom: 5),
@@ -456,6 +462,7 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
           Text(
             locale?.translate(widget.dataTypeSection.dataInformation) ??
                 widget.dataTypeSection.dataInformation,
+            style: Theme.of(context).textTheme.bodyText2,
             textAlign: TextAlign.start,
           ),
         ],

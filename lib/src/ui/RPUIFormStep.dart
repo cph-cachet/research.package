@@ -218,7 +218,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     );
   }
 
-  @override
   void createAndSendResult() {
     // In this case the result is already created, the only needed thing left is to send it
     blocTask.sendStepResult(stepResult);

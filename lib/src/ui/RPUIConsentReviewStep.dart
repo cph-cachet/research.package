@@ -41,7 +41,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
 
     consentSignatureResult.consentDocument.signatures == null
         ? result.setResultForIdentifier(
-            "no signature collected", consentSignatureResult)
+            'no signature collected', consentSignatureResult)
         : //TODO: modify identifier to match the id of rpconsentsignature
         result.setResultForIdentifier(
             consentSignatureResult.consentDocument.signatures.first.identifier,
@@ -100,7 +100,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
               locale.translate(
                       'Review this form below, and tap AGREE if you\'re ready to continue.') ??
                   'Review this form below, and tap AGREE if you\'re ready to continue.',
-              style: TextStyle(fontWeight: FontWeight.w600),
+              style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),
           ),
@@ -123,8 +123,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                 locale.translate(
                         widget.step.consentDocument.sections[index].title) ??
                     widget.step.consentDocument.sections[index].title,
-                style: RPStyles.h2,
-                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline5,
+                textAlign: TextAlign.start,
               ),
             ),
             Column(
@@ -138,7 +138,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                     children: [
                       Text(
                         locale.translate(e.dataName) ?? e.dataName,
-                        style: RPStyles.h3,
+                        style: Theme.of(context).textTheme.headline6,
                         textAlign: TextAlign.start,
                       ),
                       Text(
@@ -194,14 +194,13 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             actions: <Widget>[
               OutlinedButton(
                 child: Text(
-                  locale.translate('CANCEL') ?? "CANCEL",
+                  locale.translate('CANCEL') ?? 'CANCEL',
                 ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-              TextButton(
+              ElevatedButton(
                 child: Text(
-                  locale.translate('AGREE') ?? "AGREE",
-                  style: TextStyle(color: Colors.white),
+                  locale.translate('AGREE') ?? 'AGREE',
                 ),
                 onPressed: onPressedCallback,
               ),
@@ -222,10 +221,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
       persistentFooterButtons: <Widget>[
         OutlinedButton(
           child: Text(
-            locale.translate('DISAGREE') ?? "DISAGREE",
-            style: TextStyle(
-              color: Theme.of(context).accentColor,
-            ),
+            locale.translate('DISAGREE') ?? 'DISAGREE',
           ),
           onPressed: () {
             blocTask.sendStatus(StepStatus.Canceled);
@@ -234,7 +230,6 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         ElevatedButton(
           child: Text(
             locale.translate('AGREE') ?? "AGREE",
-            style: TextStyle(color: Colors.white),
           ),
           onPressed: () => _showConsentDialog(
             widget.step.consentDocument.signatures != null
@@ -367,7 +362,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
               locale.translate(
                       'Please sign using your finger on the line below') ??
                   'Please sign using your finger on the line below',
-              style: RPStyles.bodyText,
+              style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
             ),
             Padding(
@@ -384,8 +379,8 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                 _signatureCanvas(),
               ]),
             ),
-            TextButton(
-              child: Text(locale.translate('Clear') ?? "Clear"),
+            OutlinedButton(
+              child: Text(locale.translate('Clear') ?? 'Clear'),
               onPressed: _isSignatureAdded
                   ? () {
                       _signatureController.clear();

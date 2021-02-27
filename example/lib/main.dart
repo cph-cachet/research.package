@@ -41,11 +41,9 @@ class MyApp extends StatelessWidget {
         // from the list (English, in this case).
         return supportedLocales.first;
       },
-      // theme: ThemeData.light().copyWith(
-      //     primaryColor: Colors.deepPurple,
-      //     accentColor: Colors.deepOrangeAccent),
       theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark().copyWith(
+          textTheme: TextTheme().copyWith(bodyText1: TextStyle(fontSize: 18))),
       title: 'Research Package Demo',
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
