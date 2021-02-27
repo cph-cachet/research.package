@@ -43,7 +43,9 @@ class MyApp extends StatelessWidget {
       },
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark().copyWith(
-          textTheme: TextTheme().copyWith(bodyText1: TextStyle(fontSize: 18))),
+          textTheme: TextTheme().copyWith(
+              bodyText1:
+                  TextStyle(fontSize: 18, fontWeight: FontWeight.normal))),
       title: 'Research Package Demo',
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,

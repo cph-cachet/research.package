@@ -92,19 +92,17 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
     RPLocalizations locale = RPLocalizations.of(context);
     // Return the header as the first element.
     if (index == 0) {
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 64.0),
-            child: Text(
-              locale.translate(
-                      'Review this form below, and tap AGREE if you\'re ready to continue.') ??
-                  'Review this form below, and tap AGREE if you\'re ready to continue.',
-              style: Theme.of(context).textTheme.headline5,
-              textAlign: TextAlign.center,
-            ),
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 32.0),
+          child: Text(
+            locale.translate(
+                    'Review this form below, and tap AGREE if you\'re ready to continue.') ??
+                'Review this form below, and tap AGREE if you\'re ready to continue.',
+            style: Theme.of(context).textTheme.headline5,
+            textAlign: TextAlign.center,
           ),
-        ],
+        ),
       );
     }
     index -= 1;
@@ -115,10 +113,11 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             RPConsentSectionType.UserDataCollection) {
       return Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.only(top: 24, bottom: 4),
               child: Text(
                 locale.translate(
                         widget.step.consentDocument.sections[index].title) ??
@@ -131,19 +130,20 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
               children: widget.step.consentDocument.sections[index].dataTypes
                   .map((e) {
                 return Padding(
-                  padding: EdgeInsets.only(bottom: 5, top: 5),
+                  padding: EdgeInsets.only(bottom: 4, top: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         locale.translate(e.dataName) ?? e.dataName,
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.subtitle1,
                         textAlign: TextAlign.start,
                       ),
                       Text(
                         locale.translate(e.dataInformation) ??
                             e.dataInformation,
+                        style: Theme.of(context).textTheme.bodyText2,
                         textAlign: TextAlign.start,
                       ),
                     ],
@@ -156,27 +156,26 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
       );
     }
 
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Text(
-              locale.translate(
-                      widget.step.consentDocument.sections[index].title) ??
-                  widget.step.consentDocument.sections[index].title,
-              style: RPStyles.h2,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Text(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 16, 0, 4),
+          child: Text(
             locale.translate(
-                    widget.step.consentDocument.sections[index].content) ??
-                widget.step.consentDocument.sections[index].content,
-            style: TextStyle(height: 1.1),
+                    widget.step.consentDocument.sections[index].title) ??
+                widget.step.consentDocument.sections[index].title,
+            style: Theme.of(context).textTheme.headline5,
+            textAlign: TextAlign.start,
           ),
-        ],
-      ),
+        ),
+        Text(
+          locale.translate(
+                  widget.step.consentDocument.sections[index].content) ??
+              widget.step.consentDocument.sections[index].content,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+      ],
     );
   }
 
@@ -339,13 +338,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           autofocus: true,
           controller: _firstNameController,
           decoration: InputDecoration(
-            labelText: locale.translate('First Name') ?? "First Name",
+            labelText: locale.translate('First Name') ?? 'First Name',
           ),
         ),
         TextFormField(
           controller: _lastNameController,
           decoration: InputDecoration(
-              labelText: locale.translate('Last Name') ?? "Last Name"),
+              labelText: locale.translate('Last Name') ?? 'Last Name'),
         ),
       ],
     );

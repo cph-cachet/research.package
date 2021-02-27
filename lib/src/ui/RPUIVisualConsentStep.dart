@@ -268,6 +268,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     RPConsentSection section = widget.consentDocument.sections[index];
     RPLocalizations locale = RPLocalizations.of(context);
     if (section.title == null) {
+      // TODO: Why can such a section be instantiated when it later leads to exceptions?
       throw Exception(
           'No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text');
     }
@@ -280,10 +281,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              locale?.translate(section.title) ?? section.title,
-              style: Theme.of(context).textTheme.headline4,
-              textAlign: TextAlign.start,
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              child: Text(
+                locale?.translate(section.title) ?? section.title,
+                style: Theme.of(context).textTheme.headline4,
+                textAlign: TextAlign.start,
+              ),
             ),
             Text(
               locale?.translate(section.summary) ?? section.summary,
@@ -317,26 +321,32 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  locale?.translate(section.title) ?? section.title,
-                  style: RPStyles.h1,
-                  textAlign: TextAlign.start,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                  child: Text(
+                    locale?.translate(section.title) ?? section.title,
+                    style: Theme.of(context).textTheme.headline5,
+                    textAlign: TextAlign.start,
+                  ),
                 ),
                 SingleChildScrollView(
                   child: Text(
                     locale?.translate(section.summary) ?? section.summary,
-                    style: RPStyles.h3,
+                    style: Theme.of(context).textTheme.bodyText1,
                     textAlign: TextAlign.start,
                   ),
                 ),
-                OutlinedButton.icon(
-                  icon: Icon(Icons.help),
-                  label: Text(
-                    locale?.translate('Learn more...') ?? 'Learn more...',
-                  ),
-                  onPressed: () => _pushContent(
-                    section.title,
-                    section.content,
+                Padding(
+                  padding: EdgeInsets.only(top: 8),
+                  child: OutlinedButton.icon(
+                    icon: Icon(Icons.help),
+                    label: Text(
+                      locale?.translate('Learn more...') ?? 'Learn more...',
+                    ),
+                    onPressed: () => _pushContent(
+                      section.title,
+                      section.content,
+                    ),
                   ),
                 ),
               ],
