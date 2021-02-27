@@ -332,16 +332,21 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   Widget _nameFields(BuildContext context) {
     RPLocalizations locale = RPLocalizations.of(context);
+    final node = FocusScope.of(context);
     return Column(
       children: <Widget>[
         TextFormField(
           autofocus: true,
+          textInputAction: TextInputAction.next,
+          onEditingComplete: () => node.nextFocus(),
           controller: _firstNameController,
           decoration: InputDecoration(
             labelText: locale.translate('First Name') ?? 'First Name',
           ),
         ),
         TextFormField(
+          textInputAction: TextInputAction.done,
+          onFieldSubmitted: (_) => node.unfocus(),
           controller: _lastNameController,
           decoration: InputDecoration(
               labelText: locale.translate('Last Name') ?? 'Last Name'),
