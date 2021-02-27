@@ -141,11 +141,11 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
       return (widget.formStep.title != null)
           ? Padding(
               padding:
-                  const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+                  const EdgeInsets.only(bottom: 8, left: 8, right: 8, top: 8),
               child: Text(
                 RPLocalizations.of(context)?.translate(widget.formStep.title) ??
                     widget.formStep.title,
-                style: RPStyles.h2, // TODO: Use Material theme
+                style: Theme.of(context).textTheme.headline5,
                 textAlign: TextAlign.start,
               ),
             )
@@ -179,7 +179,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               RPLocalizations.of(context)
                       ?.translate(widget.formStep.steps[index].title) ??
                   widget.formStep.steps[index].title,
-              style: RPStyles.h3, // TODO: Use Material theme
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
           Padding(

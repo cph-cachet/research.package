@@ -7,10 +7,12 @@ class RPUIImageChoiceQuestionBody extends StatefulWidget {
   RPUIImageChoiceQuestionBody(this.answerFormat, this.onResultChance);
 
   @override
-  _RPUIImageChoiceQuestionBodyState createState() => _RPUIImageChoiceQuestionBodyState();
+  _RPUIImageChoiceQuestionBodyState createState() =>
+      _RPUIImageChoiceQuestionBodyState();
 }
 
-class _RPUIImageChoiceQuestionBodyState extends State<RPUIImageChoiceQuestionBody>
+class _RPUIImageChoiceQuestionBodyState
+    extends State<RPUIImageChoiceQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIImageChoiceQuestionBody> {
   String _errorMessage;
   RPImageChoice _selectedItem;
@@ -24,19 +26,18 @@ class _RPUIImageChoiceQuestionBodyState extends State<RPUIImageChoiceQuestionBod
   Widget build(BuildContext context) {
     super.build(context);
     RPLocalizations locale = RPLocalizations.of(context);
-    String text = (locale?.translate(_selectedItem?.description) ?? _selectedItem?.description) ??
+    String text = (locale?.translate(_selectedItem?.description) ??
+            _selectedItem?.description) ??
         (locale?.translate('Select an image') ?? 'Select an image');
     return Container(
-        height: 150,
+        height: 160,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             _buildList(context, widget.answerFormat.choices),
             Text(
               text,
-              style: TextStyle(
-                fontSize: 20,
-              ),
+              style: Theme.of(context).textTheme.headline5,
             )
           ],
         ));
@@ -57,21 +58,26 @@ class _RPUIImageChoiceQuestionBodyState extends State<RPUIImageChoiceQuestionBod
           child: Container(
             // Highlighting of chosen answer
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5 * 25 / items.length)),
+              borderRadius:
+                  BorderRadius.all(Radius.circular(5 * 25 / items.length)),
               border: Border.all(
-                color: _selectedItem == item ? Theme.of(context).primaryColor : Colors.transparent,
+                color: _selectedItem == item
+                    ? Theme.of(context).accentColor
+                    : Colors.transparent,
                 width: 3,
               ),
             ),
             // Scaling item size with number of choices
             // Max size is 125
             padding: EdgeInsets.all(10 / items.length),
-            width: (MediaQuery.of(context).size.width * 0.8) / items.length > 125
-                ? 125
-                : MediaQuery.of(context).size.width * 0.8 / items.length,
-            height: (MediaQuery.of(context).size.width * 0.8) / items.length > 125
-                ? 125
-                : MediaQuery.of(context).size.width * 0.8 / items.length,
+            width:
+                (MediaQuery.of(context).size.width * 0.8) / items.length > 125
+                    ? 125
+                    : MediaQuery.of(context).size.width * 0.8 / items.length,
+            height:
+                (MediaQuery.of(context).size.width * 0.8) / items.length > 125
+                    ? 125
+                    : MediaQuery.of(context).size.width * 0.8 / items.length,
             child: item.image,
           ),
         ),
