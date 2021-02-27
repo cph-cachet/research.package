@@ -12,7 +12,8 @@ class RPResultPredicate {
 
   /// Result predicate for the boolean answer format [RPBooleanAnswerFormat]. The [expectedValue] here should be a boolean.
   RPResultPredicate.forBooleanQuestionResult(
-      {@required RPResultSelector resultSelector, @required bool expectedValue}) {
+      {@required RPResultSelector resultSelector,
+      @required bool expectedValue}) {
     this._resultSelector = resultSelector;
     this.expectedValue = expectedValue;
 
@@ -21,9 +22,13 @@ class RPResultPredicate {
 
   /// Result predicate for choice question types. The [expectedValue] here should correspond to the [value] of an [RPChoice] object.
   RPResultPredicate.forChoiceQuestionResult(
-      {@required RPResultSelector resultSelector,
-      @required List<int> expectedValue,
-      @required ChoiceQuestionResultPredicateMode choiceQuestionResultPredicateMode}) {
+      {@required
+          RPResultSelector resultSelector,
+      @required
+          List<int> expectedValue,
+      @required
+          ChoiceQuestionResultPredicateMode
+              choiceQuestionResultPredicateMode}) {
     this._resultSelector = resultSelector;
     this.expectedValue = expectedValue;
     this._choiceQuestionResultPredicateMode = choiceQuestionResultPredicateMode;
@@ -34,7 +39,8 @@ class RPResultPredicate {
   bool directPredictionResult() {
     RPStepResult resultFromResultSelector = _resultSelector.getResult();
 
-    if (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] == expectedValue) {
+    if (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] ==
+        expectedValue) {
       this._predictionResult = true;
     } else {
       this._predictionResult = false;
@@ -55,8 +61,10 @@ class RPResultPredicate {
           this._predictionResult = false;
 
           try {
-            List<int> results = List<int>();
-            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] as List<RPChoice>).forEach((choice) {
+            final results = <int>[];
+            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY]
+                    as List<RPChoice>)
+                .forEach((choice) {
               results.add(choice.value);
             });
             results.sort();
@@ -75,8 +83,10 @@ class RPResultPredicate {
           this._predictionResult = true;
 
           try {
-            List<int> results = List<int>();
-            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] as List<RPChoice>).forEach((choice) {
+            final results = <int>[];
+            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY]
+                    as List<RPChoice>)
+                .forEach((choice) {
               results.add(choice.value);
             });
             results.sort();
@@ -135,9 +145,11 @@ class RPResultSelector {
       _recentTaskResult.results.forEach((key, stepResult) {
         try {
           // By doing this we ensure that we are looking up only until the first match
-          _foundStepResult = _foundStepResult ?? stepResult.results[stepIdentifier];
+          _foundStepResult =
+              _foundStepResult ?? stepResult.results[stepIdentifier];
         } catch (e) {
-          print("No matching result found in this FormStep, proceeding to the next one (if any)");
+          print(
+              "No matching result found in this FormStep, proceeding to the next one (if any)");
         }
       });
     } else {
