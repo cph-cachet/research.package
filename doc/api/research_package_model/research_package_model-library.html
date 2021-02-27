@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="research_package_model library API docs, for the Dart programming language.">
+  <title>research_package_model library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">research_package</a></li>
+    <li class="self-crumb">research_package_model library</li>
+  </ol>
+  <div class="self-name">research_package_model</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">research_package</a></li>
+      <li class="self-crumb">research_package_model library</li>
+    </ol>
+    
+    <h5><span class="package-name">research_package</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="research_package/research_package-library.html">research_package</a></li>
+          <li><a href="research_package_model/research_package_model-library.html">research_package_model</a></li>
+          <li><a href="research_package_ui/research_package_ui-library.html">research_package_ui</a></li>
+          <li class="section-title">Dart</li>
+          <li><a href="dart-ui/dart-ui-library.html">dart:ui</a></li>
+          <li class="section-subtitle">Core</li>
+            <li class="section-subitem"><a href="dart-async/dart-async-library.html">dart:async</a></li>
+            <li class="section-subitem"><a href="dart-collection/dart-collection-library.html">dart:collection</a></li>
+            <li class="section-subitem"><a href="dart-convert/dart-convert-library.html">dart:convert</a></li>
+            <li class="section-subitem"><a href="dart-core/dart-core-library.html">dart:core</a></li>
+            <li class="section-subitem"><a href="dart-developer/dart-developer-library.html">dart:developer</a></li>
+            <li class="section-subitem"><a href="dart-math/dart-math-library.html">dart:math</a></li>
+            <li class="section-subitem"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></li>
+          <li class="section-subtitle">VM</li>
+            <li class="section-subitem"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></li>
+            <li class="section-subitem"><a href="dart-io/dart-io-library.html">dart:io</a></li>
+            <li class="section-subitem"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></li>
+          <li class="section-subtitle">Web</li>
+            <li class="section-subitem"><a href="dart-html/dart-html-library.html">dart:html</a></li>
+            <li class="section-subitem"><a href="dart-js/dart-js-library.html">dart:js</a></li>
+            <li class="section-subitem"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-library">research_package_model</span> library </h1></div>
+
+    <section class="desc markdown">
+      <p>The domain model part of Research Package.
+Contains the "building blocks" for creating surveys and obtaining informed consents.
+Holds the different types of result classes.
+Also responsible for the streams and BLoC classes to provide communication channels
+between different parts of the package. (<a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a>, <a href="research_package_model/BlocTask-class.html">BlocTask</a>)
+For the UI representations of the classes visit the <a href="research_package_ui/research_package_ui-library.html">research_package_ui</a> library.</p>
+    </section>
+    
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+
+      <dl>
+        <dt id="BlocQuestion">
+          <span class="name "><a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></span>         
+        </dt>
+        <dd>
+          The BLoC file for the communication between the question container <a href="research_package_ui/RPUIQuestionStep-class.html">RPUIQuestionStep</a> and the question body <a href="research_package_model/BlocQuestion-class.html">[...]</a>
+        </dd>
+        <dt id="BlocTask">
+          <span class="name "><a href="research_package_model/BlocTask-class.html">BlocTask</a></span>         
+        </dt>
+        <dd>
+          The BLoC file for the communication between the task <a href="research_package_ui/RPUITask-class.html">RPUITask</a> and its steps <a href="research_package_model/RPStep-class.html">RPStep</a>.
+        </dd>
+        <dt id="CanSaveResult">
+          <span class="name "><a href="research_package_model/CanSaveResult-class.html">CanSaveResult</a></span>         
+        </dt>
+        <dd>
+          A protocol to mark the Widgets which are producing <a href="research_package_model/RPResult-class.html">RPResult</a> objects. They all need to implement the <a href="research_package_model/CanSaveResult/createAndSendResult.html">createAndSendResult</a> method
+        </dd>
+        <dt id="RPAnswerFormat">
+          <span class="name "><a href="research_package_model/RPAnswerFormat-class.html">RPAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          A base (abstract) class for different Answer Formats. <a href="research_package_model/RPAnswerFormat-class.html">[...]</a>
+        </dd>
+        <dt id="RPBooleanAnswerFormat">
+          <span class="name "><a href="research_package_model/RPBooleanAnswerFormat-class.html">RPBooleanAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants choose between true or false (yes or no) options
+        </dd>
+        <dt id="RPChoice">
+          <span class="name "><a href="research_package_model/RPChoice-class.html">RPChoice</a></span>         
+        </dt>
+        <dd>
+          The choice object which the participant can choose during a <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a> with <a href="research_package_model/RPChoiceAnswerFormat-class.html">RPChoiceAnswerFormat</a>.
+        </dd>
+        <dt id="RPChoiceAnswerFormat">
+          <span class="name "><a href="research_package_model/RPChoiceAnswerFormat-class.html">RPChoiceAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants choose from a fixed set of choices.
+        </dd>
+        <dt id="RPCompletionStep">
+          <span class="name "><a href="research_package_model/RPCompletionStep-class.html">RPCompletionStep</a></span>         
+        </dt>
+        <dd>
+          A step which can be used as a "Thank you" or completion step in a task.
+        </dd>
+        <dt id="RPConsentDocument">
+          <span class="name "><a href="research_package_model/RPConsentDocument-class.html">RPConsentDocument</a></span>         
+        </dt>
+        <dd>
+          Represents the content of an informed consent document. <a href="research_package_model/RPConsentDocument-class.html">[...]</a>
+        </dd>
+        <dt id="RPConsentReviewStep">
+          <span class="name "><a href="research_package_model/RPConsentReviewStep-class.html">RPConsentReviewStep</a></span>         
+        </dt>
+        <dd>
+          The step for presenting the consent document for review and collecting the signature <a href="research_package_model/RPConsentReviewStep-class.html">[...]</a>
+        </dd>
+        <dt id="RPConsentSection">
+          <span class="name "><a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a></span>         
+        </dt>
+        <dd>
+          A content section in a <a href="research_package_model/RPConsentDocument-class.html">RPConsentDocument</a>. <a href="research_package_model/RPConsentSection-class.html">[...]</a>
+        </dd>
+        <dt id="RPConsentSignature">
+          <span class="name "><a href="research_package_model/RPConsentSignature-class.html">RPConsentSignature</a></span>         
+        </dt>
+        <dd>
+          Class representing a signature in a consent document <a href="research_package_model/RPConsentSignature-class.html">[...]</a>
+        </dd>
+        <dt id="RPConsentSignatureResult">
+          <span class="name "><a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a></span>         
+        </dt>
+        <dd>
+          Represents a signature applied to a given consent document.
+It indicates if a given consent document has been signed by a user.
+        </dd>
+        <dt id="RPDateTimeAnswerFormat">
+          <span class="name "><a href="research_package_model/RPDateTimeAnswerFormat-class.html">RPDateTimeAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants choose from a fixed set of choices.
+        </dd>
+        <dt id="RPDirectStepNavigationRule">
+          <span class="name "><a href="research_package_model/RPDirectStepNavigationRule-class.html">RPDirectStepNavigationRule</a></span>         
+        </dt>
+        <dd>
+          The <a href="research_package_model/RPDirectStepNavigationRule-class.html">RPDirectStepNavigationRule</a> class can be used to unconditionally jump to a destination step specified by its identifier or to finish the task early.
+        </dd>
+        <dt id="RPFormAnswerFormat">
+          <span class="name "><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing the Answer Format for Form Questions (Multiple questions at the same time on the same page)
+        </dd>
+        <dt id="RPFormStep">
+          <span class="name "><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></span>         
+        </dt>
+        <dd>
+          The <a href="research_package_model/RPFormStep-class.html">RPFormStep</a> class is a concrete subclass of <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a>, used for presenting multiple questions on a single scrollable page. <a href="research_package_model/RPFormStep-class.html">[...]</a>
+        </dd>
+        <dt id="RPImageChoice">
+          <span class="name "><a href="research_package_model/RPImageChoice-class.html">RPImageChoice</a></span>         
+        </dt>
+        <dd>
+          The image choice object which the participants can choose from, during a <a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a> with <a href="research_package_model/RPImageChoiceAnswerFormat-class.html">RPImageChoiceAnswerFormat</a>
+        </dd>
+        <dt id="RPImageChoiceAnswerFormat">
+          <span class="name "><a href="research_package_model/RPImageChoiceAnswerFormat-class.html">RPImageChoiceAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants choose an image from a set of images.
+        </dd>
+        <dt id="RPInstructionStep">
+          <span class="name "><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></span>         
+        </dt>
+        <dd>
+          A step which can be used to communicate instructions and other information to the participants.
+Usually it is used as the first step in a Task explaining the task.
+        </dd>
+        <dt id="RPIntegerAnswerFormat">
+          <span class="name "><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants input a number (integer)
+        </dd>
+        <dt id="RPNavigableOrderedTask">
+          <span class="name "><a href="research_package_model/RPNavigableOrderedTask-class.html">RPNavigableOrderedTask</a></span>         
+        </dt>
+        <dd>
+          The <a href="research_package_model/RPNavigableOrderedTask-class.html">RPNavigableOrderedTask</a> class adds conditional step navigation to the behavior inherited from the <a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a> class. <a href="research_package_model/RPNavigableOrderedTask-class.html">[...]</a>
+        </dd>
+        <dt id="RPOrderedTask">
+          <span class="name "><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></span>         
+        </dt>
+        <dd>
+          A simple linear task which implement the <a href="research_package_model/RPTask-class.html">RPTask</a> protocol. It shows the steps one after another without the option of going back or branching. <a href="research_package_model/RPOrderedTask-class.html">[...]</a>
+        </dd>
+        <dt id="RPPredicateStepNavigationRule">
+          <span class="name "><a href="research_package_model/RPPredicateStepNavigationRule-class.html">RPPredicateStepNavigationRule</a></span>         
+        </dt>
+        <dd>
+          A navigation rule which based on predicate(s)'s (<a href="research_package_model/RPResultPredicate-class.html">RPResultPredicate</a>) result(s). <a href="research_package_model/RPPredicateStepNavigationRule-class.html">[...]</a>
+        </dd>
+        <dt id="RPQuestionStep">
+          <span class="name "><a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a></span>         
+        </dt>
+        <dd>
+          The concrete subclass of <a href="research_package_model/RPStep-class.html">RPStep</a> that represents a step in which a single question is presented to the user. <a href="research_package_model/RPQuestionStep-class.html">[...]</a>
+        </dd>
+        <dt id="RPResult">
+          <span class="name "><a href="research_package_model/RPResult-class.html">RPResult</a></span>         
+        </dt>
+        <dd>
+          The superclass for results. It defines the attributes which all the more specialized results classes should have.
+        </dd>
+        <dt id="RPResultPredicate">
+          <span class="name "><a href="research_package_model/RPResultPredicate-class.html">RPResultPredicate</a></span>         
+        </dt>
+        <dd>
+          This class examines a prediction and communicates its result to an <a href="research_package_model/RPStepNavigationRule-class.html">RPStepNavigationRule</a>. <a href="research_package_model/RPResultPredicate-class.html">[...]</a>
+        </dd>
+        <dt id="RPResultSelector">
+          <span class="name "><a href="research_package_model/RPResultSelector-class.html">RPResultSelector</a></span>         
+        </dt>
+        <dd>
+          This class identifies the needed test result for the <a href="research_package_model/RPResultPredicate-class.html">RPResultPredicate</a>
+        </dd>
+        <dt id="RPSignatureResult">
+          <span class="name "><a href="research_package_model/RPSignatureResult-class.html">RPSignatureResult</a></span>         
+        </dt>
+        <dd>
+          The signature used in <a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a> <a href="research_package_model/RPSignatureResult-class.html">[...]</a>
+        </dd>
+        <dt id="RPSliderAnswerFormat">
+          <span class="name "><a href="research_package_model/RPSliderAnswerFormat-class.html">RPSliderAnswerFormat</a></span>         
+        </dt>
+        <dd>
+          Class representing an Answer Format that lets participants use a slider to choose a value.
+        </dd>
+        <dt id="RPStep">
+          <span class="name "><a href="research_package_model/RPStep-class.html">RPStep</a></span>         
+        </dt>
+        <dd>
+          The base class for steps which can compose a task. <a href="research_package_model/RPStep-class.html">[...]</a>
+        </dd>
+        <dt id="RPStepNavigationRule">
+          <span class="name "><a href="research_package_model/RPStepNavigationRule-class.html">RPStepNavigationRule</a></span>         
+        </dt>
+        <dd>
+          Super class of the navigation rules (<a href="research_package_model/RPPredicateStepNavigationRule-class.html">RPPredicateStepNavigationRule</a> and <a href="research_package_model/RPDirectStepNavigationRule-class.html">RPDirectStepNavigationRule</a>).
+        </dd>
+        <dt id="RPStepResult">
+          <span class="name "><a href="research_package_model/RPStepResult-class.html">RPStepResult</a></span>         
+        </dt>
+        <dd>
+          The result object a Step creates
+        </dd>
+        <dt id="RPTask">
+          <span class="name "><a href="research_package_model/RPTask-class.html">RPTask</a></span>         
+        </dt>
+        <dd>
+          The <a href="research_package_model/RPTask-class.html">RPTask</a> abstract class defines a task to be carried out by a participant in a research study. <a href="research_package_model/RPTask-class.html">[...]</a>
+        </dd>
+        <dt id="RPTaskProgress">
+          <span class="name "><a href="research_package_model/RPTaskProgress-class.html">RPTaskProgress</a></span>         
+        </dt>
+        <dd>
+          Simple class for keeping track the progress of the task. It contains the number of the current step and the total number of steps. <a href="research_package_model/RPTaskProgress-class.html">[...]</a>
+        </dd>
+        <dt id="RPTaskResult">
+          <span class="name "><a href="research_package_model/RPTaskResult-class.html">RPTaskResult</a></span>         
+        </dt>
+        <dd>
+          The result object a Task creates
+        </dd>
+        <dt id="RPVisualConsentStep">
+          <span class="name "><a href="research_package_model/RPVisualConsentStep-class.html">RPVisualConsentStep</a></span>         
+        </dt>
+        <dd>
+          The step used for presenting the consent document to the participant <a href="research_package_model/RPVisualConsentStep-class.html">[...]</a>
+        </dd>
+      </dl>
+    </section>
+
+
+
+
+    <section class="summary offset-anchor" id="properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="blocQuestion" class="property">
+          <span class="name"><a href="research_package_model/blocQuestion.html">blocQuestion</a></span>
+          <span class="signature">&#8594; <a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></span>         
+        </dt>
+        <dd>
+          The singleton object of the question BLoC class which can be accessed throughout Research Package.
+                  <div class="features">final</div>
+</dd>
+        <dt id="blocTask" class="property">
+          <span class="name"><a href="research_package_model/blocTask.html">blocTask</a></span>
+          <span class="signature">&#8594; <a href="research_package_model/BlocTask-class.html">BlocTask</a></span>         
+        </dt>
+        <dd>
+          The singleton object of the task BLoC class which can be accessed throughout Research Package
+                  <div class="features">final</div>
+</dd>
+      </dl>
+    </section>
+
+
+    <section class="summary offset-anchor" id="enums">
+      <h2>Enums</h2>
+
+      <dl>
+        <dt id="ChoiceAnswerStyle">
+          <span class="name "><a href="research_package_model/ChoiceAnswerStyle-class.html">ChoiceAnswerStyle</a></span>         
+        </dt>
+        <dd>
+          Available types for <a href="research_package_model/RPChoiceAnswerFormat-class.html">RPChoiceAnswerFormat</a>
+        </dd>
+        <dt id="DateTimeAnswerStyle">
+          <span class="name "><a href="research_package_model/DateTimeAnswerStyle-class.html">DateTimeAnswerStyle</a></span>         
+        </dt>
+        <dd>
+          For choosing Date, Time or DateAndTime sub-answerformat
+        </dd>
+        <dt id="QuestionType">
+          <span class="name "><a href="research_package_model/QuestionType-class.html">QuestionType</a></span>         
+        </dt>
+        <dd>
+          
+        </dd>
+        <dt id="RPConsentSectionType">
+          <span class="name "><a href="research_package_model/RPConsentSectionType-class.html">RPConsentSectionType</a></span>         
+        </dt>
+        <dd>
+          Enum containing the available types for <a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a>. <a href="research_package_model/RPConsentSectionType-class.html">[...]</a>
+        </dd>
+        <dt id="StepStatus">
+          <span class="name "><a href="research_package_model/StepStatus-class.html">StepStatus</a></span>         
+        </dt>
+        <dd>
+          Status to be sent to the Bloc so the Task Widget is notified about the navigation
+        </dd>
+      </dl>
+    </section>
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <h5>research_package_model library</h5>
+    <ol>
+      <li class="section-title"><a href="research_package_model/research_package_model-library.html#classes">Classes</a></li>
+      <li><a href="research_package_model/BlocQuestion-class.html">BlocQuestion</a></li>
+      <li><a href="research_package_model/BlocTask-class.html">BlocTask</a></li>
+      <li><a href="research_package_model/CanSaveResult-class.html">CanSaveResult</a></li>
+      <li><a href="research_package_model/RPAnswerFormat-class.html">RPAnswerFormat</a></li>
+      <li><a href="research_package_model/RPBooleanAnswerFormat-class.html">RPBooleanAnswerFormat</a></li>
+      <li><a href="research_package_model/RPChoice-class.html">RPChoice</a></li>
+      <li><a href="research_package_model/RPChoiceAnswerFormat-class.html">RPChoiceAnswerFormat</a></li>
+      <li><a href="research_package_model/RPCompletionStep-class.html">RPCompletionStep</a></li>
+      <li><a href="research_package_model/RPConsentDocument-class.html">RPConsentDocument</a></li>
+      <li><a href="research_package_model/RPConsentReviewStep-class.html">RPConsentReviewStep</a></li>
+      <li><a href="research_package_model/RPConsentSection-class.html">RPConsentSection</a></li>
+      <li><a href="research_package_model/RPConsentSignature-class.html">RPConsentSignature</a></li>
+      <li><a href="research_package_model/RPConsentSignatureResult-class.html">RPConsentSignatureResult</a></li>
+      <li><a href="research_package_model/RPDateTimeAnswerFormat-class.html">RPDateTimeAnswerFormat</a></li>
+      <li><a href="research_package_model/RPDirectStepNavigationRule-class.html">RPDirectStepNavigationRule</a></li>
+      <li><a href="research_package_model/RPFormAnswerFormat-class.html">RPFormAnswerFormat</a></li>
+      <li><a href="research_package_model/RPFormStep-class.html">RPFormStep</a></li>
+      <li><a href="research_package_model/RPImageChoice-class.html">RPImageChoice</a></li>
+      <li><a href="research_package_model/RPImageChoiceAnswerFormat-class.html">RPImageChoiceAnswerFormat</a></li>
+      <li><a href="research_package_model/RPInstructionStep-class.html">RPInstructionStep</a></li>
+      <li><a href="research_package_model/RPIntegerAnswerFormat-class.html">RPIntegerAnswerFormat</a></li>
+      <li><a href="research_package_model/RPNavigableOrderedTask-class.html">RPNavigableOrderedTask</a></li>
+      <li><a href="research_package_model/RPOrderedTask-class.html">RPOrderedTask</a></li>
+      <li><a href="research_package_model/RPPredicateStepNavigationRule-class.html">RPPredicateStepNavigationRule</a></li>
+      <li><a href="research_package_model/RPQuestionStep-class.html">RPQuestionStep</a></li>
+      <li><a href="research_package_model/RPResult-class.html">RPResult</a></li>
+      <li><a href="research_package_model/RPResultPredicate-class.html">RPResultPredicate</a></li>
+      <li><a href="research_package_model/RPResultSelector-class.html">RPResultSelector</a></li>
+      <li><a href="research_package_model/RPSignatureResult-class.html">RPSignatureResult</a></li>
+      <li><a href="research_package_model/RPSliderAnswerFormat-class.html">RPSliderAnswerFormat</a></li>
+      <li><a href="research_package_model/RPStep-class.html">RPStep</a></li>
+      <li><a href="research_package_model/RPStepNavigationRule-class.html">RPStepNavigationRule</a></li>
+      <li><a href="research_package_model/RPStepResult-class.html">RPStepResult</a></li>
+      <li><a href="research_package_model/RPTask-class.html">RPTask</a></li>
+      <li><a href="research_package_model/RPTaskProgress-class.html">RPTaskProgress</a></li>
+      <li><a href="research_package_model/RPTaskResult-class.html">RPTaskResult</a></li>
+      <li><a href="research_package_model/RPVisualConsentStep-class.html">RPVisualConsentStep</a></li>
+    
+    
+    
+    
+      <li class="section-title"><a href="research_package_model/research_package_model-library.html#properties">Properties</a></li>
+      <li><a href="research_package_model/blocQuestion.html">blocQuestion</a></li>
+      <li><a href="research_package_model/blocTask.html">blocTask</a></li>
+    
+    
+      <li class="section-title"><a href="research_package_model/research_package_model-library.html#enums">Enums</a></li>
+      <li><a href="research_package_model/ChoiceAnswerStyle-class.html">ChoiceAnswerStyle</a></li>
+      <li><a href="research_package_model/DateTimeAnswerStyle-class.html">DateTimeAnswerStyle</a></li>
+      <li><a href="research_package_model/QuestionType-class.html">QuestionType</a></li>
+      <li><a href="research_package_model/RPConsentSectionType-class.html">RPConsentSectionType</a></li>
+      <li><a href="research_package_model/StepStatus-class.html">StepStatus</a></li>
+    
+    
+    </ol>
+  </div><!--/sidebar-offcanvas-right-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    research_package
+      0.2.0
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>
