@@ -10,7 +10,7 @@ ResearchPackage is designed from the ground up to meet the requirements of most 
 The main features of ResearchPackage are:
 
 - [Obtaining informed consent](https://www.researchpackage.org/consent) from participants, including support for a signature.
-- [Creating surveys](https://www.researchpackage.org/survey) and questionnaires with a wide range of answer formats (e.g., likert scale, date pickers, image pickers, etc.), such as the [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO5_English.pdf) survey.
+- [Creating surveys](https://www.researchpackage.org/survey) and questionnaires with a wide range of answer formats (e.g., likert scale, date pickers, image pickers, etc.), such as the [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO-5%20questionaire%20-%20English.pdf) survey.
 
 ResearchPackage is part of the overall CACHET Research Platform (CARP) with also provides a Flutter package for mobile and wearable sensing called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing). 
 The CACHET [Pulmonary Monitor](https://github.com/cph-cachet/pulmonary_monitor_app) app shows how mobile sensing can be combined with collection of survery data from users.
