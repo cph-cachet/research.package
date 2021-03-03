@@ -460,3 +460,20 @@ Map<String, dynamic> _$RPSignatureResultToJson(RPSignatureResult instance) {
   writeNotNull('signature_image', instance.signatureImage);
   return val;
 }
+
+RPTextAnswerFormat _$RPTextAnswerFormatFromJson(Map<String, dynamic> json) {
+  return RPTextAnswerFormat()..hintText = json['hint_text'] as String;
+}
+
+Map<String, dynamic> _$RPTextAnswerFormatToJson(RPTextAnswerFormat instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('hint_text', instance.hintText);
+  return val;
+}

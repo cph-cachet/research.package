@@ -192,7 +192,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Spacer
-          // TODO:
           Expanded(
             child: Container(),
             flex: 1,
@@ -209,7 +208,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                         return Container(
                           width: 7.0,
                           height: 7.0,
-                          margin: EdgeInsets.symmetric(horizontal: 6.0),
+                          margin: EdgeInsets.symmetric(horizontal: 3.0),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: index <= _currentQuestionIndex

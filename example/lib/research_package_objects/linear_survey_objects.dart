@@ -60,12 +60,13 @@ RPBooleanAnswerFormat smokingBooleanAnswerFormat =
 
 RPIntegerAnswerFormat minutesIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
 
-RPTextAnswerFormat textAnswerFormat = RPTextAnswerFormat.withParams();
+RPTextAnswerFormat textAnswerFormat = RPTextAnswerFormat.withParams("Write your answer here");
 
 RPImageChoiceAnswerFormat imageChoiceAnswerFormat = RPImageChoiceAnswerFormat.withParams(images);
 
 RPQuestionStep additionalInfoQuestionStep = RPQuestionStep.withAnswerFormat(
-    'additionalInfoQuestionStepID', 'Do you have any more details you would like to add?', textAnswerFormat);
+    'additionalInfoQuestionStepID', 'Do you have any more details you would like to add?', textAnswerFormat,
+    optional: true);
 
 RPQuestionStep timeOfDayQuestionStep = RPQuestionStep.withAnswerFormat(
     'timeOfDayQuestionStepID', 'When did you wake up?', timeOfDayAnswerFormat);
@@ -144,6 +145,7 @@ RPOrderedTask linearSurveyTask = RPOrderedTask(
     singleChoiceQuestionStep,
     happinessChoiceQuestionStep,
     weightQuestionStep,
+    additionalInfoQuestionStep,
     completionStep
   ],
 );

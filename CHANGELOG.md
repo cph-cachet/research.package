@@ -1,3 +1,9 @@
+## 0.4.0
+
+- Merged beta.1.0
+- Added RPTextAnswerFormat (a format for getting written answers from the user)
+- Minor bugfixes
+
 ## 0.4.0-beta.1.0
 
 - Updated UI for several elements:

@@ -3,11 +3,13 @@ part of research_package_model;
 /// Class representing an Answer Format that lets participants input a number (integer)
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPTextAnswerFormat extends RPAnswerFormat {
+  /// Hint text shown in the TextField
+  String hintText;
+
   RPTextAnswerFormat();
 
   /// Constructor with params
-  /// **Only exists to comply with the RP convention
-  RPTextAnswerFormat.withParams();
+  RPTextAnswerFormat.withParams(this.hintText);
 
   @override
   get questionType {
