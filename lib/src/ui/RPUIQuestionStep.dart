@@ -72,6 +72,10 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
         return RPUIBooleanQuestionBody(answerFormat, (result) {
           this.currentQuestionBodyResult = result;
         });
+      case RPTextAnswerFormat:
+        return RPUITextInputQuestionBody(answerFormat, (result) {
+          this.currentQuestionBodyResult = result;
+        });
       default:
         return Container();
     }

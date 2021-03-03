@@ -17,6 +17,9 @@ import 'package:collection/collection.dart';
 // Importing the UI library from Research Package
 import 'package:research_package/ui.dart';
 
+// JSON
+part 'model.g.dart';
+
 // Library elements
 part 'src/model/answerformat/RPAnswerFormat.dart';
 part 'src/model/answerformat/RPIntegerAnswerFormat.dart';
@@ -26,6 +29,7 @@ part 'src/model/answerformat/RPSliderAnswerFormat.dart';
 part 'src/model/answerformat/RPImageChoiceAnswerFormat.dart';
 part 'src/model/answerformat/RPDateTimeAnswerFormat.dart';
 part 'src/model/answerformat/RPBooleanAnswerFormat.dart';
+part 'src/model/answerformat/RPTextAnswerFormat.dart';
 
 part 'src/model/consent/RPConsentDocument.dart';
 part 'src/model/consent/RPConsentSection.dart';
@@ -65,6 +69,3 @@ part 'src/model/Abstracts.dart';
 // BLoCs
 part 'src/model/blocs/BlocTask.dart';
 part 'src/model/blocs/BlocQuestion.dart';
-
-// JSON
-part 'model.g.dart';

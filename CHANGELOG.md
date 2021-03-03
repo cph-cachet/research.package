@@ -1,3 +1,16 @@
+## 0.4.0-beta.1.0
+
+- Updated UI for several elements:
+  - RPQuestionStep (incl. most answerformats)
+  - RPFormStep
+  - RPInstructionStep
+  - RPVisualConsentStep
+- Added new consent types:
+  - User data collection
+  - Passive data collection
+- Added simple support for theming in Research Package
+- Minor bug fixes
+
 ## 0.3.2+3
 
 - updates to documentation of RP and example app

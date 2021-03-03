@@ -34,10 +34,13 @@ List<RPImageChoice> images = [
   RPImageChoice.withParams(Image.asset('assets/images/very-happy.png'), 0, 'Feeling very happy'),
 ];
 
-RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, timeChoices);
+RPChoiceAnswerFormat timeAnswerFormat =
+    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, timeChoices);
 // All types of DateTime answer formats
-RPDateTimeAnswerFormat timeOfDayAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.TimeOfDay);
-RPDateTimeAnswerFormat dateAndTimeAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.DateAndTime);
+RPDateTimeAnswerFormat timeOfDayAnswerFormat =
+    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.TimeOfDay);
+RPDateTimeAnswerFormat dateAndTimeAnswerFormat =
+    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.DateAndTime);
 RPDateTimeAnswerFormat dateAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
 
 // Slider
@@ -52,20 +55,26 @@ RPChoiceAnswerFormat instrumentsAnswerFormat =
 
 RPIntegerAnswerFormat weightIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 200, "KG");
 
-RPBooleanAnswerFormat smokingBooleanAnswerFormat = RPBooleanAnswerFormat.withParams("Yes, absolutely", "No, never");
+RPBooleanAnswerFormat smokingBooleanAnswerFormat =
+    RPBooleanAnswerFormat.withParams("Yes, absolutely", "No, never");
 
 RPIntegerAnswerFormat minutesIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
 
+RPTextAnswerFormat textAnswerFormat = RPTextAnswerFormat.withParams();
+
 RPImageChoiceAnswerFormat imageChoiceAnswerFormat = RPImageChoiceAnswerFormat.withParams(images);
 
-RPQuestionStep timeOfDayQuestionStep =
-    RPQuestionStep.withAnswerFormat('timeOfDayQuestionStepID', 'When did you wake up?', timeOfDayAnswerFormat);
+RPQuestionStep additionalInfoQuestionStep = RPQuestionStep.withAnswerFormat(
+    'additionalInfoQuestionStepID', 'Do you have any more details you would like to add?', textAnswerFormat);
+
+RPQuestionStep timeOfDayQuestionStep = RPQuestionStep.withAnswerFormat(
+    'timeOfDayQuestionStepID', 'When did you wake up?', timeOfDayAnswerFormat);
 
 RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep.withAnswerFormat(
     'dateAndTimeQuestionStepID', 'When did you last eat unhealthy food?', dateAndTimeAnswerFormat);
 
-RPQuestionStep dateQuestionStep =
-    RPQuestionStep.withAnswerFormat('dateQuestionStepID', 'When did you last drink alcohol?', dateAnswerFormat);
+RPQuestionStep dateQuestionStep = RPQuestionStep.withAnswerFormat(
+    'dateQuestionStepID', 'When did you last drink alcohol?', dateAnswerFormat);
 
 // Slider
 RPQuestionStep sliderQuestionStep = RPQuestionStep.withAnswerFormat(
@@ -93,8 +102,8 @@ RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
 RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
     "happinessChoiceQuestionStepID", "What makes you happy?", joyfulActivitiesAnswerFormat);
 
-RPQuestionStep weightQuestionStep =
-    RPQuestionStep.withAnswerFormat("weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
+RPQuestionStep weightQuestionStep = RPQuestionStep.withAnswerFormat(
+    "weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
 
 RPQuestionStep minutesQuestionStep = RPQuestionStep.withAnswerFormat(
     "minutesQuestionStepID", "How many minutes do you spend practicing a week?", minutesIntegerAnswerFormat);
@@ -117,12 +126,9 @@ RPCompletionStep completionStep = RPCompletionStep("completionID")
   ..text = "Thank you for filling out the survey!";
 
 RPInstructionStep instructionStep = RPInstructionStep(
-  identifier: "instructionID",
-  title: "Welcome!",
-  detailText:
-  "For the sake of science of course..."
-)..text =
-    "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.";
+    identifier: "instructionID", title: "Welcome!", detailText: "For the sake of science of course...")
+  ..text =
+      "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.";
 
 RPOrderedTask linearSurveyTask = RPOrderedTask(
   "surveyTaskID",
