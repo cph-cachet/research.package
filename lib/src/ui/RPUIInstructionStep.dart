@@ -53,35 +53,35 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                widget.step.text != null
-                    ? Container(
-                        padding: EdgeInsets.all(16),
-                        child: Text(
-                          locale?.translate(widget.step.text) ?? widget.step.text,
-                          textAlign: TextAlign.left,
-                          style: RPStyles.instructionText,
-                        ),
-                      )
-                    : Container(),
-                widget.step.detailText != null
-                    ? FlatButton(
-                        textColor: Theme.of(context).primaryColor,
-                        child: Text(locale?.translate('Learn more...') ?? "Learn more..."),
-                        onPressed: _pushDetailTextRoute,
-                      )
-                    : Container(),
+                if (widget.step.text != null)
+                  Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: InstructionText(
+                          locale?.translate(widget.step.text) ??
+                              widget.step.text)),
+                if (widget.step.detailText != null)
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: OutlinedButton.icon(
+                      icon: Icon(Icons.help),
+                      label: Text(
+                        locale?.translate('Learn more...') ?? 'Learn more...',
+                      ),
+                      onPressed: _pushDetailTextRoute,
+                    ),
+                  ),
               ],
             ),
-            widget.step.footnote != null
-                ? Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      locale?.translate(widget.step.footnote) ?? widget.step.footnote,
-                      style: RPStyles.bodyText,
-                      textAlign: TextAlign.start,
-                    ),
-                  )
-                : Container(),
+            if (widget.step.footnote != null)
+              Container(
+                padding: const EdgeInsets.fromLTRB(16.0, 8, 0, 8),
+                child: Text(
+                  locale?.translate(widget.step.footnote) ??
+                      widget.step.footnote,
+                  style: Theme.of(context).textTheme.caption,
+                  textAlign: TextAlign.start,
+                ),
+              ),
           ],
         ),
       ),
@@ -100,12 +100,12 @@ class _DetailTextRoute extends StatelessWidget {
     RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
         title: Text(locale?.translate('Learn more') ?? 'Learn more'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: Text(locale?.translate(this.content) ?? this.content),
+        child: Text(locale?.translate(this.content) ?? this.content,
+            style: Theme.of(context).textTheme.bodyText1),
       ),
     );
   }
@@ -128,6 +128,25 @@ class InstructionImage extends StatelessWidget {
       );
     } else {
       return Container();
+    }
+  }
+}
+
+// Render the title above the questionBody
+class InstructionText extends StatelessWidget {
+  final String text;
+  InstructionText(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    if (text.contains('</')) {
+      return HTML.toRichText(context, text);
+    } else {
+      return Text(
+        text,
+        style: Theme.of(context).textTheme.bodyText1,
+        textAlign: TextAlign.start,
+      );
     }
   }
 }

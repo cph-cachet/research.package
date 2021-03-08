@@ -294,3 +294,12 @@ DerivedData/
 .dart_tool/package_config.json
 
 .dart_tool/build_resolvers/sdk.sum.deps
+.dart_tool/package_config_subset
+.dart_tool/version
+example/ios/Flutter/flutter_export_environment.sh
+example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+
+# As per recommendation by Google: https://dart.dev/guides/libraries/private-files
+pubspec.lock
+doc/api
+

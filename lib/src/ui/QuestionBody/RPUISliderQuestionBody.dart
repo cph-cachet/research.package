@@ -18,30 +18,32 @@ class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
   Widget build(BuildContext context) {
     super.build(context);
     RPLocalizations locale = RPLocalizations.of(context);
-    return Container(
-      padding: EdgeInsets.all(8),
-      alignment: Alignment.topLeft,
-      child: Column(
-        children: <Widget>[
-          Text(
-            '${locale?.translate(widget.answerFormat.prefix) ?? widget.answerFormat.prefix}${value ?? widget.answerFormat.minValue}${locale?.translate(widget.answerFormat.suffix) ?? widget.answerFormat.suffix}',
-            style: TextStyle(fontSize: 18),
-          ),
-          Slider(
-            activeColor: Theme.of(context).primaryColor,
-            inactiveColor: Theme.of(context).primaryColor.withOpacity(0.2),
-            value: value ?? widget.answerFormat.minValue,
-            onChanged: (double newValue) {
-              setState(() {
-                value = newValue;
-              });
-              widget.onResultChange(value);
-            },
-            min: widget.answerFormat.minValue,
-            max: widget.answerFormat.maxValue,
-            divisions: widget.answerFormat.divisions,
-          ),
-        ],
+    return Card(
+      child: Container(
+        padding: EdgeInsets.all(8),
+        alignment: Alignment.topLeft,
+        child: Column(
+          children: <Widget>[
+            Text(
+              '${locale?.translate(widget.answerFormat.prefix) ?? widget.answerFormat.prefix}${value ?? widget.answerFormat.minValue}${locale?.translate(widget.answerFormat.suffix) ?? widget.answerFormat.suffix}',
+              style: TextStyle(fontSize: 18),
+            ),
+            Slider(
+              activeColor: Theme.of(context).accentColor,
+              inactiveColor: Theme.of(context).unselectedWidgetColor,
+              value: value ?? widget.answerFormat.minValue,
+              onChanged: (double newValue) {
+                setState(() {
+                  value = newValue;
+                });
+                widget.onResultChange(value);
+              },
+              min: widget.answerFormat.minValue,
+              max: widget.answerFormat.maxValue,
+              divisions: widget.answerFormat.divisions,
+            ),
+          ],
+        ),
       ),
     );
   }

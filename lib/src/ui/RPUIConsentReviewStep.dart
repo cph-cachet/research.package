@@ -13,7 +13,8 @@ class RPUIConsentReviewStep extends StatefulWidget {
   _RPUIConsentReviewStepState createState() => _RPUIConsentReviewStepState();
 }
 
-class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanSaveResult {
+class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
+    with CanSaveResult {
   RPConsentSignatureResult consentSignatureResult;
   RPSignatureResult signatureResult;
   RPStepResult result;
@@ -39,9 +40,11 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
       ..endDate = DateTime.now();
 
     consentSignatureResult.consentDocument.signatures == null
-        ? result.setResultForIdentifier("no signature collected", consentSignatureResult)
+        ? result.setResultForIdentifier(
+            'no signature collected', consentSignatureResult)
         : //TODO: modify identifier to match the id of rpconsentsignature
-        result.setResultForIdentifier(consentSignatureResult.consentDocument.signatures.first.identifier,
+        result.setResultForIdentifier(
+            consentSignatureResult.consentDocument.signatures.first.identifier,
             consentSignatureResult); //TODO: modify identifier to match the id of RPConsentSignature
 
     blocTask.sendStepResult(result);
@@ -55,8 +58,8 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
         WidgetBuilder builder;
         switch (settings.name) {
           case 'consent_review/text':
-            builder = (BuildContext _) =>
-                _TextPresenterRoute(widget.step, (signatureResult) => _setSignatureResult(signatureResult));
+            builder = (BuildContext _) => _TextPresenterRoute(widget.step,
+                (signatureResult) => _setSignatureResult(signatureResult));
             break;
           case 'consent_review/signature':
             builder = (BuildContext _) => _SignatureRoute(
@@ -89,52 +92,58 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
     RPLocalizations locale = RPLocalizations.of(context);
     // Return the header as the first element.
     if (index == 0) {
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 64.0),
-            child: Text(
-              locale?.translate('Review this form below, and tap AGREE if you\'re ready to continue.') ??
-                  'Review this form below, and tap AGREE if you\'re ready to continue.',
-              style: TextStyle(fontWeight: FontWeight.w600),
-              textAlign: TextAlign.center,
-            ),
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 32.0),
+          child: Text(
+            locale.translate(
+                    'Review this form below, and tap AGREE if you\'re ready to continue.') ??
+                'Review this form below, and tap AGREE if you\'re ready to continue.',
+            style: Theme.of(context).textTheme.headline5,
+            textAlign: TextAlign.center,
           ),
-        ],
+        ),
       );
     }
     index -= 1;
 
-    if (widget.step.consentDocument.sections[index].type == RPConsentSectionType.PassiveDataCollection ||
-        widget.step.consentDocument.sections[index].type == RPConsentSectionType.UserDataCollection) {
+    if (widget.step.consentDocument.sections[index].type ==
+            RPConsentSectionType.PassiveDataCollection ||
+        widget.step.consentDocument.sections[index].type ==
+            RPConsentSectionType.UserDataCollection) {
       return Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.only(top: 24, bottom: 4),
               child: Text(
-                locale?.translate(widget.step.consentDocument.sections[index].title) ??
+                locale.translate(
+                        widget.step.consentDocument.sections[index].title) ??
                     widget.step.consentDocument.sections[index].title,
-                style: RPStyles.h2,
-                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline5,
+                textAlign: TextAlign.start,
               ),
             ),
             Column(
-              children: widget.step.consentDocument.sections[index].dataTypes.map((e) {
+              children: widget.step.consentDocument.sections[index].dataTypes
+                  .map((e) {
                 return Padding(
-                  padding: EdgeInsets.only(bottom: 5, top: 5),
+                  padding: EdgeInsets.only(bottom: 4, top: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        locale?.translate(e.dataName) ?? e.dataName,
-                        style: RPStyles.h3,
+                        locale.translate(e.dataName) ?? e.dataName,
+                        style: Theme.of(context).textTheme.subtitle1,
                         textAlign: TextAlign.start,
                       ),
                       Text(
-                        locale?.translate(e.dataInformation) ?? e.dataInformation,
+                        locale.translate(e.dataInformation) ??
+                            e.dataInformation,
+                        style: Theme.of(context).textTheme.bodyText2,
                         textAlign: TextAlign.start,
                       ),
                     ],
@@ -147,25 +156,26 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
       );
     }
 
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Text(
-              locale?.translate(widget.step.consentDocument.sections[index].title) ??
-                  widget.step.consentDocument.sections[index].title,
-              style: RPStyles.h2,
-              textAlign: TextAlign.center,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 16, 0, 4),
+          child: Text(
+            locale.translate(
+                    widget.step.consentDocument.sections[index].title) ??
+                widget.step.consentDocument.sections[index].title,
+            style: Theme.of(context).textTheme.headline5,
+            textAlign: TextAlign.start,
           ),
-          Text(
-            locale?.translate(widget.step.consentDocument.sections[index].content) ??
-                widget.step.consentDocument.sections[index].content,
-            style: TextStyle(height: 1.1),
-          ),
-        ],
-      ),
+        ),
+        Text(
+          locale.translate(
+                  widget.step.consentDocument.sections[index].content) ??
+              widget.step.consentDocument.sections[index].content,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+      ],
     );
   }
 
@@ -177,21 +187,19 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text(locale?.translate(widget.step.text) ?? widget.step.text),
-            content: Text(locale?.translate(widget.step.reasonForConsent) ?? widget.step.reasonForConsent),
+            title: Text(locale.translate(widget.step.text) ?? widget.step.text),
+            content: Text(locale.translate(widget.step.reasonForConsent) ??
+                widget.step.reasonForConsent),
             actions: <Widget>[
-              OutlineButton(
+              OutlinedButton(
                 child: Text(
-                  locale?.translate('CANCEL') ?? "CANCEL",
-                  style: TextStyle(color: Theme.of(context).primaryColor),
+                  locale.translate('CANCEL') ?? 'CANCEL',
                 ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-              FlatButton(
-                color: Theme.of(context).primaryColor,
+              ElevatedButton(
                 child: Text(
-                  locale?.translate('AGREE') ?? "AGREE",
-                  style: TextStyle(color: Colors.white),
+                  locale.translate('AGREE') ?? 'AGREE',
                 ),
                 onPressed: onPressedCallback,
               ),
@@ -210,29 +218,25 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         ),
       ),
       persistentFooterButtons: <Widget>[
-        OutlineButton(
+        OutlinedButton(
           child: Text(
-            locale?.translate('DISAGREE') ?? "DISAGREE",
-            style: TextStyle(
-              color: Theme.of(context).accentColor,
-            ),
+            locale.translate('DISAGREE') ?? 'DISAGREE',
           ),
           onPressed: () {
             blocTask.sendStatus(StepStatus.Canceled);
           },
         ),
-        RaisedButton(
-          color: Theme.of(context).primaryColor,
+        ElevatedButton(
           child: Text(
-            locale?.translate('AGREE') ?? "AGREE",
-            style: TextStyle(color: Colors.white),
+            locale.translate('AGREE') ?? "AGREE",
           ),
           onPressed: () => _showConsentDialog(
             widget.step.consentDocument.signatures != null
                 ? () {
                     // Dismiss pop-up. It uses the root Navigator since it's an overlay
                     Navigator.of(context, rootNavigator: true).pop();
-                    Navigator.of(context).pushReplacementNamed('consent_review/signature');
+                    Navigator.of(context)
+                        .pushReplacementNamed('consent_review/signature');
                   }
                 : () {
                     // Dismiss pop-up. It uses the root Navigator since it's an overlay
@@ -248,11 +252,10 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
 }
 
 class _SignatureRoute extends StatefulWidget {
-  final String _title;
   final RPConsentSignature _consentSignature;
   final void Function(RPSignatureResult) _onFinished;
 
-  _SignatureRoute(this._title, this._consentSignature, this._onFinished);
+  _SignatureRoute(_, this._consentSignature, this._onFinished);
 
   @override
   _SignatureRouteState createState() => _SignatureRouteState();
@@ -264,11 +267,12 @@ class _SignatureRouteState extends State<_SignatureRoute> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
 
-  var _signature = Signature(
-    height: 200,
-    width: 300,
-    backgroundColor: Colors.transparent,
+  final SignatureController _signatureController = SignatureController(
+    penStrokeWidth: 5,
+    penColor: Colors.red,
+    exportBackgroundColor: Colors.blue,
   );
+  Signature _signature;
 
   Widget _signatureCanvas() {
     return GestureDetector(
@@ -280,14 +284,14 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       },
       onTap: () {
         setState(() {
-          if (_signature.isNotEmpty) {
+          if (_signatureController.isNotEmpty) {
             _isSignatureAdded = true;
           }
         });
       },
       onPanEnd: (e) {
         setState(() {
-          if (_signature.isNotEmpty) {
+          if (_signatureController.isNotEmpty) {
             _isSignatureAdded = true;
           }
         });
@@ -300,14 +304,26 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   void _checkNameIsNotEmpty() {
     setState(() {
-      _isNameFilled = (_firstNameController.text != '' && _lastNameController.text != '');
+      _isNameFilled =
+          (_firstNameController.text != '' && _lastNameController.text != '');
     });
   }
 
   @override
   void initState() {
-    widget._consentSignature.requiresSignatureImage ? _isSignatureAdded = false : _isSignatureAdded = true;
-    widget._consentSignature.requiresName ? _isNameFilled = false : _isNameFilled = true;
+    _signature = Signature(
+      controller: _signatureController,
+      height: 200,
+      width: 300,
+      backgroundColor: Colors.transparent,
+    );
+
+    widget._consentSignature.requiresSignatureImage
+        ? _isSignatureAdded = false
+        : _isSignatureAdded = true;
+    widget._consentSignature.requiresName
+        ? _isNameFilled = false
+        : _isNameFilled = true;
     _firstNameController.addListener(_checkNameIsNotEmpty);
     _lastNameController.addListener(_checkNameIsNotEmpty);
 
@@ -316,18 +332,24 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   Widget _nameFields(BuildContext context) {
     RPLocalizations locale = RPLocalizations.of(context);
+    final node = FocusScope.of(context);
     return Column(
       children: <Widget>[
         TextFormField(
           autofocus: true,
+          textInputAction: TextInputAction.next,
+          onEditingComplete: () => node.nextFocus(),
           controller: _firstNameController,
           decoration: InputDecoration(
-            labelText: locale?.translate('First Name') ?? "First Name",
+            labelText: locale.translate('First Name') ?? 'First Name',
           ),
         ),
         TextFormField(
+          textInputAction: TextInputAction.done,
+          onFieldSubmitted: (_) => node.unfocus(),
           controller: _lastNameController,
-          decoration: InputDecoration(labelText: locale?.translate('Last Name') ?? "Last Name"),
+          decoration: InputDecoration(
+              labelText: locale.translate('Last Name') ?? 'Last Name'),
         ),
       ],
     );
@@ -341,9 +363,10 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         child: Column(
           children: <Widget>[
             Text(
-              locale?.translate('Please sign using your finger on the line below') ??
+              locale.translate(
+                      'Please sign using your finger on the line below') ??
                   'Please sign using your finger on the line below',
-              style: RPStyles.bodyText,
+              style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
             ),
             Padding(
@@ -360,11 +383,11 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                 _signatureCanvas(),
               ]),
             ),
-            FlatButton(
-              child: Text(locale?.translate('Clear') ?? "Clear"),
+            OutlinedButton(
+              child: Text(locale.translate('Clear') ?? 'Clear'),
               onPressed: _isSignatureAdded
                   ? () {
-                      _signature.clear();
+                      _signatureController.clear();
                       setState(() {
                         _isSignatureAdded = false;
                       });
@@ -386,19 +409,21 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           padding: EdgeInsets.all(12),
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
-            widget._consentSignature.requiresName ? _nameFields(context) : Container(),
-            widget._consentSignature.requiresSignatureImage ? _signingField(context) : Container(),
+            widget._consentSignature.requiresName
+                ? _nameFields(context)
+                : Container(),
+            widget._consentSignature.requiresSignatureImage
+                ? _signingField(context)
+                : Container(),
           ],
         ),
       ),
       persistentFooterButtons: <Widget>[
-        RaisedButton(
-          color: Theme.of(context).accentColor,
-          textColor: Colors.white,
+        ElevatedButton(
           onPressed: (_isNameFilled && _isSignatureAdded)
               ? () {
                   if (widget._consentSignature.requiresSignatureImage) {
-                    _signature.exportBytes().then(
+                    _signatureController.toPngBytes().then(
                       (image) {
                         widget._onFinished(
                           RPSignatureResult.withParams(
@@ -423,7 +448,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                   blocTask.sendStatus(StepStatus.Finished);
                 }
               : null,
-          child: Text(locale?.translate('NEXT') ?? 'NEXT'),
+          child: Text(locale.translate('NEXT') ?? 'NEXT'),
         )
       ],
     );

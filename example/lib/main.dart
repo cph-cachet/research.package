@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:research_package/research_package.dart';
+
 import 'informed_consent_page.dart';
 import 'linear_survey_page.dart';
 import 'navigable_survey_page.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:research_package/research_package.dart';
 
 void main() => runApp(MyApp());
 
@@ -40,11 +41,11 @@ class MyApp extends StatelessWidget {
         // from the list (English, in this case).
         return supportedLocales.first;
       },
-      // theme: ThemeData.light().copyWith(
-      //     primaryColor: Colors.deepPurple,
-      //     accentColor: Colors.deepOrangeAccent),
       theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark().copyWith(
+          textTheme: TextTheme().copyWith(
+              bodyText1:
+                  TextStyle(fontSize: 18, fontWeight: FontWeight.normal))),
       title: 'Research Package Demo',
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
@@ -82,11 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OutlineButton(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
+                child: OutlinedButton(
                   child: Text(
                     "Informed Consent",
                     style: TextStyle(fontSize: 18),
@@ -99,13 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OutlineButton(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
+                child: OutlinedButton(
                   child: Text(
-                    "Survey (Linear)",
+                    'Survey (Linear)',
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
@@ -116,13 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OutlineButton(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
+                child: OutlinedButton(
                   child: Text(
-                    "Survey (Branching)",
+                    'Survey (Branching)',
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {

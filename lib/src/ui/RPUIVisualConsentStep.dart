@@ -13,7 +13,8 @@ class RPUIVisualConsentStep extends StatefulWidget {
   _RPUIVisualConsentStep createState() => _RPUIVisualConsentStep();
 }
 
-class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTickerProviderStateMixin {
+class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
+    with SingleTickerProviderStateMixin {
   Animation<double> _scale;
   AnimationController _controller;
   int _pageNr = 0;
@@ -22,7 +23,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: Duration(milliseconds: 400), vsync: this);
+    _controller =
+        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
     _scale = Tween(begin: 0.6, end: 1.0)
         .chain(
           CurveTween(
@@ -58,17 +60,18 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
       builder: (context) {
         RPLocalizations locale = RPLocalizations.of(context);
         return AlertDialog(
-          content: Text(locale?.translate('quit_confirmation') ?? "Are you sure you want to quit?"),
+          content: Text(locale?.translate('quit_confirmation') ??
+              'Are you sure you want to quit?'),
           actions: <Widget>[
-            FlatButton(
+            OutlinedButton(
               child: Text(locale?.translate('YES') ?? "YES"),
               onPressed: () {
                 Navigator.of(context).pop(); // Pop the popup
                 Navigator.of(context).pop(); // Pop the screen
               },
             ),
-            FlatButton(
-                child: Text(locale?.translate('NO') ?? "NO"),
+            ElevatedButton(
+                child: Text(locale?.translate('NO') ?? 'NO'),
                 onPressed: () => Navigator.of(context).pop() // Pop the popup,
                 )
           ],
@@ -102,10 +105,11 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                     height: 7.0,
                     margin: EdgeInsets.symmetric(horizontal: 6.0),
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: index <= _pageNr
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).primaryColor.withOpacity(0.5)),
+                      shape: BoxShape.circle,
+                      color: index <= _pageNr
+                          ? Theme.of(context).accentColor
+                          : Theme.of(context).unselectedWidgetColor,
+                    ),
                   );
                 },
               ).toList(),
@@ -117,7 +121,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
             child: IconButton(
               icon: Icon(
                 Icons.highlight_off,
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
               ),
               onPressed: _showCancelDialog,
             ),
@@ -128,47 +132,48 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   }
 
   Widget _illustrationForType(RPConsentSection section) {
-    // double iconSize = 80.0;
+    const double iconSize = 80.0;
+    const double largeIconSize = 200.0;
 
     switch (section.type) {
       case RPConsentSectionType.Overview:
         return Image.asset(
           'assets/icons/handshake.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: largeIconSize,
+          height: largeIconSize,
         );
         break;
       case RPConsentSectionType.DataUse:
         return Image.asset(
           'assets/icons/document.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.TimeCommitment:
         return Image.asset(
           'assets/icons/deadline.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: largeIconSize,
+          height: largeIconSize,
         );
         break;
       case RPConsentSectionType.StudySurvey:
         return Image.asset(
           'assets/icons/analysis.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Withdrawing:
         return Image.asset(
           'assets/icons/networking.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Custom:
@@ -178,80 +183,80 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
         return Image.asset(
           'assets/icons/management.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Privacy:
         return Image.asset(
           'assets/icons/archive.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.StudyTasks:
         return Image.asset(
           'assets/icons/task.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Welcome:
         return Image.asset(
           'assets/icons/handshake.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.AboutUs:
         return Image.asset(
           'assets/icons/id.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: largeIconSize,
+          height: largeIconSize,
         );
         break;
       case RPConsentSectionType.Goals:
         return Image.asset(
           'assets/icons/target.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Benefits:
         return Image.asset(
           'assets/icons/analysis.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.DataHandling:
         return Image.asset(
           'assets/icons/archive.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.Duration:
         return Image.asset(
           'assets/icons/deadline.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       case RPConsentSectionType.YourRights:
         return Image.asset(
           'assets/icons/networking.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
         break;
       default:
@@ -263,8 +268,9 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
     RPConsentSection section = widget.consentDocument.sections[index];
     RPLocalizations locale = RPLocalizations.of(context);
     if (section.title == null) {
+      // TODO: Why can such a section be instantiated when it later leads to exceptions?
       throw Exception(
-          "No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text");
+          'No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text');
     }
 
     // Display the list builder if type is of these types otherwise show normal.
@@ -275,14 +281,17 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              locale?.translate(section.title) ?? section.title,
-              style: RPStyles.h2,
-              textAlign: TextAlign.start,
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              child: Text(
+                locale?.translate(section.title) ?? section.title,
+                style: Theme.of(context).textTheme.headline4,
+                textAlign: TextAlign.start,
+              ),
             ),
             Text(
               locale?.translate(section.summary) ?? section.summary,
-              // style: RPStyles.h3,
+              style: Theme.of(context).textTheme.bodyText1,
               textAlign: TextAlign.start,
             ),
             Expanded(
@@ -312,24 +321,32 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  locale?.translate(section.title) ?? section.title,
-                  style: RPStyles.h1,
-                  textAlign: TextAlign.start,
-                ),
-                Text(
-                  locale?.translate(section.summary) ?? section.summary,
-                  style: RPStyles.h3,
-                  textAlign: TextAlign.start,
-                ),
-                GestureDetector(
-                  onTap: () => _pushContent(
-                    section.title,
-                    section.content,
-                  ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 4),
                   child: Text(
-                    RPLocalizations.of(context)?.translate('Learn more...') ?? "Learn more...",
-                    style: TextStyle(color: Theme.of(context).primaryColor),
+                    locale?.translate(section.title) ?? section.title,
+                    style: Theme.of(context).textTheme.headline5,
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Text(
+                    locale?.translate(section.summary) ?? section.summary,
+                    style: Theme.of(context).textTheme.bodyText1,
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8),
+                  child: OutlinedButton.icon(
+                    icon: Icon(Icons.help),
+                    label: Text(
+                      locale?.translate('Learn more...') ?? 'Learn more...',
+                    ),
+                    onPressed: () => _pushContent(
+                      section.title,
+                      section.content,
+                    ),
                   ),
                 ),
               ],
@@ -345,36 +362,26 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          ButtonTheme(
-            minWidth: 70,
-            child: OutlineButton(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                RPLocalizations.of(context)?.translate('CANCEL') ?? "CANCEL",
-                style: TextStyle(color: Theme.of(context).primaryColor),
-              ),
-              onPressed: () => _showCancelDialog(),
+          OutlinedButton(
+            child: Text(
+              RPLocalizations.of(context)?.translate('CANCEL') ?? 'CANCEL',
             ),
+            onPressed: () => _showCancelDialog(),
           ),
-          ButtonTheme(
-            minWidth: 70,
-            child: FlatButton(
-              color: Theme.of(context).primaryColor,
-              padding: EdgeInsets.all(10.0),
-              child: _lastPage
-                  ? Text(
-                      RPLocalizations.of(context)?.translate('see_summary') ?? "SEE SUMMARY",
-                      style: TextStyle(color: Colors.white),
-                    )
-                  : Text(
-                      RPLocalizations.of(context)?.translate('next') ?? "NEXT",
-                      style: TextStyle(color: Colors.white),
-                    ),
-              onPressed: _lastPage
-                  ? () => blocTask.sendStatus(StepStatus.Finished)
-                  : () =>
-                      controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
-            ),
+          ElevatedButton(
+            child: _lastPage
+                ? Text(
+                    RPLocalizations.of(context)?.translate('see_summary') ??
+                        'SEE SUMMARY',
+                  )
+                : Text(
+                    RPLocalizations.of(context)?.translate('next') ?? 'NEXT',
+                  ),
+            onPressed: _lastPage
+                ? () => blocTask.sendStatus(StepStatus.Finished)
+                : () => controller.nextPage(
+                    duration: Duration(milliseconds: 400),
+                    curve: Curves.fastOutSlowIn),
           ),
         ],
       ),
@@ -383,7 +390,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
     PageController controller = PageController();
 
     return WillPopScope(
@@ -430,7 +436,11 @@ class _ContentRoute extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: SingleChildScrollView(child: Text(locale?.translate(this.content) ?? this.content)),
+        child: SingleChildScrollView(
+            child: Text(
+          locale?.translate(this.content) ?? this.content,
+          style: Theme.of(context).textTheme.bodyText1,
+        )),
       ),
     );
   }
@@ -453,7 +463,9 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
     return Container(
       child: ExpansionTile(
         title: Text(
-          locale?.translate(widget.dataTypeSection.dataName) ?? widget.dataTypeSection.dataName,
+          locale?.translate(widget.dataTypeSection.dataName) ??
+              widget.dataTypeSection.dataName,
+          style: Theme.of(context).textTheme.subtitle1,
           textAlign: TextAlign.start,
         ),
         childrenPadding: EdgeInsets.only(left: 15, right: 15, bottom: 5),
@@ -461,6 +473,7 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
           Text(
             locale?.translate(widget.dataTypeSection.dataInformation) ??
                 widget.dataTypeSection.dataInformation,
+            style: Theme.of(context).textTheme.bodyText2,
             textAlign: TextAlign.start,
           ),
         ],

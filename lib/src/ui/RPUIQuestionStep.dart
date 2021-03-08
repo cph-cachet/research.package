@@ -12,7 +12,8 @@ class RPUIQuestionStep extends StatefulWidget {
   _RPUIQuestionStepState createState() => _RPUIQuestionStepState();
 }
 
-class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
+class _RPUIQuestionStepState extends State<RPUIQuestionStep>
+    with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
   dynamic _currentQuestionBodyResult;
   bool readyToProceed;
@@ -86,27 +87,19 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
     RPLocalizations locale = RPLocalizations.of(context);
     return SafeArea(
       child: ListView(
+        // TODO: Why is this a ListView and not a Column?
         padding: EdgeInsets.all(8),
         children: [
-          // Title
-          (widget.step.title != null)
-              ? Padding(
-                  padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 0),
-                  child: Text(
-                    locale?.translate(widget.step.title) ?? widget.step.title,
-                    style: RPStyles.h2,
-                    textAlign: TextAlign.left,
-                  ),
-                )
-              : Container(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          if (widget.step.title != null) Title(widget.step.title),
+          Card(
+            margin: const EdgeInsets.all(8.0),
             child: stepBody(widget.step.answerFormat),
           ),
           widget.step.optional
-              ? FlatButton(
+              ? TextButton(
                   onPressed: () => skipQuestion(),
-                  child: Text(locale?.translate("Skip this question") ?? "Skip this question"),
+                  child: Text(locale?.translate("Skip this question") ??
+                      "Skip this question"),
                 )
               : Container(),
         ],
@@ -130,16 +123,17 @@ class Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (title != null) {
+    if (title.contains('</')) {
+      return HTML.toRichText(context, title);
+    } else {
       return Padding(
         padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
         child: Text(
           title,
-          style: RPStyles.h2,
-          textAlign: TextAlign.left,
+          style: Theme.of(context).textTheme.headline6,
+          textAlign: TextAlign.start,
         ),
       );
     }
-    return Container();
   }
 }
