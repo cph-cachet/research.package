@@ -13,8 +13,7 @@ class RPUIVisualConsentStep extends StatefulWidget {
   _RPUIVisualConsentStep createState() => _RPUIVisualConsentStep();
 }
 
-class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
-    with SingleTickerProviderStateMixin {
+class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTickerProviderStateMixin {
   Animation<double> _scale;
   AnimationController _controller;
   int _pageNr = 0;
@@ -23,8 +22,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
+    _controller = AnimationController(duration: Duration(milliseconds: 400), vsync: this);
     _scale = Tween(begin: 0.6, end: 1.0)
         .chain(
           CurveTween(
@@ -60,8 +58,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
       builder: (context) {
         RPLocalizations locale = RPLocalizations.of(context);
         return AlertDialog(
-          content: Text(locale?.translate('quit_confirmation') ??
-              'Are you sure you want to quit?'),
+          content: Text(locale?.translate('quit_confirmation') ?? 'Are you sure you want to quit?'),
           actions: <Widget>[
             OutlinedButton(
               child: Text(locale?.translate('YES') ?? "YES"),
@@ -143,7 +140,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: largeIconSize,
           height: largeIconSize,
         );
-        break;
       case RPConsentSectionType.DataUse:
         return Image.asset(
           'assets/icons/document.png',
@@ -151,7 +147,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.TimeCommitment:
         return Image.asset(
           'assets/icons/deadline.png',
@@ -159,7 +154,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: largeIconSize,
           height: largeIconSize,
         );
-        break;
       case RPConsentSectionType.StudySurvey:
         return Image.asset(
           'assets/icons/analysis.png',
@@ -167,7 +161,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.Withdrawing:
         return Image.asset(
           'assets/icons/networking.png',
@@ -175,10 +168,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.Custom:
         return section.customIllustration;
-        break;
       case RPConsentSectionType.DataGathering:
         return Image.asset(
           'assets/icons/management.png',
@@ -186,7 +177,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.Privacy:
         return Image.asset(
           'assets/icons/archive.png',
@@ -194,7 +184,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.StudyTasks:
         return Image.asset(
           'assets/icons/task.png',
@@ -202,7 +191,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.Welcome:
         return Image.asset(
           'assets/icons/handshake.png',
@@ -210,7 +198,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.AboutUs:
         return Image.asset(
           'assets/icons/id.png',
@@ -218,7 +205,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: largeIconSize,
           height: largeIconSize,
         );
-        break;
       case RPConsentSectionType.Goals:
         return Image.asset(
           'assets/icons/target.png',
@@ -226,7 +212,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.Benefits:
         return Image.asset(
           'assets/icons/analysis.png',
@@ -234,7 +219,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.DataHandling:
         return Image.asset(
           'assets/icons/archive.png',
@@ -242,7 +226,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.Duration:
         return Image.asset(
           'assets/icons/deadline.png',
@@ -250,7 +233,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       case RPConsentSectionType.YourRights:
         return Image.asset(
           'assets/icons/networking.png',
@@ -258,9 +240,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
-        break;
       default:
-        return null;
+        return Container();
     }
   }
 
@@ -371,17 +352,15 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           ElevatedButton(
             child: _lastPage
                 ? Text(
-                    RPLocalizations.of(context)?.translate('see_summary') ??
-                        'SEE SUMMARY',
+                    RPLocalizations.of(context)?.translate('see_summary') ?? 'SEE SUMMARY',
                   )
                 : Text(
                     RPLocalizations.of(context)?.translate('next') ?? 'NEXT',
                   ),
             onPressed: _lastPage
                 ? () => blocTask.sendStatus(StepStatus.Finished)
-                : () => controller.nextPage(
-                    duration: Duration(milliseconds: 400),
-                    curve: Curves.fastOutSlowIn),
+                : () =>
+                    controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
           ),
         ],
       ),
@@ -463,8 +442,7 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
     return Container(
       child: ExpansionTile(
         title: Text(
-          locale?.translate(widget.dataTypeSection.dataName) ??
-              widget.dataTypeSection.dataName,
+          locale?.translate(widget.dataTypeSection.dataName) ?? widget.dataTypeSection.dataName,
           style: Theme.of(context).textTheme.subtitle1,
           textAlign: TextAlign.start,
         ),

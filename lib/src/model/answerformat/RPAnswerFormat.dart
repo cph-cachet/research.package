@@ -11,9 +11,8 @@ part of research_package_model;
 /// Used in [RPStepResult]*
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPAnswerFormat {
-
   /// The Question Type of the Answer Format. Should be implemented in the subclasses.
-  QuestionType questionType;
+  late QuestionType questionType;
 
   /// The default constructor. The appropriate subclass of RPAnswerFormat should be used instead of this directly.
   RPAnswerFormat();

@@ -4,24 +4,24 @@ version: 0.4.0
 homepage: https://github.com/cph-cachet/research.package
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   signature: ^4.0.0-nullsafety
-  rxdart: ^0.25.0
-  json_annotation: ^3.1.0
+  rxdart: ^0.26.0
+  json_annotation: ^4.0.0
   flutter_localizations:
     sdk: flutter
-  collection: ^1.14.11
-  simple_html_css: ^3.0.0
+  collection: ^1.15.0
+  simple_html_css: ^3.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.10.0
-  json_serializable: ^3.5.0
+  build_runner: ^1.11.5
+  json_serializable: ^4.0.2
 #  test: ^1.14.3
 
 # For information on the generic Dart part of this file, see the
@@ -29,7 +29,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-  # To add assets to your package, add an assets section, like this:
   assets:
     - assets/icons/
     - assets/icons/analysis.png
@@ -43,28 +42,3 @@ flutter:
     - assets/icons/settings.png
     - assets/icons/target.png
     - assets/icons/id.png
-  #
-  # For details regarding assets in packages, see
-  # https://flutter.io/assets-and-images/#from-packages
-  #
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.io/assets-and-images/#resolution-aware.
-  # To add custom fonts to your package, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts in packages, see
-  # https://flutter.io/custom-fonts/#from-packages

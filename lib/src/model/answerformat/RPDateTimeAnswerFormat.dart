@@ -5,9 +5,7 @@ part of research_package_model;
 class RPDateTimeAnswerFormat extends RPAnswerFormat {
   DateTimeAnswerStyle dateTimeAnswerStyle;
 
-  RPDateTimeAnswerFormat();
-
-  RPDateTimeAnswerFormat.withParams(this.dateTimeAnswerStyle);
+  RPDateTimeAnswerFormat(this.dateTimeAnswerStyle);
 
   factory RPDateTimeAnswerFormat.fromJson(Map<String, dynamic> json) =>
       _$RPDateTimeAnswerFormatFromJson(json);

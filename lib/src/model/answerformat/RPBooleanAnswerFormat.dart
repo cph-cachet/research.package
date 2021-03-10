@@ -6,14 +6,13 @@ class RPBooleanAnswerFormat extends RPAnswerFormat {
   String _trueText;
   String _falseText;
 
-  RPBooleanAnswerFormat();
-
-  RPBooleanAnswerFormat.withParams(this._trueText, this._falseText);
+  RPBooleanAnswerFormat(this._trueText, this._falseText);
 
   @override
   get questionType {
     return QuestionType.Boolean;
   }
+
   /// The text shown for the ```true``` option
   String get trueText => _trueText;
 

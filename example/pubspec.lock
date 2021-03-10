@@ -120,7 +120,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.1"
+    version: "4.0.0"
   matcher:
     dependency: transitive
     description:
@@ -162,7 +162,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.25.0"
+    version: "0.26.0"
   signature:
     dependency: transitive
     description:
@@ -176,7 +176,7 @@ packages:
       name: simple_html_css
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -246,4 +246,5 @@ packages:
     source: hosted
     version: "5.0.2"
 sdks:
-  dart: ">=2.12.0-133.7.beta <3.0.0"
+  dart: ">=2.12.0 <3.0.0"
+  flutter: ">=2.0.0"
