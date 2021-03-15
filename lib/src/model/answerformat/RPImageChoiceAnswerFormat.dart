@@ -21,19 +21,19 @@ class RPImageChoiceAnswerFormat extends RPAnswerFormat {
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPImageChoice {
   @JsonKey(ignore: true)
-  Image _image;
-  dynamic _value;
-  String _description;
+  Image image;
+  dynamic value;
+  String description;
 
-  RPImageChoice(this._image, this._value, this._description);
+  RPImageChoice(this.image, this.value, this.description);
 
   factory RPImageChoice.fromJson(Map<String, dynamic> json) => _$RPImageChoiceFromJson(json);
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'description': this._description,
-        'value': this._value,
+        'description': this.description,
+        'value': this.value,
 
         // To avoid JSON issues, a string representation is used.
         // Future development will see a ByteData / Uint8List format
-        'image': this._image.toString(),
+        'image': this.image.toString(),
       };
 }
