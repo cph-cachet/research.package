@@ -201,21 +201,6 @@ RPImageChoice _$RPImageChoiceFromJson(Map<String, dynamic> json) {
     ..image = json['image'];
 }
 
-Map<String, dynamic> _$RPImageChoiceToJson(RPImageChoice instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('description', instance.description);
-  writeNotNull('value', instance.value);
-  writeNotNull('image', instance.image);
-  return val;
-}
-
 RPDateTimeAnswerFormat _$RPDateTimeAnswerFormatFromJson(Map<String, dynamic> json) {
   return RPDateTimeAnswerFormat()
     ..questionType = _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type'])

@@ -6,13 +6,12 @@ part of research_package_model;
 /// The [RPPredicateStepNavigationRule] checks the predicate [RPResultPredicate] and if it's true, puts the
 /// destination step as next in the sequence. (Destination step identifiers are declared in the [resultPredicatesWithDestinationIdentifiers])
 class RPStepReorganizerRule extends RPStepNavigationRule {
-  String _reorganizerStepId;
   RPResultSelector _resultSelector;
+
   /// Those steps will be removed which are not selected
-  Map <dynamic, String> _removalMap;
+  Map<dynamic, String> _removalMap;
 
   RPStepReorganizerRule(String reorganizerStepId, Map<dynamic, String> removalMap) {
-    this._reorganizerStepId = reorganizerStepId;
     _resultSelector = RPResultSelector.forStepId(reorganizerStepId);
     this._removalMap = removalMap;
   }
@@ -31,6 +30,5 @@ class RPStepReorganizerRule extends RPStepNavigationRule {
 //  /// different destination steps.
 //  Map<RPResultPredicate, String> get resultPredicatesWithDestinationIdentifiers =>
 //      this._resultPredicatesWithDestinationIdentifiers;
-
 
 }
