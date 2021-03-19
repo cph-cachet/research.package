@@ -393,7 +393,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              _carouselBar(),
+              // _carouselBar(),
               Expanded(
                 child: PageView.builder(
                   onPageChanged: (pageNr) {
