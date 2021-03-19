@@ -1,3 +1,9 @@
+## 0.4.1
+
+- Fixed error in consent that caused it to have 2 top bars
+- Updated docs 
+- Score fixes 
+
 ## 0.4.0
 
 - Merged beta.1.0
