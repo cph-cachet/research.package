@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData.light().copyWith(
       //     primaryColor: Colors.deepPurple,
       //     accentColor: Colors.deepOrangeAccent),
-      theme: ThemeData.light(),
+      theme: ThemeData.light().copyWith(backgroundColor: Colors.white),
       darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
       home: MyHomePage(),
@@ -72,8 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
+                padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
                 child: Text(
                   "With Research Package you can obtain informed consent, create surveys and collect their results",
                   textAlign: TextAlign.center,
@@ -92,8 +91,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InformedConsentPage()));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => InformedConsentPage()));
                   },
                 ),
               ),
@@ -109,8 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => LinearSurveyPage()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LinearSurveyPage()));
                   },
                 ),
               ),
@@ -126,8 +124,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => NavigableSurveyPage()));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => NavigableSurveyPage()));
                   },
                 ),
               ),

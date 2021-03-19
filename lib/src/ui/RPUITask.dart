@@ -272,7 +272,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _currentStepIndex != 0 || !navigableTask
+                        // if first question or its a navigable task
+                        _currentStepIndex == 0 || navigableTask
                             ? Container()
                             : FlatButton(
                                 onPressed: () => blocTask.sendStatus(StepStatus.Back),
