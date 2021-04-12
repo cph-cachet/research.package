@@ -1,6 +1,7 @@
 part of research_package_model;
 
-/// Class representing an Answer Format that lets participants use a slider to choose a value.
+/// Class representing an Answer Format that lets participants use a slider
+/// to choose a value.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPSliderAnswerFormat extends RPAnswerFormat {
   double _minValue;

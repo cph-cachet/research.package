@@ -14,7 +14,8 @@ class RPUIDateTimeQuestionBody extends StatefulWidget {
   }
 
   @override
-  _RPUIDateTimeQuestionBodyState createState() => _RPUIDateTimeQuestionBodyState();
+  _RPUIDateTimeQuestionBodyState createState() =>
+      _RPUIDateTimeQuestionBodyState();
 }
 
 class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody>

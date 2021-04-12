@@ -13,7 +13,8 @@ class RPUIVisualConsentStep extends StatefulWidget {
   _RPUIVisualConsentStep createState() => _RPUIVisualConsentStep();
 }
 
-class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTickerProviderStateMixin {
+class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
+    with SingleTickerProviderStateMixin {
   Animation<double> _scale;
   AnimationController _controller;
   int _pageNr = 0;
@@ -22,7 +23,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: Duration(milliseconds: 400), vsync: this);
+    _controller =
+        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
     _scale = Tween(begin: 0.6, end: 1.0)
         .chain(
           CurveTween(
@@ -43,13 +45,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
 
   _pushContent(String title, String content) {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => _ContentRoute(
-          title: title,
-          content: content,
-        ),
-      ),
-    );
+          MaterialPageRoute(
+            builder: (context) => _ContentRoute(
+                  title: title,
+                  content: content,
+                ),
+          ),
+        );
   }
 
   void _showCancelDialog() {
@@ -58,7 +60,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
       builder: (context) {
         RPLocalizations locale = RPLocalizations.of(context);
         return AlertDialog(
-          content: Text(locale?.translate('quit_confirmation') ?? "Are you sure you want to quit?"),
+          content: Text(locale?.translate('quit_confirmation') ??
+              "Are you sure you want to quit?"),
           actions: <Widget>[
             FlatButton(
               child: Text(locale?.translate('YES') ?? "YES"),
@@ -324,11 +327,12 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                 ),
                 GestureDetector(
                   onTap: () => _pushContent(
-                    section.title,
-                    section.content,
-                  ),
+                        section.title,
+                        section.content,
+                      ),
                   child: Text(
-                    RPLocalizations.of(context)?.translate('Learn more...') ?? "Learn more...",
+                    RPLocalizations.of(context)?.translate('Learn more...') ??
+                        "Learn more...",
                     style: TextStyle(color: Theme.of(context).primaryColor),
                   ),
                 ),
@@ -363,7 +367,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               padding: EdgeInsets.all(10.0),
               child: _lastPage
                   ? Text(
-                      RPLocalizations.of(context)?.translate('see_summary') ?? "SEE SUMMARY",
+                      RPLocalizations.of(context)?.translate('see_summary') ??
+                          "SEE SUMMARY",
                       style: TextStyle(color: Colors.white),
                     )
                   : Text(
@@ -372,8 +377,9 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                     ),
               onPressed: _lastPage
                   ? () => blocTask.sendStatus(StepStatus.Finished)
-                  : () =>
-                      controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
+                  : () => controller.nextPage(
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.fastOutSlowIn),
             ),
           ),
         ],
@@ -430,7 +436,8 @@ class _ContentRoute extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: SingleChildScrollView(child: Text(locale?.translate(this.content) ?? this.content)),
+        child: SingleChildScrollView(
+            child: Text(locale?.translate(this.content) ?? this.content)),
       ),
     );
   }
@@ -453,7 +460,8 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
     return Container(
       child: ExpansionTile(
         title: Text(
-          locale?.translate(widget.dataTypeSection.dataName) ?? widget.dataTypeSection.dataName,
+          locale?.translate(widget.dataTypeSection.dataName) ??
+              widget.dataTypeSection.dataName,
           textAlign: TextAlign.start,
         ),
         childrenPadding: EdgeInsets.only(left: 15, right: 15, bottom: 5),

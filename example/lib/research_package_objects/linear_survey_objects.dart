@@ -27,52 +27,66 @@ List<RPChoice> instruments = [
 ];
 
 List<RPImageChoice> images = [
-  RPImageChoice.withParams(Image.asset('assets/images/very-sad.png'), 0, 'Feeling very sad'),
-  RPImageChoice.withParams(Image.asset('assets/images/sad.png'), 0, 'Feeling sad'),
-  RPImageChoice.withParams(Image.asset('assets/images/ok.png'), 0, 'Feeling ok'),
-  RPImageChoice.withParams(Image.asset('assets/images/happy.png'), 0, 'Feeling happy'),
-  RPImageChoice.withParams(Image.asset('assets/images/very-happy.png'), 0, 'Feeling very happy'),
+  RPImageChoice.withParams(
+      Image.asset('assets/images/very-sad.png'), 0, 'Feeling very sad'),
+  RPImageChoice.withParams(
+      Image.asset('assets/images/sad.png'), 0, 'Feeling sad'),
+  RPImageChoice.withParams(
+      Image.asset('assets/images/ok.png'), 0, 'Feeling ok'),
+  RPImageChoice.withParams(
+      Image.asset('assets/images/happy.png'), 0, 'Feeling happy'),
+  RPImageChoice.withParams(
+      Image.asset('assets/images/very-happy.png'), 0, 'Feeling very happy'),
 ];
 
-RPChoiceAnswerFormat timeAnswerFormat =
-    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, timeChoices);
+RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(
+    ChoiceAnswerStyle.SingleChoice, timeChoices);
 // All types of DateTime answer formats
 RPDateTimeAnswerFormat timeOfDayAnswerFormat =
     RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.TimeOfDay);
 RPDateTimeAnswerFormat dateAndTimeAnswerFormat =
     RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.DateAndTime);
-RPDateTimeAnswerFormat dateAnswerFormat = RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
+RPDateTimeAnswerFormat dateAnswerFormat =
+    RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
 
 // Slider
-RPSliderAnswerFormat sliderAnswerFormat =
-    RPSliderAnswerFormat.withParams(0, 100, divisions: 10, prefix: "\$", suffix: " paid");
+RPSliderAnswerFormat sliderAnswerFormat = RPSliderAnswerFormat
+    .withParams(0, 100, divisions: 10, prefix: "\$", suffix: " paid");
 
-RPChoiceAnswerFormat joyfulActivitiesAnswerFormat =
-    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
+RPChoiceAnswerFormat joyfulActivitiesAnswerFormat = RPChoiceAnswerFormat
+    .withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
 
-RPChoiceAnswerFormat instrumentsAnswerFormat =
-    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, instruments);
+RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat.withParams(
+    ChoiceAnswerStyle.MultipleChoice, instruments);
 
-RPIntegerAnswerFormat weightIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 200, "KG");
+RPIntegerAnswerFormat weightIntegerAnswerFormat =
+    RPIntegerAnswerFormat.withParams(0, 200, "KG");
 
 RPBooleanAnswerFormat smokingBooleanAnswerFormat =
     RPBooleanAnswerFormat.withParams("Yes, absolutely", "No, never");
 
-RPIntegerAnswerFormat minutesIntegerAnswerFormat = RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
+RPIntegerAnswerFormat minutesIntegerAnswerFormat =
+    RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
 
-RPTextAnswerFormat textAnswerFormat = RPTextAnswerFormat.withParams("Write your answer here");
+RPTextAnswerFormat textAnswerFormat =
+    RPTextAnswerFormat.withParams("Write your answer here");
 
-RPImageChoiceAnswerFormat imageChoiceAnswerFormat = RPImageChoiceAnswerFormat.withParams(images);
+RPImageChoiceAnswerFormat imageChoiceAnswerFormat =
+    RPImageChoiceAnswerFormat.withParams(images);
 
 RPQuestionStep additionalInfoQuestionStep = RPQuestionStep.withAnswerFormat(
-    'additionalInfoQuestionStepID', 'Do you have any more details you would like to add?', textAnswerFormat,
+    'additionalInfoQuestionStepID',
+    'Do you have any more details you would like to add?',
+    textAnswerFormat,
     optional: true);
 
 RPQuestionStep timeOfDayQuestionStep = RPQuestionStep.withAnswerFormat(
     'timeOfDayQuestionStepID', 'When did you wake up?', timeOfDayAnswerFormat);
 
 RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep.withAnswerFormat(
-    'dateAndTimeQuestionStepID', 'When did you last eat unhealthy food?', dateAndTimeAnswerFormat);
+    'dateAndTimeQuestionStepID',
+    'When did you last eat unhealthy food?',
+    dateAndTimeAnswerFormat);
 
 RPQuestionStep dateQuestionStep = RPQuestionStep.withAnswerFormat(
     'dateQuestionStepID', 'When did you last drink alcohol?', dateAnswerFormat);
@@ -98,16 +112,22 @@ RPQuestionStep smokingQuestionStep = RPQuestionStep.withAnswerFormat(
 );
 
 RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
-    "instrumentChoiceQuestionStepID", "Which instrument are you playing?", instrumentsAnswerFormat);
+    "instrumentChoiceQuestionStepID",
+    "Which instrument are you playing?",
+    instrumentsAnswerFormat);
 
 RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
-    "happinessChoiceQuestionStepID", "What makes you happy?", joyfulActivitiesAnswerFormat);
+    "happinessChoiceQuestionStepID",
+    "What makes you happy?",
+    joyfulActivitiesAnswerFormat);
 
 RPQuestionStep weightQuestionStep = RPQuestionStep.withAnswerFormat(
     "weightQuestionStepID", "What is your weight?", weightIntegerAnswerFormat);
 
 RPQuestionStep minutesQuestionStep = RPQuestionStep.withAnswerFormat(
-    "minutesQuestionStepID", "How many minutes do you spend practicing a week?", minutesIntegerAnswerFormat);
+    "minutesQuestionStepID",
+    "How many minutes do you spend practicing a week?",
+    minutesIntegerAnswerFormat);
 
 RPQuestionStep imageChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
   "imageStepID",
@@ -127,7 +147,9 @@ RPCompletionStep completionStep = RPCompletionStep("completionID")
   ..text = "Thank you for filling out the survey!";
 
 RPInstructionStep instructionStep = RPInstructionStep(
-    identifier: "instructionID", title: "Welcome!", detailText: "For the sake of science of course...")
+    identifier: "instructionID",
+    title: "Welcome!",
+    detailText: "For the sake of science of course...")
   ..text =
       "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.";
 

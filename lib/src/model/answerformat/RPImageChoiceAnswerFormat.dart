@@ -1,13 +1,15 @@
 part of research_package_model;
 
-/// Class representing an Answer Format that lets participants choose an image from a set of images.
+/// Class representing an Answer Format that lets participants choose an image
+/// from a set of images.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPImageChoiceAnswerFormat extends RPAnswerFormat {
   List<RPImageChoice> _choices;
 
   RPImageChoiceAnswerFormat();
 
-  /// Returns an initialized [RPImageChoiceAnswerFormat] with the given list of [RPImageChoice]s.
+  /// Returns an initialized [RPImageChoiceAnswerFormat] with the given list of
+  /// [RPImageChoice]s.
   RPImageChoiceAnswerFormat.withParams(this._choices);
 
   @override
@@ -15,7 +17,8 @@ class RPImageChoiceAnswerFormat extends RPAnswerFormat {
     return QuestionType.ImageChoice;
   }
 
-  /// A list of available [RPImageChoice] objects which represent the choices to the participants.
+  /// A list of available [RPImageChoice] objects which represent the choices to
+  /// the participants.
   List<RPImageChoice> get choices => _choices;
 
   set choices(List<RPImageChoice> choices) {
@@ -27,7 +30,8 @@ class RPImageChoiceAnswerFormat extends RPAnswerFormat {
   Map<String, dynamic> toJson() => _$RPImageChoiceAnswerFormatToJson(this);
 }
 
-/// The image choice object which the participants can choose from, during a [RPQuestionStep] with [RPImageChoiceAnswerFormat]
+/// The image choice object which the participants can choose from, during a
+/// [RPQuestionStep] with [RPImageChoiceAnswerFormat]
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPImageChoice {
   @JsonKey(ignore: true)

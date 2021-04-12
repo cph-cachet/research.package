@@ -7,7 +7,8 @@ class RPUIBooleanQuestionBody extends StatefulWidget {
   RPUIBooleanQuestionBody(this.answerFormat, this.onResultChange);
 
   @override
-  _RPUIBooleanQuestionBodyState createState() => _RPUIBooleanQuestionBodyState();
+  _RPUIBooleanQuestionBodyState createState() =>
+      _RPUIBooleanQuestionBodyState();
 }
 
 class _RPUIBooleanQuestionBodyState extends State<RPUIBooleanQuestionBody>
@@ -59,7 +60,8 @@ class _BooleanButton extends StatefulWidget {
   final Function selectedCallBack;
   final bool selectedVal;
 
-  _BooleanButton({this.text, this.value, this.selectedCallBack, this.selectedVal});
+  _BooleanButton(
+      {this.text, this.value, this.selectedCallBack, this.selectedVal});
 
   @override
   _BooleanButtonState createState() => _BooleanButtonState();
@@ -85,10 +87,14 @@ class _BooleanButtonState extends State<_BooleanButton> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 13),
                 decoration: !widget.value == false
-                    ? BoxDecoration(border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)))
+                    ? BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: Theme.of(context).dividerColor)))
                     : null,
                 child: Text(
-                  RPLocalizations.of(context)?.translate(widget.text) ?? widget.text,
+                  RPLocalizations.of(context)?.translate(widget.text) ??
+                      widget.text,
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 ),
               ),
