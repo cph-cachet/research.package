@@ -2,10 +2,13 @@ part of research_package_model;
 
 /// Represents the content of an informed consent document.
 ///
-/// Research Package uses [RPConsentDocument] to provide content for [RPVisualConsentStep] where the content if presented to the participant
-/// and for [RPConsentReviewStep] where the user can review and sign the document. The building blocks of a consent document are [sections].
+/// Research Package uses [RPConsentDocument] to provide content for
+/// [RPVisualConsentStep] where the content if presented to the participant
+/// and for [RPConsentReviewStep] where the user can review and sign the document.
+/// The building blocks of a consent document are [sections].
 /// They hold the content which is presented and later agreed by the participant.
-/// By adding [signatures] to the consent document the parameters of the signature(s) to collect can be specified.
+/// By adding [signatures] to the consent document the parameters of the
+/// signature(s) to collect can be specified.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPConsentDocument {
   String _title;
@@ -76,6 +79,7 @@ class RPConsentDocument {
   //TODO: PDF generating
   //Generating the consent pdf is this class' task as well
 
-  factory RPConsentDocument.fromJson(Map<String, dynamic> json) => _$RPConsentDocumentFromJson(json);
+  factory RPConsentDocument.fromJson(Map<String, dynamic> json) =>
+      _$RPConsentDocumentFromJson(json);
   Map<String, dynamic> toJson() => _$RPConsentDocumentToJson(this);
 }

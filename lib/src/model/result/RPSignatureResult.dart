@@ -16,11 +16,13 @@ class RPSignatureResult {
 
   RPSignatureResult();
 
-  RPSignatureResult.withParams(this.firstName, this.lastName, this.signatureImage);
+  RPSignatureResult.withParams(
+      this.firstName, this.lastName, this.signatureImage);
 
   /// Returns the person's full name with space between first and last name
   String get fullName => "${this.firstName} ${this.lastName}";
 
-  factory RPSignatureResult.fromJson(Map<String, dynamic> json) => _$RPSignatureResultFromJson(json);
+  factory RPSignatureResult.fromJson(Map<String, dynamic> json) =>
+      _$RPSignatureResultFromJson(json);
   Map<String, dynamic> toJson() => _$RPSignatureResultToJson(this);
 }

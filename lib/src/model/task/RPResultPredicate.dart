@@ -1,8 +1,10 @@
 part of research_package_model;
 
-/// This class examines a prediction and communicates its result to an [RPStepNavigationRule].
+/// This class examines a prediction and communicates its result to an
+/// [RPStepNavigationRule].
 ///
-/// It checks whether the [expectedValue] is identical to the result's value. It digs down the result hierarchy with the help of [RPResultSelector].
+/// It checks whether the [expectedValue] is identical to the result's value.
+/// It digs down the result hierarchy with the help of [RPResultSelector].
 class RPResultPredicate {
   dynamic expectedValue;
   RPResultSelector _resultSelector;
@@ -10,20 +12,27 @@ class RPResultPredicate {
   bool _predictionResult;
   ChoiceQuestionResultPredicateMode _choiceQuestionResultPredicateMode;
 
-  /// Result predicate for the boolean answer format [RPBooleanAnswerFormat]. The [expectedValue] here should be a boolean.
+  /// Result predicate for the boolean answer format [RPBooleanAnswerFormat].
+  /// The [expectedValue] here should be a boolean.
   RPResultPredicate.forBooleanQuestionResult(
-      {@required RPResultSelector resultSelector, @required bool expectedValue}) {
+      {@required RPResultSelector resultSelector,
+      @required bool expectedValue}) {
     this._resultSelector = resultSelector;
     this.expectedValue = expectedValue;
 
     getPredictionResult = directPredictionResult;
   }
 
-  /// Result predicate for choice question types. The [expectedValue] here should correspond to the [value] of an [RPChoice] object.
+  /// Result predicate for choice question types. The [expectedValue] here
+  /// should correspond to the [value] of an [RPChoice] object.
   RPResultPredicate.forChoiceQuestionResult(
-      {@required RPResultSelector resultSelector,
-      @required List<int> expectedValue,
-      @required ChoiceQuestionResultPredicateMode choiceQuestionResultPredicateMode}) {
+      {@required
+          RPResultSelector resultSelector,
+      @required
+          List<int> expectedValue,
+      @required
+          ChoiceQuestionResultPredicateMode
+              choiceQuestionResultPredicateMode}) {
     this._resultSelector = resultSelector;
     this.expectedValue = expectedValue;
     this._choiceQuestionResultPredicateMode = choiceQuestionResultPredicateMode;
@@ -34,7 +43,8 @@ class RPResultPredicate {
   bool directPredictionResult() {
     RPStepResult resultFromResultSelector = _resultSelector.getResult();
 
-    if (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] == expectedValue) {
+    if (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] ==
+        expectedValue) {
       this._predictionResult = true;
     } else {
       this._predictionResult = false;
@@ -56,7 +66,8 @@ class RPResultPredicate {
 
           try {
             List<int> results = List<int>();
-            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] as List<RPChoice>).forEach((choice) {
+            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY]
+                as List<RPChoice>).forEach((choice) {
               results.add(choice.value);
             });
             results.sort();
@@ -76,7 +87,8 @@ class RPResultPredicate {
 
           try {
             List<int> results = List<int>();
-            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY] as List<RPChoice>).forEach((choice) {
+            (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY]
+                as List<RPChoice>).forEach((choice) {
               results.add(choice.value);
             });
             results.sort();
@@ -100,14 +112,16 @@ class RPResultPredicate {
 class RPResultSelector {
   Function() getResult;
 
-  /// Use this constructor if the step which the navigation rule is bound to, is a regular step
+  /// Use this constructor if the step which the navigation rule is bound to,
+  /// is a regular step
   RPResultSelector.forStepId(String stepId) {
     getResult = () {
       return _resultForStepId(stepId);
     };
   }
 
-  /// Use this constructor if the step the navigation rule is bound to is part of a Form Step. (Form Steps have different result structure)
+  /// Use this constructor if the step the navigation rule is bound to is part of
+  /// a Form Step. (Form Steps have different result structure)
   RPResultSelector.forStepIdInFormStep(String stepId) {
     getResult = () {
       return _resultForStepIdInFormStep(stepId);
@@ -134,10 +148,13 @@ class RPResultSelector {
     if (_recentTaskResult != null) {
       _recentTaskResult.results.forEach((key, stepResult) {
         try {
-          // By doing this we ensure that we are looking up only until the first match
-          _foundStepResult = _foundStepResult ?? stepResult.results[stepIdentifier];
+          // By doing this we ensure that we are looking up only until the
+          // first match
+          _foundStepResult =
+              _foundStepResult ?? stepResult.results[stepIdentifier];
         } catch (e) {
-          print("No matching result found in this FormStep, proceeding to the next one (if any)");
+          print(
+              "No matching result found in this FormStep, proceeding to the next one (if any)");
         }
       });
     } else {

@@ -1,7 +1,10 @@
 part of research_package_model;
 
-// Note: The streams are open for the whole application run. Maybe the singleton solution is not the best and a new bloc instance is better to create each time it's needed.
-/// The BLoC file for the communication between the task [RPUITask] and its steps [RPStep].
+// Note: The streams are open for the whole application run. Maybe the singleton
+// solution is not the best and a new bloc instance is better to create each time it's needed.
+
+/// The BLoC file for the communication between the task [RPUITask] and its
+/// steps [RPStep].
 class BlocTask {
   final _stepStatusController = StreamController<StepStatus>.broadcast();
   // Need to get the information after adding to the sink, that's why BehaviorSubject
@@ -14,21 +17,25 @@ class BlocTask {
 
   /// The function to update the current status of the question
   ///
-  /// Based on the status the task will navigate to the next question and manage the result of the question
+  /// Based on the status the task will navigate to the next question and manage
+  /// the result of the question
   Function(StepStatus) get sendStatus => _stepStatusController.sink.add;
 
   /// The function to send the latest result of the step to the task
   ///
-  /// Usually it's called as part of the [createAndSendResult] implementation in those classes which are
+  /// Usually it's called as part of the [createAndSendResult] implementation
+  /// in those classes which are
   /// implementing the [CanSaveResult] abstract class
   Function(RPResult) get sendStepResult => _stepResultController.add;
 
-  /// The function to update the task progress. The task progress is shown in the appbar on top of the screen.
-  /// It shows how many questions are there in total and where the participant stands in the process so far.
+  /// The function to update the task progress. The task progress is shown in
+  /// the appbar on top of the screen. It shows how many questions are there in
+  /// total and where the participant stands in the process so far.
   Function(RPTaskProgress) get updateTaskProgress =>
       _taskProgressController.add;
 
-  /// The function to update the task result which is shown in the AppBar for [RPOrderedTask]
+  /// The function to update the task result which is shown in the AppBar
+  /// for [RPOrderedTask]
   Function(RPTaskResult) get updateTaskResult => _taskResultController.add;
 
   //Retrieve data from stream
@@ -45,7 +52,8 @@ class BlocTask {
   // Other stream properties
   RPTaskProgress get lastProgressValue => _taskProgressController.stream.value;
 
-  /// The current state of the Task Result which can be accessed throughout the framework
+  /// The current state of the Task Result which can be accessed throughout
+  /// the framework
   RPTaskResult get lastTaskResult => _taskResultController.stream.value;
 
   dispose() {
@@ -56,5 +64,6 @@ class BlocTask {
   }
 }
 
-/// The singleton object of the task BLoC class which can be accessed throughout Research Package
+/// The singleton object of the task BLoC class which can be accessed
+/// throughout Research Package
 final blocTask = BlocTask();

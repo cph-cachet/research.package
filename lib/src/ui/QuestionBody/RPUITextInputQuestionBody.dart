@@ -7,7 +7,8 @@ class RPUITextInputQuestionBody extends StatefulWidget {
   RPUITextInputQuestionBody(this.answerFormat, this.onResultChange);
 
   @override
-  _RPUITextInputQuestionBodyState createState() => _RPUITextInputQuestionBodyState();
+  _RPUITextInputQuestionBodyState createState() =>
+      _RPUITextInputQuestionBodyState();
 }
 
 class _RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
@@ -31,7 +32,9 @@ class _RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
         maxLines: 10,
         onChanged: checkInput,
         decoration: InputDecoration(
-          hintText: RPLocalizations.of(context).translate(widget.answerFormat.hintText) ??
+          hintText: RPLocalizations
+                  .of(context)
+                  .translate(widget.answerFormat.hintText) ??
               widget.answerFormat.hintText,
           border: OutlineInputBorder(),
         ),

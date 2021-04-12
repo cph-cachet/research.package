@@ -11,7 +11,6 @@ part of research_package_model;
 /// Used in [RPStepResult]*
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPAnswerFormat {
-
   /// The Question Type of the Answer Format. Should be implemented in the subclasses.
   QuestionType questionType;
 
@@ -23,7 +22,8 @@ class RPAnswerFormat {
   // Also, they are _almost_ the same as the questionResult classes in RK
 //  QuestionType get questionType => QuestionType.None;
 
-  factory RPAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPAnswerFormatFromJson(json);
+  factory RPAnswerFormat.fromJson(Map<String, dynamic> json) =>
+      _$RPAnswerFormatFromJson(json);
   Map<String, dynamic> toJson() => _$RPAnswerFormatToJson(this);
 }
 

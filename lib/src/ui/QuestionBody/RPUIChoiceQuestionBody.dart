@@ -52,7 +52,9 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
       }
     }
 
-    selectedChoices.length != 0 ? widget.onResultChange(selectedChoices) : widget.onResultChange(null);
+    selectedChoices.length != 0
+        ? widget.onResultChange(selectedChoices)
+        : widget.onResultChange(null);
     print("You seleceted: $selectedChoices");
   }
 
@@ -60,7 +62,9 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
     return _ChoiceButton(
       choice: widget._answerFormat.choices[index],
       selectedCallBack: _buttonCallBack,
-      selected: selectedChoices.contains(widget._answerFormat.choices[index]) ? true : false,
+      selected: selectedChoices.contains(widget._answerFormat.choices[index])
+          ? true
+          : false,
       currentChoices: selectedChoices,
       index: index,
       isLastChoice: index == widget._answerFormat.choices.length - 1,
@@ -78,9 +82,12 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(widget._answerFormat.answerStyle == ChoiceAnswerStyle.MultipleChoice
-              ? (locale?.translate('(Choose one or more options)') ?? "(Choose one or more options)")
-              : (locale?.translate('(Choose one option)') ?? "(Choose one option)")),
+          child: Text(widget._answerFormat.answerStyle ==
+                  ChoiceAnswerStyle.MultipleChoice
+              ? (locale?.translate('(Choose one or more options)') ??
+                  "(Choose one or more options)")
+              : (locale?.translate('(Choose one option)') ??
+                  "(Choose one option)")),
         ),
         ListView.builder(
           shrinkWrap: true,
@@ -145,21 +152,31 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                   ),
             Expanded(
               child: Container(
-                padding: widget.choice.isFreeText ? null : EdgeInsets.only(bottom: 13),
+                padding: widget.choice.isFreeText
+                    ? null
+                    : EdgeInsets.only(bottom: 13),
                 decoration: !widget.isLastChoice
-                    ? BoxDecoration(border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)))
+                    ? BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: Theme.of(context).dividerColor)))
                     : null,
                 child: widget.choice.isFreeText
                     ? Container(
                         child: TextField(
                           onChanged: (newText) => widget.choice.text = newText,
                           decoration: InputDecoration(
-                              hintText: RPLocalizations.of(context).translate("Other") ?? "Other"),
+                              hintText: RPLocalizations
+                                      .of(context)
+                                      .translate("Other") ??
+                                  "Other"),
                         ),
                       )
                     : Text(
-                        locale?.translate(widget.choice.text) ?? widget.choice.text,
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                        locale?.translate(widget.choice.text) ??
+                            widget.choice.text,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w400),
                         softWrap: true,
                       ),
               ),

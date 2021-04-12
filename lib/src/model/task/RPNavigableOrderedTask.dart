@@ -1,31 +1,38 @@
 part of research_package_model;
 
-/// The [RPNavigableOrderedTask] class adds conditional step navigation to the behavior inherited from the [RPOrderedTask] class.
+/// The [RPNavigableOrderedTask] class adds conditional step navigation to the
+/// behavior inherited from the [RPOrderedTask] class.
 ///
-/// It's able to show different questions based on previous answers by using [RPPredicateStepNavigationRule]s.
-/// This task allows participant to go back to/looping through previous questions. In that case only the last answer given to the question will be saved.
+/// It's able to show different questions based on previous answers by using
+/// [RPPredicateStepNavigationRule]s.
+/// This task allows participant to go back to/looping through previous questions.
+/// In that case only the last answer given to the question will be saved.
 class RPNavigableOrderedTask extends RPOrderedTask {
   Map<String, RPStepNavigationRule> _stepNavigationRules;
 //  List<RPSkipStepNavigationRule> _skipStepNavigationRules;
 //  List<RPStepModifier> _stepModifiers;
   bool shouldReportProgress;
 
-  RPNavigableOrderedTask(String identifier, steps, {closeAfterFinished = true, shouldReportProgress = true})
+  RPNavigableOrderedTask(String identifier, steps,
+      {closeAfterFinished = true, shouldReportProgress = true})
       : super(identifier, steps, closeAfterFinished: closeAfterFinished) {
     _stepNavigationRules = Map<String, RPStepNavigationRule>();
   }
 
-  /// A dictionary of step identifier Strings and their corresponding navigation rule([RPStepNavigationRule]).
-  Map<String, RPStepNavigationRule> get stepNavigationRules => this._stepNavigationRules;
+  /// A dictionary of step identifier Strings and their corresponding navigation
+  /// rule([RPStepNavigationRule]).
+  Map<String, RPStepNavigationRule> get stepNavigationRules =>
+      this._stepNavigationRules;
 
 //  List<RPSkipStepNavigationRule> get skipStepNavigationRules => this._skipStepNavigationRules;
 //  List<RPStepModifier> get stepModifiers => this._stepModifiers;
 //  bool get shouldReportProgress => this._shouldReportProgress;
 
-  /// Returns the step after a specified step if there's any, taking the [RPStepNavigationRule]s into consideration.
+  /// Returns the step after a specified step if there's any, taking the
+  /// [RPStepNavigationRule]s into consideration.
   ///
-  /// If the specified step is ```null``` then it returns the first step.
-  /// Returns ```null``` if [step] was the last one in the sequence.
+  /// If the specified step is `null` then it returns the first step.
+  /// Returns `null` if [step] was the last one in the sequence.
   @override
   RPStep getStepAfterStep(RPStep step, RPTaskResult result) {
     RPStep _stepToReturn;
@@ -50,10 +57,12 @@ class RPNavigableOrderedTask extends RPOrderedTask {
 
       switch (rule.runtimeType) {
         case RPStepReorganizerRule:
-          RPStepResult tempResult = (rule as RPStepReorganizerRule).resultSelector.getResult();
+          RPStepResult tempResult =
+              (rule as RPStepReorganizerRule).resultSelector.getResult();
           List identifiersToKeep = [];
           (tempResult.results["answer"] as List<RPChoice>).forEach((element) {
-            String id = (rule as RPStepReorganizerRule)._removalMap[element.value];
+            String id =
+                (rule as RPStepReorganizerRule)._removalMap[element.value];
             identifiersToKeep.add(id);
           });
 
@@ -62,7 +71,8 @@ class RPNavigableOrderedTask extends RPOrderedTask {
             _lastStep = steps.last;
           }
 
-          steps.removeWhere((step) => !identifiersToKeep.contains(step.identifier));
+          steps.removeWhere(
+              (step) => !identifiersToKeep.contains(step.identifier));
 
           steps.add(_lastStep);
 
@@ -71,10 +81,12 @@ class RPNavigableOrderedTask extends RPOrderedTask {
           break;
         case RPStepJumpRule:
           RPStepJumpRule jumpRule = (rule as RPStepJumpRule);
-          RPStepResult tempResult = (rule as RPStepJumpRule).resultSelector.getResult();
+          RPStepResult tempResult =
+              (rule as RPStepJumpRule).resultSelector.getResult();
 
-          _stepToReturn = _steps.firstWhere(
-              (step) => step.identifier == jumpRule._answerMap[tempResult.results["answer"].first.value]);
+          _stepToReturn = _steps.firstWhere((step) =>
+              step.identifier ==
+              jumpRule._answerMap[tempResult.results["answer"].first.value]);
 
           break;
         case RPPredicateStepNavigationRule:
@@ -94,7 +106,8 @@ class RPNavigableOrderedTask extends RPOrderedTask {
           });
           break;
         case RPDirectStepNavigationRule:
-          String destinationStepIdentifier = (rule as RPDirectStepNavigationRule).destinationStepIdentifier;
+          String destinationStepIdentifier =
+              (rule as RPDirectStepNavigationRule).destinationStepIdentifier;
           _steps.forEach((step) {
             if (step.identifier == destinationStepIdentifier) {
               _stepToReturn = step;
@@ -131,7 +144,8 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   }
 
   /// Returns the navigation rule for the given step identifier
-  RPStepNavigationRule navigationRuleForTriggerStepIdentifier(String triggerStepIdentifier) {
+  RPStepNavigationRule navigationRuleForTriggerStepIdentifier(
+      String triggerStepIdentifier) {
     return _stepNavigationRules[triggerStepIdentifier];
   }
 

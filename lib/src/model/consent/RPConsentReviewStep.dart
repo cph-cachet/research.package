@@ -1,12 +1,15 @@
 part of research_package_model;
 
-/// The step for presenting the consent document for review and collecting the signature
+/// The step for presenting the consent document for review and collecting the
+/// signature
 ///
 /// The [RPConsentReviewStep] is used for:
-/// - presenting the content of each section ([RPConsentSection]) of the consent document ([RPConsentDocument]) in a summarized form to the participant
+/// - presenting the content of each section ([RPConsentSection]) of the
+///   consent document ([RPConsentDocument]) in a summarized form to the participant
 /// - collecting name (optional) and signature (optional)
 ///
-/// The presence or type of the to be collected signature depends on the [consentDocument]'s signature list.
+/// The presence or type of the to be collected signature depends on the
+/// [consentDocument]'s signature list.
 class RPConsentReviewStep extends RPStep {
   RPConsentDocument _consentDocument;
   String _text;
@@ -14,9 +17,11 @@ class RPConsentReviewStep extends RPStep {
 
   /// Returns an initialized Consent Review Step
   ///
-  /// If the consent document doesn't have any signatures then no signature collection stage is part of the flow.
+  /// If the consent document doesn't have any signatures then no signature
+  /// collection stage is part of the flow.
   /// On how to specify a signature go to [RPConsentSignature].
-  RPConsentReviewStep(String identifier, RPConsentDocument consentDocument) : super(identifier) {
+  RPConsentReviewStep(String identifier, RPConsentDocument consentDocument)
+      : super(identifier) {
     _consentDocument = consentDocument;
   }
 

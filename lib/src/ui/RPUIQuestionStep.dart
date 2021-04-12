@@ -12,7 +12,8 @@ class RPUIQuestionStep extends StatefulWidget {
   _RPUIQuestionStepState createState() => _RPUIQuestionStepState();
 }
 
-class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
+class _RPUIQuestionStepState extends State<RPUIQuestionStep>
+    with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
   dynamic _currentQuestionBodyResult;
   bool readyToProceed;
@@ -91,7 +92,8 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
           // Title
           (widget.step.title != null)
               ? Padding(
-                  padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 0),
+                  padding: const EdgeInsets.only(
+                      bottom: 24, left: 8, right: 8, top: 0),
                   child: Text(
                     locale?.translate(widget.step.title) ?? widget.step.title,
                     style: RPStyles.h2,
@@ -106,7 +108,8 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult 
           widget.step.optional
               ? FlatButton(
                   onPressed: () => skipQuestion(),
-                  child: Text(locale?.translate("Skip this question") ?? "Skip this question"),
+                  child: Text(locale?.translate("Skip this question") ??
+                      "Skip this question"),
                 )
               : Container(),
         ],

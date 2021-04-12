@@ -3,18 +3,20 @@ part of research_package_model;
 /// The result object a Step creates
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPStepResult extends RPResult {
-  /// The title of the question. It is set by the [RPUIStep] and [RPUIFormStep] so it's easier to trace back the answer result in the result JSON.
+  /// The title of the question. It is set by the [RPUIStep] and [RPUIFormStep]
+  /// so it's easier to trace back the answer result in the result JSON.
   String questionTitle;
 
   Map<String, dynamic> _results;
 
   /// The Answer Format ([RPAnswerFormat]) which generated this result.
   ///
-  /// It stores the details about the question (e.g. the available choices) therefore it's
-  /// necessary for understanding the value of the result which usually doesn't tell a lot in itself.
+  /// It stores the details about the question (e.g. the available choices)
+  /// therefore it's necessary for understanding the value of the result which
+  /// usually doesn't tell a lot in itself.
   RPAnswerFormat answerFormat;
 
-  //When StepResult only has a single value, pair that value with the following key
+  // When StepResult only has a single value, pair that value with the following key
   /// The default key for the results map. It's used when there's only one answer result.
   /// In that case the result value is saved under this key in the map.
   @JsonKey(ignore: true)
@@ -67,6 +69,7 @@ class RPStepResult extends RPResult {
     this.endDate = DateTime.now();
   }
 
-  factory RPStepResult.fromJson(Map<String, dynamic> json) => _$RPStepResultFromJson(json);
+  factory RPStepResult.fromJson(Map<String, dynamic> json) =>
+      _$RPStepResultFromJson(json);
   Map<String, dynamic> toJson() => _$RPStepResultToJson(this);
 }
