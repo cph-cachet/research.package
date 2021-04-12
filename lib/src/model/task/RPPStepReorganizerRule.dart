@@ -2,16 +2,19 @@ part of research_package_model;
 
 /// A navigation rule which based on predicate(s)'s ([RPResultPredicate]) result(s).
 ///
-/// By using [RPPredicateStepNavigationRule] different questions can be shown based on the result of previously answered questions.
-/// The [RPPredicateStepNavigationRule] checks the predicate [RPResultPredicate] and if it's true, puts the
-/// destination step as next in the sequence. (Destination step identifiers are declared in the [resultPredicatesWithDestinationIdentifiers])
+/// By using [RPPredicateStepNavigationRule] different questions can be shown
+/// based on the result of previously answered questions.
+/// The [RPPredicateStepNavigationRule] checks the predicate [RPResultPredicate]
+/// and if it's true, puts the destination step as next in the sequence.
+/// (Destination step identifiers are declared in the [resultPredicatesWithDestinationIdentifiers])
 class RPStepReorganizerRule extends RPStepNavigationRule {
   RPResultSelector _resultSelector;
 
   /// Those steps will be removed which are not selected
   Map<dynamic, String> _removalMap;
 
-  RPStepReorganizerRule(String reorganizerStepId, Map<dynamic, String> removalMap) {
+  RPStepReorganizerRule(
+      String reorganizerStepId, Map<dynamic, String> removalMap) {
     _resultSelector = RPResultSelector.forStepId(reorganizerStepId);
     this._removalMap = removalMap;
   }

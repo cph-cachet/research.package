@@ -4,7 +4,8 @@ import 'research_package_objects/linear_survey_objects.dart';
 import 'dart:convert';
 
 class LinearSurveyPage extends StatelessWidget {
-  String _encode(Object object) => const JsonEncoder.withIndent(' ').convert(object);
+  String _encode(Object object) =>
+      const JsonEncoder.withIndent(' ').convert(object);
 
   void resultCallback(RPTaskResult result) {
     // Do anything with the result
@@ -18,7 +19,8 @@ class LinearSurveyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Theme(
       data: isDarkMode
           // Dark mode

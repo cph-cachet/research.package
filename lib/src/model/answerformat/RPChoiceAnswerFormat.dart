@@ -1,6 +1,7 @@
 part of research_package_model;
 
-/// Class representing an Answer Format that lets participants choose from a fixed set of choices.
+/// Class representing an Answer Format that lets participants choose from a
+/// fixed set of choices.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPChoiceAnswerFormat extends RPAnswerFormat {
   List<RPChoice> _choices;
@@ -8,25 +9,29 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 
   RPChoiceAnswerFormat();
 
-  /// Returns an initialized choice answer format with the given [ChoiceAnswerStyle] and the set of [RPChoice]s.
+  /// Returns an initialized choice answer format with the given [ChoiceAnswerStyle]
+  /// and the set of [RPChoice]s.
   RPChoiceAnswerFormat.withParams(this.answerStyle, this._choices) {
     questionType = answerStyle == ChoiceAnswerStyle.SingleChoice
         ? QuestionType.SingleChoice
         : QuestionType.MultipleChoice;
   }
 
-  /// An array of available [RPChoice] objects which represent the choices to the participant.
+  /// An array of available [RPChoice] objects which represent the choices to
+  /// the participant.
   List<RPChoice> get choices => this._choices;
 
   set choices(List<RPChoice> choices) {
     this._choices = choices;
   }
 
-  factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPChoiceAnswerFormatFromJson(json);
+  factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
+      _$RPChoiceAnswerFormatFromJson(json);
   Map<String, dynamic> toJson() => _$RPChoiceAnswerFormatToJson(this);
 }
 
-/// The choice object which the participant can choose during a [RPQuestionStep] with [RPChoiceAnswerFormat].
+/// The choice object which the participant can choose during a [RPQuestionStep]
+/// with [RPChoiceAnswerFormat].
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPChoice {
   String _text;
@@ -53,7 +58,9 @@ class RPChoice {
     this._text = text;
   }
 
-  /// If set to true, then the user can enter the text instead of the default [text] which was provided. The [value] remains the same. By default it is set to false.
+  /// If set to true, then the user can enter the text instead of the default
+  /// [text] which was provided. The [value] remains the same.
+  /// By default it is set to false.
   get isFreeText => this._isFreeText;
 
   /// The value of the choice
@@ -69,6 +76,7 @@ class RPChoice {
     this._detailText = detailText;
   }
 
-  factory RPChoice.fromJson(Map<String, dynamic> json) => _$RPChoiceFromJson(json);
+  factory RPChoice.fromJson(Map<String, dynamic> json) =>
+      _$RPChoiceFromJson(json);
   Map<String, dynamic> toJson() => _$RPChoiceToJson(this);
 }

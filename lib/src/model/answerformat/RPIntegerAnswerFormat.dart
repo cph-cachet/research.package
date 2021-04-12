@@ -1,6 +1,7 @@
 part of research_package_model;
 
-/// Class representing an Answer Format that lets participants input a number (integer)
+/// Class representing an Answer Format that lets participants input a
+/// number (integer)
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPIntegerAnswerFormat extends RPAnswerFormat {
   int _minValue;
@@ -9,16 +10,20 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
 
   RPIntegerAnswerFormat();
 
-  RPIntegerAnswerFormat.withParams(this._minValue, this._maxValue, [this._suffix]);
+  RPIntegerAnswerFormat.withParams(this._minValue, this._maxValue,
+      [this._suffix]);
 
   @override
   get questionType {
     return QuestionType.Integer;
   }
-  /// The maximum value of the range. The participant can not proceed if the number is outside the range.
+
+  /// The maximum value of the range. The participant can not proceed if the
+  /// number is outside the range.
   int get maxValue => _maxValue;
 
-  /// The minimum value of the range. The participant can not proceed if the number is outside the range.
+  /// The minimum value of the range. The participant can not proceed if the
+  /// number is outside the range.
   int get minValue => _minValue;
 
   /// The text to show after the input field. If '''null''' then no text is shown.
@@ -32,6 +37,7 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
     this._minValue = minValue;
   }
 
-  factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPIntegerAnswerFormatFromJson(json);
+  factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) =>
+      _$RPIntegerAnswerFormatFromJson(json);
   Map<String, dynamic> toJson() => _$RPIntegerAnswerFormatToJson(this);
 }

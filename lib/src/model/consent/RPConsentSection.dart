@@ -12,7 +12,8 @@ class RPConsentSection {
   String _summary;
   String _content;
 
-  /// The data type sections that will be displayed if the consent section is of type UserDataCollection or PassiveDataCollection.
+  /// The data type sections that will be displayed if the consent section is of
+  /// type UserDataCollection or PassiveDataCollection.
   List<RPDataTypeSection> dataTypes;
 
   /// A custom illustration (an [Image] or [Icon] to show for Custom [RPConsentSectionType]
@@ -23,8 +24,8 @@ class RPConsentSection {
 
   /// Returns a populated object with the given [type].
   ///
-  /// It is enough to provide only the [type] of the section, the title is automatically filled out.
-  /// [summary] is set to [null] initially.
+  /// It is enough to provide only the [type] of the section, the title is
+  /// automatically filled out. [summary] is set to [null] initially.
   RPConsentSection.withParams(RPConsentSectionType type,
       {Icon customIcon, Image customImage, Widget customIllustration})
 //      : assert(customIllustration.runtimeType == Icon || customIllustration.runtimeType == Image)
@@ -35,20 +36,23 @@ class RPConsentSection {
     this.customIllustration = customIllustration;
   }
 
-  /// The title of the consent section which appears both in [RPVisualConsentStep] and [RPConsentReviewStep].
+  /// The title of the consent section which appears both in [RPVisualConsentStep]
+  /// and [RPConsentReviewStep].
   String get title => _title;
 
   String get formalTitle => _formalTitle;
 
   /// The type of the section.
   ///
-  /// The [title] and the image which is shown on the section card is associated to the [type].
+  /// The [title] and the image which is shown on the section card is associated
+  /// to the [type].
   RPConsentSectionType get type => _type;
 
   /// A longer content text of the section.
   ///
-  /// It's presented during [RPVisualConsentStep] when tapping on the "Learn more" button
-  /// and during [RPConsentReviewStep] where each section's content is shown to the user.
+  /// It's presented during [RPVisualConsentStep] when tapping on the "Learn more"
+  /// button and during [RPConsentReviewStep] where each section's content is
+  /// shown to the user.
   String get content => _content;
 
   /// A short summary of the section. It appears during [RPVisualConsentStep]
@@ -70,14 +74,16 @@ class RPConsentSection {
     this._type = type;
   }
 
-  factory RPConsentSection.fromJson(Map<String, dynamic> json) => _$RPConsentSectionFromJson(json);
+  factory RPConsentSection.fromJson(Map<String, dynamic> json) =>
+      _$RPConsentSectionFromJson(json);
   Map<String, dynamic> toJson() => _$RPConsentSectionToJson(this);
 }
 
 /// Enum containing the available types for [RPConsentSection].
 ///
 /// Every type has a title and a logo associated to it.
-/// Use [Custom] to create your own section type and avoid any prepopulation (title, logo, animation).
+/// Use [Custom] to create your own section type and avoid any prepopulation
+/// (title, logo, animation).
 /// See more at: [http://researchkit.org/docs/Constants/ORKConsentSectionType.html]
 enum RPConsentSectionType {
   Overview,

@@ -4,7 +4,8 @@ part of research_package_model;
 ///
 /// Signatures can be collected during a [RPConsentReviewStep].
 ///
-/// The signature object has no concept of a cryptographic signature – it is merely a record of any input the user made during a consent review step.
+/// The signature object has no concept of a cryptographic signature – it is merely
+/// a record of any input the user made during a consent review step.
 /// Also, the object does not verify or vouch for user identity.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPConsentSignature {
@@ -32,9 +33,12 @@ class RPConsentSignature {
   );
   //TODO: Consider adding other named constructors
 
-  /// Unique identifier of the signature. This identifies the signature in the result hierarchy.
+  /// Unique identifier of the signature. This identifies the signature in the
+  /// result hierarchy.
   ///
-  /// In a result object of a task which collects signature the identifier of the [RPConsentSignatureResult] object on the deepest level is identical to this identifier.
+  /// In a result object of a task which collects signature the identifier of
+  /// the [RPConsentSignatureResult] object on the deepest level is identical to
+  /// this identifier.
   String get identifier => _identifier;
 
   /// The parameter to decide if the signature requires name.
@@ -44,7 +48,8 @@ class RPConsentSignature {
 
   /// The parameter to decide if the signature requires a signature image.
   ///
-  /// If set to [true] the participant has to draw their signature which will be saved as a picture later.
+  /// If set to [true] the participant has to draw their signature which will
+  /// be saved as a picture later.
   bool get requiresSignatureImage => _requiresSignatureImage;
 
   /// Not implemented yet
@@ -68,6 +73,7 @@ class RPConsentSignature {
     this._requiresName = requiresName;
   }
 
-  factory RPConsentSignature.fromJson(Map<String, dynamic> json) => _$RPConsentSignatureFromJson(json);
+  factory RPConsentSignature.fromJson(Map<String, dynamic> json) =>
+      _$RPConsentSignatureFromJson(json);
   Map<String, dynamic> toJson() => _$RPConsentSignatureToJson(this);
 }
