@@ -2,9 +2,10 @@ import 'package:test/test.dart';
 import 'dart:convert';
 import 'package:research_package/research_package.dart';
 
+/// Tests are focusing mainly on Object -> JSON direction since the current
+/// use-case for Research Package doesn't include the other way around,
+/// only uploading results to server
 void main() {
-  // Tests are focusing mainly on Object -> JSON direction since the current
-  // use-case for Research Package doesn't include the other way around, only uploading results to server
   String _encode(Object object) =>
       const JsonEncoder.withIndent(' ').convert(object);
 
@@ -137,8 +138,6 @@ void main() {
       print(_encode(signature_2));
     });
   });
-
-  // Choice Answer Format
 
   group('Choice Answer', () {
     test('RPChoiceAnswerFormat -> JSON', () {

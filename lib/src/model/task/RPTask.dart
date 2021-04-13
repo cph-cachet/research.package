@@ -32,8 +32,8 @@ abstract class RPTask {
   /// Returns the title of a given [step]
   String getTitleForStep(RPStep step);
 
-  /// If set to ```true``` the Task will close after the participant has finished
-  /// the task. If it's set to ```false``` no navigation function is called.
+  /// If set to `true` the Task will close after the participant has finished
+  /// the task. If it's set to `false` no navigation function is called.
   ///
   /// Navigation or closing is still possible for example in the [onSubmit]
   /// function of [RPUIOrderedTask].

@@ -41,6 +41,7 @@ List<RPImageChoice> images = [
 
 RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat.withParams(
     ChoiceAnswerStyle.SingleChoice, timeChoices);
+
 // All types of DateTime answer formats
 RPDateTimeAnswerFormat timeOfDayAnswerFormat =
     RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.TimeOfDay);
@@ -50,11 +51,13 @@ RPDateTimeAnswerFormat dateAnswerFormat =
     RPDateTimeAnswerFormat.withParams(DateTimeAnswerStyle.Date);
 
 // Slider
-RPSliderAnswerFormat sliderAnswerFormat = RPSliderAnswerFormat
-    .withParams(0, 100, divisions: 10, prefix: "\$", suffix: " paid");
+RPSliderAnswerFormat sliderAnswerFormat = RPSliderAnswerFormat.withParams(
+    0, 100,
+    divisions: 10, prefix: "\$", suffix: " paid");
 
-RPChoiceAnswerFormat joyfulActivitiesAnswerFormat = RPChoiceAnswerFormat
-    .withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
+RPChoiceAnswerFormat joyfulActivitiesAnswerFormat =
+    RPChoiceAnswerFormat.withParams(
+        ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
 
 RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat.withParams(
     ChoiceAnswerStyle.MultipleChoice, instruments);
