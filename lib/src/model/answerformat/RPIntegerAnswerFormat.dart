@@ -4,40 +4,25 @@ part of research_package_model;
 /// number (integer)
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPIntegerAnswerFormat extends RPAnswerFormat {
-  int _minValue;
-  int _maxValue;
-  String _suffix;
-
-  RPIntegerAnswerFormat();
-
-  RPIntegerAnswerFormat.withParams(this._minValue, this._maxValue,
-      [this._suffix]);
-
-  @override
-  get questionType {
-    return QuestionType.Integer;
-  }
+  /// The minimum value of the range. The participant can not proceed if the
+  /// number is outside the range.
+  int minValue;
 
   /// The maximum value of the range. The participant can not proceed if the
   /// number is outside the range.
-  int get maxValue => _maxValue;
+  int maxValue;
 
-  /// The minimum value of the range. The participant can not proceed if the
-  /// number is outside the range.
-  int get minValue => _minValue;
+  /// The text to show after the input field.
+  /// If `null` then no text is shown.
+  String suffix;
 
-  /// The text to show after the input field. If '''null''' then no text is shown.
-  String get suffix => _suffix;
+  RPIntegerAnswerFormat({this.minValue, this.maxValue, this.suffix}) : super();
 
-  set maxValue(int maxValue) {
-    this._maxValue = maxValue;
-  }
+  @override
+  get questionType => QuestionType.Integer;
 
-  set minValue(int minValue) {
-    this._minValue = minValue;
-  }
-
+  Function get fromJsonFunction => _$RPIntegerAnswerFormatFromJson;
   factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      _$RPIntegerAnswerFormatFromJson(json);
+      FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPIntegerAnswerFormatToJson(this);
 }

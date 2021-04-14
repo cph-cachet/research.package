@@ -1,37 +1,22 @@
 part of research_package_model;
 
-/// Class representing an Answer Format that lets participants choose between
-/// true or false (yes or no) options
+/// Class representing an answer format that lets participants choose between
+/// true or false (yes or no) options.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPBooleanAnswerFormat extends RPAnswerFormat {
-  String _trueText;
-  String _falseText;
+  /// The text shown for the `true` option
+  String trueText;
 
-  RPBooleanAnswerFormat();
+  /// The text shown for the `false` option
+  String falseText;
 
-  RPBooleanAnswerFormat.withParams(this._trueText, this._falseText);
+  RPBooleanAnswerFormat({this.trueText, this.falseText}) : super();
 
   @override
-  get questionType {
-    return QuestionType.Boolean;
-  }
+  get questionType => QuestionType.Boolean;
 
-  /// The text shown for the ```true``` option
-  String get trueText => _trueText;
-
-  /// The text shown for the ```false``` option
-  String get falseText => _falseText;
-
-  // Setters for make it possible to deserialize
-  set trueText(String trueText) {
-    this._trueText = trueText;
-  }
-
-  set falseText(String falseText) {
-    this._falseText = falseText;
-  }
-
+  Function get fromJsonFunction => _$RPBooleanAnswerFormatFromJson;
   factory RPBooleanAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      _$RPBooleanAnswerFormatFromJson(json);
+      FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPBooleanAnswerFormatToJson(this);
 }

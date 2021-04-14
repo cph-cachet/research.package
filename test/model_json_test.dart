@@ -32,16 +32,16 @@ void main() {
   consentDocument.addSignature(signature);
 
   List<RPChoice> choices = [
-    RPChoice.withParams("All of the time", 5),
-    RPChoice.withParams("Most of the time", 4),
-    RPChoice.withParams("More than half of the time", 3),
-    RPChoice.withParams("Less than half of the time", 2),
-    RPChoice.withParams("Some of the time", 1),
-    RPChoice.withParams("At no time", 0),
+    RPChoice(text: "All of the time", value: 5),
+    RPChoice(text: "Most of the time", value: 4),
+    RPChoice(text: "More than half of the time", value: 3),
+    RPChoice(text: "Less than half of the time", value: 2),
+    RPChoice(text: "Some of the time", value: 1),
+    RPChoice(text: "At no time", value: 0),
   ];
 
-  RPChoiceAnswerFormat choiceAnswerFormat =
-      RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.SingleChoice, choices);
+  RPChoiceAnswerFormat choiceAnswerFormat = RPChoiceAnswerFormat(
+      answerStyle: ChoiceAnswerStyle.SingleChoice, choices: choices);
 
   RPQuestionStep choiceQuestionStep1 = RPQuestionStep.withAnswerFormat(
     "questionStep1ID",
@@ -159,13 +159,14 @@ void main() {
       expect(choices.first.value, 5);
     });
 
-    test('JSON -> RPChoice', () {
-      final choiceJson = _encode(choices.first);
+    test('JSON -> RPChoiceAnswerFormat', () {
+      final choiceJson = _encode(choiceAnswerFormat);
 
-      RPChoice choice_2 =
-          RPChoice.fromJson(json.decode(choiceJson) as Map<String, dynamic>);
-      expect(choice_2.value, 5);
-      print(_encode(choice_2));
+      RPAnswerFormat answers = RPAnswerFormat.fromJson(
+          json.decode(choiceJson) as Map<String, dynamic>);
+      expect(answers.runtimeType, RPChoiceAnswerFormat().runtimeType);
+      expect(answers.questionType, QuestionType.SingleChoice);
+      print(_encode(answers));
     });
   });
 

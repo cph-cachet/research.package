@@ -82,6 +82,16 @@ void registerFromJsonFunctions() {
 
   // AnswerFormat classes
   FromJsonFactory().register(RPAnswerFormat());
+  FromJsonFactory().register(RPBooleanAnswerFormat());
+  FromJsonFactory().register(RPChoiceAnswerFormat());
+  FromJsonFactory().register(RPChoice());
+  FromJsonFactory().register(RPDateTimeAnswerFormat());
+  FromJsonFactory().register(RPFormAnswerFormat());
+  FromJsonFactory().register(RPImageChoiceAnswerFormat());
+  FromJsonFactory().register(RPImageChoice());
+  FromJsonFactory().register(RPIntegerAnswerFormat());
+  FromJsonFactory().register(RPSliderAnswerFormat());
+  FromJsonFactory().register(RPTextAnswerFormat());
 
   // Consent Document classes
 

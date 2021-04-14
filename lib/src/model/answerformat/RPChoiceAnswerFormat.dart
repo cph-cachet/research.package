@@ -4,79 +4,54 @@ part of research_package_model;
 /// fixed set of choices.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPChoiceAnswerFormat extends RPAnswerFormat {
-  List<RPChoice> _choices;
-  ChoiceAnswerStyle answerStyle;
+  /// An array of available [RPChoice] objects which represent the choices to
+  /// the participant.
+  List<RPChoice> choices;
 
-  RPChoiceAnswerFormat();
+  /// The answer style - single or multiple choice.
+  ChoiceAnswerStyle answerStyle;
 
   /// Returns an initialized choice answer format with the given [ChoiceAnswerStyle]
   /// and the set of [RPChoice]s.
-  RPChoiceAnswerFormat.withParams(this.answerStyle, this._choices) {
-    questionType = answerStyle == ChoiceAnswerStyle.SingleChoice
+  RPChoiceAnswerFormat({this.answerStyle, this.choices}) : super() {
+    questionType = (answerStyle == ChoiceAnswerStyle.SingleChoice)
         ? QuestionType.SingleChoice
         : QuestionType.MultipleChoice;
   }
 
-  /// An array of available [RPChoice] objects which represent the choices to
-  /// the participant.
-  List<RPChoice> get choices => this._choices;
-
-  set choices(List<RPChoice> choices) {
-    this._choices = choices;
-  }
-
+  Function get fromJsonFunction => _$RPChoiceAnswerFormatFromJson;
   factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      _$RPChoiceAnswerFormatFromJson(json);
+      FromJsonFactory().fromJson(json);
+
   Map<String, dynamic> toJson() => _$RPChoiceAnswerFormatToJson(this);
 }
 
 /// The choice object which the participant can choose during a [RPQuestionStep]
 /// with [RPChoiceAnswerFormat].
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPChoice {
-  String _text;
-  int _value;
-  String _detailText;
-  bool _isFreeText;
-
-  RPChoice();
-
-  /// Default constructor with [detailText] set to ```null```.
-  RPChoice.withParams(String text, int value, [this._isFreeText = false]) {
-    this._text = text;
-    this._value = value;
-    this._detailText = null;
-  }
-
-  /// Constructor with the option to provide [detailText]
-  RPChoice.withDetailText(this._text, this._value, this._detailText);
-
+class RPChoice extends Serializable {
   /// The text to display.
-  get text => this._text;
+  String text;
 
-  set text(String text) {
-    this._text = text;
-  }
+  /// The value of this choice - for example `4` on a 0-5 scale.
+  int value;
+  String detailText;
 
-  /// If set to true, then the user can enter the text instead of the default
+  /// If set to `true`, then the user can enter the text instead of the default
   /// [text] which was provided. The [value] remains the same.
   /// By default it is set to false.
-  get isFreeText => this._isFreeText;
+  bool isFreeText = false;
 
-  /// The value of the choice
-  get value => this._value;
+  /// Default constructor with [detailText] set to ```null```.
+  RPChoice({
+    this.text,
+    this.value,
+    this.isFreeText = false,
+    this.detailText,
+  }) : super();
 
-  set value(dynamic value) {
-    this._value = value;
-  }
-
-  get detailText => this._detailText;
-
-  set detailText(String detailText) {
-    this._detailText = detailText;
-  }
-
+  Function get fromJsonFunction => _$RPChoiceFromJson;
   factory RPChoice.fromJson(Map<String, dynamic> json) =>
-      _$RPChoiceFromJson(json);
+      FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPChoiceToJson(this);
 }
