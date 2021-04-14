@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  carp_core: ^0.20.0      # the core CARP domain model
+
   signature: ^2.0.0 # ^3.2.0
   rxdart: ^0.25.0
   json_annotation: ^3.1.0

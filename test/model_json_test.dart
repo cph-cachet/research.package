@@ -85,7 +85,10 @@ void main() {
   consentTaskResult.setStepResultForIdentifier(
       "signature", consentReviewStepResult);
 
-  // Consent Document - including the test of encoding of RPConsentSection
+  setUp(() {
+    // register all json serialization functions.
+    registerFromJsonFunctions();
+  });
 
   group('Consent Document', () {
     test('RPConsentDocument -> JSON', () {
@@ -140,6 +143,10 @@ void main() {
   });
 
   group('Choice Answer', () {
+    test('RPAnswerFormat -> JSON', () {
+      print(_encode(RPAnswerFormat()..questionType = QuestionType.Date));
+    });
+
     test('RPChoiceAnswerFormat -> JSON', () {
       print(_encode(choiceAnswerFormat));
 

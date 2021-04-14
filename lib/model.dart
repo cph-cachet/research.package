@@ -14,6 +14,9 @@ import 'package:rxdart/rxdart.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 
+// the carp core domain model incl. polymorphic json serialization
+import 'package:carp_core/carp_core.dart';
+
 // Importing the UI library from Research Package
 import 'package:research_package/ui.dart';
 
@@ -69,3 +72,23 @@ part 'src/model/Abstracts.dart';
 // BLoCs
 part 'src/model/blocs/BlocTask.dart';
 part 'src/model/blocs/BlocQuestion.dart';
+
+bool _fromJsonFunctionsRegistrered = false;
+
+/// Register all the fromJson functions for the deployment domain classes.
+void registerFromJsonFunctions() {
+  if (_fromJsonFunctionsRegistrered) return;
+  _fromJsonFunctionsRegistrered = true;
+
+  // AnswerFormat classes
+  FromJsonFactory().register(RPAnswerFormat());
+
+  // Consent Document classes
+
+  // Steps classes
+
+  // Tasks classes
+}
+
+// auto generate json code (.g files) with:
+//   flutter pub run build_runner build --delete-conflicting-outputs
