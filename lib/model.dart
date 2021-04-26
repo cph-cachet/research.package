@@ -100,10 +100,8 @@ void registerFromJsonFunctions() {
   FromJsonFactory().register(RPCompletionStep('ignored'));
 
   // Consent Document classes
-  FromJsonFactory()
-      .register(RPConsentReviewStep('ignored', RPConsentDocument()));
-  FromJsonFactory()
-      .register(RPVisualConsentStep('ignored', RPConsentDocument()));
+  FromJsonFactory().register(RPConsentReviewStep('ignored', null));
+  FromJsonFactory().register(RPVisualConsentStep('ignored', null));
 
   // Tasks classes
 }

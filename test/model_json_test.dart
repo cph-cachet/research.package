@@ -9,20 +9,19 @@ void main() {
   String _encode(Object object) =>
       const JsonEncoder.withIndent(' ').convert(object);
 
-  RPConsentSignature signature =
-      RPConsentSignature.withIdentifier("signatureID");
+  RPConsentSignature signature = RPConsentSignature("signatureID");
 
   RPConsentSection overviewSection =
-      RPConsentSection.withParams(RPConsentSectionType.Overview)
+      RPConsentSection(RPConsentSectionType.Overview)
         ..summary = "Welcome to this survey"
         ..content = "Overview content";
 
   RPConsentSection dataGatheringSection =
-      RPConsentSection.withParams(RPConsentSectionType.DataGathering)
+      RPConsentSection(RPConsentSectionType.DataGathering)
         ..summary = "This is a summary for Data Gathering."
         ..content = "Data Gathering content";
 
-  RPConsentDocument consentDocument = RPConsentDocument.withParams(
+  RPConsentDocument consentDocument = RPConsentDocument(
     'WHO5 Consent',
     [
       overviewSection,
