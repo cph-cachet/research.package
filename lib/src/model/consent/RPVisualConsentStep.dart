@@ -1,7 +1,5 @@
 part of research_package_model;
 
-// The RPVisualConsentStep class represents a step in the visual consent sequence.
-
 /// The step used for presenting the consent document to the participant
 ///
 /// To use a visual consent step, first create a consent document ([RPConsentDocument])
