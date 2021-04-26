@@ -7,13 +7,14 @@ part of research_package_model;
 /// [RPPredicateStepNavigationRule]s.
 /// This task allows participant to go back to/looping through previous questions.
 /// In that case only the last answer given to the question will be saved.
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPNavigableOrderedTask extends RPOrderedTask {
   Map<String, RPStepNavigationRule> _stepNavigationRules;
 //  List<RPSkipStepNavigationRule> _skipStepNavigationRules;
 //  List<RPStepModifier> _stepModifiers;
   bool shouldReportProgress;
 
-  RPNavigableOrderedTask(String identifier, steps,
+  RPNavigableOrderedTask(String identifier, List<RPStep> steps,
       {closeAfterFinished = true, shouldReportProgress = true})
       : super(identifier, steps, closeAfterFinished: closeAfterFinished) {
     _stepNavigationRules = Map<String, RPStepNavigationRule>();
@@ -38,17 +39,17 @@ class RPNavigableOrderedTask extends RPOrderedTask {
     RPStep _stepToReturn;
 
     _returnNextQuestion() {
-      int nextIndex = _steps.indexOf(step) + 1;
+      int nextIndex = steps.indexOf(step) + 1;
 
-      if (nextIndex < _steps.length) {
-        _stepToReturn = _steps[nextIndex];
+      if (nextIndex < steps.length) {
+        _stepToReturn = steps[nextIndex];
       } else {
         _stepToReturn = null;
       }
     }
 
     if (step == null) {
-      _stepToReturn = _steps.first;
+      _stepToReturn = steps.first;
       return _stepToReturn;
     }
 
@@ -84,7 +85,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
           RPStepResult tempResult =
               (rule as RPStepJumpRule).resultSelector.getResult();
 
-          _stepToReturn = _steps.firstWhere((step) =>
+          _stepToReturn = steps.firstWhere((step) =>
               step.identifier ==
               jumpRule._answerMap[tempResult.results["answer"].first.value]);
 
@@ -95,7 +96,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
               .forEach((resultPredicate, destinationStepIdentifier) {
             // Catching the first
             if (resultPredicate.getPredictionResult()) {
-              _steps.forEach((step) {
+              steps.forEach((step) {
                 if (step.identifier == destinationStepIdentifier) {
                   _stepToReturn = step;
                 }
@@ -108,7 +109,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
         case RPDirectStepNavigationRule:
           String destinationStepIdentifier =
               (rule as RPDirectStepNavigationRule).destinationStepIdentifier;
-          _steps.forEach((step) {
+          steps.forEach((step) {
             if (step.identifier == destinationStepIdentifier) {
               _stepToReturn = step;
             }
@@ -177,4 +178,9 @@ class RPNavigableOrderedTask extends RPOrderedTask {
 //  removeStepModifierForStepIdentifier(String stepIdentifier) {
 //    // TODO
 //  }
+
+  Function get fromJsonFunction => _$RPNavigableOrderedTaskFromJson;
+  factory RPNavigableOrderedTask.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json);
+  Map<String, dynamic> toJson() => _$RPNavigableOrderedTaskToJson(this);
 }

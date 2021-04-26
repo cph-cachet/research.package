@@ -571,6 +571,33 @@ Map<String, dynamic> _$RPDataTypeSectionToJson(RPDataTypeSection instance) {
   return val;
 }
 
+RPStep _$RPStepFromJson(Map<String, dynamic> json) {
+  return RPStep(
+    json['identifier'] as String,
+    title: json['title'] as String,
+    optional: json['optional'] as bool,
+  )
+    ..$type = json[r'$type'] as String
+    ..text = json['text'] as String;
+}
+
+Map<String, dynamic> _$RPStepToJson(RPStep instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(r'$type', instance.$type);
+  writeNotNull('identifier', instance.identifier);
+  writeNotNull('title', instance.title);
+  writeNotNull('text', instance.text);
+  writeNotNull('optional', instance.optional);
+  return val;
+}
+
 RPFormStep _$RPFormStepFromJson(Map<String, dynamic> json) {
   return RPFormStep(
     json['identifier'] as String,
@@ -702,6 +729,64 @@ Map<String, dynamic> _$RPCompletionStepToJson(RPCompletionStep instance) {
   writeNotNull('title', instance.title);
   writeNotNull('text', instance.text);
   writeNotNull('optional', instance.optional);
+  return val;
+}
+
+RPOrderedTask _$RPOrderedTaskFromJson(Map<String, dynamic> json) {
+  return RPOrderedTask(
+    json['identifier'] as String,
+    (json['steps'] as List)
+        ?.map((e) =>
+            e == null ? null : RPStep.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    closeAfterFinished: json['close_after_finished'] as bool,
+  )..$type = json[r'$type'] as String;
+}
+
+Map<String, dynamic> _$RPOrderedTaskToJson(RPOrderedTask instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(r'$type', instance.$type);
+  writeNotNull('identifier', instance.identifier);
+  writeNotNull('close_after_finished', instance.closeAfterFinished);
+  writeNotNull('steps', instance.steps);
+  return val;
+}
+
+RPNavigableOrderedTask _$RPNavigableOrderedTaskFromJson(
+    Map<String, dynamic> json) {
+  return RPNavigableOrderedTask(
+    json['identifier'] as String,
+    (json['steps'] as List)
+        ?.map((e) =>
+            e == null ? null : RPStep.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    closeAfterFinished: json['close_after_finished'],
+    shouldReportProgress: json['should_report_progress'],
+  )..$type = json[r'$type'] as String;
+}
+
+Map<String, dynamic> _$RPNavigableOrderedTaskToJson(
+    RPNavigableOrderedTask instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(r'$type', instance.$type);
+  writeNotNull('identifier', instance.identifier);
+  writeNotNull('close_after_finished', instance.closeAfterFinished);
+  writeNotNull('steps', instance.steps);
+  writeNotNull('should_report_progress', instance.shouldReportProgress);
   return val;
 }
 

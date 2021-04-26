@@ -8,7 +8,8 @@ part of research_package_model;
 /// obtaining consent, or running an active task, everything in the Research
 /// Package framework is a collection of steps ([RPStep] objects), which together
 /// form a task (an [RPTask] object)
-abstract class RPStep extends Serializable {
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+class RPStep extends Serializable {
   @JsonKey(ignore: true)
   Widget _stepWidget;
 
@@ -46,6 +47,11 @@ abstract class RPStep extends Serializable {
   ///
   /// When needed, it should be overridden to fit the different types of Steps.
   Widget get stepWidget => _stepWidget;
+
+  Function get fromJsonFunction => _$RPStepFromJson;
+  factory RPStep.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json);
+  Map<String, dynamic> toJson() => _$RPStepToJson(this);
 }
 
 /// Status to be sent to the Bloc so the Task Widget is notified about the navigation

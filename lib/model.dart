@@ -94,16 +94,20 @@ void registerFromJsonFunctions() {
   FromJsonFactory().register(RPTextAnswerFormat());
 
   // Steps classes
-  FromJsonFactory().register(RPQuestionStep('ignored'));
-  FromJsonFactory().register(RPInstructionStep('ignored'));
-  FromJsonFactory().register(RPFormStep('ignored'));
-  FromJsonFactory().register(RPCompletionStep('ignored'));
+  FromJsonFactory().register(RPStep(''));
+  FromJsonFactory().register(RPQuestionStep(''));
+  FromJsonFactory().register(RPInstructionStep(''));
+  FromJsonFactory().register(RPFormStep(''));
+  FromJsonFactory().register(RPCompletionStep(''));
 
   // Consent Document classes
-  FromJsonFactory().register(RPConsentReviewStep('ignored', null));
-  FromJsonFactory().register(RPVisualConsentStep('ignored', null));
+  FromJsonFactory().register(RPConsentReviewStep('', null));
+  FromJsonFactory().register(RPVisualConsentStep('', null));
 
   // Tasks classes
+  FromJsonFactory().register(RPOrderedTask('', []));
+  FromJsonFactory().register(RPNavigableOrderedTask('', []));
+  FromJsonFactory().register(RPDataTypeSection('', ''));
 }
 
 // auto generate json code (.g files) with:
