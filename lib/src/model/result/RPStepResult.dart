@@ -7,7 +7,9 @@ class RPStepResult extends RPResult {
   /// so it's easier to trace back the answer result in the result JSON.
   String questionTitle;
 
-  Map<String, dynamic> _results;
+  // TODO: Documentation on skipped question result
+  /// The map of results with a String as identifier and generic type as value
+  Map<String, dynamic> results;
 
   /// The Answer Format ([RPAnswerFormat]) which generated this result.
   ///
@@ -22,15 +24,13 @@ class RPStepResult extends RPResult {
   @JsonKey(ignore: true)
   static const String DEFAULT_KEY = "answer";
 
-  RPStepResult();
-
   /// Returns an [RPStepResult] with a given identifier and an empty map of results.
   ///
   /// It sets [startDate] to the `DateTime.now()`. Since these objects are instantiated
   /// together with the Step it belongs to so it can be used for measuring how much
   /// time the participant spent the given Step.
-  RPStepResult.withParams(RPStep step) : super.withIdentifier(step.identifier) {
-    this._results = Map();
+  RPStepResult([RPStep step]) : super(step.identifier) {
+    this.results = Map();
 
     try {
       this.answerFormat = (step as RPQuestionStep).answerFormat;
@@ -41,23 +41,15 @@ class RPStepResult extends RPResult {
     startDate = DateTime.now();
   }
 
-  // TODO: Documentation on skipped question result
-  /// The map of results with a String as identifier and generic type as value
-  Map<String, dynamic> get results => _results;
-
-  set results(Map<String, dynamic> results) {
-    this._results = results;
-  }
-
   /// Returns result value for the given identifier from the [results] map
-  dynamic getResultForIdentifier(String identifier) => _results[identifier];
+  dynamic getResultForIdentifier(String identifier) => results[identifier];
 
   /// Adds a result to the result map with the given identifier.
   ///
   /// Used when the result is not a traditional answer result (e.g. signature result).
   /// Also used at Form Steps where there are multiple questions asked during a single step.
   void setResultForIdentifier(String identifier, dynamic result) {
-    this._results[identifier] = result;
+    this.results[identifier] = result;
     this.endDate = DateTime.now();
   }
 

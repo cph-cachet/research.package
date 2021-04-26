@@ -22,7 +22,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
   @override
   void initState() {
     // Instantiate result so the counter starts
-    result = RPStepResult.withParams(widget.step);
+    result = RPStepResult(widget.step);
     super.initState();
   }
 
@@ -35,7 +35,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
 
   @override
   void createAndSendResult() {
-    consentSignatureResult = RPConsentSignatureResult.withParams(
+    consentSignatureResult = RPConsentSignatureResult(
         widget.step.identifier, widget.step.consentDocument, signatureResult)
       ..endDate = DateTime.now();
 

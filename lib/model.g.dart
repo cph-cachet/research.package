@@ -698,8 +698,9 @@ Map<String, dynamic> _$RPCompletionStepToJson(RPCompletionStep instance) {
 }
 
 RPTaskResult _$RPTaskResultFromJson(Map<String, dynamic> json) {
-  return RPTaskResult()
-    ..identifier = json['identifier'] as String
+  return RPTaskResult(
+    json['identifier'] as String,
+  )
     ..startDate = json['start_date'] == null
         ? null
         : DateTime.parse(json['start_date'] as String)
@@ -735,10 +736,11 @@ RPStepResult _$RPStepResultFromJson(Map<String, dynamic> json) {
         ? null
         : DateTime.parse(json['end_date'] as String)
     ..questionTitle = json['question_title'] as String
+    ..results = json['results'] as Map<String, dynamic>
     ..answerFormat = json['answer_format'] == null
         ? null
-        : RPAnswerFormat.fromJson(json['answer_format'] as Map<String, dynamic>)
-    ..results = json['results'] as Map<String, dynamic>;
+        : RPAnswerFormat.fromJson(
+            json['answer_format'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$RPStepResultToJson(RPStepResult instance) {
@@ -754,28 +756,29 @@ Map<String, dynamic> _$RPStepResultToJson(RPStepResult instance) {
   writeNotNull('start_date', instance.startDate?.toIso8601String());
   writeNotNull('end_date', instance.endDate?.toIso8601String());
   writeNotNull('question_title', instance.questionTitle);
-  writeNotNull('answer_format', instance.answerFormat);
   writeNotNull('results', instance.results);
+  writeNotNull('answer_format', instance.answerFormat);
   return val;
 }
 
 RPConsentSignatureResult _$RPConsentSignatureResultFromJson(
     Map<String, dynamic> json) {
-  return RPConsentSignatureResult()
-    ..identifier = json['identifier'] as String
+  return RPConsentSignatureResult(
+    json['identifier'] as String,
+    json['consent_document'] == null
+        ? null
+        : RPConsentDocument.fromJson(
+            json['consent_document'] as Map<String, dynamic>),
+    json['signature'] == null
+        ? null
+        : RPSignatureResult.fromJson(json['signature'] as Map<String, dynamic>),
+  )
     ..startDate = json['start_date'] == null
         ? null
         : DateTime.parse(json['start_date'] as String)
     ..endDate = json['end_date'] == null
         ? null
         : DateTime.parse(json['end_date'] as String)
-    ..consentDocument = json['consent_document'] == null
-        ? null
-        : RPConsentDocument.fromJson(
-            json['consent_document'] as Map<String, dynamic>)
-    ..signature = json['signature'] == null
-        ? null
-        : RPSignatureResult.fromJson(json['signature'] as Map<String, dynamic>)
     ..userID = json['user_i_d'] as String;
 }
 

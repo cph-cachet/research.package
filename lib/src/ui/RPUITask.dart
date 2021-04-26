@@ -51,7 +51,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   @override
   initState() {
     // Instantiate the taskresult so it starts tracking time
-    _taskResult = RPTaskResult.withParams(widget.task.identifier);
+    _taskResult = RPTaskResult(widget.task.identifier);
 
     // If it's navigable we don't want to show result on appbar
     if (widget.task is RPNavigableOrderedTask) {

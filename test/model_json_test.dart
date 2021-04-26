@@ -63,15 +63,15 @@ void main() {
     title: 'A form w. questions',
   );
 
-  RPStepResult stepResult1 = RPStepResult.withParams(choiceQuestionStep1);
+  RPStepResult stepResult1 = RPStepResult(choiceQuestionStep1);
   stepResult1.identifier = choiceQuestionStep1.identifier;
   stepResult1.setResult(5);
 
-  RPStepResult stepResult2 = RPStepResult.withParams(choiceQuestionStep2);
+  RPStepResult stepResult2 = RPStepResult(choiceQuestionStep2);
   stepResult2.identifier = choiceQuestionStep1.identifier;
   stepResult2.setResult(1);
 
-  RPTaskResult surveyTaskResult = RPTaskResult.withParams("surveyTaskResultID");
+  RPTaskResult surveyTaskResult = RPTaskResult("surveyTaskResultID");
   surveyTaskResult.setStepResultForIdentifier("questionID1", stepResult1);
   surveyTaskResult.setStepResultForIdentifier("questionID2", stepResult2);
 
@@ -80,19 +80,16 @@ void main() {
       "TestLastName",
       "pngbytes in form of a long long string");
 
-  RPConsentSignatureResult consentSignatureResult =
-      RPConsentSignatureResult.withParams(
-          'consentSignatureID', consentDocument, signatureResult);
+  RPConsentSignatureResult consentSignatureResult = RPConsentSignatureResult(
+      'consentSignatureID', consentDocument, signatureResult);
 
   RPConsentReviewStep consentReviewStep =
       RPConsentReviewStep('consentReviewStepID', consentDocument);
 
-  RPStepResult consentReviewStepResult =
-      RPStepResult.withParams(consentReviewStep);
+  RPStepResult consentReviewStepResult = RPStepResult(consentReviewStep);
   consentReviewStepResult.setResult(consentSignatureResult);
 
-  RPTaskResult consentTaskResult =
-      RPTaskResult.withParams("consentTaskResultID");
+  RPTaskResult consentTaskResult = RPTaskResult("consentTaskResultID");
   consentTaskResult.setStepResultForIdentifier(
       "signature", consentReviewStepResult);
 

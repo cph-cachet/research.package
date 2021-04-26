@@ -35,14 +35,13 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    stepResult = RPStepResult.withParams(widget.formStep);
+    stepResult = RPStepResult(widget.formStep);
     stepResult.questionTitle =
         "Form Step - See titles for every question included";
 
     // Filling up the results with nulls
     widget.formStep.steps.forEach((item) {
-      stepResult.setResultForIdentifier(
-          item.identifier, RPStepResult.withParams(item));
+      stepResult.setResultForIdentifier(item.identifier, RPStepResult(item));
     });
 
     readyToProceed = false;
