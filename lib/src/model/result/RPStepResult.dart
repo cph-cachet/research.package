@@ -26,7 +26,7 @@ class RPStepResult extends RPResult {
 
   /// Returns an [RPStepResult] with a given identifier and an empty map of results.
   ///
-  /// It sets [startDate] to the ```DateTime.now()```. Since these objects are instantiated
+  /// It sets [startDate] to the `DateTime.now()`. Since these objects are instantiated
   /// together with the Step it belongs to so it can be used for measuring how much
   /// time the participant spent the given Step.
   RPStepResult.withParams(RPStep step) : super.withIdentifier(step.identifier) {

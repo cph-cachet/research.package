@@ -1,6 +1,6 @@
 part of research_package_model;
 
-/// The BLoC file for the communication between the question container
+/// The BLoC for the communication between the question container
 /// [RPUIQuestionStep] and the question body
 ///
 /// This class is mainly responsible for the communication between the Question

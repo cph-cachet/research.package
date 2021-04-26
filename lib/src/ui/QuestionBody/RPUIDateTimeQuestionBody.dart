@@ -6,9 +6,9 @@ class RPUIDateTimeQuestionBody extends StatefulWidget {
   CupertinoDatePickerMode mode;
 
   RPUIDateTimeQuestionBody(this.answerFormat, this.onResultChange) {
-    mode = (answerFormat.dateTimeAnswerStyle == DateTimeAnswerStyle.Date)
+    mode = (answerFormat.dateTimeAnswerStyle == RPDateTimeAnswerStyle.Date)
         ? CupertinoDatePickerMode.date
-        : (answerFormat.dateTimeAnswerStyle == DateTimeAnswerStyle.TimeOfDay)
+        : (answerFormat.dateTimeAnswerStyle == RPDateTimeAnswerStyle.TimeOfDay)
             ? CupertinoDatePickerMode.time
             : CupertinoDatePickerMode.dateAndTime;
   }

@@ -4,75 +4,46 @@ part of research_package_model;
 /// from a set of images.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPImageChoiceAnswerFormat extends RPAnswerFormat {
-  List<RPImageChoice> _choices;
-
-  RPImageChoiceAnswerFormat();
+  /// A list of available [RPImageChoice] objects which represent the choices to
+  /// the participants.
+  List<RPImageChoice> choices;
 
   /// Returns an initialized [RPImageChoiceAnswerFormat] with the given list of
   /// [RPImageChoice]s.
-  RPImageChoiceAnswerFormat.withParams(this._choices);
+  RPImageChoiceAnswerFormat({this.choices}) : super();
 
   @override
-  get questionType {
-    return QuestionType.ImageChoice;
-  }
+  get questionType => RPQuestionType.ImageChoice;
 
-  /// A list of available [RPImageChoice] objects which represent the choices to
-  /// the participants.
-  List<RPImageChoice> get choices => _choices;
-
-  set choices(List<RPImageChoice> choices) {
-    this._choices = choices;
-  }
-
+  Function get fromJsonFunction => _$RPImageChoiceAnswerFormatFromJson;
   factory RPImageChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      _$RPImageChoiceAnswerFormatFromJson(json);
+      FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPImageChoiceAnswerFormatToJson(this);
 }
 
 /// The image choice object which the participants can choose from, during a
 /// [RPQuestionStep] with [RPImageChoiceAnswerFormat]
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPImageChoice {
+class RPImageChoice extends Serializable {
+  /// The image portraying the choice.
   @JsonKey(ignore: true)
-  Image _image;
-  dynamic _value;
-  String _description;
+  Image image;
 
-  RPImageChoice();
-
-  /// Default constructor.
-  RPImageChoice.withParams(this._image, this._value, this._description);
-
-  /// The description fitting the image. Is displayed when selected.
-  get description => this._description;
-
-  set description(String description) {
-    this._description = description;
-  }
+  /// The key of the image if this is to be loaded from the images
+  /// in the assets on the phone.
+  /// Specify either the [image] or the [key].
+  String key;
 
   /// The value of the choice.
-  get value => this._value;
+  dynamic value;
 
-  set value(dynamic value) {
-    this._value = value;
-  }
+  /// The description fitting the image. Is displayed when selected.
+  String description;
 
-  /// The image portraying the choice.
-  get image => this._image;
+  RPImageChoice({this.image, this.key, this.value, this.description}) : super();
 
-  set image(Image image) {
-    this._image = image;
-  }
-
+  Function get fromJsonFunction => _$RPImageChoiceFromJson;
   factory RPImageChoice.fromJson(Map<String, dynamic> json) =>
-      _$RPImageChoiceFromJson(json);
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'description': this._description,
-        'value': this._value,
-
-        // To avoid JSON issues, a string representation is used.
-        // Future development will see a ByteData / Uint8List format
-        'image': this._image.toString(),
-      };
+      FromJsonFactory().fromJson(json);
+  Map<String, dynamic> toJson() => _$RPImageChoiceToJson(this);
 }
