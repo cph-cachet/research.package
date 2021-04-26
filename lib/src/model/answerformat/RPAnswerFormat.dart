@@ -13,7 +13,7 @@ part of research_package_model;
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPAnswerFormat extends Serializable {
   /// The Question Type of the Answer Format. Should be implemented in the subclasses.
-  QuestionType questionType;
+  RPQuestionType questionType;
 
   /// The default constructor. The appropriate subclass of RPAnswerFormat
   /// should be used instead of this directly.
@@ -30,7 +30,7 @@ class RPAnswerFormat extends Serializable {
   Map<String, dynamic> toJson() => _$RPAnswerFormatToJson(this);
 }
 
-enum QuestionType {
+enum RPQuestionType {
   None,
   Scale,
   SingleChoice,
@@ -64,7 +64,7 @@ enum QuestionType {
 //}
 
 /// Available types for [RPChoiceAnswerFormat]
-enum ChoiceAnswerStyle {
+enum RPChoiceAnswerStyle {
   /// The participant allowed to choose only a single option from the given set
   SingleChoice,
 
@@ -73,7 +73,7 @@ enum ChoiceAnswerStyle {
 }
 
 /// For choosing Date, Time or DateAndTime sub-answerformat
-enum DateTimeAnswerStyle {
+enum RPDateTimeAnswerStyle {
   DateAndTime,
   Date,
   TimeOfDay,

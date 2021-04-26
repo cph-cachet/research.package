@@ -10,7 +10,7 @@ RPAnswerFormat _$RPAnswerFormatFromJson(Map<String, dynamic> json) {
   return RPAnswerFormat()
     ..$type = json[r'$type'] as String
     ..questionType =
-        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type']);
+        _$enumDecodeNullable(_$RPQuestionTypeEnumMap, json['question_type']);
 }
 
 Map<String, dynamic> _$RPAnswerFormatToJson(RPAnswerFormat instance) {
@@ -23,7 +23,7 @@ Map<String, dynamic> _$RPAnswerFormatToJson(RPAnswerFormat instance) {
   }
 
   writeNotNull(r'$type', instance.$type);
-  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('question_type', _$RPQuestionTypeEnumMap[instance.questionType]);
   return val;
 }
 
@@ -59,24 +59,24 @@ T _$enumDecodeNullable<T>(
   return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$QuestionTypeEnumMap = {
-  QuestionType.None: 'None',
-  QuestionType.Scale: 'Scale',
-  QuestionType.SingleChoice: 'SingleChoice',
-  QuestionType.MultipleChoice: 'MultipleChoice',
-  QuestionType.Decimal: 'Decimal',
-  QuestionType.Integer: 'Integer',
-  QuestionType.Boolean: 'Boolean',
-  QuestionType.Eligibility: 'Eligibility',
-  QuestionType.Text: 'Text',
-  QuestionType.TimeOfDay: 'TimeOfDay',
-  QuestionType.DateAndTime: 'DateAndTime',
-  QuestionType.Date: 'Date',
-  QuestionType.TimeInterval: 'TimeInterval',
-  QuestionType.Duration: 'Duration',
-  QuestionType.Location: 'Location',
-  QuestionType.ImageChoice: 'ImageChoice',
-  QuestionType.Form: 'Form',
+const _$RPQuestionTypeEnumMap = {
+  RPQuestionType.None: 'None',
+  RPQuestionType.Scale: 'Scale',
+  RPQuestionType.SingleChoice: 'SingleChoice',
+  RPQuestionType.MultipleChoice: 'MultipleChoice',
+  RPQuestionType.Decimal: 'Decimal',
+  RPQuestionType.Integer: 'Integer',
+  RPQuestionType.Boolean: 'Boolean',
+  RPQuestionType.Eligibility: 'Eligibility',
+  RPQuestionType.Text: 'Text',
+  RPQuestionType.TimeOfDay: 'TimeOfDay',
+  RPQuestionType.DateAndTime: 'DateAndTime',
+  RPQuestionType.Date: 'Date',
+  RPQuestionType.TimeInterval: 'TimeInterval',
+  RPQuestionType.Duration: 'Duration',
+  RPQuestionType.Location: 'Location',
+  RPQuestionType.ImageChoice: 'ImageChoice',
+  RPQuestionType.Form: 'Form',
 };
 
 RPIntegerAnswerFormat _$RPIntegerAnswerFormatFromJson(
@@ -88,7 +88,7 @@ RPIntegerAnswerFormat _$RPIntegerAnswerFormatFromJson(
   )
     ..$type = json[r'$type'] as String
     ..questionType =
-        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type']);
+        _$enumDecodeNullable(_$RPQuestionTypeEnumMap, json['question_type']);
 }
 
 Map<String, dynamic> _$RPIntegerAnswerFormatToJson(
@@ -105,14 +105,14 @@ Map<String, dynamic> _$RPIntegerAnswerFormatToJson(
   writeNotNull('min_value', instance.minValue);
   writeNotNull('max_value', instance.maxValue);
   writeNotNull('suffix', instance.suffix);
-  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('question_type', _$RPQuestionTypeEnumMap[instance.questionType]);
   return val;
 }
 
 RPChoiceAnswerFormat _$RPChoiceAnswerFormatFromJson(Map<String, dynamic> json) {
   return RPChoiceAnswerFormat(
-    answerStyle:
-        _$enumDecodeNullable(_$ChoiceAnswerStyleEnumMap, json['answer_style']),
+    answerStyle: _$enumDecodeNullable(
+        _$RPChoiceAnswerStyleEnumMap, json['answer_style']),
     choices: (json['choices'] as List)
         ?.map((e) =>
             e == null ? null : RPChoice.fromJson(e as Map<String, dynamic>))
@@ -120,7 +120,7 @@ RPChoiceAnswerFormat _$RPChoiceAnswerFormatFromJson(Map<String, dynamic> json) {
   )
     ..$type = json[r'$type'] as String
     ..questionType =
-        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type']);
+        _$enumDecodeNullable(_$RPQuestionTypeEnumMap, json['question_type']);
 }
 
 Map<String, dynamic> _$RPChoiceAnswerFormatToJson(
@@ -134,16 +134,16 @@ Map<String, dynamic> _$RPChoiceAnswerFormatToJson(
   }
 
   writeNotNull(r'$type', instance.$type);
-  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('question_type', _$RPQuestionTypeEnumMap[instance.questionType]);
   writeNotNull('choices', instance.choices);
   writeNotNull(
-      'answer_style', _$ChoiceAnswerStyleEnumMap[instance.answerStyle]);
+      'answer_style', _$RPChoiceAnswerStyleEnumMap[instance.answerStyle]);
   return val;
 }
 
-const _$ChoiceAnswerStyleEnumMap = {
-  ChoiceAnswerStyle.SingleChoice: 'SingleChoice',
-  ChoiceAnswerStyle.MultipleChoice: 'MultipleChoice',
+const _$RPChoiceAnswerStyleEnumMap = {
+  RPChoiceAnswerStyle.SingleChoice: 'SingleChoice',
+  RPChoiceAnswerStyle.MultipleChoice: 'MultipleChoice',
 };
 
 RPChoice _$RPChoiceFromJson(Map<String, dynamic> json) {
@@ -176,7 +176,7 @@ RPFormAnswerFormat _$RPFormAnswerFormatFromJson(Map<String, dynamic> json) {
   return RPFormAnswerFormat()
     ..$type = json[r'$type'] as String
     ..questionType =
-        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type']);
+        _$enumDecodeNullable(_$RPQuestionTypeEnumMap, json['question_type']);
 }
 
 Map<String, dynamic> _$RPFormAnswerFormatToJson(RPFormAnswerFormat instance) {
@@ -189,7 +189,7 @@ Map<String, dynamic> _$RPFormAnswerFormatToJson(RPFormAnswerFormat instance) {
   }
 
   writeNotNull(r'$type', instance.$type);
-  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('question_type', _$RPQuestionTypeEnumMap[instance.questionType]);
   return val;
 }
 
@@ -203,7 +203,7 @@ RPSliderAnswerFormat _$RPSliderAnswerFormatFromJson(Map<String, dynamic> json) {
   )
     ..$type = json[r'$type'] as String
     ..questionType =
-        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type']);
+        _$enumDecodeNullable(_$RPQuestionTypeEnumMap, json['question_type']);
 }
 
 Map<String, dynamic> _$RPSliderAnswerFormatToJson(
@@ -222,7 +222,7 @@ Map<String, dynamic> _$RPSliderAnswerFormatToJson(
   writeNotNull('divisions', instance.divisions);
   writeNotNull('prefix', instance.prefix);
   writeNotNull('suffix', instance.suffix);
-  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('question_type', _$RPQuestionTypeEnumMap[instance.questionType]);
   return val;
 }
 
@@ -237,7 +237,7 @@ RPImageChoiceAnswerFormat _$RPImageChoiceAnswerFormatFromJson(
   )
     ..$type = json[r'$type'] as String
     ..questionType =
-        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type']);
+        _$enumDecodeNullable(_$RPQuestionTypeEnumMap, json['question_type']);
 }
 
 Map<String, dynamic> _$RPImageChoiceAnswerFormatToJson(
@@ -252,7 +252,7 @@ Map<String, dynamic> _$RPImageChoiceAnswerFormatToJson(
 
   writeNotNull(r'$type', instance.$type);
   writeNotNull('choices', instance.choices);
-  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('question_type', _$RPQuestionTypeEnumMap[instance.questionType]);
   return val;
 }
 
@@ -284,11 +284,11 @@ RPDateTimeAnswerFormat _$RPDateTimeAnswerFormatFromJson(
     Map<String, dynamic> json) {
   return RPDateTimeAnswerFormat(
     dateTimeAnswerStyle: _$enumDecodeNullable(
-        _$DateTimeAnswerStyleEnumMap, json['date_time_answer_style']),
+        _$RPDateTimeAnswerStyleEnumMap, json['date_time_answer_style']),
   )
     ..$type = json[r'$type'] as String
     ..questionType =
-        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type']);
+        _$enumDecodeNullable(_$RPQuestionTypeEnumMap, json['question_type']);
 }
 
 Map<String, dynamic> _$RPDateTimeAnswerFormatToJson(
@@ -302,16 +302,16 @@ Map<String, dynamic> _$RPDateTimeAnswerFormatToJson(
   }
 
   writeNotNull(r'$type', instance.$type);
-  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('question_type', _$RPQuestionTypeEnumMap[instance.questionType]);
   writeNotNull('date_time_answer_style',
-      _$DateTimeAnswerStyleEnumMap[instance.dateTimeAnswerStyle]);
+      _$RPDateTimeAnswerStyleEnumMap[instance.dateTimeAnswerStyle]);
   return val;
 }
 
-const _$DateTimeAnswerStyleEnumMap = {
-  DateTimeAnswerStyle.DateAndTime: 'DateAndTime',
-  DateTimeAnswerStyle.Date: 'Date',
-  DateTimeAnswerStyle.TimeOfDay: 'TimeOfDay',
+const _$RPDateTimeAnswerStyleEnumMap = {
+  RPDateTimeAnswerStyle.DateAndTime: 'DateAndTime',
+  RPDateTimeAnswerStyle.Date: 'Date',
+  RPDateTimeAnswerStyle.TimeOfDay: 'TimeOfDay',
 };
 
 RPBooleanAnswerFormat _$RPBooleanAnswerFormatFromJson(
@@ -322,7 +322,7 @@ RPBooleanAnswerFormat _$RPBooleanAnswerFormatFromJson(
   )
     ..$type = json[r'$type'] as String
     ..questionType =
-        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type']);
+        _$enumDecodeNullable(_$RPQuestionTypeEnumMap, json['question_type']);
 }
 
 Map<String, dynamic> _$RPBooleanAnswerFormatToJson(
@@ -338,7 +338,7 @@ Map<String, dynamic> _$RPBooleanAnswerFormatToJson(
   writeNotNull(r'$type', instance.$type);
   writeNotNull('true_text', instance.trueText);
   writeNotNull('false_text', instance.falseText);
-  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('question_type', _$RPQuestionTypeEnumMap[instance.questionType]);
   return val;
 }
 
@@ -348,7 +348,7 @@ RPTextAnswerFormat _$RPTextAnswerFormatFromJson(Map<String, dynamic> json) {
   )
     ..$type = json[r'$type'] as String
     ..questionType =
-        _$enumDecodeNullable(_$QuestionTypeEnumMap, json['question_type']);
+        _$enumDecodeNullable(_$RPQuestionTypeEnumMap, json['question_type']);
 }
 
 Map<String, dynamic> _$RPTextAnswerFormatToJson(RPTextAnswerFormat instance) {
@@ -362,7 +362,7 @@ Map<String, dynamic> _$RPTextAnswerFormatToJson(RPTextAnswerFormat instance) {
 
   writeNotNull(r'$type', instance.$type);
   writeNotNull('hint_text', instance.hintText);
-  writeNotNull('question_type', _$QuestionTypeEnumMap[instance.questionType]);
+  writeNotNull('question_type', _$RPQuestionTypeEnumMap[instance.questionType]);
   return val;
 }
 

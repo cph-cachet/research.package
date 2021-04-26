@@ -19,7 +19,7 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
   RPIntegerAnswerFormat({this.minValue, this.maxValue, this.suffix}) : super();
 
   @override
-  get questionType => QuestionType.Integer;
+  get questionType => RPQuestionType.Integer;
 
   Function get fromJsonFunction => _$RPIntegerAnswerFormatFromJson;
   factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) =>

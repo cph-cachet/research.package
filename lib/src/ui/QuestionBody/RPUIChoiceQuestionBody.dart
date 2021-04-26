@@ -24,7 +24,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
 
   void _buttonCallBack(RPChoice selectedChoice) {
     print('_buttonCallBack');
-    if (widget._answerFormat.answerStyle == ChoiceAnswerStyle.SingleChoice) {
+    if (widget._answerFormat.answerStyle == RPChoiceAnswerStyle.SingleChoice) {
       // Setting the state here is calling the build method so the check marks can be rendered.
       // Only one choice can be selected.
       if (selectedChoices.contains(selectedChoice)) {
@@ -38,7 +38,8 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
         });
       }
     }
-    if (widget._answerFormat.answerStyle == ChoiceAnswerStyle.MultipleChoice) {
+    if (widget._answerFormat.answerStyle ==
+        RPChoiceAnswerStyle.MultipleChoice) {
       // Setting the state here is calling the build method so the check marks can be rendered.
       // Multiple choice can be selected.
       if (selectedChoices.contains(selectedChoice)) {
@@ -83,7 +84,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(widget._answerFormat.answerStyle ==
-                  ChoiceAnswerStyle.MultipleChoice
+                  RPChoiceAnswerStyle.MultipleChoice
               ? (locale?.translate('(Choose one or more options)') ??
                   "(Choose one or more options)")
               : (locale?.translate('(Choose one option)') ??
@@ -110,7 +111,7 @@ class _ChoiceButton extends StatefulWidget {
   final bool selected;
   final bool isLastChoice;
   final int index;
-  final ChoiceAnswerStyle answerStyle;
+  final RPChoiceAnswerStyle answerStyle;
 
   _ChoiceButton(
       {this.choice,
@@ -139,7 +140,7 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            (widget.answerStyle == ChoiceAnswerStyle.SingleChoice)
+            (widget.answerStyle == RPChoiceAnswerStyle.SingleChoice)
                 ? Radio(
                     value: widget.choice,
                     groupValue: grpChoice,
@@ -166,8 +167,7 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                         child: TextField(
                           onChanged: (newText) => widget.choice.text = newText,
                           decoration: InputDecoration(
-                              hintText: RPLocalizations
-                                      .of(context)
+                              hintText: RPLocalizations.of(context)
                                       .translate("Other") ??
                                   "Other"),
                         ),

@@ -6,61 +6,71 @@ import 'package:research_package/model.dart';
 ///
 
 List<RPImageChoice> images = [
-  RPImageChoice.withParams(
-      Image.asset('assets/images/very-sad.png'), 0, 'Feeling very sad'),
-  RPImageChoice.withParams(
-      Image.asset('assets/images/sad.png'), 0, 'Feeling sad'),
-  RPImageChoice.withParams(
-      Image.asset('assets/images/ok.png'), 0, 'Feeling ok'),
-  RPImageChoice.withParams(
-      Image.asset('assets/images/happy.png'), 0, 'Feeling happy'),
-  RPImageChoice.withParams(
-      Image.asset('assets/images/very-happy.png'), 0, 'Feeling very happy'),
+  RPImageChoice(
+      image: Image.asset('assets/images/very-sad.png'),
+      value: 0,
+      description: 'Feeling very sad'),
+  RPImageChoice(
+      image: Image.asset('assets/images/sad.png'),
+      value: 1,
+      description: 'Feeling sad'),
+  RPImageChoice(
+      image: Image.asset('assets/images/ok.png'),
+      value: 2,
+      description: 'Feeling ok'),
+  RPImageChoice(
+      image: Image.asset('assets/images/happy.png'),
+      value: 3,
+      description: 'Feeling happy'),
+  RPImageChoice(
+      image: Image.asset('assets/images/very-happy.png'),
+      value: 4,
+      description: 'Feeling very happy'),
 ];
 
 List<RPChoice> joyfulActivities = [
-  RPChoice.withParams("Playing games", 6),
-  RPChoice.withParams("Jogging", 5),
-  RPChoice.withParams("Playing an instrument", 4),
-  RPChoice.withParams("Family and friends", 3),
-  RPChoice.withParams("Doing sports", 2),
-  RPChoice.withParams("Reading", 1),
-  RPChoice.withParams("Being productive", 0),
+  RPChoice(text: "Playing games", value: 6),
+  RPChoice(text: "Jogging", value: 5),
+  RPChoice(text: "Playing an instrument", value: 4),
+  RPChoice(text: "Family and friends", value: 3),
+  RPChoice(text: "Doing sports", value: 2),
+  RPChoice(text: "Reading", value: 1),
+  RPChoice(text: "Being productive", value: 0),
 ];
 
 List<RPChoice> who5Choices = [
-  RPChoice.withParams("All of the time", 5),
-  RPChoice.withParams("Most of the time", 4),
-  RPChoice.withParams("More than half of the time", 3),
-  RPChoice.withParams("Less than half of the time", 2),
-  RPChoice.withParams("Some of the time", 1),
-  RPChoice.withParams("At no time", 0),
+  RPChoice(text: "All of the time", value: 5),
+  RPChoice(text: "Most of the time", value: 4),
+  RPChoice(text: "More than half of the time", value: 3),
+  RPChoice(text: "Less than half of the time", value: 2),
+  RPChoice(text: "Some of the time", value: 1),
+  RPChoice(text: "At no time", value: 0),
 ];
 
 List<RPChoice> instruments = [
-  RPChoice.withParams("Piano", 1),
-  RPChoice.withParams("Guitar", 0),
+  RPChoice(text: "Piano", value: 1),
+  RPChoice(text: "Guitar", value: 0),
 ];
 
 List<RPChoice> guitarReasons = [
-  RPChoice.withParams("Fun", 3),
-  RPChoice.withParams("Easy to play", 2),
-  RPChoice.withParams("Charming", 1),
-  RPChoice.withParams("Popular", 0),
+  RPChoice(text: "Fun", value: 3),
+  RPChoice(text: "Easy to play", value: 2),
+  RPChoice(text: "Charming", value: 1),
+  RPChoice(text: "Popular", value: 0),
 ];
 
 List<RPChoice> numbers = [
-  RPChoice.withParams("Four", 3),
-  RPChoice.withParams("Three", 2),
-  RPChoice.withParams("Two", 1),
-  RPChoice.withParams("One", 0),
+  RPChoice(text: "Four", value: 3),
+  RPChoice(text: "Three", value: 2),
+  RPChoice(text: "Two", value: 1),
+  RPChoice(text: "One", value: 0),
 ];
 
 List<RPChoice> alphabet = [
-  RPChoice.withParams("D", 3),
-  RPChoice.withParams("C", 2),
-  RPChoice.withParams("B", 1),
-  RPChoice.withParams("A", 0),
+  RPChoice(text: "D", value: 3),
+  RPChoice(text: "C", value: 2),
+  RPChoice(text: "B", value: 1),
+  RPChoice(text: "A", value: 0),
 ];
 
 ///
@@ -68,25 +78,25 @@ List<RPChoice> alphabet = [
 ///
 
 RPBooleanAnswerFormat yesNoAnswerFormat =
-    RPBooleanAnswerFormat.withParams("Yes", "No");
+    RPBooleanAnswerFormat(trueText: "Yes", falseText: "No");
 RPImageChoiceAnswerFormat imageChoiceAnswerFormat =
-    RPImageChoiceAnswerFormat.withParams(images);
+    RPImageChoiceAnswerFormat(choices: images);
 RPIntegerAnswerFormat nrOfCigarettesAnswerFormat =
-    RPIntegerAnswerFormat.withParams(0, 200, "cigarettes");
-RPChoiceAnswerFormat who5AnswerFormat = RPChoiceAnswerFormat.withParams(
-    ChoiceAnswerStyle.SingleChoice, who5Choices);
-RPChoiceAnswerFormat joyfulActivitiesAnswerFormat = RPChoiceAnswerFormat
-    .withParams(ChoiceAnswerStyle.MultipleChoice, joyfulActivities);
-RPChoiceAnswerFormat numbersAnswerFormat =
-    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, numbers);
-RPChoiceAnswerFormat alphabetAnswerFormat =
-    RPChoiceAnswerFormat.withParams(ChoiceAnswerStyle.MultipleChoice, alphabet);
-RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat.withParams(
-    ChoiceAnswerStyle.SingleChoice, instruments);
+    RPIntegerAnswerFormat(minValue: 0, maxValue: 200, suffix: "cigarettes");
+RPChoiceAnswerFormat who5AnswerFormat = RPChoiceAnswerFormat(
+    answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: who5Choices);
+RPChoiceAnswerFormat joyfulActivitiesAnswerFormat = RPChoiceAnswerFormat(
+    answerStyle: RPChoiceAnswerStyle.MultipleChoice, choices: joyfulActivities);
+RPChoiceAnswerFormat numbersAnswerFormat = RPChoiceAnswerFormat(
+    answerStyle: RPChoiceAnswerStyle.MultipleChoice, choices: numbers);
+RPChoiceAnswerFormat alphabetAnswerFormat = RPChoiceAnswerFormat(
+    answerStyle: RPChoiceAnswerStyle.MultipleChoice, choices: alphabet);
+RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat(
+    answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: instruments);
 RPIntegerAnswerFormat minutesIntegerAnswerFormat =
-    RPIntegerAnswerFormat.withParams(0, 10000, "minutes");
-RPChoiceAnswerFormat guitarAnswerFormat = RPChoiceAnswerFormat.withParams(
-    ChoiceAnswerStyle.MultipleChoice, guitarReasons);
+    RPIntegerAnswerFormat(minValue: 0, maxValue: 10000, suffix: "minutes");
+RPChoiceAnswerFormat guitarAnswerFormat = RPChoiceAnswerFormat(
+    answerStyle: RPChoiceAnswerStyle.MultipleChoice, choices: guitarReasons);
 
 ///
 /// STEPS
@@ -214,8 +224,8 @@ RPResultPredicate noSmokingPredicate =
 
 RPResultPredicate instrumentChoicePredicate =
     RPResultPredicate.forChoiceQuestionResult(
-        resultSelector: RPResultSelector
-            .forStepIdInFormStep("instrumentChoiceQuestionStepID"),
+        resultSelector: RPResultSelector.forStepIdInFormStep(
+            "instrumentChoiceQuestionStepID"),
         expectedValue: [1],
         choiceQuestionResultPredicateMode:
             ChoiceQuestionResultPredicateMode.ExactMatch);
@@ -317,14 +327,15 @@ RPNavigableOrderedTask navigableSurveyTask = RPNavigableOrderedTask(
 
 // Likert-point scale with problem statements
 List<RPChoice> likertProblemScaleAnswers = [
-  RPChoice.withParams("Not a problem", 0),
-  RPChoice.withParams("Minor problem", 1),
-  RPChoice.withParams("Moderate problem", 2),
-  RPChoice.withParams("Somewhat serious problem", 3),
-  RPChoice.withParams("Serious problem", 4),
+  RPChoice(text: "Not a problem", value: 0),
+  RPChoice(text: "Minor problem", value: 1),
+  RPChoice(text: "Moderate problem", value: 2),
+  RPChoice(text: "Somewhat serious problem", value: 3),
+  RPChoice(text: "Serious problem", value: 4),
 ];
-RPChoiceAnswerFormat likertProblemScaleAnswerFormat = RPChoiceAnswerFormat
-    .withParams(ChoiceAnswerStyle.SingleChoice, likertProblemScaleAnswers);
+RPChoiceAnswerFormat likertProblemScaleAnswerFormat = RPChoiceAnswerFormat(
+    answerStyle: RPChoiceAnswerStyle.SingleChoice,
+    choices: likertProblemScaleAnswers);
 
 // PAID
 // B2 SHORT (Long has been archived if later necessary)

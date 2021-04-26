@@ -13,7 +13,7 @@ class RPImageChoiceAnswerFormat extends RPAnswerFormat {
   RPImageChoiceAnswerFormat({this.choices}) : super();
 
   @override
-  get questionType => QuestionType.ImageChoice;
+  get questionType => RPQuestionType.ImageChoice;
 
   Function get fromJsonFunction => _$RPImageChoiceAnswerFormatFromJson;
   factory RPImageChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>

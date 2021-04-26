@@ -5,11 +5,11 @@ part of research_package_model;
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPFormAnswerFormat extends RPAnswerFormat {
   RPFormAnswerFormat() : super() {
-    questionType = QuestionType.Form;
+    questionType = RPQuestionType.Form;
   }
 
   @override
-  get questionType => QuestionType.Form;
+  get questionType => RPQuestionType.Form;
 
   Function get fromJsonFunction => _$RPFormAnswerFormatFromJson;
   factory RPFormAnswerFormat.fromJson(Map<String, dynamic> json) =>

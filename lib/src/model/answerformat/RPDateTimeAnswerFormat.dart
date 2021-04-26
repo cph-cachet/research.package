@@ -4,7 +4,7 @@ part of research_package_model;
 /// fixed set of choices.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPDateTimeAnswerFormat extends RPAnswerFormat {
-  DateTimeAnswerStyle dateTimeAnswerStyle;
+  RPDateTimeAnswerStyle dateTimeAnswerStyle;
 
   RPDateTimeAnswerFormat({this.dateTimeAnswerStyle}) : super();
 

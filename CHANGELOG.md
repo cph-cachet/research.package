@@ -1,3 +1,11 @@
+## 0.5.0
+
+- Included the [carp_core](https://pub.dev/packages/carp_core) which allow for de/serialization of RP models to/from json, while also supporting polymorphim (e.g., that an `RPAnswerFormat` can have different implementations). See [issue #12](https://github.com/cph-cachet/research.package/issues/12).
+- all `.withParams()` constructors have been replaced with named constructors (as recommended in Dart).
+- added unit test to verify json de/serialization.
+- all examples and the demo app updated accordingly.
+
+
 ## 0.4.1
 
 - Fixed error in consent that caused it to have 2 top bars

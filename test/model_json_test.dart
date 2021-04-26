@@ -41,7 +41,7 @@ void main() {
   ];
 
   RPChoiceAnswerFormat choiceAnswerFormat = RPChoiceAnswerFormat(
-      answerStyle: ChoiceAnswerStyle.SingleChoice, choices: choices);
+      answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: choices);
 
   RPQuestionStep choiceQuestionStep1 = RPQuestionStep.withAnswerFormat(
     "questionStep1ID",
@@ -144,7 +144,7 @@ void main() {
 
   group('Choice Answer', () {
     test('RPAnswerFormat -> JSON', () {
-      print(_encode(RPAnswerFormat()..questionType = QuestionType.Date));
+      print(_encode(RPAnswerFormat()..questionType = RPQuestionType.Date));
     });
 
     test('RPChoiceAnswerFormat -> JSON', () {
@@ -165,7 +165,7 @@ void main() {
       RPAnswerFormat answers = RPAnswerFormat.fromJson(
           json.decode(choiceJson) as Map<String, dynamic>);
       expect(answers.runtimeType, RPChoiceAnswerFormat().runtimeType);
-      expect(answers.questionType, QuestionType.SingleChoice);
+      expect(answers.questionType, RPQuestionType.SingleChoice);
       print(_encode(answers));
     });
   });

@@ -9,14 +9,14 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
   List<RPChoice> choices;
 
   /// The answer style - single or multiple choice.
-  ChoiceAnswerStyle answerStyle;
+  RPChoiceAnswerStyle answerStyle;
 
   /// Returns an initialized choice answer format with the given [ChoiceAnswerStyle]
   /// and the set of [RPChoice]s.
   RPChoiceAnswerFormat({this.answerStyle, this.choices}) : super() {
-    questionType = (answerStyle == ChoiceAnswerStyle.SingleChoice)
-        ? QuestionType.SingleChoice
-        : QuestionType.MultipleChoice;
+    questionType = (answerStyle == RPChoiceAnswerStyle.SingleChoice)
+        ? RPQuestionType.SingleChoice
+        : RPQuestionType.MultipleChoice;
   }
 
   Function get fromJsonFunction => _$RPChoiceAnswerFormatFromJson;
@@ -35,6 +35,8 @@ class RPChoice extends Serializable {
 
   /// The value of this choice - for example `4` on a 0-5 scale.
   int value;
+
+  // The detailed text to show.
   String detailText;
 
   /// If set to `true`, then the user can enter the text instead of the default
@@ -42,7 +44,7 @@ class RPChoice extends Serializable {
   /// By default it is set to false.
   bool isFreeText = false;
 
-  /// Default constructor with [detailText] set to ```null```.
+  /// Default constructor.
   RPChoice({
     this.text,
     this.value,
