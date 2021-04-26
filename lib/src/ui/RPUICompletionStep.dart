@@ -71,7 +71,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
                 color: Theme.of(context).accentColor,
                 highlightedBorderColor: Theme.of(context).primaryColor,
                 onPressed: () {
-                  blocTask.sendStatus(StepStatus.Finished);
+                  blocTask.sendStatus(RPStepStatus.Finished);
                 },
                 child: Text(
                     RPLocalizations.of(context)?.translate('DONE') ?? "DONE"),

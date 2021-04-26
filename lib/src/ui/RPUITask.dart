@@ -43,7 +43,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   int _currentStepIndex = 0;
   int _currentQuestionIndex = 1;
 
-  StreamSubscription<StepStatus> _stepStatusSubscription;
+  StreamSubscription<RPStepStatus> _stepStatusSubscription;
   StreamSubscription<RPResult> _stepResultSubscription;
 
   bool navigableTask = false;
@@ -59,13 +59,14 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       navigableTask = true;
     } else {
       // Sending the initial Task Progress so the Question UI can use it in the app bar
-      blocTask.updateTaskProgress(RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
+      blocTask.updateTaskProgress(RPTaskProgress(
+          _currentQuestionIndex, widget.task.numberOfQuestionSteps));
     }
 
     // Subscribe to step status changes so the navigation can be triggered
     _stepStatusSubscription = blocTask.stepStatus.listen((data) async {
       switch (data) {
-        case StepStatus.Finished:
+        case RPStepStatus.Finished:
           // In case of last step we save the result and close the task
           if (_currentStep == widget.task.steps.last) {
             //Creating and sending the task level of result to a stream to which anybody can subscribe
@@ -80,8 +81,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             _currentQuestionIndex++;
             // TODO: calculate the stepProgress differently for navigableTask
             if (!navigableTask)
-              blocTask.updateTaskProgress(
-                  RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
+              blocTask.updateTaskProgress(RPTaskProgress(
+                  _currentQuestionIndex, widget.task.numberOfQuestionSteps));
           }
 
           // Calculating next step and then navigate there
@@ -92,12 +93,13 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           });
           _currentStepIndex++;
 
-          _taskPageViewController.nextPage(duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
+          _taskPageViewController.nextPage(
+              duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
           break;
-        case StepStatus.Canceled:
+        case RPStepStatus.Canceled:
           _showCancelConfirmationDialog();
           break;
-        case StepStatus.Back:
+        case RPStepStatus.Back:
           // If the stepWidgets list only has 1 element it means the user is on the first question, so no back navigation is enabled
           if (_activeSteps.length == 1) {
             break;
@@ -108,8 +110,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             _currentQuestionIndex--;
             // TODO: calculate the stepprogress differently for navigableTask
             if (!navigableTask)
-              blocTask.updateTaskProgress(
-                  RPTaskProgress(_currentQuestionIndex, widget.task.numberOfQuestionSteps));
+              blocTask.updateTaskProgress(RPTaskProgress(
+                  _currentQuestionIndex, widget.task.numberOfQuestionSteps));
             // await because we can only update the stepWidgets list while the current step is out of the screen
             await _taskPageViewController.previousPage(
                 duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
@@ -121,7 +123,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           }
           blocQuestion.sendReadyToProceed(true);
           break;
-        case StepStatus.Ongoing:
+        case RPStepStatus.Ongoing:
           print('ongoing');
           break;
         default:
@@ -158,15 +160,18 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
         return AlertDialog(
           title: Text(widget.task.isConsentTask
               ? RPLocalizations.of(context)?.translate('Cancel?') ?? "Cancel?"
-              : RPLocalizations.of(context)?.translate('Discard results and quit?') ??
+              : RPLocalizations.of(context)
+                      ?.translate('Discard results and quit?') ??
                   "Discard results and quit?"),
           actions: <Widget>[
             FlatButton(
               child: Text(RPLocalizations.of(context)?.translate('NO') ?? "NO"),
-              onPressed: () => Navigator.of(context).pop(), // Dismissing the pop-up
+              onPressed: () =>
+                  Navigator.of(context).pop(), // Dismissing the pop-up
             ),
             FlatButton(
-              child: Text(RPLocalizations.of(context)?.translate('YES') ?? "YES"),
+              child:
+                  Text(RPLocalizations.of(context)?.translate('YES') ?? "YES"),
               onPressed: () {
                 // Calling the onCancel method with which the developer can for e.g. save the result on the device.
                 // Only call it if it's not null
@@ -213,7 +218,9 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                               shape: BoxShape.circle,
                               color: index <= _currentQuestionIndex
                                   ? Theme.of(context).primaryColor
-                                  : Theme.of(context).primaryColor.withOpacity(0.5)),
+                                  : Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.5)),
                         );
                       },
                     ).toList(),
@@ -228,7 +235,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                 Icons.highlight_off,
                 color: Theme.of(context).primaryColor,
               ),
-              onPressed: () => blocTask.sendStatus(StepStatus.Canceled),
+              onPressed: () => blocTask.sendStatus(RPStepStatus.Canceled),
             ),
           ),
         ],
@@ -241,7 +248,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     RPLocalizations locale = RPLocalizations.of(context);
 
     return WillPopScope(
-      onWillPop: () => blocTask.sendStatus(StepStatus.Canceled),
+      onWillPop: () => blocTask.sendStatus(RPStepStatus.Canceled),
       child: Theme(
         data: Theme.of(context),
         child: Scaffold(
@@ -265,8 +272,11 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                   ),
                 ),
                 // Bottom navigation
-                if (![RPCompletionStep, RPVisualConsentStep, RPConsentReviewStep]
-                    .contains(_currentStep.runtimeType))
+                if (![
+                  RPCompletionStep,
+                  RPVisualConsentStep,
+                  RPConsentReviewStep
+                ].contains(_currentStep.runtimeType))
                   Padding(
                     padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
                     child: Row(
@@ -276,10 +286,14 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                         _currentStepIndex == 0 || navigableTask
                             ? Container()
                             : FlatButton(
-                                onPressed: () => blocTask.sendStatus(StepStatus.Back),
+                                onPressed: () =>
+                                    blocTask.sendStatus(RPStepStatus.Back),
                                 child: Text(
-                                  RPLocalizations.of(context)?.translate('BACK') ?? "BACK",
-                                  style: TextStyle(color: Theme.of(context).primaryColor),
+                                  RPLocalizations.of(context)
+                                          ?.translate('BACK') ??
+                                      "BACK",
+                                  style: TextStyle(
+                                      color: Theme.of(context).primaryColor),
                                 ),
                               ),
                         StreamBuilder<bool>(
@@ -290,11 +304,14 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                                 color: Theme.of(context).primaryColor,
                                 textColor: Colors.white,
                                 child: Text(
-                                  RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
+                                  RPLocalizations.of(context)
+                                          ?.translate('NEXT') ??
+                                      "NEXT",
                                 ),
                                 onPressed: snapshot.data
                                     ? () {
-                                        blocTask.sendStatus(StepStatus.Finished);
+                                        blocTask
+                                            .sendStatus(RPStepStatus.Finished);
                                       }
                                     : null,
                               );

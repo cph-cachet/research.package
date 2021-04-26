@@ -7,33 +7,18 @@ part of research_package_model;
 /// All the question form [steps] needs to be answered in order to proceed.
 /// The result of an [RPFormStep] is an [RPStepResult] that consists further
 /// [RPStepResult]s for each question in the form.
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPFormStep extends RPQuestionStep {
-  List<RPQuestionStep> _formSteps;
-  RPAnswerFormat _answerFormat;
-
-  RPFormStep(String identifier, this._formSteps, {bool optional = false})
-      : super(identifier, optional: optional) {
-    this._answerFormat = RPFormAnswerFormat();
-  }
-
-  RPFormStep.withTitle(String identifier, this._formSteps, String title,
-      {bool optional = false})
-      : super.withTitle(identifier, title, optional: optional) {
-    this._answerFormat = RPFormAnswerFormat();
-  }
-
   /// The list of questions to be shown as part of the step.
-  List<RPQuestionStep> get steps => this._formSteps;
-
-  set steps(List<RPQuestionStep> steps) {
-    this._formSteps = steps;
-  }
+  List<RPQuestionStep> steps;
 
   /// The answer format of Form Step will always return [RPFormAnswerFormat]
-  RPAnswerFormat get answerFormat => _answerFormat;
+  RPAnswerFormat answerFormat;
 
-  set answerFormat(RPAnswerFormat answerFormat) {
-    this._answerFormat = answerFormat;
+  RPFormStep(String identifier,
+      {this.steps, String title, bool optional = false})
+      : super(identifier, title: title, optional: optional) {
+    this.answerFormat = RPFormAnswerFormat();
   }
 
   /// The widget (UI representation) of Form Step.
@@ -43,4 +28,9 @@ class RPFormStep extends RPQuestionStep {
   /// It shows the FormStep's [steps] in a scrollable list
   @override
   Widget get stepWidget => RPUIFormStep(this);
+
+  Function get fromJsonFunction => _$RPFormStepFromJson;
+  factory RPFormStep.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json);
+  Map<String, dynamic> toJson() => _$RPFormStepToJson(this);
 }

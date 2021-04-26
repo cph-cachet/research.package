@@ -8,42 +8,20 @@ part of research_package_model;
 /// depends on the answer format ([RPAnswerFormat]).
 /// When you need to present more than one question at the same time, it can be
 /// appropriate to use [RPFormStep] instead of [RPQuestionStep].
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPQuestionStep extends RPStep {
-  RPAnswerFormat _answerFormat;
-  String _placeholder;
-
-  /// The basic constructor which returns a Question Step with only the
-  /// identifier filled out
-  RPQuestionStep(String identifier, {bool optional = false})
-      : super(identifier, optional: optional);
-
-  /// Returns a Question Step populated with title (text of the question)
-  RPQuestionStep.withTitle(String identifier, String title,
-      {bool optional = false})
-      : super.withTitle(identifier, title, optional: optional);
-
-  /// Returns a Question Step populated with title (text of the question) and
-  /// answer format on which the
-  /// actual layout depends
-  RPQuestionStep.withAnswerFormat(
-      String identifier, String title, this._answerFormat,
-      {bool optional = false})
-      : super.withTitle(identifier, title, optional: optional);
-
   /// The answer format which describes the format how a question can be answered.
-  RPAnswerFormat get answerFormat => _answerFormat;
+  RPAnswerFormat answerFormat;
 
   /// The placeholder text for the Question Steps using an answer format which
   /// requires text entry
-  String get placeholder => _placeholder;
+  String placeholder;
 
-  set answerFormat(RPAnswerFormat answerFormat) {
-    this._answerFormat = answerFormat;
-  }
-
-  set placeholder(String placeholder) {
-    this._placeholder = placeholder;
-  }
+  /// Creates a Question Step populated with title (text of the question) and
+  /// answer format on which the actual layout depends
+  RPQuestionStep(String identifier,
+      {this.answerFormat, String title, bool optional = false})
+      : super(identifier, title: title, optional: optional);
 
   /// The widget (UI representation) of the step.
   ///
@@ -51,4 +29,9 @@ class RPQuestionStep extends RPStep {
   /// is later presented by an [RPUITask] widget.
   @override
   Widget get stepWidget => RPUIQuestionStep(this);
+
+  Function get fromJsonFunction => _$RPQuestionStepFromJson;
+  factory RPQuestionStep.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json);
+  Map<String, dynamic> toJson() => _$RPQuestionStepToJson(this);
 }

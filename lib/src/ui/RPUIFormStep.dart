@@ -132,7 +132,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     stepResult.results.keys.forEach((key) {
       (stepResult.results[key] as RPStepResult).setResult(null);
     });
-    blocTask.sendStatus(StepStatus.Finished);
+    blocTask.sendStatus(RPStepStatus.Finished);
     createAndSendResult();
   }
 
@@ -159,8 +159,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               padding: const EdgeInsets.all(8.0),
               child: FlatButton(
                 onPressed: () => skipQuestion(),
-                child: Text(RPLocalizations
-                        .of(context)
+                child: Text(RPLocalizations.of(context)
                         .translate("Skip these questions") ??
                     "Skip these questions"),
               ),
@@ -177,8 +176,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              RPLocalizations
-                      .of(context)
+              RPLocalizations.of(context)
                       ?.translate(widget.formStep.steps[index].title) ??
                   widget.formStep.steps[index].title,
               style: RPStyles.h3,

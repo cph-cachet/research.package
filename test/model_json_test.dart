@@ -41,16 +41,27 @@ void main() {
   ];
 
   RPChoiceAnswerFormat choiceAnswerFormat = RPChoiceAnswerFormat(
-      answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: choices);
-
-  RPQuestionStep choiceQuestionStep1 = RPQuestionStep.withAnswerFormat(
-    "questionStep1ID",
-    "I have felt cheerful and in good spirits",
-    choiceAnswerFormat,
+    answerStyle: RPChoiceAnswerStyle.SingleChoice,
+    choices: choices,
   );
 
-  RPQuestionStep choiceQuestionStep2 = RPQuestionStep.withAnswerFormat(
-      "questionStep2ID", "I have felt calm and relaxed", choiceAnswerFormat);
+  RPQuestionStep choiceQuestionStep1 = RPQuestionStep(
+    "questionStep1ID",
+    title: "I have felt cheerful and in good spirits",
+    answerFormat: choiceAnswerFormat,
+  );
+
+  RPQuestionStep choiceQuestionStep2 = RPQuestionStep(
+    "questionStep2ID",
+    title: "I have felt calm and relaxed",
+    answerFormat: choiceAnswerFormat,
+  );
+
+  RPFormStep formStep = RPFormStep(
+    'form_step_1',
+    steps: [choiceQuestionStep1, choiceQuestionStep2],
+    title: 'A form w. questions',
+  );
 
   RPStepResult stepResult1 = RPStepResult.withParams(choiceQuestionStep1);
   stepResult1.identifier = choiceQuestionStep1.identifier;
@@ -170,6 +181,30 @@ void main() {
     });
   });
 
+  group('Steps', () {
+    test('RPQuestionStep -> JSON', () {
+      print(_encode(choiceQuestionStep1));
+    });
+
+    test('RPInstructionStep -> JSON', () {
+      print(_encode(RPInstructionStep('123',
+          title: 'Jakob is here...', detailText: '... more details.')));
+    });
+
+    test('RPFormStep -> JSON', () {
+      print(_encode(formStep));
+    });
+
+    test('JSON -> RPQuestionStep', () {
+      final stepJson = _encode(choiceQuestionStep1);
+
+      RPQuestionStep step = RPQuestionStep.fromJson(
+          json.decode(stepJson) as Map<String, dynamic>);
+      expect(step.runtimeType, RPQuestionStep('123').runtimeType);
+      expect(step.identifier, choiceQuestionStep1.identifier);
+      print(_encode(step));
+    });
+  });
   group('Results', () {
     test('RPStepResult -> JSON', () {
       print(_encode(stepResult1));

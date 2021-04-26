@@ -31,7 +31,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   }
 
   skipQuestion() {
-    blocTask.sendStatus(StepStatus.Finished);
+    blocTask.sendStatus(RPStepStatus.Finished);
     this.currentQuestionBodyResult = null;
   }
 

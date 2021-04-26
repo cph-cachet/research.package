@@ -93,9 +93,17 @@ void registerFromJsonFunctions() {
   FromJsonFactory().register(RPSliderAnswerFormat());
   FromJsonFactory().register(RPTextAnswerFormat());
 
-  // Consent Document classes
-
   // Steps classes
+  FromJsonFactory().register(RPQuestionStep('ignored'));
+  FromJsonFactory().register(RPInstructionStep('ignored'));
+  FromJsonFactory().register(RPFormStep('ignored'));
+  FromJsonFactory().register(RPCompletionStep('ignored'));
+
+  // Consent Document classes
+  FromJsonFactory()
+      .register(RPConsentReviewStep('ignored', RPConsentDocument()));
+  FromJsonFactory()
+      .register(RPVisualConsentStep('ignored', RPConsentDocument()));
 
   // Tasks classes
 }
