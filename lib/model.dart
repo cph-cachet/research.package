@@ -93,11 +93,21 @@ void registerFromJsonFunctions() {
   FromJsonFactory().register(RPSliderAnswerFormat());
   FromJsonFactory().register(RPTextAnswerFormat());
 
-  // Consent Document classes
-
   // Steps classes
+  FromJsonFactory().register(RPStep(''));
+  FromJsonFactory().register(RPQuestionStep(''));
+  FromJsonFactory().register(RPInstructionStep(''));
+  FromJsonFactory().register(RPFormStep(''));
+  FromJsonFactory().register(RPCompletionStep(''));
+
+  // Consent Document classes
+  FromJsonFactory().register(RPConsentReviewStep('', null));
+  FromJsonFactory().register(RPVisualConsentStep('', null));
 
   // Tasks classes
+  FromJsonFactory().register(RPOrderedTask('', []));
+  FromJsonFactory().register(RPNavigableOrderedTask('', []));
+  FromJsonFactory().register(RPDataTypeSection('', ''));
 }
 
 // auto generate json code (.g files) with:

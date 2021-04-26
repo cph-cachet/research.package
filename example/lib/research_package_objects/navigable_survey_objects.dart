@@ -102,83 +102,82 @@ RPChoiceAnswerFormat guitarAnswerFormat = RPChoiceAnswerFormat(
 /// STEPS
 ///
 
-RPQuestionStep smokingQuestionStep = RPQuestionStep.withAnswerFormat(
-    "smokingQuestionId", "Do you smoke?", yesNoAnswerFormat);
+RPQuestionStep smokingQuestionStep = RPQuestionStep("smokingQuestionId",
+    title: "Do you smoke?", answerFormat: yesNoAnswerFormat);
 
-RPQuestionStep imageChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(
   "imageStepID",
-  "Indicate you mood by selecting a picture!",
-  imageChoiceAnswerFormat,
+  title: "Indicate you mood by selecting a picture!",
+  answerFormat: imageChoiceAnswerFormat,
 );
 
-RPQuestionStep nrOfCigarettesQuestionStep = RPQuestionStep.withAnswerFormat(
+RPQuestionStep nrOfCigarettesQuestionStep = RPQuestionStep(
     "nrOfCigarettesQuestionStepID",
-    "How many cigarettes do you smoke a day?",
-    nrOfCigarettesAnswerFormat);
+    title: "How many cigarettes do you smoke a day?",
+    answerFormat: nrOfCigarettesAnswerFormat);
 
 RPInstructionStep instructionStep = RPInstructionStep(
-  identifier: "instructionID",
+  "instructionID",
   title: "Welcome!",
   detailText: "For the sake of science of course...",
 )..text =
     "Please fill out this questionnaire!\n\nIn this questionnaire answers to some questions will determine what other questions you will get. You can not skip these question, although you are free to skip the other questions.";
 
-RPQuestionStep singleChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(
   "singleChoiceQuestionStepID",
-  "I have felt cheerful and in good spirits",
-  who5AnswerFormat,
+  title: "I have felt cheerful and in good spirits",
+  answerFormat: who5AnswerFormat,
 );
 
-RPQuestionStep multiChoiceQuestionStep1 = RPQuestionStep.withAnswerFormat(
+RPQuestionStep multiChoiceQuestionStep1 = RPQuestionStep(
   "multiChoiceQuestionStepID1",
-  "What makes you happy?",
-  joyfulActivitiesAnswerFormat,
+  title: "What makes you happy?",
+  answerFormat: joyfulActivitiesAnswerFormat,
 );
 
-RPQuestionStep multiChoiceQuestionStep2 = RPQuestionStep.withAnswerFormat(
+RPQuestionStep multiChoiceQuestionStep2 = RPQuestionStep(
   "multiChoiceQuestionStepID2",
-  "Choose (a) number(s)",
-  numbersAnswerFormat,
+  title: "Choose (a) number(s)",
+  answerFormat: numbersAnswerFormat,
 );
 
-RPQuestionStep alphabetQuestionStep = RPQuestionStep.withAnswerFormat(
+RPQuestionStep alphabetQuestionStep = RPQuestionStep(
   "alphabetQuestionStepID",
-  "Choose (a) letter(s)",
-  alphabetAnswerFormat,
+  title: "Choose (a) letter(s)",
+  answerFormat: alphabetAnswerFormat,
 );
 
-RPInstructionStep instructionStepA = RPInstructionStep(
-    identifier: "instructionStepAID", title: "A", detailText: "A detail")
-  ..text = "text";
-RPInstructionStep instructionStepB = RPInstructionStep(
-    identifier: "instructionStepBID", title: "B", detailText: "B detail")
-  ..text = "text";
-RPInstructionStep instructionStepC = RPInstructionStep(
-    identifier: "instructionStepCID", title: "C", detailText: "C detail")
-  ..text = "text";
-RPInstructionStep instructionStepD = RPInstructionStep(
-    identifier: "instructionStepDID", title: "D", detailText: "D detail")
-  ..text = "text";
+RPInstructionStep instructionStepA =
+    RPInstructionStep("instructionStepAID", title: "A", detailText: "A detail")
+      ..text = "text";
+RPInstructionStep instructionStepB =
+    RPInstructionStep("instructionStepBID", title: "B", detailText: "B detail")
+      ..text = "text";
+RPInstructionStep instructionStepC =
+    RPInstructionStep("instructionStepCID", title: "C", detailText: "C detail")
+      ..text = "text";
+RPInstructionStep instructionStepD =
+    RPInstructionStep("instructionStepDID", title: "D", detailText: "D detail")
+      ..text = "text";
 
-RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(
     "instrumentChoiceQuestionStepID",
-    "Which instrument are you playing?",
-    instrumentsAnswerFormat);
-RPQuestionStep minutesQuestionStep = RPQuestionStep.withAnswerFormat(
-    "minutesQuestionStepID",
-    "How many minutes do you spend practicing a week?",
-    minutesIntegerAnswerFormat);
-RPFormStep formStep = RPFormStep.withTitle(
+    title: "Which instrument are you playing?",
+    answerFormat: instrumentsAnswerFormat);
+RPQuestionStep minutesQuestionStep = RPQuestionStep("minutesQuestionStepID",
+    title: "How many minutes do you spend practicing a week?",
+    answerFormat: minutesIntegerAnswerFormat);
+RPFormStep formStep = RPFormStep(
   "formstepID",
-  [instrumentChoiceQuestionStep, minutesQuestionStep],
-  "Questions about music",
+  steps: [instrumentChoiceQuestionStep, minutesQuestionStep],
+  title: "Questions about music",
   optional: true,
 );
 
-RPQuestionStep guitarChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
+RPQuestionStep guitarChoiceQuestionStep = RPQuestionStep(
     "guitarChoiceQuestionStepID",
-    "Why did you start playing the guitar?",
-    guitarAnswerFormat);
+    title: "Why did you start playing the guitar?",
+    answerFormat: guitarAnswerFormat);
 
 RPCompletionStep completionStep = RPCompletionStep("completionID")
   ..title = "Finished"
@@ -340,50 +339,49 @@ RPChoiceAnswerFormat likertProblemScaleAnswerFormat = RPChoiceAnswerFormat(
 // PAID
 // B2 SHORT (Long has been archived if later necessary)
 RPInstructionStep b2InstructionStep = RPInstructionStep(
-    title: "", identifier: "b2InstructionStepID")
-  ..text =
-      "For the upcoming questions, please consider... \n\nWhich of the following diabetes areas are currently a problem for you? \n\n\nPress 'Continue' to go to the questions";
+  "b2InstructionStepID",
+  title: "",
+)..text =
+    "For the upcoming questions, please consider... \n\nWhich of the following diabetes areas are currently a problem for you? \n\n\nPress 'Continue' to go to the questions";
 
 // B2 - 1
-RPQuestionStep depressedChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
-    "B2-1",
-    "Feeling depressed when you think about living with diabetes?",
-    likertProblemScaleAnswerFormat);
+RPQuestionStep depressedChoiceQuestionStep = RPQuestionStep("B2-1",
+    title: "Feeling depressed when you think about living with diabetes?",
+    answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 2
-RPQuestionStep energyChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
-    "B2-2",
-    "Feeling that diabetes is taking up too much of your mental and physical energy?",
-    likertProblemScaleAnswerFormat);
+RPQuestionStep energyChoiceQuestionStep = RPQuestionStep("B2-2",
+    title:
+        "Feeling that diabetes is taking up too much of your mental and physical energy?",
+    answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 2b
-RPQuestionStep energyChoiceQuestionStep2 = RPQuestionStep.withAnswerFormat(
-    "B2-2b",
-    "Feeling that diabetes is taking up too much of your mental and physical energy?",
-    likertProblemScaleAnswerFormat);
+RPQuestionStep energyChoiceQuestionStep2 = RPQuestionStep("B2-2b",
+    title:
+        "Feeling that diabetes is taking up too much of your mental and physical energy?",
+    answerFormat: likertProblemScaleAnswerFormat);
 
 //TODO: Implement the branching
 // B2 - 3
-RPQuestionStep overwhelmedChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
-    "B2-3",
-    "Feeling overwhelmed by your diabetes?",
-    likertProblemScaleAnswerFormat);
+RPQuestionStep overwhelmedChoiceQuestionStep = RPQuestionStep("B2-3",
+    title: "Feeling overwhelmed by your diabetes?",
+    answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 4
-RPQuestionStep foodChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
-    "B2-4",
-    "Feeling constantly concerned about food and eating?",
-    likertProblemScaleAnswerFormat);
+RPQuestionStep foodChoiceQuestionStep = RPQuestionStep("B2-4",
+    title: "Feeling constantly concerned about food and eating?",
+    answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 5
-RPQuestionStep aloneChoiceQuestionStep = RPQuestionStep.withAnswerFormat("B2-5",
-    "Feeling alone with your diabetes?", likertProblemScaleAnswerFormat);
+RPQuestionStep aloneChoiceQuestionStep = RPQuestionStep("B2-5",
+    title: "Feeling alone with your diabetes?",
+    answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 6
-RPQuestionStep burnedOutChoiceQuestionStep = RPQuestionStep.withAnswerFormat(
-    "B2-6",
-    "Feeling “burned out” by the constant effort needed to manage diabetes?",
-    likertProblemScaleAnswerFormat);
+RPQuestionStep burnedOutChoiceQuestionStep = RPQuestionStep("B2-6",
+    title:
+        "Feeling “burned out” by the constant effort needed to manage diabetes?",
+    answerFormat: likertProblemScaleAnswerFormat);
 
 RPCompletionStep paidCompletionStep = RPCompletionStep("B2-7")
   ..title = "Finished"

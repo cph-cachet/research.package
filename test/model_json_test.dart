@@ -9,20 +9,19 @@ void main() {
   String _encode(Object object) =>
       const JsonEncoder.withIndent(' ').convert(object);
 
-  RPConsentSignature signature =
-      RPConsentSignature.withIdentifier("signatureID");
+  RPConsentSignature signature = RPConsentSignature("signatureID");
 
   RPConsentSection overviewSection =
-      RPConsentSection.withParams(RPConsentSectionType.Overview)
+      RPConsentSection(RPConsentSectionType.Overview)
         ..summary = "Welcome to this survey"
         ..content = "Overview content";
 
   RPConsentSection dataGatheringSection =
-      RPConsentSection.withParams(RPConsentSectionType.DataGathering)
+      RPConsentSection(RPConsentSectionType.DataGathering)
         ..summary = "This is a summary for Data Gathering."
         ..content = "Data Gathering content";
 
-  RPConsentDocument consentDocument = RPConsentDocument.withParams(
+  RPConsentDocument consentDocument = RPConsentDocument(
     'WHO5 Consent',
     [
       overviewSection,
@@ -41,26 +40,37 @@ void main() {
   ];
 
   RPChoiceAnswerFormat choiceAnswerFormat = RPChoiceAnswerFormat(
-      answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: choices);
-
-  RPQuestionStep choiceQuestionStep1 = RPQuestionStep.withAnswerFormat(
-    "questionStep1ID",
-    "I have felt cheerful and in good spirits",
-    choiceAnswerFormat,
+    answerStyle: RPChoiceAnswerStyle.SingleChoice,
+    choices: choices,
   );
 
-  RPQuestionStep choiceQuestionStep2 = RPQuestionStep.withAnswerFormat(
-      "questionStep2ID", "I have felt calm and relaxed", choiceAnswerFormat);
+  RPQuestionStep choiceQuestionStep1 = RPQuestionStep(
+    "questionStep1ID",
+    title: "I have felt cheerful and in good spirits",
+    answerFormat: choiceAnswerFormat,
+  );
 
-  RPStepResult stepResult1 = RPStepResult.withParams(choiceQuestionStep1);
+  RPQuestionStep choiceQuestionStep2 = RPQuestionStep(
+    "questionStep2ID",
+    title: "I have felt calm and relaxed",
+    answerFormat: choiceAnswerFormat,
+  );
+
+  RPFormStep formStep = RPFormStep(
+    'form_step_1',
+    steps: [choiceQuestionStep1, choiceQuestionStep2],
+    title: 'A form w. questions',
+  );
+
+  RPStepResult stepResult1 = RPStepResult(choiceQuestionStep1);
   stepResult1.identifier = choiceQuestionStep1.identifier;
   stepResult1.setResult(5);
 
-  RPStepResult stepResult2 = RPStepResult.withParams(choiceQuestionStep2);
+  RPStepResult stepResult2 = RPStepResult(choiceQuestionStep2);
   stepResult2.identifier = choiceQuestionStep1.identifier;
   stepResult2.setResult(1);
 
-  RPTaskResult surveyTaskResult = RPTaskResult.withParams("surveyTaskResultID");
+  RPTaskResult surveyTaskResult = RPTaskResult("surveyTaskResultID");
   surveyTaskResult.setStepResultForIdentifier("questionID1", stepResult1);
   surveyTaskResult.setStepResultForIdentifier("questionID2", stepResult2);
 
@@ -69,19 +79,16 @@ void main() {
       "TestLastName",
       "pngbytes in form of a long long string");
 
-  RPConsentSignatureResult consentSignatureResult =
-      RPConsentSignatureResult.withParams(
-          'consentSignatureID', consentDocument, signatureResult);
+  RPConsentSignatureResult consentSignatureResult = RPConsentSignatureResult(
+      'consentSignatureID', consentDocument, signatureResult);
 
   RPConsentReviewStep consentReviewStep =
       RPConsentReviewStep('consentReviewStepID', consentDocument);
 
-  RPStepResult consentReviewStepResult =
-      RPStepResult.withParams(consentReviewStep);
+  RPStepResult consentReviewStepResult = RPStepResult(consentReviewStep);
   consentReviewStepResult.setResult(consentSignatureResult);
 
-  RPTaskResult consentTaskResult =
-      RPTaskResult.withParams("consentTaskResultID");
+  RPTaskResult consentTaskResult = RPTaskResult("consentTaskResultID");
   consentTaskResult.setStepResultForIdentifier(
       "signature", consentReviewStepResult);
 
@@ -170,6 +177,30 @@ void main() {
     });
   });
 
+  group('Steps', () {
+    test('RPQuestionStep -> JSON', () {
+      print(_encode(choiceQuestionStep1));
+    });
+
+    test('RPInstructionStep -> JSON', () {
+      print(_encode(RPInstructionStep('123',
+          title: 'Jakob is here...', detailText: '... more details.')));
+    });
+
+    test('RPFormStep -> JSON', () {
+      print(_encode(formStep));
+    });
+
+    test('JSON -> RPQuestionStep', () {
+      final stepJson = _encode(choiceQuestionStep1);
+
+      RPQuestionStep step = RPQuestionStep.fromJson(
+          json.decode(stepJson) as Map<String, dynamic>);
+      expect(step.runtimeType, RPQuestionStep('123').runtimeType);
+      expect(step.identifier, choiceQuestionStep1.identifier);
+      print(_encode(step));
+    });
+  });
   group('Results', () {
     test('RPStepResult -> JSON', () {
       print(_encode(stepResult1));

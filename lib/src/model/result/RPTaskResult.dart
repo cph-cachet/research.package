@@ -9,16 +9,13 @@ class RPTaskResult extends RPResult {
   /// The keys are strings with the identifiers of the corresponding Step.
   Map<String, dynamic> results;
 
-  RPTaskResult();
-
   /// Returns an [RPTaskResult] with a given identifier and an empty map of results.
   ///
   /// [identifier] should always be the identifier of the "parent" task.
   /// It sets [startDate] to the ```DateTime.now()```. Since these objects are instantiated
   /// together with the Task it belongs to so it can be used for measuring
   /// how much time the participant spent the given Task.
-  RPTaskResult.withParams(String identifier)
-      : super.withIdentifier(identifier) {
+  RPTaskResult([String identifier]) : super(identifier) {
     this.results = Map<String, RPResult>();
     startDate = DateTime.now();
   }

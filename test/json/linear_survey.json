@@ -1,0 +1,308 @@
+{
+    "$type": "RPOrderedTask",
+    "identifier": "surveyTaskID",
+    "close_after_finished": true,
+    "steps": [
+     {
+      "$type": "RPInstructionStep",
+      "identifier": "instructionID",
+      "title": "Welcome!",
+      "text": "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.",
+      "detail_text": "For the sake of science of course..."
+     },
+     {
+      "$type": "RPFormStep",
+      "identifier": "formstepID",
+      "title": "Questions about music",
+      "optional": true,
+      "steps": [
+       {
+        "$type": "RPQuestionStep",
+        "identifier": "instrumentChoiceQuestionStepID",
+        "title": "Which instrument are you playing?",
+        "optional": false,
+        "answer_format": {
+         "$type": "RPChoiceAnswerFormat",
+         "question_type": "MultipleChoice",
+         "choices": [
+          {
+           "$type": "RPChoice",
+           "text": "Guitar",
+           "value": 3,
+           "is_free_text": false
+          },
+          {
+           "$type": "RPChoice",
+           "text": "Piano",
+           "value": 2,
+           "is_free_text": false
+          },
+          {
+           "$type": "RPChoice",
+           "text": "Saxophone",
+           "value": 1,
+           "is_free_text": false
+          }
+         ],
+         "answer_style": "MultipleChoice"
+        }
+       },
+       {
+        "$type": "RPQuestionStep",
+        "identifier": "minutesQuestionStepID",
+        "title": "How many minutes do you spend practicing a week?",
+        "optional": false,
+        "answer_format": {
+         "$type": "RPIntegerAnswerFormat",
+         "min_value": 0,
+         "max_value": 10000,
+         "suffix": "minutes",
+         "question_type": "Integer"
+        }
+       },
+       {
+        "$type": "RPQuestionStep",
+        "identifier": "dateQuestionStepID",
+        "title": "When did you last drink alcohol?",
+        "optional": false,
+        "answer_format": {
+         "$type": "RPDateTimeAnswerFormat",
+         "date_time_answer_style": "Date"
+        }
+       }
+      ],
+      "answer_format": {
+       "$type": "RPFormAnswerFormat",
+       "question_type": "Form"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "booleanQuestionStepID",
+      "title": "Do you smoke?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPBooleanAnswerFormat",
+       "true_text": "Yes, absolutely",
+       "false_text": "No, never",
+       "question_type": "Boolean"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "sliderQuestionsStepID",
+      "title": "What did you pay for insulin?",
+      "optional": true,
+      "answer_format": {
+       "$type": "RPSliderAnswerFormat",
+       "min_value": 0.0,
+       "max_value": 100.0,
+       "divisions": 10,
+       "prefix": "$",
+       "suffix": " paid",
+       "question_type": "Scale"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "timeOfDayQuestionStepID",
+      "title": "When did you wake up?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPDateTimeAnswerFormat",
+       "date_time_answer_style": "TimeOfDay"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "dateAndTimeQuestionStepID",
+      "title": "When did you last eat unhealthy food?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPDateTimeAnswerFormat",
+       "date_time_answer_style": "DateAndTime"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "dateQuestionStepID",
+      "title": "When did you last drink alcohol?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPDateTimeAnswerFormat",
+       "date_time_answer_style": "Date"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "imageStepID",
+      "title": "Indicate you mood by selecting a picture!",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPImageChoiceAnswerFormat",
+       "choices": [
+        {
+         "$type": "RPImageChoice",
+         "value": -2,
+         "description": "Feeling very sad"
+        },
+        {
+         "$type": "RPImageChoice",
+         "value": -1,
+         "description": "Feeling sad"
+        },
+        {
+         "$type": "RPImageChoice",
+         "value": 0,
+         "description": "Feeling ok"
+        },
+        {
+         "$type": "RPImageChoice",
+         "value": 1,
+         "description": "Feeling happy"
+        },
+        {
+         "$type": "RPImageChoice",
+         "value": 2,
+         "description": "Feeling very happy"
+        }
+       ],
+       "question_type": "ImageChoice"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "questionStep1ID",
+      "title": "I have felt cheerful and in good spirits",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPChoiceAnswerFormat",
+       "question_type": "SingleChoice",
+       "choices": [
+        {
+         "$type": "RPChoice",
+         "text": "All of the time",
+         "value": 5,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Most of the time",
+         "value": 4,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "More than half of the time",
+         "value": 3,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Less than half of the time",
+         "value": 2,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Some of the time",
+         "value": 1,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "At no time",
+         "value": 0,
+         "is_free_text": false
+        }
+       ],
+       "answer_style": "SingleChoice"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "happinessChoiceQuestionStepID",
+      "title": "What makes you happy?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPChoiceAnswerFormat",
+       "question_type": "MultipleChoice",
+       "choices": [
+        {
+         "$type": "RPChoice",
+         "text": "Playing games",
+         "value": 6,
+         "is_free_text": true
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Jogging",
+         "value": 5,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Playing an instrument",
+         "value": 4,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Family and friends",
+         "value": 3,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Doing sports",
+         "value": 2,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Reading",
+         "value": 1,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Being productive",
+         "value": 0,
+         "is_free_text": false
+        }
+       ],
+       "answer_style": "MultipleChoice"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "weightQuestionStepID",
+      "title": "What is your weight?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPIntegerAnswerFormat",
+       "min_value": 0,
+       "max_value": 200,
+       "suffix": "KG",
+       "question_type": "Integer"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "additionalInfoQuestionStepID",
+      "title": "Do you have any more details you would like to add?",
+      "optional": true,
+      "answer_format": {
+       "$type": "RPTextAnswerFormat",
+       "hint_text": "Write your answer here",
+       "question_type": "Text"
+      }
+     },
+     {
+      "$type": "RPCompletionStep",
+      "identifier": "completionID",
+      "title": "Finished",
+      "text": "Thank you for filling out the survey!"
+     }
+    ]
+   }

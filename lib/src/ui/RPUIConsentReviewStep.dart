@@ -22,7 +22,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
   @override
   void initState() {
     // Instantiate result so the counter starts
-    result = RPStepResult.withParams(widget.step);
+    result = RPStepResult(widget.step);
     super.initState();
   }
 
@@ -35,7 +35,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
 
   @override
   void createAndSendResult() {
-    consentSignatureResult = RPConsentSignatureResult.withParams(
+    consentSignatureResult = RPConsentSignatureResult(
         widget.step.identifier, widget.step.consentDocument, signatureResult)
       ..endDate = DateTime.now();
 
@@ -231,7 +231,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             ),
           ),
           onPressed: () {
-            blocTask.sendStatus(StepStatus.Canceled);
+            blocTask.sendStatus(RPStepStatus.Canceled);
           },
         ),
         RaisedButton(
@@ -241,21 +241,20 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () => _showConsentDialog(
-                widget.step.consentDocument.signatures != null
-                    ? () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        Navigator
-                            .of(context)
-                            .pushReplacementNamed('consent_review/signature');
-                      }
-                    : () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        widget.onNoSignature(null);
-                        blocTask.sendStatus(StepStatus.Finished);
-                      },
-              ),
+            widget.step.consentDocument.signatures != null
+                ? () {
+                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                    Navigator.of(context, rootNavigator: true).pop();
+                    Navigator.of(context)
+                        .pushReplacementNamed('consent_review/signature');
+                  }
+                : () {
+                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                    Navigator.of(context, rootNavigator: true).pop();
+                    widget.onNoSignature(null);
+                    blocTask.sendStatus(RPStepStatus.Finished);
+                  },
+          ),
         ),
       ],
     );
@@ -446,7 +445,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                       ),
                     );
                   }
-                  blocTask.sendStatus(StepStatus.Finished);
+                  blocTask.sendStatus(RPStepStatus.Finished);
                 }
               : null,
           child: Text(locale?.translate('NEXT') ?? 'NEXT'),

@@ -1,0 +1,320 @@
+{
+    "$type": "RPNavigableOrderedTask",
+    "identifier": "emotionalDistress",
+    "close_after_finished": false,
+    "steps": [
+     {
+      "$type": "RPInstructionStep",
+      "identifier": "b2InstructionStepID",
+      "title": "",
+      "text": "For the upcoming questions, please consider... \n\nWhich of the following diabetes areas are currently a problem for you? \n\n\nPress 'Continue' to go to the questions"
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "B2-1",
+      "title": "Feeling depressed when you think about living with diabetes?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPChoiceAnswerFormat",
+       "question_type": "SingleChoice",
+       "choices": [
+        {
+         "$type": "RPChoice",
+         "text": "Not a problem",
+         "value": 0,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Minor problem",
+         "value": 1,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Moderate problem",
+         "value": 2,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Somewhat serious problem",
+         "value": 3,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Serious problem",
+         "value": 4,
+         "is_free_text": false
+        }
+       ],
+       "answer_style": "SingleChoice"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "B2-2",
+      "title": "Feeling that diabetes is taking up too much of your mental and physical energy?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPChoiceAnswerFormat",
+       "question_type": "SingleChoice",
+       "choices": [
+        {
+         "$type": "RPChoice",
+         "text": "Not a problem",
+         "value": 0,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Minor problem",
+         "value": 1,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Moderate problem",
+         "value": 2,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Somewhat serious problem",
+         "value": 3,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Serious problem",
+         "value": 4,
+         "is_free_text": false
+        }
+       ],
+       "answer_style": "SingleChoice"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "B2-2b",
+      "title": "Feeling that diabetes is taking up too much of your mental and physical energy?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPChoiceAnswerFormat",
+       "question_type": "SingleChoice",
+       "choices": [
+        {
+         "$type": "RPChoice",
+         "text": "Not a problem",
+         "value": 0,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Minor problem",
+         "value": 1,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Moderate problem",
+         "value": 2,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Somewhat serious problem",
+         "value": 3,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Serious problem",
+         "value": 4,
+         "is_free_text": false
+        }
+       ],
+       "answer_style": "SingleChoice"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "B2-3",
+      "title": "Feeling overwhelmed by your diabetes?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPChoiceAnswerFormat",
+       "question_type": "SingleChoice",
+       "choices": [
+        {
+         "$type": "RPChoice",
+         "text": "Not a problem",
+         "value": 0,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Minor problem",
+         "value": 1,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Moderate problem",
+         "value": 2,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Somewhat serious problem",
+         "value": 3,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Serious problem",
+         "value": 4,
+         "is_free_text": false
+        }
+       ],
+       "answer_style": "SingleChoice"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "B2-4",
+      "title": "Feeling constantly concerned about food and eating?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPChoiceAnswerFormat",
+       "question_type": "SingleChoice",
+       "choices": [
+        {
+         "$type": "RPChoice",
+         "text": "Not a problem",
+         "value": 0,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Minor problem",
+         "value": 1,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Moderate problem",
+         "value": 2,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Somewhat serious problem",
+         "value": 3,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Serious problem",
+         "value": 4,
+         "is_free_text": false
+        }
+       ],
+       "answer_style": "SingleChoice"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "B2-5",
+      "title": "Feeling alone with your diabetes?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPChoiceAnswerFormat",
+       "question_type": "SingleChoice",
+       "choices": [
+        {
+         "$type": "RPChoice",
+         "text": "Not a problem",
+         "value": 0,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Minor problem",
+         "value": 1,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Moderate problem",
+         "value": 2,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Somewhat serious problem",
+         "value": 3,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Serious problem",
+         "value": 4,
+         "is_free_text": false
+        }
+       ],
+       "answer_style": "SingleChoice"
+      }
+     },
+     {
+      "$type": "RPQuestionStep",
+      "identifier": "B2-6",
+      "title": "Feeling “burned out” by the constant effort needed to manage diabetes?",
+      "optional": false,
+      "answer_format": {
+       "$type": "RPChoiceAnswerFormat",
+       "question_type": "SingleChoice",
+       "choices": [
+        {
+         "$type": "RPChoice",
+         "text": "Not a problem",
+         "value": 0,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Minor problem",
+         "value": 1,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Moderate problem",
+         "value": 2,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Somewhat serious problem",
+         "value": 3,
+         "is_free_text": false
+        },
+        {
+         "$type": "RPChoice",
+         "text": "Serious problem",
+         "value": 4,
+         "is_free_text": false
+        }
+       ],
+       "answer_style": "SingleChoice"
+      }
+     },
+     {
+      "$type": "RPCompletionStep",
+      "identifier": "B2-7",
+      "title": "Finished",
+      "text": "Finished"
+     }
+    ]
+   }

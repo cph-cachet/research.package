@@ -10,41 +10,33 @@ part of research_package_model;
 ///
 /// The presence or type of the to be collected signature depends on the
 /// [consentDocument]'s signature list.
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPConsentReviewStep extends RPStep {
-  RPConsentDocument _consentDocument;
-  String _text;
-  String _reasonForConsent;
+  /// The consent document to review and sign
+  RPConsentDocument consentDocument;
+
+  /// The text shown as the confirmation popup title
+  String text;
+
+  /// The text in the confirmation popup (body)
+  String reasonForConsent;
 
   /// Returns an initialized Consent Review Step
   ///
   /// If the consent document doesn't have any signatures then no signature
   /// collection stage is part of the flow.
   /// On how to specify a signature go to [RPConsentSignature].
-  RPConsentReviewStep(String identifier, RPConsentDocument consentDocument)
-      : super(identifier) {
-    _consentDocument = consentDocument;
-  }
-
-  /// The text shown as the confirmation popup title
-  String get text => this._text;
-
-  /// The text in the confirmation popup (body)
-  String get reasonForConsent => this._reasonForConsent;
-
-  /// The consent document to review and sign
-  RPConsentDocument get consentDocument => this._consentDocument;
-
-  set reasonForConsent(String reasonForConsent) {
-    this._reasonForConsent = reasonForConsent;
-  }
-
-  set text(String text) {
-    this._text = text;
-  }
+  RPConsentReviewStep(String identifier, this.consentDocument)
+      : super(identifier);
 
   /// The widget (UI representation) of the step
   ///
   /// It returns the corresponding step widget with this step as an input
   @override
   Widget get stepWidget => RPUIConsentReviewStep(this);
+
+  Function get fromJsonFunction => _$RPConsentReviewStepFromJson;
+  factory RPConsentReviewStep.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json);
+  Map<String, dynamic> toJson() => _$RPConsentReviewStepToJson(this);
 }

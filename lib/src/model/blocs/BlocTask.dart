@@ -6,7 +6,7 @@ part of research_package_model;
 /// The BLoC file for the communication between the task [RPUITask] and its
 /// steps [RPStep].
 class BlocTask {
-  final _stepStatusController = StreamController<StepStatus>.broadcast();
+  final _stepStatusController = StreamController<RPStepStatus>.broadcast();
   // Need to get the information after adding to the sink, that's why BehaviorSubject
   final _stepResultController = StreamController<RPResult>.broadcast();
   final _taskProgressController = BehaviorSubject<RPTaskProgress>();
@@ -19,7 +19,7 @@ class BlocTask {
   ///
   /// Based on the status the task will navigate to the next question and manage
   /// the result of the question
-  Function(StepStatus) get sendStatus => _stepStatusController.sink.add;
+  Function(RPStepStatus) get sendStatus => _stepStatusController.sink.add;
 
   /// The function to send the latest result of the step to the task
   ///
@@ -41,7 +41,7 @@ class BlocTask {
   //Retrieve data from stream
 
   /// The stream conveying the current step status
-  Stream<StepStatus> get stepStatus => _stepStatusController.stream;
+  Stream<RPStepStatus> get stepStatus => _stepStatusController.stream;
 
   /// The stream communicating the latest result of the current step
   Stream<RPResult> get stepResult => _stepResultController.stream;
