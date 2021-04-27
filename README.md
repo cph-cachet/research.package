@@ -1,6 +1,9 @@
 # Research Package
 
 [![pub package](https://img.shields.io/pub/v/research_package.svg)](https://pub.dartlang.org/packages/research_package)
+[![style: effective dart](https://img.shields.io/badge/style-pedandic_dart-40c4ff.svg)](https://pub.dev/packages/pedandic_dart)
+[![github stars](https://img.shields.io/github/stars/cph-cachet/research_package.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/cph-cachet/research_package)
+[![MIT License](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
 ResearchPackage is a Flutter [package](https://pub.dartlang.org/packages/research_package) for building research study apps on Android and iOS using [Flutter](https://flutter.dev).
 
@@ -12,10 +15,8 @@ The main features of ResearchPackage are:
 - [Obtaining informed consent](https://www.researchpackage.org/consent) from participants, including support for a signature.
 - [Creating surveys](https://www.researchpackage.org/survey) and questionnaires with a wide range of answer formats (e.g., likert scale, date pickers, image pickers, etc.), such as the [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO-5%20questionaire%20-%20English.pdf) survey.
 
-ResearchPackage is part of the overall CACHET Research Platform (CARP) with also provides a Flutter package for mobile and wearable sensing called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing). 
+ResearchPackage is part of the overall [CACHET Research Platform (CARP)](https://carp.cachet.dk) with also provides a Flutter package for mobile and wearable sensing called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing). 
 The CACHET [Pulmonary Monitor](https://github.com/cph-cachet/pulmonary_monitor_app) app shows how mobile sensing can be combined with collection of survery data from users.
-
-ResearchPackage has a series of **8** cognitive tests as part of its library. Some of the cognitive tests are implementations of ReseachKit's ["Active Tasks"](https://www.researchandcare.org/researchkit/). [Detailed information](https://www.researchpackage.org/cognitive-tests) about the test is available online. **THESE HAVE BEEN REMOVED AND ARE TO BE RELEASED IN A SEPERATE PACKAGE AFTER NULL SAFETY UPDATE**
 
 ## Documentation
 
@@ -24,7 +25,6 @@ There is a set of tutorials, describing:
 - the overall [software architecture](https://www.researchpackage.org/software-architecture) of ResearchPackage
 - how to create an [informed consent](https://www.researchpackage.org/consent) flow
 - how to define and run [user surveys](https://www.researchpackage.org/survey)
-- how to define and run [cognitive tests](https://www.researchpackage.org/create-cognitive-tests)
 
 The [ResearchPackage Flutter API](https://pub.dev/documentation/research_package/latest/) is available (and maintained) as part of the package release at pub.dev.
 
@@ -36,7 +36,7 @@ There is an [example app](https://github.com/cph-cachet/research.package/tree/ma
 
 Research Package is made by the [Copenhagen Center for Health Technology (CACHET)](https://www.cachet.dk/) and is an important component in the [CACHET Research Platform (CARP)](https://carp.cachet.dk), which is used 
 in a number of applications and studies. 
-The current project maintainers are [Mads Vedel Saaby Christensen](https://github.com/MadsVSChristensen), and [Jakob E. Bardram](https://www.bardram.net).
+The current project maintainers are [Mads Vedel Saaby Christensen](https://github.com/MadsVSChristensen) and [Jakob E. Bardram](https://www.bardram.net).
 
 ## How can I contribute?
 
