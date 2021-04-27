@@ -67,8 +67,7 @@ class RPResultPredicate {
           try {
             List<int> results = List<int>();
             (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY]
-                    as List<RPChoice>)
-                .forEach((choice) {
+                as List<RPChoice>).forEach((choice) {
               results.add(choice.value);
             });
             results.sort();
@@ -89,8 +88,7 @@ class RPResultPredicate {
           try {
             List<int> results = List<int>();
             (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY]
-                    as List<RPChoice>)
-                .forEach((choice) {
+                as List<RPChoice>).forEach((choice) {
               results.add(choice.value);
             });
             results.sort();

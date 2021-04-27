@@ -45,13 +45,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
 
   _pushContent(String title, String content) {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => _ContentRoute(
-          title: title,
-          content: content,
-        ),
-      ),
-    );
+          MaterialPageRoute(
+            builder: (context) => _ContentRoute(
+                  title: title,
+                  content: content,
+                ),
+          ),
+        );
   }
 
   void _showCancelDialog() {
@@ -327,9 +327,9 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                 ),
                 GestureDetector(
                   onTap: () => _pushContent(
-                    section.title,
-                    section.content,
-                  ),
+                        section.title,
+                        section.content,
+                      ),
                   child: Text(
                     RPLocalizations.of(context)?.translate('Learn more...') ??
                         "Learn more...",
