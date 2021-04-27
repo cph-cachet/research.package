@@ -107,8 +107,8 @@ void main() {
     test('JSON -> RPConsentDocument, assert document title', () {
       final consentDocumentJson = _encode(consentDocument);
 
-      RPConsentDocument consentDocument_2 = RPConsentDocument.fromJson(
-          json.decode(consentDocumentJson) as Map<String, dynamic>);
+      RPConsentDocument consentDocument_2 = RPConsentDocument
+          .fromJson(json.decode(consentDocumentJson) as Map<String, dynamic>);
       expect(consentDocument_2.title, consentDocument.title);
 
       print(_encode(consentDocument_2));
@@ -125,8 +125,8 @@ void main() {
     test('JSON -> RPConsentDocument, assert document title', () {
       final consentDocumentJson = _encode(consentDocument);
 
-      RPConsentDocument consentDocument_2 = RPConsentDocument.fromJson(
-          json.decode(consentDocumentJson) as Map<String, dynamic>);
+      RPConsentDocument consentDocument_2 = RPConsentDocument
+          .fromJson(json.decode(consentDocumentJson) as Map<String, dynamic>);
       expect(consentDocument_2.title, consentDocument.title);
 
       print(_encode(consentDocument_2));
@@ -141,8 +141,8 @@ void main() {
     test('JSON -> RPConsentSignature', () {
       final consentSignatureJson = _encode(signature);
 
-      RPConsentSignature signature_2 = RPConsentSignature.fromJson(
-          json.decode(consentSignatureJson) as Map<String, dynamic>);
+      RPConsentSignature signature_2 = RPConsentSignature
+          .fromJson(json.decode(consentSignatureJson) as Map<String, dynamic>);
       expect(signature_2.identifier, 'signatureID');
 
       print(_encode(signature_2));
@@ -169,8 +169,8 @@ void main() {
     test('JSON -> RPChoiceAnswerFormat', () {
       final choiceJson = _encode(choiceAnswerFormat);
 
-      RPAnswerFormat answers = RPAnswerFormat.fromJson(
-          json.decode(choiceJson) as Map<String, dynamic>);
+      RPAnswerFormat answers = RPAnswerFormat
+          .fromJson(json.decode(choiceJson) as Map<String, dynamic>);
       expect(answers.runtimeType, RPChoiceAnswerFormat().runtimeType);
       expect(answers.questionType, RPQuestionType.SingleChoice);
       print(_encode(answers));
@@ -194,8 +194,8 @@ void main() {
     test('JSON -> RPQuestionStep', () {
       final stepJson = _encode(choiceQuestionStep1);
 
-      RPQuestionStep step = RPQuestionStep.fromJson(
-          json.decode(stepJson) as Map<String, dynamic>);
+      RPQuestionStep step = RPQuestionStep
+          .fromJson(json.decode(stepJson) as Map<String, dynamic>);
       expect(step.runtimeType, RPQuestionStep('123').runtimeType);
       expect(step.identifier, choiceQuestionStep1.identifier);
       print(_encode(step));

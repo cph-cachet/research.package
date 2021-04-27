@@ -50,7 +50,8 @@ class RPChoice extends Serializable {
     this.value,
     this.isFreeText = false,
     this.detailText,
-  }) : super();
+  })
+      : super();
 
   Function get fromJsonFunction => _$RPChoiceFromJson;
   factory RPChoice.fromJson(Map<String, dynamic> json) =>

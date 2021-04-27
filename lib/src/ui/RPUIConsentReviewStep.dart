@@ -241,20 +241,21 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () => _showConsentDialog(
-            widget.step.consentDocument.signatures != null
-                ? () {
-                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                    Navigator.of(context, rootNavigator: true).pop();
-                    Navigator.of(context)
-                        .pushReplacementNamed('consent_review/signature');
-                  }
-                : () {
-                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                    Navigator.of(context, rootNavigator: true).pop();
-                    widget.onNoSignature(null);
-                    blocTask.sendStatus(RPStepStatus.Finished);
-                  },
-          ),
+                widget.step.consentDocument.signatures != null
+                    ? () {
+                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                        Navigator.of(context, rootNavigator: true).pop();
+                        Navigator
+                            .of(context)
+                            .pushReplacementNamed('consent_review/signature');
+                      }
+                    : () {
+                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                        Navigator.of(context, rootNavigator: true).pop();
+                        widget.onNoSignature(null);
+                        blocTask.sendStatus(RPStepStatus.Finished);
+                      },
+              ),
         ),
       ],
     );

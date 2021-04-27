@@ -167,7 +167,8 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                         child: TextField(
                           onChanged: (newText) => widget.choice.text = newText,
                           decoration: InputDecoration(
-                              hintText: RPLocalizations.of(context)
+                              hintText: RPLocalizations
+                                      .of(context)
                                       .translate("Other") ??
                                   "Other"),
                         ),

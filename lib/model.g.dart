@@ -488,8 +488,8 @@ RPVisualConsentStep _$RPVisualConsentStepFromJson(Map<String, dynamic> json) {
     json['identifier'] as String,
     json['consent_document'] == null
         ? null
-        : RPConsentDocument.fromJson(
-            json['consent_document'] as Map<String, dynamic>),
+        : RPConsentDocument
+            .fromJson(json['consent_document'] as Map<String, dynamic>),
   )
     ..$type = json[r'$type'] as String
     ..title = json['title'] as String
@@ -520,8 +520,8 @@ RPConsentReviewStep _$RPConsentReviewStepFromJson(Map<String, dynamic> json) {
     json['identifier'] as String,
     json['consent_document'] == null
         ? null
-        : RPConsentDocument.fromJson(
-            json['consent_document'] as Map<String, dynamic>),
+        : RPConsentDocument
+            .fromJson(json['consent_document'] as Map<String, dynamic>),
   )
     ..$type = json[r'$type'] as String
     ..title = json['title'] as String
@@ -614,8 +614,8 @@ RPFormStep _$RPFormStepFromJson(Map<String, dynamic> json) {
     ..placeholder = json['placeholder'] as String
     ..answerFormat = json['answer_format'] == null
         ? null
-        : RPAnswerFormat.fromJson(
-            json['answer_format'] as Map<String, dynamic>);
+        : RPAnswerFormat
+            .fromJson(json['answer_format'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$RPFormStepToJson(RPFormStep instance) {
@@ -643,8 +643,8 @@ RPQuestionStep _$RPQuestionStepFromJson(Map<String, dynamic> json) {
     json['identifier'] as String,
     answerFormat: json['answer_format'] == null
         ? null
-        : RPAnswerFormat.fromJson(
-            json['answer_format'] as Map<String, dynamic>),
+        : RPAnswerFormat
+            .fromJson(json['answer_format'] as Map<String, dynamic>),
     title: json['title'] as String,
     optional: json['optional'] as bool,
   )
@@ -832,8 +832,8 @@ RPStepResult _$RPStepResultFromJson(Map<String, dynamic> json) {
     ..results = json['results'] as Map<String, dynamic>
     ..answerFormat = json['answer_format'] == null
         ? null
-        : RPAnswerFormat.fromJson(
-            json['answer_format'] as Map<String, dynamic>);
+        : RPAnswerFormat
+            .fromJson(json['answer_format'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$RPStepResultToJson(RPStepResult instance) {
@@ -860,8 +860,8 @@ RPConsentSignatureResult _$RPConsentSignatureResultFromJson(
     json['identifier'] as String,
     json['consent_document'] == null
         ? null
-        : RPConsentDocument.fromJson(
-            json['consent_document'] as Map<String, dynamic>),
+        : RPConsentDocument
+            .fromJson(json['consent_document'] as Map<String, dynamic>),
     json['signature'] == null
         ? null
         : RPSignatureResult.fromJson(json['signature'] as Map<String, dynamic>),
