@@ -375,6 +375,7 @@ RPConsentDocument _$RPConsentDocumentFromJson(Map<String, dynamic> json) {
             : RPConsentSection.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   )
+    ..$type = json[r'$type'] as String
     ..signatures = (json['signatures'] as List)
         ?.map((e) => e == null
             ? null
@@ -393,6 +394,7 @@ Map<String, dynamic> _$RPConsentDocumentToJson(RPConsentDocument instance) {
     }
   }
 
+  writeNotNull(r'$type', instance.$type);
   writeNotNull('signatures', instance.signatures);
   writeNotNull('title', instance.title);
   writeNotNull('sections', instance.sections);
@@ -405,6 +407,7 @@ RPConsentSection _$RPConsentSectionFromJson(Map<String, dynamic> json) {
   return RPConsentSection(
     _$enumDecode(_$RPConsentSectionTypeEnumMap, json['type']),
   )
+    ..$type = json[r'$type'] as String
     ..title = json['title'] as String
     ..formalTitle = json['formal_title'] as String
     ..summary = json['summary'] as String
@@ -417,9 +420,7 @@ RPConsentSection _$RPConsentSectionFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$RPConsentSectionToJson(RPConsentSection instance) {
-  final val = <String, dynamic>{
-    'type': _$RPConsentSectionTypeEnumMap[instance.type],
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -427,6 +428,8 @@ Map<String, dynamic> _$RPConsentSectionToJson(RPConsentSection instance) {
     }
   }
 
+  writeNotNull(r'$type', instance.$type);
+  val['type'] = _$RPConsentSectionTypeEnumMap[instance.type];
   writeNotNull('title', instance.title);
   writeNotNull('formal_title', instance.formalTitle);
   writeNotNull('summary', instance.summary);
@@ -463,7 +466,7 @@ RPConsentSignature _$RPConsentSignatureFromJson(Map<String, dynamic> json) {
     requiresName: json['requires_name'] as bool,
     requiresSignatureImage: json['requires_signature_image'] as bool,
     requiresBirthDate: json['requires_birth_date'] as bool,
-  );
+  )..$type = json[r'$type'] as String;
 }
 
 Map<String, dynamic> _$RPConsentSignatureToJson(RPConsentSignature instance) {
@@ -475,6 +478,7 @@ Map<String, dynamic> _$RPConsentSignatureToJson(RPConsentSignature instance) {
     }
   }
 
+  writeNotNull(r'$type', instance.$type);
   writeNotNull('requires_name', instance.requiresName);
   writeNotNull('requires_signature_image', instance.requiresSignatureImage);
   writeNotNull('requires_birth_date', instance.requiresBirthDate);

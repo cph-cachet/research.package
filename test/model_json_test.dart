@@ -92,10 +92,7 @@ void main() {
   consentTaskResult.setStepResultForIdentifier(
       "signature", consentReviewStepResult);
 
-  setUp(() {
-    // register all json serialization functions.
-    registerFromJsonFunctions();
-  });
+  setUp(() {});
 
   group('Consent Document', () {
     test('RPConsentDocument -> JSON', () {

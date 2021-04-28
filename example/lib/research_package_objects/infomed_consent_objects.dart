@@ -50,23 +50,20 @@ RPConsentSection userDataCollection = RPConsentSection(
 RPConsentSection passiveDataCollection = RPConsentSection(
     RPConsentSectionType.PassiveDataCollection)
   ..summary =
-      "This study will ask you to provide the information about the following categories:"
+      "This study will passively collect data about the following categories:"
   ..dataTypes = [
-    RPDataTypeSection("Alcohol",
-        "You have to input some info about alcohol in the alcohol card"),
     RPDataTypeSection(
-        "Mood", "You have to input some info about your mood in the mood card"),
-    RPDataTypeSection("Weight",
-        "You have to input some info about your weight in the weight card"),
-    RPDataTypeSection("Medications",
-        "You have to input some info about your medications in the medications card"),
-    RPDataTypeSection("Smoking",
-        "You have to input some info about your smoking in the smoking card"),
+        "Steps", "Your daily step counts as collected by the phone."),
+    RPDataTypeSection("Activity",
+        "Your different types of activities as detected by the phone"),
+    RPDataTypeSection("Location", "Your location as you move around"),
+    RPDataTypeSection(
+        "Noise", "Background noise as detected by the phone's microphone"),
   ];
 
 RPConsentSignature signature = RPConsentSignature("consentSignatureID");
 
-RPConsentDocument consentDocument = RPConsentDocument('Demo Consent', [
+RPConsentDocument consentDocument = RPConsentDocument('Informed Consent', [
   overviewSection,
   aboutUs,
   dataGatheringSection,
