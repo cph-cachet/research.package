@@ -33,6 +33,7 @@ class RPConsentReviewStep extends RPStep {
   ///
   /// It returns the corresponding step widget with this step as an input
   @override
+  @JsonKey(ignore: true)
   Widget get stepWidget => RPUIConsentReviewStep(this);
 
   Function get fromJsonFunction => _$RPConsentReviewStepFromJson;

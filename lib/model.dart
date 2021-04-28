@@ -22,6 +22,7 @@ import 'package:research_package/ui.dart';
 
 // JSON
 part 'model.g.dart';
+part 'model.json.dart';
 
 // Library elements
 part 'src/model/answerformat/RPAnswerFormat.dart';
@@ -72,43 +73,3 @@ part 'src/model/Abstracts.dart';
 // BLoCs
 part 'src/model/blocs/BlocTask.dart';
 part 'src/model/blocs/BlocQuestion.dart';
-
-bool _fromJsonFunctionsRegistrered = false;
-
-/// Register all the fromJson functions for the deployment domain classes.
-void registerFromJsonFunctions() {
-  if (_fromJsonFunctionsRegistrered) return;
-  _fromJsonFunctionsRegistrered = true;
-
-  // AnswerFormat classes
-  FromJsonFactory().register(RPAnswerFormat());
-  FromJsonFactory().register(RPBooleanAnswerFormat());
-  FromJsonFactory().register(RPChoiceAnswerFormat());
-  FromJsonFactory().register(RPChoice());
-  FromJsonFactory().register(RPDateTimeAnswerFormat());
-  FromJsonFactory().register(RPFormAnswerFormat());
-  FromJsonFactory().register(RPImageChoiceAnswerFormat());
-  FromJsonFactory().register(RPImageChoice());
-  FromJsonFactory().register(RPIntegerAnswerFormat());
-  FromJsonFactory().register(RPSliderAnswerFormat());
-  FromJsonFactory().register(RPTextAnswerFormat());
-
-  // Steps classes
-  FromJsonFactory().register(RPStep(''));
-  FromJsonFactory().register(RPQuestionStep(''));
-  FromJsonFactory().register(RPInstructionStep(''));
-  FromJsonFactory().register(RPFormStep(''));
-  FromJsonFactory().register(RPCompletionStep(''));
-
-  // Consent Document classes
-  FromJsonFactory().register(RPConsentReviewStep('', null));
-  FromJsonFactory().register(RPVisualConsentStep('', null));
-
-  // Tasks classes
-  FromJsonFactory().register(RPOrderedTask('', []));
-  FromJsonFactory().register(RPNavigableOrderedTask('', []));
-  FromJsonFactory().register(RPDataTypeSection('', ''));
-}
-
-// auto generate json code (.g files) with:
-//   flutter pub run build_runner build --delete-conflicting-outputs

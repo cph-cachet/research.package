@@ -1,5 +1,6 @@
-## 0.5.0
-- small update to carp_core
+## 0.5.2
+- update of json serialization in informed consent domain model
+- updated example and unit test on `RPConsentSection` for passive data collection
 
 ## 0.5.0
 

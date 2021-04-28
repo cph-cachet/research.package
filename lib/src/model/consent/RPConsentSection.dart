@@ -4,7 +4,7 @@ part of research_package_model;
 ///
 /// It represents one section in a [RPConsentDocument].
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPConsentSection {
+class RPConsentSection extends Serializable {
   /// The type of the section.
   ///
   /// The [title] and the image which is shown on the section card is associated
@@ -47,8 +47,9 @@ class RPConsentSection {
     this.title = _localizedTitleForConsentSectionType(type);
   }
 
+  Function get fromJsonFunction => _$RPConsentSectionFromJson;
   factory RPConsentSection.fromJson(Map<String, dynamic> json) =>
-      _$RPConsentSectionFromJson(json);
+      FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPConsentSectionToJson(this);
 }
 

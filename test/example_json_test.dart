@@ -7,16 +7,12 @@ import '../example/lib/research_package_objects/infomed_consent_objects.dart';
 import '../example/lib/research_package_objects/linear_survey_objects.dart';
 import '../example/lib/research_package_objects/navigable_survey_objects.dart';
 
-/// Tests are focusing mainly on Object -> JSON direction since the current
-/// use-case for Research Package doesn't include the other way around,
-/// only uploading results to server
+/// These tests takes the examples from the example app and tests de/serialization.
 void main() {
   String _encode(Object object) =>
       const JsonEncoder.withIndent(' ').convert(object);
 
-  setUp(() {
-    registerFromJsonFunctions();
-  });
+  setUp(() {});
 
   group('Consent Document', () {
     test('Consent Document -> JSON', () {

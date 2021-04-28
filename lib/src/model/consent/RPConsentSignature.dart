@@ -8,7 +8,7 @@ part of research_package_model;
 /// a record of any input the user made during a consent review step.
 /// Also, the object does not verify or vouch for user identity.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPConsentSignature {
+class RPConsentSignature extends Serializable {
   /// The parameter to decide if the signature requires name.
   ///
   /// If set to [true] it requires an entered name.
@@ -43,7 +43,8 @@ class RPConsentSignature {
     this.requiresBirthDate = false,
   });
 
+  Function get fromJsonFunction => _$RPConsentSignatureFromJson;
   factory RPConsentSignature.fromJson(Map<String, dynamic> json) =>
-      _$RPConsentSignatureFromJson(json);
+      FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPConsentSignatureToJson(this);
 }

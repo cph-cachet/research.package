@@ -11,7 +11,9 @@ part of research_package_model;
 abstract class RPTask extends Serializable {
   final String _identifier;
 
-  RPTask(this._identifier, {this.closeAfterFinished});
+  RPTask(this._identifier, {this.closeAfterFinished}) {
+    _registerFromJsonFunctions();
+  }
 
   /// A unique identifier of the Task. This identifier connects the Task to its
   /// result ([RPTaskResult]) object.
