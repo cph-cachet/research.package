@@ -60,13 +60,12 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                           locale?.translate(widget.step.text) ??
                               widget.step.text,
                           textAlign: TextAlign.left,
-                          style: RPStyles.instructionText,
                         ),
                       )
                     : Container(),
                 widget.step.detailText != null
                     ? FlatButton(
-                        textColor: Theme.of(context).primaryColor,
+                        textColor: Theme.of(context).primaryColor, // TODO: change?
                         child: Text(locale?.translate('Learn more...') ??
                             "Learn more..."),
                         onPressed: _pushDetailTextRoute,
@@ -80,7 +79,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                     child: Text(
                       locale?.translate(widget.step.footnote) ??
                           widget.step.footnote,
-                      style: RPStyles.bodyText,
+                      style: Theme.of(context).textTheme.caption, // TODO: change?
                       textAlign: TextAlign.start,
                     ),
                   )
@@ -103,12 +102,12 @@ class _DetailTextRoute extends StatelessWidget {
     RPLocalizations locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
         title: Text(locale?.translate('Learn more') ?? 'Learn more'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: Text(locale?.translate(this.content) ?? this.content),
+        child: Text(locale?.translate(this.content) ?? this.content,
+            style: Theme.of(context).textTheme.bodyText1),
       ),
     );
   }
@@ -131,6 +130,25 @@ class InstructionImage extends StatelessWidget {
       );
     } else {
       return Container();
+    }
+  }
+}
+
+// Render the title above the questionBody
+class InstructionText extends StatelessWidget {
+  final String text;
+  InstructionText(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    if (text.contains('</')) {
+      return HTML.toRichText(context, text);
+    } else {
+      return Text(
+        text,
+        style: Theme.of(context).textTheme.bodyText1,
+        textAlign: TextAlign.start,
+      );
     }
   }
 }

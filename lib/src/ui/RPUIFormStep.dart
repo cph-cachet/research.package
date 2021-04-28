@@ -144,7 +144,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
               child: Text(
                 RPLocalizations.of(context)?.translate(widget.formStep.title) ??
                     widget.formStep.title,
-                style: RPStyles.h2,
+                style: Theme.of(context).textTheme.headline5,
                 textAlign: TextAlign.left,
               ),
             )
@@ -156,7 +156,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
       return widget.formStep.optional
           ? Padding(
               padding: const EdgeInsets.all(8.0),
-              child: FlatButton(
+              child: TextButton(
                 onPressed: () => skipQuestion(),
                 child: Text(RPLocalizations
                         .of(context)
@@ -180,7 +180,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
                       .of(context)
                       ?.translate(widget.formStep.steps[index].title) ??
                   widget.formStep.steps[index].title,
-              style: RPStyles.h3,
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
           Padding(
@@ -219,7 +219,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     );
   }
 
-  @override
   void createAndSendResult() {
     // In this case the result is already created, the only needed thing left is to send it
     blocTask.sendStepResult(stepResult);

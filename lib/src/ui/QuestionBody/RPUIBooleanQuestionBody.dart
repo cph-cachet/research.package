@@ -81,7 +81,6 @@ class _BooleanButtonState extends State<_BooleanButton> {
               value: widget.value,
               groupValue: widget.selectedVal,
               onChanged: (x) => widget.selectedCallBack(widget.value),
-              activeColor: Theme.of(context).primaryColor,
             ),
             Expanded(
               child: Container(

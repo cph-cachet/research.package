@@ -22,7 +22,7 @@ class RPUITask extends StatefulWidget {
   /// ```
   ///
   /// It's only optional. If nothing is provided (is ```null```) the survey just quits without doing anything with the result.
-  final void Function([RPTaskResult result]) onCancel;
+  final void Function(RPTaskResult result) onCancel;
 
   RPUITask({this.task, this.onSubmit, this.onCancel});
 
@@ -164,14 +164,13 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                       ?.translate('Discard results and quit?') ??
                   "Discard results and quit?"),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               child: Text(RPLocalizations.of(context)?.translate('NO') ?? "NO"),
               onPressed: () =>
                   Navigator.of(context).pop(), // Dismissing the pop-up
             ),
-            FlatButton(
-              child:
-                  Text(RPLocalizations.of(context)?.translate('YES') ?? "YES"),
+            OutlinedButton(
+              child: Text(RPLocalizations.of(context)?.translate('YES') ?? "YES"),
               onPressed: () {
                 // Calling the onCancel method with which the developer can for e.g. save the result on the device.
                 // Only call it if it's not null
@@ -285,13 +284,10 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                         // if first question or its a navigable task
                         _currentStepIndex == 0 || navigableTask
                             ? Container()
-                            : FlatButton(
-                                onPressed: () =>
-                                    blocTask.sendStatus(RPStepStatus.Back),
+                            : TextButton(
+                                onPressed: () => blocTask.sendStatus(StepStatus.Back),
                                 child: Text(
-                                  RPLocalizations.of(context)
-                                          ?.translate('BACK') ??
-                                      "BACK",
+                                  RPLocalizations.of(context)?.translate('BACK') ?? 'BACK',
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColor),
                                 ),
@@ -300,13 +296,9 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                           stream: blocQuestion.questionReadyToProceed,
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
-                              return RaisedButton(
-                                color: Theme.of(context).primaryColor,
-                                textColor: Colors.white,
+                              return ElevatedButton(
                                 child: Text(
-                                  RPLocalizations.of(context)
-                                          ?.translate('NEXT') ??
-                                      "NEXT",
+                                  RPLocalizations.of(context)?.translate('NEXT') ?? 'NEXT',
                                 ),
                                 onPressed: snapshot.data
                                     ? () {

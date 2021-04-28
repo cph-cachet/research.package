@@ -30,16 +30,14 @@ class _RPUIImageChoiceQuestionBodyState
             _selectedItem?.description) ??
         (locale?.translate('Select an image') ?? 'Select an image');
     return Container(
-        height: 150,
+        height: 160,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             _buildList(context, widget.answerFormat.choices),
             Text(
               text,
-              style: TextStyle(
-                fontSize: 20,
-              ),
+              style: Theme.of(context).textTheme.headline5,
             )
           ],
         ));
