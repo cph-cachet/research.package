@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/research_package.svg)](https://pub.dartlang.org/packages/research_package)
 [![style: effective dart](https://img.shields.io/badge/style-pedandic_dart-40c4ff.svg)](https://pub.dev/packages/pedandic_dart)
-[![github stars](https://img.shields.io/github/stars/cph-cachet/research_package.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/cph-cachet/research_package)
+[![github stars](https://img.shields.io/github/stars/cph-cachet/research.package.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/cph-cachet/research.package)
 [![MIT License](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
 ResearchPackage is a Flutter [package](https://pub.dartlang.org/packages/research_package) for building research study apps on Android and iOS using [Flutter](https://flutter.dev).

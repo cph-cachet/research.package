@@ -1,3 +1,7 @@
+## 0.5.3
+- small updates to documentation
+- making `RPTask` serializable instead of abtstract
+
 ## 0.5.2
 - update of json serialization in informed consent domain model
 - updated example and unit test on `RPConsentSection` for passive data collection

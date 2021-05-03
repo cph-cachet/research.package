@@ -794,6 +794,28 @@ Map<String, dynamic> _$RPNavigableOrderedTaskToJson(
   return val;
 }
 
+RPTask _$RPTaskFromJson(Map<String, dynamic> json) {
+  return RPTask(
+    json['identifier'] as String,
+    closeAfterFinished: json['close_after_finished'] as bool,
+  )..$type = json[r'$type'] as String;
+}
+
+Map<String, dynamic> _$RPTaskToJson(RPTask instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(r'$type', instance.$type);
+  writeNotNull('identifier', instance.identifier);
+  writeNotNull('close_after_finished', instance.closeAfterFinished);
+  return val;
+}
+
 RPTaskResult _$RPTaskResultFromJson(Map<String, dynamic> json) {
   return RPTaskResult(
     json['identifier'] as String,
