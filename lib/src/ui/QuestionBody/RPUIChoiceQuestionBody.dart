@@ -14,7 +14,7 @@ class RPUIChoiceQuestionBody extends StatefulWidget {
 
 class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIChoiceQuestionBody> {
-  List<RPChoice> selectedChoices;
+  late List<RPChoice> selectedChoices;
 
   @override
   void initState() {
@@ -76,7 +76,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +85,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
           padding: const EdgeInsets.all(8.0),
           child: Text(
               widget._answerFormat.answerStyle ==
-                      ChoiceAnswerStyle.MultipleChoice
+                      RPChoiceAnswerStyle.MultipleChoice
                   ? (locale?.translate('(Choose one or more options)') ??
                       "(Choose one or more options)")
                   : (locale?.translate('(Choose one option)') ??
@@ -116,79 +116,70 @@ class _ChoiceButton extends StatefulWidget {
   final RPChoiceAnswerStyle answerStyle;
 
   _ChoiceButton(
-      {this.choice,
-      this.selectedCallBack,
-      this.currentChoices,
-      this.index,
-      this.answerStyle,
-      this.selected,
-      this.isLastChoice});
+      {required this.choice,
+      required this.selectedCallBack,
+      required this.currentChoices,
+      required this.index,
+      required this.answerStyle,
+      required this.selected,
+      required this.isLastChoice});
 
   @override
   _ChoiceButtonState createState() => _ChoiceButtonState();
 }
 
 class _ChoiceButtonState extends State<_ChoiceButton> {
-  RPChoice grpChoice;
+  RPChoice? grpChoice;
 
   @override
   Widget build(BuildContext context) {
     grpChoice = widget.selected ? widget.choice : null;
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.only(left: 4, right: 4),
       child: InkWell(
         onTap: () => widget.selectedCallBack(widget.choice),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            (widget.answerStyle == RPChoiceAnswerStyle.SingleChoice)
-                ? Radio(
-                    value: widget.choice,
-                    groupValue: grpChoice,
-                    onChanged: (x) => widget.selectedCallBack(widget.choice),
-                    activeColor: Theme.of(context).primaryColor) // TODO: Change?
-                : Checkbox(
-                    value: widget.selected,
-                    onChanged: (x) => widget.selectedCallBack(widget.choice),
-                    activeColor: Theme.of(context).primaryColor, // TODO: Change?
-                  ),
-            Expanded(
-              child: Container(
-                padding: widget.choice.isFreeText
-                    ? null
-                    : EdgeInsets.only(bottom: 13),
-                decoration: !widget.isLastChoice
-                    ? BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color: Theme.of(context).dividerColor))) // TODO: Change?
-                    : null,
-                child: widget.choice.isFreeText
-                    ? Container(
-                        child: TextField(
-                          onChanged: (newText) => widget.choice.text = newText,
-                          decoration: InputDecoration(
-                              hintText: RPLocalizations
-                                      .of(context)
-                                      .translate("Other") ??
-                                  "Other"),
-                        ),
-                      )
-                    : Text(
-                        locale?.translate(widget.choice.text) ??
-                            widget.choice.text,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w400), // TODO: Change?
-                        softWrap: true,
+        child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+          (widget.answerStyle == RPChoiceAnswerStyle.SingleChoice)
+              ? Radio(
+                  value: widget.choice,
+                  groupValue: grpChoice,
+                  onChanged: (x) => widget.selectedCallBack(widget.choice),
+                  activeColor: Theme.of(context).primaryColor) // TODO: Change?
+              : Checkbox(
+                  value: widget.selected,
+                  onChanged: (x) => widget.selectedCallBack(widget.choice),
+                  activeColor: Theme.of(context).primaryColor, // TODO: Change?
+                ),
+          Expanded(
+            child: Container(
+              padding:
+                  widget.choice.isFreeText ? null : EdgeInsets.only(bottom: 13),
+              decoration: !widget.isLastChoice
+                  ? BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(
+                              color: Theme.of(context)
+                                  .dividerColor))) // TODO: Change?
+                  : null,
+              child: widget.choice.isFreeText
+                  ? Container(
+                      child: TextField(
+                        onChanged: (newText) => widget.choice.text = newText,
+                        decoration: InputDecoration(
+                            hintText: locale?.translate("Other") ?? "Other"),
                       ),
-              ),
-            )
-          : Text(
-              locale?.translate(widget.choice.text) ?? widget.choice.text,
-              style: Theme.of(context).textTheme.bodyText2,
-              softWrap: true,
+                    )
+                  : Text(
+                      locale?.translate(widget.choice.text) ??
+                          widget.choice.text,
+                      style: Theme.of(context).textTheme.bodyText2,
+                      softWrap: true,
+                    ),
             ),
+          ),
+        ]),
+      ),
     );
   }
 }

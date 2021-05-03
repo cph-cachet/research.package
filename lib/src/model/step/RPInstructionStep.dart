@@ -7,18 +7,18 @@ part of research_package_model;
 class RPInstructionStep extends RPStep {
   /// The text which is shown in a new window by pressing the "Learn more" button.
   /// If `null`, no "Learn more" button is shown.
-  String detailText;
+  String? detailText;
 
   /// Optional footnote to appear on the bottom of the screen
-  String footnote;
+  String? footnote;
 
   /// The path of the image to show during the Instruction Step
   /// (e.g.: "assets/picture.png"). If ```null``` nothing is shown.
-  String imagePath;
+  String? imagePath;
 
   RPInstructionStep(String identifier,
-      {String title, this.detailText, this.footnote, this.imagePath})
-      : super(identifier, title: title);
+      {required String title, this.detailText, this.footnote, this.imagePath})
+      : super(identifier: identifier, title: title);
 
   /// The widget (UI representation) of the step
   @override

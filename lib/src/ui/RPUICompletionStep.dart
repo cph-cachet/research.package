@@ -7,7 +7,7 @@ part of research_package_ui;
 class RPUICompletionStep extends StatefulWidget {
   final RPCompletionStep step;
 
-  RPUICompletionStep({@required this.step});
+  RPUICompletionStep({required this.step});
 
   @override
   _RPUICompletionStepState createState() => _RPUICompletionStepState();
@@ -15,8 +15,8 @@ class RPUICompletionStep extends StatefulWidget {
 
 class _RPUICompletionStepState extends State<RPUICompletionStep>
     with SingleTickerProviderStateMixin {
-  Animation<double> _scale;
-  AnimationController _controller;
+  late Animation<double> _scale;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations locale = RPLocalizations.of(context)!;
     return Scaffold(
       body: Center(
         child: Column(
@@ -41,7 +41,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
             Column(
               children: <Widget>[
                 Text(
-                  locale?.translate(widget.step.title) ?? widget.step.title,
+                  locale.translate(widget.step.title) ?? widget.step.title,
                   style: Theme.of(context).textTheme.headline3,
                   textAlign: TextAlign.center,
                 ),
@@ -49,7 +49,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
-                      locale?.translate(widget.step.text) ?? widget.step.text,
+                      locale.translate(widget.step.text) ?? widget.step.text,
                       style: Theme.of(context).textTheme.subtitle1,
                       textAlign: TextAlign.center,
                     ),

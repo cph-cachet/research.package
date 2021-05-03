@@ -92,20 +92,18 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
     RPLocalizations locale = RPLocalizations.of(context);
     // Return the header as the first element.
     if (index == 0) {
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 64.0),
-            child: Text(
-              locale?.translate(
-                      'Review this form below, and tap AGREE if you\'re ready to continue.') ??
-                  'Review this form below, and tap AGREE if you\'re ready to continue.',
-              style: Theme.of(context).textTheme.headline5,
-              textAlign: TextAlign.center,
-            ),
+      return Column(children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 64.0),
+          child: Text(
+            locale?.translate(
+                    'Review this form below, and tap AGREE if you\'re ready to continue.') ??
+                'Review this form below, and tap AGREE if you\'re ready to continue.',
+            style: Theme.of(context).textTheme.headline5,
+            textAlign: TextAlign.center,
           ),
         ),
-      );
+      ]);
     }
     index -= 1;
 
@@ -235,21 +233,20 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             locale.translate('AGREE') ?? "AGREE",
           ),
           onPressed: () => _showConsentDialog(
-                widget.step.consentDocument.signatures != null
-                    ? () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        Navigator
-                            .of(context)
-                            .pushReplacementNamed('consent_review/signature');
-                      }
-                    : () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        widget.onNoSignature(null);
-                        blocTask.sendStatus(RPStepStatus.Finished);
-                      },
-              ),
+            widget.step.consentDocument.signatures != null
+                ? () {
+                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                    Navigator.of(context, rootNavigator: true).pop();
+                    Navigator.of(context)
+                        .pushReplacementNamed('consent_review/signature');
+                  }
+                : () {
+                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                    Navigator.of(context, rootNavigator: true).pop();
+                    widget.onNoSignature(null);
+                    blocTask.sendStatus(RPStepStatus.Finished);
+                  },
+          ),
         ),
       ],
     );
@@ -336,7 +333,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
   }
 
   Widget _nameFields(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations locale = RPLocalizations.of(context)!;
     final node = FocusScope.of(context);
     return Column(
       children: <Widget>[
@@ -354,21 +351,21 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           onFieldSubmitted: (_) => node.unfocus(),
           controller: _lastNameController,
           decoration: InputDecoration(
-              labelText: locale?.translate('Last Name') ?? "Last Name"),
+              labelText: locale.translate('Last Name') ?? "Last Name"),
         ),
       ],
     );
   }
 
   Widget _signingField(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations locale = RPLocalizations.of(context)!;
     return Center(
       child: Padding(
         padding: EdgeInsets.only(top: 24.0),
         child: Column(
           children: <Widget>[
             Text(
-              locale?.translate(
+              locale.translate(
                       'Please sign using your finger on the line below') ??
                   'Please sign using your finger on the line below',
               style: Theme.of(context).textTheme.caption,

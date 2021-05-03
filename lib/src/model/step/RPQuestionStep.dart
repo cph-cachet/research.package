@@ -15,13 +15,16 @@ class RPQuestionStep extends RPStep {
 
   /// The placeholder text for the Question Steps using an answer format which
   /// requires text entry
-  String placeholder;
+  String? placeholder;
 
   /// Creates a Question Step populated with title (text of the question) and
   /// answer format on which the actual layout depends
-  RPQuestionStep(String identifier,
-      {this.answerFormat, String title, bool optional = false})
-      : super(identifier, title: title, optional: optional);
+  RPQuestionStep(
+      {required String identifier,
+      required this.answerFormat,
+      required String title,
+      bool optional = false})
+      : super(identifier: identifier, title: title, optional: optional);
 
   /// The widget (UI representation) of the step.
   ///

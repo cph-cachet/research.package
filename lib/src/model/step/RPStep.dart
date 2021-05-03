@@ -11,7 +11,7 @@ part of research_package_model;
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPStep extends Serializable {
   @JsonKey(ignore: true)
-  Widget _stepWidget;
+  late Widget _stepWidget;
 
   /// A unique identifier of the Step. This identifier connects the Step to its
   /// result ([RPResult]) object.
@@ -22,7 +22,7 @@ class RPStep extends Serializable {
   /// For e.g. the [title] of [RPCompletionStep] is rendered in the middle of
   /// the screen while the [title] of an [RPQuestionStep] is the text of the
   /// actual question.
-  String title;
+  String? title;
 
   /// The text of the Step. Different types of Steps are using the [text] text
   /// differently.
@@ -30,7 +30,7 @@ class RPStep extends Serializable {
   /// For e.g. the [text] of [RPCompletionStep] is rendered in the middle of
   /// the screen while the
   /// [RPQuestionStep] does not even use it.
-  String text;
+  late String text;
 
   /// If set to `true` the step can be skipped. In that case the result for
   /// the step will be `null`.
@@ -38,7 +38,7 @@ class RPStep extends Serializable {
 
   /// Create a step object with the given [title]. Different types of Steps
   /// are using the [title] text differently.
-  RPStep(this.identifier, {this.title, this.optional});
+  RPStep({required this.identifier, this.title, this.optional = false});
 
   /// The widget (UI representation) of the step. [RPQuestionStep]s don't have it
   /// because their UI representation depends on the Answer Format.

@@ -16,9 +16,9 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
     with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
   dynamic _currentQuestionBodyResult;
-  bool readyToProceed;
-  RPStepResult result;
-  RPTaskProgress recentTaskProgress;
+  late bool readyToProceed;
+  late RPStepResult result;
+  late RPTaskProgress recentTaskProgress;
 
   set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {
     this._currentQuestionBodyResult = currentQuestionBodyResult;
@@ -50,31 +50,39 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   Widget stepBody(RPAnswerFormat answerFormat) {
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
-        return RPUIIntegerQuestionBody(answerFormat, (result) {
+        return RPUIIntegerQuestionBody(
+            ((answerFormat as RPIntegerAnswerFormat) as RPIntegerAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPChoiceAnswerFormat:
-        return RPUIChoiceQuestionBody(answerFormat, (result) {
+        return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPSliderAnswerFormat:
-        return RPUISliderQuestionBody(answerFormat, (result) {
+        return RPUISliderQuestionBody((answerFormat as RPSliderAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPImageChoiceAnswerFormat:
-        return RPUIImageChoiceQuestionBody(answerFormat, (result) {
+        return RPUIImageChoiceQuestionBody(
+            (answerFormat as RPImageChoiceAnswerFormat), (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPDateTimeAnswerFormat:
-        return RPUIDateTimeQuestionBody(answerFormat, (result) {
+        return RPUIDateTimeQuestionBody(
+            (answerFormat as RPDateTimeAnswerFormat), (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPBooleanAnswerFormat:
-        return RPUIBooleanQuestionBody(answerFormat, (result) {
+        return RPUIBooleanQuestionBody((answerFormat as RPBooleanAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPTextAnswerFormat:
-        return RPUITextInputQuestionBody(answerFormat, (result) {
+        return RPUITextInputQuestionBody((answerFormat as RPTextAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       default:
@@ -84,7 +92,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations locale = RPLocalizations.of(context)!;
     return SafeArea(
       child: ListView(
         // TODO: Why is this a ListView and not a Column?
@@ -96,7 +104,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
                   padding: const EdgeInsets.only(
                       bottom: 24, left: 8, right: 8, top: 0),
                   child: Text(
-                    locale?.translate(widget.step.title) ?? widget.step.title,
+                    locale.translate(widget.step.title) ?? widget.step.title,
                     textAlign: TextAlign.left,
                   ),
                 )
@@ -108,7 +116,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
           widget.step.optional
               ? TextButton(
                   onPressed: () => skipQuestion(),
-                  child: Text(locale?.translate("Skip this question") ??
+                  child: Text(locale.translate("Skip this question") ??
                       "Skip this question"),
                 )
               : Container(),

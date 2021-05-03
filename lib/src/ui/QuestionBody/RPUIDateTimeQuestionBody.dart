@@ -20,8 +20,6 @@ class RPUIDateTimeQuestionBody extends StatefulWidget {
 
 class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIDateTimeQuestionBody> {
-  String _errorMessage;
-
   @override
   Widget build(BuildContext context) {
     super.build(context);

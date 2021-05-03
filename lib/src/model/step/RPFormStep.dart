@@ -13,10 +13,13 @@ class RPFormStep extends RPQuestionStep {
   List<RPQuestionStep> steps;
 
   /// The answer format of Form Step will always return [RPFormAnswerFormat]
-  RPAnswerFormat answerFormat;
+  late RPAnswerFormat answerFormat;
 
-  RPFormStep(String identifier,
-      {this.steps, String title, bool optional = false})
+  RPFormStep(
+      {required String identifier,
+      required this.steps,
+      required String title,
+      bool optional = false})
       : super(identifier, title: title, optional: optional) {
     this.answerFormat = RPFormAnswerFormat();
   }

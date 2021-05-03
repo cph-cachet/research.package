@@ -15,8 +15,8 @@ class RPUIVisualConsentStep extends StatefulWidget {
 
 class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     with SingleTickerProviderStateMixin {
-  Animation<double> _scale;
-  AnimationController _controller;
+  late Animation<double> _scale;
+  late AnimationController _controller;
   int _pageNr = 0;
   bool _lastPage = false;
 
@@ -45,33 +45,33 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
 
   _pushContent(String title, String content) {
     Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => _ContentRoute(
-                  title: title,
-                  content: content,
-                ),
-          ),
-        );
+      MaterialPageRoute(
+        builder: (context) => _ContentRoute(
+          title: title,
+          content: content,
+        ),
+      ),
+    );
   }
 
   void _showCancelDialog() {
     showDialog(
       context: context,
       builder: (context) {
-        RPLocalizations locale = RPLocalizations.of(context);
+        RPLocalizations locale = RPLocalizations.of(context)!;
         return AlertDialog(
-          content: Text(locale?.translate('quit_confirmation') ??
+          content: Text(locale.translate('quit_confirmation') ??
               "Are you sure you want to quit?"),
           actions: <Widget>[
             OutlinedButton(
-              child: Text(locale?.translate('YES') ?? "YES"),
+              child: Text(locale.translate('YES') ?? "YES"),
               onPressed: () {
                 Navigator.of(context).pop(); // Pop the popup
                 Navigator.of(context).pop(); // Pop the screen
               },
             ),
             ElevatedButton(
-                child: Text(locale?.translate('NO') ?? 'NO'),
+                child: Text(locale.translate('NO') ?? 'NO'),
                 onPressed: () => Navigator.of(context).pop() // Pop the popup,
                 )
           ],
@@ -80,56 +80,56 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     );
   }
 
-  Widget _carouselBar() {
-    return Container(
-      height: AppBar().preferredSize.height,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Spacer
-          // TODO:
-          Expanded(
-            child: Container(),
-            flex: 1,
-          ),
-          // Carousel indicator
-          Expanded(
-            flex: 2,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: widget.consentDocument.sections.map(
-                (section) {
-                  var index = widget.consentDocument.sections.indexOf(section);
-                  return Container(
-                    width: 7.0,
-                    height: 7.0,
-                    margin: EdgeInsets.symmetric(horizontal: 6.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: index <= _pageNr
-                          ? Theme.of(context).accentColor
-                          : Theme.of(context).unselectedWidgetColor,
-                    ),
-                  );
-                },
-              ).toList(),
-            ),
-          ),
-          // Close button
-          Expanded(
-            flex: 1,
-            child: IconButton(
-              icon: Icon(
-                Icons.highlight_off,
-                color: Theme.of(context).accentColor,
-              ),
-              onPressed: _showCancelDialog,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _carouselBar() {
+  //   return Container(
+  //     height: AppBar().preferredSize.height,
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         // Spacer
+  //         // TODO:
+  //         Expanded(
+  //           child: Container(),
+  //           flex: 1,
+  //         ),
+  //         // Carousel indicator
+  //         Expanded(
+  //           flex: 2,
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.center,
+  //             children: widget.consentDocument.sections.map(
+  //               (section) {
+  //                 var index = widget.consentDocument.sections.indexOf(section);
+  //                 return Container(
+  //                   width: 7.0,
+  //                   height: 7.0,
+  //                   margin: EdgeInsets.symmetric(horizontal: 6.0),
+  //                   decoration: BoxDecoration(
+  //                     shape: BoxShape.circle,
+  //                     color: index <= _pageNr
+  //                         ? Theme.of(context).accentColor
+  //                         : Theme.of(context).unselectedWidgetColor,
+  //                   ),
+  //                 );
+  //               },
+  //             ).toList(),
+  //           ),
+  //         ),
+  //         // Close button
+  //         Expanded(
+  //           flex: 1,
+  //           child: IconButton(
+  //             icon: Icon(
+  //               Icons.highlight_off,
+  //               color: Theme.of(context).accentColor,
+  //             ),
+  //             onPressed: _showCancelDialog,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _illustrationForType(RPConsentSection section) {
     const double iconSize = 80.0;
@@ -250,12 +250,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
 
   Widget _consentSectionPageBuilder(BuildContext context, int index) {
     RPConsentSection section = widget.consentDocument.sections[index];
-    RPLocalizations locale = RPLocalizations.of(context);
-    if (section.title == null) {
-      // TODO: Why can such a section be instantiated when it later leads to exceptions?
-      throw Exception(
-          'No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text');
-    }
+    RPLocalizations locale = RPLocalizations.of(context)!;
 
     // Display the list builder if type is of these types otherwise show normal.
     if (section.type == RPConsentSectionType.UserDataCollection ||
@@ -268,13 +263,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
             Container(
               padding: EdgeInsets.symmetric(vertical: 4.0),
               child: Text(
-                locale?.translate(section.title) ?? section.title,
+                locale.translate(section.title) ?? section.title,
                 style: Theme.of(context).textTheme.headline4,
                 textAlign: TextAlign.start,
               ),
             ),
             Text(
-              locale?.translate(section.summary) ?? section.summary,
+              locale.translate(section.summary) ?? section.summary,
               style: Theme.of(context).textTheme.bodyText1,
               textAlign: TextAlign.start,
             ),
@@ -306,24 +301,23 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  locale?.translate(section.title) ?? section.title,
+                  locale.translate(section.title) ?? section.title,
                   style: Theme.of(context).textTheme.headline5,
                   textAlign: TextAlign.start,
                 ),
                 Text(
-                  locale?.translate(section.summary) ?? section.summary,
+                  locale.translate(section.summary) ?? section.summary,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
                 GestureDetector(
                   onTap: () => _pushContent(
-                        section.title,
-                        section.content,
-                      ),
-                  textAlign: TextAlign.start,
+                    section.title,
+                    section.content,
+                  ),
                   child: Text(
-                    RPLocalizations.of(context)?.translate('Learn more...') ??
-                        "Learn more...",
+                    locale.translate('Learn more...') ?? "Learn more...",
                     style: TextStyle(color: Theme.of(context).primaryColor),
+                    // textAlign: TextAlign.start,
                   ),
                 ),
                 Padding(
@@ -331,7 +325,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                   child: OutlinedButton.icon(
                     icon: Icon(Icons.help),
                     label: Text(
-                      locale?.translate('Learn more...') ?? 'Learn more...',
+                      locale.translate('Learn more...') ?? 'Learn more...',
                     ),
                     onPressed: () => _pushContent(
                       section.title,
@@ -390,7 +384,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     PageController controller = PageController();
 
     return WillPopScope(
-      onWillPop: () => null,
+      onWillPop: () => false,
       child: Scaffold(
         body: SafeArea(
           child: Column(
@@ -422,20 +416,20 @@ class _ContentRoute extends StatelessWidget {
   final String title;
   final String content;
 
-  _ContentRoute({this.title, this.content});
+  _ContentRoute({required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations locale = RPLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(locale?.translate(this.title) ?? this.title),
+        title: Text(locale.translate(this.title) ?? this.title),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
         child: SingleChildScrollView(
             child: Text(
-          locale?.translate(this.content) ?? this.content,
+          locale.translate(this.content) ?? this.content,
           style: Theme.of(context).textTheme.bodyText1,
         )),
       ),
@@ -456,18 +450,19 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations locale = RPLocalizations.of(context)!;
     return Container(
       child: ExpansionTile(
         title: Text(
-          locale?.translate(widget.dataTypeSection.dataName) ?? widget.dataTypeSection.dataName,
+          locale.translate(widget.dataTypeSection.dataName) ??
+              widget.dataTypeSection.dataName,
           style: Theme.of(context).textTheme.subtitle1,
           textAlign: TextAlign.start,
         ),
         childrenPadding: EdgeInsets.only(left: 15, right: 15, bottom: 5),
         children: [
           Text(
-            locale?.translate(widget.dataTypeSection.dataInformation) ??
+            locale.translate(widget.dataTypeSection.dataInformation) ??
                 widget.dataTypeSection.dataInformation,
             style: Theme.of(context).textTheme.bodyText2,
             textAlign: TextAlign.start,
