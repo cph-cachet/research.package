@@ -294,3 +294,5 @@ DerivedData/
 .dart_tool/package_config.json
 
 .dart_tool/build_resolvers/sdk.sum.deps
+*.lock
+*.lock
