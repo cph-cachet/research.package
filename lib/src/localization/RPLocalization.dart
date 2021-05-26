@@ -27,10 +27,10 @@ class RPLocalizations {
     return true;
   }
 
-  /// Translate [text] to this [locale].
-  /// If [text] is not translated, [text] is returned untranslated.
-  String translate(String text) =>
-      (_localizedStrings.containsKey(text)) ? _localizedStrings[text] : text;
+  /// Get the translation for [key] to this [locale].
+  /// If [key] is not translated, [key] is returned.
+  String translate(String key) =>
+      (_localizedStrings.containsKey(key)) ? _localizedStrings[key] : key;
 
   // Static member to have a simple access to the delegate from the MaterialApp
   static const LocalizationsDelegate<RPLocalizations> delegate =
