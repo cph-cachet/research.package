@@ -22,7 +22,7 @@ class RPAnswerFormat /* extends Serializable */ {
   // Returns the QuestionType for this answer format. Implement this in your subclass
   // It's for approximation, what kind of data the answer will return.
   // Also, they are _almost_ the same as the questionResult classes in RK
-//  QuestionType get questionType => QuestionType.None;
+  //  QuestionType get questionType => QuestionType.None;
 
   Function get fromJsonFunction => _$RPAnswerFormatFromJson;
   // factory RPAnswerFormat.fromJson(Map<String, dynamic> json) =>

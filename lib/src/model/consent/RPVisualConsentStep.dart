@@ -17,6 +17,7 @@ class RPVisualConsentStep extends RPStep {
 
   /// The widget (UI representation) of the step
   @override
+  @JsonKey(ignore: true)
   Widget get stepWidget =>
       RPUIVisualConsentStep(consentDocument: consentDocument);
 

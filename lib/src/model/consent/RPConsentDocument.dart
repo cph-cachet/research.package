@@ -10,7 +10,7 @@ part of research_package_model;
 /// By adding [signatures] to the consent document the parameters of the
 /// signature(s) to collect can be specified.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPConsentDocument {
+class RPConsentDocument extends Serializable {
   /// The list of signatures that are required in the document
   List<RPConsentSignature> signatures = [];
 
@@ -29,7 +29,9 @@ class RPConsentDocument {
   String? _signaturePageTitle;
   String? _signaturePageContent;
 
-  RPConsentDocument({required this.title, required this.sections});
+  RPConsentDocument(this.title, this.sections) {
+    _registerFromJsonFunctions();
+  }
 
   /// Adds a signature to the list of [signatures]
   void addSignature(RPConsentSignature signature) {
@@ -58,7 +60,8 @@ class RPConsentDocument {
   //TODO: PDF generating
   //Generating the consent pdf is this class' task as well
 
+  Function get fromJsonFunction => _$RPConsentDocumentFromJson;
   factory RPConsentDocument.fromJson(Map<String, dynamic> json) =>
-      _$RPConsentDocumentFromJson(json);
+      FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPConsentDocumentToJson(this);
 }

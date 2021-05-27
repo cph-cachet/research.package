@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  carp_core:
+    dependency: transitive
+    description:
+      name: carp_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.21.4"
   characters:
     dependency: transitive
     description:
@@ -155,7 +162,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.5.1"
+    version: "0.5.3+1"
   rxdart:
     dependency: transitive
     description:

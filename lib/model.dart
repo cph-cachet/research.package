@@ -22,6 +22,7 @@ import 'package:research_package/ui.dart';
 
 // JSON
 part 'model.g.dart';
+part 'model.json.dart';
 
 // Library elements
 part 'src/model/answerformat/RPAnswerFormat.dart';
