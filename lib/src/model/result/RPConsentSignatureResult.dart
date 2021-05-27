@@ -11,7 +11,7 @@ class RPConsentSignatureResult extends RPResult {
   RPSignatureResult signature;
 
   /// the ID of the user which signed the document
-  String userID;
+  String? userID;
 
   RPConsentSignatureResult(
       String identifier, this.consentDocument, this.signature)

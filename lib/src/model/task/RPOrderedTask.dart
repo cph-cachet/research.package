@@ -8,14 +8,17 @@ part of research_package_model;
 /// using [RPNavigableOrderedTask] which inherited from this class.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPOrderedTask extends RPTask {
-  int _numberOfQuestionSteps;
-  bool _isConsentTask;
+  late int _numberOfQuestionSteps;
+  late bool _isConsentTask;
 
   /// The list of [RPStep]s of the task
   List<RPStep> steps;
 
-  RPOrderedTask(String identifier, this.steps, {bool closeAfterFinished = true})
-      : super(identifier, closeAfterFinished: closeAfterFinished) {
+  RPOrderedTask(
+      {required String identifier,
+      required this.steps,
+      bool closeAfterFinished = true})
+      : super(identifier: identifier, closeAfterFinished: closeAfterFinished) {
     this._numberOfQuestionSteps = 0;
     this._isConsentTask = false;
 
@@ -35,7 +38,7 @@ class RPOrderedTask extends RPTask {
   ///
   /// Returns ```null``` if [step] was the last one in the sequence.
   @override
-  RPStep getStepAfterStep(RPStep step, RPTaskResult result) {
+  RPStep getStepAfterStep(RPStep? step, RPTaskResult result) {
     if (step == null) return steps.first;
     int nextIndex = steps.indexOf(step) + 1;
     if (nextIndex < steps.length) return steps[nextIndex];
@@ -85,7 +88,7 @@ class RPOrderedTask extends RPTask {
   int get numberOfQuestionSteps => this._numberOfQuestionSteps;
 
   Function get fromJsonFunction => _$RPOrderedTaskFromJson;
-  factory RPOrderedTask.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPOrderedTask.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPOrderedTaskToJson(this);
 }

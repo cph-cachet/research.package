@@ -38,7 +38,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    result = RPStepResult(widget.step);
+    result = RPStepResult(step: widget.step);
     readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;

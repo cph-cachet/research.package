@@ -21,7 +21,7 @@ class RPVisualConsentStep extends RPStep {
       RPUIVisualConsentStep(consentDocument: consentDocument);
 
   Function get fromJsonFunction => _$RPVisualConsentStepFromJson;
-  factory RPVisualConsentStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPVisualConsentStep.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPVisualConsentStepToJson(this);
 }

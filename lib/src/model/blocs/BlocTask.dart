@@ -50,11 +50,11 @@ class BlocTask {
   Stream<RPTaskProgress> get taskProgress => _taskProgressController.stream;
 
   // Other stream properties
-  RPTaskProgress get lastProgressValue => _taskProgressController.stream.value;
+  RPTaskProgress? get lastProgressValue => _taskProgressController.stream.value;
 
   /// The current state of the Task Result which can be accessed throughout
   /// the framework
-  RPTaskResult get lastTaskResult => _taskResultController.stream.value;
+  RPTaskResult? get lastTaskResult => _taskResultController.stream.value;
 
   dispose() {
     _stepStatusController.close();

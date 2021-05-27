@@ -15,24 +15,19 @@ class RPResultPredicate {
   /// Result predicate for the boolean answer format [RPBooleanAnswerFormat].
   /// The [expectedValue] here should be a boolean.
   RPResultPredicate.forBooleanQuestionResult(
-      {@required RPResultSelector resultSelector,
-      @required bool expectedValue}) {
+      {required RPResultSelector resultSelector, required bool expectedValue}) {
     this._resultSelector = resultSelector;
     this.expectedValue = expectedValue;
-
     getPredictionResult = directPredictionResult;
   }
 
   /// Result predicate for choice question types. The [expectedValue] here
   /// should correspond to the [value] of an [RPChoice] object.
   RPResultPredicate.forChoiceQuestionResult(
-      {@required
-          RPResultSelector resultSelector,
-      @required
-          List<int> expectedValue,
-      @required
-          ChoiceQuestionResultPredicateMode
-              choiceQuestionResultPredicateMode}) {
+      {required RPResultSelector resultSelector,
+      required List<int> expectedValue,
+      required ChoiceQuestionResultPredicateMode
+          choiceQuestionResultPredicateMode}) {
     this._resultSelector = resultSelector;
     this.expectedValue = expectedValue;
     this._choiceQuestionResultPredicateMode = choiceQuestionResultPredicateMode;
@@ -65,9 +60,10 @@ class RPResultPredicate {
           this._predictionResult = false;
 
           try {
-            List<int> results = List<int>();
+            List<int> results = [];
             (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY]
-                as List<RPChoice>).forEach((choice) {
+                    as List<RPChoice>)
+                .forEach((choice) {
               results.add(choice.value);
             });
             results.sort();
@@ -86,9 +82,10 @@ class RPResultPredicate {
           this._predictionResult = true;
 
           try {
-            List<int> results = List<int>();
+            List<int> results = [];
             (resultFromResultSelector.results[RPStepResult.DEFAULT_KEY]
-                as List<RPChoice>).forEach((choice) {
+                    as List<RPChoice>)
+                .forEach((choice) {
               results.add(choice.value);
             });
             results.sort();
@@ -163,26 +160,6 @@ class RPResultSelector {
 
     return _foundStepResult;
   }
-
-//  RPResultSelector.forStepAndTaskId(String stepId, String taskId) {
-//    // TODO
-//    _returnedStepResult = RPStepResult();
-//  }
-//
-//  RPResultSelector.forResultId(String resultId) {
-//    // TODO
-//    _returnedStepResult = RPStepResult();
-//  }
-//
-//  RPResultSelector.forStepAndResultId(String stepId, String resultId) {
-//    // TODO
-//    _returnedStepResult = RPStepResult();
-//  }
-//
-//  RPResultSelector.forTaskAndResultId(String taskId, String resultId) {
-//    // TODO
-//    _returnedStepResult = RPStepResult();
-//  }
 }
 
 enum ChoiceQuestionResultPredicateMode { ExactMatch, Containing }

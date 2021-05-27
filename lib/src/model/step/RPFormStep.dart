@@ -12,17 +12,16 @@ class RPFormStep extends RPQuestionStep {
   /// The list of questions to be shown as part of the step.
   List<RPQuestionStep> steps;
 
-  /// The answer format of Form Step will always return [RPFormAnswerFormat]
-  late RPAnswerFormat answerFormat;
-
   RPFormStep(
       {required String identifier,
       required this.steps,
       required String title,
       bool optional = false})
-      : super(identifier, title: title, optional: optional) {
-    this.answerFormat = RPFormAnswerFormat();
-  }
+      : super(
+            identifier: identifier,
+            answerFormat: RPFormAnswerFormat(),
+            title: title,
+            optional: optional);
 
   /// The widget (UI representation) of Form Step.
   ///
@@ -33,7 +32,7 @@ class RPFormStep extends RPQuestionStep {
   Widget get stepWidget => RPUIFormStep(this);
 
   Function get fromJsonFunction => _$RPFormStepFromJson;
-  factory RPFormStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPFormStep.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPFormStepToJson(this);
 }

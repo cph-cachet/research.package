@@ -15,7 +15,7 @@ class RPTaskResult extends RPResult {
   /// It sets [startDate] to the ```DateTime.now()```. Since these objects are instantiated
   /// together with the Task it belongs to so it can be used for measuring
   /// how much time the participant spent the given Task.
-  RPTaskResult([String identifier]) : super(identifier) {
+  RPTaskResult({String identifier}) : super(identifier) {
     this.results = Map<String, RPResult>();
     startDate = DateTime.now();
   }

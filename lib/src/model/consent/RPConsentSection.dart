@@ -9,7 +9,6 @@ class RPConsentSection {
   ///
   /// The [title] and the image which is shown on the section card is associated
   /// to the [type].
-  @JsonKey(nullable: false)
   RPConsentSectionType type;
 
   /// The title of the consent section which appears both in [RPVisualConsentStep]
@@ -39,10 +38,11 @@ class RPConsentSection {
   ///
   /// It is enough to provide only the [type] of the section, the title is
   /// automatically filled out. [summary] is set to [null] initially.
-  RPConsentSection(this.type,
-      {Icon customIcon, Image customImage, this.customIllustration})
-//      : assert(customIllustration.runtimeType == Icon || customIllustration.runtimeType == Image)
-  {
+  RPConsentSection(
+      {required this.type,
+      Icon? customIcon,
+      Image? customImage,
+      this.customIllustration}) {
     this.summary = null;
     this.title = _localizedTitleForConsentSectionType(type);
   }

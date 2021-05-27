@@ -25,7 +25,7 @@ class RPInstructionStep extends RPStep {
   Widget get stepWidget => RPUIInstructionStep(step: this);
 
   Function get fromJsonFunction => _$RPInstructionStepFromJson;
-  factory RPInstructionStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPInstructionStep.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPInstructionStepToJson(this);
 }

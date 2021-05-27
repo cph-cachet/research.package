@@ -10,13 +10,14 @@ class RPBooleanAnswerFormat extends RPAnswerFormat {
   /// The text shown for the `false` option
   String falseText;
 
-  RPBooleanAnswerFormat({this.trueText, this.falseText}) : super();
+  RPBooleanAnswerFormat({required this.trueText, required this.falseText})
+      : super();
 
   @override
   get questionType => RPQuestionType.Boolean;
 
   Function get fromJsonFunction => _$RPBooleanAnswerFormatFromJson;
-  factory RPBooleanAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPBooleanAnswerFormat.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPBooleanAnswerFormatToJson(this);
 }

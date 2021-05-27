@@ -13,15 +13,16 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 
   /// Returns an initialized choice answer format with the given [ChoiceAnswerStyle]
   /// and the set of [RPChoice]s.
-  RPChoiceAnswerFormat({this.answerStyle, this.choices}) : super() {
+  RPChoiceAnswerFormat({required this.answerStyle, required this.choices})
+      : super() {
     questionType = (answerStyle == RPChoiceAnswerStyle.SingleChoice)
         ? RPQuestionType.SingleChoice
         : RPQuestionType.MultipleChoice;
   }
 
   Function get fromJsonFunction => _$RPChoiceAnswerFormatFromJson;
-  factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
 
   Map<String, dynamic> toJson() => _$RPChoiceAnswerFormatToJson(this);
 }
@@ -29,15 +30,15 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 /// The choice object which the participant can choose during a [RPQuestionStep]
 /// with [RPChoiceAnswerFormat].
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPChoice extends Serializable {
+class RPChoice /* extends Serializable */ {
   /// The text to display.
   String text;
 
-  /// The value of this choice - for example `4` on a 0-5 scale.
+  /// Th/e value of this choice - for example `4` on a 0-5 scale.
   int value;
 
   // The detailed text to show.
-  String detailText;
+  String? detailText;
 
   /// If set to `true`, then the user can enter the text instead of the default
   /// [text] which was provided. The [value] remains the same.
@@ -46,15 +47,14 @@ class RPChoice extends Serializable {
 
   /// Default constructor.
   RPChoice({
-    this.text,
-    this.value,
+    required this.text,
+    required this.value,
     this.isFreeText = false,
     this.detailText,
-  })
-      : super();
+  }) : super();
 
   Function get fromJsonFunction => _$RPChoiceFromJson;
-  factory RPChoice.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPChoice.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPChoiceToJson(this);
 }

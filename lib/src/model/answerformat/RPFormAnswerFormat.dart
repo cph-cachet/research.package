@@ -12,7 +12,7 @@ class RPFormAnswerFormat extends RPAnswerFormat {
   get questionType => RPQuestionType.Form;
 
   Function get fromJsonFunction => _$RPFormAnswerFormatFromJson;
-  factory RPFormAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPFormAnswerFormat.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPFormAnswerFormatToJson(this);
 }

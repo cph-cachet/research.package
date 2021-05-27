@@ -9,7 +9,7 @@ part of research_package_model;
 /// Package framework is a collection of steps ([RPStep] objects), which together
 /// form a task (an [RPTask] object)
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPStep extends Serializable {
+class RPStep /* extends Serializable */ {
   @JsonKey(ignore: true)
   late Widget _stepWidget;
 
@@ -49,8 +49,8 @@ class RPStep extends Serializable {
   Widget get stepWidget => _stepWidget;
 
   Function get fromJsonFunction => _$RPStepFromJson;
-  factory RPStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPStep.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPStepToJson(this);
 }
 

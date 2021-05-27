@@ -6,7 +6,7 @@ part of research_package_ui;
 /// Instead, add an visual consent step to a task and present the task using a task widget.
 /// When appropriate, the task widget instantiates the visual consent step widget for the step.
 class RPUIVisualConsentStep extends StatefulWidget {
-  RPUIVisualConsentStep({@required this.consentDocument});
+  RPUIVisualConsentStep({required this.consentDocument});
   final RPConsentDocument consentDocument;
 
   @override
@@ -79,57 +79,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
       },
     );
   }
-
-  // Widget _carouselBar() {
-  //   return Container(
-  //     height: AppBar().preferredSize.height,
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //       children: [
-  //         // Spacer
-  //         // TODO:
-  //         Expanded(
-  //           child: Container(),
-  //           flex: 1,
-  //         ),
-  //         // Carousel indicator
-  //         Expanded(
-  //           flex: 2,
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.center,
-  //             children: widget.consentDocument.sections.map(
-  //               (section) {
-  //                 var index = widget.consentDocument.sections.indexOf(section);
-  //                 return Container(
-  //                   width: 7.0,
-  //                   height: 7.0,
-  //                   margin: EdgeInsets.symmetric(horizontal: 6.0),
-  //                   decoration: BoxDecoration(
-  //                     shape: BoxShape.circle,
-  //                     color: index <= _pageNr
-  //                         ? Theme.of(context).accentColor
-  //                         : Theme.of(context).unselectedWidgetColor,
-  //                   ),
-  //                 );
-  //               },
-  //             ).toList(),
-  //           ),
-  //         ),
-  //         // Close button
-  //         Expanded(
-  //           flex: 1,
-  //           child: IconButton(
-  //             icon: Icon(
-  //               Icons.highlight_off,
-  //               color: Theme.of(context).accentColor,
-  //             ),
-  //             onPressed: _showCancelDialog,
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
   Widget _illustrationForType(RPConsentSection section) {
     const double iconSize = 80.0;
@@ -384,7 +333,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     PageController controller = PageController();
 
     return WillPopScope(
-      onWillPop: () => false,
+      onWillPop: () async => false,
       child: Scaffold(
         body: SafeArea(
           child: Column(

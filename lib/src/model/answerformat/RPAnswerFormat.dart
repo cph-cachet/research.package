@@ -11,9 +11,9 @@ part of research_package_model;
 /// serialize it we have to provide a constructor and factory. There's no better solution found yet.
 /// Used in [RPStepResult]*
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPAnswerFormat extends Serializable {
+class RPAnswerFormat /* extends Serializable */ {
   /// The Question Type of the Answer Format. Should be implemented in the subclasses.
-  RPQuestionType questionType;
+  late RPQuestionType questionType;
 
   /// The default constructor. The appropriate subclass of RPAnswerFormat
   /// should be used instead of this directly.
@@ -25,8 +25,8 @@ class RPAnswerFormat extends Serializable {
 //  QuestionType get questionType => QuestionType.None;
 
   Function get fromJsonFunction => _$RPAnswerFormatFromJson;
-  factory RPAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPAnswerFormat.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPAnswerFormatToJson(this);
 }
 

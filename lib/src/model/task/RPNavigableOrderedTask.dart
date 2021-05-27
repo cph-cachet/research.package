@@ -9,14 +9,20 @@ part of research_package_model;
 /// In that case only the last answer given to the question will be saved.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPNavigableOrderedTask extends RPOrderedTask {
-  Map<String, RPStepNavigationRule> _stepNavigationRules;
+  late Map<String, RPStepNavigationRule> _stepNavigationRules;
 //  List<RPSkipStepNavigationRule> _skipStepNavigationRules;
 //  List<RPStepModifier> _stepModifiers;
   bool shouldReportProgress;
 
-  RPNavigableOrderedTask(String identifier, List<RPStep> steps,
-      {closeAfterFinished = true, shouldReportProgress = true})
-      : super(identifier, steps, closeAfterFinished: closeAfterFinished) {
+  RPNavigableOrderedTask(
+      {required String identifier,
+      required List<RPStep> steps,
+      closeAfterFinished = true,
+      this.shouldReportProgress = true})
+      : super(
+            identifier: identifier,
+            steps: steps,
+            closeAfterFinished: closeAfterFinished) {
     _stepNavigationRules = Map<String, RPStepNavigationRule>();
   }
 
@@ -155,32 +161,8 @@ class RPNavigableOrderedTask extends RPOrderedTask {
     _stepNavigationRules.remove(triggerStepIdentifier);
   }
 
-//  setSkipNavigationRule(RPSkipStepNavigationRule skipStepNavigationRule, String stepIdentifier) {
-//    // TODO
-//  }
-
-//  RPSkipStepNavigationRule skipNavigationRuleForStepIdentifier(String stepIdentifier) {
-//    // TODO
-//  }
-
-//  removeSkipNavigationRuleForStepIdentifier(String stepIdentifier) {
-//    // TODO
-//  }
-
-//  setStepModifier(RPStepModifier stepModifier, String stepIdentifier) {
-//    // TODO
-//  }
-
-//  RPStepModifier stepModifierForStepIdentifier(String stepIdentifier) {
-//    // TODO
-//  }
-
-//  removeStepModifierForStepIdentifier(String stepIdentifier) {
-//    // TODO
-//  }
-
   Function get fromJsonFunction => _$RPNavigableOrderedTaskFromJson;
-  factory RPNavigableOrderedTask.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPNavigableOrderedTask.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPNavigableOrderedTaskToJson(this);
 }

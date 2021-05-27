@@ -10,11 +10,11 @@ part of research_package_model;
 class RPPredicateStepNavigationRule extends RPStepNavigationRule {
   final String _defaultStepIdentifier;
   final Map<RPResultPredicate, String>
-      _resultPredicatesWithDestinationIdentifiers;
+      resultPredicatesWithDestinationIdentifiers;
 
   RPPredicateStepNavigationRule(
-      this._resultPredicatesWithDestinationIdentifiers,
-      [this._defaultStepIdentifier]);
+      {required this.resultPredicatesWithDestinationIdentifiers,
+      this._defaultStepIdentifier});
 
   String get defaultStepIdentifier => this._defaultStepIdentifier;
 

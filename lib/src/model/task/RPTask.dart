@@ -8,14 +8,12 @@ part of research_package_model;
 /// sequential tasks. Each step ([RPStep]) in a task roughly corresponds to one
 /// screen through their [stepWidget] Widget, and represents the primary unit of
 /// work in any task presented by a task view controller.
-abstract class RPTask extends Serializable {
-  final String _identifier;
-
-  RPTask(this._identifier, {this.closeAfterFinished});
-
+abstract class RPTask /* extends Serializable */ {
   /// A unique identifier of the Task. This identifier connects the Task to its
   /// result ([RPTaskResult]) object.
-  String get identifier => _identifier;
+  final String identifier;
+
+  RPTask({required this.identifier, this.closeAfterFinished = false});
 
   /// Returns the step after a specified step if there's any.
   RPStep getStepAfterStep(RPStep step, RPTaskResult result);

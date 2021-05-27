@@ -10,7 +10,7 @@ class RPUITask extends StatefulWidget {
 
   /// The callback function which has to return an [RPTaskResult] object.
   /// This function is called when the participant has finished the last step.
-  final void Function(RPTaskResult) onSubmit;
+  final void Function(RPTaskResult)? onSubmit;
 
   /// The callback function which has to return an [RPTaskResult] object.
   /// This function is called when the participant cancels a survey. The result parameter is optional so if you don't want to do grab the result as part of the callback function you can do so, like the following:
@@ -22,9 +22,9 @@ class RPUITask extends StatefulWidget {
   /// ```
   ///
   /// It's only optional. If nothing is provided (is ```null```) the survey just quits without doing anything with the result.
-  final void Function(RPTaskResult result) onCancel;
+  final void Function(RPTaskResult result)? onCancel;
 
-  RPUITask({@required this.task, this.onSubmit, this.onCancel});
+  RPUITask({required this.task, this.onSubmit, this.onCancel});
 
   @override
   _RPUITaskState createState() => _RPUITaskState();
@@ -39,7 +39,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   /// It is a dynamic list which grows and shrinks according to the forward of back navigation of the task.
   List<RPStep> _activeSteps = [];
 
-  RPStep _currentStep;
+  late RPStep _currentStep;
   int _currentStepIndex = 0;
   int _currentQuestionIndex = 1;
 

@@ -14,15 +14,17 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
 
   /// The text to show after the input field.
   /// If `null` then no text is shown.
-  String suffix;
+  String? suffix;
 
-  RPIntegerAnswerFormat({this.minValue, this.maxValue, this.suffix}) : super();
+  RPIntegerAnswerFormat(
+      {required this.minValue, required this.maxValue, this.suffix})
+      : super();
 
   @override
   get questionType => RPQuestionType.Integer;
 
   Function get fromJsonFunction => _$RPIntegerAnswerFormatFromJson;
-  factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+  // factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) =>
+  //     FromJsonFactory().fromJson(json);
   Map<String, dynamic> toJson() => _$RPIntegerAnswerFormatToJson(this);
 }
