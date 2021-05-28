@@ -31,7 +31,7 @@ class RPUITask extends StatefulWidget {
 }
 
 class _RPUITaskState extends State<RPUITask> with CanSaveResult {
-  RPTaskResult _taskResult;
+  late RPTaskResult _taskResult;
 
   /// A list of actual steps to show in the task.
   /// If the task is a [RPNavigableOrderedTask] not all the questions necessarily show up because of branching.
@@ -43,15 +43,15 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   int _currentStepIndex = 0;
   int _currentQuestionIndex = 1;
 
-  StreamSubscription<RPStepStatus> _stepStatusSubscription;
-  StreamSubscription<RPResult> _stepResultSubscription;
+  late StreamSubscription<RPStepStatus> _stepStatusSubscription;
+  late StreamSubscription<RPResult> _stepResultSubscription;
 
   bool navigableTask = false;
 
   @override
   initState() {
     // Instantiate the taskresult so it starts tracking time
-    _taskResult = RPTaskResult(widget.task.identifier);
+    _taskResult = RPTaskResult(identifier: widget.task.identifier);
 
     // If it's navigable we don't want to show result on appbar
     if (widget.task is RPNavigableOrderedTask) {
@@ -245,7 +245,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
 
     return WillPopScope(
       onWillPop: () => blocTask.sendStatus(RPStepStatus.Canceled),
@@ -287,7 +287,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                             ? Container()
                             : TextButton(
                                 onPressed: () =>
-                                    blocTask.sendStatus(StepStatus.Back),
+                                    blocTask.sendStatus(RPStepStatus.Back),
                                 child: Text(
                                   RPLocalizations.of(context)
                                           ?.translate('BACK') ??
@@ -306,7 +306,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                                           ?.translate('NEXT') ??
                                       'NEXT',
                                 ),
-                                onPressed: snapshot.data
+                                onPressed: snapshot.data!
                                     ? () {
                                         blocTask
                                             .sendStatus(RPStepStatus.Finished);

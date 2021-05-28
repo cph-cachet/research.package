@@ -35,13 +35,13 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    stepResult = RPStepResult(widget.formStep);
+    stepResult = RPStepResult(step: widget.formStep);
     stepResult.questionTitle =
         "Form Step - See titles for every question included";
 
     // Filling up the results with nulls
     widget.formStep.steps.forEach((item) {
-      stepResult.setResultForIdentifier(item.identifier, RPStepResult(item));
+      stepResult.setResultForIdentifier(item.identifier, RPStepResult(step: item));
     });
 
     readyToProceed = false;
@@ -144,8 +144,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   Widget formItemBuilder(context, index) {
     RPLocalizations? locale = RPLocalizations.of(context);
     if (index == 0) {
-      return (widget.formStep.title != null)
-          ? Padding(
+      return Padding(
               padding:
                   const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
               child: Text(
@@ -154,8 +153,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
                 style: Theme.of(context).textTheme.headline5,
                 textAlign: TextAlign.left,
               ),
-            )
-          : null;
+            );
     }
     index -= 1;
 

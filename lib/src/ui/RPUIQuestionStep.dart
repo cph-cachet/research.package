@@ -18,7 +18,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   dynamic _currentQuestionBodyResult;
   late bool readyToProceed;
   late RPStepResult result;
-  late RPTaskProgress recentTaskProgress;
+  RPTaskProgress? recentTaskProgress;
 
   set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {
     this._currentQuestionBodyResult = currentQuestionBodyResult;
@@ -92,7 +92,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context)!;
+    RPLocalizations? locale = RPLocalizations.of(context);
     return SafeArea(
       child: ListView(
         // TODO: Why is this a ListView and not a Column?
@@ -104,7 +104,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
                   padding: const EdgeInsets.only(
                       bottom: 24, left: 8, right: 8, top: 0),
                   child: Text(
-                    locale.translate(widget.step.title) ?? widget.step.title,
+                    locale?.translate(widget.step.title!) ?? widget.step.title!,
                     textAlign: TextAlign.left,
                   ),
                 )
@@ -116,7 +116,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
           widget.step.optional
               ? TextButton(
                   onPressed: () => skipQuestion(),
-                  child: Text(locale.translate("Skip this question") ??
+                  child: Text(locale?.translate("Skip this question") ??
                       "Skip this question"),
                 )
               : Container(),
@@ -128,7 +128,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   @override
   void createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate). Set questionTitle
-    result.questionTitle = widget.step.title;
+    result.questionTitle = widget.step.title!;
     result.setResult(_currentQuestionBodyResult);
     blocTask.sendStepResult(result);
   }

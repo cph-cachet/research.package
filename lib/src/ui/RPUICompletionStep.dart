@@ -32,7 +32,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context)!;
+    RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
       body: Center(
         child: Column(
@@ -41,7 +41,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
             Column(
               children: <Widget>[
                 Text(
-                  locale.translate(widget.step.title) ?? widget.step.title,
+                  locale?.translate(widget.step.title) ?? widget.step.title,
                   style: Theme.of(context).textTheme.headline3,
                   textAlign: TextAlign.center,
                 ),
@@ -49,7 +49,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
-                      locale.translate(widget.step.text) ?? widget.step.text,
+                      locale?.translate(widget.step.text) ?? widget.step.text,
                       style: Theme.of(context).textTheme.subtitle1,
                       textAlign: TextAlign.center,
                     ),

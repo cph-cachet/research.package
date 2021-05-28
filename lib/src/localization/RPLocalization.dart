@@ -3,7 +3,7 @@ part of research_package_ui;
 /// Localization support. Use [translate] to translate any text used in
 /// RP or the app in general.
 class RPLocalizations {
-  Map<String, String> _localizedStrings;
+  late Map<String, String> _localizedStrings;
 
   final Locale locale;
 
@@ -30,7 +30,7 @@ class RPLocalizations {
   /// Translate [text] to this [locale].
   /// If [text] is not translated, [text] is returned untranslated.
   String translate(String text) =>
-      (_localizedStrings.containsKey(text)) ? _localizedStrings[text] : text;
+      (_localizedStrings.containsKey(text)) ? _localizedStrings[text]! : text;
 
   // Static member to have a simple access to the delegate from the MaterialApp
   static const LocalizationsDelegate<RPLocalizations> delegate = _RPLocalizationsDelegate();

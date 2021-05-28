@@ -22,7 +22,7 @@ class RPStep /* extends Serializable */ {
   /// For e.g. the [title] of [RPCompletionStep] is rendered in the middle of
   /// the screen while the [title] of an [RPQuestionStep] is the text of the
   /// actual question.
-  String? title;
+  String title;
 
   /// The text of the Step. Different types of Steps are using the [text] text
   /// differently.
@@ -38,7 +38,7 @@ class RPStep /* extends Serializable */ {
 
   /// Create a step object with the given [title]. Different types of Steps
   /// are using the [title] text differently.
-  RPStep({required this.identifier, this.title, this.optional = false});
+  RPStep({required this.identifier, required this.title, this.optional = false});
 
   /// The widget (UI representation) of the step. [RPQuestionStep]s don't have it
   /// because their UI representation depends on the Answer Format.

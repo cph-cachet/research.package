@@ -99,13 +99,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.0.6"
-  carp_core:
-    dependency: "direct main"
-    description:
-      name: carp_core
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.21.4"
   characters:
     dependency: transitive
     description:
@@ -290,7 +283,7 @@ packages:
     source: hosted
     version: "4.0.1"
   json_serializable:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: json_serializable
       url: "https://pub.dartlang.org"
