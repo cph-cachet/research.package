@@ -4,6 +4,7 @@ import 'linear_survey_page.dart';
 import 'navigable_survey_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:research_package/research_package.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +17,24 @@ class MyApp extends StatelessWidget {
         Locale('da'),
       ],
       localizationsDelegates: [
-        // A class which loads the translations from JSON files
+        FlutterI18nDelegate(
+          translationLoader: FileTranslationLoader(),
+          missingTranslationHandler: (key, locale) {
+            print(
+                "--- App : Missing Key: $key, languageCode: ${locale.languageCode}");
+          },
+        ),
+
+        //For Research Package
+        // FlutterI18nDelegate(
+        //   translationLoader: FileTranslationLoader(basePath: 'assets/lang'),
+        //   missingTranslationHandler: (key, locale) {
+        //     print(
+        //         "--- RP : Missing Key: $key, languageCode: ${locale.languageCode}");
+        //   },
+        // ),
+
+        // Research Package translations
         RPLocalizations.delegate,
         // Built-in localization of basic text for Cupertino widgets
         GlobalCupertinoLocalizations.delegate,
@@ -40,9 +58,6 @@ class MyApp extends StatelessWidget {
         // from the list (English, in this case).
         return supportedLocales.first;
       },
-      // theme: ThemeData.light().copyWith(
-      //     primaryColor: Colors.deepPurple,
-      //     accentColor: Colors.deepOrangeAccent),
       theme: ThemeData.light().copyWith(backgroundColor: Colors.white),
       darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
@@ -75,7 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
                 child: Text(
-                  "With Research Package you can obtain informed consent, create surveys and collect their results",
+                  // "Welcome to the Demo App - click below...",
+                  FlutterI18n.translate(context, "app_info"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
                 ),

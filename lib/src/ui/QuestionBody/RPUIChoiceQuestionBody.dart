@@ -82,14 +82,11 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(widget._answerFormat.answerStyle ==
-                  RPChoiceAnswerStyle.MultipleChoice
-              ? (locale?.translate('(Choose one or more options)') ??
-                  "(Choose one or more options)")
-              : (locale?.translate('(Choose one option)') ??
-                  "(Choose one option)")),
-        ),
+            padding: const EdgeInsets.all(8.0),
+            child: Text((widget._answerFormat.answerStyle ==
+                    RPChoiceAnswerStyle.MultipleChoice)
+                ? "(${locale?.translate('choose_one_or_more_options')})"
+                : "(${locale?.translate('choose_one_option')})")),
         ListView.builder(
           shrinkWrap: true,
           itemCount: widget._answerFormat.choices.length,
@@ -167,8 +164,7 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                         child: TextField(
                           onChanged: (newText) => widget.choice.text = newText,
                           decoration: InputDecoration(
-                              hintText: RPLocalizations
-                                      .of(context)
+                              hintText: RPLocalizations.of(context)
                                       .translate("Other") ??
                                   "Other"),
                         ),

@@ -31,8 +31,8 @@ dependencies:
   flutter_cupertino_localizations: ^1.0.1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+#  flutter_test:
+#    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -56,6 +56,10 @@ flutter:
     - assets/images/very-happy.png
     - assets/lang/da.json
     - assets/lang/en.json
+#    - assets/flutter_i18n/da.json
+#    - assets/flutter_i18n/en.json
+    - assets/flutter_i18n/
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

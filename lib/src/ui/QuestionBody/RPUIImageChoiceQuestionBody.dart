@@ -28,7 +28,7 @@ class _RPUIImageChoiceQuestionBodyState
     RPLocalizations locale = RPLocalizations.of(context);
     String text = (locale?.translate(_selectedItem?.description) ??
             _selectedItem?.description) ??
-        (locale?.translate('Select an image') ?? 'Select an image');
+        (locale?.translate('select_image') ?? 'Select an image');
     return Container(
         height: 150,
         child: Column(
@@ -49,43 +49,41 @@ class _RPUIImageChoiceQuestionBodyState
     List<Widget> list = [];
     items.forEach(
       (item) => list.add(
-            InkWell(
-              borderRadius: BorderRadius.circular(15),
-              onTap: () {
-                setState(() {
-                  _selectedItem = item == _selectedItem ? null : item;
-                });
-                widget.onResultChance(_selectedItem);
-              },
-              child: Container(
-                // Highlighting of chosen answer
-                decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(5 * 25 / items.length)),
-                  border: Border.all(
-                    color: _selectedItem == item
-                        ? Theme.of(context).primaryColor
-                        : Colors.transparent,
-                    width: 3,
-                  ),
-                ),
-                // Scaling item size with number of choices
-                // Max size is 125
-                padding: EdgeInsets.all(10 / items.length),
-                width: (MediaQuery.of(context).size.width * 0.8) /
-                            items.length >
-                        125
-                    ? 125
-                    : MediaQuery.of(context).size.width * 0.8 / items.length,
-                height: (MediaQuery.of(context).size.width * 0.8) /
-                            items.length >
-                        125
-                    ? 125
-                    : MediaQuery.of(context).size.width * 0.8 / items.length,
-                child: item.image,
+        InkWell(
+          borderRadius: BorderRadius.circular(15),
+          onTap: () {
+            setState(() {
+              _selectedItem = item == _selectedItem ? null : item;
+            });
+            widget.onResultChance(_selectedItem);
+          },
+          child: Container(
+            // Highlighting of chosen answer
+            decoration: BoxDecoration(
+              borderRadius:
+                  BorderRadius.all(Radius.circular(5 * 25 / items.length)),
+              border: Border.all(
+                color: _selectedItem == item
+                    ? Theme.of(context).primaryColor
+                    : Colors.transparent,
+                width: 3,
               ),
             ),
+            // Scaling item size with number of choices
+            // Max size is 125
+            padding: EdgeInsets.all(10 / items.length),
+            width:
+                (MediaQuery.of(context).size.width * 0.8) / items.length > 125
+                    ? 125
+                    : MediaQuery.of(context).size.width * 0.8 / items.length,
+            height:
+                (MediaQuery.of(context).size.width * 0.8) / items.length > 125
+                    ? 125
+                    : MediaQuery.of(context).size.width * 0.8 / items.length,
+            child: item.image,
           ),
+        ),
+      ),
     );
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

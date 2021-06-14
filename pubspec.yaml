@@ -1,6 +1,6 @@
 name: research_package
 description: A Flutter framework for obtaining informed consent, showing surveys and collecting results.
-version: 0.5.3+1
+version: 0.5.4
 homepage: https://github.com/cph-cachet/research.package
 
 environment:
@@ -18,6 +18,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   collection: ^1.14.11
+  flutter_i18n: ^0.22.0
 
 # Overriding carp libraries to use the local copy
 # Remove this before release of package
@@ -26,11 +27,12 @@ dependencies:
 #    path: ../carp/carp.sensing-flutter/carp_core/
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+#  flutter_test:
+#    sdk: flutter
   build_runner: ^1.10.0
   json_serializable: ^3.5.0
-  test: ^1.14.3
+#  test: ^1.14.3
+  test: 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -51,6 +53,12 @@ flutter:
     - assets/icons/settings.png
     - assets/icons/target.png
     - assets/icons/id.png
+    # To add assets to the package, add an assets inside lib, like this:
+    - lib/lang/en.json
+    - lib/lang/da.json
+#    - assets/lang_2/da.json
+#    - assets/lang_2/en.json
+
   #
   # For details regarding assets in packages, see
   # https://flutter.io/assets-and-images/#from-packages

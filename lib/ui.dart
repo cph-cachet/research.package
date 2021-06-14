@@ -14,10 +14,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:research_package/research_package.dart';
+//import 'package:research_package/research_package.dart';
 import 'package:signature/signature.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'package:research_package/model.dart';
 

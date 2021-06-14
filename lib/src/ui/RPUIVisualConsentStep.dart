@@ -45,13 +45,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
 
   _pushContent(String title, String content) {
     Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => _ContentRoute(
-                  title: title,
-                  content: content,
-                ),
-          ),
-        );
+      MaterialPageRoute(
+        builder: (context) => _ContentRoute(
+          title: title,
+          content: content,
+        ),
+      ),
+    );
   }
 
   void _showCancelDialog() {
@@ -327,11 +327,11 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                 ),
                 GestureDetector(
                   onTap: () => _pushContent(
-                        section.title,
-                        section.content,
-                      ),
+                    section.title,
+                    section.content,
+                  ),
                   child: Text(
-                    RPLocalizations.of(context)?.translate('Learn more...') ??
+                    RPLocalizations.of(context)?.translate('learn_more') ??
                         "Learn more...",
                     style: TextStyle(color: Theme.of(context).primaryColor),
                   ),
@@ -367,12 +367,12 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
               padding: EdgeInsets.all(10.0),
               child: _lastPage
                   ? Text(
-                      RPLocalizations.of(context)?.translate('see_summary') ??
+                      RPLocalizations.of(context)?.translate('SEE_SUMMARY') ??
                           "SEE SUMMARY",
                       style: TextStyle(color: Colors.white),
                     )
                   : Text(
-                      RPLocalizations.of(context)?.translate('next') ?? "NEXT",
+                      RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
                       style: TextStyle(color: Colors.white),
                     ),
               onPressed: _lastPage
