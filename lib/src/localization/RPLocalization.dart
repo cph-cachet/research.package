@@ -40,6 +40,9 @@ class RPLocalizations {
 
     if (loader != null) {
       Map<String, String> loadedTranslations = await loader.load(locale);
+      // merge the two maps
+      // note that keys in [_translations] is overwritten with keys in [loadedTranslations]
+      // hence, it is possible to overwrite the default translations
       _translations.addAll(loadedTranslations);
     }
 
@@ -50,27 +53,27 @@ class RPLocalizations {
 
   /// Translate [key] to this [locale].
   /// If [key] is not translated, [key] is returned untranslated.
-  String translate(String key) {
-    print('$key : ${_translations.containsKey(key)}');
-    return (_translations.containsKey(key)) ? _translations[key] : key;
-  }
+  String translate(String key) =>
+      (_translations.containsKey(key)) ? _translations[key] : key;
 
   /// A default [LocalizationsDelegate] for [RPLocalizations].
   ///
   /// This default delegate loads translations from the `assets/lang` file path.
-  static const LocalizationsDelegate<RPLocalizations> delegate =
+  static LocalizationsDelegate<RPLocalizations> delegate =
       RPLocalizationsDelegate(loader: FileLocalizationLoader());
 }
 
 class RPLocalizationsDelegate extends LocalizationsDelegate<RPLocalizations> {
   final LocalizationLoader loader;
+  bool _shouldReload = false;
 
   /// Create a [RPLocalizationsDelegate].
-  const RPLocalizationsDelegate({this.loader});
+  RPLocalizationsDelegate({this.loader});
 
   @override
   bool isSupported(Locale locale) {
-    // Include all of your supported language codes here
+    // we don't restrict the supported locales here since the user of RP
+    // might create his/her own translations
     return true;
   }
 
@@ -78,11 +81,16 @@ class RPLocalizationsDelegate extends LocalizationsDelegate<RPLocalizations> {
   Future<RPLocalizations> load(Locale locale) async {
     RPLocalizations localizations = RPLocalizations(locale);
     await localizations.load(loader: loader);
+    _shouldReload = false;
     return localizations;
   }
 
+  /// Mark that this delegate should reload its translations.
+  /// Usefull if, for example, downloaded from the network.
+  void reload() => _shouldReload = true;
+
   @override
-  bool shouldReload(RPLocalizationsDelegate old) => false;
+  bool shouldReload(RPLocalizationsDelegate old) => _shouldReload;
 }
 
 /// Interface for location loaders who knows how to load a translation
@@ -90,6 +98,27 @@ class RPLocalizationsDelegate extends LocalizationsDelegate<RPLocalizations> {
 abstract class LocalizationLoader {
   /// Load translations for [locale].
   Future<Map<String, String>> load(Locale locale);
+}
+
+/// A [LocalizationLoader] which can load translations from a map.
+class MapLocalizationLoader implements LocalizationLoader {
+  final Map<String, Map<String, String>> map;
+
+  /// Create a [MapLocalizationLoader] based on the [map].
+  /// [map] must map a language code to a map of translations keys
+  /// mapped to translations.
+  ///
+  /// ```json
+  ///  {
+  ///    'en': {'header':'This is a header', ...},
+  ///    'da': {'header':'Dette er en overskrift', ...},
+  ///  }
+  /// ```
+  MapLocalizationLoader(this.map);
+
+  @override
+  Future<Map<String, String>> load(Locale locale) async =>
+      (map.containsKey(locale.languageCode)) ? map[locale.languageCode] : {};
 }
 
 /// A [LocalizationLoader] which can load translations from file
@@ -104,10 +133,9 @@ class FileLocalizationLoader implements LocalizationLoader {
 
   @override
   Future<Map<String, String>> load(Locale locale) async {
-    print("$runtimeType - loading '$locale'");
-    String jsonString = await rootBundle.loadString(
-      '$basePath/${locale.languageCode}.json',
-    );
+    String path = '$basePath/${locale.languageCode}.json';
+    print("$runtimeType - loading '$path'");
+    String jsonString = await rootBundle.loadString(path);
 
     Map<String, dynamic> jsonMap = json.decode(jsonString);
     Map<String, String> translations =

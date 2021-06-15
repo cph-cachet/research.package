@@ -18,7 +18,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   collection: ^1.14.11
-  flutter_i18n: ^0.22.0
 
 # Overriding carp libraries to use the local copy
 # Remove this before release of package
@@ -31,7 +30,6 @@ dev_dependencies:
 #    sdk: flutter
   build_runner: ^1.10.0
   json_serializable: ^3.5.0
-#  test: ^1.14.3
   test: 
 
 # For information on the generic Dart part of this file, see the
@@ -56,10 +54,8 @@ flutter:
     # To add assets to the package, add an assets inside lib, like this:
     - lib/lang/en.json
     - lib/lang/da.json
-#    - assets/lang_2/da.json
-#    - assets/lang_2/en.json
 
-  #
+  
   # For details regarding assets in packages, see
   # https://flutter.io/assets-and-images/#from-packages
   #

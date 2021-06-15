@@ -106,10 +106,6 @@ fixnum
 2.12
 file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/fixnum-1.0.0/
 file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/fixnum-1.0.0/lib/
-flutter_i18n
-2.12
-file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/flutter_i18n-0.22.3/
-file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/flutter_i18n-0.22.3/lib/
 glob
 2.12
 file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/glob-2.0.1/
@@ -178,10 +174,6 @@ pedantic
 2.12
 file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/pedantic-1.11.0/
 file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/pedantic-1.11.0/lib/
-petitparser
-2.12
-file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/petitparser-4.1.0/
-file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/petitparser-4.1.0/lib/
 pool
 2.12
 file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/pool-1.5.0/
@@ -298,14 +290,6 @@ webkit_inspection_protocol
 2.12
 file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/webkit_inspection_protocol-1.0.0/
 file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/webkit_inspection_protocol-1.0.0/lib/
-xml
-2.12
-file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/xml-5.1.2/
-file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/xml-5.1.2/lib/
-xml2json
-2.12
-file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/xml2json-5.3.0/
-file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/xml2json-5.3.0/lib/
 yaml
 2.12
 file:///Users/bardram/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.0/
@@ -322,10 +306,6 @@ flutter_localizations
 2.12
 file:///Users/bardram/dev/flutter/packages/flutter_localizations/
 file:///Users/bardram/dev/flutter/packages/flutter_localizations/lib/
-flutter_web_plugins
-2.12
-file:///Users/bardram/dev/flutter/packages/flutter_web_plugins/
-file:///Users/bardram/dev/flutter/packages/flutter_web_plugins/lib/
 research_package
 2.6
 file:///Users/bardram/dev/research.package/
