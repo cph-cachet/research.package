@@ -11,11 +11,13 @@ class RPLocalizations {
   /// Create a localization based on [locale].
   RPLocalizations(this.locale);
 
-  /// Helper method to keep the code in the widgets concise
-  /// Localizations are accessed using an [InheritedWidget] "of" syntax
-  static RPLocalizations of(BuildContext context) {
-    return Localizations.of<RPLocalizations>(context, RPLocalizations);
-  }
+  /// Returns the localized resources object of type [RPLocalizations] for the
+  /// widget tree that corresponds to the given [context].
+  ///
+  /// Returns `null` if no resources object of type [RPLocalizations] exists within
+  /// the given `context`.
+  static RPLocalizations of(BuildContext context) =>
+      Localizations.of<RPLocalizations>(context, RPLocalizations);
 
   /// The name used to generate the key to obtain the localization asset.
   String get researchPackageFilename =>
@@ -29,6 +31,8 @@ class RPLocalizations {
   /// which knows how to load such translations.
   Future<bool> load({LocalizationLoader loader}) async {
     print("$runtimeType - loading '$researchPackageFilename'");
+
+    // first load the static translations as part of RP
     String jsonString = await rootBundle.loadString(
       researchPackageFilename,
       cache: false,
@@ -45,8 +49,6 @@ class RPLocalizations {
       // hence, it is possible to overwrite the default translations
       _translations.addAll(loadedTranslations);
     }
-
-    print(_translations);
 
     return true;
   }

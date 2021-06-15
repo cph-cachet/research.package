@@ -22,6 +22,7 @@ import 'package:research_package/model.dart';
 
 // Library elements
 part 'src/localization/RPLocalization.dart';
+part 'src/localization/AssetsLocalization.dart';
 part 'src/ui/QuestionBody/RPUIBooleanQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';

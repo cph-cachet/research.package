@@ -19,13 +19,18 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: [
         // App translations
         //  - the translations of app text is located in the 'assets/flutter_i18n/' folder
-        FlutterI18nDelegate(
-          translationLoader: FileTranslationLoader(),
-          missingTranslationHandler: (key, locale) {
-            print(
-                "--- App : Missing Key: $key, languageCode: ${locale.languageCode}");
-          },
-        ),
+        // FlutterI18nDelegate(
+        //   translationLoader: FileTranslationLoader(),
+        //   missingTranslationHandler: (key, locale) {
+        //     print(
+        //         "--- App : Missing Key: $key, languageCode: ${locale.languageCode}");
+        //   },
+        // ),
+
+        // App translations
+        //  - the translations of app text is located in the 'assets/lang/' folder
+        //  - note that the json files contains a COMBINATION of both app and RP translations
+        AssetLocalizations.delegate,
 
         // Research Package translations
         //  - the translations of informed consent and surveys are located in the 'assets/lang/' folder
@@ -70,6 +75,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    AssetLocalizations locale = AssetLocalizations.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Research Package Demo"),
@@ -85,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
                 child: Text(
-                  FlutterI18n.translate(context, "app_info"),
+                  locale?.translate("app_info"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
                 ),
@@ -98,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    FlutterI18n.translate(context, "informed_consent"),
+                    locale?.translate("informed_consent"),
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
@@ -115,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    FlutterI18n.translate(context, "linear_survey"),
+                    locale?.translate("linear_survey"),
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
@@ -132,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    FlutterI18n.translate(context, "branching_survey"),
+                    locale?.translate("branching_survey"),
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {

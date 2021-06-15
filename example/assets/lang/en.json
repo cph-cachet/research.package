@@ -1,4 +1,9 @@
 {
+  "app_info": "The 'Research Package' Flutter package allow you to create and obtain informed consent and user surveys.",
+  "branching_survey": "Survey (branching)",
+  "linear_survey": "Survey (linear)",
+  "informed_consent": "Informed Consent",
+  
   "All of the time": "All of the time... Jakob was here",
   "Most of the time": "Most of the time",
   "More than half of the time": "More than half of the time",

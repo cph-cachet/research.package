@@ -1,4 +1,9 @@
 {
+  "app_info": "Med 'Research Package' Flutter pakken kan du skabe og indsamle informeret samtykke samt spørgeskemaer.",
+  "branching_survey": "Spørgeskema (branching)",
+  "linear_survey": "Spørgeskema (linært)",
+  "informed_consent":"Informeret Samtykke",
+  
   "All of the time": "Hele tiden",
   "Most of the time": "Det meste af tiden",
   "More than half of the time": "Mere end halvdelen af tiden",
