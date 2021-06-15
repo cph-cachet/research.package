@@ -389,7 +389,6 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
     PageController controller = PageController();
 
     return WillPopScope(

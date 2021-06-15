@@ -1,5 +1,6 @@
 part of research_package_ui;
 
+// ignore: must_be_immutable
 class RPUIDateTimeQuestionBody extends StatefulWidget {
   final RPDateTimeAnswerFormat answerFormat;
   final Function(dynamic) onResultChange;
@@ -20,8 +21,6 @@ class RPUIDateTimeQuestionBody extends StatefulWidget {
 
 class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIDateTimeQuestionBody> {
-  String _errorMessage;
-
   @override
   Widget build(BuildContext context) {
     super.build(context);

@@ -14,7 +14,6 @@ class RPUIImageChoiceQuestionBody extends StatefulWidget {
 class _RPUIImageChoiceQuestionBodyState
     extends State<RPUIImageChoiceQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIImageChoiceQuestionBody> {
-  String _errorMessage;
   RPImageChoice _selectedItem;
 
   @override
