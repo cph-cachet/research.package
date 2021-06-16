@@ -3,7 +3,14 @@
   "branching_survey": "Spørgeskema (branching)",
   "linear_survey": "Spørgeskema (linært)",
   "informed_consent":"Informeret Samtykke",
-  
+
+  "informed_consent.welcome_text": "Velkommen til dette studie! Vi vil gerne bede dig om at gennemse de følgende betingelser og information omkring brugen af app'en. ",
+  "informed_consent.thanks": "Tak!",
+  "informed_consent.document_saved":"Vi har gemt dette samtykkedokument.",
+
+  "informed_consent.agree_text": "Hvis du er enig i disse betingelser, kan du deltage i dette studie",
+  "informed_consent.agree_confirm": "Enig?",
+
   "All of the time": "Hele tiden",
   "Most of the time": "Det meste af tiden",
   "More than half of the time": "Mere end halvdelen af tiden",

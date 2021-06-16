@@ -5,9 +5,19 @@ part of research_package_ui;
 /// Use [translate] to translate any text.
 ///
 /// All translations should be put in the `assets/lang/` folder as json files,
-/// one for each local (e.g., `en.json`or `da.json`).
+/// one for each local (e.g., `en.json`or `da.json`). Note that only the
+/// `languageCode` of a `Locale` is used.
+///
 /// Remember to add the `assets/lang/` folder to the list of `assets` in the
-/// `pubspec.yaml` file.
+/// `pubspec.yaml` file like this:
+///
+/// ```
+/// flutter:
+///   assets:
+///     - assets/lang/
+///     ...
+/// ```
+///
 class AssetLocalizations {
   Map<String, String> _translations;
 
@@ -24,7 +34,7 @@ class AssetLocalizations {
   static AssetLocalizations of(BuildContext context) =>
       Localizations.of<AssetLocalizations>(context, AssetLocalizations);
 
-  /// The name used to generate the key to obtain the localization asset.
+  /// The file name of the localization asset.
   String get filename => 'assets/lang/${locale.languageCode}.json';
 
   /// Load the translations from [filename] based on the [locale].
@@ -41,7 +51,7 @@ class AssetLocalizations {
   }
 
   /// Translate [key] to this [locale].
-  /// If [key] is not translated, [key] is returned untranslated.
+  /// If [key] is not translated, [key] is returned 'as-is'.
   String translate(String key) =>
       (_translations.containsKey(key)) ? _translations[key] : key;
 
@@ -52,6 +62,8 @@ class AssetLocalizations {
       AssetLocalizationsDelegate();
 }
 
+/// A factory for a set of localized resources of type `AssetLocalizations`,
+/// to be loaded by a [Localizations] widget.
 class AssetLocalizationsDelegate
     extends LocalizationsDelegate<AssetLocalizations> {
   /// Create a [AssetLocalizationsDelegate].

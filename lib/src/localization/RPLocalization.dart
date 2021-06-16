@@ -1,10 +1,18 @@
 part of research_package_ui;
 
-/// Localization support. Use [translate] to translate any text used in
-/// RP or the app in general.
+/// /// Localization support for Research Package using [LocalizationLoader]
+/// configurations.
+///
+/// Use [translate] to translate any text, like this:
+///
+/// ```
+///  RPLocalizations.of(context).translate('key');
+/// ```
+///
 class RPLocalizations {
   Map<String, String> _translations;
-  static final String researchPackagePath = 'research_package/lib/lang';
+  static final String assetPath = 'research_package/assets/lang';
+  // static final String assetPath = 'assets/lang';
 
   final Locale locale;
 
@@ -19,22 +27,26 @@ class RPLocalizations {
   static RPLocalizations of(BuildContext context) =>
       Localizations.of<RPLocalizations>(context, RPLocalizations);
 
+  // String get keyName =>
+  //     package == null ? assetName : 'packages/$package/$assetName';
+
   /// The name used to generate the key to obtain the localization asset.
-  String get researchPackageFilename =>
-      'packages/$researchPackagePath/${locale.languageCode}.json';
+  String get assetName =>
+      // '$assetPath/${locale.languageCode}.json';
+      'packages/$assetPath/${locale.languageCode}.json';
 
   /// Load the translations for Research Package.
   ///
   /// The translations is a combination of the static names in the package as
-  /// provided in [researchPackageFilename] combined with translations of the
+  /// provided in [assetName] combined with translations of the
   /// text content of informed consent and surveys, as provided by the [loader],
   /// which knows how to load such translations.
   Future<bool> load({LocalizationLoader loader}) async {
-    print("$runtimeType - loading '$researchPackageFilename'");
+    print("$runtimeType - loading '$assetName'");
 
     // first load the static translations as part of RP
     String jsonString = await rootBundle.loadString(
-      researchPackageFilename,
+      assetName,
       cache: false,
     );
 

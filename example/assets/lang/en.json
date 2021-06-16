@@ -3,7 +3,14 @@
   "branching_survey": "Survey (branching)",
   "linear_survey": "Survey (linear)",
   "informed_consent": "Informed Consent",
-  
+
+  "informed_consent.welcome_text": "Welcome to this study! We would like to kindly ask you to look over these terms and information which gives you an introduction to the study.",
+  "informed_consent.thanks": "Thank You!",
+  "informed_consent.document_saved":"We saved your consent document.",
+
+  "informed_consent.agree_text": "By tapping AGREE you can take part in the study",
+  "informed_consent.agree_confirm": "Agreed?",
+
   "All of the time": "All of the time... Jakob was here",
   "Most of the time": "Most of the time",
   "More than half of the time": "More than half of the time",

@@ -46,7 +46,6 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // If image is provided show it
             Center(
               child: InstructionImage(widget.step.imagePath),
             ),

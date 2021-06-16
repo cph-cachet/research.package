@@ -13,7 +13,11 @@ class RPInstructionStep extends RPStep {
   String footnote;
 
   /// The path of the image to show during the Instruction Step
-  /// (e.g.: "assets/picture.png"). If ```null``` nothing is shown.
+  /// (e.g.: "assets/picture.png").
+  ///
+  /// Remember to add images to use as an asset to your `pubspec.yaml` file.
+  ///
+  /// If `null` nothing is shown.
   String imagePath;
 
   RPInstructionStep(String identifier,

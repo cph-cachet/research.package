@@ -25,8 +25,7 @@ class RPSliderAnswerFormat extends RPAnswerFormat {
     this.divisions,
     this.prefix = '',
     this.suffix = '',
-  })
-      : super();
+  }) : super();
 
   @override
   get questionType => RPQuestionType.Scale;

@@ -4,7 +4,6 @@ import 'linear_survey_page.dart';
 import 'navigable_survey_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:research_package/research_package.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,22 +17,16 @@ class MyApp extends StatelessWidget {
       ],
       localizationsDelegates: [
         // App translations
-        //  - the translations of app text is located in the 'assets/flutter_i18n/' folder
-        // FlutterI18nDelegate(
-        //   translationLoader: FileTranslationLoader(),
-        //   missingTranslationHandler: (key, locale) {
-        //     print(
-        //         "--- App : Missing Key: $key, languageCode: ${locale.languageCode}");
-        //   },
-        // ),
-
-        // App translations
         //  - the translations of app text is located in the 'assets/lang/' folder
-        //  - note that the json files contains a COMBINATION of both app and RP translations
+        //  - note that the json files contains a COMBINATION of both app and
+        //    translations of the surveys and informed consent in this demo app
         AssetLocalizations.delegate,
 
         // Research Package translations
-        //  - the translations of informed consent and surveys are located in the 'assets/lang/' folder
+        //  - the translations of informed consent and surveys are located in
+        //    the 'assets/lang/' folder
+        //  - note that only some text is translated -- illustrates that RP
+        //    works both with and without tranlation.
         RPLocalizations.delegate,
 
         // Built-in localization of basic text for Cupertino widgets
@@ -54,7 +47,7 @@ class MyApp extends StatelessWidget {
             return supportedLocale;
           }
         }
-        // If the locale of the device is not supported, use the first one
+        // if the locale of the device is not supported, use the first one
         // from the list (English, in this case).
         return supportedLocales.first;
       },
