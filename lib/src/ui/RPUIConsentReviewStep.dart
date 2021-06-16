@@ -97,9 +97,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 64.0),
             child: Text(
-              locale?.translate(
-                      'Review this form below, and tap AGREE if you\'re ready to continue.') ??
-                  'Review this form below, and tap AGREE if you\'re ready to continue.',
+              locale?.translate('review_form') ??
+                  "Review this form below, and tap AGREE if you're ready to continue.",
               style: TextStyle(fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
             ),
@@ -241,21 +240,20 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () => _showConsentDialog(
-                widget.step.consentDocument.signatures != null
-                    ? () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        Navigator
-                            .of(context)
-                            .pushReplacementNamed('consent_review/signature');
-                      }
-                    : () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        widget.onNoSignature(null);
-                        blocTask.sendStatus(RPStepStatus.Finished);
-                      },
-              ),
+            widget.step.consentDocument.signatures != null
+                ? () {
+                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                    Navigator.of(context, rootNavigator: true).pop();
+                    Navigator.of(context)
+                        .pushReplacementNamed('consent_review/signature');
+                  }
+                : () {
+                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                    Navigator.of(context, rootNavigator: true).pop();
+                    widget.onNoSignature(null);
+                    blocTask.sendStatus(RPStepStatus.Finished);
+                  },
+          ),
         ),
       ],
     );
@@ -342,13 +340,13 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           autofocus: true,
           controller: _firstNameController,
           decoration: InputDecoration(
-            labelText: locale?.translate('First Name') ?? "First Name",
+            labelText: locale?.translate('first_name') ?? "First Name",
           ),
         ),
         TextFormField(
           controller: _lastNameController,
           decoration: InputDecoration(
-              labelText: locale?.translate('Last Name') ?? "Last Name"),
+              labelText: locale?.translate('last_name') ?? "Last Name"),
         ),
       ],
     );
@@ -362,8 +360,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         child: Column(
           children: <Widget>[
             Text(
-              locale?.translate(
-                      'Please sign using your finger on the line below') ??
+              locale?.translate('sign_with_finger') ??
                   'Please sign using your finger on the line below',
               style: RPStyles.bodyText,
               textAlign: TextAlign.center,
@@ -383,7 +380,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
               ]),
             ),
             FlatButton(
-              child: Text(locale?.translate('Clear') ?? "Clear"),
+              child: Text(locale?.translate('clear') ?? "Clear"),
               onPressed: _isSignatureAdded
                   ? () {
                       _signature.clear();

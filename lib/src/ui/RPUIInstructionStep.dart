@@ -46,7 +46,6 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // If image is provided show it
             Center(
               child: InstructionImage(widget.step.imagePath),
             ),
@@ -67,8 +66,8 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 widget.step.detailText != null
                     ? FlatButton(
                         textColor: Theme.of(context).primaryColor,
-                        child: Text(locale?.translate('Learn more...') ??
-                            "Learn more..."),
+                        child: Text(
+                            locale?.translate('learn_more') ?? "Learn more..."),
                         onPressed: _pushDetailTextRoute,
                       )
                     : Container(),
@@ -104,7 +103,7 @@ class _DetailTextRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text(locale?.translate('Learn more') ?? 'Learn more'),
+        title: Text(locale?.translate('learn_more') ?? 'Learn more'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),

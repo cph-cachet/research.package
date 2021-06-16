@@ -14,7 +14,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:research_package/research_package.dart';
 import 'package:signature/signature.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -23,6 +22,7 @@ import 'package:research_package/model.dart';
 
 // Library elements
 part 'src/localization/RPLocalization.dart';
+part 'src/localization/AssetsLocalization.dart';
 part 'src/ui/QuestionBody/RPUIBooleanQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';

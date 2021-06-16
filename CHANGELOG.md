@@ -1,3 +1,11 @@
+## 0.5.4
+- update to the localization model (`RPLocalizations`) so that:
+   - the localization of the embedded text in RP is now part of RP (you don't need to worry about this anymore)
+   - localization of informed consent and survey is (still) in the `assets/lang/` folder
+   - support for custom [LocalizationLoader]s which can load translations from other sources
+- another localization class has been added `AssetsLocalizations`, which can load translations from json files. This is useful for e.g. simple localization of static text in an app
+- example app update to illustrate the use of both types of localization
+
 ## 0.5.3+1
 - small updates to documentation
 - making `RPTask` serializable instead of abtstract

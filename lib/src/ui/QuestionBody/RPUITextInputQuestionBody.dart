@@ -13,7 +13,6 @@ class RPUITextInputQuestionBody extends StatefulWidget {
 
 class _RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUITextInputQuestionBody> {
-  String _errorMessage;
   TextEditingController _controller = TextEditingController();
 
   void checkInput(String input) {
@@ -32,8 +31,7 @@ class _RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
         maxLines: 10,
         onChanged: checkInput,
         decoration: InputDecoration(
-          hintText: RPLocalizations
-                  .of(context)
+          hintText: RPLocalizations.of(context)
                   .translate(widget.answerFormat.hintText) ??
               widget.answerFormat.hintText,
           border: OutlineInputBorder(),
