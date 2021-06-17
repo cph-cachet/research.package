@@ -38,9 +38,9 @@ class RPImageChoice /* extends Serializable */ {
   dynamic value;
 
   /// The description fitting the image. Is displayed when selected.
-  String? description;
+  String description;
 
-  RPImageChoice({required this.image, this.key, this.value, this.description})
+  RPImageChoice({required this.image, this.key, this.value, required this.description})
       : super();
 
   Function get fromJsonFunction => _$RPImageChoiceFromJson;

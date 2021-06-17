@@ -139,8 +139,8 @@ class RPResultSelector {
   }
 
   RPStepResult _resultForStepIdInFormStep(String stepIdentifier) {
-    RPTaskResult _recentTaskResult = blocTask.lastTaskResult;
-    RPStepResult _foundStepResult;
+    RPTaskResult? _recentTaskResult = blocTask.lastTaskResult;
+    RPStepResult? _foundStepResult;
 
     if (_recentTaskResult != null) {
       _recentTaskResult.results.forEach((key, stepResult) {

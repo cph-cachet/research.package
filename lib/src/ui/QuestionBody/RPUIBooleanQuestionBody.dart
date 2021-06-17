@@ -13,7 +13,7 @@ class RPUIBooleanQuestionBody extends StatefulWidget {
 
 class _RPUIBooleanQuestionBodyState extends State<RPUIBooleanQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIBooleanQuestionBody> {
-  bool _selectedValue;
+  bool? _selectedValue;
 
   void _buttonCallBack(bool value) {
     setState(() {
@@ -58,10 +58,10 @@ class _BooleanButton extends StatefulWidget {
   final String text;
   final bool value;
   final Function selectedCallBack;
-  final bool selectedVal;
+  final bool? selectedVal;
 
   _BooleanButton(
-      {this.text, this.value, this.selectedCallBack, this.selectedVal});
+      {required this.text, required this.value, required this.selectedCallBack, this.selectedVal});
 
   @override
   _BooleanButtonState createState() => _BooleanButtonState();

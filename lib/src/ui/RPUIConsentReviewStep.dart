@@ -17,12 +17,12 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
     with CanSaveResult {
   RPConsentSignatureResult consentSignatureResult;
   RPSignatureResult signatureResult;
-  RPStepResult result;
+  late RPStepResult result;
 
   @override
   void initState() {
     // Instantiate result so the counter starts
-    result = RPStepResult(widget.step);
+    result = RPStepResult(step: widget.step);
     super.initState();
   }
 
@@ -89,7 +89,7 @@ class _TextPresenterRoute extends StatefulWidget {
 
 class __TextPresenterRouteState extends State<_TextPresenterRoute> {
   Widget _reviewCellBuilder(BuildContext context, int index) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
     // Return the header as the first element.
     if (index == 0) {
       return Column(children: <Widget>[
@@ -136,7 +136,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        locale.translate(e.dataName) ?? e.dataName,
+                        locale?.translate(e.dataName) ?? e.dataName,
                         style: Theme.of(context).textTheme.subtitle1,
                         textAlign: TextAlign.start,
                       ),
@@ -182,7 +182,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
     void _showConsentDialog(VoidCallback onPressedCallback) {
       showDialog(
         context: context,
@@ -195,13 +195,13 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             actions: <Widget>[
               OutlinedButton(
                 child: Text(
-                  locale.translate('CANCEL') ?? 'CANCEL',
+                  locale?.translate('CANCEL') ?? 'CANCEL',
                 ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               ElevatedButton(
                 child: Text(
-                  locale.translate('AGREE') ?? 'AGREE',
+                  locale?.translate('AGREE') ?? 'AGREE',
                 ),
                 onPressed: onPressedCallback,
               ),
@@ -222,7 +222,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
       persistentFooterButtons: <Widget>[
         OutlinedButton(
           child: Text(
-            locale.translate('DISAGREE') ?? 'DISAGREE',
+            locale?.translate('DISAGREE') ?? 'DISAGREE',
           ),
           onPressed: () {
             blocTask.sendStatus(RPStepStatus.Canceled);
@@ -230,7 +230,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         ),
         ElevatedButton(
           child: Text(
-            locale.translate('AGREE') ?? "AGREE",
+            locale?.translate('AGREE') ?? "AGREE",
           ),
           onPressed: () => _showConsentDialog(
             widget.step.consentDocument.signatures != null
@@ -333,7 +333,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
   }
 
   Widget _nameFields(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context)!;
+    RPLocalizations? locale = RPLocalizations.of(context);
     final node = FocusScope.of(context);
     return Column(
       children: <Widget>[
@@ -343,7 +343,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           onEditingComplete: () => node.nextFocus(),
           controller: _firstNameController,
           decoration: InputDecoration(
-            labelText: locale.translate('First Name') ?? 'First Name',
+            labelText: locale?.translate('First Name') ?? 'First Name',
           ),
         ),
         TextFormField(
@@ -351,21 +351,21 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           onFieldSubmitted: (_) => node.unfocus(),
           controller: _lastNameController,
           decoration: InputDecoration(
-              labelText: locale.translate('Last Name') ?? "Last Name"),
+              labelText: locale?.translate('Last Name') ?? "Last Name"),
         ),
       ],
     );
   }
 
   Widget _signingField(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context)!;
+    RPLocalizations? locale = RPLocalizations.of(context);
     return Center(
       child: Padding(
         padding: EdgeInsets.only(top: 24.0),
         child: Column(
           children: <Widget>[
             Text(
-              locale.translate(
+              locale?.translate(
                       'Please sign using your finger on the line below') ??
                   'Please sign using your finger on the line below',
               style: Theme.of(context).textTheme.caption,
@@ -386,7 +386,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
               ]),
             ),
             OutlinedButton(
-              child: Text(locale.translate('Clear') ?? 'Clear'),
+              child: Text(locale?.translate('Clear') ?? 'Clear'),
               onPressed: _isSignatureAdded
                   ? () {
                       _signatureController.clear();
@@ -404,7 +404,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -450,7 +450,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                   blocTask.sendStatus(RPStepStatus.Finished);
                 }
               : null,
-          child: Text(locale.translate('NEXT') ?? 'NEXT'),
+          child: Text(locale?.translate('NEXT') ?? 'NEXT'),
         )
       ],
     );

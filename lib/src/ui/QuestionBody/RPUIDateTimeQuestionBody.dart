@@ -3,7 +3,7 @@ part of research_package_ui;
 class RPUIDateTimeQuestionBody extends StatefulWidget {
   final RPDateTimeAnswerFormat answerFormat;
   final Function(dynamic) onResultChange;
-  CupertinoDatePickerMode mode;
+  late final CupertinoDatePickerMode mode;
 
   RPUIDateTimeQuestionBody(this.answerFormat, this.onResultChange) {
     mode = (answerFormat.dateTimeAnswerStyle == RPDateTimeAnswerStyle.Date)

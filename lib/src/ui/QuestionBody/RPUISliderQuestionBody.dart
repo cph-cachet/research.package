@@ -12,12 +12,21 @@ class RPUISliderQuestionBody extends StatefulWidget {
 
 class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUISliderQuestionBody> {
-  double value;
+  double? value;
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
+    String text = "";
+    // prefix
+    text += (widget.answerFormat.prefix != null) ? (locale?.translate(widget.answerFormat.prefix!) ?? widget.answerFormat.prefix!) :
+        "";
+    // value
+    text += (value ?? widget.answerFormat.minValue).toString();
+    // suffix
+    text += (widget.answerFormat.suffix != null) ? (locale?.translate(widget.answerFormat.suffix!) ?? widget.answerFormat.suffix!) :
+        "";
     return Card(
       child: Container(
         padding: EdgeInsets.all(8),
@@ -25,7 +34,7 @@ class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
         child: Column(
           children: <Widget>[
             Text(
-              '${locale?.translate(widget.answerFormat.prefix) ?? widget.answerFormat.prefix}${value ?? widget.answerFormat.minValue}${locale?.translate(widget.answerFormat.suffix) ?? widget.answerFormat.suffix}',
+              text,
               style: TextStyle(fontSize: 18),
             ),
             Slider(

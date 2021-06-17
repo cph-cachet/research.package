@@ -6,13 +6,13 @@ part of research_package_model;
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPSignatureResult {
   /// The person's first name
-  String firstName;
+  String? firstName;
 
   /// The person's last name
-  String lastName;
+  String? lastName;
 
   /// The image of the provided signature in png format as bytes
-  String signatureImage;
+  String? signatureImage;
 
   RPSignatureResult();
 

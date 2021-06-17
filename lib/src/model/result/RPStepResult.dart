@@ -5,18 +5,18 @@ part of research_package_model;
 class RPStepResult extends RPResult {
   /// The title of the question. It is set by the [RPUIStep] and [RPUIFormStep]
   /// so it's easier to trace back the answer result in the result JSON.
-  String questionTitle;
+  late String questionTitle; // TODO: Nullable or late?
 
   // TODO: Documentation on skipped question result
   /// The map of results with a String as identifier and generic type as value
-  Map<String, dynamic> results;
+  late Map<String, dynamic> results;
 
   /// The Answer Format ([RPAnswerFormat]) which generated this result.
   ///
   /// It stores the details about the question (e.g. the available choices)
   /// therefore it's necessary for understanding the value of the result which
   /// usually doesn't tell a lot in itself.
-  RPAnswerFormat answerFormat;
+  late RPAnswerFormat answerFormat;
 
   // When StepResult only has a single value, pair that value with the following key
   /// The default key for the results map. It's used when there's only one answer result.
@@ -29,7 +29,7 @@ class RPStepResult extends RPResult {
   /// It sets [startDate] to the `DateTime.now()`. Since these objects are instantiated
   /// together with the Step it belongs to so it can be used for measuring how much
   /// time the participant spent the given Step.
-  RPStepResult({RPStep step}) : super(step.identifier) {
+  RPStepResult({required RPStep step}) : super(step.identifier) {
     this.results = Map();
 
     try {

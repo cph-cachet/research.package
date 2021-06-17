@@ -44,7 +44,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // If image is provided show it
-            if (widget.step.imagePath != null) 
+            if (widget.step.imagePath != null)
               Center(
                 child: InstructionImage(widget.step.imagePath!),
               ),
@@ -54,14 +54,15 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 Container(
                   padding: EdgeInsets.all(16),
                   child: Text(
-                    locale?.translate(widget.step.text) ??
-                        widget.step.text,
+                    locale?.translate(widget.step.text) ?? widget.step.text,
                     textAlign: TextAlign.left,
                   ),
                 ),
                 widget.step.detailText != null
                     ? TextButton(
-                        textColor: Theme.of(context).primaryColor, // TODO: change?
+                        style: TextButton.styleFrom(
+                            textStyle: TextStyle(
+                                color: Theme.of(context).primaryColor)),
                         child: Text(locale?.translate('Learn more...') ??
                             "Learn more..."),
                         onPressed: _pushDetailTextRoute,
@@ -75,7 +76,8 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                     child: Text(
                       locale?.translate(widget.step.footnote!) ??
                           widget.step.footnote!,
-                      style: Theme.of(context).textTheme.caption, // TODO: change?
+                      style:
+                          Theme.of(context).textTheme.caption, // TODO: change?
                       textAlign: TextAlign.start,
                     ),
                   )
