@@ -25,16 +25,16 @@ void main() {
         () async {
       final consentJson = _encode(consentTask);
 
-      RPOrderedTask consent = RPOrderedTask
-          .fromJson(json.decode(consentJson) as Map<String, dynamic>);
+      RPOrderedTask consent = RPOrderedTask.fromJson(
+          json.decode(consentJson) as Map<String, dynamic>);
       expect(_encode(consent), equals(consentJson));
     });
 
     test('JSON file -> Consent Document', () async {
       String plainJson = File('test/json/consent_task.json').readAsStringSync();
 
-      RPOrderedTask consent = RPOrderedTask
-          .fromJson(json.decode(plainJson) as Map<String, dynamic>);
+      RPOrderedTask consent = RPOrderedTask.fromJson(
+          json.decode(plainJson) as Map<String, dynamic>);
 
       expect(consent.steps.length, 4);
       expect(
@@ -51,8 +51,8 @@ void main() {
     test('Linear Survey -> JSON -> Linear Survey :: deep assert', () async {
       final surveyJson = _encode(linearSurveyTask);
 
-      RPOrderedTask survey = RPOrderedTask
-          .fromJson(json.decode(surveyJson) as Map<String, dynamic>);
+      RPOrderedTask survey = RPOrderedTask.fromJson(
+          json.decode(surveyJson) as Map<String, dynamic>);
       expect(_encode(survey), equals(surveyJson));
     });
 
@@ -60,8 +60,8 @@ void main() {
       String surveyJson =
           File('test/json/linear_survey.json').readAsStringSync();
 
-      RPOrderedTask survey = RPOrderedTask
-          .fromJson(json.decode(surveyJson) as Map<String, dynamic>);
+      RPOrderedTask survey = RPOrderedTask.fromJson(
+          json.decode(surveyJson) as Map<String, dynamic>);
 
       expect(survey.steps.length, linearSurveyTask.steps.length);
       expect(survey.steps.first.identifier,
@@ -79,8 +79,8 @@ void main() {
         () async {
       final surveyJson = _encode(emotionalDistress);
 
-      RPNavigableOrderedTask emotional = RPNavigableOrderedTask
-          .fromJson(json.decode(surveyJson) as Map<String, dynamic>);
+      RPNavigableOrderedTask emotional = RPNavigableOrderedTask.fromJson(
+          json.decode(surveyJson) as Map<String, dynamic>);
       expect(_encode(emotional), equals(surveyJson));
     });
 
@@ -88,8 +88,8 @@ void main() {
       String surveyJson =
           File('test/json/navigable_survey.json').readAsStringSync();
 
-      RPNavigableOrderedTask emotional = RPNavigableOrderedTask
-          .fromJson(json.decode(surveyJson) as Map<String, dynamic>);
+      RPNavigableOrderedTask emotional = RPNavigableOrderedTask.fromJson(
+          json.decode(surveyJson) as Map<String, dynamic>);
 
       expect(emotional.steps.length, emotionalDistress.steps.length);
       expect(emotional.steps.first.identifier,

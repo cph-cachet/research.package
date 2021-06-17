@@ -31,7 +31,7 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
     } catch (error) {
       setState(() {
         _valid = false;
-        _errorMessage = locale?.translate('Input a number') ?? "Input a number";
+        _errorMessage = locale?.translate('input_number') ?? "Input a number";
       });
       widget.onResultChange(null);
       return;
@@ -46,7 +46,7 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
       setState(() {
         _valid = false;
         _errorMessage =
-            "${locale?.translate('Should be between') ?? 'Should be between'} ${widget.answerFormat.minValue} ${locale?.translate('and') ?? 'and'} ${widget.answerFormat.maxValue}";
+            "${locale?.translate('between') ?? 'Should be between'} ${widget.answerFormat.minValue} ${locale?.translate('and') ?? 'and'} ${widget.answerFormat.maxValue}";
       });
       widget.onResultChange(null);
       return;
@@ -66,7 +66,9 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
           controller: _textEditingController,
           decoration: InputDecoration(
             filled: true,
-            hintText: locale?.translate('Tap to answer') ?? 'Tap to answer',
+            hintText: locale?.translate('tap_to_answer') ?? "Tap to answer",
+            helperStyle:
+                TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
             suffix: widget.answerFormat.suffix != null
                 ? Text(locale?.translate(widget.answerFormat.suffix!) ??
                     widget.answerFormat.suffix!)

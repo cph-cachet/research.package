@@ -17,8 +17,19 @@ class MyApp extends StatelessWidget {
         Locale('da'),
       ],
       localizationsDelegates: [
-        // A class which loads the translations from JSON files
+        // App translations
+        //  - the translations of app text is located in the 'assets/lang/' folder
+        //  - note that the json files contains a COMBINATION of both app and
+        //    translations of the surveys and informed consent in this demo app
+        AssetLocalizations.delegate,
+
+        // Research Package translations
+        //  - the translations of informed consent and surveys are located in
+        //    the 'assets/lang/' folder
+        //  - note that only some text is translated -- illustrates that RP
+        //    works both with and without tranlation.
         RPLocalizations.delegate,
+
         // Built-in localization of basic text for Cupertino widgets
         GlobalCupertinoLocalizations.delegate,
         // Built-in localization of basic text for Material widgets
@@ -37,15 +48,12 @@ class MyApp extends StatelessWidget {
             return supportedLocale;
           }
         }
-        // If the locale of the device is not supported, use the first one
+        // if the locale of the device is not supported, use the first one
         // from the list (English, in this case).
         return supportedLocales.first;
       },
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark().copyWith(
-          textTheme: TextTheme().copyWith(
-              bodyText1:
-                  TextStyle(fontSize: 18, fontWeight: FontWeight.normal))),
+      theme: ThemeData.light().copyWith(backgroundColor: Colors.white),
+      darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
@@ -61,6 +69,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    AssetLocalizations locale = AssetLocalizations.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Research Package Demo"),
@@ -76,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
                 child: Text(
-                  "With Research Package you can obtain informed consent, create surveys and collect their results",
+                  locale?.translate("app_info"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
                 ),
@@ -85,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
                   child: Text(
-                    "Informed Consent",
+                    locale?.translate("informed_consent"),
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
@@ -98,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
                   child: Text(
-                    'Survey (Linear)',
+                    locale?.translate("linear_survey"),
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
@@ -111,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
                   child: Text(
-                    'Survey (Branching)',
+                    locale?.translate("branching_survey"),
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {

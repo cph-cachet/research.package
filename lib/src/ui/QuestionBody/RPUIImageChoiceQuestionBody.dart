@@ -26,7 +26,7 @@ class _RPUIImageChoiceQuestionBodyState
     super.build(context);
     RPLocalizations? locale = RPLocalizations.of(context);
     String text = (_selectedItem == null)
-        ? (locale?.translate('Select an image') ?? 'Select an image')
+        ? (locale?.translate('select_image') ?? 'Select an image')
         : (locale?.translate(_selectedItem!.description) ??
             _selectedItem!.description);
     return Container(

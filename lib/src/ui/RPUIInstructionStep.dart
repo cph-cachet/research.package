@@ -63,7 +63,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                         style: TextButton.styleFrom(
                             textStyle: TextStyle(
                                 color: Theme.of(context).primaryColor)),
-                        child: Text(locale?.translate('Learn more...') ??
+                        child: Text(locale?.translate('learn_more') ??
                             "Learn more..."),
                         onPressed: _pushDetailTextRoute,
                       )
@@ -100,7 +100,7 @@ class _DetailTextRoute extends StatelessWidget {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(locale?.translate('Learn more') ?? 'Learn more'),
+        title: Text(locale?.translate('learn_more') ?? 'Learn more'),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),

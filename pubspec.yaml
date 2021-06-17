@@ -1,6 +1,7 @@
 name: research_package
 description: A Flutter framework for obtaining informed consent, showing surveys and collecting results.
-version: 0.5.3+1
+version: 0.5.4
+author: CACHET Team <cph.cachet@gmail.com>
 homepage: https://github.com/cph-cachet/research.package
 
 environment:
@@ -34,21 +35,8 @@ dev_dependencies:
   
   test: ^1.14.3
 
-# For information on the generic Dart part of this file, see the
-# following page: https://www.dartlang.org/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
   assets:
     - assets/icons/
-    - assets/icons/analysis.png
-    - assets/icons/archive.png
-    - assets/icons/deadline.png
-    - assets/icons/document.png
-    - assets/icons/handshake.png
-    - assets/icons/id.png
-    - assets/icons/management.png
-    - assets/icons/networking.png
-    - assets/icons/settings.png
-    - assets/icons/target.png
-    - assets/icons/id.png
+    - assets/lang/
+

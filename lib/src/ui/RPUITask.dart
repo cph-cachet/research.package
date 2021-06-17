@@ -159,9 +159,10 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(widget.task.isConsentTask
-              ? RPLocalizations.of(context)?.translate('Cancel?') ?? "Cancel?"
+              ? RPLocalizations.of(context)?.translate('cancel_confirmation') ??
+                  "Cancel?"
               : RPLocalizations.of(context)
-                      ?.translate('Discard results and quit?') ??
+                      ?.translate('discard_confirmation') ??
                   "Discard results and quit?"),
           actions: <Widget>[
             ElevatedButton(

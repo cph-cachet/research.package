@@ -264,7 +264,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                     section.content,
                   ),
                   child: Text(
-                    locale?.translate('Learn more...') ?? "Learn more...",
+                    RPLocalizations.of(context)?.translate('learn_more') ??
+                        "Learn more...",
                     style: TextStyle(color: Theme.of(context).primaryColor),
                     // textAlign: TextAlign.start,
                   ),
@@ -308,12 +309,12 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
               padding: EdgeInsets.all(10.0),
               child: _lastPage
                   ? Text(
-                      RPLocalizations.of(context)?.translate('see_summary') ??
+                      RPLocalizations.of(context)?.translate('SEE_SUMMARY') ??
                           "SEE SUMMARY",
                       style: TextStyle(color: Colors.white),
                     )
                   : Text(
-                      RPLocalizations.of(context)?.translate('next') ?? "NEXT",
+                      RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
                       style: TextStyle(color: Colors.white),
                     ),
               onPressed: _lastPage

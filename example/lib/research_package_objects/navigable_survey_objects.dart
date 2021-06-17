@@ -223,8 +223,8 @@ RPResultPredicate noSmokingPredicate =
 
 RPResultPredicate instrumentChoicePredicate =
     RPResultPredicate.forChoiceQuestionResult(
-        resultSelector: RPResultSelector
-            .forStepIdInFormStep("instrumentChoiceQuestionStepID"),
+        resultSelector: RPResultSelector.forStepIdInFormStep(
+            "instrumentChoiceQuestionStepID"),
         expectedValue: [1],
         choiceQuestionResultPredicateMode:
             ChoiceQuestionResultPredicateMode.ExactMatch);

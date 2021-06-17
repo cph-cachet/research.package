@@ -97,7 +97,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           padding: const EdgeInsets.symmetric(vertical: 64.0),
           child: Text(
             locale?.translate(
-                    'Review this form below, and tap AGREE if you\'re ready to continue.') ??
+                    'review_form') ??
                 'Review this form below, and tap AGREE if you\'re ready to continue.',
             style: Theme.of(context).textTheme.headline5,
             textAlign: TextAlign.center,
@@ -343,7 +343,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           onEditingComplete: () => node.nextFocus(),
           controller: _firstNameController,
           decoration: InputDecoration(
-            labelText: locale?.translate('First Name') ?? 'First Name',
+            labelText: locale?.translate('first_name') ?? "First Name",
           ),
         ),
         TextFormField(
@@ -351,7 +351,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           onFieldSubmitted: (_) => node.unfocus(),
           controller: _lastNameController,
           decoration: InputDecoration(
-              labelText: locale?.translate('Last Name') ?? "Last Name"),
+              labelText: locale?.translate('last_name') ?? "Last Name"),
         ),
       ],
     );
@@ -365,8 +365,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         child: Column(
           children: <Widget>[
             Text(
-              locale?.translate(
-                      'Please sign using your finger on the line below') ??
+              locale?.translate('sign_with_finger') ??
                   'Please sign using your finger on the line below',
               style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
@@ -386,7 +385,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
               ]),
             ),
             OutlinedButton(
-              child: Text(locale?.translate('Clear') ?? 'Clear'),
+              child: Text(locale?.translate('clear') ?? 'Clear'),
               onPressed: _isSignatureAdded
                   ? () {
                       _signatureController.clear();

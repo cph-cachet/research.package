@@ -1,5 +1,6 @@
 part of research_package_ui;
 
+// ignore: must_be_immutable
 class RPUIDateTimeQuestionBody extends StatefulWidget {
   final RPDateTimeAnswerFormat answerFormat;
   final Function(dynamic) onResultChange;
