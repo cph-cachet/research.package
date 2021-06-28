@@ -24,9 +24,10 @@ class RPAnswerFormat /* extends Serializable */ {
   // Also, they are _almost_ the same as the questionResult classes in RK
   //  QuestionType get questionType => QuestionType.None;
 
-  Function get fromJsonFunction => _$RPAnswerFormatFromJson;
   // factory RPAnswerFormat.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  
+  factory RPAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPAnswerFormatFromJson(json);
   Map<String, dynamic> toJson() => _$RPAnswerFormatToJson(this);
 }
 

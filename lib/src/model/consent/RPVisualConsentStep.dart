@@ -13,7 +13,7 @@ class RPVisualConsentStep extends RPStep {
   RPConsentDocument consentDocument;
 
   RPVisualConsentStep(String identifier, this.consentDocument)
-      : super(identifier);
+      : super(identifier: identifier, title: ''); // TODO: Should title be required if we have to pass an empty title?
 
   /// The widget (UI representation) of the step
   @override
@@ -21,8 +21,8 @@ class RPVisualConsentStep extends RPStep {
   Widget get stepWidget =>
       RPUIVisualConsentStep(consentDocument: consentDocument);
 
-  Function get fromJsonFunction => _$RPVisualConsentStepFromJson;
   // factory RPVisualConsentStep.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPVisualConsentStep.fromJson(Map<String, dynamic> json) => _$RPVisualConsentStepFromJson(json);
   Map<String, dynamic> toJson() => _$RPVisualConsentStepToJson(this);
 }

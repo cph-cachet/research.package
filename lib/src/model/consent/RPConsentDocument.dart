@@ -14,8 +14,8 @@ class RPConsentDocument /* extends Serializable */ {
   /// The list of signatures that are required in the document
   List<RPConsentSignature> signatures = [];
 
-  /// The title of the document
-  ///
+  /// The title of the consent document
+  /// 
   /// This title is shown on the app bar during [RPVisualConsentStep]
   String title;
 
@@ -30,7 +30,7 @@ class RPConsentDocument /* extends Serializable */ {
   String? _signaturePageContent;
 
   RPConsentDocument(this.title, this.sections) {
-    _registerFromJsonFunctions();
+    // _registerFromJsonFunctions();
   }
 
   /// Adds a signature to the list of [signatures]
@@ -60,8 +60,8 @@ class RPConsentDocument /* extends Serializable */ {
   //TODO: PDF generating
   //Generating the consent pdf is this class' task as well
 
-  // Function get fromJsonFunction => _$RPConsentDocumentFromJson;
   // factory RPConsentDocument.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
-  // Map<String, dynamic> toJson() => _$RPConsentDocumentToJson(this);
+  factory RPConsentDocument.fromJson(Map<String, dynamic> json) => _$RPConsentDocumentFromJson(json);
+  Map<String, dynamic> toJson() => _$RPConsentDocumentToJson(this);
 }

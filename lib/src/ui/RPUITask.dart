@@ -39,7 +39,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   /// It is a dynamic list which grows and shrinks according to the forward of back navigation of the task.
   List<RPStep> _activeSteps = [];
 
-  late RPStep _currentStep;
+  RPStep? _currentStep;
   int _currentStepIndex = 0;
   int _currentQuestionIndex = 1;
 
@@ -55,7 +55,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
     // If it's navigable we don't want to show result on appbar
     if (widget.task is RPNavigableOrderedTask) {
-      blocTask.updateTaskProgress(null);
+      blocTask.updateTaskProgress(RPTaskProgress(0, 0));
       navigableTask = true;
     } else {
       // Sending the initial Task Progress so the Question UI can use it in the app bar
@@ -89,7 +89,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           setState(() {
             _currentStep = _activeSteps.last;
             _currentStep = widget.task.getStepAfterStep(_currentStep, null);
-            _activeSteps.add(_currentStep);
+            if (_currentStep != null) _activeSteps.add(_currentStep!);
           });
           _currentStepIndex++;
 
@@ -139,7 +139,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     setState(() {
       // Getting the first step
       _currentStep = widget.task.getStepAfterStep(null, null);
-      _activeSteps.add(_currentStep);
+      if (_currentStep != null) _activeSteps.add(_currentStep!);
     });
 
     super.initState();
@@ -149,7 +149,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate)
     _taskResult.endDate = DateTime.now();
-    widget.onSubmit(_taskResult);
+    if (widget.onSubmit != null) widget.onSubmit!(_taskResult);
   }
 
   void _showCancelConfirmationDialog() {

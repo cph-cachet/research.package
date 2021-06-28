@@ -16,8 +16,8 @@ class RPBooleanAnswerFormat extends RPAnswerFormat {
   @override
   get questionType => RPQuestionType.Boolean;
 
-  Function get fromJsonFunction => _$RPBooleanAnswerFormatFromJson;
   // factory RPBooleanAnswerFormat.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPBooleanAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPBooleanAnswerFormatFromJson(json);
   Map<String, dynamic> toJson() => _$RPBooleanAnswerFormatToJson(this);
 }

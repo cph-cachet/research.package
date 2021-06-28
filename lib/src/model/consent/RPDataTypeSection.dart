@@ -3,7 +3,7 @@ part of research_package_model;
 /// Class representing a specific data type being collected to be shown
 /// as part of informed consent.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPDataTypeSection extends Serializable {
+class RPDataTypeSection /* extends Serializable */ {
   /// The name of the data being collected.
   String dataName;
 
@@ -12,8 +12,8 @@ class RPDataTypeSection extends Serializable {
 
   RPDataTypeSection(this.dataName, this.dataInformation);
 
-  Function get fromJsonFunction => _$RPDataTypeSectionFromJson;
   // factory RPDataTypeSection.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPDataTypeSection.fromJson(Map<String, dynamic> json) => _$RPDataTypeSectionFromJson(json);
   Map<String, dynamic> toJson() => _$RPDataTypeSectionToJson(this);
 }

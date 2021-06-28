@@ -22,7 +22,7 @@ import 'package:research_package/ui.dart';
 
 // JSON
 part 'model.g.dart';
-part 'model.json.dart';
+// part 'model.json.dart';
 
 // Library elements
 part 'src/model/answerformat/RPAnswerFormat.dart';
@@ -66,6 +66,7 @@ part 'src/model/result/RPStepResult.dart';
 //part 'src/model/result/RPQuestionBodyResult.dart';
 part 'src/model/result/RPConsentSignatureResult.dart';
 part 'src/model/result/RPSignatureResult.dart';
+part 'src/model/result/RPNoResult.dart';
 
 // Protocols
 part 'src/model/Abstracts.dart';

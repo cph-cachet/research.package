@@ -20,6 +20,8 @@ import 'package:flutter/services.dart';
 import 'package:signature/signature.dart';
 import 'package:simple_html_css/simple_html_css.dart';
 
+import 'model.dart'; // TODO: Needed to recognize models in the UI elements. Find error in library
+
 // Library elements
 part 'src/localization/RPLocalization.dart';
 part 'src/localization/AssetsLocalization.dart';

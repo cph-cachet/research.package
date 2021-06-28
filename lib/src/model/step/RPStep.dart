@@ -48,9 +48,9 @@ class RPStep /* extends Serializable */ {
   /// When needed, it should be overridden to fit the different types of Steps.
   Widget get stepWidget => _stepWidget;
 
-  Function get fromJsonFunction => _$RPStepFromJson;
   // factory RPStep.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPStep.fromJson(Map<String, dynamic> json) => _$RPStepFromJson(json);
   Map<String, dynamic> toJson() => _$RPStepToJson(this);
 }
 

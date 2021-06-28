@@ -25,14 +25,16 @@ class _RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations? locale = RPLocalizations.of(context);
+
     super.build(context);
     return Container(
       child: TextField(
         maxLines: 10,
         onChanged: checkInput,
         decoration: InputDecoration(
-          hintText: RPLocalizations.of(context)
-                  .translate(widget.answerFormat.hintText) ??
+          hintText: (widget.answerFormat.hintText != null) ? 
+              (locale?.translate(widget.answerFormat.hintText!) ?? widget.answerFormat.hintText) : 
               widget.answerFormat.hintText,
           border: OutlineInputBorder(),
         ),

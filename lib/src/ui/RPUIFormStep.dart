@@ -12,7 +12,7 @@ class RPUIFormStep extends StatefulWidget {
 class _RPUIFormStepState extends State<RPUIFormStep> {
   late bool readyToProceed;
   late RPStepResult stepResult;
-  late RPTaskProgress recentTaskProgress;
+  RPTaskProgress? recentTaskProgress;
 
   // Since the QuestionBody's are sending null if they are not answered yet we can loop through the
   // results of the steps.
@@ -35,13 +35,13 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    stepResult = RPStepResult(step: widget.formStep);
+    stepResult = RPStepResult(identifier: widget.formStep.identifier, answerFormat: widget.formStep.answerFormat);;
     stepResult.questionTitle =
         "Form Step - See titles for every question included";
 
     // Filling up the results with nulls
     widget.formStep.steps.forEach((item) {
-      stepResult.setResultForIdentifier(item.identifier, RPStepResult(step: item));
+      stepResult.setResultForIdentifier(item.identifier, RPStepResult(identifier: item.identifier, answerFormat: item.answerFormat));
     });
 
     readyToProceed = false;

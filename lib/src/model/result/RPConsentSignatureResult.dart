@@ -8,7 +8,7 @@ class RPConsentSignatureResult extends RPResult {
   RPConsentDocument consentDocument;
 
   /// The signature which contains the name and signature image
-  RPSignatureResult signature;
+  RPSignatureResult? signature;
 
   /// the ID of the user which signed the document
   String? userID;
@@ -18,7 +18,7 @@ class RPConsentSignatureResult extends RPResult {
       : super(identifier);
 
   /// The time when the document was signed
-  DateTime get signingDate => this.endDate;
+  DateTime? get signingDate => this.endDate;
 
   factory RPConsentSignatureResult.fromJson(Map<String, dynamic> json) =>
       _$RPConsentSignatureResultFromJson(json);

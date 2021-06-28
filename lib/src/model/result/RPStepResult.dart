@@ -1,7 +1,7 @@
 part of research_package_model;
 
 /// The result object a Step creates
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false, )
 class RPStepResult extends RPResult {
   /// The title of the question. It is set by the [RPUIStep] and [RPUIFormStep]
   /// so it's easier to trace back the answer result in the result JSON.
@@ -16,7 +16,7 @@ class RPStepResult extends RPResult {
   /// It stores the details about the question (e.g. the available choices)
   /// therefore it's necessary for understanding the value of the result which
   /// usually doesn't tell a lot in itself.
-  late RPAnswerFormat answerFormat;
+  RPAnswerFormat? answerFormat;
 
   // When StepResult only has a single value, pair that value with the following key
   /// The default key for the results map. It's used when there's only one answer result.
@@ -29,14 +29,10 @@ class RPStepResult extends RPResult {
   /// It sets [startDate] to the `DateTime.now()`. Since these objects are instantiated
   /// together with the Step it belongs to so it can be used for measuring how much
   /// time the participant spent the given Step.
-  RPStepResult({required RPStep step}) : super(step.identifier) {
+  RPStepResult({required String identifier, required this.answerFormat}) : super(identifier) {
     this.results = Map();
 
-    try {
-      this.answerFormat = (step as RPQuestionStep).answerFormat;
-    } catch (e) {
-      print(e);
-    }
+
 
     startDate = DateTime.now();
   }

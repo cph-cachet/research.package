@@ -12,8 +12,8 @@ class RPTextAnswerFormat extends RPAnswerFormat {
   @override
   get questionType => RPQuestionType.Text;
 
-  Function get fromJsonFunction => _$RPTextAnswerFormatFromJson;
   // factory RPTextAnswerFormat.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPTextAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPTextAnswerFormatFromJson(json);
   Map<String, dynamic> toJson() => _$RPTextAnswerFormatToJson(this);
 }

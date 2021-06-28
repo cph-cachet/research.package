@@ -12,8 +12,8 @@ class RPCompletionStep extends RPStep {
   @override
   Widget get stepWidget => RPUICompletionStep(step: this);
 
-  Function get fromJsonFunction => _$RPCompletionStepFromJson;
   // factory RPCompletionStep.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPCompletionStep.fromJson(Map<String, dynamic> json) => _$RPCompletionStepFromJson(json);
   Map<String, dynamic> toJson() => _$RPCompletionStepToJson(this);
 }

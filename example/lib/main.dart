@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton(
+                child: TextButton(
                   child: Text(
                     locale?.translate("informed_consent"),
                     style: TextStyle(fontSize: 18),
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton(
+                child: TextButton(
                   child: Text(
                     locale?.translate("linear_survey"),
                     style: TextStyle(fontSize: 18),
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton(
+                child: TextButton(
                   child: Text(
                     locale?.translate("branching_survey"),
                     style: TextStyle(fontSize: 18),

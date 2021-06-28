@@ -28,7 +28,7 @@ class RPConsentReviewStep extends RPStep {
   /// On how to specify a signature go to [RPConsentSignature].
   RPConsentReviewStep(
       {required String identifier, required this.consentDocument})
-      : super(identifier: identifier);
+      : super(identifier: identifier, title: ''); // TODO: Should title be required if we have to pass an empty value?
 
   /// The widget (UI representation) of the step
   ///
@@ -37,8 +37,8 @@ class RPConsentReviewStep extends RPStep {
   @JsonKey(ignore: true)
   Widget get stepWidget => RPUIConsentReviewStep(this);
 
-  Function get fromJsonFunction => _$RPConsentReviewStepFromJson;
   // factory RPConsentReviewStep.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPConsentReviewStep.fromJson(Map<String, dynamic> json) => _$RPConsentReviewStepFromJson(json);
   Map<String, dynamic> toJson() => _$RPConsentReviewStepToJson(this);
 }

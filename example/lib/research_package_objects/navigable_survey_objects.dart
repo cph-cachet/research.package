@@ -7,24 +7,24 @@ import 'package:research_package/model.dart';
 
 List<RPImageChoice> images = [
   RPImageChoice(
-      image: Image.asset('assets/images/very-sad.png'),
-      value: 0,
+      imageUrl: 'assets/images/very-sad.png',
+      value: -2,
       description: 'Feeling very sad'),
   RPImageChoice(
-      image: Image.asset('assets/images/sad.png'),
-      value: 1,
+      imageUrl: 'assets/images/sad.png',
+      value: -1,
       description: 'Feeling sad'),
   RPImageChoice(
-      image: Image.asset('assets/images/ok.png'),
-      value: 2,
+      imageUrl: 'assets/images/ok.png',
+      value: 0,
       description: 'Feeling ok'),
   RPImageChoice(
-      image: Image.asset('assets/images/happy.png'),
-      value: 3,
+      imageUrl: 'assets/images/happy.png',
+      value: 1,
       description: 'Feeling happy'),
   RPImageChoice(
-      image: Image.asset('assets/images/very-happy.png'),
-      value: 4,
+      imageUrl: 'assets/images/very-happy.png',
+      value: 2,
       description: 'Feeling very happy'),
 ];
 
@@ -102,16 +102,16 @@ RPChoiceAnswerFormat guitarAnswerFormat = RPChoiceAnswerFormat(
 /// STEPS
 ///
 
-RPQuestionStep smokingQuestionStep = RPQuestionStep("smokingQuestionId",
+RPQuestionStep smokingQuestionStep = RPQuestionStep(identifier: "smokingQuestionId",
     title: "Do you smoke?", answerFormat: yesNoAnswerFormat);
 
-RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(
+RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(identifier: 
   "imageStepID",
   title: "Indicate you mood by selecting a picture!",
   answerFormat: imageChoiceAnswerFormat,
 );
 
-RPQuestionStep nrOfCigarettesQuestionStep = RPQuestionStep(
+RPQuestionStep nrOfCigarettesQuestionStep = RPQuestionStep(identifier: 
     "nrOfCigarettesQuestionStepID",
     title: "How many cigarettes do you smoke a day?",
     answerFormat: nrOfCigarettesAnswerFormat);
@@ -123,25 +123,25 @@ RPInstructionStep instructionStep = RPInstructionStep(
 )..text =
     "Please fill out this questionnaire!\n\nIn this questionnaire answers to some questions will determine what other questions you will get. You can not skip these question, although you are free to skip the other questions.";
 
-RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(
+RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(identifier: 
   "singleChoiceQuestionStepID",
   title: "I have felt cheerful and in good spirits",
   answerFormat: who5AnswerFormat,
 );
 
-RPQuestionStep multiChoiceQuestionStep1 = RPQuestionStep(
+RPQuestionStep multiChoiceQuestionStep1 = RPQuestionStep(identifier: 
   "multiChoiceQuestionStepID1",
   title: "What makes you happy?",
   answerFormat: joyfulActivitiesAnswerFormat,
 );
 
-RPQuestionStep multiChoiceQuestionStep2 = RPQuestionStep(
+RPQuestionStep multiChoiceQuestionStep2 = RPQuestionStep(identifier: 
   "multiChoiceQuestionStepID2",
   title: "Choose (a) number(s)",
   answerFormat: numbersAnswerFormat,
 );
 
-RPQuestionStep alphabetQuestionStep = RPQuestionStep(
+RPQuestionStep alphabetQuestionStep = RPQuestionStep(identifier: 
   "alphabetQuestionStepID",
   title: "Choose (a) letter(s)",
   answerFormat: alphabetAnswerFormat,
@@ -160,27 +160,26 @@ RPInstructionStep instructionStepD =
     RPInstructionStep("instructionStepDID", title: "D", detailText: "D detail")
       ..text = "text";
 
-RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(
+RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(identifier: 
     "instrumentChoiceQuestionStepID",
     title: "Which instrument are you playing?",
     answerFormat: instrumentsAnswerFormat);
-RPQuestionStep minutesQuestionStep = RPQuestionStep("minutesQuestionStepID",
+RPQuestionStep minutesQuestionStep = RPQuestionStep(identifier: "minutesQuestionStepID",
     title: "How many minutes do you spend practicing a week?",
     answerFormat: minutesIntegerAnswerFormat);
 RPFormStep formStep = RPFormStep(
-  "formstepID",
+  identifier: "formstepID",
   steps: [instrumentChoiceQuestionStep, minutesQuestionStep],
   title: "Questions about music",
   optional: true,
 );
 
-RPQuestionStep guitarChoiceQuestionStep = RPQuestionStep(
+RPQuestionStep guitarChoiceQuestionStep = RPQuestionStep(identifier: 
     "guitarChoiceQuestionStepID",
     title: "Why did you start playing the guitar?",
     answerFormat: guitarAnswerFormat);
 
-RPCompletionStep completionStep = RPCompletionStep("completionID")
-  ..title = "Finished"
+RPCompletionStep completionStep = RPCompletionStep(identifier: "completionID", title: "Finished")
   ..text = "Thank you for filling out the survey!";
 
 ///
@@ -234,42 +233,42 @@ RPResultPredicate instrumentChoicePredicate =
 ///
 
 RPPredicateStepNavigationRule smokingNavigationRule =
-    RPPredicateStepNavigationRule(
+    RPPredicateStepNavigationRule(resultPredicatesWithDestinationIdentifiers: 
   {
     noSmokingPredicate: imageChoiceQuestionStep.identifier,
   },
 );
 
 RPPredicateStepNavigationRule singleChoiceNavigationRule =
-    RPPredicateStepNavigationRule(
+    RPPredicateStepNavigationRule(resultPredicatesWithDestinationIdentifiers: 
   {
     singleChoicePredicate: imageChoiceQuestionStep.identifier,
   },
 );
 
 RPPredicateStepNavigationRule exactMultiChoiceNavigationRule =
-    RPPredicateStepNavigationRule(
+    RPPredicateStepNavigationRule(resultPredicatesWithDestinationIdentifiers: 
   {
     exactMultiChoicePredicate: imageChoiceQuestionStep.identifier,
   },
 );
 
 RPPredicateStepNavigationRule containingMultiChoiceNavigationRule =
-    RPPredicateStepNavigationRule(
+    RPPredicateStepNavigationRule(resultPredicatesWithDestinationIdentifiers: 
   {
     containingMultiChoicePredicate: imageChoiceQuestionStep.identifier,
   },
 );
 
 RPPredicateStepNavigationRule guitarNavigationRule =
-    RPPredicateStepNavigationRule(
+    RPPredicateStepNavigationRule(resultPredicatesWithDestinationIdentifiers: 
   {
     instrumentChoicePredicate: smokingQuestionStep.identifier,
   },
 );
 
 RPStepReorganizerRule alphabetReorganizerRule =
-    RPStepReorganizerRule(alphabetQuestionStep.identifier, {
+    RPStepReorganizerRule(reorganizerStepId: alphabetQuestionStep.identifier, removalMap: {
   3: instructionStepD.identifier,
   2: instructionStepC.identifier,
   1: instructionStepB.identifier,
@@ -281,8 +280,8 @@ RPStepReorganizerRule alphabetReorganizerRule =
 ///
 
 RPNavigableOrderedTask navigableSurveyTask = RPNavigableOrderedTask(
-  "NavigableTaskID",
-  [
+  identifier: "NavigableTaskID",
+  steps: [
 //    instructionStep,
 //    formStep,
 //    guitarChoiceQuestionStep,
@@ -345,46 +344,45 @@ RPInstructionStep b2InstructionStep = RPInstructionStep(
     "For the upcoming questions, please consider... \n\nWhich of the following diabetes areas are currently a problem for you? \n\n\nPress 'Continue' to go to the questions";
 
 // B2 - 1
-RPQuestionStep depressedChoiceQuestionStep = RPQuestionStep("B2-1",
+RPQuestionStep depressedChoiceQuestionStep = RPQuestionStep(identifier: "B2-1",
     title: "Feeling depressed when you think about living with diabetes?",
     answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 2
-RPQuestionStep energyChoiceQuestionStep = RPQuestionStep("B2-2",
+RPQuestionStep energyChoiceQuestionStep = RPQuestionStep(identifier: "B2-2",
     title:
         "Feeling that diabetes is taking up too much of your mental and physical energy?",
     answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 2b
-RPQuestionStep energyChoiceQuestionStep2 = RPQuestionStep("B2-2b",
+RPQuestionStep energyChoiceQuestionStep2 = RPQuestionStep(identifier: "B2-2b",
     title:
         "Feeling that diabetes is taking up too much of your mental and physical energy?",
     answerFormat: likertProblemScaleAnswerFormat);
 
 //TODO: Implement the branching
 // B2 - 3
-RPQuestionStep overwhelmedChoiceQuestionStep = RPQuestionStep("B2-3",
+RPQuestionStep overwhelmedChoiceQuestionStep = RPQuestionStep(identifier: "B2-3",
     title: "Feeling overwhelmed by your diabetes?",
     answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 4
-RPQuestionStep foodChoiceQuestionStep = RPQuestionStep("B2-4",
+RPQuestionStep foodChoiceQuestionStep = RPQuestionStep(identifier: "B2-4",
     title: "Feeling constantly concerned about food and eating?",
     answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 5
-RPQuestionStep aloneChoiceQuestionStep = RPQuestionStep("B2-5",
+RPQuestionStep aloneChoiceQuestionStep = RPQuestionStep(identifier: "B2-5",
     title: "Feeling alone with your diabetes?",
     answerFormat: likertProblemScaleAnswerFormat);
 
 // B2 - 6
-RPQuestionStep burnedOutChoiceQuestionStep = RPQuestionStep("B2-6",
+RPQuestionStep burnedOutChoiceQuestionStep = RPQuestionStep(identifier: "B2-6",
     title:
         "Feeling “burned out” by the constant effort needed to manage diabetes?",
     answerFormat: likertProblemScaleAnswerFormat);
 
-RPCompletionStep paidCompletionStep = RPCompletionStep("B2-7")
-  ..title = "Finished"
+RPCompletionStep paidCompletionStep = RPCompletionStep(identifier: "B2-7", title: "Finished")
   ..text = "Finished";
 
 // Binst -> 1 -> 2 -> end
@@ -395,7 +393,7 @@ RPCompletionStep paidCompletionStep = RPCompletionStep("B2-7")
 
 // PAID (B2) Branching:
 RPStepJumpRule emotionalDistressBranchRule =
-    RPStepJumpRule(depressedChoiceQuestionStep.identifier, {
+    RPStepJumpRule(reorganizerStepId: depressedChoiceQuestionStep.identifier, answerMap: {
   0: energyChoiceQuestionStep.identifier,
   1: energyChoiceQuestionStep.identifier,
   // 2+ -> go to 2b with extended version after
@@ -404,7 +402,7 @@ RPStepJumpRule emotionalDistressBranchRule =
   4: energyChoiceQuestionStep2.identifier,
 });
 RPStepJumpRule emotionalDistressBranchRule2 =
-    RPStepJumpRule(energyChoiceQuestionStep.identifier, {
+    RPStepJumpRule(reorganizerStepId: energyChoiceQuestionStep.identifier, answerMap:  {
   0: paidCompletionStep.identifier,
   1: paidCompletionStep.identifier,
   // 2+ -> go to extended version.
@@ -414,8 +412,8 @@ RPStepJumpRule emotionalDistressBranchRule2 =
 });
 
 RPOrderedTask emotionalDistress = RPNavigableOrderedTask(
-  "emotionalDistress",
-  [
+  identifier: "emotionalDistress",
+  steps: [
     b2InstructionStep,
     depressedChoiceQuestionStep,
     energyChoiceQuestionStep,
@@ -428,7 +426,6 @@ RPOrderedTask emotionalDistress = RPNavigableOrderedTask(
     burnedOutChoiceQuestionStep,
     paidCompletionStep,
   ],
-  closeAfterFinished: false,
 )
   ..setNavigationRuleForTriggerStepIdentifier(
       emotionalDistressBranchRule, depressedChoiceQuestionStep.identifier)

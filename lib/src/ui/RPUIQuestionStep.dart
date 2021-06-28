@@ -38,7 +38,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    result = RPStepResult(step: widget.step);
+    result = RPStepResult(identifier: widget.step.identifier, answerFormat: widget.step.answerFormat);
     readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
@@ -51,7 +51,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
         return RPUIIntegerQuestionBody(
-            ((answerFormat as RPIntegerAnswerFormat) as RPIntegerAnswerFormat),
+            (answerFormat as RPIntegerAnswerFormat),
             (result) {
           this.currentQuestionBodyResult = result;
         });
@@ -99,16 +99,14 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
         padding: EdgeInsets.all(8),
         children: [
           // Title
-          (widget.step.title != null)
-              ? Padding(
-                  padding: const EdgeInsets.only(
-                      bottom: 24, left: 8, right: 8, top: 0),
-                  child: Text(
-                    locale?.translate(widget.step.title!) ?? widget.step.title!,
-                    textAlign: TextAlign.left,
-                  ),
-                )
-              : Container(),
+          Padding(
+            padding: const EdgeInsets.only(
+                bottom: 24, left: 8, right: 8, top: 0),
+            child: Text(
+              locale?.translate(widget.step.title) ?? widget.step.title,
+              textAlign: TextAlign.left,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: stepBody(widget.step.answerFormat),
@@ -128,7 +126,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   @override
   void createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate). Set questionTitle
-    result.questionTitle = widget.step.title!;
+    result.questionTitle = widget.step.title;
     result.setResult(_currentQuestionBodyResult);
     blocTask.sendStepResult(result);
   }

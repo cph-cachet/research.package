@@ -78,7 +78,7 @@ class _RPUIImageChoiceQuestionBodyState
                 (MediaQuery.of(context).size.width * 0.8) / items.length > 125
                     ? 125
                     : MediaQuery.of(context).size.width * 0.8 / items.length,
-            child: item.image,
+            child: Image.asset(item.imageUrl),
           ),
         ),
       ),

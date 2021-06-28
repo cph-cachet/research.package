@@ -6,11 +6,11 @@ part of research_package_model;
 /// It checks whether the [expectedValue] is identical to the result's value.
 /// It digs down the result hierarchy with the help of [RPResultSelector].
 class RPResultPredicate {
-  dynamic expectedValue;
-  RPResultSelector _resultSelector;
-  bool Function() getPredictionResult;
-  bool _predictionResult;
-  ChoiceQuestionResultPredicateMode _choiceQuestionResultPredicateMode;
+  late dynamic expectedValue;
+  late RPResultSelector _resultSelector;
+  late bool Function() getPredictionResult;
+  late bool _predictionResult;
+  ChoiceQuestionResultPredicateMode? _choiceQuestionResultPredicateMode;
 
   /// Result predicate for the boolean answer format [RPBooleanAnswerFormat].
   /// The [expectedValue] here should be a boolean.
@@ -100,6 +100,8 @@ class RPResultPredicate {
           }
           break;
         }
+      case null:
+        throw("ChoiceQuestionResultPredicateMode was null in RPResultPredicate");
     }
     return this._predictionResult;
   }
@@ -107,7 +109,7 @@ class RPResultPredicate {
 
 /// This class identifies the needed test result for the [RPResultPredicate]
 class RPResultSelector {
-  Function() getResult;
+  late Function() getResult;
 
   /// Use this constructor if the step which the navigation rule is bound to,
   /// is a regular step
@@ -126,7 +128,7 @@ class RPResultSelector {
   }
 
   RPStepResult _resultForStepId(String stepIdentifier) {
-    RPTaskResult _recentTaskResult = blocTask.lastTaskResult;
+    RPTaskResult? _recentTaskResult = blocTask.lastTaskResult;
     RPStepResult _foundStepResult;
 
     if (_recentTaskResult != null) {
@@ -138,7 +140,7 @@ class RPResultSelector {
     return _foundStepResult;
   }
 
-  RPStepResult _resultForStepIdInFormStep(String stepIdentifier) {
+  RPStepResult? _resultForStepIdInFormStep(String stepIdentifier) {
     RPTaskResult? _recentTaskResult = blocTask.lastTaskResult;
     RPStepResult? _foundStepResult;
 

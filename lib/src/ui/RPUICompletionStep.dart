@@ -34,6 +34,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

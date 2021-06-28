@@ -11,7 +11,7 @@ class BlocTask {
   final _stepResultController = StreamController<RPResult>.broadcast();
   final _taskProgressController = BehaviorSubject<RPTaskProgress>();
   final _taskResultController =
-      BehaviorSubject<RPTaskResult>.seeded(RPTaskResult());
+      BehaviorSubject<RPTaskResult>.seeded(RPTaskResult(identifier: 'BaseTaskResultID'));
 
   //Add data to stream
 

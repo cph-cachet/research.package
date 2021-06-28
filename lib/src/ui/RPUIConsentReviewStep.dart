@@ -15,18 +15,24 @@ class RPUIConsentReviewStep extends StatefulWidget {
 
 class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
     with CanSaveResult {
-  RPConsentSignatureResult consentSignatureResult;
-  RPSignatureResult signatureResult;
+  late RPConsentSignatureResult consentSignatureResult;
+  RPSignatureResult? signatureResult;
   late RPStepResult result;
 
   @override
   void initState() {
     // Instantiate result so the counter starts
-    result = RPStepResult(step: widget.step);
+    RPAnswerFormat? af;
+    try {
+      af = (widget.step as RPQuestionStep).answerFormat;
+    } catch (e) {
+      print(e);
+    }
+    result = RPStepResult(identifier: widget.step.identifier, answerFormat: af);
     super.initState();
   }
 
-  void _setSignatureResult(RPSignatureResult result) {
+  void _setSignatureResult(RPSignatureResult? result) {
     setState(() {
       signatureResult = result;
     });
@@ -39,7 +45,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
         widget.step.identifier, widget.step.consentDocument, signatureResult)
       ..endDate = DateTime.now();
 
-    consentSignatureResult.consentDocument.signatures == null
+    consentSignatureResult.consentDocument.signatures.isEmpty
         ? result.setResultForIdentifier(
             "no signature collected", consentSignatureResult)
         : //TODO: modify identifier to match the id of rpconsentsignature
@@ -79,7 +85,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
 
 class _TextPresenterRoute extends StatefulWidget {
   final RPConsentReviewStep step;
-  final void Function(RPSignatureResult) onNoSignature;
+  final void Function(RPSignatureResult?) onNoSignature;
 
   _TextPresenterRoute(this.step, this.onNoSignature);
 
@@ -127,7 +133,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
               ),
             ),
             Column(
-              children: widget.step.consentDocument.sections[index].dataTypes
+              children: widget.step.consentDocument.sections[index].dataTypes! // DataTypes must be provided given a data collection section has been created.
                   .map((e) {
                 return Padding(
                   padding: EdgeInsets.only(bottom: 4, top: 8),
@@ -171,8 +177,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           ),
           Text(
             locale?.translate(
-                    widget.step.consentDocument.sections[index].content) ??
-                widget.step.consentDocument.sections[index].content,
+                    widget.step.consentDocument.sections[index].content!) ?? // Content must be provided given a section has been created that isnt data collection.
+                widget.step.consentDocument.sections[index].content!,
             style: Theme.of(context).textTheme.bodyText1,
           ),
         ],
@@ -190,8 +196,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           return AlertDialog(
             title:
                 Text(locale?.translate(widget.step.text) ?? widget.step.text),
-            content: Text(locale?.translate(widget.step.reasonForConsent) ??
-                widget.step.reasonForConsent),
+            content: Text(locale?.translate(widget.step.reasonForConsent!) ??
+                widget.step.reasonForConsent!),
             actions: <Widget>[
               OutlinedButton(
                 child: Text(
@@ -233,7 +239,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             locale?.translate('AGREE') ?? "AGREE",
           ),
           onPressed: () => _showConsentDialog(
-            widget.step.consentDocument.signatures != null
+            widget.step.consentDocument.signatures.isEmpty
                 ? () {
                     // Dismiss pop-up. It uses the root Navigator since it's an overlay
                     Navigator.of(context, rootNavigator: true).pop();
@@ -264,8 +270,8 @@ class _SignatureRoute extends StatefulWidget {
 }
 
 class _SignatureRouteState extends State<_SignatureRoute> {
-  bool _isNameFilled;
-  bool _isSignatureAdded;
+  late bool _isNameFilled;
+  late bool _isSignatureAdded;
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
 
@@ -274,7 +280,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
     penColor: Colors.red,
     exportBackgroundColor: Colors.blue,
   );
-  Signature _signature;
+  late Signature _signature;
 
   Widget _signatureCanvas() {
     return GestureDetector(
@@ -405,6 +411,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.all(12),

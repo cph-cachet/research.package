@@ -19,7 +19,7 @@ part of research_package_ui;
 /// ```
 ///
 class AssetLocalizations {
-  Map<String, String> _translations;
+  late Map<String, String> _translations;
 
   final Locale locale;
 
@@ -31,7 +31,7 @@ class AssetLocalizations {
   ///
   /// Returns `null` if no resources object of type [AssetLocalizations] exists within
   /// the given `context`.
-  static AssetLocalizations of(BuildContext context) =>
+  static AssetLocalizations? of(BuildContext context) =>
       Localizations.of<AssetLocalizations>(context, AssetLocalizations);
 
   /// The file name of the localization asset.
@@ -53,7 +53,7 @@ class AssetLocalizations {
   /// Translate [key] to this [locale].
   /// If [key] is not translated, [key] is returned 'as-is'.
   String translate(String key) =>
-      (_translations.containsKey(key)) ? _translations[key] : key;
+      (_translations.containsKey(key)) ? _translations[key]! : key;
 
   /// A default [LocalizationsDelegate] for [AssetLocalizations].
   ///

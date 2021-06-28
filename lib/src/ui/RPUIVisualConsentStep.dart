@@ -121,7 +121,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           height: iconSize,
         );
       case RPConsentSectionType.Custom:
-        return section.customIllustration;
+        return section.customIllustration ?? Container();
       case RPConsentSectionType.DataGathering:
         return Image.asset(
           'assets/icons/management.png',
@@ -218,15 +218,15 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
               ),
             ),
             Text(
-              locale?.translate(section.summary) ?? section.summary,
+              locale?.translate(section.summary!) ?? section.summary!,
               style: Theme.of(context).textTheme.bodyText1,
               textAlign: TextAlign.start,
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: section.dataTypes.length,
+                itemCount: section.dataTypes!.length,
                 itemBuilder: (context, index) {
-                  return DataCollectionListItem(section.dataTypes[index]);
+                  return DataCollectionListItem(section.dataTypes![index]);
                 },
               ),
             ),
@@ -255,13 +255,13 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                   textAlign: TextAlign.start,
                 ),
                 Text(
-                  locale?.translate(section.summary) ?? section.summary,
+                  locale?.translate(section.summary!) ?? section.summary!,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
                 GestureDetector(
                   onTap: () => _pushContent(
                     section.title,
-                    section.content,
+                    section.content!,
                   ),
                   child: Text(
                     RPLocalizations.of(context)?.translate('learn_more') ??
@@ -270,19 +270,19 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                     // textAlign: TextAlign.start,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 8),
-                  child: OutlinedButton.icon(
-                    icon: Icon(Icons.help),
-                    label: Text(
-                      locale?.translate('Learn more...') ?? 'Learn more...',
-                    ),
-                    onPressed: () => _pushContent(
-                      section.title,
-                      section.content,
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: EdgeInsets.only(top: 8),
+                //   child: OutlinedButton.icon(
+                //     icon: Icon(Icons.help),
+                //     label: Text(
+                //       locale?.translate('learn_more') ?? 'Learn more...',
+                //     ),
+                //     onPressed: () => _pushContent(
+                //       section.title,
+                //       section.content!,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ],
@@ -304,9 +304,11 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           ),
           ButtonTheme(
             minWidth: 70,
-            child: FlatButton(
-              color: Theme.of(context).primaryColor,
-              padding: EdgeInsets.all(10.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Theme.of(context).primaryColor,
+                padding: EdgeInsets.all(10.0),
+              ),
               child: _lastPage
                   ? Text(
                       RPLocalizations.of(context)?.translate('SEE_SUMMARY') ??
@@ -336,6 +338,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         body: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -372,6 +375,7 @@ class _ContentRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text(locale?.translate(this.title) ?? this.title),
       ),
