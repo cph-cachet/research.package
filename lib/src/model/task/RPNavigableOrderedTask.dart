@@ -69,7 +69,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
           List identifiersToKeep = [];
           (tempResult.results["answer"] as List<RPChoice>).forEach((element) {
             String id =
-                (rule).removalMap[element.value]!;
+                (rule).reorderingMap[element.value]!;
             identifiersToKeep.add(id);
           });
 
@@ -126,6 +126,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
       _returnNextQuestion();
     }
 
+    print("Step to return: $_stepToReturn");
     return _stepToReturn;
   }
 
@@ -158,8 +159,9 @@ class RPNavigableOrderedTask extends RPOrderedTask {
     _stepNavigationRules.remove(triggerStepIdentifier);
   }
 
-  Function get fromJsonFunction => _$RPNavigableOrderedTaskFromJson;
   // factory RPNavigableOrderedTask.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPNavigableOrderedTask.fromJson(Map<String, dynamic> json) =>
+      _$RPNavigableOrderedTaskFromJson(json);
   Map<String, dynamic> toJson() => _$RPNavigableOrderedTaskToJson(this);
 }

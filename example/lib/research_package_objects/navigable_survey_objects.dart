@@ -268,7 +268,7 @@ RPPredicateStepNavigationRule guitarNavigationRule =
 );
 
 RPStepReorganizerRule alphabetReorganizerRule =
-    RPStepReorganizerRule(reorganizerStepId: alphabetQuestionStep.identifier, removalMap: {
+    RPStepReorganizerRule(reorganizerStepId: alphabetQuestionStep.identifier, reorderingMap: {
   3: instructionStepD.identifier,
   2: instructionStepC.identifier,
   1: instructionStepB.identifier,

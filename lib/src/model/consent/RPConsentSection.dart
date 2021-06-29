@@ -43,11 +43,13 @@ class RPConsentSection /* extends Serializable */ {
   RPConsentSection(
       {required this.type,
       String? title,
+      this.summary,
+      this.content,
+      this.dataTypes,
       // Icon? customIcon,
       // Image? customImage,
       this.customIllustration}) {
-    assert(type != RPConsentSectionType.Custom || title != null, "If a you are creating a Custom ConsentSection, then a title must be provided instead.");
-    this.summary = null;
+    assert(type != RPConsentSectionType.Custom || title != null, "If a you are creating a Custom ConsentSection, then a title must be provided.");
     this.title = (type == RPConsentSectionType.Custom) ?
       title! : _localizedTitleForConsentSectionType(type);
   }

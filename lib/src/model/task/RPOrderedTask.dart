@@ -87,8 +87,8 @@ class RPOrderedTask extends RPTask {
   /// The number of question steps in the task
   int get numberOfQuestionSteps => this._numberOfQuestionSteps;
 
-  Function get fromJsonFunction => _$RPOrderedTaskFromJson;
   // factory RPOrderedTask.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPOrderedTask.fromJson(Map<String, dynamic> json) => _$RPOrderedTaskFromJson(json);
   Map<String, dynamic> toJson() => _$RPOrderedTaskToJson(this);
 }

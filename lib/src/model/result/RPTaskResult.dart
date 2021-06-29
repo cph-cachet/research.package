@@ -28,7 +28,6 @@ class RPTaskResult extends RPResult {
     results[identifier] = stepResult;
   }
 
-  factory RPTaskResult.fromJson(Map<String, dynamic> json) =>
-      _$RPTaskResultFromJson(json);
+  factory RPTaskResult.fromJson(Map<String, dynamic> json) => _$RPTaskResultFromJson(json);
   Map<String, dynamic> toJson() => _$RPTaskResultToJson(this);
 }

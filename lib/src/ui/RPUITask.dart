@@ -50,12 +50,13 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
   @override
   initState() {
+    super.initState();
     // Instantiate the taskresult so it starts tracking time
     _taskResult = RPTaskResult(identifier: widget.task.identifier);
 
     // If it's navigable we don't want to show result on appbar
     if (widget.task is RPNavigableOrderedTask) {
-      blocTask.updateTaskProgress(RPTaskProgress(0, 0));
+      blocTask.updateTaskProgress(RPTaskProgress(0, widget.task.steps.length));
       navigableTask = true;
     } else {
       // Sending the initial Task Progress so the Question UI can use it in the app bar
@@ -65,6 +66,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
     // Subscribe to step status changes so the navigation can be triggered
     _stepStatusSubscription = blocTask.stepStatus.listen((data) async {
+      print("New step status");
+      print(_currentStep);
       switch (data) {
         case RPStepStatus.Finished:
           // In case of last step we save the result and close the task
@@ -140,9 +143,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       // Getting the first step
       _currentStep = widget.task.getStepAfterStep(null, null);
       if (_currentStep != null) _activeSteps.add(_currentStep!);
+      print("_currentStep in UITask: ${_currentStep!.identifier}");
     });
-
-    super.initState();
   }
 
   @override
@@ -250,80 +252,72 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
     return WillPopScope(
       onWillPop: () => blocTask.sendStatus(RPStepStatus.Canceled),
-      child: Theme(
-        data: Theme.of(context),
-        child: Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
-          resizeToAvoidBottomInset: true,
-          body: SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // top bar
-                _carouselBar(),
-                // Body
-                Expanded(
-                  child: PageView.builder(
-                    itemBuilder: (BuildContext context, int position) {
-                      return _activeSteps[position].stepWidget;
-                    },
-                    itemCount: _activeSteps.length,
-                    controller: _taskPageViewController,
-                    physics: NeverScrollableScrollPhysics(),
+      child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
+        resizeToAvoidBottomInset: true,
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // top bar
+              _carouselBar(),
+              // Body
+              Expanded(
+                child: PageView.builder(
+                  itemBuilder: (BuildContext context, int position) {
+                    return _activeSteps[position].stepWidget;
+                  },
+                  itemCount: _activeSteps.length,
+                  controller: _taskPageViewController,
+                  physics: NeverScrollableScrollPhysics(),
+                ),
+              ),
+              // Bottom navigation
+              if (![RPCompletionStep, RPVisualConsentStep, RPConsentReviewStep]
+                  .contains(_currentStep.runtimeType))
+                Padding(
+                  padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // if first question or its a navigable task
+                      _currentStepIndex == 0 || navigableTask
+                          ? Container()
+                          : TextButton(
+                              onPressed: () =>
+                                  blocTask.sendStatus(RPStepStatus.Back),
+                              child: Text(
+                                locale?.translate('BACK') ??
+                                    'BACK',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
+                              ),
+                            ),
+                      StreamBuilder<bool>(
+                        stream: blocQuestion.questionReadyToProceed,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return ElevatedButton(
+                              child: Text(
+                                locale?.translate('NEXT') ??
+                                    'NEXT',
+                              ),
+                              onPressed: snapshot.data!
+                                  ? () {
+                                      blocTask
+                                          .sendStatus(RPStepStatus.Finished);
+                                    }
+                                  : null,
+                            );
+                          } else {
+                            return Container();
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 ),
-                // Bottom navigation
-                if (![
-                  RPCompletionStep,
-                  RPVisualConsentStep,
-                  RPConsentReviewStep
-                ].contains(_currentStep.runtimeType))
-                  Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // if first question or its a navigable task
-                        _currentStepIndex == 0 || navigableTask
-                            ? Container()
-                            : TextButton(
-                                onPressed: () =>
-                                    blocTask.sendStatus(RPStepStatus.Back),
-                                child: Text(
-                                  RPLocalizations.of(context)
-                                          ?.translate('BACK') ??
-                                      'BACK',
-                                  style: TextStyle(
-                                      color: Theme.of(context).primaryColor),
-                                ),
-                              ),
-                        StreamBuilder<bool>(
-                          stream: blocQuestion.questionReadyToProceed,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return ElevatedButton(
-                                child: Text(
-                                  RPLocalizations.of(context)
-                                          ?.translate('NEXT') ??
-                                      'NEXT',
-                                ),
-                                onPressed: snapshot.data!
-                                    ? () {
-                                        blocTask
-                                            .sendStatus(RPStepStatus.Finished);
-                                      }
-                                    : null,
-                              );
-                            } else {
-                              return Container();
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
+            ],
           ),
         ),
       ),

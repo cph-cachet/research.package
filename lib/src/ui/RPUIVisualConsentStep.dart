@@ -382,10 +382,11 @@ class _ContentRoute extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.all(15.0),
         child: SingleChildScrollView(
-            child: Text(
-          locale?.translate(this.content) ?? this.content,
-          style: Theme.of(context).textTheme.bodyText1,
-        )),
+          child: Text(
+            locale?.translate(this.content) ?? this.content,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+        ),
       ),
     );
   }

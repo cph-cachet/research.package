@@ -11,10 +11,10 @@ class RPStepReorganizerRule extends RPStepNavigationRule {
   late RPResultSelector _resultSelector;
 
   /// Those steps will be removed which are not selected
-  Map<dynamic, String> removalMap;
+  Map<dynamic, String> reorderingMap;
 
   RPStepReorganizerRule(
-      {required String reorganizerStepId, required this.removalMap}) {
+      {required String reorganizerStepId, required this.reorderingMap}) {
     _resultSelector = RPResultSelector.forStepId(reorganizerStepId);
   }
 

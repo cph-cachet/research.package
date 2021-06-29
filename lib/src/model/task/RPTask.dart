@@ -46,9 +46,9 @@ class RPTask /* extends Serializable */ {
 
   //TODO: Validates the task parameters.
 
-  Function get fromJsonFunction => _$RPTaskFromJson;
   // factory RPTask.fromJson(Map<String, dynamic> json) =>
   //     FromJsonFactory().fromJson(json);
+  factory RPTask.fromJson(Map<String, dynamic> json) => _$RPTaskFromJson(json);
   Map<String, dynamic> toJson() => _$RPTaskToJson(this);
 }
 
