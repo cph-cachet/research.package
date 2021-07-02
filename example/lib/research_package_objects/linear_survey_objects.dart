@@ -31,13 +31,9 @@ List<RPImageChoice> images = [
       value: -2,
       description: 'Feeling very sad'),
   RPImageChoice(
-      imageUrl: 'assets/images/sad.png',
-      value: -1,
-      description: 'Feeling sad'),
+      imageUrl: 'assets/images/sad.png', value: -1, description: 'Feeling sad'),
   RPImageChoice(
-      imageUrl: 'assets/images/ok.png',
-      value: 0,
-      description: 'Feeling ok'),
+      imageUrl: 'assets/images/ok.png', value: 0, description: 'Feeling ok'),
   RPImageChoice(
       imageUrl: 'assets/images/happy.png',
       value: 1,
@@ -95,62 +91,69 @@ RPTextAnswerFormat textAnswerFormat =
 RPImageChoiceAnswerFormat imageChoiceAnswerFormat =
     RPImageChoiceAnswerFormat(choices: images);
 
-RPQuestionStep additionalInfoQuestionStep = RPQuestionStep(identifier:
-    'additionalInfoQuestionStepID',
+RPQuestionStep additionalInfoQuestionStep = RPQuestionStep(
+    identifier: 'additionalInfoQuestionStepID',
     title: 'Do you have any more details you would like to add?',
     answerFormat: textAnswerFormat,
     optional: true);
 
-RPQuestionStep timeOfDayQuestionStep = RPQuestionStep(identifier:'timeOfDayQuestionStepID',
-    title: 'When did you wake up?', answerFormat: timeOfDayAnswerFormat);
+RPQuestionStep timeOfDayQuestionStep = RPQuestionStep(
+    identifier: 'timeOfDayQuestionStepID',
+    title: 'When did you wake up?',
+    answerFormat: timeOfDayAnswerFormat);
 
-RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep(identifier:
-    'dateAndTimeQuestionStepID',
+RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep(
+    identifier: 'dateAndTimeQuestionStepID',
     title: 'When did you last eat unhealthy food?',
     answerFormat: dateAndTimeAnswerFormat);
 
-RPQuestionStep dateQuestionStep = RPQuestionStep(identifier:'dateQuestionStepID',
-    title: 'When did you last drink alcohol?', answerFormat: dateAnswerFormat);
+RPQuestionStep dateQuestionStep = RPQuestionStep(
+    identifier: 'dateQuestionStepID',
+    title: 'When did you last drink alcohol?',
+    answerFormat: dateAnswerFormat);
 
 // Slider
-RPQuestionStep sliderQuestionStep = RPQuestionStep(identifier:
-  "sliderQuestionsStepID",
+RPQuestionStep sliderQuestionStep = RPQuestionStep(
+  identifier: "sliderQuestionsStepID",
   title: "What did you pay for insulin?",
   answerFormat: sliderAnswerFormat,
   optional: true,
 );
 
-RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(identifier:
-  "questionStep1ID",
+RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(
+  identifier: "questionStep1ID",
   title: "I have felt cheerful and in good spirits",
   answerFormat: timeAnswerFormat,
 );
 
-RPQuestionStep smokingQuestionStep = RPQuestionStep(identifier:
-  "booleanQuestionStepID",
+RPQuestionStep smokingQuestionStep = RPQuestionStep(
+  identifier: "booleanQuestionStepID",
   title: "Do you smoke?",
   answerFormat: smokingBooleanAnswerFormat,
 );
 
-RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(identifier:
-    "instrumentChoiceQuestionStepID",
+RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(
+    identifier: "instrumentChoiceQuestionStepID",
     title: "Which instrument are you playing?",
     answerFormat: instrumentsAnswerFormat);
 
-RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep(identifier:
-    "happinessChoiceQuestionStepID",
+RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep(
+    identifier: "happinessChoiceQuestionStepID",
     title: "What makes you happy?",
     answerFormat: joyfulActivitiesAnswerFormat);
 
-RPQuestionStep weightQuestionStep = RPQuestionStep(identifier:"weightQuestionStepID",
-    title: "What is your weight?", answerFormat: weightIntegerAnswerFormat);
+RPQuestionStep weightQuestionStep = RPQuestionStep(
+    identifier: "weightQuestionStepID",
+    title: "What is your weight?",
+    answerFormat: weightIntegerAnswerFormat);
 
-RPQuestionStep minutesQuestionStep = RPQuestionStep(identifier:"minutesQuestionStepID",
+RPQuestionStep minutesQuestionStep = RPQuestionStep(
+    identifier: "minutesQuestionStepID",
     title: "How many minutes do you spend practicing a week?",
     answerFormat: minutesIntegerAnswerFormat);
 
-RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(identifier:
-  "imageStepID",
+RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(
+  identifier: "imageStepID",
   title: "Indicate you mood by selecting a picture!",
   answerFormat: imageChoiceAnswerFormat,
 );
@@ -162,8 +165,9 @@ RPFormStep formStep = RPFormStep(
   optional: true,
 );
 
-RPCompletionStep completionStep = RPCompletionStep(identifier: "completionID", title: "Finished")
-  ..text = "Thank you for filling out the survey!";
+RPCompletionStep completionStep =
+    RPCompletionStep(identifier: "completionID", title: "Finished")
+      ..text = "Thank you for filling out the survey!";
 
 RPInstructionStep instructionStep = RPInstructionStep("instructionID",
     title: "Welcome!", detailText: "For the sake of science of course...")

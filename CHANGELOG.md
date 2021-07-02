@@ -1,3 +1,8 @@
+## 0.6.0
+- Null safety added.
+- Theming updated using PR #24
+- Minor fixes
+
 ## 0.5.4
 - update to the localization model (`RPLocalizations`) so that:
    - the localization of the embedded text in RP is now part of RP (you don't need to worry about this anymore)

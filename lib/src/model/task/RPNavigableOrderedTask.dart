@@ -87,7 +87,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
         case RPStepJumpRule:
           RPStepJumpRule jumpRule = (rule as RPStepJumpRule);
           RPStepResult tempResult =
-              (rule).resultSelector.getResult();
+              rule.resultSelector.getResult();
 
           _stepToReturn = steps.firstWhere((step) =>
               step.identifier ==
