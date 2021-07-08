@@ -1,6 +1,6 @@
 part of research_package_ui;
 
-/// /// Localization support for Research Package using [LocalizationLoader]
+/// Localization support for Research Package using [LocalizationLoader]
 /// configurations.
 ///
 /// Use [translate] to translate any text, like this:
@@ -27,13 +27,8 @@ class RPLocalizations {
   static RPLocalizations of(BuildContext context) =>
       Localizations.of<RPLocalizations>(context, RPLocalizations);
 
-  // String get keyName =>
-  //     package == null ? assetName : 'packages/$package/$assetName';
-
   /// The name used to generate the key to obtain the localization asset.
-  String get assetName =>
-      // '$assetPath/${locale.languageCode}.json';
-      'packages/$assetPath/${locale.languageCode}.json';
+  String get assetName => 'packages/$assetPath/${locale.languageCode}.json';
 
   /// Load the translations for Research Package.
   ///
@@ -55,11 +50,20 @@ class RPLocalizations {
         jsonMap.map((key, value) => MapEntry(key, value.toString()));
 
     if (loader != null) {
+      print(
+          "$runtimeType - loading from a loader of type '${loader.runtimeType}'");
       Map<String, String> loadedTranslations = await loader.load(locale);
       // merge the two maps
       // note that keys in [_translations] is overwritten with keys in [loadedTranslations]
       // hence, it is possible to overwrite the default translations
-      _translations.addAll(loadedTranslations);
+      if (loadedTranslations != null) {
+        _translations.addAll(loadedTranslations);
+      } else {
+        print(
+            "$runtimeType - WARNING: the loader returned a 'null' translation. "
+            "Check that you have provided localizations data for the loader of "
+            "type '${loader.runtimeType}' for the locale '$locale'.");
+      }
     }
 
     return true;
@@ -115,19 +119,21 @@ abstract class LocalizationLoader {
 }
 
 /// A [LocalizationLoader] which can load translations from a map.
+///
+/// [map] must map a language code to a map of translations keys
+/// mapped to translations.
+///
+/// ```json
+///  {
+///    'en': {'header':'This is a header', ...},
+///    'da': {'header':'Dette er en overskrift', ...},
+///  }
+/// ```
 class MapLocalizationLoader implements LocalizationLoader {
+  /// The map between a language code and the localizations for this language.
   final Map<String, Map<String, String>> map;
 
   /// Create a [MapLocalizationLoader] based on the [map].
-  /// [map] must map a language code to a map of translations keys
-  /// mapped to translations.
-  ///
-  /// ```json
-  ///  {
-  ///    'en': {'header':'This is a header', ...},
-  ///    'da': {'header':'Dette er en overskrift', ...},
-  ///  }
-  /// ```
   MapLocalizationLoader(this.map);
 
   @override

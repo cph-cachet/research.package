@@ -299,3 +299,4 @@ DerivedData/
 .dart_tool/package_config_subset
 .dart_tool/version
 .dart_tool/build_resolvers/sdk.sum
+example/pubspec.lock
