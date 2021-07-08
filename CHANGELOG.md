@@ -1,3 +1,6 @@
+## 0.5.5
+- small update to robustness and debug info in `RPLocalizations`
+
 ## 0.5.4
 - update to the localization model (`RPLocalizations`) so that:
    - the localization of the embedded text in RP is now part of RP (you don't need to worry about this anymore)
