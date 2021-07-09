@@ -33,9 +33,8 @@ class RPQuestionStep extends RPStep {
   @override
   Widget get stepWidget => RPUIQuestionStep(this);
 
-  // factory RPQuestionStep.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-
-  factory RPQuestionStep.fromJson(Map<String, dynamic> json) => _$RPQuestionStepFromJson(json);
+  Function get fromJsonFunction => _$RPQuestionStepFromJson;
+  factory RPQuestionStep.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPQuestionStep;
   Map<String, dynamic> toJson() => _$RPQuestionStepToJson(this);
 }

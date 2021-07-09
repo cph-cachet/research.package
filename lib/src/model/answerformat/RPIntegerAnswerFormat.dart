@@ -23,8 +23,8 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
   @override
   get questionType => RPQuestionType.Integer;
 
-  // factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-  factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPIntegerAnswerFormatFromJson(json);
+  Function get fromJsonFunction => _$RPIntegerAnswerFormatFromJson;
+  factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPIntegerAnswerFormat;
   Map<String, dynamic> toJson() => _$RPIntegerAnswerFormatToJson(this);
 }

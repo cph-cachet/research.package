@@ -8,8 +8,8 @@ class RPDateTimeAnswerFormat extends RPAnswerFormat {
 
   RPDateTimeAnswerFormat({required this.dateTimeAnswerStyle}) : super();
 
-  // factory RPDateTimeAnswerFormat.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-  factory RPDateTimeAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPDateTimeAnswerFormatFromJson(json);
+  Function get fromJsonFunction => _$RPDateTimeAnswerFormatFromJson;
+  factory RPDateTimeAnswerFormat.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPDateTimeAnswerFormat;
   Map<String, dynamic> toJson() => _$RPDateTimeAnswerFormatToJson(this);
 }

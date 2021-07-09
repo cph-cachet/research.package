@@ -15,16 +15,16 @@ class RPImageChoiceAnswerFormat extends RPAnswerFormat {
   @override
   get questionType => RPQuestionType.ImageChoice;
 
-  // factory RPImageChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-  factory RPImageChoiceAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPImageChoiceAnswerFormatFromJson(json);
+  Function get fromJsonFunction => _$RPImageChoiceAnswerFormatFromJson;
+  factory RPImageChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPImageChoiceAnswerFormat;
   Map<String, dynamic> toJson() => _$RPImageChoiceAnswerFormatToJson(this);
 }
 
 /// The image choice object which the participants can choose from, during a
 /// [RPQuestionStep] with [RPImageChoiceAnswerFormat]
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPImageChoice /* extends Serializable */ {
+class RPImageChoice extends Serializable {
   /// The image portraying the choice.
   String imageUrl;
 
@@ -42,8 +42,8 @@ class RPImageChoice /* extends Serializable */ {
   RPImageChoice({required this.imageUrl, this.key, this.value, required this.description})
       : super();
 
-  // factory RPImageChoice.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-  factory RPImageChoice.fromJson(Map<String, dynamic> json) => _$RPImageChoiceFromJson(json);
+  Function get fromJsonFunction => _$RPImageChoiceFromJson;
+  factory RPImageChoice.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPImageChoice;
   Map<String, dynamic> toJson() => _$RPImageChoiceToJson(this);
 }

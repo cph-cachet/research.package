@@ -20,17 +20,16 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
         : RPQuestionType.MultipleChoice;
   }
 
-  // factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-
-  factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) => _$RPChoiceAnswerFormatFromJson(json);
+  Function get fromJsonFunction => _$RPChoiceAnswerFormatFromJson;
+  factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPChoiceAnswerFormat;
   Map<String, dynamic> toJson() => _$RPChoiceAnswerFormatToJson(this);
 }
 
 /// The choice object which the participant can choose during a [RPQuestionStep]
 /// with [RPChoiceAnswerFormat].
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPChoice /* extends Serializable */ {
+class RPChoice extends Serializable {
   /// The text to display.
   String text;
 
@@ -53,8 +52,8 @@ class RPChoice /* extends Serializable */ {
     this.detailText,
   }) : super();
 
-  // factory RPChoice.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-  factory RPChoice.fromJson(Map<String, dynamic> json) => _$RPChoiceFromJson(json);
+  Function get fromJsonFunction => _$RPChoiceFromJson;
+  factory RPChoice.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPChoice;
   Map<String, dynamic> toJson() => _$RPChoiceToJson(this);
 }

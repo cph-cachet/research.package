@@ -115,11 +115,12 @@ RPQuestionStep nrOfCigarettesQuestionStep = RPQuestionStep(
     answerFormat: nrOfCigarettesAnswerFormat);
 
 RPInstructionStep instructionStep = RPInstructionStep(
-  "instructionID",
+  identifier: "instructionID",
   title: "Welcome!",
   detailText: "For the sake of science of course...",
-)..text =
-    "Please fill out this questionnaire!\n\nIn this questionnaire answers to some questions will determine what other questions you will get. You can not skip these question, although you are free to skip the other questions.";
+  text:
+      "Please fill out this questionnaire!\n\nIn this questionnaire answers to some questions will determine what other questions you will get. You can not skip these question, although you are free to skip the other questions.",
+);
 
 RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(
   identifier: "singleChoiceQuestionStepID",
@@ -145,18 +146,29 @@ RPQuestionStep alphabetQuestionStep = RPQuestionStep(
   answerFormat: alphabetAnswerFormat,
 );
 
-RPInstructionStep instructionStepA =
-    RPInstructionStep("instructionStepAID", title: "A", detailText: "A detail")
-      ..text = "text";
-RPInstructionStep instructionStepB =
-    RPInstructionStep("instructionStepBID", title: "B", detailText: "B detail")
-      ..text = "text";
-RPInstructionStep instructionStepC =
-    RPInstructionStep("instructionStepCID", title: "C", detailText: "C detail")
-      ..text = "text";
-RPInstructionStep instructionStepD =
-    RPInstructionStep("instructionStepDID", title: "D", detailText: "D detail")
-      ..text = "text";
+RPInstructionStep instructionStepA = RPInstructionStep(
+    identifier: "instructionStepAID",
+    title: "A",
+    detailText: "A detail",
+    text: "text");
+
+RPInstructionStep instructionStepB = RPInstructionStep(
+    identifier: "instructionStepBID",
+    title: "B",
+    detailText: "B detail",
+    text: "text");
+
+RPInstructionStep instructionStepC = RPInstructionStep(
+    identifier: "instructionStepCID",
+    title: "C",
+    detailText: "C detail",
+    text: "text");
+
+RPInstructionStep instructionStepD = RPInstructionStep(
+    identifier: "instructionStepDID",
+    title: "D",
+    detailText: "D detail",
+    text: "text");
 
 RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(
     identifier: "instrumentChoiceQuestionStepID",
@@ -178,9 +190,10 @@ RPQuestionStep guitarChoiceQuestionStep = RPQuestionStep(
     title: "Why did you start playing the guitar?",
     answerFormat: guitarAnswerFormat);
 
-RPCompletionStep completionStep =
-    RPCompletionStep(identifier: "completionID", title: "Finished")
-      ..text = "Thank you for filling out the survey!";
+RPCompletionStep completionStep = RPCompletionStep(
+    identifier: "completionID",
+    title: "Finished",
+    text: "Thank you for filling out the survey!");
 
 ///
 /// PREDICATES
@@ -339,10 +352,10 @@ RPChoiceAnswerFormat likertProblemScaleAnswerFormat = RPChoiceAnswerFormat(
 // PAID
 // B2 SHORT (Long has been archived if later necessary)
 RPInstructionStep b2InstructionStep = RPInstructionStep(
-  "b2InstructionStepID",
-  title: "",
-)..text =
-    "For the upcoming questions, please consider... \n\nWhich of the following diabetes areas are currently a problem for you? \n\n\nPress 'Continue' to go to the questions";
+    identifier: "b2InstructionStepID",
+    title: "",
+    text:
+        "For the upcoming questions, please consider... \n\nWhich of the following diabetes areas are currently a problem for you? \n\n\nPress 'Continue' to go to the questions");
 
 // B2 - 1
 RPQuestionStep depressedChoiceQuestionStep = RPQuestionStep(
@@ -391,7 +404,7 @@ RPQuestionStep burnedOutChoiceQuestionStep = RPQuestionStep(
     answerFormat: likertProblemScaleAnswerFormat);
 
 RPCompletionStep paidCompletionStep =
-    RPCompletionStep(identifier: "B2-7", title: "Finished")..text = "Finished";
+    RPCompletionStep(identifier: "B2-7", title: "Finished", text: "Finished");
 
 // Binst -> 1 -> 2 -> end
 //          |    |

@@ -16,7 +16,7 @@ class RPConsentReviewStep extends RPStep {
   RPConsentDocument consentDocument;
 
   /// The text shown as the confirmation popup title
-  late String text;
+  String? text;
 
   /// The text in the confirmation popup (body)
   String? reasonForConsent;
@@ -37,8 +37,8 @@ class RPConsentReviewStep extends RPStep {
   @JsonKey(ignore: true)
   Widget get stepWidget => RPUIConsentReviewStep(this);
 
-  // factory RPConsentReviewStep.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-  factory RPConsentReviewStep.fromJson(Map<String, dynamic> json) => _$RPConsentReviewStepFromJson(json);
+  Function get fromJsonFunction => _$RPConsentReviewStepFromJson;
+  factory RPConsentReviewStep.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPConsentReviewStep;
   Map<String, dynamic> toJson() => _$RPConsentReviewStepToJson(this);
 }

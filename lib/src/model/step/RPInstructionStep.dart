@@ -20,16 +20,16 @@ class RPInstructionStep extends RPStep {
   /// If `null` nothing is shown.
   String? imagePath;
 
-  RPInstructionStep(String identifier,
-      {required String title, this.detailText, this.footnote, this.imagePath})
-      : super(identifier: identifier, title: title);
+  RPInstructionStep({required String identifier, String? text,
+      required String title, this.detailText, this.footnote, this.imagePath})
+      : super(identifier: identifier, title: title, text: text);
 
   /// The widget (UI representation) of the step
   @override
   Widget get stepWidget => RPUIInstructionStep(step: this);
 
-  // factory RPInstructionStep.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-  factory RPInstructionStep.fromJson(Map<String, dynamic> json) => _$RPInstructionStepFromJson(json);
+  Function get fromJsonFunction => _$RPInstructionStepFromJson;
+  factory RPInstructionStep.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPInstructionStep;
   Map<String, dynamic> toJson() => _$RPInstructionStepToJson(this);
 }

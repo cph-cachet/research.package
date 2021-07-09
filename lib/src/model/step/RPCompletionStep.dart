@@ -3,7 +3,7 @@ part of research_package_model;
 /// A step which can be used as a "Thank you" or completion step in a task.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPCompletionStep extends RPStep {
-  RPCompletionStep({required String identifier, required String title}) : super(identifier: identifier, title: title);
+  RPCompletionStep({required String identifier, required String title, String? text}) : super(identifier: identifier, title: title, text: text);
 
   /// The widget (UI representation) of the step
   ///
@@ -12,8 +12,8 @@ class RPCompletionStep extends RPStep {
   @override
   Widget get stepWidget => RPUICompletionStep(step: this);
 
-  // factory RPCompletionStep.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-  factory RPCompletionStep.fromJson(Map<String, dynamic> json) => _$RPCompletionStepFromJson(json);
+  Function get fromJsonFunction => _$RPCompletionStepFromJson;
+  factory RPCompletionStep.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPCompletionStep;
   Map<String, dynamic> toJson() => _$RPCompletionStepToJson(this);
 }

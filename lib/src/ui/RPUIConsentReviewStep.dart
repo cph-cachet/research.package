@@ -195,7 +195,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         builder: (context) {
           return AlertDialog(
             title:
-                Text(locale?.translate(widget.step.text) ?? widget.step.text),
+                Text(locale?.translate(widget.step.text!) ?? widget.step.text!),
             content: Text(locale?.translate(widget.step.reasonForConsent!) ??
                 widget.step.reasonForConsent!),
             actions: <Widget>[

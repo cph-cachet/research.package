@@ -31,9 +31,6 @@ class RPStepResult extends RPResult {
   /// time the participant spent the given Step.
   RPStepResult({required String identifier, required this.answerFormat}) : super(identifier) {
     this.results = Map();
-
-
-
     startDate = DateTime.now();
   }
 

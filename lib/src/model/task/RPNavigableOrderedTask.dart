@@ -159,9 +159,8 @@ class RPNavigableOrderedTask extends RPOrderedTask {
     _stepNavigationRules.remove(triggerStepIdentifier);
   }
 
-  // factory RPNavigableOrderedTask.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
+  Function get fromJsonFunction => _$RPNavigableOrderedTaskFromJson;
   factory RPNavigableOrderedTask.fromJson(Map<String, dynamic> json) =>
-      _$RPNavigableOrderedTaskFromJson(json);
+      FromJsonFactory().fromJson(json) as RPNavigableOrderedTask;
   Map<String, dynamic> toJson() => _$RPNavigableOrderedTaskToJson(this);
 }

@@ -15,7 +15,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 
 // the carp core domain model incl. polymorphic json serialization
-// import 'package:carp_core/carp_common/carp_core_common.dart';
+import 'package:carp_core/carp_common/carp_core_common.dart';
 
 // Importing the UI library from Research Package
 import 'package:research_package/ui.dart';
@@ -55,15 +55,12 @@ part 'src/model/task/RPDirectStepNavigationRule.dart';
 part 'src/model/task/RPPredicateStepNavigationRule.dart';
 part 'src/model/task/RPPStepReorganizerRule.dart';
 part 'src/model/task/RPStepJumpRule.dart';
-//part 'src/model/task/RPSkipStepNavigationRule.dart';
-//part 'src/model/task/RPStepModifier.dart';
 part 'src/model/task/RPResultPredicate.dart';
 part 'src/model/task/RPTask.dart';
 
 part 'src/model/result/RPResult.dart';
 part 'src/model/result/RPTaskResult.dart';
 part 'src/model/result/RPStepResult.dart';
-//part 'src/model/result/RPQuestionBodyResult.dart';
 part 'src/model/result/RPConsentSignatureResult.dart';
 part 'src/model/result/RPSignatureResult.dart';
 part 'src/model/result/RPNoResult.dart';
@@ -82,34 +79,34 @@ void registerFromJsonFunctions() {
   if (_fromJsonFunctionsRegistrered) return;
   _fromJsonFunctionsRegistrered = true;
 
-  // // AnswerFormat classes
-  // FromJsonFactory().register(RPAnswerFormat());
-  // FromJsonFactory().register(RPBooleanAnswerFormat());
-  // FromJsonFactory().register(RPChoiceAnswerFormat());
-  // FromJsonFactory().register(RPChoice());
-  // FromJsonFactory().register(RPDateTimeAnswerFormat());
-  // FromJsonFactory().register(RPFormAnswerFormat());
-  // FromJsonFactory().register(RPImageChoiceAnswerFormat());
-  // FromJsonFactory().register(RPImageChoice());
-  // FromJsonFactory().register(RPIntegerAnswerFormat());
-  // FromJsonFactory().register(RPSliderAnswerFormat());
-  // FromJsonFactory().register(RPTextAnswerFormat());
+  // AnswerFormat classes
+  FromJsonFactory().register(RPAnswerFormat());
+  FromJsonFactory().register(RPBooleanAnswerFormat(trueText: '', falseText: ''));
+  FromJsonFactory().register(RPChoiceAnswerFormat(answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: []));
+  FromJsonFactory().register(RPChoice(text: '', value: 0));
+  FromJsonFactory().register(RPDateTimeAnswerFormat(dateTimeAnswerStyle: RPDateTimeAnswerStyle.Date));
+  FromJsonFactory().register(RPFormAnswerFormat());
+  FromJsonFactory().register(RPImageChoiceAnswerFormat(choices: []));
+  FromJsonFactory().register(RPImageChoice(description: '', imageUrl: ''));
+  FromJsonFactory().register(RPIntegerAnswerFormat(maxValue: 1, minValue: 0));
+  FromJsonFactory().register(RPSliderAnswerFormat(minValue: 0, divisions: 1, maxValue: 2));
+  FromJsonFactory().register(RPTextAnswerFormat());
 
-  // // Steps classes
-  // FromJsonFactory().register(RPStep(''));
-  // FromJsonFactory().register(RPQuestionStep(''));
-  // FromJsonFactory().register(RPInstructionStep(''));
-  // FromJsonFactory().register(RPFormStep(''));
-  // FromJsonFactory().register(RPCompletionStep(''));
+  // Steps classes
+  FromJsonFactory().register(RPStep(identifier: '', title: ''));
+  FromJsonFactory().register(RPQuestionStep(identifier: '', title: '', answerFormat: RPAnswerFormat()));
+  FromJsonFactory().register(RPInstructionStep(identifier: '', title: ''));
+  FromJsonFactory().register(RPFormStep(identifier: '', title: '', steps: []));
+  FromJsonFactory().register(RPCompletionStep(identifier: '', title: ''));
 
-  // // Consent Document classes
-  // FromJsonFactory().register(RPConsentReviewStep('', null));
-  // FromJsonFactory().register(RPVisualConsentStep('', null));
+  // Consent Document classes
+  FromJsonFactory().register(RPConsentReviewStep(identifier: '', consentDocument: RPConsentDocument(title: '', sections: [])));
+  FromJsonFactory().register(RPVisualConsentStep(identifier: '', consentDocument: RPConsentDocument(title: '', sections: [])));
 
-  // // Tasks classes
-  // FromJsonFactory().register(RPOrderedTask('', []));
-  // FromJsonFactory().register(RPNavigableOrderedTask('', []));
-  // FromJsonFactory().register(RPDataTypeSection('', ''));
+  // Tasks classes
+  FromJsonFactory().register(RPOrderedTask(identifier: '', steps: []));
+  FromJsonFactory().register(RPNavigableOrderedTask(identifier: '', steps: []));
+  FromJsonFactory().register(RPDataTypeSection(dataName: '', dataInformation: ''));
 }
 
 // auto generate json code (.g files) with:

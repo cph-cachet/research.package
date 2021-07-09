@@ -54,7 +54,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 Container(
                   padding: EdgeInsets.all(16),
                   child: Text(
-                    locale?.translate(widget.step.text) ?? widget.step.text,
+                    locale?.translate(widget.step.text!) ?? widget.step.text!,
                     textAlign: TextAlign.left,
                   ),
                 ),

@@ -12,7 +12,7 @@ part of research_package_model;
 /// screen through their [stepWidget] Widget, and represents the primary unit of
 /// work in any task presented by a task view controller.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class RPTask /* extends Serializable */ {
+class RPTask extends Serializable {
 
   RPTask({required this.identifier, this.closeAfterFinished = false}) {
     // _registerFromJsonFunctions();
@@ -46,9 +46,9 @@ class RPTask /* extends Serializable */ {
 
   //TODO: Validates the task parameters.
 
-  // factory RPTask.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json);
-  factory RPTask.fromJson(Map<String, dynamic> json) => _$RPTaskFromJson(json);
+  Function get fromJsonFunction => _$RPTaskFromJson;
+  factory RPTask.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPTask;
   Map<String, dynamic> toJson() => _$RPTaskToJson(this);
 }
 

@@ -50,7 +50,7 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
-                      locale?.translate(widget.step.text) ?? widget.step.text,
+                      locale?.translate(widget.step.text!) ?? widget.step.text!,
                       style: Theme.of(context).textTheme.subtitle1,
                       textAlign: TextAlign.center,
                     ),

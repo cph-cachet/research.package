@@ -85,16 +85,26 @@ RPConsentSection userDataCollection = RPConsentSection(
     summary:
         "This study will ask you to provide the information about the following categories:",
     dataTypes: [
-      RPDataTypeSection("Alcohol",
-          "You have to input some info about alcohol in the alcohol card  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut aliquet augue, sed maximus sapien. Cras non sem vulputate, tincidunt est in, euismod orci. Aenean elit nisl, convallis vel lacus eget, pellentesque laoreet nunc."),
-      RPDataTypeSection("Mood",
-          "You have to input some info about your mood in the mood card"),
-      RPDataTypeSection("Weight",
-          "You have to input some info about your weight in the weight card"),
-      RPDataTypeSection("Medications",
-          "You have to input some info about your medications in the medications card"),
-      RPDataTypeSection("Smoking",
-          "You have to input some info about your smoking in the smoking card"),
+      RPDataTypeSection(
+          dataName: "Alcohol",
+          dataInformation:
+              "You have to input some info about alcohol in the alcohol card  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut aliquet augue, sed maximus sapien. Cras non sem vulputate, tincidunt est in, euismod orci. Aenean elit nisl, convallis vel lacus eget, pellentesque laoreet nunc."),
+      RPDataTypeSection(
+          dataName: "Mood",
+          dataInformation:
+              "You have to input some info about your mood in the mood card"),
+      RPDataTypeSection(
+          dataName: "Weight",
+          dataInformation:
+              "You have to input some info about your weight in the weight card"),
+      RPDataTypeSection(
+          dataName: "Medications",
+          dataInformation:
+              "You have to input some info about your medications in the medications card"),
+      RPDataTypeSection(
+          dataName: "Smoking",
+          dataInformation:
+              "You have to input some info about your smoking in the smoking card"),
     ]);
 
 RPConsentSection passiveDataCollection = RPConsentSection(
@@ -103,12 +113,19 @@ RPConsentSection passiveDataCollection = RPConsentSection(
         "This study will passively collect data about the following categories:",
     dataTypes: [
       RPDataTypeSection(
-          "Steps", "Your daily step counts as collected by the phone."),
-      RPDataTypeSection("Activity",
-          "Your different types of activities as detected by the phone"),
-      RPDataTypeSection("Location", "Your location as you move around"),
+          dataName: "Steps",
+          dataInformation: "Your daily step counts as collected by the phone."),
       RPDataTypeSection(
-          "Noise", "Background noise as detected by the phone's microphone"),
+          dataName: "Activity",
+          dataInformation:
+              "Your different types of activities as detected by the phone"),
+      RPDataTypeSection(
+          dataName: "Location",
+          dataInformation: "Your location as you move around"),
+      RPDataTypeSection(
+          dataName: "Noise",
+          dataInformation:
+              "Background noise as detected by the phone's microphone"),
     ]);
 
 RPConsentSection customSection = RPConsentSection(
@@ -120,7 +137,8 @@ RPConsentSection customSection = RPConsentSection(
 RPConsentSignature signature =
     RPConsentSignature(identifier: "consentSignatureID");
 
-RPConsentDocument consentDocument = RPConsentDocument('Informed Consent', [
+RPConsentDocument consentDocument =
+    RPConsentDocument(title: 'Informed Consent', sections: [
   overviewSection,
   aboutUs,
   dataGatheringSection,
@@ -129,10 +147,10 @@ RPConsentDocument consentDocument = RPConsentDocument('Informed Consent', [
   userDataCollection,
   passiveDataCollection
 ])
-  ..addSignature(signature);
+      ..addSignature(signature);
 
 RPConsentDocument consentDocumentAllSections =
-    RPConsentDocument('Informed Consent', [
+    RPConsentDocument(title: 'Informed Consent', sections: [
   overviewSection,
   aboutUs,
   dataGatheringSection,
@@ -148,11 +166,11 @@ RPConsentReviewStep consentReviewStep = RPConsentReviewStep(
   ..reasonForConsent = 'informed_consent.agree_text'
   ..text = 'informed_consent.agree_confirm';
 
-RPVisualConsentStep consentVisualStep =
-    RPVisualConsentStep("visualStep", consentDocument);
+RPVisualConsentStep consentVisualStep = RPVisualConsentStep(
+    identifier: "visualStep", consentDocument: consentDocument);
 
 RPInstructionStep instructionStep = RPInstructionStep(
-  "instructionID",
+  identifier: "instructionID",
   title: "Welcome!",
   detailText:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultricies feugiat turpis nec efficitur. Integer in pharetra libero. Proin a leo eu enim porttitor hendrerit. Suspendisse vestibulum interdum mollis. Donec in sapien ut orci ultricies laoreet. Ut maximus ante id arcu feugiat scelerisque. Proin non rutrum libero. Aliquam blandit arcu ac dolor consequat maximus. Integer et dolor quis quam tempor porta quis vel nibh. Phasellus ullamcorper fringilla lorem, ac tempus sem cursus a. Aliquam maximus facilisis quam. Morbi hendrerit tempor tellus, ac hendrerit augue tincidunt eu. Cras convallis lorem at nulla mattis tristique.",
