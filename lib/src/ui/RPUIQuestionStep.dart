@@ -95,7 +95,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
     RPLocalizations? locale = RPLocalizations.of(context);
     return SafeArea(
       child: ListView(
-        // TODO: Why is this a ListView and not a Column?
         padding: EdgeInsets.all(8),
         children: [
           // Title

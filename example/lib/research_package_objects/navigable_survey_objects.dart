@@ -377,7 +377,6 @@ RPQuestionStep energyChoiceQuestionStep2 = RPQuestionStep(
         "Feeling that diabetes is taking up too much of your mental and physical energy?",
     answerFormat: likertProblemScaleAnswerFormat);
 
-//TODO: Implement the branching
 // B2 - 3
 RPQuestionStep overwhelmedChoiceQuestionStep = RPQuestionStep(
     identifier: "B2-3",

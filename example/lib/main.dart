@@ -43,7 +43,6 @@ class MyApp extends StatelessWidget {
         for (var supportedLocale in supportedLocales) {
           if (supportedLocale.languageCode == locale.languageCode
               /*  && supportedLocale.countryCode == locale.countryCode */
-              // TODO: Test on physical iPhone if Locale should use countryCode instead
               ) {
             return supportedLocale;
           }

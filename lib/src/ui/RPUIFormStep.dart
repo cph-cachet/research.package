@@ -53,8 +53,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   // Returning the according step body widget based on the answerFormat of each step
   Widget stepBody(String id, RPAnswerFormat answerFormat) {
-    // TODO: Let's convert these operations into a function
-
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
         return RPUIIntegerQuestionBody((answerFormat as RPIntegerAnswerFormat),

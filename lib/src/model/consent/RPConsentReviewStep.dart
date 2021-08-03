@@ -28,7 +28,7 @@ class RPConsentReviewStep extends RPStep {
   /// On how to specify a signature go to [RPConsentSignature].
   RPConsentReviewStep(
       {required String identifier, required this.consentDocument})
-      : super(identifier: identifier, title: ''); // TODO: Should title be required if we have to pass an empty value?
+      : super(identifier: identifier, title: ''); 
 
   /// The widget (UI representation) of the step
   ///

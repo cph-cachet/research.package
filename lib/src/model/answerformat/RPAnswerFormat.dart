@@ -33,15 +33,15 @@ enum RPQuestionType {
   Decimal,
   Integer,
   Boolean,
-  Eligibility,
   Text,
   TimeOfDay,
   DateAndTime,
   Date,
-  TimeInterval,
   Duration,
-  Location,
   ImageChoice,
+  // Eligibility,
+  // TimeInterval,
+  // Location,
 
   /// The AnswerFormat used by [RPFormStep].
   ///
@@ -51,12 +51,6 @@ enum RPQuestionType {
   /// There's no need of specifying it.
   Form
 }
-
-//enum ScaleAnswerStyle {
-//  Default,
-//  Percent,
-//  Buttons,
-//}
 
 /// Available types for [RPChoiceAnswerFormat]
 enum RPChoiceAnswerStyle {
@@ -73,8 +67,3 @@ enum RPDateTimeAnswerStyle {
   Date,
   TimeOfDay,
 }
-
-//enum NumberFormattingStyle {
-//  Default,
-//  Percent
-//}

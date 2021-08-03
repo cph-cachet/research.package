@@ -1,13 +1,12 @@
 part of research_package_model;
 
 /// The result object a Step creates
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false, )
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPStepResult extends RPResult {
   /// The title of the question. It is set by the [RPUIStep] and [RPUIFormStep]
   /// so it's easier to trace back the answer result in the result JSON.
-  late String questionTitle; // TODO: Nullable or late?
+  late String questionTitle; 
 
-  // TODO: Documentation on skipped question result
   /// The map of results with a String as identifier and generic type as value
   late Map<String, dynamic> results;
 

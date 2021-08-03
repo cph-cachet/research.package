@@ -82,7 +82,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           // Updating taskProgress stream
           if (_currentStep.runtimeType == RPQuestionStep) {
             _currentQuestionIndex++;
-            // TODO: calculate the stepProgress differently for navigableTask
             if (!navigableTask)
               blocTask.updateTaskProgress(RPTaskProgress(
                   _currentQuestionIndex, widget.task.numberOfQuestionSteps));
@@ -111,11 +110,10 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             break;
           } else {
             _currentQuestionIndex--;
-            // TODO: calculate the stepprogress differently for navigableTask
             if (!navigableTask)
               blocTask.updateTaskProgress(RPTaskProgress(
                   _currentQuestionIndex, widget.task.numberOfQuestionSteps));
-            // await because we can only update the stepWidgets list while the current step is out of the screen
+            // await because it can only update the stepWidgets list while the current step is out of the screen
             await _taskPageViewController.previousPage(
                 duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
 

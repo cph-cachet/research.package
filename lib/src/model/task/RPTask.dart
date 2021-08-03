@@ -38,13 +38,8 @@ class RPTask extends Serializable {
   /// Returns the step that matches the specified [identifier].
   RPStep? getStepWithIdentifier(String identifier) => null;
 
-//  /// Returns the progress of the current step.
-//  RPTaskProgress getProgressOfCurrentStep(RPStep step, RPTaskResult result);
-
   /// Returns the title of a given [step]
   String getTitleForStep(RPStep step) => '';
-
-  //TODO: Validates the task parameters.
 
   Function get fromJsonFunction => _$RPTaskFromJson;
   factory RPTask.fromJson(Map<String, dynamic> json) =>

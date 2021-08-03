@@ -33,10 +33,10 @@ class RPChoice extends Serializable {
   /// The text to display.
   String text;
 
-  /// Th/e value of this choice - for example `4` on a 0-5 scale.
+  /// The value of this choice - for example `4` on a 0-5 scale.
   int value;
 
-  // The detailed text to show.
+  /// The detailed text to show if needed. 
   String? detailText;
 
   /// If set to `true`, then the user can enter the text instead of the default

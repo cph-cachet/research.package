@@ -9,7 +9,6 @@ class LinearSurveyPage extends StatelessWidget {
 
   void resultCallback(RPTaskResult result) {
     // Do anything with the result
-    print(result.toJson());
     print(_encode(result));
   }
 

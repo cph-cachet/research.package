@@ -46,8 +46,6 @@ class RPConsentSection extends Serializable {
       this.summary,
       this.content,
       this.dataTypes,
-      // Icon? customIcon,
-      // Image? customImage,
       this.customIllustration}) {
     assert(type != RPConsentSectionType.Custom || title != null, "If a you are creating a Custom ConsentSection, then a title must be provided.");
     this.title = (type == RPConsentSectionType.Custom) ?
@@ -71,11 +69,11 @@ enum RPConsentSectionType {
   DataGathering,
   Privacy,
   DataUse,
-  TimeCommitment, // similar to Duration
+  TimeCommitment, 
   Duration,
   StudyTasks,
   StudySurvey,
-  Withdrawing, // Similar to Your Rights
+  Withdrawing, 
   YourRights,
   Welcome,
   AboutUs,

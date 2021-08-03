@@ -6,7 +6,13 @@ part of research_package_model;
 class RPDateTimeAnswerFormat extends RPAnswerFormat {
   RPDateTimeAnswerStyle dateTimeAnswerStyle;
 
-  RPDateTimeAnswerFormat({required this.dateTimeAnswerStyle}) : super();
+  RPDateTimeAnswerFormat({required this.dateTimeAnswerStyle}) : super() {
+    questionType = (dateTimeAnswerStyle == RPDateTimeAnswerStyle.TimeOfDay)
+        ? RPQuestionType.TimeOfDay
+        : (dateTimeAnswerStyle == RPDateTimeAnswerStyle.Date)
+            ? RPQuestionType.Date
+            : RPQuestionType.DateAndTime;
+  }
 
   Function get fromJsonFunction => _$RPDateTimeAnswerFormatFromJson;
   factory RPDateTimeAnswerFormat.fromJson(Map<String, dynamic> json) =>
