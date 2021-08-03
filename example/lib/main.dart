@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         return supportedLocales.first;
       },
       // theme: ThemeData.light().copyWith(backgroundColor: Colors.white),
-      theme: ThemeData.dark(),
+      theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
       home: MyHomePage(),
