@@ -29,6 +29,7 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
       print(e);
     }
     result = RPStepResult(identifier: widget.step.identifier, answerFormat: af);
+    result.questionTitle = widget.step.consentDocument.title;
     super.initState();
   }
 
@@ -133,6 +134,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
               ),
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: widget.step.consentDocument.sections[index].dataTypes! // DataTypes must be provided given a data collection section has been created.
                   .map((e) {
                 return Padding(
@@ -164,6 +166,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
 
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -172,7 +175,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                       widget.step.consentDocument.sections[index].title) ??
                   widget.step.consentDocument.sections[index].title,
               style: Theme.of(context).textTheme.headline5,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.start,
             ),
           ),
           Text(

@@ -42,6 +42,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     // Filling up the results with nulls
     widget.formStep.steps.forEach((item) {
       stepResult.setResultForIdentifier(item.identifier, RPStepResult(identifier: item.identifier, answerFormat: item.answerFormat));
+      // Set each questionTitle here in case this is a skippable question.
+      (stepResult.results[item.identifier] as RPStepResult).questionTitle = item.title;
     });
 
     readyToProceed = false;

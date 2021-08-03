@@ -150,19 +150,28 @@ RPConsentDocument consentDocument =
       ..addSignature(signature);
 
 RPConsentDocument consentDocumentAllSections =
-    RPConsentDocument(title: 'Informed Consent', sections: [
+    RPConsentDocument(title: 'Informed Consent - Full Version', sections: [
   overviewSection,
-  aboutUs,
   dataGatheringSection,
   privacySection,
+  dataUseSection,
   timeCommitmentSection,
+  durationSection,
+  studyTasksSection,
+  studySurveySection,
+  withdrawingSection,
+  yourRightsSection,
+  welcomeSection,
+  aboutUs,
+  goalsSection,
+  benefitsSection,
   userDataCollection,
   passiveDataCollection
 ])
       ..addSignature(signature);
 
 RPConsentReviewStep consentReviewStep = RPConsentReviewStep(
-    identifier: "consentreviewstepID", consentDocument: consentDocument)
+    identifier: "consentreviewstepID", consentDocument: consentDocumentAllSections)
   ..reasonForConsent = 'informed_consent.agree_text'
   ..text = 'informed_consent.agree_confirm';
 

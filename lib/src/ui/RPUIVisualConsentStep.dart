@@ -408,6 +408,7 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Container(
       child: ExpansionTile(
+        expandedAlignment: Alignment.centerLeft,
         title: Text(
           locale?.translate(widget.dataTypeSection.dataName) ??
               widget.dataTypeSection.dataName,
