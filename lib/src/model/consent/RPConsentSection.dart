@@ -80,6 +80,8 @@ enum RPConsentSectionType {
   Goals,
   Benefits,
   DataHandling,
+  Location,
+  Health,
   UserDataCollection,
   PassiveDataCollection,
   Custom
@@ -116,7 +118,11 @@ String _localizedTitleForConsentSectionType(RPConsentSectionType type) {
     case RPConsentSectionType.Duration:
       return "Study duration";
     case RPConsentSectionType.YourRights:
-      return "Data handling";
+      return "Your rights";
+    case RPConsentSectionType.Location:
+      return "Location";
+    case RPConsentSectionType.Health:
+      return "Health";
     case RPConsentSectionType.UserDataCollection:
       return "Data collection from you";
     case RPConsentSectionType.PassiveDataCollection:

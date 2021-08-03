@@ -23,7 +23,6 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
   }
 
   void _buttonCallBack(RPChoice selectedChoice) {
-    print('_buttonCallBack');
     if (widget._answerFormat.answerStyle == RPChoiceAnswerStyle.SingleChoice) {
       // Setting the state here is calling the build method so the check marks can be rendered.
       // Only one choice can be selected.
@@ -56,7 +55,6 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
     selectedChoices.length != 0
         ? widget.onResultChange(selectedChoices)
         : widget.onResultChange(null);
-    print("You selected: $selectedChoices");
   }
 
   Widget _choiceCellBuilder(BuildContext context, int index) {

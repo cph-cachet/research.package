@@ -80,6 +80,16 @@ RPConsentSection dataHandlingSection = RPConsentSection(
     summary: "This is a summary for Data Handling.",
     content: "Data Handling dolor sit amet");
 
+RPConsentSection locationSection = RPConsentSection(
+    type: RPConsentSectionType.Location,
+    summary: "This is a summary for Location.",
+    content: "Location dolor sit amet");
+
+RPConsentSection healthSection = RPConsentSection(
+    type: RPConsentSectionType.Health,
+    summary: "This is a summary for Health.",
+    content: "Health dolor sit amet");
+
 RPConsentSection userDataCollection = RPConsentSection(
     type: RPConsentSectionType.UserDataCollection,
     summary:
@@ -167,6 +177,8 @@ RPConsentDocument consentDocumentAllSections =
   aboutUs,
   goalsSection,
   benefitsSection,
+  locationSection,
+  healthSection,
   userDataCollection,
   passiveDataCollection
 ])

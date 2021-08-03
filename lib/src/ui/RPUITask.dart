@@ -66,8 +66,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
     // Subscribe to step status changes so the navigation can be triggered
     _stepStatusSubscription = blocTask.stepStatus.listen((data) async {
-      print("New step status");
-      print(_currentStep);
       switch (data) {
         case RPStepStatus.Finished:
           // In case of last step we save the result and close the task
@@ -125,7 +123,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           blocQuestion.sendReadyToProceed(true);
           break;
         case RPStepStatus.Ongoing:
-          print('ongoing');
           break;
         default:
           break;
@@ -141,7 +138,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       // Getting the first step
       _currentStep = widget.task.getStepAfterStep(null, null);
       if (_currentStep != null) _activeSteps.add(_currentStep!);
-      print("_currentStep in UITask: ${_currentStep!.identifier}");
     });
   }
 
@@ -281,14 +277,13 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                       // if first question or its a navigable task
                       _currentStepIndex == 0 || navigableTask
                           ? Container()
-                          : TextButton(
+                          : OutlinedButton(
                               onPressed: () =>
                                   blocTask.sendStatus(RPStepStatus.Back),
                               child: Text(
-                                locale?.translate('BACK') ??
-                                    'BACK',
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor),
+                                locale?.translate('BACK') ?? 'BACK',
+                                // style: TextStyle(
+                                //     color: Theme.of(context).primaryColor),
                               ),
                             ),
                       StreamBuilder<bool>(
@@ -297,8 +292,10 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                           if (snapshot.hasData) {
                             return ElevatedButton(
                               child: Text(
-                                locale?.translate('NEXT') ??
-                                    'NEXT',
+                                RPLocalizations.of(context)
+                                        ?.translate('NEXT') ??
+                                    "NEXT",
+                                style: Theme.of(context).accentTextTheme.button,
                               ),
                               onPressed: snapshot.data!
                                   ? () {

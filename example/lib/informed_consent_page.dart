@@ -9,15 +9,6 @@ class InformedConsentPage extends StatelessWidget {
 
   void resultCallback(RPTaskResult result) {
     // Do anything with the result
-    print('---');
-    print(result.results);
-    print(result.results['consentreviewstepID']);
-    print((result.results['consentreviewstepID'] as RPStepResult).questionTitle);
-    print((result.results['consentreviewstepID'] as RPStepResult).results);
-    result.results.forEach((key, value) {
-      print(value.toJson());
-      _encode(value);
-    });
     print(_encode(result));
   }
 

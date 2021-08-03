@@ -181,6 +181,20 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
+      case RPConsentSectionType.Location:
+        return Image.asset(
+          'assets/icons/location.png',
+          package: 'research_package',
+          width: iconSize,
+          height: iconSize,
+        );
+      case RPConsentSectionType.Health:
+        return Image.asset(
+          'assets/icons/health.png',
+          package: 'research_package',
+          width: iconSize,
+          height: iconSize,
+        );
       default:
         return Container();
     }
@@ -293,21 +307,21 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
             onPressed: () => _showCancelDialog(),
           ),
           ButtonTheme(
+            buttonColor: Theme.of(context).buttonColor,
             minWidth: 70,
             child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor,
-                padding: EdgeInsets.all(10.0),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
               ),
               child: _lastPage
                   ? Text(
                       RPLocalizations.of(context)?.translate('SEE_SUMMARY') ??
                           "SEE SUMMARY",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white), //
                     )
                   : Text(
                       RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
-                      style: TextStyle(color: Colors.white),
+                      style: Theme.of(context).accentTextTheme.button,
                     ),
               onPressed: _lastPage
                   ? () => blocTask.sendStatus(RPStepStatus.Finished)

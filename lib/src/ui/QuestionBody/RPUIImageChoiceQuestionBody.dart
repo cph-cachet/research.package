@@ -62,7 +62,7 @@ class _RPUIImageChoiceQuestionBodyState
                   BorderRadius.all(Radius.circular(5 * 25 / items.length)),
               border: Border.all(
                 color: _selectedItem == item
-                    ? Theme.of(context).primaryColor
+                    ? Theme.of(context).dividerColor
                     : Colors.transparent,
                 width: 3,
               ),

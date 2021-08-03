@@ -221,6 +221,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
     }
 
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: ListView.builder(
           padding: EdgeInsets.all(16),
