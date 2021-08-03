@@ -137,6 +137,7 @@ RPConsentSection customSection = RPConsentSection(
 RPConsentSignature signature =
     RPConsentSignature(identifier: "consentSignatureID");
 
+// Small version
 RPConsentDocument consentDocument =
     RPConsentDocument(title: 'Informed Consent', sections: [
   overviewSection,
@@ -149,6 +150,7 @@ RPConsentDocument consentDocument =
 ])
       ..addSignature(signature);
 
+// Full version
 RPConsentDocument consentDocumentAllSections =
     RPConsentDocument(title: 'Informed Consent - Full Version', sections: [
   overviewSection,
@@ -176,7 +178,7 @@ RPConsentReviewStep consentReviewStep = RPConsentReviewStep(
   ..text = 'informed_consent.agree_confirm';
 
 RPVisualConsentStep consentVisualStep = RPVisualConsentStep(
-    identifier: "visualStep", consentDocument: consentDocument);
+    identifier: "visualStep", consentDocument: consentDocumentAllSections);
 
 RPInstructionStep instructionStep = RPInstructionStep(
   identifier: "instructionID",

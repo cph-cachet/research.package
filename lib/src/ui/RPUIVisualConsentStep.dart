@@ -15,23 +15,12 @@ class RPUIVisualConsentStep extends StatefulWidget {
 
 class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     with SingleTickerProviderStateMixin {
-  late Animation<double> _scale;
-  late AnimationController _controller;
   int _pageNr = 0;
   bool _lastPage = false;
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
-    _scale = Tween(begin: 0.6, end: 1.0)
-        .chain(
-          CurveTween(
-            curve: Interval(0.3, 1.0, curve: Curves.easeInOut),
-          ),
-        )
-        .animate(_controller);
   }
 
   void _goToNextPage(pageNr) {
@@ -89,8 +78,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
         return Image.asset(
           'assets/icons/handshake.png',
           package: 'research_package',
-          width: largeIconSize,
-          height: largeIconSize,
+          width: iconSize,
+          height: iconSize,
         );
       case RPConsentSectionType.DataUse:
         return Image.asset(
@@ -103,8 +92,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
         return Image.asset(
           'assets/icons/deadline.png',
           package: 'research_package',
-          width: largeIconSize,
-          height: largeIconSize,
+          width: iconSize,
+          height: iconSize,
         );
       case RPConsentSectionType.StudySurvey:
         return Image.asset(
@@ -154,8 +143,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
         return Image.asset(
           'assets/icons/id.png',
           package: 'research_package',
-          width: largeIconSize,
-          height: largeIconSize,
+          width: iconSize,
+          height: iconSize,
         );
       case RPConsentSectionType.Goals:
         return Image.asset(
@@ -241,9 +230,10 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Center(
-              child: ScaleTransition(
-                scale: _scale,
+              child: SizedBox(
                 child: _illustrationForType(section),
+                height: MediaQuery.of(context).size.height * 0.4,
+                width: MediaQuery.of(context).size.width * 0.7,
               ),
             ),
             Column(
@@ -348,7 +338,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                 child: PageView.builder(
                   onPageChanged: (pageNr) {
                     _goToNextPage(pageNr);
-                    _controller.forward(from: 0.3);
+                    // _controller.forward(from: 0.3);
                   },
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: widget.consentDocument.sections.length,
