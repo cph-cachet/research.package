@@ -30,7 +30,7 @@ class RPConsentDocument extends Serializable {
   String? _signaturePageContent;
 
   RPConsentDocument({required this.title, required this.sections}) {
-    registerFromJsonFunctions();
+    _registerFromJsonFunctions();
   }
 
   /// Adds a signature to the list of [signatures]
