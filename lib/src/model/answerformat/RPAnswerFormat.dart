@@ -13,20 +13,15 @@ part of research_package_model;
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPAnswerFormat extends Serializable {
   /// The Question Type of the Answer Format. Should be implemented in the subclasses.
-  RPQuestionType questionType;
+  late RPQuestionType questionType;
 
   /// The default constructor. The appropriate subclass of RPAnswerFormat
   /// should be used instead of this directly.
   RPAnswerFormat() : super();
 
-  // Returns the QuestionType for this answer format. Implement this in your subclass
-  // It's for approximation, what kind of data the answer will return.
-  // Also, they are _almost_ the same as the questionResult classes in RK
-  //  QuestionType get questionType => QuestionType.None;
-
   Function get fromJsonFunction => _$RPAnswerFormatFromJson;
   factory RPAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPAnswerFormat;
   Map<String, dynamic> toJson() => _$RPAnswerFormatToJson(this);
 }
 
@@ -38,15 +33,15 @@ enum RPQuestionType {
   Decimal,
   Integer,
   Boolean,
-  Eligibility,
   Text,
   TimeOfDay,
   DateAndTime,
   Date,
-  TimeInterval,
   Duration,
-  Location,
   ImageChoice,
+  // Eligibility,
+  // TimeInterval,
+  // Location,
 
   /// The AnswerFormat used by [RPFormStep].
   ///
@@ -56,12 +51,6 @@ enum RPQuestionType {
   /// There's no need of specifying it.
   Form
 }
-
-//enum ScaleAnswerStyle {
-//  Default,
-//  Percent,
-//  Buttons,
-//}
 
 /// Available types for [RPChoiceAnswerFormat]
 enum RPChoiceAnswerStyle {
@@ -78,8 +67,3 @@ enum RPDateTimeAnswerStyle {
   Date,
   TimeOfDay,
 }
-
-//enum NumberFormattingStyle {
-//  Default,
-//  Percent
-//}

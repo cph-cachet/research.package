@@ -8,30 +8,15 @@ part of research_package_model;
 /// and if it's true, puts the destination step as next in the sequence.
 /// (Destination step identifiers are declared in the [resultPredicatesWithDestinationIdentifiers])
 class RPStepReorganizerRule extends RPStepNavigationRule {
-  RPResultSelector _resultSelector;
+  late RPResultSelector _resultSelector;
 
   /// Those steps will be removed which are not selected
-  Map<dynamic, String> _removalMap;
+  Map<dynamic, String> reorderingMap;
 
   RPStepReorganizerRule(
-      String reorganizerStepId, Map<dynamic, String> removalMap) {
+      {required String reorganizerStepId, required this.reorderingMap}) {
     _resultSelector = RPResultSelector.forStepId(reorganizerStepId);
-    this._removalMap = removalMap;
   }
 
   get resultSelector => this._resultSelector;
-//  final String _defaultStepIdentifier;
-//  final Map<RPResultPredicate, String> _resultPredicatesWithDestinationIdentifiers;
-//
-//  RPPredicateStepNavigationRule(this._resultPredicatesWithDestinationIdentifiers, [this._defaultStepIdentifier]);
-//
-//  String get defaultStepIdentifier => this._defaultStepIdentifier;
-//
-//  /// A dictionary of result predicates and their associated destination step identifiers.
-//  /// If the predicate proves to be true, the destination identifier's step will be pushed as next in the step sequence.
-//  /// A navigation rule can have multiple result predicates and based on these different predicates the task jumps to
-//  /// different destination steps.
-//  Map<RPResultPredicate, String> get resultPredicatesWithDestinationIdentifiers =>
-//      this._resultPredicatesWithDestinationIdentifiers;
-
 }

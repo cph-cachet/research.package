@@ -10,14 +10,14 @@ class RPImageChoiceAnswerFormat extends RPAnswerFormat {
 
   /// Returns an initialized [RPImageChoiceAnswerFormat] with the given list of
   /// [RPImageChoice]s.
-  RPImageChoiceAnswerFormat({this.choices}) : super();
+  RPImageChoiceAnswerFormat({required this.choices}) : super();
 
   @override
   get questionType => RPQuestionType.ImageChoice;
 
   Function get fromJsonFunction => _$RPImageChoiceAnswerFormatFromJson;
   factory RPImageChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPImageChoiceAnswerFormat;
   Map<String, dynamic> toJson() => _$RPImageChoiceAnswerFormatToJson(this);
 }
 
@@ -26,13 +26,12 @@ class RPImageChoiceAnswerFormat extends RPAnswerFormat {
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPImageChoice extends Serializable {
   /// The image portraying the choice.
-  @JsonKey(ignore: true)
-  Image image;
+  String imageUrl;
 
   /// The key of the image if this is to be loaded from the images
   /// in the assets on the phone.
   /// Specify either the [image] or the [key].
-  String key;
+  String? key;
 
   /// The value of the choice.
   dynamic value;
@@ -40,10 +39,11 @@ class RPImageChoice extends Serializable {
   /// The description fitting the image. Is displayed when selected.
   String description;
 
-  RPImageChoice({this.image, this.key, this.value, this.description}) : super();
+  RPImageChoice({required this.imageUrl, this.key, this.value, required this.description})
+      : super();
 
   Function get fromJsonFunction => _$RPImageChoiceFromJson;
   factory RPImageChoice.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPImageChoice;
   Map<String, dynamic> toJson() => _$RPImageChoiceToJson(this);
 }

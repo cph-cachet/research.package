@@ -10,10 +10,10 @@ class RPDataTypeSection extends Serializable {
   /// Detailed information on the type of data being collected.
   String dataInformation;
 
-  RPDataTypeSection(this.dataName, this.dataInformation);
+  RPDataTypeSection({required this.dataName, required this.dataInformation});
 
   Function get fromJsonFunction => _$RPDataTypeSectionFromJson;
   factory RPDataTypeSection.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPDataTypeSection;
   Map<String, dynamic> toJson() => _$RPDataTypeSectionToJson(this);
 }

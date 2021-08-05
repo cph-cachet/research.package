@@ -12,10 +12,10 @@ part of research_package_model;
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPConsentDocument extends Serializable {
   /// The list of signatures that are required in the document
-  List<RPConsentSignature> signatures;
+  List<RPConsentSignature> signatures = [];
 
-  /// The title of the document
-  ///
+  /// The title of the consent document
+  /// 
   /// This title is shown on the app bar during [RPVisualConsentStep]
   String title;
 
@@ -26,19 +26,15 @@ class RPConsentDocument extends Serializable {
   List<RPConsentSection> sections;
 
   // They are needed only for creating the pdf
-  String _signaturePageTitle;
-  String _signaturePageContent;
+  String? _signaturePageTitle;
+  String? _signaturePageContent;
 
-  RPConsentDocument(this.title, this.sections) {
+  RPConsentDocument({required this.title, required this.sections}) {
     _registerFromJsonFunctions();
   }
 
   /// Adds a signature to the list of [signatures]
   void addSignature(RPConsentSignature signature) {
-    if (signatures == null) {
-      signatures = [signature];
-      return;
-    }
     signatures.add(signature);
   }
 
@@ -48,16 +44,16 @@ class RPConsentDocument extends Serializable {
   }
 
   /// For creating PDF. Coming later...
-  String get signaturePageTitle => _signaturePageTitle;
+  String? get signaturePageTitle => _signaturePageTitle;
 
   /// For creating PDF. Coming later...
-  String get signaturePageContent => _signaturePageContent;
+  String? get signaturePageContent => _signaturePageContent;
 
-  set signaturePageTitle(String signaturePageTitle) {
+  set signaturePageTitle(String? signaturePageTitle) {
     this._signaturePageTitle = signaturePageTitle;
   }
 
-  set signaturePageContent(String signaturePageContent) {
+  set signaturePageContent(String? signaturePageContent) {
     this._signaturePageContent = signaturePageContent;
   }
 
@@ -66,6 +62,6 @@ class RPConsentDocument extends Serializable {
 
   Function get fromJsonFunction => _$RPConsentDocumentFromJson;
   factory RPConsentDocument.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPConsentDocument;
   Map<String, dynamic> toJson() => _$RPConsentDocumentToJson(this);
 }

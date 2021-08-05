@@ -12,36 +12,47 @@ class RPUISliderQuestionBody extends StatefulWidget {
 
 class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUISliderQuestionBody> {
-  double value;
+  double? value;
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    RPLocalizations locale = RPLocalizations.of(context);
-    return Container(
-      padding: EdgeInsets.all(8),
-      alignment: Alignment.topLeft,
-      child: Column(
-        children: <Widget>[
-          Text(
-            '${locale?.translate(widget.answerFormat.prefix) ?? widget.answerFormat.prefix}${value ?? widget.answerFormat.minValue}${locale?.translate(widget.answerFormat.suffix) ?? widget.answerFormat.suffix}',
-            style: TextStyle(fontSize: 18),
-          ),
-          Slider(
-            activeColor: Theme.of(context).primaryColor,
-            inactiveColor: Theme.of(context).primaryColor.withOpacity(0.2),
-            value: value ?? widget.answerFormat.minValue,
-            onChanged: (double newValue) {
-              setState(() {
-                value = newValue;
-              });
-              widget.onResultChange(value);
-            },
-            min: widget.answerFormat.minValue,
-            max: widget.answerFormat.maxValue,
-            divisions: widget.answerFormat.divisions,
-          ),
-        ],
+    RPLocalizations? locale = RPLocalizations.of(context);
+    String text = "";
+    // prefix
+    text += (widget.answerFormat.prefix != null) ? (locale?.translate(widget.answerFormat.prefix!) ?? widget.answerFormat.prefix!) :
+        "";
+    // value
+    text += (value ?? widget.answerFormat.minValue).toString();
+    // suffix
+    text += (widget.answerFormat.suffix != null) ? (locale?.translate(widget.answerFormat.suffix!) ?? widget.answerFormat.suffix!) :
+        "";
+    return Card(
+      child: Container(
+        padding: EdgeInsets.all(8),
+        alignment: Alignment.topLeft,
+        child: Column(
+          children: <Widget>[
+            Text(
+              text,
+              style: TextStyle(fontSize: 18),
+            ),
+            Slider(
+              activeColor: Theme.of(context).sliderTheme.activeTrackColor,
+              inactiveColor: Theme.of(context).sliderTheme.inactiveTrackColor,
+              value: value ?? widget.answerFormat.minValue,
+              onChanged: (double newValue) {
+                setState(() {
+                  value = newValue;
+                });
+                widget.onResultChange(value);
+              },
+              min: widget.answerFormat.minValue,
+              max: widget.answerFormat.maxValue,
+              divisions: widget.answerFormat.divisions,
+            ),
+          ],
+        ),
       ),
     );
   }

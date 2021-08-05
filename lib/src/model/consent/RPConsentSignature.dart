@@ -16,12 +16,12 @@ class RPConsentSignature extends Serializable {
 
   /// The parameter to decide if the signature requires a signature image.
   ///
-  /// If set to [true] the participant has to draw their signature which will
+  /// If set to `true` the participant has to draw their signature which will
   /// be saved as a picture later.
   bool requiresSignatureImage;
 
   /// Not implemented yet
-  bool requiresBirthDate;
+  // bool requiresBirthDate;
 
   /// Unique identifier of the signature. This identifies the signature in the
   /// result hierarchy.
@@ -31,20 +31,20 @@ class RPConsentSignature extends Serializable {
   /// this identifier.
   String identifier;
 
-  /// The title
-  String title;
+  /// The title of the consent signature page
+  String? title;
 
   /// The default constructor. Returns a signature where both the name and the signature image is required
-  RPConsentSignature(
-    this.identifier, {
+  RPConsentSignature({
+    required this.identifier,
     this.title,
     this.requiresName = true,
     this.requiresSignatureImage = true,
-    this.requiresBirthDate = false,
+    // this.requiresBirthDate = false,
   });
 
   Function get fromJsonFunction => _$RPConsentSignatureFromJson;
   factory RPConsentSignature.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPConsentSignature;
   Map<String, dynamic> toJson() => _$RPConsentSignatureToJson(this);
 }

@@ -16,9 +16,9 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
     with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
   dynamic _currentQuestionBodyResult;
-  bool readyToProceed;
-  RPStepResult result;
-  RPTaskProgress recentTaskProgress;
+  late bool readyToProceed;
+  late RPStepResult result;
+  RPTaskProgress? recentTaskProgress;
 
   set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {
     this._currentQuestionBodyResult = currentQuestionBodyResult;
@@ -38,7 +38,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    result = RPStepResult(widget.step);
+    result = RPStepResult(identifier: widget.step.identifier, answerFormat: widget.step.answerFormat);
     readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
@@ -50,31 +50,39 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   Widget stepBody(RPAnswerFormat answerFormat) {
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
-        return RPUIIntegerQuestionBody(answerFormat, (result) {
+        return RPUIIntegerQuestionBody(
+            (answerFormat as RPIntegerAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPChoiceAnswerFormat:
-        return RPUIChoiceQuestionBody(answerFormat, (result) {
+        return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPSliderAnswerFormat:
-        return RPUISliderQuestionBody(answerFormat, (result) {
+        return RPUISliderQuestionBody((answerFormat as RPSliderAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPImageChoiceAnswerFormat:
-        return RPUIImageChoiceQuestionBody(answerFormat, (result) {
+        return RPUIImageChoiceQuestionBody(
+            (answerFormat as RPImageChoiceAnswerFormat), (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPDateTimeAnswerFormat:
-        return RPUIDateTimeQuestionBody(answerFormat, (result) {
+        return RPUIDateTimeQuestionBody(
+            (answerFormat as RPDateTimeAnswerFormat), (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPBooleanAnswerFormat:
-        return RPUIBooleanQuestionBody(answerFormat, (result) {
+        return RPUIBooleanQuestionBody((answerFormat as RPBooleanAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       case RPTextAnswerFormat:
-        return RPUITextInputQuestionBody(answerFormat, (result) {
+        return RPUITextInputQuestionBody((answerFormat as RPTextAnswerFormat),
+            (result) {
           this.currentQuestionBodyResult = result;
         });
       default:
@@ -84,29 +92,26 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.all(8),
         children: [
           // Title
-          (widget.step.title != null)
-              ? Padding(
-                  padding: const EdgeInsets.only(
-                      bottom: 24, left: 8, right: 8, top: 0),
-                  child: Text(
-                    locale?.translate(widget.step.title) ?? widget.step.title,
-                    style: RPStyles.h2,
-                    textAlign: TextAlign.left,
-                  ),
-                )
-              : Container(),
+          Padding(
+            padding: const EdgeInsets.only(
+                bottom: 24, left: 8, right: 8, top: 0),
+            child: Text(
+              locale?.translate(widget.step.title) ?? widget.step.title,
+              textAlign: TextAlign.left,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: stepBody(widget.step.answerFormat),
           ),
           widget.step.optional
-              ? FlatButton(
+              ? TextButton(
                   onPressed: () => skipQuestion(),
                   child: Text(locale?.translate("Skip this question") ??
                       "Skip this question"),
@@ -133,16 +138,17 @@ class Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (title != null) {
+    if (title.contains('</')) {
+      return HTML.toRichText(context, title);
+    } else {
       return Padding(
         padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
         child: Text(
           title,
-          style: RPStyles.h2,
-          textAlign: TextAlign.left,
+          style: Theme.of(context).textTheme.headline6,
+          textAlign: TextAlign.start,
         ),
       );
     }
-    return Container();
   }
 }

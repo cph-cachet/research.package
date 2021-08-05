@@ -6,7 +6,7 @@ part of research_package_ui;
 /// Instead, add an visual consent step to a task and present the task using a task widget.
 /// When appropriate, the task widget instantiates the visual consent step widget for the step.
 class RPUIVisualConsentStep extends StatefulWidget {
-  RPUIVisualConsentStep({@required this.consentDocument});
+  RPUIVisualConsentStep({required this.consentDocument});
   final RPConsentDocument consentDocument;
 
   @override
@@ -15,23 +15,12 @@ class RPUIVisualConsentStep extends StatefulWidget {
 
 class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     with SingleTickerProviderStateMixin {
-  Animation<double> _scale;
-  AnimationController _controller;
   int _pageNr = 0;
   bool _lastPage = false;
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
-    _scale = Tween(begin: 0.6, end: 1.0)
-        .chain(
-          CurveTween(
-            curve: Interval(0.3, 1.0, curve: Curves.easeInOut),
-          ),
-        )
-        .animate(_controller);
   }
 
   void _goToNextPage(pageNr) {
@@ -58,20 +47,20 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     showDialog(
       context: context,
       builder: (context) {
-        RPLocalizations locale = RPLocalizations.of(context);
+        RPLocalizations? locale = RPLocalizations.of(context);
         return AlertDialog(
           content: Text(locale?.translate('quit_confirmation') ??
               "Are you sure you want to quit?"),
           actions: <Widget>[
-            FlatButton(
+            OutlinedButton(
               child: Text(locale?.translate('YES') ?? "YES"),
               onPressed: () {
                 Navigator.of(context).pop(); // Pop the popup
                 Navigator.of(context).pop(); // Pop the screen
               },
             ),
-            FlatButton(
-                child: Text(locale?.translate('NO') ?? "NO"),
+            ElevatedButton(
+                child: Text(locale?.translate('NO') ?? 'NO'),
                 onPressed: () => Navigator.of(context).pop() // Pop the popup,
                 )
           ],
@@ -80,195 +69,140 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     );
   }
 
-  Widget _carouselBar() {
-    return Container(
-      height: AppBar().preferredSize.height,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Spacer
-          // TODO:
-          Expanded(
-            child: Container(),
-            flex: 1,
-          ),
-          // Carousel indicator
-          Expanded(
-            flex: 2,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: widget.consentDocument.sections.map(
-                (section) {
-                  var index = widget.consentDocument.sections.indexOf(section);
-                  return Container(
-                    width: 7.0,
-                    height: 7.0,
-                    margin: EdgeInsets.symmetric(horizontal: 6.0),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: index <= _pageNr
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).primaryColor.withOpacity(0.5)),
-                  );
-                },
-              ).toList(),
-            ),
-          ),
-          // Close button
-          Expanded(
-            flex: 1,
-            child: IconButton(
-              icon: Icon(
-                Icons.highlight_off,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: _showCancelDialog,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _illustrationForType(RPConsentSection section) {
-    // double iconSize = 80.0;
+    const double iconSize = 80.0;
+    // const double largeIconSize = 200.0;
 
     switch (section.type) {
       case RPConsentSectionType.Overview:
         return Image.asset(
           'assets/icons/handshake.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.DataUse:
         return Image.asset(
           'assets/icons/document.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.TimeCommitment:
         return Image.asset(
           'assets/icons/deadline.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.StudySurvey:
         return Image.asset(
           'assets/icons/analysis.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.Withdrawing:
         return Image.asset(
           'assets/icons/networking.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.Custom:
-        return section.customIllustration;
-        break;
+        return section.customIllustration ?? Container();
       case RPConsentSectionType.DataGathering:
         return Image.asset(
           'assets/icons/management.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.Privacy:
         return Image.asset(
           'assets/icons/archive.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.StudyTasks:
         return Image.asset(
           'assets/icons/task.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.Welcome:
         return Image.asset(
           'assets/icons/handshake.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.AboutUs:
         return Image.asset(
           'assets/icons/id.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.Goals:
         return Image.asset(
           'assets/icons/target.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.Benefits:
         return Image.asset(
           'assets/icons/analysis.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.DataHandling:
         return Image.asset(
           'assets/icons/archive.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.Duration:
         return Image.asset(
           'assets/icons/deadline.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
       case RPConsentSectionType.YourRights:
         return Image.asset(
           'assets/icons/networking.png',
           package: 'research_package',
-          width: 200,
-          height: 200,
+          width: iconSize,
+          height: iconSize,
         );
-        break;
+      case RPConsentSectionType.Location:
+        return Image.asset(
+          'assets/icons/location.png',
+          package: 'research_package',
+          width: iconSize,
+          height: iconSize,
+        );
+      case RPConsentSectionType.Health:
+        return Image.asset(
+          'assets/icons/health.png',
+          package: 'research_package',
+          width: iconSize,
+          height: iconSize,
+        );
       default:
-        return null;
+        return Container();
     }
   }
 
   Widget _consentSectionPageBuilder(BuildContext context, int index) {
     RPConsentSection section = widget.consentDocument.sections[index];
-    RPLocalizations locale = RPLocalizations.of(context);
-    if (section.title == null) {
-      throw Exception(
-          "No title has been found for the Consent Section. Probably a Custom Section was attempted to instantiate without providing the title text");
-    }
+    RPLocalizations? locale = RPLocalizations.of(context);
 
     // Display the list builder if type is of these types otherwise show normal.
     if (section.type == RPConsentSectionType.UserDataCollection ||
@@ -278,21 +212,24 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              locale?.translate(section.title) ?? section.title,
-              style: RPStyles.h2,
-              textAlign: TextAlign.start,
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              child: Text(
+                locale?.translate(section.title) ?? section.title,
+                style: Theme.of(context).textTheme.headline4,
+                textAlign: TextAlign.start,
+              ),
             ),
             Text(
-              locale?.translate(section.summary) ?? section.summary,
-              // style: RPStyles.h3,
+              locale?.translate(section.summary!) ?? section.summary!,
+              style: Theme.of(context).textTheme.bodyText1,
               textAlign: TextAlign.start,
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: section.dataTypes.length,
+                itemCount: section.dataTypes!.length,
                 itemBuilder: (context, index) {
-                  return DataCollectionListItem(section.dataTypes[index]);
+                  return DataCollectionListItem(section.dataTypes![index]);
                 },
               ),
             ),
@@ -307,9 +244,10 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Center(
-              child: ScaleTransition(
-                scale: _scale,
+              child: SizedBox(
                 child: _illustrationForType(section),
+                height: MediaQuery.of(context).size.height * 0.4,
+                width: MediaQuery.of(context).size.width * 0.7,
               ),
             ),
             Column(
@@ -317,25 +255,38 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
               children: <Widget>[
                 Text(
                   locale?.translate(section.title) ?? section.title,
-                  style: RPStyles.h1,
+                  style: Theme.of(context).textTheme.headline5,
                   textAlign: TextAlign.start,
                 ),
                 Text(
-                  locale?.translate(section.summary) ?? section.summary,
-                  style: RPStyles.h3,
-                  textAlign: TextAlign.start,
+                  locale?.translate(section.summary!) ?? section.summary!,
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
                 GestureDetector(
                   onTap: () => _pushContent(
                     section.title,
-                    section.content,
+                    section.content!,
                   ),
                   child: Text(
                     RPLocalizations.of(context)?.translate('learn_more') ??
                         "Learn more...",
                     style: TextStyle(color: Theme.of(context).primaryColor),
+                    // textAlign: TextAlign.start,
                   ),
                 ),
+                // Padding(
+                //   padding: EdgeInsets.only(top: 8),
+                //   child: OutlinedButton.icon(
+                //     icon: Icon(Icons.help),
+                //     label: Text(
+                //       locale?.translate('learn_more') ?? 'Learn more...',
+                //     ),
+                //     onPressed: () => _pushContent(
+                //       section.title,
+                //       section.content!,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ],
@@ -349,31 +300,28 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          ButtonTheme(
-            minWidth: 70,
-            child: OutlineButton(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                RPLocalizations.of(context)?.translate('CANCEL') ?? "CANCEL",
-                style: TextStyle(color: Theme.of(context).primaryColor),
-              ),
-              onPressed: () => _showCancelDialog(),
+          OutlinedButton(
+            child: Text(
+              RPLocalizations.of(context)?.translate('CANCEL') ?? 'CANCEL',
             ),
+            onPressed: () => _showCancelDialog(),
           ),
           ButtonTheme(
+            buttonColor: Theme.of(context).buttonColor,
             minWidth: 70,
-            child: FlatButton(
-              color: Theme.of(context).primaryColor,
-              padding: EdgeInsets.all(10.0),
+            child: TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+              ),
               child: _lastPage
                   ? Text(
                       RPLocalizations.of(context)?.translate('SEE_SUMMARY') ??
                           "SEE SUMMARY",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white), //
                     )
                   : Text(
                       RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
-                      style: TextStyle(color: Colors.white),
+                      style: Theme.of(context).accentTextTheme.button,
                     ),
               onPressed: _lastPage
                   ? () => blocTask.sendStatus(RPStepStatus.Finished)
@@ -392,8 +340,9 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     PageController controller = PageController();
 
     return WillPopScope(
-      onWillPop: () => null,
+      onWillPop: () async => false,
       child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         body: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -403,7 +352,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                 child: PageView.builder(
                   onPageChanged: (pageNr) {
                     _goToNextPage(pageNr);
-                    _controller.forward(from: 0.3);
+                    // _controller.forward(from: 0.3);
                   },
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: widget.consentDocument.sections.length,
@@ -424,19 +373,24 @@ class _ContentRoute extends StatelessWidget {
   final String title;
   final String content;
 
-  _ContentRoute({this.title, this.content});
+  _ContentRoute({required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text(locale?.translate(this.title) ?? this.title),
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
         child: SingleChildScrollView(
-            child: Text(locale?.translate(this.content) ?? this.content)),
+          child: Text(
+            locale?.translate(this.content) ?? this.content,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+        ),
       ),
     );
   }
@@ -455,12 +409,14 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
     return Container(
       child: ExpansionTile(
+        expandedAlignment: Alignment.centerLeft,
         title: Text(
           locale?.translate(widget.dataTypeSection.dataName) ??
               widget.dataTypeSection.dataName,
+          style: Theme.of(context).textTheme.subtitle1,
           textAlign: TextAlign.start,
         ),
         childrenPadding: EdgeInsets.only(left: 15, right: 15, bottom: 5),
@@ -468,6 +424,7 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
           Text(
             locale?.translate(widget.dataTypeSection.dataInformation) ??
                 widget.dataTypeSection.dataInformation,
+            style: Theme.of(context).textTheme.bodyText2,
             textAlign: TextAlign.start,
           ),
         ],

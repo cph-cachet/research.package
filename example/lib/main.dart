@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:research_package/research_package.dart';
+
 import 'informed_consent_page.dart';
 import 'linear_survey_page.dart';
 import 'navigable_survey_page.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:research_package/research_package.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,7 +43,6 @@ class MyApp extends StatelessWidget {
         for (var supportedLocale in supportedLocales) {
           if (supportedLocale.languageCode == locale.languageCode
               /*  && supportedLocale.countryCode == locale.countryCode */
-              // TODO: Test on physical iPhone if Locale should use countryCode instead
               ) {
             return supportedLocale;
           }
@@ -51,7 +51,10 @@ class MyApp extends StatelessWidget {
         // from the list (English, in this case).
         return supportedLocales.first;
       },
-      theme: ThemeData.light().copyWith(backgroundColor: Colors.white),
+      theme: ThemeData.dark(),
+      // theme: ThemeData.light().copyWith(
+      //   backgroundColor: Colors.white,
+      // ),
       darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
       home: MyHomePage(),
@@ -92,11 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OutlineButton(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
+                child: TextButton(
                   child: Text(
                     locale?.translate("informed_consent"),
                     style: TextStyle(fontSize: 18),
@@ -109,11 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OutlineButton(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
+                child: TextButton(
                   child: Text(
                     locale?.translate("linear_survey"),
                     style: TextStyle(fontSize: 18),
@@ -126,11 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OutlineButton(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
+                child: TextButton(
                   child: Text(
                     locale?.translate("branching_survey"),
                     style: TextStyle(fontSize: 18),

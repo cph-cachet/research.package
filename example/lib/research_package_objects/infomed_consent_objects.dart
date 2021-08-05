@@ -1,67 +1,155 @@
 import 'package:research_package/model.dart';
 
 RPConsentSection overviewSection = RPConsentSection(
-    RPConsentSectionType.Overview)
-  ..summary = "Welcome to this survey"
-  ..content =
-      "Overview dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.";
+    type: RPConsentSectionType.Overview,
+    summary: "Welcome! This is a summary for Overview",
+    content:
+        "Overview dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
 
 RPConsentSection dataGatheringSection = RPConsentSection(
-    RPConsentSectionType.DataGathering)
-  ..summary = "This is a summary for Data Gathering."
-  ..content =
-      "Data Gathering dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.";
+    type: RPConsentSectionType.DataGathering,
+    summary: "This is a summary for Data Gathering.",
+    content:
+        "Data Gathering dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
 
-RPConsentSection privacySection = RPConsentSection(RPConsentSectionType.Privacy)
-  ..summary = "This is a summary for Privacy."
-  ..content =
-      "Privacy dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.";
+RPConsentSection privacySection = RPConsentSection(
+    type: RPConsentSectionType.Privacy,
+    summary: "This is a summary for Privacy.",
+    content:
+        "Privacy dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
+
+RPConsentSection dataUseSection = RPConsentSection(
+    type: RPConsentSectionType.DataUse,
+    summary: "This is a summary for Data Use.",
+    content: "Data Use dolor sit amet");
 
 RPConsentSection timeCommitmentSection = RPConsentSection(
-    RPConsentSectionType.TimeCommitment)
-  ..summary = "This is a summary for Time Commitment."
-  ..content =
-      "Time commitment dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.";
+    type: RPConsentSectionType.TimeCommitment,
+    summary: "This is a summary for Time Commitment.",
+    content:
+        "Time commitment dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
 
-RPConsentSection aboutUs = RPConsentSection(RPConsentSectionType.AboutUs)
-  ..summary = "This is a summary for About Us."
-  ..content =
-      "About Us dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.";
+RPConsentSection durationSection = RPConsentSection(
+    type: RPConsentSectionType.Duration,
+    summary: "This is a summary for Duration.",
+    content: "Duration dolor sit amet");
+
+RPConsentSection studyTasksSection = RPConsentSection(
+    type: RPConsentSectionType.StudyTasks,
+    summary: "This is a summary for Study Tasks.",
+    content: "Study Tasks dolor sit amet");
+
+RPConsentSection studySurveySection = RPConsentSection(
+    type: RPConsentSectionType.StudySurvey,
+    summary: "This is a summary for Study Survey.",
+    content: "Study Survey dolor sit amet");
+
+RPConsentSection withdrawingSection = RPConsentSection(
+    type: RPConsentSectionType.Withdrawing,
+    summary: "This is a summary for Withdrawing.",
+    content: "Withdrawing dolor sit amet");
+
+RPConsentSection yourRightsSection = RPConsentSection(
+    type: RPConsentSectionType.YourRights,
+    summary: "This is a summary for Your Rights.",
+    content: "Your Rights dolor sit amet");
+
+RPConsentSection welcomeSection = RPConsentSection(
+    type: RPConsentSectionType.Welcome,
+    summary: "This is a summary for Welcome.",
+    content: "Welcome dolor sit amet");
+
+RPConsentSection aboutUs = RPConsentSection(
+    type: RPConsentSectionType.AboutUs,
+    summary: "This is a summary for About Us.",
+    content:
+        "About Us dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
+
+RPConsentSection goalsSection = RPConsentSection(
+    type: RPConsentSectionType.Goals,
+    summary: "This is a summary for Goals.",
+    content: "Goals dolor sit amet");
+
+RPConsentSection benefitsSection = RPConsentSection(
+    type: RPConsentSectionType.Benefits,
+    summary: "This is a summary for Benefits.",
+    content: "Benefits dolor sit amet");
+
+RPConsentSection dataHandlingSection = RPConsentSection(
+    type: RPConsentSectionType.DataHandling,
+    summary: "This is a summary for Data Handling.",
+    content: "Data Handling dolor sit amet");
+
+RPConsentSection locationSection = RPConsentSection(
+    type: RPConsentSectionType.Location,
+    summary: "This is a summary for Location.",
+    content: "Location dolor sit amet");
+
+RPConsentSection healthSection = RPConsentSection(
+    type: RPConsentSectionType.Health,
+    summary: "This is a summary for Health.",
+    content: "Health dolor sit amet");
 
 RPConsentSection userDataCollection = RPConsentSection(
-    RPConsentSectionType.UserDataCollection)
-  ..summary =
-      "This study will ask you to provide the information about the following categories:"
-  ..dataTypes = [
-    RPDataTypeSection("Alcohol",
-        "You have to input some info about alcohol in the alcohol card  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut aliquet augue, sed maximus sapien. Cras non sem vulputate, tincidunt est in, euismod orci. Aenean elit nisl, convallis vel lacus eget, pellentesque laoreet nunc."),
-    RPDataTypeSection(
-        "Mood", "You have to input some info about your mood in the mood card"),
-    RPDataTypeSection("Weight",
-        "You have to input some info about your weight in the weight card"),
-    RPDataTypeSection("Medications",
-        "You have to input some info about your medications in the medications card"),
-    RPDataTypeSection("Smoking",
-        "You have to input some info about your smoking in the smoking card"),
-  ];
+    type: RPConsentSectionType.UserDataCollection,
+    summary:
+        "This study will ask you to provide the information about the following categories:",
+    dataTypes: [
+      RPDataTypeSection(
+          dataName: "Alcohol",
+          dataInformation:
+              "You have to input some info about alcohol in the alcohol card  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut aliquet augue, sed maximus sapien. Cras non sem vulputate, tincidunt est in, euismod orci. Aenean elit nisl, convallis vel lacus eget, pellentesque laoreet nunc."),
+      RPDataTypeSection(
+          dataName: "Mood",
+          dataInformation:
+              "You have to input some info about your mood in the mood card"),
+      RPDataTypeSection(
+          dataName: "Weight",
+          dataInformation:
+              "You have to input some info about your weight in the weight card"),
+      RPDataTypeSection(
+          dataName: "Medications",
+          dataInformation:
+              "You have to input some info about your medications in the medications card"),
+      RPDataTypeSection(
+          dataName: "Smoking",
+          dataInformation:
+              "You have to input some info about your smoking in the smoking card"),
+    ]);
 
 RPConsentSection passiveDataCollection = RPConsentSection(
-    RPConsentSectionType.PassiveDataCollection)
-  ..summary =
-      "This study will passively collect data about the following categories:"
-  ..dataTypes = [
-    RPDataTypeSection(
-        "Steps", "Your daily step counts as collected by the phone."),
-    RPDataTypeSection("Activity",
-        "Your different types of activities as detected by the phone"),
-    RPDataTypeSection("Location", "Your location as you move around"),
-    RPDataTypeSection(
-        "Noise", "Background noise as detected by the phone's microphone"),
-  ];
+    type: RPConsentSectionType.PassiveDataCollection,
+    summary:
+        "This study will passively collect data about the following categories:",
+    dataTypes: [
+      RPDataTypeSection(
+          dataName: "Steps",
+          dataInformation: "Your daily step counts as collected by the phone."),
+      RPDataTypeSection(
+          dataName: "Activity",
+          dataInformation:
+              "Your different types of activities as detected by the phone"),
+      RPDataTypeSection(
+          dataName: "Location",
+          dataInformation: "Your location as you move around"),
+      RPDataTypeSection(
+          dataName: "Noise",
+          dataInformation:
+              "Background noise as detected by the phone's microphone"),
+    ]);
 
-RPConsentSignature signature = RPConsentSignature("consentSignatureID");
+RPConsentSection customSection = RPConsentSection(
+  type: RPConsentSectionType.Custom,
+  summary: "This is a summary for a Custom section.",
+  content: "A Custom section dolor sit amet",
+);
 
-RPConsentDocument consentDocument = RPConsentDocument('Informed Consent', [
+RPConsentSignature signature =
+    RPConsentSignature(identifier: "consentSignatureID");
+
+// Small version
+RPConsentDocument consentDocument =
+    RPConsentDocument(title: 'Informed Consent', sections: [
   overviewSection,
   aboutUs,
   dataGatheringSection,
@@ -70,18 +158,42 @@ RPConsentDocument consentDocument = RPConsentDocument('Informed Consent', [
   userDataCollection,
   passiveDataCollection
 ])
-  ..addSignature(signature);
+      ..addSignature(signature);
 
-RPConsentReviewStep consentReviewStep =
-    RPConsentReviewStep("consentreviewstepID", consentDocument)
-      ..reasonForConsent = 'informed_consent.agree_text'
-      ..text = 'informed_consent.agree_confirm';
+// Full version
+RPConsentDocument consentDocumentAllSections =
+    RPConsentDocument(title: 'Informed Consent - Full Version', sections: [
+  overviewSection,
+  dataGatheringSection,
+  privacySection,
+  dataUseSection,
+  timeCommitmentSection,
+  durationSection,
+  studyTasksSection,
+  studySurveySection,
+  withdrawingSection,
+  yourRightsSection,
+  welcomeSection,
+  aboutUs,
+  goalsSection,
+  benefitsSection,
+  locationSection,
+  healthSection,
+  userDataCollection,
+  passiveDataCollection
+])
+      ..addSignature(signature);
 
-RPVisualConsentStep consentVisualStep =
-    RPVisualConsentStep("visualStep", consentDocument);
+RPConsentReviewStep consentReviewStep = RPConsentReviewStep(
+    identifier: "consentreviewstepID", consentDocument: consentDocumentAllSections)
+  ..reasonForConsent = 'informed_consent.agree_text'
+  ..text = 'informed_consent.agree_confirm';
+
+RPVisualConsentStep consentVisualStep = RPVisualConsentStep(
+    identifier: "visualStep", consentDocument: consentDocumentAllSections);
 
 RPInstructionStep instructionStep = RPInstructionStep(
-  "instructionID",
+  identifier: "instructionID",
   title: "Welcome!",
   detailText:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultricies feugiat turpis nec efficitur. Integer in pharetra libero. Proin a leo eu enim porttitor hendrerit. Suspendisse vestibulum interdum mollis. Donec in sapien ut orci ultricies laoreet. Ut maximus ante id arcu feugiat scelerisque. Proin non rutrum libero. Aliquam blandit arcu ac dolor consequat maximus. Integer et dolor quis quam tempor porta quis vel nibh. Phasellus ullamcorper fringilla lorem, ac tempus sem cursus a. Aliquam maximus facilisis quam. Morbi hendrerit tempor tellus, ac hendrerit augue tincidunt eu. Cras convallis lorem at nulla mattis tristique.",
@@ -89,11 +201,16 @@ RPInstructionStep instructionStep = RPInstructionStep(
   imagePath: "assets/images/waving-hand.png",
 )..text = "informed_consent.welcome_text";
 
-RPCompletionStep completionStep = RPCompletionStep("completionID")
-  ..title = "informed_consent.thanks"
+RPCompletionStep completionStep = RPCompletionStep(
+    identifier: "completionID", title: "informed_consent.thanks")
   ..text = "informed_consent.document_saved";
 
 RPOrderedTask consentTask = RPOrderedTask(
-  "consentTaskID",
-  [instructionStep, consentVisualStep, consentReviewStep, completionStep],
+  identifier: "consentTaskID",
+  steps: [
+    instructionStep,
+    consentVisualStep,
+    consentReviewStep,
+    completionStep
+  ],
 );

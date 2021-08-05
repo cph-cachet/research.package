@@ -16,18 +16,19 @@ class RPConsentReviewStep extends RPStep {
   RPConsentDocument consentDocument;
 
   /// The text shown as the confirmation popup title
-  String text;
+  String? text;
 
   /// The text in the confirmation popup (body)
-  String reasonForConsent;
+  String? reasonForConsent;
 
   /// Returns an initialized Consent Review Step
   ///
   /// If the consent document doesn't have any signatures then no signature
   /// collection stage is part of the flow.
   /// On how to specify a signature go to [RPConsentSignature].
-  RPConsentReviewStep(String identifier, this.consentDocument)
-      : super(identifier);
+  RPConsentReviewStep(
+      {required String identifier, required this.consentDocument})
+      : super(identifier: identifier, title: ''); 
 
   /// The widget (UI representation) of the step
   ///
@@ -38,6 +39,6 @@ class RPConsentReviewStep extends RPStep {
 
   Function get fromJsonFunction => _$RPConsentReviewStepFromJson;
   factory RPConsentReviewStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPConsentReviewStep;
   Map<String, dynamic> toJson() => _$RPConsentReviewStepToJson(this);
 }

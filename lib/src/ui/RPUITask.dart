@@ -10,7 +10,7 @@ class RPUITask extends StatefulWidget {
 
   /// The callback function which has to return an [RPTaskResult] object.
   /// This function is called when the participant has finished the last step.
-  final void Function(RPTaskResult) onSubmit;
+  final void Function(RPTaskResult)? onSubmit;
 
   /// The callback function which has to return an [RPTaskResult] object.
   /// This function is called when the participant cancels a survey. The result parameter is optional so if you don't want to do grab the result as part of the callback function you can do so, like the following:
@@ -22,16 +22,16 @@ class RPUITask extends StatefulWidget {
   /// ```
   ///
   /// It's only optional. If nothing is provided (is ```null```) the survey just quits without doing anything with the result.
-  final void Function([RPTaskResult result]) onCancel;
+  final void Function(RPTaskResult result)? onCancel;
 
-  RPUITask({this.task, this.onSubmit, this.onCancel});
+  RPUITask({required this.task, this.onSubmit, this.onCancel});
 
   @override
   _RPUITaskState createState() => _RPUITaskState();
 }
 
 class _RPUITaskState extends State<RPUITask> with CanSaveResult {
-  RPTaskResult _taskResult;
+  late RPTaskResult _taskResult;
 
   /// A list of actual steps to show in the task.
   /// If the task is a [RPNavigableOrderedTask] not all the questions necessarily show up because of branching.
@@ -39,23 +39,24 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   /// It is a dynamic list which grows and shrinks according to the forward of back navigation of the task.
   List<RPStep> _activeSteps = [];
 
-  RPStep _currentStep;
+  RPStep? _currentStep;
   int _currentStepIndex = 0;
   int _currentQuestionIndex = 1;
 
-  StreamSubscription<RPStepStatus> _stepStatusSubscription;
-  StreamSubscription<RPResult> _stepResultSubscription;
+  late StreamSubscription<RPStepStatus> _stepStatusSubscription;
+  late StreamSubscription<RPResult> _stepResultSubscription;
 
   bool navigableTask = false;
 
   @override
   initState() {
+    super.initState();
     // Instantiate the taskresult so it starts tracking time
-    _taskResult = RPTaskResult(widget.task.identifier);
+    _taskResult = RPTaskResult(identifier: widget.task.identifier);
 
     // If it's navigable we don't want to show result on appbar
     if (widget.task is RPNavigableOrderedTask) {
-      blocTask.updateTaskProgress(null);
+      blocTask.updateTaskProgress(RPTaskProgress(0, widget.task.steps.length));
       navigableTask = true;
     } else {
       // Sending the initial Task Progress so the Question UI can use it in the app bar
@@ -79,7 +80,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           // Updating taskProgress stream
           if (_currentStep.runtimeType == RPQuestionStep) {
             _currentQuestionIndex++;
-            // TODO: calculate the stepProgress differently for navigableTask
             if (!navigableTask)
               blocTask.updateTaskProgress(RPTaskProgress(
                   _currentQuestionIndex, widget.task.numberOfQuestionSteps));
@@ -89,7 +89,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           setState(() {
             _currentStep = _activeSteps.last;
             _currentStep = widget.task.getStepAfterStep(_currentStep, null);
-            _activeSteps.add(_currentStep);
+            if (_currentStep != null) _activeSteps.add(_currentStep!);
           });
           _currentStepIndex++;
 
@@ -108,11 +108,10 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             break;
           } else {
             _currentQuestionIndex--;
-            // TODO: calculate the stepprogress differently for navigableTask
             if (!navigableTask)
               blocTask.updateTaskProgress(RPTaskProgress(
                   _currentQuestionIndex, widget.task.numberOfQuestionSteps));
-            // await because we can only update the stepWidgets list while the current step is out of the screen
+            // await because it can only update the stepWidgets list while the current step is out of the screen
             await _taskPageViewController.previousPage(
                 duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
 
@@ -124,7 +123,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           blocQuestion.sendReadyToProceed(true);
           break;
         case RPStepStatus.Ongoing:
-          print('ongoing');
           break;
         default:
           break;
@@ -139,17 +137,15 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     setState(() {
       // Getting the first step
       _currentStep = widget.task.getStepAfterStep(null, null);
-      _activeSteps.add(_currentStep);
+      if (_currentStep != null) _activeSteps.add(_currentStep!);
     });
-
-    super.initState();
   }
 
   @override
   createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate)
     _taskResult.endDate = DateTime.now();
-    widget.onSubmit(_taskResult);
+    if (widget.onSubmit != null) widget.onSubmit!(_taskResult);
   }
 
   void _showCancelConfirmationDialog() {
@@ -165,12 +161,12 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                       ?.translate('discard_confirmation') ??
                   "Discard results and quit?"),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               child: Text(RPLocalizations.of(context)?.translate('NO') ?? "NO"),
               onPressed: () =>
                   Navigator.of(context).pop(), // Dismissing the pop-up
             ),
-            FlatButton(
+            OutlinedButton(
               child:
                   Text(RPLocalizations.of(context)?.translate('YES') ?? "YES"),
               onPressed: () {
@@ -246,86 +242,77 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
 
     return WillPopScope(
       onWillPop: () => blocTask.sendStatus(RPStepStatus.Canceled),
-      child: Theme(
-        data: Theme.of(context),
-        child: Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
-          resizeToAvoidBottomInset: true,
-          body: SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // top bar
-                _carouselBar(),
-                // Body
-                Expanded(
-                  child: PageView.builder(
-                    itemBuilder: (BuildContext context, int position) {
-                      return _activeSteps[position].stepWidget;
-                    },
-                    itemCount: _activeSteps.length,
-                    controller: _taskPageViewController,
-                    physics: NeverScrollableScrollPhysics(),
+      child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
+        resizeToAvoidBottomInset: true,
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // top bar
+              _carouselBar(),
+              // Body
+              Expanded(
+                child: PageView.builder(
+                  itemBuilder: (BuildContext context, int position) {
+                    return _activeSteps[position].stepWidget;
+                  },
+                  itemCount: _activeSteps.length,
+                  controller: _taskPageViewController,
+                  physics: NeverScrollableScrollPhysics(),
+                ),
+              ),
+              // Bottom navigation
+              if (![RPCompletionStep, RPVisualConsentStep, RPConsentReviewStep]
+                  .contains(_currentStep.runtimeType))
+                Padding(
+                  padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // if first question or its a navigable task
+                      _currentStepIndex == 0 || navigableTask
+                          ? Container()
+                          : OutlinedButton(
+                              onPressed: () =>
+                                  blocTask.sendStatus(RPStepStatus.Back),
+                              child: Text(
+                                locale?.translate('BACK') ?? 'BACK',
+                                // style: TextStyle(
+                                //     color: Theme.of(context).primaryColor),
+                              ),
+                            ),
+                      StreamBuilder<bool>(
+                        stream: blocQuestion.questionReadyToProceed,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return ElevatedButton(
+                              child: Text(
+                                RPLocalizations.of(context)
+                                        ?.translate('NEXT') ??
+                                    "NEXT",
+                                style: Theme.of(context).accentTextTheme.button,
+                              ),
+                              onPressed: snapshot.data!
+                                  ? () {
+                                      blocTask
+                                          .sendStatus(RPStepStatus.Finished);
+                                    }
+                                  : null,
+                            );
+                          } else {
+                            return Container();
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 ),
-                // Bottom navigation
-                if (![
-                  RPCompletionStep,
-                  RPVisualConsentStep,
-                  RPConsentReviewStep
-                ].contains(_currentStep.runtimeType))
-                  Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // if first question or its a navigable task
-                        _currentStepIndex == 0 || navigableTask
-                            ? Container()
-                            : FlatButton(
-                                onPressed: () =>
-                                    blocTask.sendStatus(RPStepStatus.Back),
-                                child: Text(
-                                  RPLocalizations.of(context)
-                                          ?.translate('BACK') ??
-                                      "BACK",
-                                  style: TextStyle(
-                                      color: Theme.of(context).primaryColor),
-                                ),
-                              ),
-                        StreamBuilder<bool>(
-                          stream: blocQuestion.questionReadyToProceed,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return RaisedButton(
-                                color: Theme.of(context).primaryColor,
-                                textColor: Colors.white,
-                                child: Text(
-                                  RPLocalizations.of(context)
-                                          ?.translate('NEXT') ??
-                                      "NEXT",
-                                ),
-                                onPressed: snapshot.data
-                                    ? () {
-                                        blocTask
-                                            .sendStatus(RPStepStatus.Finished);
-                                      }
-                                    : null,
-                              );
-                            } else {
-                              return Container();
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
+            ],
           ),
         ),
       ),

@@ -10,9 +10,9 @@ class RPUIFormStep extends StatefulWidget {
 }
 
 class _RPUIFormStepState extends State<RPUIFormStep> {
-  bool readyToProceed;
-  RPStepResult stepResult;
-  RPTaskProgress recentTaskProgress;
+  late bool readyToProceed;
+  late RPStepResult stepResult;
+  RPTaskProgress? recentTaskProgress;
 
   // Since the QuestionBody's are sending null if they are not answered yet we can loop through the
   // results of the steps.
@@ -35,13 +35,15 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    stepResult = RPStepResult(widget.formStep);
+    stepResult = RPStepResult(identifier: widget.formStep.identifier, answerFormat: widget.formStep.answerFormat);
     stepResult.questionTitle =
         "Form Step - See titles for every question included";
 
     // Filling up the results with nulls
     widget.formStep.steps.forEach((item) {
-      stepResult.setResultForIdentifier(item.identifier, RPStepResult(item));
+      stepResult.setResultForIdentifier(item.identifier, RPStepResult(identifier: item.identifier, answerFormat: item.answerFormat));
+      // Set each questionTitle here in case this is a skippable question.
+      (stepResult.results[item.identifier] as RPStepResult).questionTitle = item.title;
     });
 
     readyToProceed = false;
@@ -53,11 +55,10 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   // Returning the according step body widget based on the answerFormat of each step
   Widget stepBody(String id, RPAnswerFormat answerFormat) {
-    // TODO: Let's convert these operations into a function
-
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
-        return RPUIIntegerQuestionBody(answerFormat, (result) {
+        return RPUIIntegerQuestionBody((answerFormat as RPIntegerAnswerFormat),
+            (result) {
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
@@ -68,7 +69,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           checkReadyToProceed();
         });
       case RPChoiceAnswerFormat:
-        return RPUIChoiceQuestionBody(answerFormat, (result) {
+        return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
+            (result) {
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
@@ -79,7 +81,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           checkReadyToProceed();
         });
       case RPSliderAnswerFormat:
-        return RPUISliderQuestionBody(answerFormat, (result) {
+        return RPUISliderQuestionBody((answerFormat as RPSliderAnswerFormat),
+            (result) {
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
@@ -90,7 +93,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           checkReadyToProceed();
         });
       case RPImageChoiceAnswerFormat:
-        return RPUIImageChoiceQuestionBody(answerFormat, (result) {
+        return RPUIImageChoiceQuestionBody(
+            (answerFormat as RPImageChoiceAnswerFormat), (result) {
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
@@ -101,7 +105,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           checkReadyToProceed();
         });
       case RPDateTimeAnswerFormat:
-        return RPUIDateTimeQuestionBody(answerFormat, (result) {
+        return RPUIDateTimeQuestionBody(
+            (answerFormat as RPDateTimeAnswerFormat), (result) {
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
@@ -112,7 +117,8 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           checkReadyToProceed();
         });
       case RPBooleanAnswerFormat:
-        return RPUIBooleanQuestionBody(answerFormat, (result) {
+        return RPUIBooleanQuestionBody((answerFormat as RPBooleanAnswerFormat),
+            (result) {
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
@@ -136,19 +142,18 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   }
 
   Widget formItemBuilder(context, index) {
+    RPLocalizations? locale = RPLocalizations.of(context);
     if (index == 0) {
-      return (widget.formStep.title != null)
-          ? Padding(
+      return Padding(
               padding:
                   const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
               child: Text(
-                RPLocalizations.of(context)?.translate(widget.formStep.title) ??
+                locale?.translate(widget.formStep.title) ??
                     widget.formStep.title,
-                style: RPStyles.h2,
+                style: Theme.of(context).textTheme.headline5,
                 textAlign: TextAlign.left,
               ),
-            )
-          : null;
+            );
     }
     index -= 1;
 
@@ -156,10 +161,9 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
       return widget.formStep.optional
           ? Padding(
               padding: const EdgeInsets.all(8.0),
-              child: FlatButton(
+              child: TextButton(
                 onPressed: () => skipQuestion(),
-                child: Text(RPLocalizations.of(context)
-                        .translate("Skip these questions") ??
+                child: Text(locale?.translate("Skip these questions") ??
                     "Skip these questions"),
               ),
             )
@@ -175,10 +179,9 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              RPLocalizations.of(context)
-                      ?.translate(widget.formStep.steps[index].title) ??
+              locale?.translate(widget.formStep.steps[index].title) ??
                   widget.formStep.steps[index].title,
-              style: RPStyles.h3,
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
           Padding(

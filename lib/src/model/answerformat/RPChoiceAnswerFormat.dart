@@ -13,7 +13,8 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 
   /// Returns an initialized choice answer format with the given [ChoiceAnswerStyle]
   /// and the set of [RPChoice]s.
-  RPChoiceAnswerFormat({this.answerStyle, this.choices}) : super() {
+  RPChoiceAnswerFormat({required this.answerStyle, required this.choices})
+      : super() {
     questionType = (answerStyle == RPChoiceAnswerStyle.SingleChoice)
         ? RPQuestionType.SingleChoice
         : RPQuestionType.MultipleChoice;
@@ -21,8 +22,7 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 
   Function get fromJsonFunction => _$RPChoiceAnswerFormatFromJson;
   factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
-
+      FromJsonFactory().fromJson(json) as RPChoiceAnswerFormat;
   Map<String, dynamic> toJson() => _$RPChoiceAnswerFormatToJson(this);
 }
 
@@ -36,8 +36,8 @@ class RPChoice extends Serializable {
   /// The value of this choice - for example `4` on a 0-5 scale.
   int value;
 
-  // The detailed text to show.
-  String detailText;
+  /// The detailed text to show if needed. 
+  String? detailText;
 
   /// If set to `true`, then the user can enter the text instead of the default
   /// [text] which was provided. The [value] remains the same.
@@ -46,14 +46,14 @@ class RPChoice extends Serializable {
 
   /// Default constructor.
   RPChoice({
-    this.text,
-    this.value,
+    required this.text,
+    required this.value,
     this.isFreeText = false,
     this.detailText,
   }) : super();
 
   Function get fromJsonFunction => _$RPChoiceFromJson;
   factory RPChoice.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPChoice;
   Map<String, dynamic> toJson() => _$RPChoiceToJson(this);
 }

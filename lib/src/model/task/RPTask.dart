@@ -13,16 +13,14 @@ part of research_package_model;
 /// work in any task presented by a task view controller.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPTask extends Serializable {
-  String _identifier;
 
-  RPTask(String identifier, {this.closeAfterFinished}) {
+  RPTask({required this.identifier, this.closeAfterFinished = false}) {
     _registerFromJsonFunctions();
-    this._identifier = identifier;
   }
 
   /// A unique identifier of the Task. This identifier connects the Task to its
   /// result ([RPTaskResult]) object.
-  String get identifier => _identifier;
+  late String identifier;
 
   /// If set to `true` the Task will close after the participant has finished
   /// the task. If it's set to `false` no navigation function is called.
@@ -32,25 +30,20 @@ class RPTask extends Serializable {
   bool closeAfterFinished;
 
   /// Returns the step after a specified step if there's any.
-  RPStep getStepAfterStep(RPStep step, RPTaskResult result) => null;
+  RPStep? getStepAfterStep(RPStep step, RPTaskResult result) => null;
 
   /// Returns the step that precedes the specified step, if there is one.
-  RPStep getStepBeforeStep(RPStep step, RPTaskResult result) => null;
+  RPStep? getStepBeforeStep(RPStep step, RPTaskResult result) => null;
 
   /// Returns the step that matches the specified [identifier].
-  RPStep getStepWithIdentifier(String identifier) => null;
-
-//  /// Returns the progress of the current step.
-//  RPTaskProgress getProgressOfCurrentStep(RPStep step, RPTaskResult result);
+  RPStep? getStepWithIdentifier(String identifier) => null;
 
   /// Returns the title of a given [step]
   String getTitleForStep(RPStep step) => '';
 
-  //TODO: Validates the task parameters.
-
   Function get fromJsonFunction => _$RPTaskFromJson;
   factory RPTask.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPTask;
   Map<String, dynamic> toJson() => _$RPTaskToJson(this);
 }
 

@@ -11,10 +11,10 @@ abstract class RPResult {
   String identifier;
 
   /// The time when the participant started the task or result
-  DateTime startDate;
+  DateTime? startDate;
 
   /// The time when the participant finished the task or result
-  DateTime endDate;
+  DateTime? endDate;
 
   RPResult(this.identifier);
 }

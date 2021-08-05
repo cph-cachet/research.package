@@ -14,15 +14,15 @@ class RPSliderAnswerFormat extends RPAnswerFormat {
   int divisions;
 
   /// The prefix displayed before the value.
-  String prefix;
+  String? prefix;
 
   /// The suffix displayed after yhe value.
-  String suffix;
+  String? suffix;
 
   RPSliderAnswerFormat({
-    this.minValue,
-    this.maxValue,
-    this.divisions,
+    required this.minValue,
+    required this.maxValue,
+    required this.divisions,
     this.prefix = '',
     this.suffix = '',
   }) : super();
@@ -32,6 +32,6 @@ class RPSliderAnswerFormat extends RPAnswerFormat {
 
   Function get fromJsonFunction => _$RPSliderAnswerFormatFromJson;
   factory RPSliderAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPSliderAnswerFormat;
   Map<String, dynamic> toJson() => _$RPSliderAnswerFormatToJson(this);
 }

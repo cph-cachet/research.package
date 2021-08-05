@@ -6,33 +6,28 @@ part of research_package_model;
 /// It checks whether the [expectedValue] is identical to the result's value.
 /// It digs down the result hierarchy with the help of [RPResultSelector].
 class RPResultPredicate {
-  dynamic expectedValue;
-  RPResultSelector _resultSelector;
-  bool Function() getPredictionResult;
-  bool _predictionResult;
-  ChoiceQuestionResultPredicateMode _choiceQuestionResultPredicateMode;
+  late dynamic expectedValue;
+  late RPResultSelector _resultSelector;
+  late bool Function() getPredictionResult;
+  late bool _predictionResult;
+  ChoiceQuestionResultPredicateMode? _choiceQuestionResultPredicateMode;
 
   /// Result predicate for the boolean answer format [RPBooleanAnswerFormat].
   /// The [expectedValue] here should be a boolean.
   RPResultPredicate.forBooleanQuestionResult(
-      {@required RPResultSelector resultSelector,
-      @required bool expectedValue}) {
+      {required RPResultSelector resultSelector, required bool expectedValue}) {
     this._resultSelector = resultSelector;
     this.expectedValue = expectedValue;
-
     getPredictionResult = directPredictionResult;
   }
 
   /// Result predicate for choice question types. The [expectedValue] here
   /// should correspond to the [value] of an [RPChoice] object.
   RPResultPredicate.forChoiceQuestionResult(
-      {@required
-          RPResultSelector resultSelector,
-      @required
-          List<int> expectedValue,
-      @required
-          ChoiceQuestionResultPredicateMode
-              choiceQuestionResultPredicateMode}) {
+      {required RPResultSelector resultSelector,
+      required List<int> expectedValue,
+      required ChoiceQuestionResultPredicateMode
+          choiceQuestionResultPredicateMode}) {
     this._resultSelector = resultSelector;
     this.expectedValue = expectedValue;
     this._choiceQuestionResultPredicateMode = choiceQuestionResultPredicateMode;
@@ -105,6 +100,8 @@ class RPResultPredicate {
           }
           break;
         }
+      case null:
+        throw("ChoiceQuestionResultPredicateMode was null in RPResultPredicate");
     }
     return this._predictionResult;
   }
@@ -112,7 +109,7 @@ class RPResultPredicate {
 
 /// This class identifies the needed test result for the [RPResultPredicate]
 class RPResultSelector {
-  Function() getResult;
+  late Function() getResult;
 
   /// Use this constructor if the step which the navigation rule is bound to,
   /// is a regular step
@@ -131,7 +128,7 @@ class RPResultSelector {
   }
 
   RPStepResult _resultForStepId(String stepIdentifier) {
-    RPTaskResult _recentTaskResult = blocTask.lastTaskResult;
+    RPTaskResult? _recentTaskResult = blocTask.lastTaskResult;
     RPStepResult _foundStepResult;
 
     if (_recentTaskResult != null) {
@@ -143,9 +140,9 @@ class RPResultSelector {
     return _foundStepResult;
   }
 
-  RPStepResult _resultForStepIdInFormStep(String stepIdentifier) {
-    RPTaskResult _recentTaskResult = blocTask.lastTaskResult;
-    RPStepResult _foundStepResult;
+  RPStepResult? _resultForStepIdInFormStep(String stepIdentifier) {
+    RPTaskResult? _recentTaskResult = blocTask.lastTaskResult;
+    RPStepResult? _foundStepResult;
 
     if (_recentTaskResult != null) {
       _recentTaskResult.results.forEach((key, stepResult) {
@@ -165,26 +162,6 @@ class RPResultSelector {
 
     return _foundStepResult;
   }
-
-//  RPResultSelector.forStepAndTaskId(String stepId, String taskId) {
-//    // TODO
-//    _returnedStepResult = RPStepResult();
-//  }
-//
-//  RPResultSelector.forResultId(String resultId) {
-//    // TODO
-//    _returnedStepResult = RPStepResult();
-//  }
-//
-//  RPResultSelector.forStepAndResultId(String stepId, String resultId) {
-//    // TODO
-//    _returnedStepResult = RPStepResult();
-//  }
-//
-//  RPResultSelector.forTaskAndResultId(String taskId, String resultId) {
-//    // TODO
-//    _returnedStepResult = RPStepResult();
-//  }
 }
 
 enum ChoiceQuestionResultPredicateMode { ExactMatch, Containing }

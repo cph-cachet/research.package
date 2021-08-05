@@ -10,7 +10,7 @@ part of research_package_ui;
 /// ```
 ///
 class RPLocalizations {
-  Map<String, String> _translations;
+  late Map<String, String> _translations;
   static final String assetPath = 'research_package/assets/lang';
   // static final String assetPath = 'assets/lang';
 
@@ -24,7 +24,7 @@ class RPLocalizations {
   ///
   /// Returns `null` if no resources object of type [RPLocalizations] exists within
   /// the given `context`.
-  static RPLocalizations of(BuildContext context) =>
+  static RPLocalizations? of(BuildContext context) =>
       Localizations.of<RPLocalizations>(context, RPLocalizations);
 
   /// The name used to generate the key to obtain the localization asset.
@@ -36,7 +36,7 @@ class RPLocalizations {
   /// provided in [assetName] combined with translations of the
   /// text content of informed consent and surveys, as provided by the [loader],
   /// which knows how to load such translations.
-  Future<bool> load({LocalizationLoader loader}) async {
+  Future<bool> load({LocalizationLoader? loader}) async {
     print("$runtimeType - loading '$assetName'");
 
     // first load the static translations as part of RP
@@ -56,14 +56,7 @@ class RPLocalizations {
       // merge the two maps
       // note that keys in [_translations] is overwritten with keys in [loadedTranslations]
       // hence, it is possible to overwrite the default translations
-      if (loadedTranslations != null) {
-        _translations.addAll(loadedTranslations);
-      } else {
-        print(
-            "$runtimeType - WARNING: the loader returned a 'null' translation. "
-            "Check that you have provided localizations data for the loader of "
-            "type '${loader.runtimeType}' for the locale '$locale'.");
-      }
+      _translations.addAll(loadedTranslations);
     }
 
     return true;
@@ -72,7 +65,7 @@ class RPLocalizations {
   /// Translate [key] to this [locale].
   /// If [key] is not translated, [key] is returned untranslated.
   String translate(String key) =>
-      (_translations.containsKey(key)) ? _translations[key] : key;
+      (_translations.containsKey(key)) ? _translations[key]! : key;
 
   /// A default [LocalizationsDelegate] for [RPLocalizations].
   ///
@@ -86,7 +79,7 @@ class RPLocalizationsDelegate extends LocalizationsDelegate<RPLocalizations> {
   bool _shouldReload = false;
 
   /// Create a [RPLocalizationsDelegate].
-  RPLocalizationsDelegate({this.loader});
+  RPLocalizationsDelegate({required this.loader});
 
   @override
   bool isSupported(Locale locale) {
@@ -138,7 +131,7 @@ class MapLocalizationLoader implements LocalizationLoader {
 
   @override
   Future<Map<String, String>> load(Locale locale) async =>
-      (map.containsKey(locale.languageCode)) ? map[locale.languageCode] : {};
+      (map.containsKey(locale.languageCode)) ? map[locale.languageCode]! : {};
 }
 
 /// A [LocalizationLoader] which can load translations from file

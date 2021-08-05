@@ -12,17 +12,16 @@ class RPVisualConsentStep extends RPStep {
   /// scenes in the visual consent step.
   RPConsentDocument consentDocument;
 
-  RPVisualConsentStep(String identifier, this.consentDocument)
-      : super(identifier);
+  RPVisualConsentStep({required String identifier, required this.consentDocument})
+      : super(identifier: identifier, title: ''); 
 
   /// The widget (UI representation) of the step
-  @override
   @JsonKey(ignore: true)
   Widget get stepWidget =>
       RPUIVisualConsentStep(consentDocument: consentDocument);
 
   Function get fromJsonFunction => _$RPVisualConsentStepFromJson;
   factory RPVisualConsentStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json);
+      FromJsonFactory().fromJson(json) as RPVisualConsentStep;
   Map<String, dynamic> toJson() => _$RPVisualConsentStepToJson(this);
 }

@@ -13,9 +13,9 @@ class RPUIIntegerQuestionBody extends StatefulWidget {
 
 class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIIntegerQuestionBody> {
-  TextEditingController _textEditingController;
-  String _errorMessage;
-  bool _valid;
+  late TextEditingController _textEditingController;
+  String? _errorMessage;
+  late bool _valid;
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
     super.initState();
   }
 
-  void _validate(String text, RPLocalizations locale) {
+  void _validate(String text, RPLocalizations? locale) {
     int value;
     try {
       value = int.parse(text);
@@ -56,9 +56,8 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
 
   @override
   Widget build(BuildContext context) {
-    print(Theme.of(context).textTheme.bodyText1.color);
     super.build(context);
-    RPLocalizations locale = RPLocalizations.of(context);
+    RPLocalizations? locale = RPLocalizations.of(context);
     return Container(
       padding: EdgeInsets.all(8),
       alignment: Alignment.topLeft,
@@ -66,14 +65,13 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
         child: TextFormField(
           controller: _textEditingController,
           decoration: InputDecoration(
-            fillColor: Theme.of(context).backgroundColor,
             filled: true,
             hintText: locale?.translate('tap_to_answer') ?? "Tap to answer",
             helperStyle:
-                TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
+                TextStyle(color: Theme.of(context).textTheme.bodyText1?.color),
             suffix: widget.answerFormat.suffix != null
-                ? Text(locale?.translate(widget.answerFormat.suffix) ??
-                    widget.answerFormat.suffix)
+                ? Text(locale?.translate(widget.answerFormat.suffix!) ??
+                    widget.answerFormat.suffix!)
                 : null,
             errorText: _valid ? null : _errorMessage,
           ),

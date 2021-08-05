@@ -1,3 +1,8 @@
+## 0.6.0
+- Null safety added.
+- Theming updated using PR #24
+- Minor fixes
+
 ## 0.5.5
 - small update to robustness and debug info in `RPLocalizations`
 

@@ -14,7 +14,7 @@ class RPUIImageChoiceQuestionBody extends StatefulWidget {
 class _RPUIImageChoiceQuestionBodyState
     extends State<RPUIImageChoiceQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIImageChoiceQuestionBody> {
-  RPImageChoice _selectedItem;
+  RPImageChoice? _selectedItem;
 
   @override
   void initState() {
@@ -24,21 +24,20 @@ class _RPUIImageChoiceQuestionBodyState
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    RPLocalizations locale = RPLocalizations.of(context);
-    String text = (locale?.translate(_selectedItem?.description) ??
-            _selectedItem?.description) ??
-        (locale?.translate('select_image') ?? 'Select an image');
+    RPLocalizations? locale = RPLocalizations.of(context);
+    String text = (_selectedItem == null)
+        ? (locale?.translate('select_image') ?? 'Select an image')
+        : (locale?.translate(_selectedItem!.description) ??
+            _selectedItem!.description);
     return Container(
-        height: 150,
+        height: 160,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             _buildList(context, widget.answerFormat.choices),
             Text(
               text,
-              style: TextStyle(
-                fontSize: 20,
-              ),
+              style: Theme.of(context).textTheme.headline5,
             )
           ],
         ));
@@ -63,7 +62,7 @@ class _RPUIImageChoiceQuestionBodyState
                   BorderRadius.all(Radius.circular(5 * 25 / items.length)),
               border: Border.all(
                 color: _selectedItem == item
-                    ? Theme.of(context).primaryColor
+                    ? Theme.of(context).dividerColor
                     : Colors.transparent,
                 width: 3,
               ),
@@ -79,7 +78,7 @@ class _RPUIImageChoiceQuestionBodyState
                 (MediaQuery.of(context).size.width * 0.8) / items.length > 125
                     ? 125
                     : MediaQuery.of(context).size.width * 0.8 / items.length,
-            child: item.image,
+            child: Image.asset(item.imageUrl),
           ),
         ),
       ),
