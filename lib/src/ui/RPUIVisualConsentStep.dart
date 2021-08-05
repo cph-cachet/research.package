@@ -71,7 +71,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
 
   Widget _illustrationForType(RPConsentSection section) {
     const double iconSize = 80.0;
-    const double largeIconSize = 200.0;
+    // const double largeIconSize = 200.0;
 
     switch (section.type) {
       case RPConsentSectionType.Overview:

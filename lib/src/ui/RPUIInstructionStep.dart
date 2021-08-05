@@ -63,8 +63,8 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                         style: TextButton.styleFrom(
                             textStyle: TextStyle(
                                 color: Theme.of(context).primaryColor)),
-                        child: Text(locale?.translate('learn_more') ??
-                            "Learn more..."),
+                        child: Text(
+                            locale?.translate('learn_more') ?? "Learn more..."),
                         onPressed: _pushDetailTextRoute,
                       )
                     : Container(),
@@ -118,17 +118,13 @@ class InstructionImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_imagePath != null) {
-      return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Image.asset(
-          _imagePath,
-          width: MediaQuery.of(context).size.width / 2,
-        ),
-      );
-    } else {
-      return Container();
-    }
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Image.asset(
+        _imagePath,
+        width: MediaQuery.of(context).size.width / 2,
+      ),
+    );
   }
 }
 

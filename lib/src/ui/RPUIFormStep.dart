@@ -35,7 +35,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    stepResult = RPStepResult(identifier: widget.formStep.identifier, answerFormat: widget.formStep.answerFormat);;
+    stepResult = RPStepResult(identifier: widget.formStep.identifier, answerFormat: widget.formStep.answerFormat);
     stepResult.questionTitle =
         "Form Step - See titles for every question included";
 

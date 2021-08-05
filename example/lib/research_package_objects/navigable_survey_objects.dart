@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:research_package/model.dart';
 
 ///

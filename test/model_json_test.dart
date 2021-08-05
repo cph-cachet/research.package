@@ -80,8 +80,8 @@ void main() {
   RPConsentSignatureResult consentSignatureResult = RPConsentSignatureResult(
       'consentSignatureID', consentDocument, signatureResult);
 
-  RPConsentReviewStep consentReviewStep =
-      RPConsentReviewStep(identifier: 'consentReviewStepID', consentDocument: consentDocument);
+  // RPConsentReviewStep consentReviewStep =
+  //     RPConsentReviewStep(identifier: 'consentReviewStepID', consentDocument: consentDocument);
 
   RPStepResult consentReviewStepResult = RPStepResult(identifier: '', answerFormat: null);
   consentReviewStepResult.setResult(consentSignatureResult);

@@ -56,14 +56,7 @@ class RPLocalizations {
       // merge the two maps
       // note that keys in [_translations] is overwritten with keys in [loadedTranslations]
       // hence, it is possible to overwrite the default translations
-      if (loadedTranslations != null) {
-        _translations.addAll(loadedTranslations);
-      } else {
-        print(
-            "$runtimeType - WARNING: the loader returned a 'null' translation. "
-            "Check that you have provided localizations data for the loader of "
-            "type '${loader.runtimeType}' for the locale '$locale'.");
-      }
+      _translations.addAll(loadedTranslations);
     }
 
     return true;
