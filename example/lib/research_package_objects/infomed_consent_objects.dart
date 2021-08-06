@@ -147,45 +147,47 @@ RPConsentSection customSection = RPConsentSection(
 RPConsentSignature signature =
     RPConsentSignature(identifier: "consentSignatureID");
 
-// Small version
-RPConsentDocument consentDocument =
-    RPConsentDocument(title: 'Informed Consent', sections: [
-  overviewSection,
-  aboutUs,
-  dataGatheringSection,
-  privacySection,
-  timeCommitmentSection,
-  userDataCollection,
-  passiveDataCollection
-])
-      ..addSignature(signature);
+// // Small version
+// RPConsentDocument consentDocument =
+//     RPConsentDocument(title: 'Informed Consent', sections: [
+//   overviewSection,
+//   aboutUs,
+//   dataGatheringSection,
+//   privacySection,
+//   timeCommitmentSection,
+//   userDataCollection,
+//   passiveDataCollection
+// ])
+//       ..addSignature(signature);
 
 // Full version
-RPConsentDocument consentDocumentAllSections =
-    RPConsentDocument(title: 'Informed Consent - Full Version', sections: [
-  overviewSection,
-  dataGatheringSection,
-  privacySection,
-  dataUseSection,
-  timeCommitmentSection,
-  durationSection,
-  studyTasksSection,
-  studySurveySection,
-  withdrawingSection,
-  yourRightsSection,
-  welcomeSection,
-  aboutUs,
-  goalsSection,
-  benefitsSection,
-  locationSection,
-  healthSection,
-  userDataCollection,
-  passiveDataCollection
-])
-      ..addSignature(signature);
+RPConsentDocument consentDocumentAllSections = RPConsentDocument(
+  title: 'Informed Consent - Full Version',
+  sections: [
+    overviewSection,
+    dataGatheringSection,
+    privacySection,
+    dataUseSection,
+    timeCommitmentSection,
+    durationSection,
+    studyTasksSection,
+    studySurveySection,
+    withdrawingSection,
+    yourRightsSection,
+    welcomeSection,
+    aboutUs,
+    goalsSection,
+    benefitsSection,
+    locationSection,
+    healthSection,
+    userDataCollection,
+    passiveDataCollection
+  ],
+)..addSignature(signature);
 
 RPConsentReviewStep consentReviewStep = RPConsentReviewStep(
-    identifier: "consentreviewstepID", consentDocument: consentDocumentAllSections)
+    identifier: "consentreviewstepID",
+    consentDocument: consentDocumentAllSections)
   ..reasonForConsent = 'informed_consent.agree_text'
   ..text = 'informed_consent.agree_confirm';
 

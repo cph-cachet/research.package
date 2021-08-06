@@ -103,8 +103,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 64.0),
           child: Text(
-            locale?.translate(
-                    'review_form') ??
+            locale?.translate('review_form') ??
                 'Review this form below, and tap AGREE if you\'re ready to continue.',
             style: Theme.of(context).textTheme.headline5,
             textAlign: TextAlign.center,
@@ -135,7 +134,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.step.consentDocument.sections[index].dataTypes! // DataTypes must be provided given a data collection section has been created.
+              children: widget.step.consentDocument.sections[index]
+                  .dataTypes! // DataTypes must be provided given a data collection section has been created.
                   .map((e) {
                 return Padding(
                   padding: EdgeInsets.only(bottom: 4, top: 8),
@@ -179,8 +179,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             ),
           ),
           Text(
-            locale?.translate(
-                    widget.step.consentDocument.sections[index].content!) ?? // Content must be provided given a section has been created that isnt data collection.
+            locale?.translate(widget.step.consentDocument.sections[index]
+                    .content!) ?? // Content must be provided given a section has been created that isnt data collection.
                 widget.step.consentDocument.sections[index].content!,
             style: Theme.of(context).textTheme.bodyText1,
           ),
@@ -242,21 +242,23 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           child: Text(
             locale?.translate('AGREE') ?? "AGREE",
           ),
-          onPressed: () => _showConsentDialog(
-            widget.step.consentDocument.signatures.isEmpty
-                ? () {
-                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                    Navigator.of(context, rootNavigator: true).pop();
-                    Navigator.of(context)
-                        .pushReplacementNamed('consent_review/signature');
-                  }
-                : () {
-                    // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                    Navigator.of(context, rootNavigator: true).pop();
-                    widget.onNoSignature(null);
-                    blocTask.sendStatus(RPStepStatus.Finished);
-                  },
-          ),
+          onPressed: () {
+            _showConsentDialog(
+              widget.step.consentDocument.signatures.isNotEmpty
+                  ? () {
+                      // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                      Navigator.of(context, rootNavigator: true).pop();
+                      Navigator.of(context)
+                          .pushReplacementNamed('consent_review/signature');
+                    }
+                  : () {
+                      // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                      Navigator.of(context, rootNavigator: true).pop();
+                      widget.onNoSignature(null);
+                      blocTask.sendStatus(RPStepStatus.Finished);
+                    },
+            );
+          },
         ),
       ],
     );

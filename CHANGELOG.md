@@ -1,3 +1,6 @@
+## 0.6.1
+- Bug fix (Missing signature)
+
 ## 0.6.0
 - Null safety added.
 - Theming updated using PR #24
