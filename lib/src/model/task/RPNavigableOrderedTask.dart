@@ -10,19 +10,16 @@ part of research_package_model;
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPNavigableOrderedTask extends RPOrderedTask {
   late Map<String, RPStepNavigationRule> _stepNavigationRules;
-//  List<RPSkipStepNavigationRule> _skipStepNavigationRules;
-//  List<RPStepModifier> _stepModifiers;
-  bool shouldReportProgress;
 
-  RPNavigableOrderedTask(
-      {required String identifier,
-      required List<RPStep> steps,
-      closeAfterFinished = true,
-      this.shouldReportProgress = true})
-      : super(
-            identifier: identifier,
-            steps: steps,
-            closeAfterFinished: closeAfterFinished) {
+  RPNavigableOrderedTask({
+    required String identifier,
+    required List<RPStep> steps,
+    closeAfterFinished = true,
+  }) : super(
+          identifier: identifier,
+          steps: steps,
+          closeAfterFinished: closeAfterFinished,
+        ) {
     _stepNavigationRules = Map<String, RPStepNavigationRule>();
   }
 
@@ -30,10 +27,6 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   /// rule([RPStepNavigationRule]).
   Map<String, RPStepNavigationRule> get stepNavigationRules =>
       this._stepNavigationRules;
-
-//  List<RPSkipStepNavigationRule> get skipStepNavigationRules => this._skipStepNavigationRules;
-//  List<RPStepModifier> get stepModifiers => this._stepModifiers;
-//  bool get shouldReportProgress => this._shouldReportProgress;
 
   /// Returns the step after a specified step if there's any, taking the
   /// [RPStepNavigationRule]s into consideration.
@@ -68,8 +61,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
               (rule as RPStepReorganizerRule).resultSelector.getResult();
           List identifiersToKeep = [];
           (tempResult.results["answer"] as List<RPChoice>).forEach((element) {
-            String id =
-                (rule).reorderingMap[element.value]!;
+            String id = (rule).reorderingMap[element.value]!;
             identifiersToKeep.add(id);
           });
 
@@ -86,8 +78,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
           break;
         case RPStepJumpRule:
           RPStepJumpRule jumpRule = (rule as RPStepJumpRule);
-          RPStepResult tempResult =
-              rule.resultSelector.getResult();
+          RPStepResult tempResult = rule.resultSelector.getResult();
 
           _stepToReturn = steps.firstWhere((step) =>
               step.identifier ==
@@ -126,7 +117,6 @@ class RPNavigableOrderedTask extends RPOrderedTask {
       _returnNextQuestion();
     }
 
-    print("Step to return: $_stepToReturn");
     return _stepToReturn;
   }
 
@@ -143,7 +133,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   ///   )
   ///   ..setNavigationRuleForTriggerStepIdentifier(someNavigationRule, questionStep1.identifier);
   /// ```
-  setNavigationRuleForTriggerStepIdentifier(
+  void setNavigationRuleForTriggerStepIdentifier(
       RPStepNavigationRule stepNavigationRule, String triggerStepIdentifier) {
     _stepNavigationRules[triggerStepIdentifier] = stepNavigationRule;
   }
@@ -155,7 +145,8 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   }
 
   /// Removes the navigation rule from the given step using its identifier
-  removeNavigationRuleForTriggerStepIdentifier(String triggerStepIdentifier) {
+  void removeNavigationRuleForTriggerStepIdentifier(
+      String triggerStepIdentifier) {
     _stepNavigationRules.remove(triggerStepIdentifier);
   }
 

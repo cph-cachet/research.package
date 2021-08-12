@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       localeResolutionCallback: (locale, supportedLocales) {
         // Check if the current device locale is supported
         for (var supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale.languageCode
+          if (supportedLocale.languageCode == locale!.languageCode
               /*  && supportedLocale.countryCode == locale.countryCode */
               ) {
             return supportedLocale;
@@ -51,10 +51,12 @@ class MyApp extends StatelessWidget {
         // from the list (English, in this case).
         return supportedLocales.first;
       },
-      theme: ThemeData.dark(),
-      // theme: ThemeData.light().copyWith(
-      //   backgroundColor: Colors.white,
-      // ),
+      theme: ThemeData.from(
+        colorScheme: ColorScheme.light(
+          background: Colors.white,
+          primary: Colors.deepOrange,
+        ),
+      ),
       darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
       home: MyHomePage(),
@@ -71,7 +73,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    AssetLocalizations locale = AssetLocalizations.of(context);
+    AssetLocalizations locale = AssetLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -88,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
                 child: Text(
-                  locale?.translate("app_info"),
+                  locale.translate("app_info"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
                 ),
@@ -97,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
                   child: Text(
-                    locale?.translate("informed_consent"),
+                    locale.translate("informed_consent"),
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
@@ -110,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
                   child: Text(
-                    locale?.translate("linear_survey"),
+                    locale.translate("linear_survey"),
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
@@ -123,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
                   child: Text(
-                    locale?.translate("branching_survey"),
+                    locale.translate("branching_survey"),
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {

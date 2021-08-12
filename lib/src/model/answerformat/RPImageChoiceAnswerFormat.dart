@@ -33,14 +33,18 @@ class RPImageChoice extends Serializable {
   /// Specify either the [image] or the [key].
   String? key;
 
-  /// The value of the choice.
+  /// The value of the choice. Can be any type but MUST be serializable if this feature is used.
   dynamic value;
 
   /// The description fitting the image. Is displayed when selected.
   String description;
 
-  RPImageChoice({required this.imageUrl, this.key, this.value, required this.description})
-      : super();
+  RPImageChoice({
+    required this.imageUrl,
+    this.key,
+    this.value,
+    required this.description,
+  }) : super();
 
   Function get fromJsonFunction => _$RPImageChoiceFromJson;
   factory RPImageChoice.fromJson(Map<String, dynamic> json) =>

@@ -13,11 +13,8 @@ dependencies:
   carp_core: ^0.30.0 # the core CARP domain model
 
   signature: ^4.1.1
-  rxdart: ^0.27.1
+  rxdart: ^0.27.1 # Remove?
   json_annotation: ^4.0.1
-  flutter_localizations:
-    sdk: flutter
-  collection: ^1.15.0
   simple_html_css: ^3.0.1
 
 dev_dependencies:

@@ -60,8 +60,12 @@ class _BooleanButton extends StatefulWidget {
   final Function selectedCallBack;
   final bool? selectedVal;
 
-  _BooleanButton(
-      {required this.text, required this.value, required this.selectedCallBack, this.selectedVal});
+  _BooleanButton({
+    required this.text,
+    required this.value,
+    required this.selectedCallBack,
+    this.selectedVal,
+  });
 
   @override
   _BooleanButtonState createState() => _BooleanButtonState();
@@ -81,6 +85,7 @@ class _BooleanButtonState extends State<_BooleanButton> {
               value: widget.value,
               groupValue: widget.selectedVal,
               onChanged: (x) => widget.selectedCallBack(widget.value),
+              activeColor: Theme.of(context).primaryColor,
             ),
             Expanded(
               child: Container(
@@ -94,7 +99,7 @@ class _BooleanButtonState extends State<_BooleanButton> {
                 child: Text(
                   RPLocalizations.of(context)?.translate(widget.text) ??
                       widget.text,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
             ),

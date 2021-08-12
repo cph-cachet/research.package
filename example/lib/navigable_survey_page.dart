@@ -21,11 +21,12 @@ class NavigableSurveyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return RPUITask(
       task: navigableSurveyTask,
-      onSubmit: (result) {
-        resultCallback(result);
-      },
-      onCancel: ([result]) {
-        cancelCallBack(result);
+      onSubmit: resultCallback,
+      onCancel: (RPTaskResult? result) {
+        if (result == null) {
+          print("No result");
+        } else
+          cancelCallBack(result);
       },
     );
   }

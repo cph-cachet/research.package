@@ -160,7 +160,7 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                       child: TextField(
                         onChanged: (newText) => widget.choice.text = newText,
                         decoration: InputDecoration(
-                            hintText: locale?.translate("Other") ?? "Other"),
+                            hintText: locale?.translate(widget.choice.text) ?? widget.choice.text),
                       ),
                     )
                   : Text(

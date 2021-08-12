@@ -22,7 +22,7 @@ class RPUITask extends StatefulWidget {
   /// ```
   ///
   /// It's only optional. If nothing is provided (is ```null```) the survey just quits without doing anything with the result.
-  final void Function(RPTaskResult result)? onCancel;
+  final void Function(RPTaskResult? result)? onCancel;
 
   RPUITask({required this.task, this.onSubmit, this.onCancel});
 
@@ -282,8 +282,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                                   blocTask.sendStatus(RPStepStatus.Back),
                               child: Text(
                                 locale?.translate('BACK') ?? 'BACK',
-                                // style: TextStyle(
-                                //     color: Theme.of(context).primaryColor),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                             ),
                       StreamBuilder<bool>(
@@ -291,6 +290,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return ElevatedButton(
+                              style: Theme.of(context).elevatedButtonTheme.style,
                               child: Text(
                                 RPLocalizations.of(context)
                                         ?.translate('NEXT') ??

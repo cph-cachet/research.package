@@ -10,7 +10,7 @@ List<RPChoice> timeChoices = [
 ];
 
 List<RPChoice> joyfulActivities = [
-  RPChoice(text: "Playing games", value: 6, isFreeText: true),
+  RPChoice(text: "Your input", value: 6, isFreeText: true),
   RPChoice(text: "Jogging", value: 5),
   RPChoice(text: "Playing an instrument", value: 4),
   RPChoice(text: "Family and friends", value: 3),
@@ -165,14 +165,17 @@ RPFormStep formStep = RPFormStep(
   optional: true,
 );
 
-RPCompletionStep completionStep =
-    RPCompletionStep(identifier: "completionID", title: "Finished")
-      ..text = "Thank you for filling out the survey!";
+RPCompletionStep completionStep = RPCompletionStep(
+    identifier: "completionID",
+    title: "Finished",
+    text: "Thank you for filling out the survey!");
 
-RPInstructionStep instructionStep = RPInstructionStep(identifier: "instructionID",
-    title: "Welcome!", detailText: "For the sake of science of course...")
-  ..text =
-      "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.";
+RPInstructionStep instructionStep = RPInstructionStep(
+    identifier: "instructionID",
+    title: "Welcome!",
+    detailText: "For the sake of science of course...",
+    text:
+        "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.");
 
 RPOrderedTask linearSurveyTask = RPOrderedTask(
   identifier: "surveyTaskID",

@@ -27,8 +27,11 @@ class RPConsentReviewStep extends RPStep {
   /// collection stage is part of the flow.
   /// On how to specify a signature go to [RPConsentSignature].
   RPConsentReviewStep(
-      {required String identifier, required this.consentDocument})
-      : super(identifier: identifier, title: ''); 
+      {required String identifier,
+      required this.consentDocument,
+      this.reasonForConsent,
+      this.text})
+      : super(identifier: identifier, title: '');
 
   /// The widget (UI representation) of the step
   ///

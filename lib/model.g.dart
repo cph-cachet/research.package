@@ -505,12 +505,12 @@ RPConsentReviewStep _$RPConsentReviewStepFromJson(Map<String, dynamic> json) {
     identifier: json['identifier'] as String,
     consentDocument: RPConsentDocument.fromJson(
         json['consent_document'] as Map<String, dynamic>),
+    reasonForConsent: json['reason_for_consent'] as String?,
+    text: json['text'] as String?,
   )
     ..$type = json[r'$type'] as String?
     ..title = json['title'] as String
-    ..optional = json['optional'] as bool
-    ..text = json['text'] as String?
-    ..reasonForConsent = json['reason_for_consent'] as String?;
+    ..optional = json['optional'] as bool;
 }
 
 Map<String, dynamic> _$RPConsentReviewStepToJson(RPConsentReviewStep instance) {
@@ -742,7 +742,6 @@ RPNavigableOrderedTask _$RPNavigableOrderedTaskFromJson(
         .map((e) => RPStep.fromJson(e as Map<String, dynamic>))
         .toList(),
     closeAfterFinished: json['close_after_finished'],
-    shouldReportProgress: json['should_report_progress'] as bool,
   )..$type = json[r'$type'] as String?;
 }
 
@@ -760,7 +759,6 @@ Map<String, dynamic> _$RPNavigableOrderedTaskToJson(
   val['identifier'] = instance.identifier;
   val['close_after_finished'] = instance.closeAfterFinished;
   val['steps'] = instance.steps;
-  val['should_report_progress'] = instance.shouldReportProgress;
   return val;
 }
 
