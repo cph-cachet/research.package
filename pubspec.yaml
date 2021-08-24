@@ -16,6 +16,7 @@ dependencies:
   rxdart: ^0.27.1 # Remove?
   json_annotation: ^4.0.1
   simple_html_css: ^3.0.1
+  collection: ^1.15.0
 
 dev_dependencies:
   # flutter_test:
