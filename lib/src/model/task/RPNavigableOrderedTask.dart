@@ -37,7 +37,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   RPStep? getStepAfterStep(RPStep? step, RPTaskResult? result) {
     RPStep? _stepToReturn;
 
-    _returnNextQuestion() {
+    void _returnNextQuestion() {
       int nextIndex = (step != null) ? steps.indexOf(step) + 1 : 0;
 
       if (nextIndex < steps.length) {
@@ -79,10 +79,18 @@ class RPNavigableOrderedTask extends RPOrderedTask {
         case RPStepJumpRule:
           RPStepJumpRule jumpRule = (rule as RPStepJumpRule);
           RPStepResult tempResult = rule.resultSelector.getResult();
-
-          _stepToReturn = steps.firstWhere((step) =>
-              step.identifier ==
-              jumpRule.answerMap[tempResult.results["answer"].first.value]);
+          String? answer = jumpRule.answerMap[tempResult.results["answer"].first.value];
+          
+          bool hadStepId = false;
+          steps.forEach((step) {
+            if (step.identifier == answer) {
+              _stepToReturn = step;
+              hadStepId = true;
+            }
+          });
+          if (!hadStepId) {
+            _returnNextQuestion();
+          }
 
           break;
         case RPPredicateStepNavigationRule:

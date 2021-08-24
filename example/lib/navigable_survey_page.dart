@@ -20,7 +20,7 @@ class NavigableSurveyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RPUITask(
-      task: navigableSurveyTask,
+      task: navigableSurveyTask, 
       onSubmit: resultCallback,
       onCancel: (RPTaskResult? result) {
         if (result == null) {

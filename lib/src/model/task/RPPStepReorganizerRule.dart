@@ -1,12 +1,7 @@
 part of research_package_model;
 
-/// A navigation rule which based on predicate(s)'s ([RPResultPredicate]) result(s).
-///
-/// By using [RPPredicateStepNavigationRule] different questions can be shown
-/// based on the result of previously answered questions.
-/// The [RPPredicateStepNavigationRule] checks the predicate [RPResultPredicate]
-/// and if it's true, puts the destination step as next in the sequence.
-/// (Destination step identifiers are declared in the [resultPredicatesWithDestinationIdentifiers])
+/// Reorganizes the survey steps and removes all steps that arent specified by the [reorderingMap].
+/// The survey will then go to the specified step
 class RPStepReorganizerRule extends RPStepNavigationRule {
   late RPResultSelector _resultSelector;
 

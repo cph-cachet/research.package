@@ -61,31 +61,18 @@ List<RPChoice> numbers = [
   RPChoice(text: "One", value: 0),
 ];
 
-List<RPChoice> alphabet = [
-  RPChoice(text: "D", value: 3),
-  RPChoice(text: "C", value: 2),
-  RPChoice(text: "B", value: 1),
-  RPChoice(text: "A", value: 0),
-];
-
 ///
 /// ANSWER FORMATS
 ///
 
-RPBooleanAnswerFormat yesNoAnswerFormat =
-    RPBooleanAnswerFormat(trueText: "Yes", falseText: "No");
 RPImageChoiceAnswerFormat imageChoiceAnswerFormat =
     RPImageChoiceAnswerFormat(choices: images);
-RPIntegerAnswerFormat nrOfCigarettesAnswerFormat =
-    RPIntegerAnswerFormat(minValue: 0, maxValue: 200, suffix: "cigarettes");
 RPChoiceAnswerFormat who5AnswerFormat = RPChoiceAnswerFormat(
     answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: who5Choices);
 RPChoiceAnswerFormat joyfulActivitiesAnswerFormat = RPChoiceAnswerFormat(
     answerStyle: RPChoiceAnswerStyle.MultipleChoice, choices: joyfulActivities);
 RPChoiceAnswerFormat numbersAnswerFormat = RPChoiceAnswerFormat(
     answerStyle: RPChoiceAnswerStyle.MultipleChoice, choices: numbers);
-RPChoiceAnswerFormat alphabetAnswerFormat = RPChoiceAnswerFormat(
-    answerStyle: RPChoiceAnswerStyle.MultipleChoice, choices: alphabet);
 RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat(
     answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: instruments);
 RPIntegerAnswerFormat minutesIntegerAnswerFormat =
@@ -97,21 +84,11 @@ RPChoiceAnswerFormat guitarAnswerFormat = RPChoiceAnswerFormat(
 /// STEPS
 ///
 
-RPQuestionStep smokingQuestionStep = RPQuestionStep(
-    identifier: "smokingQuestionId",
-    title: "Do you smoke?",
-    answerFormat: yesNoAnswerFormat);
-
 RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(
   identifier: "imageStepID",
   title: "Indicate you mood by selecting a picture!",
   answerFormat: imageChoiceAnswerFormat,
 );
-
-RPQuestionStep nrOfCigarettesQuestionStep = RPQuestionStep(
-    identifier: "nrOfCigarettesQuestionStepID",
-    title: "How many cigarettes do you smoke a day?",
-    answerFormat: nrOfCigarettesAnswerFormat);
 
 RPInstructionStep instructionStep = RPInstructionStep(
   identifier: "instructionID",
@@ -138,36 +115,6 @@ RPQuestionStep multiChoiceQuestionStep2 = RPQuestionStep(
   title: "Choose (a) number(s)",
   answerFormat: numbersAnswerFormat,
 );
-
-RPQuestionStep alphabetQuestionStep = RPQuestionStep(
-  identifier: "alphabetQuestionStepID",
-  title: "Choose (a) letter(s)",
-  answerFormat: alphabetAnswerFormat,
-);
-
-RPInstructionStep instructionStepA = RPInstructionStep(
-    identifier: "instructionStepAID",
-    title: "A",
-    detailText: "A detail",
-    text: "text");
-
-RPInstructionStep instructionStepB = RPInstructionStep(
-    identifier: "instructionStepBID",
-    title: "B",
-    detailText: "B detail",
-    text: "text");
-
-RPInstructionStep instructionStepC = RPInstructionStep(
-    identifier: "instructionStepCID",
-    title: "C",
-    detailText: "C detail",
-    text: "text");
-
-RPInstructionStep instructionStepD = RPInstructionStep(
-    identifier: "instructionStepDID",
-    title: "D",
-    detailText: "D detail",
-    text: "text");
 
 RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(
     identifier: "instrumentChoiceQuestionStepID",
@@ -222,16 +169,6 @@ RPResultPredicate containingMultiChoicePredicate =
         choiceQuestionResultPredicateMode:
             ChoiceQuestionResultPredicateMode.Containing);
 
-RPResultPredicate yesSmokingPredicate =
-    RPResultPredicate.forBooleanQuestionResult(
-        resultSelector: RPResultSelector.forStepId("smokingQuestionId"),
-        expectedValue: true);
-
-RPResultPredicate noSmokingPredicate =
-    RPResultPredicate.forBooleanQuestionResult(
-        resultSelector: RPResultSelector.forStepId("smokingQuestionId"),
-        expectedValue: false);
-
 RPResultPredicate instrumentChoicePredicate =
     RPResultPredicate.forChoiceQuestionResult(
         resultSelector: RPResultSelector.forStepIdInFormStep(
@@ -243,13 +180,6 @@ RPResultPredicate instrumentChoicePredicate =
 ///
 /// NAVIGATION RULES
 ///
-
-RPPredicateStepNavigationRule smokingNavigationRule =
-    RPPredicateStepNavigationRule(
-  resultPredicatesWithDestinationIdentifiers: {
-    noSmokingPredicate: imageChoiceQuestionStep.identifier,
-  },
-);
 
 RPPredicateStepNavigationRule singleChoiceNavigationRule =
     RPPredicateStepNavigationRule(
@@ -279,14 +209,12 @@ RPPredicateStepNavigationRule guitarNavigationRule =
   },
 );
 
-RPStepReorganizerRule alphabetReorganizerRule = RPStepReorganizerRule(
-    reorganizerStepId: alphabetQuestionStep.identifier,
-    reorderingMap: {
-      3: instructionStepD.identifier,
-      2: instructionStepC.identifier,
-      1: instructionStepB.identifier,
-      0: instructionStepA.identifier
-    });
+RPPredicateStepNavigationRule smokingNavigationRule =
+    RPPredicateStepNavigationRule(
+  resultPredicatesWithDestinationIdentifiers: {
+    noSmokingPredicate: imageChoiceQuestionStep.identifier,
+  },
+);
 
 ///
 /// TASK
@@ -325,16 +253,8 @@ RPNavigableOrderedTask navigableSurveyTask = RPNavigableOrderedTask(
   ..setNavigationRuleForTriggerStepIdentifier(
       alphabetReorganizerRule, alphabetQuestionStep.identifier);
 
-//RPDirectStepNavigationRule navigationRuleAfterSmokingResult =
-//    RPDirectStepNavigationRule(imageChoiceQuestionStep.identifier);
-
-////////
-///
-///
-///
-///
-///
-///
+RPDirectStepNavigationRule navigationRuleAfterSmokingResult =
+    RPDirectStepNavigationRule(imageChoiceQuestionStep.identifier);
 
 // Likert-point scale with problem statements
 List<RPChoice> likertProblemScaleAnswers = [
@@ -452,3 +372,183 @@ RPOrderedTask emotionalDistress = RPNavigableOrderedTask(
       emotionalDistressBranchRule, depressedChoiceQuestionStep.identifier)
   ..setNavigationRuleForTriggerStepIdentifier(
       emotionalDistressBranchRule2, energyChoiceQuestionStep.identifier);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/////////////////// EXAMPLES OF NAVIGATION RULES //////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////
+// RPStepReorganizerRule
+////////////////////////////////
+
+List<RPChoice> alphabet = [
+  RPChoice(text: "D", value: 3),
+  RPChoice(text: "C", value: 2),
+  RPChoice(text: "B", value: 1),
+  RPChoice(text: "A", value: 0),
+];
+
+RPChoiceAnswerFormat alphabetAnswerFormat = RPChoiceAnswerFormat(
+    answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: alphabet);
+
+RPQuestionStep alphabetQuestionStep = RPQuestionStep(
+  identifier: "alphabetQuestionStepID",
+  title: "Choose (a) letter(s)",
+  answerFormat: alphabetAnswerFormat,
+);
+
+RPQuestionStep alphabetQuestionStep2 = RPQuestionStep(
+  identifier: "alphabetQuestionStepID2",
+  title: "Choose (a) letter(s)",
+  answerFormat: alphabetAnswerFormat,
+);
+
+RPInstructionStep instructionStepA = RPInstructionStep(
+    identifier: "instructionStepAID",
+    title: "A",
+    detailText: "A detail",
+    text: "A");
+
+RPInstructionStep instructionStepB = RPInstructionStep(
+    identifier: "instructionStepBID",
+    title: "B",
+    detailText: "B detail",
+    text: "B");
+
+RPInstructionStep instructionStepC = RPInstructionStep(
+    identifier: "instructionStepCID",
+    title: "C",
+    detailText: "C detail",
+    text: "C");
+
+RPInstructionStep instructionStepD = RPInstructionStep(
+    identifier: "instructionStepDID",
+    title: "D",
+    detailText: "D detail",
+    text: "D");
+
+RPStepReorganizerRule alphabetReorganizerRule = RPStepReorganizerRule(
+    reorganizerStepId: alphabetQuestionStep.identifier,
+    reorderingMap: {
+      3: instructionStepD.identifier,
+      2: instructionStepC.identifier,
+      1: instructionStepB.identifier,
+      0: instructionStepA.identifier
+    });
+
+RPNavigableOrderedTask navigableSurveyTaskRPStepReorganizerRule =
+    RPNavigableOrderedTask(
+  identifier: "NavigableTaskID",
+  steps: [
+    alphabetQuestionStep,
+    instructionStepA,
+    instructionStepB,
+    instructionStepC,
+    instructionStepD,
+    alphabetQuestionStep2,
+  ],
+)..setNavigationRuleForTriggerStepIdentifier(
+        alphabetReorganizerRule, alphabetQuestionStep.identifier);
+
+////////////////////////////////
+// RPStepJumpRule
+////////////////////////////////
+
+RPStepJumpRule rpStepJumpRule = RPStepJumpRule(
+    reorganizerStepId: alphabetQuestionStep.identifier,
+    answerMap: {
+      3: instructionStepD.identifier,
+      2: instructionStepC.identifier,
+      1: instructionStepB.identifier,
+      0: instructionStepA.identifier // Can be left out as it is the next question in the ordered
+    });
+
+RPNavigableOrderedTask navigableSurveyTaskRPStepJumpRule =
+    RPNavigableOrderedTask(
+  identifier: "NavigableTaskID",
+  steps: [
+    alphabetQuestionStep,
+    instructionStepA,
+    instructionStepB,
+    instructionStepC,
+    instructionStepD,
+    alphabetQuestionStep2,
+  ],
+)..setNavigationRuleForTriggerStepIdentifier(
+        rpStepJumpRule, alphabetQuestionStep.identifier);
+
+////////////////////////////////
+// RPPredicateStepNavigationRule
+////////////////////////////////
+
+// The questions
+// Here we intend to skip questions
+RPBooleanAnswerFormat yesNoAnswerFormat =
+    RPBooleanAnswerFormat(trueText: "Yes", falseText: "No");
+
+RPQuestionStep smokingQuestionStep = RPQuestionStep(
+    identifier: "smokingQuestionId",
+    title: "Do you smoke?",
+    answerFormat: yesNoAnswerFormat);
+
+RPIntegerAnswerFormat nrOfCigarettesAnswerFormat =
+    RPIntegerAnswerFormat(minValue: 0, maxValue: 200, suffix: "cigarettes");
+
+RPQuestionStep nrOfCigarettesQuestionStep = RPQuestionStep(
+    identifier: "nrOfCigarettesQuestionStepID",
+    title: "How many cigarettes do you smoke a day?",
+    answerFormat: nrOfCigarettesAnswerFormat);
+
+RPResultPredicate noSmokingPredicate =
+    RPResultPredicate.forBooleanQuestionResult(
+        resultSelector: RPResultSelector.forStepId("smokingQuestionId"),
+        expectedValue: false);
+
+RPPredicateStepNavigationRule rpPredicateStepNavigationRule =
+    RPPredicateStepNavigationRule(
+  resultPredicatesWithDestinationIdentifiers: {
+    noSmokingPredicate: imageChoiceQuestionStep.identifier,
+  },
+);
+
+RPNavigableOrderedTask navigableSurveyTaskRPPredicateStepNavigationRule =
+    RPNavigableOrderedTask(
+  identifier: "NavigableTaskID",
+  steps: [
+    smokingQuestionStep,
+    nrOfCigarettesQuestionStep,
+    imageChoiceQuestionStep,
+    completionStep
+  ],
+)..setNavigationRuleForTriggerStepIdentifier(
+        rpPredicateStepNavigationRule, smokingQuestionStep.identifier);
+
+
+////////////////////////////////
+// RPDirectStepNavigationRule
+////////////////////////////////
+
+// Here the survey will jump to [alphabetQuestionStep2]
+// after [instructionStepB]. 
+RPDirectStepNavigationRule navigateToNextQuestion =
+    RPDirectStepNavigationRule(alphabetQuestionStep2.identifier);
+
+RPNavigableOrderedTask navigableSurveyTaskRPDirectStepNavigationRule =
+    RPNavigableOrderedTask(
+  identifier: "NavigableTaskID",
+  steps: [
+    alphabetQuestionStep,
+    instructionStepA,
+    instructionStepB,
+    instructionStepC,
+    instructionStepD,
+    alphabetQuestionStep2,
+  ],
+)
+      ..setNavigationRuleForTriggerStepIdentifier(
+          rpStepJumpRule, alphabetQuestionStep.identifier)
+      ..setNavigationRuleForTriggerStepIdentifier(
+          navigateToNextQuestion, instructionStepB.identifier);

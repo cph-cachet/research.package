@@ -1,3 +1,8 @@
+## 0.6.2
+- Additional customizable text in the theme
+- Example app updated
+- Textfield hintText uses the 'text' parameter.
+
 ## 0.6.1
 - Bug fix (Missing signature)
 
