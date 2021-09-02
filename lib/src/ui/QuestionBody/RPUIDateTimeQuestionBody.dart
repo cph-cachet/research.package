@@ -29,20 +29,19 @@ class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody>
       padding: EdgeInsets.all(8),
       alignment: Alignment.topLeft,
       // TODO: Rendering bug in Flutter - https://github.com/flutter/flutter/issues/50193
-      // child: CupertinoTheme(
-      //   data: CupertinoThemeData(
-      //     textTheme: CupertinoTextThemeData(
-      //         dateTimePickerTextStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1.color)),
-      //   ),
-      child: CupertinoDatePicker(
-        mode: widget.mode,
-        use24hFormat: MediaQuery.of(context).alwaysUse24HourFormat,
-        initialDateTime: DateTime.now(),
-        onDateTimeChanged: (DateTime dateTime) {
-          widget.onResultChange(dateTime.toString());
-        },
+      child: CupertinoTheme(
+        data: CupertinoThemeData(
+          brightness: MediaQuery.platformBrightnessOf(context),
+        ),
+        child: CupertinoDatePicker(
+          mode: widget.mode,
+          use24hFormat: MediaQuery.of(context).alwaysUse24HourFormat,
+          initialDateTime: DateTime.now(),
+          onDateTimeChanged: (DateTime dateTime) {
+            widget.onResultChange(dateTime.toString());
+          },
+        ),
       ),
-      // ),
     );
   }
 

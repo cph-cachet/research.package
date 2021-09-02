@@ -214,9 +214,9 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: index <= _currentQuestionIndex
-                                  ? Theme.of(context).primaryColor
+                                  ? Theme.of(context).accentColor
                                   : Theme.of(context)
-                                      .primaryColor
+                                      .accentColor
                                       .withOpacity(0.5)),
                         );
                       },
@@ -230,7 +230,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             child: IconButton(
               icon: Icon(
                 Icons.highlight_off,
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
               ),
               onPressed: () => blocTask.sendStatus(RPStepStatus.Canceled),
             ),
@@ -247,7 +247,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     return WillPopScope(
       onWillPop: () => blocTask.sendStatus(RPStepStatus.Canceled),
       child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,
         body: SafeArea(
           child: Column(

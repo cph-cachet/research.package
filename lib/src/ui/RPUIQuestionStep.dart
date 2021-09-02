@@ -104,6 +104,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
             child: Text(
               locale?.translate(widget.step.title) ?? widget.step.title,
               textAlign: TextAlign.left,
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
           Padding(

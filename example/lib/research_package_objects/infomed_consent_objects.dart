@@ -35,6 +35,7 @@ RPConsentSection durationSection = RPConsentSection(
     content: "Duration dolor sit amet");
 
 RPConsentSection studyTasksSection = RPConsentSection(
+    title: "What should you do?",
     type: RPConsentSectionType.StudyTasks,
     summary: "This is a summary for Study Tasks.",
     content: "Study Tasks dolor sit amet");
@@ -139,6 +140,7 @@ RPConsentSection passiveDataCollection = RPConsentSection(
     ]);
 
 RPConsentSection customSection = RPConsentSection(
+  title: "Custom section",
   type: RPConsentSectionType.Custom,
   summary: "This is a summary for a Custom section.",
   content: "A Custom section dolor sit amet",

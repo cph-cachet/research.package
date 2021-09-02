@@ -51,12 +51,7 @@ class MyApp extends StatelessWidget {
         // from the list (English, in this case).
         return supportedLocales.first;
       },
-      theme: ThemeData.from(
-        colorScheme: ColorScheme.light(
-          background: Colors.white,
-          primary: Colors.deepOrange,
-        ),
-      ),
+      theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
       home: MyHomePage(),

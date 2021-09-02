@@ -37,7 +37,8 @@ class RPConsentSection extends Serializable {
   /// Returns a populated object with the given [type].
   ///
   /// It is enough to provide only the [type] of the section, the title is
-  /// automatically filled out. [summary] is set to [null] initially.
+  /// automatically filled out. If a title is provided, that title is used instead. 
+  /// [summary] is set to [null] initially.
   /// 
   /// If creating a custom section, a title must be provided.
   RPConsentSection(
@@ -49,7 +50,7 @@ class RPConsentSection extends Serializable {
       this.customIllustration}) {
     assert(type != RPConsentSectionType.Custom || title != null, "If a you are creating a Custom ConsentSection, then a title must be provided.");
     this.title = (type == RPConsentSectionType.Custom) ?
-      title! : _localizedTitleForConsentSectionType(type);
+      title! : (title != null) ? title : _titleForConsentSectionType(type);
   }
 
   Function get fromJsonFunction => _$RPConsentSectionFromJson;
@@ -87,7 +88,7 @@ enum RPConsentSectionType {
   Custom
 }
 
-String _localizedTitleForConsentSectionType(RPConsentSectionType type) {
+String _titleForConsentSectionType(RPConsentSectionType type) {
   switch (type) {
     case RPConsentSectionType.Overview:
       return "Overview";

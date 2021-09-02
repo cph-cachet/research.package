@@ -342,7 +342,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
