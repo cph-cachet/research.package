@@ -46,8 +46,31 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
             // If image is provided show it
             if (widget.step.imagePath != null)
               Center(
-                child: InstructionImage(widget.step.imagePath!),
+                child: Stack(
+                  children: [
+                    ClipOval(
+                      //backgroundColor: Theme.of(context).primaryColor,
+
+                      child: Material(
+                        color: Theme.of(context).accentColor,
+                        child: SizedBox(
+                          child: InstructionImage(widget.step.imagePath!),
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.7,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      child: InstructionImage(widget.step.imagePath!),
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      width: MediaQuery.of(context).size.width * 0.7,
+                    ),
+                  ],
+                ),
               ),
+            // Center(
+            //   child: InstructionImage(widget.step.imagePath!),
+            // ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -60,11 +83,9 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 ),
                 widget.step.detailText != null
                     ? TextButton(
-                        style: TextButton.styleFrom(
-                            textStyle: TextStyle(
-                                color: Theme.of(context).primaryColor)),
-                        child: Text(
-                            locale?.translate('learn_more') ?? "Learn more..."),
+                        style:
+                            TextButton.styleFrom(textStyle: TextStyle(color: Theme.of(context).primaryColor)),
+                        child: Text(locale?.translate('learn_more') ?? "Learn more..."),
                         onPressed: _pushDetailTextRoute,
                       )
                     : Container(),
@@ -74,10 +95,8 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 ? Container(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      locale?.translate(widget.step.footnote!) ??
-                          widget.step.footnote!,
-                      style:
-                          Theme.of(context).textTheme.caption, // TODO: change?
+                      locale?.translate(widget.step.footnote!) ?? widget.step.footnote!,
+                      style: Theme.of(context).textTheme.caption, // TODO: change?
                       textAlign: TextAlign.start,
                     ),
                   )
@@ -99,15 +118,37 @@ class _DetailTextRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(locale?.translate('learn_more') ?? 'Learn more'),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(15.0),
-        child: Text(locale?.translate(this.content) ?? this.content,
-            style: Theme.of(context).textTheme.bodyText1),
-      ),
-    );
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        // appBar: AppBar(
+        //   title: Text(locale?.translate(this.title) ?? this.title),
+        // ),
+        body: Column(
+          children: [
+            SizedBox(height: 35),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: 3),
+                IconButton(
+                  icon: Icon(Icons.arrow_back, color: Theme.of(context).primaryColor, size: 30),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                Text(locale?.translate('learn_more') ?? 'Learn more',
+                    style: Theme.of(context).textTheme.headline5),
+              ],
+            ),
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: SingleChildScrollView(
+                child: Text(
+                  locale?.translate(this.content) ?? this.content,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
 
