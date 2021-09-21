@@ -61,7 +61,11 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               },
             ),
             ElevatedButton(
-                child: Text(locale?.translate('NO') ?? 'NO'),
+                style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+                child: Text(
+                  RPLocalizations.of(context)?.translate('NO') ?? 'NO',
+                  style: Theme.of(context).primaryTextTheme.button,
+                ),
                 onPressed: () => Navigator.of(context).pop() // Pop the popup,
                 )
           ],

@@ -438,47 +438,42 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         ),
       ),
       persistentFooterButtons: <Widget>[
-        ButtonTheme(
-          buttonColor: Theme.of(context).buttonColor,
-          minWidth: 70,
-          child: TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
-            ),
-            child: Text(
-              locale?.translate('NEXT') ?? 'NEXT',
-              style: Theme.of(context).accentTextTheme.button,
-            ),
-            onPressed: (_isNameFilled && _isSignatureAdded)
-                ? () {
-                    if (widget._consentSignature.requiresSignatureImage) {
-                      _signatureController.toPngBytes().then(
-                        (image) {
-                          widget._onFinished(
-                            RPSignatureResult.withParams(
-                              _firstNameController.value.text,
-                              _lastNameController.value.text,
-                              // Converting the Uint8List into a string to make it compatible with JSON serialization
-                              image.toString(),
-                            ),
-                          );
-                        },
-                      );
-                    } else {
-                      widget._onFinished(
-                        RPSignatureResult.withParams(
-                          _firstNameController.value.text,
-                          _lastNameController.value.text,
-                          // Since no signature was asked set the image blob to null
-                          null,
-                        ),
-                      );
-                    }
-                    blocTask.sendStatus(RPStepStatus.Finished);
-                  }
-                : null,
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+          child: Text(
+            locale?.translate('NEXT') ?? "NEXT",
+            style: Theme.of(context).primaryTextTheme.button,
           ),
+          onPressed: (_isNameFilled && _isSignatureAdded)
+              ? () {
+                  if (widget._consentSignature.requiresSignatureImage) {
+                    _signatureController.toPngBytes().then(
+                      (image) {
+                        widget._onFinished(
+                          RPSignatureResult.withParams(
+                            _firstNameController.value.text,
+                            _lastNameController.value.text,
+                            // Converting the Uint8List into a string to make it compatible with JSON serialization
+                            image.toString(),
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    widget._onFinished(
+                      RPSignatureResult.withParams(
+                        _firstNameController.value.text,
+                        _lastNameController.value.text,
+                        // Since no signature was asked set the image blob to null
+                        null,
+                      ),
+                    );
+                  }
+                  blocTask.sendStatus(RPStepStatus.Finished);
+                }
+              : null,
         ),
+        //),
       ],
     );
   }

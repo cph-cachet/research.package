@@ -55,15 +55,15 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                         color: Theme.of(context).accentColor,
                         child: SizedBox(
                           child: InstructionImage(widget.step.imagePath!),
-                          height: MediaQuery.of(context).size.height * 0.4,
-                          width: MediaQuery.of(context).size.width * 0.7,
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          width: MediaQuery.of(context).size.width * 0.425,
                         ),
                       ),
                     ),
                     SizedBox(
                       child: InstructionImage(widget.step.imagePath!),
-                      height: MediaQuery.of(context).size.height * 0.4,
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      height: MediaQuery.of(context).size.height * 0.3,
+                      width: MediaQuery.of(context).size.width * 0.425,
                     ),
                   ],
                 ),
@@ -75,10 +75,11 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.all(16),
+                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
                   child: Text(
                     locale?.translate(widget.step.text!) ?? widget.step.text!,
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.justify,
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                 ),
                 widget.step.detailText != null
