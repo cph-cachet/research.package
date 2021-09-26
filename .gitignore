@@ -305,3 +305,4 @@ example/pubspec.lock
 pubspec.lock
 doc/api
 
+*.lock
