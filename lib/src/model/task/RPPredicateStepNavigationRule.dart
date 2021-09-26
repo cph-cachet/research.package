@@ -9,6 +9,7 @@ part of research_package_model;
 /// (Destination step identifiers are declared in the [resultPredicatesWithDestinationIdentifiers])
 class RPPredicateStepNavigationRule extends RPStepNavigationRule {
   final String? defaultStepIdentifier;
+
   /// A dictionary of result predicates and their associated destination step
   /// identifiers. If the predicate proves to be true, the destination identifier's
   /// step will be pushed as next in the step sequence.

@@ -290,7 +290,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return ElevatedButton(
-                              style: Theme.of(context).elevatedButtonTheme.style,
+                              style:
+                                  Theme.of(context).elevatedButtonTheme.style,
                               child: Text(
                                 RPLocalizations.of(context)
                                         ?.translate('NEXT') ??

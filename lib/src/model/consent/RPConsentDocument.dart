@@ -15,7 +15,7 @@ class RPConsentDocument extends Serializable {
   List<RPConsentSignature> signatures = [];
 
   /// The title of the consent document
-  /// 
+  ///
   /// This title is shown on the app bar during [RPVisualConsentStep]
   String title;
 

@@ -138,11 +138,11 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                   value: widget.choice,
                   groupValue: grpChoice,
                   onChanged: (x) => widget.selectedCallBack(widget.choice),
-                  activeColor: Theme.of(context).primaryColor) 
+                  activeColor: Theme.of(context).primaryColor)
               : Checkbox(
                   value: widget.selected,
                   onChanged: (x) => widget.selectedCallBack(widget.choice),
-                  activeColor: Theme.of(context).primaryColor, 
+                  activeColor: Theme.of(context).primaryColor,
                 ),
           Expanded(
             child: Container(
@@ -152,15 +152,15 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                   ? BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
-                              color: Theme.of(context)
-                                  .dividerColor)))
+                              color: Theme.of(context).dividerColor)))
                   : null,
               child: widget.choice.isFreeText
                   ? Container(
                       child: TextField(
                         onChanged: (newText) => widget.choice.text = newText,
                         decoration: InputDecoration(
-                            hintText: locale?.translate(widget.choice.text) ?? widget.choice.text),
+                            hintText: locale?.translate(widget.choice.text) ??
+                                widget.choice.text),
                       ),
                     )
                   : Text(

@@ -33,9 +33,10 @@ class _RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
         maxLines: 10,
         onChanged: checkInput,
         decoration: InputDecoration(
-          hintText: (widget.answerFormat.hintText != null) ? 
-              (locale?.translate(widget.answerFormat.hintText!) ?? widget.answerFormat.hintText) : 
-              widget.answerFormat.hintText,
+          hintText: (widget.answerFormat.hintText != null)
+              ? (locale?.translate(widget.answerFormat.hintText!) ??
+                  widget.answerFormat.hintText)
+              : widget.answerFormat.hintText,
           border: OutlineInputBorder(),
         ),
         controller: _controller,

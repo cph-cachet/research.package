@@ -5,7 +5,7 @@ part of research_package_model;
 class RPStepResult extends RPResult {
   /// The title of the question. It is set by the [RPUIStep] and [RPUIFormStep]
   /// so it's easier to trace back the answer result in the result JSON.
-  late String questionTitle; 
+  late String questionTitle;
 
   /// The map of results with a String as identifier and generic type as value
   late Map<String, dynamic> results;
@@ -28,7 +28,8 @@ class RPStepResult extends RPResult {
   /// It sets [startDate] to the `DateTime.now()`. Since these objects are instantiated
   /// together with the Step it belongs to so it can be used for measuring how much
   /// time the participant spent the given Step.
-  RPStepResult({required String identifier, required this.answerFormat}) : super(identifier) {
+  RPStepResult({required String identifier, required this.answerFormat})
+      : super(identifier) {
     this.results = Map();
     startDate = DateTime.now();
   }

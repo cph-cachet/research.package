@@ -20,7 +20,7 @@ import 'package:flutter/services.dart';
 import 'package:signature/signature.dart';
 import 'package:simple_html_css/simple_html_css.dart';
 
-import 'model.dart'; 
+import 'model.dart';
 
 // Library elements
 part 'src/localization/RPLocalization.dart';
