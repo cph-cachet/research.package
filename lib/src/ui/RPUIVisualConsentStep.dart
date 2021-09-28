@@ -13,8 +13,7 @@ class RPUIVisualConsentStep extends StatefulWidget {
   _RPUIVisualConsentStep createState() => _RPUIVisualConsentStep();
 }
 
-class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
-    with SingleTickerProviderStateMixin {
+class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTickerProviderStateMixin {
   int _pageNr = 0;
   bool _lastPage = false;
 
@@ -49,18 +48,24 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
       builder: (context) {
         RPLocalizations? locale = RPLocalizations.of(context);
         return AlertDialog(
-          content: Text(locale?.translate('quit_confirmation') ??
-              "Are you sure you want to quit?"),
+          content: Text(locale?.translate('quit_confirmation') ?? "Are you sure you want to quit?"),
           actions: <Widget>[
             OutlinedButton(
-              child: Text(locale?.translate('YES') ?? "YES"),
+              child: Text(
+                locale?.translate('YES') ?? "YES",
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
               onPressed: () {
                 Navigator.of(context).pop(); // Pop the popup
                 Navigator.of(context).pop(); // Pop the screen
               },
             ),
             ElevatedButton(
-                child: Text(locale?.translate('NO') ?? 'NO'),
+                style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+                child: Text(
+                  RPLocalizations.of(context)?.translate('NO') ?? 'NO',
+                  style: Theme.of(context).primaryTextTheme.button,
+                ),
                 onPressed: () => Navigator.of(context).pop() // Pop the popup,
                 )
           ],
@@ -208,7 +213,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     if (section.type == RPConsentSectionType.UserDataCollection ||
         section.type == RPConsentSectionType.PassiveDataCollection) {
       return Container(
-        padding: EdgeInsets.all(10.0),
+        // padding: EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -238,16 +243,20 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
       );
     } else
       return Container(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(30.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Center(
-              child: SizedBox(
-                child: _illustrationForType(section),
-                height: MediaQuery.of(context).size.height * 0.4,
-                width: MediaQuery.of(context).size.width * 0.7,
+              child: Stack(
+                children: [
+                  SizedBox(
+                    child: _illustrationForType(section),
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    width: MediaQuery.of(context).size.width * 0.25,
+                  ),
+                ],
               ),
             ),
             Column(
@@ -255,24 +264,25 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
               children: <Widget>[
                 Text(
                   locale?.translate(section.title) ?? section.title,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headline4,
                   textAlign: TextAlign.start,
                 ),
-                Text(
-                  locale?.translate(section.summary!) ?? section.summary!,
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
+                SizedBox(height: 5),
+                Text(locale?.translate(section.summary!) ?? section.summary!,
+                    style: Theme.of(context).textTheme.headline6),
+                SizedBox(height: 30),
                 GestureDetector(
                   onTap: () => _pushContent(
                     section.title,
                     section.content!,
                   ),
-                  child: Text(
-                    RPLocalizations.of(context)?.translate('learn_more') ??
-                        "Learn more...",
-                    style: TextStyle(color: Theme.of(context).primaryColor),
-                    // textAlign: TextAlign.start,
-                  ),
+                  child: Text(RPLocalizations.of(context)?.translate('learn_more') ?? "Learn more...",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: Theme.of(context).primaryColor)
+                      // textAlign: TextAlign.start,
+                      ),
                 ),
                 // Padding(
                 //   padding: EdgeInsets.only(top: 8),
@@ -303,6 +313,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           OutlinedButton(
             child: Text(
               RPLocalizations.of(context)?.translate('CANCEL') ?? 'CANCEL',
+              style: TextStyle(color: Theme.of(context).primaryColor),
             ),
             onPressed: () => _showCancelDialog(),
           ),
@@ -316,8 +327,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
               ),
               child: _lastPage
                   ? Text(
-                      RPLocalizations.of(context)?.translate('SEE_SUMMARY') ??
-                          "SEE SUMMARY",
+                      RPLocalizations.of(context)?.translate('SEE_SUMMARY') ?? "SEE SUMMARY",
                       style: TextStyle(color: Colors.white), //
                     )
                   : Text(
@@ -326,9 +336,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                     ),
               onPressed: _lastPage
                   ? () => blocTask.sendStatus(RPStepStatus.Finished)
-                  : () => controller.nextPage(
-                      duration: Duration(milliseconds: 400),
-                      curve: Curves.fastOutSlowIn),
+                  : () =>
+                      controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
             ),
           ),
         ],
@@ -380,18 +389,38 @@ class _ContentRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        title: Text(locale?.translate(this.title) ?? this.title),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(15.0),
-        child: SingleChildScrollView(
-          child: Text(
-            locale?.translate(this.content) ?? this.content,
-            style: Theme.of(context).textTheme.bodyText1,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      // appBar: AppBar(
+      //   title: Text(locale?.translate(this.title) ?? this.title),
+      // ),
+      body: Column(
+        children: [
+          SizedBox(height: 35),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text(locale?.translate(this.title) ?? this.title,
+                    style: Theme.of(context).textTheme.headline4),
+              ),
+              IconButton(
+                icon: Icon(Icons.clear, color: Theme.of(context).primaryColor, size: 30),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
           ),
-        ),
+          Container(
+            padding: EdgeInsets.all(20.0),
+            child: SingleChildScrollView(
+              child: Text(
+                locale?.translate(this.content) ?? this.content,
+                style: Theme.of(context).textTheme.headline6,
+                textAlign: TextAlign.justify,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -415,8 +444,7 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
       child: ExpansionTile(
         expandedAlignment: Alignment.centerLeft,
         title: Text(
-          locale?.translate(widget.dataTypeSection.dataName) ??
-              widget.dataTypeSection.dataName,
+          locale?.translate(widget.dataTypeSection.dataName) ?? widget.dataTypeSection.dataName,
           style: Theme.of(context).textTheme.subtitle1,
           textAlign: TextAlign.start,
         ),
