@@ -213,7 +213,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
     if (section.type == RPConsentSectionType.UserDataCollection ||
         section.type == RPConsentSectionType.PassiveDataCollection) {
       return Container(
-        padding: EdgeInsets.all(10.0),
+        // padding: EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -251,22 +251,10 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
             Center(
               child: Stack(
                 children: [
-                  ClipOval(
-                    //backgroundColor: Theme.of(context).primaryColor,
-
-                    child: Material(
-                      color: Theme.of(context).accentColor,
-                      child: SizedBox(
-                        child: _illustrationForType(section),
-                        height: MediaQuery.of(context).size.height * 0.4,
-                        width: MediaQuery.of(context).size.width * 0.7,
-                      ),
-                    ),
-                  ),
                   SizedBox(
                     child: _illustrationForType(section),
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    width: MediaQuery.of(context).size.width * 0.25,
                   ),
                 ],
               ),
@@ -274,18 +262,15 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 20),
                 Text(
                   locale?.translate(section.title) ?? section.title,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headline4,
                   textAlign: TextAlign.start,
                 ),
-                SizedBox(height: 10),
-                Text(
-                  locale?.translate(section.summary!) ?? section.summary!,
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
+                Text(locale?.translate(section.summary!) ?? section.summary!,
+                    style: Theme.of(context).textTheme.headline6),
+                SizedBox(height: 30),
                 GestureDetector(
                   onTap: () => _pushContent(
                     section.title,
@@ -294,7 +279,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                   child: Text(RPLocalizations.of(context)?.translate('learn_more') ?? "Learn more...",
                       style: Theme.of(context)
                           .textTheme
-                          .bodyText1!
+                          .headline6!
                           .copyWith(color: Theme.of(context).primaryColor)
                       // textAlign: TextAlign.start,
                       ),
@@ -411,14 +396,17 @@ class _ContentRoute extends StatelessWidget {
         children: [
           SizedBox(height: 35),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(width: 3),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text(locale?.translate(this.title) ?? this.title,
+                    style: Theme.of(context).textTheme.headline4),
+              ),
               IconButton(
-                icon: Icon(Icons.arrow_back, color: Theme.of(context).primaryColor, size: 30),
+                icon: Icon(Icons.clear, color: Theme.of(context).primaryColor, size: 30),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-              Text(locale?.translate(this.title) ?? this.title, style: Theme.of(context).textTheme.headline5),
             ],
           ),
           Container(
@@ -426,7 +414,7 @@ class _ContentRoute extends StatelessWidget {
             child: SingleChildScrollView(
               child: Text(
                 locale?.translate(this.content) ?? this.content,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.headline6,
                 textAlign: TextAlign.justify,
               ),
             ),

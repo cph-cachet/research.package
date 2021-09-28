@@ -46,31 +46,13 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
             // If image is provided show it
             if (widget.step.imagePath != null)
               Center(
-                child: Stack(
-                  children: [
-                    ClipOval(
-                      //backgroundColor: Theme.of(context).primaryColor,
-
-                      child: Material(
-                        color: Theme.of(context).accentColor,
-                        child: SizedBox(
-                          child: InstructionImage(widget.step.imagePath!),
-                          height: MediaQuery.of(context).size.height * 0.3,
-                          width: MediaQuery.of(context).size.width * 0.425,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      child: InstructionImage(widget.step.imagePath!),
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      width: MediaQuery.of(context).size.width * 0.425,
-                    ),
-                  ],
+                child: SizedBox(
+                  child: InstructionImage(widget.step.imagePath!),
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: MediaQuery.of(context).size.width * 0.25,
                 ),
               ),
-            // Center(
-            //   child: InstructionImage(widget.step.imagePath!),
-            // ),
+
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

@@ -172,6 +172,13 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           ),
           Text(
             locale?.translate(widget.step.consentDocument.sections[index]
+                    .summary!) ?? // Content must be provided given a section has been created that isnt data collection.
+                widget.step.consentDocument.sections[index].summary!,
+            style: Theme.of(context).textTheme.bodyText1,
+            textAlign: TextAlign.justify,
+          ),
+          Text(
+            locale?.translate(widget.step.consentDocument.sections[index]
                     .content!) ?? // Content must be provided given a section has been created that isnt data collection.
                 widget.step.consentDocument.sections[index].content!,
             style: Theme.of(context).textTheme.bodyText1,
