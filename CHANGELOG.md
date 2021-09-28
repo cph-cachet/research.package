@@ -1,4 +1,5 @@
-## 0.6.5
+## 0.6.5+1
+- update to UI rendering in the Informed Consent based on PR [#51](https://github.com/cph-cachet/research.package/pull/51).
 - update to UI rendering in the Informed Consent based on PR [#50](https://github.com/cph-cachet/research.package/pull/50).
 - updating README to link to the new [tutorials on `carp.cachet.dk`](https://carp.cachet.dk/category/tutorials/).
 
