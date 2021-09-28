@@ -20,8 +20,13 @@ class RPInstructionStep extends RPStep {
   /// If `null` nothing is shown.
   String? imagePath;
 
-  RPInstructionStep({required String identifier, String? text,
-      required String title, this.detailText, this.footnote, this.imagePath})
+  RPInstructionStep(
+      {required String identifier,
+      String? text,
+      required String title,
+      this.detailText,
+      this.footnote,
+      this.imagePath})
       : super(identifier: identifier, title: title, text: text);
 
   /// The widget (UI representation) of the step

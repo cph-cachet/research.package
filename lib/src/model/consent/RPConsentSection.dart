@@ -37,9 +37,9 @@ class RPConsentSection extends Serializable {
   /// Returns a populated object with the given [type].
   ///
   /// It is enough to provide only the [type] of the section, the title is
-  /// automatically filled out. If a title is provided, that title is used instead. 
+  /// automatically filled out. If a title is provided, that title is used instead.
   /// [summary] is set to [null] initially.
-  /// 
+  ///
   /// If creating a custom section, a title must be provided.
   RPConsentSection(
       {required this.type,
@@ -48,9 +48,13 @@ class RPConsentSection extends Serializable {
       this.content,
       this.dataTypes,
       this.customIllustration}) {
-    assert(type != RPConsentSectionType.Custom || title != null, "If a you are creating a Custom ConsentSection, then a title must be provided.");
-    this.title = (type == RPConsentSectionType.Custom) ?
-      title! : (title != null) ? title : _titleForConsentSectionType(type);
+    assert(type != RPConsentSectionType.Custom || title != null,
+        "If a you are creating a Custom ConsentSection, then a title must be provided.");
+    this.title = (type == RPConsentSectionType.Custom)
+        ? title!
+        : (title != null)
+            ? title
+            : _titleForConsentSectionType(type);
   }
 
   Function get fromJsonFunction => _$RPConsentSectionFromJson;
@@ -70,11 +74,11 @@ enum RPConsentSectionType {
   DataGathering,
   Privacy,
   DataUse,
-  TimeCommitment, 
+  TimeCommitment,
   Duration,
   StudyTasks,
   StudySurvey,
-  Withdrawing, 
+  Withdrawing,
   YourRights,
   Welcome,
   AboutUs,
@@ -129,6 +133,6 @@ String _titleForConsentSectionType(RPConsentSectionType type) {
     case RPConsentSectionType.PassiveDataCollection:
       return "Passive data collection";
     case RPConsentSectionType.Custom:
-      return ''; // Case handled in the initialization. 
+      return ''; // Case handled in the initialization.
   }
 }

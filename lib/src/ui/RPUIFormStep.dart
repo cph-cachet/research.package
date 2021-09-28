@@ -35,15 +35,21 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    stepResult = RPStepResult(identifier: widget.formStep.identifier, answerFormat: widget.formStep.answerFormat);
+    stepResult = RPStepResult(
+        identifier: widget.formStep.identifier,
+        answerFormat: widget.formStep.answerFormat);
     stepResult.questionTitle =
         "Form Step - See titles for every question included";
 
     // Filling up the results with nulls
     widget.formStep.steps.forEach((item) {
-      stepResult.setResultForIdentifier(item.identifier, RPStepResult(identifier: item.identifier, answerFormat: item.answerFormat));
+      stepResult.setResultForIdentifier(
+          item.identifier,
+          RPStepResult(
+              identifier: item.identifier, answerFormat: item.answerFormat));
       // Set each questionTitle here in case this is a skippable question.
-      (stepResult.results[item.identifier] as RPStepResult).questionTitle = item.title;
+      (stepResult.results[item.identifier] as RPStepResult).questionTitle =
+          item.title;
     });
 
     readyToProceed = false;
@@ -145,15 +151,13 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     RPLocalizations? locale = RPLocalizations.of(context);
     if (index == 0) {
       return Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
-              child: Text(
-                locale?.translate(widget.formStep.title) ??
-                    widget.formStep.title,
-                style: Theme.of(context).textTheme.headline5,
-                textAlign: TextAlign.left,
-              ),
-            );
+        padding: const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 8),
+        child: Text(
+          locale?.translate(widget.formStep.title) ?? widget.formStep.title,
+          style: Theme.of(context).textTheme.headline5,
+          textAlign: TextAlign.left,
+        ),
+      );
     }
     index -= 1;
 

@@ -10,8 +10,8 @@ class BlocTask {
   // Need to get the information after adding to the sink, that's why BehaviorSubject
   final _stepResultController = StreamController<RPResult>.broadcast();
   final _taskProgressController = BehaviorSubject<RPTaskProgress>();
-  final _taskResultController =
-      BehaviorSubject<RPTaskResult>.seeded(RPTaskResult(identifier: 'BaseTaskResultID'));
+  final _taskResultController = BehaviorSubject<RPTaskResult>.seeded(
+      RPTaskResult(identifier: 'BaseTaskResultID'));
 
   //Add data to stream
 

@@ -20,7 +20,7 @@ class InformedConsentPage extends StatelessWidget {
 
   void cancelCallBack(RPTaskResult result) {
     // Do anything with the result at the moment of the cancellation
-    // Since this is an informed consent, it will not have partial results. 
+    // Since this is an informed consent, it will not have partial results.
     print("The result so far:\n" + _encode(result));
   }
 

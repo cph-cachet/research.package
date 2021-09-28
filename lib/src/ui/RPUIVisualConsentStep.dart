@@ -322,7 +322,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
             minWidth: 70,
             child: TextButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                backgroundColor:
+                    MaterialStateProperty.all(Theme.of(context).primaryColor),
               ),
               child: _lastPage
                   ? Text(

@@ -12,8 +12,9 @@ class RPVisualConsentStep extends RPStep {
   /// scenes in the visual consent step.
   RPConsentDocument consentDocument;
 
-  RPVisualConsentStep({required String identifier, required this.consentDocument})
-      : super(identifier: identifier, title: ''); 
+  RPVisualConsentStep(
+      {required String identifier, required this.consentDocument})
+      : super(identifier: identifier, title: '');
 
   /// The widget (UI representation) of the step
   @JsonKey(ignore: true)
