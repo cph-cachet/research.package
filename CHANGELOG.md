@@ -20,17 +20,14 @@
 - Bug fix (Missing signature)
 
 ## 0.6.0
-
 - Null safety added.
 - Theming updated using PR #24
 - Minor fixes
 
 ## 0.5.5
-
 - small update to robustness and debug info in `RPLocalizations`
 
 ## 0.5.4
-
 - update to the localization model (`RPLocalizations`) so that:
   - the localization of the embedded text in RP is now part of RP (you don't need to worry about this anymore)
   - localization of informed consent and survey is (still) in the `assets/lang/` folder
@@ -39,7 +36,6 @@
 - example app update to illustrate the use of both types of localization
 
 ## 0.5.3+1
-
 - small updates to documentation
 - making `RPTask` serializable instead of abtstract
 - fix to `translate` method
