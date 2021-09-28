@@ -13,7 +13,6 @@ part of research_package_model;
 /// work in any task presented by a task view controller.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPTask extends Serializable {
-
   RPTask({required this.identifier, this.closeAfterFinished = false}) {
     _registerFromJsonFunctions();
   }

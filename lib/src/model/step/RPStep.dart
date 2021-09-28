@@ -38,7 +38,11 @@ class RPStep extends Serializable {
 
   /// Create a step object with the given [title]. Different types of Steps
   /// are using the [title] text differently.
-  RPStep({required this.identifier, required this.title, this.text, this.optional = false});
+  RPStep(
+      {required this.identifier,
+      required this.title,
+      this.text,
+      this.optional = false});
 
   /// The widget (UI representation) of the step. [RPQuestionStep]s don't have it
   /// because their UI representation depends on the Answer Format.

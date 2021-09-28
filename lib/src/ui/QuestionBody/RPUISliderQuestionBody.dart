@@ -20,13 +20,17 @@ class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
     RPLocalizations? locale = RPLocalizations.of(context);
     String text = "";
     // prefix
-    text += (widget.answerFormat.prefix != null) ? (locale?.translate(widget.answerFormat.prefix!) ?? widget.answerFormat.prefix!) :
-        "";
+    text += (widget.answerFormat.prefix != null)
+        ? (locale?.translate(widget.answerFormat.prefix!) ??
+            widget.answerFormat.prefix!)
+        : "";
     // value
     text += (value ?? widget.answerFormat.minValue).toString();
     // suffix
-    text += (widget.answerFormat.suffix != null) ? (locale?.translate(widget.answerFormat.suffix!) ?? widget.answerFormat.suffix!) :
-        "";
+    text += (widget.answerFormat.suffix != null)
+        ? (locale?.translate(widget.answerFormat.suffix!) ??
+            widget.answerFormat.suffix!)
+        : "";
     return Card(
       child: Container(
         padding: EdgeInsets.all(8),

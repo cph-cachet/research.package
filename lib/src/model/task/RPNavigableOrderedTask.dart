@@ -79,8 +79,9 @@ class RPNavigableOrderedTask extends RPOrderedTask {
         case RPStepJumpRule:
           RPStepJumpRule jumpRule = (rule as RPStepJumpRule);
           RPStepResult tempResult = rule.resultSelector.getResult();
-          String? answer = jumpRule.answerMap[tempResult.results["answer"].first.value];
-          
+          String? answer =
+              jumpRule.answerMap[tempResult.results["answer"].first.value];
+
           bool hadStepId = false;
           steps.forEach((step) {
             if (step.identifier == answer) {

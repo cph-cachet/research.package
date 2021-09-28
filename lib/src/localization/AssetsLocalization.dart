@@ -50,6 +50,9 @@ class AssetLocalizations {
     return true;
   }
 
+  /// Can this [key] be translated by this localization?
+  bool canTranslate(String key) => _translations.containsKey(key);
+
   /// Translate [key] to this [locale].
   /// If [key] is not translated, [key] is returned 'as-is'.
   String translate(String key) =>

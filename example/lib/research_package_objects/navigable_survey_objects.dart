@@ -373,12 +373,9 @@ RPOrderedTask emotionalDistress = RPNavigableOrderedTask(
   ..setNavigationRuleForTriggerStepIdentifier(
       emotionalDistressBranchRule2, energyChoiceQuestionStep.identifier);
 
-
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////// EXAMPLES OF NAVIGATION RULES //////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-
-
 
 ////////////////////////////////
 // RPStepReorganizerRule
@@ -463,7 +460,8 @@ RPStepJumpRule rpStepJumpRule = RPStepJumpRule(
       3: instructionStepD.identifier,
       2: instructionStepC.identifier,
       1: instructionStepB.identifier,
-      0: instructionStepA.identifier // Can be left out as it is the next question in the ordered
+      0: instructionStepA
+          .identifier // Can be left out as it is the next question in the ordered
     });
 
 RPNavigableOrderedTask navigableSurveyTaskRPStepJumpRule =
@@ -526,13 +524,12 @@ RPNavigableOrderedTask navigableSurveyTaskRPPredicateStepNavigationRule =
 )..setNavigationRuleForTriggerStepIdentifier(
         rpPredicateStepNavigationRule, smokingQuestionStep.identifier);
 
-
 ////////////////////////////////
 // RPDirectStepNavigationRule
 ////////////////////////////////
 
 // Here the survey will jump to [alphabetQuestionStep2]
-// after [instructionStepB]. 
+// after [instructionStepB].
 RPDirectStepNavigationRule navigateToNextQuestion =
     RPDirectStepNavigationRule(alphabetQuestionStep2.identifier);
 

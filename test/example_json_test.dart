@@ -12,7 +12,10 @@ void main() {
   String _encode(Object object) =>
       const JsonEncoder.withIndent(' ').convert(object);
 
-  setUp(() {});
+  setUp(() {
+    // create two dummy RPTask to register json deserialization functions for RP
+    RPTask(identifier: 'ignored');
+  });
 
   group('Consent Document', () {
     test('Consent Document -> JSON', () {

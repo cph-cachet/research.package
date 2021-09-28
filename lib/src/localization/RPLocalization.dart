@@ -9,15 +9,11 @@ part of research_package_ui;
 ///  RPLocalizations.of(context).translate('key');
 /// ```
 ///
-class RPLocalizations {
-  late Map<String, String> _translations;
+class RPLocalizations extends AssetLocalizations {
   static final String assetPath = 'research_package/assets/lang';
-  // static final String assetPath = 'assets/lang';
-
-  final Locale locale;
 
   /// Create a localization based on [locale].
-  RPLocalizations(this.locale);
+  RPLocalizations(Locale locale) : super(locale);
 
   /// Returns the localized resources object of type [RPLocalizations] for the
   /// widget tree that corresponds to the given [context].
@@ -27,21 +23,22 @@ class RPLocalizations {
   static RPLocalizations? of(BuildContext context) =>
       Localizations.of<RPLocalizations>(context, RPLocalizations);
 
-  /// The name used to generate the key to obtain the localization asset.
-  String get assetName => 'packages/$assetPath/${locale.languageCode}.json';
+  /// The name of the static localization asset.
+  String get _staticAssetName =>
+      'packages/$assetPath/${locale.languageCode}.json';
 
   /// Load the translations for Research Package.
   ///
   /// The translations is a combination of the static names in the package as
-  /// provided in [assetName] combined with translations of the
-  /// text content of informed consent and surveys, as provided by the [loader],
-  /// which knows how to load such translations.
-  Future<bool> load({LocalizationLoader? loader}) async {
-    print("$runtimeType - loading '$assetName'");
+  /// provided in [_staticAssetName] combined with translations of the any text
+  /// provided by the [loaders], which knows how to load translations.
+  @override
+  Future<bool> load({List<LocalizationLoader> loaders = const []}) async {
+    print("$runtimeType - loading '$_staticAssetName'");
 
     // first load the static translations as part of RP
     String jsonString = await rootBundle.loadString(
-      assetName,
+      _staticAssetName,
       cache: false,
     );
 
@@ -49,11 +46,11 @@ class RPLocalizations {
     _translations =
         jsonMap.map((key, value) => MapEntry(key, value.toString()));
 
-    if (loader != null) {
+    for (LocalizationLoader loader in loaders) {
       print(
           "$runtimeType - loading from a loader of type '${loader.runtimeType}'");
       Map<String, String> loadedTranslations = await loader.load(locale);
-      // merge the two maps
+      // merge the maps
       // note that keys in [_translations] is overwritten with keys in [loadedTranslations]
       // hence, it is possible to overwrite the default translations
       _translations.addAll(loadedTranslations);
@@ -62,24 +59,24 @@ class RPLocalizations {
     return true;
   }
 
-  /// Translate [key] to this [locale].
-  /// If [key] is not translated, [key] is returned untranslated.
-  String translate(String key) =>
-      (_translations.containsKey(key)) ? _translations[key]! : key;
-
   /// A default [LocalizationsDelegate] for [RPLocalizations].
   ///
   /// This default delegate loads translations from the `assets/lang` file path.
   static LocalizationsDelegate<RPLocalizations> delegate =
-      RPLocalizationsDelegate(loader: FileLocalizationLoader());
+      RPLocalizationsDelegate(loaders: [AssetLocalizationLoader()]);
 }
 
 class RPLocalizationsDelegate extends LocalizationsDelegate<RPLocalizations> {
-  final LocalizationLoader loader;
+  final List<LocalizationLoader> loaders;
   bool _shouldReload = false;
 
   /// Create a [RPLocalizationsDelegate].
-  RPLocalizationsDelegate({required this.loader});
+  ///
+  /// [loaders] specify a list of [LocalizationLoader] which each can load
+  /// different translations. Translations from all [loaders] are merged.
+  /// Potential dublicate tranlation keys are overwritten in the order of
+  /// the list of loaders.
+  RPLocalizationsDelegate({required this.loaders});
 
   @override
   bool isSupported(Locale locale) {
@@ -91,7 +88,7 @@ class RPLocalizationsDelegate extends LocalizationsDelegate<RPLocalizations> {
   @override
   Future<RPLocalizations> load(Locale locale) async {
     RPLocalizations localizations = RPLocalizations(locale);
-    await localizations.load(loader: loader);
+    await localizations.load(loaders: loaders);
     _shouldReload = false;
     return localizations;
   }
@@ -134,15 +131,15 @@ class MapLocalizationLoader implements LocalizationLoader {
       (map.containsKey(locale.languageCode)) ? map[locale.languageCode]! : {};
 }
 
-/// A [LocalizationLoader] which can load translations from file
+/// A [LocalizationLoader] which can load translations from file assets
 /// bundles. Remember to add the language file assets to the
 /// `pubspec.yaml` file.
-class FileLocalizationLoader implements LocalizationLoader {
+class AssetLocalizationLoader implements LocalizationLoader {
   final String basePath;
 
-  /// Create a file location loader.
+  /// Create a asset location loader.
   /// Loads from `assets/lang` per default.
-  const FileLocalizationLoader({this.basePath = 'assets/lang'});
+  const AssetLocalizationLoader({this.basePath = 'assets/lang'});
 
   @override
   Future<Map<String, String>> load(Locale locale) async {

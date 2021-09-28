@@ -1,3 +1,7 @@
+## 0.6.4
+
+- `RPLocalizationsDelegate` now support multiple `loaders` which can merge translations from several sources.
+
 ## 0.6.3
 
 - Changed background color element from backgroundColor -> scaffoldBackgroundColor.

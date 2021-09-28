@@ -38,7 +38,9 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
-    result = RPStepResult(identifier: widget.step.identifier, answerFormat: widget.step.answerFormat);
+    result = RPStepResult(
+        identifier: widget.step.identifier,
+        answerFormat: widget.step.answerFormat);
     readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
@@ -50,8 +52,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   Widget stepBody(RPAnswerFormat answerFormat) {
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
-        return RPUIIntegerQuestionBody(
-            (answerFormat as RPIntegerAnswerFormat),
+        return RPUIIntegerQuestionBody((answerFormat as RPIntegerAnswerFormat),
             (result) {
           this.currentQuestionBodyResult = result;
         });
@@ -99,8 +100,8 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
         children: [
           // Title
           Padding(
-            padding: const EdgeInsets.only(
-                bottom: 24, left: 8, right: 8, top: 0),
+            padding:
+                const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 0),
             child: Text(
               locale?.translate(widget.step.title) ?? widget.step.title,
               textAlign: TextAlign.left,

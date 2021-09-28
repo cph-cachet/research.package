@@ -209,7 +209,7 @@ RPCompletionStep completionStep = RPCompletionStep(
     identifier: "completionID",
     title: "informed_consent.thanks",
     text: "informed_consent.document_saved");
-    
+
 RPOrderedTask consentTask = RPOrderedTask(
   identifier: "consentTaskID",
   steps: [

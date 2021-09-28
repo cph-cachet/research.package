@@ -101,7 +101,7 @@ class RPResultPredicate {
           break;
         }
       case null:
-        throw("ChoiceQuestionResultPredicateMode was null in RPResultPredicate");
+        throw ("ChoiceQuestionResultPredicateMode was null in RPResultPredicate");
     }
     return this._predictionResult;
   }
