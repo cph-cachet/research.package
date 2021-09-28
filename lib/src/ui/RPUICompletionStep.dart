@@ -13,7 +13,8 @@ class RPUICompletionStep extends StatefulWidget {
   _RPUICompletionStepState createState() => _RPUICompletionStepState();
 }
 
-class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTickerProviderStateMixin {
+class _RPUICompletionStepState extends State<RPUICompletionStep>
+    with SingleTickerProviderStateMixin {
   late Animation<double> _scale;
   late AnimationController _controller;
 
@@ -21,8 +22,11 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
   void initState() {
     super.initState();
 
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 350));
-    _scale = Tween(begin: 0.3, end: 1.1).chain(CurveTween(curve: Curves.easeInOut)).animate(_controller);
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 350));
+    _scale = Tween(begin: 0.3, end: 1.1)
+        .chain(CurveTween(curve: Curves.easeInOut))
+        .animate(_controller);
     _controller.forward();
   }
 
@@ -68,7 +72,8 @@ class _RPUICompletionStepState extends State<RPUICompletionStep> with SingleTick
                 onPressed: () {
                   blocTask.sendStatus(RPStepStatus.Finished);
                 },
-                child: Text(RPLocalizations.of(context)?.translate('DONE') ?? "DONE",
+                child: Text(
+                    RPLocalizations.of(context)?.translate('DONE') ?? "DONE",
                     style: TextStyle(color: Theme.of(context).primaryColor)),
               ),
             )

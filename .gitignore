@@ -306,3 +306,4 @@ pubspec.lock
 doc/api
 
 *.lock
+*.lock

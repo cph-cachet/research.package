@@ -13,7 +13,8 @@ class RPUIConsentReviewStep extends StatefulWidget {
   _RPUIConsentReviewStepState createState() => _RPUIConsentReviewStepState();
 }
 
-class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanSaveResult {
+class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
+    with CanSaveResult {
   late RPConsentSignatureResult consentSignatureResult;
   RPSignatureResult? signatureResult;
   late RPStepResult result;
@@ -41,14 +42,16 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
 
   @override
   void createAndSendResult() {
-    consentSignatureResult =
-        RPConsentSignatureResult(widget.step.identifier, widget.step.consentDocument, signatureResult)
-          ..endDate = DateTime.now();
+    consentSignatureResult = RPConsentSignatureResult(
+        widget.step.identifier, widget.step.consentDocument, signatureResult)
+      ..endDate = DateTime.now();
 
     consentSignatureResult.consentDocument.signatures.isEmpty
-        ? result.setResultForIdentifier("no signature collected", consentSignatureResult)
+        ? result.setResultForIdentifier(
+            "no signature collected", consentSignatureResult)
         : //TODO: modify identifier to match the id of rpconsentsignature
-        result.setResultForIdentifier(consentSignatureResult.consentDocument.signatures.first.identifier,
+        result.setResultForIdentifier(
+            consentSignatureResult.consentDocument.signatures.first.identifier,
             consentSignatureResult); //TODO: modify identifier to match the id of RPConsentSignature
 
     blocTask.sendStepResult(result);
@@ -62,8 +65,8 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep> with CanS
         WidgetBuilder builder;
         switch (settings.name) {
           case 'consent_review/text':
-            builder = (BuildContext _) =>
-                _TextPresenterRoute(widget.step, (signatureResult) => _setSignatureResult(signatureResult));
+            builder = (BuildContext _) => _TextPresenterRoute(widget.step,
+                (signatureResult) => _setSignatureResult(signatureResult));
             break;
           case 'consent_review/signature':
             builder = (BuildContext _) => _SignatureRoute(
@@ -110,8 +113,10 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
     }
     index -= 1;
 
-    if (widget.step.consentDocument.sections[index].type == RPConsentSectionType.PassiveDataCollection ||
-        widget.step.consentDocument.sections[index].type == RPConsentSectionType.UserDataCollection) {
+    if (widget.step.consentDocument.sections[index].type ==
+            RPConsentSectionType.PassiveDataCollection ||
+        widget.step.consentDocument.sections[index].type ==
+            RPConsentSectionType.UserDataCollection) {
       return Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +125,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             Padding(
               padding: const EdgeInsets.only(top: 24, bottom: 4),
               child: Text(
-                locale?.translate(widget.step.consentDocument.sections[index].title) ??
+                locale?.translate(
+                        widget.step.consentDocument.sections[index].title) ??
                     widget.step.consentDocument.sections[index].title,
                 style: Theme.of(context).textTheme.headline5,
                 textAlign: TextAlign.justify,
@@ -143,7 +149,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                         textAlign: TextAlign.justify,
                       ),
                       Text(
-                        locale?.translate(e.dataInformation) ?? e.dataInformation,
+                        locale?.translate(e.dataInformation) ??
+                            e.dataInformation,
                         style: Theme.of(context).textTheme.bodyText2,
                         textAlign: TextAlign.justify,
                       ),
@@ -164,9 +171,13 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              locale?.translate(widget.step.consentDocument.sections[index].title) ??
+              locale?.translate(
+                      widget.step.consentDocument.sections[index].title) ??
                   widget.step.consentDocument.sections[index].title,
-              style: Theme.of(context).textTheme.headline5!.copyWith(color: Theme.of(context).primaryColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5!
+                  .copyWith(color: Theme.of(context).primaryColor),
               textAlign: TextAlign.justify,
             ),
           ),
@@ -197,8 +208,10 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text(locale?.translate(widget.step.text!) ?? widget.step.text!),
-            content: Text(locale?.translate(widget.step.reasonForConsent!) ?? widget.step.reasonForConsent!),
+            title:
+                Text(locale?.translate(widget.step.text!) ?? widget.step.text!),
+            content: Text(locale?.translate(widget.step.reasonForConsent!) ??
+                widget.step.reasonForConsent!),
             actions: <Widget>[
               OutlinedButton(
                 child: Text(
@@ -209,7 +222,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
               ),
               TextButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                  backgroundColor:
+                      MaterialStateProperty.all(Theme.of(context).primaryColor),
                 ),
                 child: Text(
                   locale?.translate('AGREE') ?? "AGREE",
@@ -247,7 +261,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           minWidth: 70,
           child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+              backgroundColor:
+                  MaterialStateProperty.all(Theme.of(context).primaryColor),
             ),
             child: Text(
               locale?.translate('AGREE') ?? "AGREE",
@@ -259,7 +274,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                     ? () {
                         // Dismiss pop-up. It uses the root Navigator since it's an overlay
                         Navigator.of(context, rootNavigator: true).pop();
-                        Navigator.of(context).pushReplacementNamed('consent_review/signature');
+                        Navigator.of(context)
+                            .pushReplacementNamed('consent_review/signature');
                       }
                     : () {
                         // Dismiss pop-up. It uses the root Navigator since it's an overlay
@@ -330,7 +346,8 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   void _checkNameIsNotEmpty() {
     setState(() {
-      _isNameFilled = (_firstNameController.text != '' && _lastNameController.text != '');
+      _isNameFilled =
+          (_firstNameController.text != '' && _lastNameController.text != '');
     });
   }
 
@@ -343,8 +360,12 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       backgroundColor: Colors.transparent,
     );
 
-    widget._consentSignature.requiresSignatureImage ? _isSignatureAdded = false : _isSignatureAdded = true;
-    widget._consentSignature.requiresName ? _isNameFilled = false : _isNameFilled = true;
+    widget._consentSignature.requiresSignatureImage
+        ? _isSignatureAdded = false
+        : _isSignatureAdded = true;
+    widget._consentSignature.requiresName
+        ? _isNameFilled = false
+        : _isNameFilled = true;
     _firstNameController.addListener(_checkNameIsNotEmpty);
     _lastNameController.addListener(_checkNameIsNotEmpty);
 
@@ -369,7 +390,8 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           textInputAction: TextInputAction.done,
           onFieldSubmitted: (_) => node.unfocus(),
           controller: _lastNameController,
-          decoration: InputDecoration(labelText: locale?.translate('last_name') ?? "Last Name"),
+          decoration: InputDecoration(
+              labelText: locale?.translate('last_name') ?? "Last Name"),
         ),
       ],
     );
@@ -383,7 +405,8 @@ class _SignatureRouteState extends State<_SignatureRoute> {
         child: Column(
           children: <Widget>[
             Text(
-              locale?.translate('sign_with_finger') ?? 'Please sign using your finger on the box below',
+              locale?.translate('sign_with_finger') ??
+                  'Please sign using your finger on the box below',
               style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
             ),
@@ -439,14 +462,19 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           padding: EdgeInsets.all(12),
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
-            widget._consentSignature.requiresName ? _nameFields(context) : Container(),
-            widget._consentSignature.requiresSignatureImage ? _signingField(context) : Container(),
+            widget._consentSignature.requiresName
+                ? _nameFields(context)
+                : Container(),
+            widget._consentSignature.requiresSignatureImage
+                ? _signingField(context)
+                : Container(),
           ],
         ),
       ),
       persistentFooterButtons: <Widget>[
         ElevatedButton(
-          style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+          style:
+              ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
           child: Text(
             locale?.translate('NEXT') ?? "NEXT",
             style: Theme.of(context).primaryTextTheme.button,

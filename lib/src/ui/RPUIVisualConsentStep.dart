@@ -13,7 +13,8 @@ class RPUIVisualConsentStep extends StatefulWidget {
   _RPUIVisualConsentStep createState() => _RPUIVisualConsentStep();
 }
 
-class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTickerProviderStateMixin {
+class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
+    with SingleTickerProviderStateMixin {
   int _pageNr = 0;
   bool _lastPage = false;
 
@@ -48,7 +49,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
       builder: (context) {
         RPLocalizations? locale = RPLocalizations.of(context);
         return AlertDialog(
-          content: Text(locale?.translate('quit_confirmation') ?? "Are you sure you want to quit?"),
+          content: Text(locale?.translate('quit_confirmation') ??
+              "Are you sure you want to quit?"),
           actions: <Widget>[
             OutlinedButton(
               child: Text(
@@ -61,7 +63,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               },
             ),
             ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor),
                 child: Text(
                   RPLocalizations.of(context)?.translate('NO') ?? 'NO',
                   style: Theme.of(context).primaryTextTheme.button,
@@ -276,7 +279,9 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                     section.title,
                     section.content!,
                   ),
-                  child: Text(RPLocalizations.of(context)?.translate('learn_more') ?? "Learn more...",
+                  child: Text(
+                      RPLocalizations.of(context)?.translate('learn_more') ??
+                          "Learn more...",
                       style: Theme.of(context)
                           .textTheme
                           .headline6!
@@ -327,7 +332,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
               ),
               child: _lastPage
                   ? Text(
-                      RPLocalizations.of(context)?.translate('SEE_SUMMARY') ?? "SEE SUMMARY",
+                      RPLocalizations.of(context)?.translate('SEE_SUMMARY') ??
+                          "SEE SUMMARY",
                       style: TextStyle(color: Colors.white), //
                     )
                   : Text(
@@ -336,8 +342,9 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep> with SingleTic
                     ),
               onPressed: _lastPage
                   ? () => blocTask.sendStatus(RPStepStatus.Finished)
-                  : () =>
-                      controller.nextPage(duration: Duration(milliseconds: 400), curve: Curves.fastOutSlowIn),
+                  : () => controller.nextPage(
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.fastOutSlowIn),
             ),
           ),
         ],
@@ -405,7 +412,8 @@ class _ContentRoute extends StatelessWidget {
               //       style: Theme.of(context).textTheme.headline4),
               // ),
               IconButton(
-                icon: Icon(Icons.clear, color: Theme.of(context).primaryColor, size: 30),
+                icon: Icon(Icons.clear,
+                    color: Theme.of(context).primaryColor, size: 30),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               SizedBox(width: 5),
@@ -447,7 +455,8 @@ class _DataCollectionListItemState extends State<DataCollectionListItem> {
       child: ExpansionTile(
         expandedAlignment: Alignment.centerLeft,
         title: Text(
-          locale?.translate(widget.dataTypeSection.dataName) ?? widget.dataTypeSection.dataName,
+          locale?.translate(widget.dataTypeSection.dataName) ??
+              widget.dataTypeSection.dataName,
           style: Theme.of(context).textTheme.subtitle1,
           textAlign: TextAlign.start,
         ),
