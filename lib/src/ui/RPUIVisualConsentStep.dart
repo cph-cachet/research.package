@@ -404,27 +404,30 @@ class _ContentRoute extends StatelessWidget {
         children: [
           SizedBox(height: 35),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Text(locale?.translate(this.title) ?? this.title,
-                    style: Theme.of(context).textTheme.headline4),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 20),
+              //   child: Text(locale?.translate(this.title) ?? this.title,
+              //       style: Theme.of(context).textTheme.headline4),
+              // ),
               IconButton(
                 icon: Icon(Icons.clear,
                     color: Theme.of(context).primaryColor, size: 30),
                 onPressed: () => Navigator.of(context).pop(),
               ),
+              SizedBox(width: 5),
             ],
           ),
-          Container(
-            padding: EdgeInsets.all(20.0),
+          Expanded(
             child: SingleChildScrollView(
-              child: Text(
-                locale?.translate(this.content) ?? this.content,
-                style: Theme.of(context).textTheme.headline6,
-                textAlign: TextAlign.justify,
+              child: Container(
+                padding: EdgeInsets.all(20.0),
+                child: Text(
+                  locale?.translate(this.content) ?? this.content,
+                  style: Theme.of(context).textTheme.headline6,
+                  textAlign: TextAlign.justify,
+                ),
               ),
             ),
           ),
