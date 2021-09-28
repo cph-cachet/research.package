@@ -24,21 +24,21 @@ class RPLocalizations extends AssetLocalizations {
       Localizations.of<RPLocalizations>(context, RPLocalizations);
 
   /// The name of the static localization asset.
-  String get _staticAssetName =>
+  String get staticAssetName =>
       'packages/$assetPath/${locale.languageCode}.json';
 
   /// Load the translations for Research Package.
   ///
   /// The translations is a combination of the static names in the package as
-  /// provided in [_staticAssetName] combined with translations of the any text
+  /// provided in [staticAssetName] combined with translations of the any text
   /// provided by the [loaders], which knows how to load translations.
   @override
   Future<bool> load({List<LocalizationLoader> loaders = const []}) async {
-    print("$runtimeType - loading '$_staticAssetName'");
+    print("$runtimeType - loading '$staticAssetName'");
 
     // first load the static translations as part of RP
     String jsonString = await rootBundle.loadString(
-      _staticAssetName,
+      staticAssetName,
       cache: false,
     );
 

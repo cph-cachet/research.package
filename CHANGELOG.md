@@ -1,22 +1,22 @@
-## 0.6.4
+## 0.6.5
+- update to UI rendering in the Informed Consent based on PR [#50](https://github.com/cph-cachet/research.package/pull/50).
+- updating README to link to the new [tutorials on `carp.cachet.dk`](https://carp.cachet.dk/category/tutorials/).
 
+## 0.6.4
 - `RPLocalizationsDelegate` now support multiple `loaders` which can merge translations from several sources.
 
 ## 0.6.3
-
 - Changed background color element from backgroundColor -> scaffoldBackgroundColor.
 - Updated RPConsentSection to also take a custom title on predefined section types.
 - Fixed an issue with the cupertinoDatePicker in dark mode, that caused the picker to not follow the theme values.
 - Added headline6 to questions step titles. 
 
 ## 0.6.2
-
 - Additional customizable text in the theme
 - Example app updated
 - Textfield hintText uses the 'text' parameter.
 
 ## 0.6.1
-
 - Bug fix (Missing signature)
 
 ## 0.6.0

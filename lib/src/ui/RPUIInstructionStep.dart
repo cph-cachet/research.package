@@ -66,9 +66,11 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 ),
                 widget.step.detailText != null
                     ? TextButton(
-                        style:
-                            TextButton.styleFrom(textStyle: TextStyle(color: Theme.of(context).primaryColor)),
-                        child: Text(locale?.translate('learn_more') ?? "Learn more..."),
+                        style: TextButton.styleFrom(
+                            textStyle: TextStyle(
+                                color: Theme.of(context).primaryColor)),
+                        child: Text(
+                            locale?.translate('learn_more') ?? "Learn more..."),
                         onPressed: _pushDetailTextRoute,
                       )
                     : Container(),
@@ -78,8 +80,10 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 ? Container(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      locale?.translate(widget.step.footnote!) ?? widget.step.footnote!,
-                      style: Theme.of(context).textTheme.caption, // TODO: change?
+                      locale?.translate(widget.step.footnote!) ??
+                          widget.step.footnote!,
+                      style:
+                          Theme.of(context).textTheme.caption, // TODO: change?
                       textAlign: TextAlign.start,
                     ),
                   )
@@ -113,7 +117,8 @@ class _DetailTextRoute extends StatelessWidget {
               children: [
                 SizedBox(width: 3),
                 IconButton(
-                  icon: Icon(Icons.arrow_back, color: Theme.of(context).primaryColor, size: 30),
+                  icon: Icon(Icons.arrow_back,
+                      color: Theme.of(context).primaryColor, size: 30),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 Text(locale?.translate('learn_more') ?? 'Learn more',
