@@ -134,6 +134,18 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
           checkReadyToProceed();
         });
+      case RPTextAnswerFormat:
+        return RPUITextInputQuestionBody((answerFormat as RPTextAnswerFormat),
+            (result) {
+          RPStepResult tempResult = stepResult.results[id] as RPStepResult;
+          tempResult.questionTitle = widget.formStep.steps
+              .where((step) => step.identifier == id)
+              .first
+              .title;
+          tempResult.setResult(result);
+
+          checkReadyToProceed();
+        });
       default:
         return Container();
     }

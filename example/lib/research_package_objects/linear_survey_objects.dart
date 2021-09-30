@@ -158,9 +158,20 @@ RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(
   answerFormat: imageChoiceAnswerFormat,
 );
 
+RPQuestionStep textQuestionStep = RPQuestionStep(
+  identifier: "textStepID",
+  answerFormat: RPTextAnswerFormat(hintText: "Write here"),
+  title: "Describe your morning routine",
+);
+
 RPFormStep formStep = RPFormStep(
   identifier: "formstepID",
-  steps: [instrumentChoiceQuestionStep, minutesQuestionStep, dateQuestionStep],
+  steps: [
+    instrumentChoiceQuestionStep,
+    textQuestionStep,
+    minutesQuestionStep,
+    dateQuestionStep
+  ],
   title: "Questions about music",
   optional: true,
 );
