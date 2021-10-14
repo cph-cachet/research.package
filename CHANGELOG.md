@@ -1,3 +1,6 @@
+## 0.6.6
+* update to `carp_core` v. 0.31.0
+
 ## 0.6.5+1
 - update to UI rendering in the Informed Consent based on PR [#51](https://github.com/cph-cachet/research.package/pull/51).
 - update to UI rendering in the Informed Consent based on PR [#50](https://github.com/cph-cachet/research.package/pull/50).
