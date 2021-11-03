@@ -25,6 +25,7 @@ import 'model.dart';
 // Library elements
 part 'src/localization/RPLocalization.dart';
 part 'src/localization/AssetsLocalization.dart';
+part 'src/loggers/RPActivityEventLogger.dart';
 part 'src/ui/QuestionBody/RPUIBooleanQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';
@@ -39,3 +40,4 @@ part 'src/ui/RPUIInstructionStep.dart';
 part 'src/ui/RPUIQuestionStep.dart';
 part 'src/ui/RPUITask.dart';
 part 'src/ui/RPUIVisualConsentStep.dart';
+part 'src/ui/RPUIActivityStep.dart';

@@ -47,6 +47,7 @@ part 'src/model/step/RPFormStep.dart';
 part 'src/model/step/RPQuestionStep.dart';
 part 'src/model/step/RPInstructionStep.dart';
 part 'src/model/step/RPCompletionStep.dart';
+part 'src/model/step/RPActivityStep.dart';
 
 part 'src/model/task/RPOrderedTask.dart';
 part 'src/model/task/RPNavigableOrderedTask.dart';
@@ -64,6 +65,7 @@ part 'src/model/result/RPStepResult.dart';
 part 'src/model/result/RPConsentSignatureResult.dart';
 part 'src/model/result/RPSignatureResult.dart';
 part 'src/model/result/RPNoResult.dart';
+part 'src/model/result/RPActivityResult.dart';
 
 // Protocols
 part 'src/model/Abstracts.dart';
