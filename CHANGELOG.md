@@ -1,3 +1,6 @@
+## 0.6.7
+- Added "Activity Steps" as RPActivityStep - A class that allows for the making of Cognitive Tests
+
 ## 0.6.6
 * update to `carp_core` v. 0.31.0
 
