@@ -1,3 +1,9 @@
+## 0.6.7
+- Added Activity Steps as `RPActivityStep` - A class that allows for the making of Cognitive Tests
+- Added Activity Result as `RPActivityResult` - A class for storing the result of a Cognitive test
+- Added `RPActivityEventLogger` - used for logging small events during each `activity step`
+- Include json serialization for added classes.
+
 ## 0.6.6
 * update to `carp_core` v. 0.31.0
 
