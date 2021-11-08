@@ -25,11 +25,10 @@ class RPActivityStep extends RPStep {
   @override
   Widget get stepWidget => RPUIActivityStep(this);
 
+  /// stepBody initiates the UI component for an ActivityStep.
+  ///
+  /// All classes extending ActivityStep override this with their own UI components.
   Widget stepBody(dynamic Function(dynamic) onResultChange,
           RPActivityEventLogger eventLogger) =>
       Container();
-
-  // Widget fakeBody(RPActivityEventLogger eventLogger,
-  //         dynamic Function(dynamic) onResultChange) =>
-  //     Container();
 }

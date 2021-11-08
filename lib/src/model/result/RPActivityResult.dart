@@ -8,7 +8,6 @@ class RPActivityResult extends RPResult {
   late List<Interaction> _interactions;
 
   /// Default constructor used for JSON.
-  /// Use [RPActivityResult.withParams(...)] when creating an Activity.
   RPActivityResult({required String identifier}) : super(identifier) {
     this._results = Map<String, dynamic>();
     this._stepTimes = StepTimes();
@@ -16,21 +15,6 @@ class RPActivityResult extends RPResult {
 
     this.startDate = DateTime.now();
   }
-
-  /// Returns an [RPActivityResult] with a given identifier, an empty map of results, steptimes and interaction list.
-  ///
-  /// It sets [startDate] to the [DateTime.now()]. Since these objects are instantiated
-  /// together with the Activity it belongs to so it can be used for measuring how much
-  /// time the participant spent the given Activity.
-  // RPActivityResult.withParams(RPStep step)
-  //     : super.withIdentifier(step.identifier) {
-  //   this._results = Map<String, dynamic>();
-  //   this._stepTimes = StepTimes();
-  //   // ignore: deprecated_member_use
-  //   this._interactions = List();
-
-  //   this.startDate = DateTime.now();
-  // }
 
   /// The map of results with a String as identifier and generic type as value
   Map<String, dynamic> get results => _results;
