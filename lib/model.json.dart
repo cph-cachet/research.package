@@ -53,6 +53,12 @@ void _registerFromJsonFunctions() {
     dataName: '',
     dataInformation: '',
   ));
+
+  // Navigation rule classes
+  FromJsonFactory()
+      .register(RPDirectStepNavigationRule(destinationStepIdentifier: ''));
+  FromJsonFactory().register(RPStepJumpRule(answerMap: {}));
+  FromJsonFactory().register(RPStepReorganizerRule(reorderingMap: {}));
 }
 
 // auto generate json code (.g files) with:

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:research_package/research_package.dart';
 import 'research_package_objects/navigable_survey_objects.dart';
@@ -9,7 +11,7 @@ class NavigableSurveyPage extends StatelessWidget {
 
   void resultCallback(RPTaskResult result) {
     // Do anything with the result
-    print(_encode(result));
+    log(_encode(result));
   }
 
   void cancelCallBack(RPTaskResult result) {
@@ -19,8 +21,13 @@ class NavigableSurveyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Example of serialization to and from JSON
+    RPNavigableOrderedTask task = RPNavigableOrderedTask.fromJson(
+        json.decode(_encode(navigableSurveyTaskRPStepJumpRule)));
+
     return RPUITask(
-      task: navigableSurveyTask,
+      task: task,
+      // task: navigableSurveyTaskRPStepJumpRule,
       onSubmit: resultCallback,
       onCancel: (RPTaskResult? result) {
         if (result == null) {
