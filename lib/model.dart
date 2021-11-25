@@ -32,7 +32,6 @@ part 'src/model/answerformat/RPFormAnswerFormat.dart';
 part 'src/model/answerformat/RPSliderAnswerFormat.dart';
 part 'src/model/answerformat/RPImageChoiceAnswerFormat.dart';
 part 'src/model/answerformat/RPDateTimeAnswerFormat.dart';
-part 'src/model/answerformat/RPBooleanAnswerFormat.dart';
 part 'src/model/answerformat/RPTextAnswerFormat.dart';
 
 part 'src/model/consent/RPConsentDocument.dart';

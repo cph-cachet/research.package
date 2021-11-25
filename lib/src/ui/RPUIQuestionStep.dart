@@ -76,11 +76,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
             (answerFormat as RPDateTimeAnswerFormat), (result) {
           this.currentQuestionBodyResult = result;
         });
-      case RPBooleanAnswerFormat:
-        return RPUIBooleanQuestionBody((answerFormat as RPBooleanAnswerFormat),
-            (result) {
-          this.currentQuestionBodyResult = result;
-        });
       case RPTextAnswerFormat:
         return RPUITextInputQuestionBody((answerFormat as RPTextAnswerFormat),
             (result) {

@@ -5,7 +5,7 @@ import 'package:research_package/research_package.dart';
 
 import '../example/lib/research_package_objects/infomed_consent_objects.dart';
 import '../example/lib/research_package_objects/linear_survey_objects.dart';
-import '../example/lib/research_package_objects/navigable_survey_objects.dart';
+import '../example/lib/research_package_objects/other_navigable_survey_examples.dart';
 
 /// These tests takes the examples from the example app and tests de/serialization.
 void main() {

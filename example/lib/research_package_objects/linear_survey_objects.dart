@@ -24,6 +24,10 @@ List<RPChoice> instruments = [
   RPChoice(text: "Piano", value: 2),
   RPChoice(text: "Saxophone", value: 1),
 ];
+List<RPChoice> yesNo = [
+  RPChoice(text: "Yes", value: 1),
+  RPChoice(text: "No", value: 0),
+];
 
 List<RPImageChoice> images = [
   RPImageChoice(
@@ -79,8 +83,10 @@ RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat(
 RPIntegerAnswerFormat weightIntegerAnswerFormat =
     RPIntegerAnswerFormat(minValue: 0, maxValue: 200, suffix: "KG");
 
-RPBooleanAnswerFormat smokingBooleanAnswerFormat =
-    RPBooleanAnswerFormat(trueText: "Yes, absolutely", falseText: "No, never");
+RPChoiceAnswerFormat yesNoAnswerFormat = RPChoiceAnswerFormat(
+  answerStyle: RPChoiceAnswerStyle.SingleChoice,
+  choices: yesNo,
+);
 
 RPIntegerAnswerFormat minutesIntegerAnswerFormat =
     RPIntegerAnswerFormat(minValue: 0, maxValue: 10000, suffix: "minutes");
@@ -129,7 +135,7 @@ RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(
 RPQuestionStep smokingQuestionStep = RPQuestionStep(
   identifier: "booleanQuestionStepID",
   title: "Do you smoke?",
-  answerFormat: smokingBooleanAnswerFormat,
+  answerFormat: yesNoAnswerFormat,
 );
 
 RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(

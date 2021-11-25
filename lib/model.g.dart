@@ -269,33 +269,6 @@ const _$RPDateTimeAnswerStyleEnumMap = {
   RPDateTimeAnswerStyle.TimeOfDay: 'TimeOfDay',
 };
 
-RPBooleanAnswerFormat _$RPBooleanAnswerFormatFromJson(
-        Map<String, dynamic> json) =>
-    RPBooleanAnswerFormat(
-      trueText: json['true_text'] as String,
-      falseText: json['false_text'] as String,
-    )
-      ..$type = json[r'$type'] as String?
-      ..questionType =
-          $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
-
-Map<String, dynamic> _$RPBooleanAnswerFormatToJson(
-    RPBooleanAnswerFormat instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull(r'$type', instance.$type);
-  val['true_text'] = instance.trueText;
-  val['false_text'] = instance.falseText;
-  val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType];
-  return val;
-}
-
 RPTextAnswerFormat _$RPTextAnswerFormatFromJson(Map<String, dynamic> json) =>
     RPTextAnswerFormat(
       hintText: json['hint_text'] as String?,

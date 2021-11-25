@@ -11,8 +11,6 @@ void _registerFromJsonFunctions() {
 
   // AnswerFormat classes
   FromJsonFactory().register(RPAnswerFormat());
-  FromJsonFactory()
-      .register(RPBooleanAnswerFormat(falseText: '', trueText: ''));
   FromJsonFactory().register(RPChoiceAnswerFormat(
       answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: []));
   FromJsonFactory().register(RPChoice(text: '', value: 1));
