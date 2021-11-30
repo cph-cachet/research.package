@@ -217,7 +217,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             flex: 2,
             child: (!navigableTask)
                 ? Text(
-                    '$_currentQuestionIndex ${locale?.translate('of') ?? 'of'} ${widget.task.steps.length}',
+                    '${_currentStepIndex + 1} ${locale?.translate('of') ?? 'of'} ${widget.task.steps.length}',
                     style: Theme.of(context).appBarTheme.titleTextStyle,
                     textAlign: TextAlign.center,
                   )
