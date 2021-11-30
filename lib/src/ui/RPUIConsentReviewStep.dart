@@ -106,7 +106,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             locale?.translate('review_form') ??
                 'Review this form below, and tap AGREE if you\'re ready to continue.',
             style: Theme.of(context).textTheme.headline5,
-            textAlign: TextAlign.justify,
+            textAlign: TextAlign.start,
           ),
         ),
       ]);
@@ -129,7 +129,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                         widget.step.consentDocument.sections[index].title) ??
                     widget.step.consentDocument.sections[index].title,
                 style: Theme.of(context).textTheme.headline5,
-                textAlign: TextAlign.justify,
+                textAlign: TextAlign.start,
               ),
             ),
             Column(
@@ -146,13 +146,13 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                       Text(
                         locale?.translate(e.dataName) ?? e.dataName,
                         style: Theme.of(context).textTheme.subtitle1,
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.start,
                       ),
                       Text(
                         locale?.translate(e.dataInformation) ??
                             e.dataInformation,
                         style: Theme.of(context).textTheme.bodyText2,
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.start,
                       ),
                     ],
                   ),
@@ -178,7 +178,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                   .textTheme
                   .headline5!
                   .copyWith(color: Theme.of(context).primaryColor),
-              textAlign: TextAlign.justify,
+              textAlign: TextAlign.start,
             ),
           ),
           Text(
@@ -186,14 +186,14 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                     .summary!) ?? // Content must be provided given a section has been created that isnt data collection.
                 widget.step.consentDocument.sections[index].summary!,
             style: Theme.of(context).textTheme.bodyText1,
-            textAlign: TextAlign.justify,
+            textAlign: TextAlign.start,
           ),
           Text(
             locale?.translate(widget.step.consentDocument.sections[index]
                     .content!) ?? // Content must be provided given a section has been created that isnt data collection.
                 widget.step.consentDocument.sections[index].content!,
             style: Theme.of(context).textTheme.bodyText1,
-            textAlign: TextAlign.justify,
+            textAlign: TextAlign.start,
           ),
         ],
       ),
@@ -419,17 +419,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                     width: 2,
                   ),
                 ),
-                // child: Stack(children: [
-                //   Positioned(
-                //     bottom: 40,
-                //     child: Container(
-                //       height: 2,
-                //       width: MediaQuery.of(context).size.width * 0.8,
-                //       color: Theme.of(context).dividerColor,
-                //     ),
-                //   ),
                 child: _signatureCanvas(),
-                //]),
               ),
             ),
             OutlinedButton(

@@ -141,7 +141,8 @@ RPQuestionStep smokingQuestionStep = RPQuestionStep(
 RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(
     identifier: "instrumentChoiceQuestionStepID",
     title: "Which instrument are you playing?",
-    answerFormat: instrumentsAnswerFormat);
+    answerFormat: instrumentsAnswerFormat,
+    optional: true);
 
 RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep(
     identifier: "happinessChoiceQuestionStepID",
@@ -156,7 +157,8 @@ RPQuestionStep weightQuestionStep = RPQuestionStep(
 RPQuestionStep minutesQuestionStep = RPQuestionStep(
     identifier: "minutesQuestionStepID",
     title: "How many minutes do you spend practicing a week?",
-    answerFormat: minutesIntegerAnswerFormat);
+    answerFormat: minutesIntegerAnswerFormat,
+    optional: true);
 
 RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(
   identifier: "imageStepID",
@@ -192,23 +194,23 @@ RPInstructionStep instructionStep = RPInstructionStep(
     title: "Welcome!",
     detailText: "For the sake of science of course...",
     text:
-        "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.");
+        "Please fill out this questionnaire!\n\nIn this questionnaire the que-stions will come after each other in a given order. You still have the chance to skip a some of them though.");
 
 RPOrderedTask linearSurveyTask = RPOrderedTask(
   identifier: "surveyTaskID",
   steps: [
     instructionStep,
     formStep,
-    smokingQuestionStep,
-    sliderQuestionStep,
-    timeOfDayQuestionStep,
-    dateAndTimeQuestionStep,
-    dateQuestionStep,
-    imageChoiceQuestionStep,
-    singleChoiceQuestionStep,
-    happinessChoiceQuestionStep,
-    weightQuestionStep,
-    additionalInfoQuestionStep,
+    // smokingQuestionStep,
+    // sliderQuestionStep,
+    // timeOfDayQuestionStep,
+    // dateAndTimeQuestionStep,
+    // dateQuestionStep,
+    // imageChoiceQuestionStep,
+    // singleChoiceQuestionStep,
+    // happinessChoiceQuestionStep,
+    // weightQuestionStep,
+    // additionalInfoQuestionStep,
     completionStep
   ],
 );

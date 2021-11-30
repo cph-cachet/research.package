@@ -20,11 +20,25 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   // questions are answered.
   void checkReadyToProceed() {
     bool temp = true;
-    stepResult.results.values.forEach((result) {
-      if ((result as RPStepResult).results[RPStepResult.DEFAULT_KEY] == null) {
-        temp = false;
+    widget.formStep.steps.forEach((step) {
+      if (!step.optional) {
+        // stepResult.results.containsKey(step.identifier);
+        // print(step.identifier);
+        // print(stepResult.results.containsKey(step.identifier));
+        if (!stepResult.results.containsKey(step.identifier)) {
+          temp = false;
+        }
       }
+      // print(stepResult.results);
+      // if (stepResult.results.containsKey(key))
     });
+
+    // stepResult.results.values.forEach((result) {
+    //   // if ((result as RPStepResult).identifier) {
+    //   if ((result as RPStepResult).results[RPStepResult.DEFAULT_KEY] == null) {
+    //     temp = false;
+    //   }
+    // });
     setState(() {
       readyToProceed = temp;
     });

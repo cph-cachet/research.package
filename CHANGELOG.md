@@ -1,43 +1,60 @@
+## 0.7.0
+
+- Removed Boolean questions, including answer format for simplicity and navigation changes.
+- Removed Predicate Navigation rules, for simplicity and navigation changes.
+- JSON serialization to AND from, now retains the navigation rules added. Previously the navigation was lost after conversion.
+- Updated example app
+
 ## 0.6.7
+
 - Added Activity Steps as `RPActivityStep` - A class that allows for the making of Cognitive Tests
 - Added Activity Result as `RPActivityResult` - A class for storing the result of a Cognitive test
 - Added `RPActivityEventLogger` - used for logging small events during each `activity step`
 - Include json serialization for added classes.
 
 ## 0.6.6
-* update to `carp_core` v. 0.31.0
+
+- update to `carp_core` v. 0.31.0
 
 ## 0.6.5+1
+
 - update to UI rendering in the Informed Consent based on PR [#51](https://github.com/cph-cachet/research.package/pull/51).
 - update to UI rendering in the Informed Consent based on PR [#50](https://github.com/cph-cachet/research.package/pull/50).
 - updating README to link to the new [tutorials on `carp.cachet.dk`](https://carp.cachet.dk/category/tutorials/).
 
 ## 0.6.4
+
 - `RPLocalizationsDelegate` now support multiple `loaders` which can merge translations from several sources.
 
 ## 0.6.3
+
 - Changed background color element from backgroundColor -> scaffoldBackgroundColor.
 - Updated RPConsentSection to also take a custom title on predefined section types.
 - Fixed an issue with the cupertinoDatePicker in dark mode, that caused the picker to not follow the theme values.
-- Added headline6 to questions step titles. 
+- Added headline6 to questions step titles.
 
 ## 0.6.2
+
 - Additional customizable text in the theme
 - Example app updated
 - Textfield hintText uses the 'text' parameter.
 
 ## 0.6.1
+
 - Bug fix (Missing signature)
 
 ## 0.6.0
+
 - Null safety added.
 - Theming updated using PR #24
 - Minor fixes
 
 ## 0.5.5
+
 - small update to robustness and debug info in `RPLocalizations`
 
 ## 0.5.4
+
 - update to the localization model (`RPLocalizations`) so that:
   - the localization of the embedded text in RP is now part of RP (you don't need to worry about this anymore)
   - localization of informed consent and survey is (still) in the `assets/lang/` folder
@@ -46,6 +63,7 @@
 - example app update to illustrate the use of both types of localization
 
 ## 0.5.3+1
+
 - small updates to documentation
 - making `RPTask` serializable instead of abtstract
 - fix to `translate` method

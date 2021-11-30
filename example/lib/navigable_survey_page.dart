@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:research_package/research_package.dart';
-import 'package:research_package_demo_app/linear_survey_page.dart';
 import 'dart:convert';
 
 import 'package:research_package_demo_app/research_package_objects/navigation_step_jump_rule.dart';
@@ -30,15 +29,7 @@ class NavigableSurveyPage extends StatelessWidget {
     return RPUITask(
       task: task,
       // task: navigableSurveyTaskRPStepJumpRule,
-      onSubmit: (RPTaskResult result) {
-        // if (result.results['<question identifier>'].results['answer'].first.value == <Value of the RPChoice>) {
-        // Example here
-        if (result.results['smokingQuestionId'].results['answer'].first.value ==
-            1) {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => LinearSurveyPage()));
-        }
-      },
+      onSubmit: resultCallback,
       onCancel: (RPTaskResult? result) {
         if (result == null) {
           print("No result");

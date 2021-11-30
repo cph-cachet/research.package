@@ -60,7 +60,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                   padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
                   child: Text(
                     locale?.translate(widget.step.text!) ?? widget.step.text!,
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.headline5,
                   ),
                 ),
@@ -105,13 +105,10 @@ class _DetailTextRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        // appBar: AppBar(
-        //   title: Text(locale?.translate(this.title) ?? this.title),
-        // ),
-        body: Column(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: SafeArea(
+        child: Column(
           children: [
-            SizedBox(height: 35),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -131,12 +128,14 @@ class _DetailTextRoute extends StatelessWidget {
                 child: Text(
                   locale?.translate(this.content) ?? this.content,
                   style: Theme.of(context).textTheme.bodyText1,
-                  textAlign: TextAlign.justify,
+                  textAlign: TextAlign.start,
                 ),
               ),
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
 
