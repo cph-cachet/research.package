@@ -16,29 +16,19 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   // Since the QuestionBody's are sending null if they are not answered yet we can loop through the
   // results of the steps.
-  // If any of them is null it means the participant can not proceed to the next step because not all the
-  // questions are answered.
+  // If any of the non-optional steps have a null-answer in the stepResult, it means the user has not answered it and CANNOT go to the next step.
   void checkReadyToProceed() {
     bool temp = true;
     widget.formStep.steps.forEach((step) {
       if (!step.optional) {
-        // stepResult.results.containsKey(step.identifier);
-        // print(step.identifier);
-        // print(stepResult.results.containsKey(step.identifier));
-        if (!stepResult.results.containsKey(step.identifier)) {
+        if (stepResult.results.values.any((element) =>
+            (element as RPStepResult).identifier == step.identifier &&
+            element.results['answer'] == null)) {
           temp = false;
         }
       }
-      // print(stepResult.results);
-      // if (stepResult.results.containsKey(key))
     });
 
-    // stepResult.results.values.forEach((result) {
-    //   // if ((result as RPStepResult).identifier) {
-    //   if ((result as RPStepResult).results[RPStepResult.DEFAULT_KEY] == null) {
-    //     temp = false;
-    //   }
-    // });
     setState(() {
       readyToProceed = temp;
     });

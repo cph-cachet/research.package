@@ -44,15 +44,14 @@ RPCompletionStep completionStep = RPCompletionStep(
     text: "Thank you for filling out the survey!");
 
 RPNavigableOrderedTask stepJumpNavigationExample1 = RPNavigableOrderedTask(
-    identifier: "NavigableTaskID",
-    steps: [
-      smokingQuestionStep,
-      nrOfCigarettesQuestionStep,
-      completionStep,
-    ],
-    closeAfterFinished: false)
-  ..setNavigationRuleForTriggerStepIdentifier(
-      noSmokingJumpRule, smokingQuestionStep.identifier);
+  identifier: "NavigableTaskID",
+  steps: [
+    smokingQuestionStep,
+    nrOfCigarettesQuestionStep,
+    completionStep,
+  ],
+)..setNavigationRuleForTriggerStepIdentifier(
+    noSmokingJumpRule, smokingQuestionStep.identifier);
 
 ////////////////////////////////
 /// RPStepJumpRule Example 2 ///

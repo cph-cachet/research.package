@@ -175,13 +175,12 @@ RPQuestionStep textQuestionStep = RPQuestionStep(
 RPFormStep formStep = RPFormStep(
   identifier: "formstepID",
   steps: [
-    instrumentChoiceQuestionStep,
+    instrumentChoiceQuestionStep, // optional
     textQuestionStep,
-    minutesQuestionStep,
+    minutesQuestionStep, // optional
     dateQuestionStep
   ],
   title: "Questions about music",
-  optional: true,
 );
 
 RPCompletionStep completionStep = RPCompletionStep(
