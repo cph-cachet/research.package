@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:collection/collection.dart';
 
 // the carp core domain model incl. polymorphic json serialization
 import 'package:carp_core/carp_common/carp_core_common.dart';

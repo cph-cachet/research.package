@@ -78,7 +78,6 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
           onChanged: (text) => _validate(text, locale),
         ),
       ),
-      // ),
     );
   }
 

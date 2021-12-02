@@ -349,12 +349,10 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              // _carouselBar(),
               Expanded(
                 child: PageView.builder(
                   onPageChanged: (pageNr) {
                     _goToNextPage(pageNr);
-                    // _controller.forward(from: 0.3);
                   },
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: widget.consentDocument.sections.length,
@@ -382,20 +380,12 @@ class _ContentRoute extends StatelessWidget {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      // appBar: AppBar(
-      //   title: Text(locale?.translate(this.title) ?? this.title),
-      // ),
       body: Column(
         children: [
           SizedBox(height: 35),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              // Padding(
-              //   padding: EdgeInsets.symmetric(horizontal: 20),
-              //   child: Text(locale?.translate(this.title) ?? this.title,
-              //       style: Theme.of(context).textTheme.headline4),
-              // ),
               IconButton(
                 icon: Icon(Icons.clear,
                     color: Theme.of(context).primaryColor, size: 30),

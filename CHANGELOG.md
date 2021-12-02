@@ -1,9 +1,11 @@
 ## 0.7.0
 
-- Removed Boolean questions, including answer format for simplicity and navigation changes.
-- Removed Predicate Navigation rules, for simplicity and navigation changes.
-- JSON serialization to AND from, now retains the navigation rules added. Previously the navigation was lost after conversion.
+- Removed Boolean questions, including answer format for simplicity and navigation changes. (Use regular RPChoices now)
+- Removed Predicate Navigation rules, for simplicity and navigation changes. (Use `RPStepJumpRule` now)
+- JSON serialization to & from json, now retains the navigation rules added. Previously the navigation was lost after conversion.
 - Updated example app
+- Fixed issues #58, #59, #60, #61
+- Small bugfixes
 
 ## 0.6.7
 
