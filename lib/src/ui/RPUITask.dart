@@ -108,6 +108,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             break;
           } else {
             _currentQuestionIndex--;
+            _currentStepIndex--;
             if (!navigableTask)
               blocTask.updateTaskProgress(RPTaskProgress(
                   _currentQuestionIndex, widget.task.numberOfQuestionSteps));
