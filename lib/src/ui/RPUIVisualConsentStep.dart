@@ -216,7 +216,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
     if (section.type == RPConsentSectionType.UserDataCollection ||
         section.type == RPConsentSectionType.PassiveDataCollection) {
       return Container(
-        // padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -285,23 +285,8 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
                       style: Theme.of(context)
                           .textTheme
                           .headline6!
-                          .copyWith(color: Theme.of(context).primaryColor)
-                      // textAlign: TextAlign.start,
-                      ),
+                          .copyWith(color: Theme.of(context).primaryColor)),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(top: 8),
-                //   child: OutlinedButton.icon(
-                //     icon: Icon(Icons.help),
-                //     label: Text(
-                //       locale?.translate('learn_more') ?? 'Learn more...',
-                //     ),
-                //     onPressed: () => _pushContent(
-                //       section.title,
-                //       section.content!,
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ],
@@ -426,7 +411,7 @@ class _ContentRoute extends StatelessWidget {
                 child: Text(
                   locale?.translate(this.content) ?? this.content,
                   style: Theme.of(context).textTheme.headline6,
-                  textAlign: TextAlign.justify,
+                  textAlign: TextAlign.start,
                 ),
               ),
             ),

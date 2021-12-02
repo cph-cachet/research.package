@@ -108,6 +108,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             break;
           } else {
             _currentQuestionIndex--;
+            _currentStepIndex--;
             if (!navigableTask)
               blocTask.updateTaskProgress(RPTaskProgress(
                   _currentQuestionIndex, widget.task.numberOfQuestionSteps));
@@ -201,7 +202,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
 
   PageController _taskPageViewController = PageController(keepPage: false);
 
-  Widget _carouselBar() {
+  Widget _carouselBar(RPLocalizations? locale) {
     return Container(
       height: AppBar().preferredSize.height,
       child: Row(
@@ -216,23 +217,10 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           Expanded(
             flex: 2,
             child: (!navigableTask)
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: widget.task.steps.map(
-                      (step) {
-                        var index = widget.task.steps.indexOf(step);
-                        return Container(
-                          width: 7.0,
-                          height: 7.0,
-                          margin: EdgeInsets.symmetric(horizontal: 2.5),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: index <= _currentQuestionIndex
-                                  ? Theme.of(context).primaryColor
-                                  : Theme.of(context).accentColor),
-                        );
-                      },
-                    ).toList(),
+                ? Text(
+                    '${_currentStepIndex + 1} ${locale?.translate('of') ?? 'of'} ${widget.task.steps.length}',
+                    style: Theme.of(context).appBarTheme.titleTextStyle,
+                    textAlign: TextAlign.center,
                   )
                 : Container(),
           ),
@@ -266,7 +254,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // top bar
-              _carouselBar(),
+              _carouselBar(locale),
               // Body
               Expanded(
                 child: PageView.builder(

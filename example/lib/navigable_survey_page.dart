@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:research_package/research_package.dart';
-import 'research_package_objects/navigable_survey_objects.dart';
 import 'dart:convert';
+
+import 'package:research_package_demo_app/research_package_objects/navigation_step_jump_rule.dart';
 
 class NavigableSurveyPage extends StatelessWidget {
   String _encode(Object object) =>
@@ -9,7 +12,7 @@ class NavigableSurveyPage extends StatelessWidget {
 
   void resultCallback(RPTaskResult result) {
     // Do anything with the result
-    print(_encode(result));
+    log(_encode(result));
   }
 
   void cancelCallBack(RPTaskResult result) {
@@ -19,8 +22,13 @@ class NavigableSurveyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Example of serialization to and from JSON
+    RPNavigableOrderedTask task = RPNavigableOrderedTask.fromJson(
+        json.decode(_encode(stepJumpNavigationExample1)));
+
     return RPUITask(
-      task: navigableSurveyTask,
+      task: task,
+      // task: navigableSurveyTaskRPStepJumpRule,
       onSubmit: resultCallback,
       onCancel: (RPTaskResult? result) {
         if (result == null) {

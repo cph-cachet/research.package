@@ -11,8 +11,6 @@ void _registerFromJsonFunctions() {
 
   // AnswerFormat classes
   FromJsonFactory().register(RPAnswerFormat());
-  FromJsonFactory()
-      .register(RPBooleanAnswerFormat(falseText: '', trueText: ''));
   FromJsonFactory().register(RPChoiceAnswerFormat(
       answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: []));
   FromJsonFactory().register(RPChoice(text: '', value: 1));
@@ -53,6 +51,12 @@ void _registerFromJsonFunctions() {
     dataName: '',
     dataInformation: '',
   ));
+
+  // Navigation rule classes
+  FromJsonFactory()
+      .register(RPDirectStepNavigationRule(destinationStepIdentifier: ''));
+  FromJsonFactory().register(RPStepJumpRule(answerMap: {}));
+  FromJsonFactory().register(RPStepReorganizerRule(reorderingMap: {}));
 }
 
 // auto generate json code (.g files) with:

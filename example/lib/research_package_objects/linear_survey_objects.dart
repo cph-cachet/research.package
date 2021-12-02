@@ -24,6 +24,10 @@ List<RPChoice> instruments = [
   RPChoice(text: "Piano", value: 2),
   RPChoice(text: "Saxophone", value: 1),
 ];
+List<RPChoice> yesNo = [
+  RPChoice(text: "Yes", value: 1),
+  RPChoice(text: "No", value: 0),
+];
 
 List<RPImageChoice> images = [
   RPImageChoice(
@@ -79,8 +83,10 @@ RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat(
 RPIntegerAnswerFormat weightIntegerAnswerFormat =
     RPIntegerAnswerFormat(minValue: 0, maxValue: 200, suffix: "KG");
 
-RPBooleanAnswerFormat smokingBooleanAnswerFormat =
-    RPBooleanAnswerFormat(trueText: "Yes, absolutely", falseText: "No, never");
+RPChoiceAnswerFormat yesNoAnswerFormat = RPChoiceAnswerFormat(
+  answerStyle: RPChoiceAnswerStyle.SingleChoice,
+  choices: yesNo,
+);
 
 RPIntegerAnswerFormat minutesIntegerAnswerFormat =
     RPIntegerAnswerFormat(minValue: 0, maxValue: 10000, suffix: "minutes");
@@ -129,13 +135,14 @@ RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(
 RPQuestionStep smokingQuestionStep = RPQuestionStep(
   identifier: "booleanQuestionStepID",
   title: "Do you smoke?",
-  answerFormat: smokingBooleanAnswerFormat,
+  answerFormat: yesNoAnswerFormat,
 );
 
 RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(
     identifier: "instrumentChoiceQuestionStepID",
     title: "Which instrument are you playing?",
-    answerFormat: instrumentsAnswerFormat);
+    answerFormat: instrumentsAnswerFormat,
+    optional: true);
 
 RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep(
     identifier: "happinessChoiceQuestionStepID",
@@ -150,7 +157,8 @@ RPQuestionStep weightQuestionStep = RPQuestionStep(
 RPQuestionStep minutesQuestionStep = RPQuestionStep(
     identifier: "minutesQuestionStepID",
     title: "How many minutes do you spend practicing a week?",
-    answerFormat: minutesIntegerAnswerFormat);
+    answerFormat: minutesIntegerAnswerFormat,
+    optional: true);
 
 RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(
   identifier: "imageStepID",
@@ -167,13 +175,12 @@ RPQuestionStep textQuestionStep = RPQuestionStep(
 RPFormStep formStep = RPFormStep(
   identifier: "formstepID",
   steps: [
-    instrumentChoiceQuestionStep,
+    instrumentChoiceQuestionStep, // optional
     textQuestionStep,
-    minutesQuestionStep,
+    minutesQuestionStep, // optional
     dateQuestionStep
   ],
   title: "Questions about music",
-  optional: true,
 );
 
 RPCompletionStep completionStep = RPCompletionStep(
@@ -186,7 +193,7 @@ RPInstructionStep instructionStep = RPInstructionStep(
     title: "Welcome!",
     detailText: "For the sake of science of course...",
     text:
-        "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.");
+        "Please fill out this questionnaire!\n\nIn this questionnaire the que-stions will come after each other in a given order. You still have the chance to skip a some of them though.");
 
 RPOrderedTask linearSurveyTask = RPOrderedTask(
   identifier: "surveyTaskID",

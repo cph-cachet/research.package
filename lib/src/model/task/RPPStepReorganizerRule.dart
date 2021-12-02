@@ -2,16 +2,15 @@ part of research_package_model;
 
 /// Reorganizes the survey steps and removes all steps that arent specified by the [reorderingMap].
 /// The survey will then go to the specified step
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPStepReorganizerRule extends RPStepNavigationRule {
-  late RPResultSelector _resultSelector;
-
   /// Those steps will be removed which are not selected
-  Map<dynamic, String> reorderingMap;
+  Map<int, String> reorderingMap;
 
-  RPStepReorganizerRule(
-      {required String reorganizerStepId, required this.reorderingMap}) {
-    _resultSelector = RPResultSelector.forStepId(reorganizerStepId);
-  }
+  RPStepReorganizerRule({required this.reorderingMap});
 
-  get resultSelector => this._resultSelector;
+  Function get fromJsonFunction => _$RPStepReorganizerRuleFromJson;
+  factory RPStepReorganizerRule.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPStepReorganizerRule;
+  Map<String, dynamic> toJson() => _$RPStepReorganizerRuleToJson(this);
 }

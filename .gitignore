@@ -294,18 +294,18 @@ DerivedData/
 .dart_tool/package_config.json
 
 .dart_tool/build_resolvers/sdk.sum.deps
-*.lock
-*.lock
+# *.lock
+# *.lock
 .dart_tool/package_config_subset
 .dart_tool/version
 .dart_tool/build_resolvers/sdk.sum
-example/pubspec.lock
+# example/pubspec.lock
 
 # As per recommendation by Google: https://dart.dev/guides/libraries/private-files
-pubspec.lock
+!pubspec.lock
 doc/api
 
-*.lock
-*.lock
-*.lock
-*.lock
+# *.lock
+# *.lock
+# *.lock
+# *.lock

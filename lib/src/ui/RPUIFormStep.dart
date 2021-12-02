@@ -16,15 +16,19 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
 
   // Since the QuestionBody's are sending null if they are not answered yet we can loop through the
   // results of the steps.
-  // If any of them is null it means the participant can not proceed to the next step because not all the
-  // questions are answered.
+  // If any of the non-optional steps have a null-answer in the stepResult, it means the user has not answered it and CANNOT go to the next step.
   void checkReadyToProceed() {
     bool temp = true;
-    stepResult.results.values.forEach((result) {
-      if ((result as RPStepResult).results[RPStepResult.DEFAULT_KEY] == null) {
-        temp = false;
+    widget.formStep.steps.forEach((step) {
+      if (!step.optional) {
+        if (stepResult.results.values.any((element) =>
+            (element as RPStepResult).identifier == step.identifier &&
+            element.results['answer'] == null)) {
+          temp = false;
+        }
       }
     });
+
     setState(() {
       readyToProceed = temp;
     });
@@ -113,18 +117,6 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
       case RPDateTimeAnswerFormat:
         return RPUIDateTimeQuestionBody(
             (answerFormat as RPDateTimeAnswerFormat), (result) {
-          RPStepResult tempResult = stepResult.results[id] as RPStepResult;
-          tempResult.questionTitle = widget.formStep.steps
-              .where((step) => step.identifier == id)
-              .first
-              .title;
-          tempResult.setResult(result);
-
-          checkReadyToProceed();
-        });
-      case RPBooleanAnswerFormat:
-        return RPUIBooleanQuestionBody((answerFormat as RPBooleanAnswerFormat),
-            (result) {
           RPStepResult tempResult = stepResult.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
