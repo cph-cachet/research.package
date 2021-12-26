@@ -35,12 +35,21 @@ class RPLocalizations extends AssetLocalizations {
   @override
   Future<bool> load({List<LocalizationLoader> loaders = const []}) async {
     print("$runtimeType - loading '$staticAssetName'");
+    String jsonString = '{}';
 
-    // first load the static translations as part of RP
-    String jsonString = await rootBundle.loadString(
-      staticAssetName,
-      cache: false,
-    );
+    // first try to load the static translations as part of RP
+    try {
+      jsonString = await rootBundle.loadString(
+        staticAssetName,
+        cache: false,
+      );
+    } catch (_) {
+      print(
+          "WARNING - Failed to load RP translations for '$locale' and it seems like RP does not support this locale in the current version. "
+          'If you are using this locale in your app, you should consider to make a pull request to RP so we can add this locale to the package for others to use as well. '
+          'See https://carp.cachet.dk/localization for a description on how to do this. '
+          'For now, translations provided in the app localization file(s) are also used for RP so you can provide translations for the RP terms there for now.');
+    }
 
     Map<String, dynamic> jsonMap = json.decode(jsonString);
     _translations =
@@ -111,7 +120,7 @@ abstract class LocalizationLoader {
 /// A [LocalizationLoader] which can load translations from a map.
 ///
 /// [map] must map a language code to a map of translations keys
-/// mapped to translations.
+/// mapped to translations (i.e., a map of maps).
 ///
 /// ```json
 ///  {

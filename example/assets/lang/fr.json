@@ -1,0 +1,76 @@
+{
+  "NEXT": "SUIVANT",
+  "discard_confirmation": "Ignorer les résultats et quitter?",
+  "NO": "NO",
+  "YES": "OUI",
+
+  "app_info": "Le package 'Research Package' vous permet de créer et d'obtenir un consentement éclairé et des sondages auprès des utilisateurs.",
+  "branching_survey": "Sondage (bifurquer)",
+  "linear_survey": "Sondage (linéaire)",
+  "informed_consent": "Consentement éclairé",
+
+  "informed_consent.welcome_text": "Welcome to this study! We would like to kindly ask you to look over these terms and information which gives you an introduction to the study.",
+  "informed_consent.thanks": "Thank You!",
+  "informed_consent.document_saved":"We saved your consent document.",
+
+  "informed_consent.agree_text": "By tapping AGREE you can take part in the study",
+  "informed_consent.agree_confirm": "Agreed?",
+
+  "All of the time": "All of the time",
+  "Most of the time": "Most of the time",
+  "More than half of the time": "More than half of the time",
+  "Less than half of the time": "Less than half of the time",
+  "Some of the time": "Some of the time",
+  "At no time": "At no time",
+
+  "Playing games": "Playing games",
+  "Jogging": "Jogging",
+  "Playing an instrument": "Playing an instrument",
+  "Family and friends": "Family and friends",
+  "Doing sports": "Doing sports",
+  "Reading": "Reading",
+  "Being productive": "Being productive",
+  "Other": "Other",
+
+  "Guitar": "Guitar",
+  "Piano": "Piano",
+  "Saxophone": "Saxophone",
+
+  "Feeling very sad": "Feeling very sad",
+  "Feeling sad": "Feeling sad",
+  "Feeling ok": "Feeling ok",
+  "Feeling happy": "Feeling happy",
+  "Feeling very happy": "Feeling very happy",
+
+  "$": "$",
+  " paid": " paid",
+
+  "KG": "KG",
+  "minutes": "minutes",
+
+  "When did you wake up?": "When did you wake up?",
+  "When did you last eat unhealthy food?": "When did you last eat unhealthy food?",
+  "When did you last drink alcohol?": "When did you last drink alcohol?",
+
+  "What did you pay for insulin?": "What did you pay for insulin?",
+  "I have felt cheerful and in good spirits": "I have felt cheerful and in good spirits",
+
+  "Which instrument are you playing?": "Which instrument are you playing?",
+  "What makes you happy?": "What makes you happy?",
+  "What is your weight?": "What is your weight?",
+  "How many minutes do you spend practicing a week?": "How many minutes do you spend practicing a week?",
+
+  "Indicate you mood by selecting a picture!": "Indicate you mood by selecting a picture!",
+  "Questions about music": "Questions about music",
+
+  "Finished": "Finished",
+  "Thank you for filling out the survey!": "Thank you for filling out the survey!",
+
+  "Tap to edit:": "Tap to edit:",
+  "Press to input date": "Press to input date",
+  "Press to input time": "Press to input time",
+  "Press to input date range": "Press to input date range", 
+
+  "What should you do?": "What should you do?"
+
+}

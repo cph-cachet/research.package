@@ -1,3 +1,6 @@
+## 0.7.1
+- fix / enhancement of localization based on [issue #54](https://github.com/cph-cachet/research.package/issues/54).
+
 ## 0.7.0
 
 - Removed Boolean questions, including answer format for simplicity and navigation changes. (Use regular RPChoices now)

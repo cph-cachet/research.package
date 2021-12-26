@@ -15,20 +15,31 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('en'),
         Locale('da'),
+        Locale('fr'),
       ],
       localizationsDelegates: [
-        // App translations
+        // Research Package translations - supports translation of both the
+        // RP-specific text as well as app-specific text.
+        //  - translations of the RP text is part of the RP Flutter package
         //  - the translations of app text is located in the 'assets/lang/' folder
-        //  - note that the json files contains a COMBINATION of both app and
-        //    translations of the surveys and informed consent in this demo app
-        AssetLocalizations.delegate,
-
-        // Research Package translations
-        //  - the translations of informed consent and surveys are located in
-        //    the 'assets/lang/' folder
+        //  - the translations of informed consent and surveys are part of the
+        //    app text and also included in the the 'assets/lang/' files
         //  - note that only some text is translated -- illustrates that RP
         //    works both with and without tranlation.
         RPLocalizations.delegate,
+
+        // // Research Package translations - supports translation of both;
+        // //  - the RP-specific text
+        // //  - app-specific text using the [AssetLocalizationLoader]
+        // //  - a map-based localization loader [MapLocalizationLoader]
+        // RPLocalizationsDelegate(loaders: [
+        //   AssetLocalizationLoader(),
+        //   MapLocalizationLoader({
+        //     'en': {'app_name': 'Research Package Demo'},
+        //     'da': {'app_name': 'Research Package Demonstration'},
+        //     'fr': {'app_name': 'Démonstration de Research Package'},
+        //   }),
+        // ]),
 
         // Built-in localization of basic text for Cupertino widgets
         GlobalCupertinoLocalizations.delegate,
@@ -41,9 +52,7 @@ class MyApp extends StatelessWidget {
       localeResolutionCallback: (locale, supportedLocales) {
         // Check if the current device locale is supported
         for (var supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale!.languageCode
-              /*  && supportedLocale.countryCode == locale.countryCode */
-              ) {
+          if (supportedLocale.languageCode == locale!.languageCode) {
             return supportedLocale;
           }
         }
@@ -68,11 +77,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    AssetLocalizations locale = AssetLocalizations.of(context)!;
+    RPLocalizations locale = RPLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Research Package Demo"),
+        title: Text(locale.translate('app_name')),
       ),
       body: Container(
         padding: EdgeInsets.all(8),

@@ -14,7 +14,7 @@ The main features of ResearchPackage are:
 
 - [Obtaining informed consent](https://carp.cachet.dk/obtaining-consent/) from participants, including support for a signature.
 - [Creating surveys](https://carp.cachet.dk/creating-a-survey/) and questionnaires with a wide range of answer formats (e.g., likert scale, date pickers, image pickers, etc.), such as the [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO-5%20questionaire%20-%20English.pdf) survey.
-- [Supporting localizations](https://pub.dev/documentation/research_package/latest/research_package_ui/RPLocalizations-class.html) of surveys and informed consent.
+- [Supporting localizations](https://carp.cachet.dk/localization/) of surveys and informed consent.
 
 ResearchPackage is part of the overall [CACHET Research Platform (CARP)](https://carp.cachet.dk) with also provides a Flutter package for mobile and wearable sensing called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing). 
 The CACHET [Pulmonary Monitor](https://github.com/cph-cachet/pulmonary_monitor_app) app shows how mobile sensing can be combined with collection of survery data from users.
@@ -26,6 +26,7 @@ There is a set of tutorials, describing:
 - the overall [software architecture](https://carp.cachet.dk/research-package-api/) of ResearchPackage
 - how to create an [informed consent](https://carp.cachet.dk/obtaining-consent/) flow
 - how to define and run [user surveys](https://carp.cachet.dk/creating-a-survey/)
+- how to enable [localization](https://carp.cachet.dk/localization/)
 
 The [ResearchPackage Flutter API](https://pub.dev/documentation/research_package/latest/) is available (and maintained) as part of the package release at pub.dev.
 
