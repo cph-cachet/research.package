@@ -18,18 +18,28 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
       ],
       localizationsDelegates: [
-        // Research Package translations - supports translation of both;
-        //  - the RP-specific text
-        //  - app-specific text using the [AssetLocalizationLoader]
-        //  - a map-based localization loader [MapLocalizationLoader]
-        RPLocalizationsDelegate(loaders: [
-          AssetLocalizationLoader(),
-          MapLocalizationLoader({
-            'en': {'app_name': 'Research Package Demo'},
-            'da': {'app_name': 'Research Package Demonstration'},
-            'fr': {'app_name': 'Démonstration de Research Package'},
-          }),
-        ]),
+        // Research Package translations - supports translation of both the
+        // RP-specific text as well as app-specific text.
+        //  - translations of the RP text is part of the RP Flutter package
+        //  - the translations of app text is located in the 'assets/lang/' folder
+        //  - the translations of informed consent and surveys are part of the
+        //    app text and also included in the the 'assets/lang/' files
+        //  - note that only some text is translated -- illustrates that RP
+        //    works both with and without tranlation.
+        RPLocalizations.delegate,
+
+        // // Research Package translations - supports translation of both;
+        // //  - the RP-specific text
+        // //  - app-specific text using the [AssetLocalizationLoader]
+        // //  - a map-based localization loader [MapLocalizationLoader]
+        // RPLocalizationsDelegate(loaders: [
+        //   AssetLocalizationLoader(),
+        //   MapLocalizationLoader({
+        //     'en': {'app_name': 'Research Package Demo'},
+        //     'da': {'app_name': 'Research Package Demonstration'},
+        //     'fr': {'app_name': 'Démonstration de Research Package'},
+        //   }),
+        // ]),
 
         // Built-in localization of basic text for Cupertino widgets
         GlobalCupertinoLocalizations.delegate,
