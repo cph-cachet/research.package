@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('en'),
         Locale('da'),
+        Locale('fr'),
       ],
       localizationsDelegates: [
         // App translations
