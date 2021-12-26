@@ -120,7 +120,7 @@ abstract class LocalizationLoader {
 /// A [LocalizationLoader] which can load translations from a map.
 ///
 /// [map] must map a language code to a map of translations keys
-/// mapped to translations.
+/// mapped to translations (i.e., a map of maps).
 ///
 /// ```json
 ///  {
