@@ -1,3 +1,6 @@
+## 0.7.2
+- added base method for calculateScore() method into RPActivityStep class. Which is overriden by any child class that extends RPActivityStep
+
 ## 0.7.1
 - fix / enhancement of localization based on [issue #54](https://github.com/cph-cachet/research.package/issues/54).
 
