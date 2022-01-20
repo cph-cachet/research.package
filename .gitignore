@@ -311,3 +311,5 @@ doc/api
 # *.lock
 # *.lock
 # *.lock
+example/pubspec.lock
+pubspec.lock

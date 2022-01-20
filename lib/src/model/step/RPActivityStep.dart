@@ -31,7 +31,7 @@ class RPActivityStep extends RPStep {
   Widget stepBody(dynamic Function(dynamic) onResultChange,
           RPActivityEventLogger eventLogger) =>
       Container();
-  
+
   /// calculateScore calculates the score for an ActivityStep.
   ///
   /// All classes extending ActivityStep override this with their own scoring algorithm.
