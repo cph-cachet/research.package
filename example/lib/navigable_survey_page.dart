@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:research_package/research_package.dart';
 import 'dart:convert';
 
-import 'package:research_package_demo_app/research_package_objects/navigation_step_jump_rule.dart';
+import 'research_package_objects/navigation_step_jump_rule.dart';
 
 class NavigableSurveyPage extends StatelessWidget {
   String _encode(Object object) =>

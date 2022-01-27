@@ -31,7 +31,7 @@ class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody>
       // TODO: Rendering bug in Flutter - https://github.com/flutter/flutter/issues/50193
       child: CupertinoTheme(
         data: CupertinoThemeData(
-          brightness: MediaQuery.platformBrightnessOf(context),
+          brightness: Theme.of(context).brightness,
         ),
         child: CupertinoDatePicker(
           mode: widget.mode,
