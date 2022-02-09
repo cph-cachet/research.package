@@ -1,3 +1,7 @@
+## 0.7.2+3
+
+- Updated `signature` to 5.0.0
+
 ## 0.7.2+2
 
 - Changed asset urls to be specific urls of the assets

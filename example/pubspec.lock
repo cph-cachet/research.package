@@ -122,7 +122,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.7.2+2"
+    version: "0.7.2+3"
   rxdart:
     dependency: transitive
     description:
@@ -136,7 +136,7 @@ packages:
       name: signature
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "5.0.0"
   simple_html_css:
     dependency: transitive
     description:
