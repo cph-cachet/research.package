@@ -60,10 +60,11 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
             ),
             ScaleTransition(
               scale: _scale,
-              child: Icon(
-                Icons.check_circle,
-                size: 120,
-                color: Theme.of(context).accentColor,
+              child: Image.asset(
+                'assets/icons/checkmark.png',
+                package: 'research_package',
+                height: 120,
+                width: 120,
               ),
             ),
             ButtonTheme(

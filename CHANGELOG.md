@@ -1,3 +1,8 @@
+## 0.7.2+2
+
+- Changed asset urls to be specific urls of the assets
+- Added a new "Checkmark" in the RPCompletionStep
+
 ## 0.7.2+1
 
 - Changed brightness input on CupertinoDateTimePicker for `RPDateTimeAnswerFormat` to use Theme brightness instead of System brightness.
