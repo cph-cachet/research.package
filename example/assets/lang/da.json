@@ -1,4 +1,5 @@
 {
+  "app_name": "Research Package Demo",
   "app_info": "Med 'Research Package' Flutter pakken kan du skabe og indsamle informeret samtykke samt spørgeskemaer.",
   "branching_survey": "Spørgeskema (branching)",
   "linear_survey": "Spørgeskema (linært)",

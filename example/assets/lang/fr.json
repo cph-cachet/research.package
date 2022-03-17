@@ -1,9 +1,5 @@
 {
-  "NEXT": "SUIVANT",
-  "discard_confirmation": "Ignorer les résultats et quitter?",
-  "NO": "NO",
-  "YES": "OUI",
-
+  "app_name": "Research Package Demo",
   "app_info": "Le package 'Research Package' vous permet de créer et d'obtenir un consentement éclairé et des sondages auprès des utilisateurs.",
   "branching_survey": "Sondage (bifurquer)",
   "linear_survey": "Sondage (linéaire)",

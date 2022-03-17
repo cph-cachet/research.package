@@ -14,7 +14,7 @@ dependencies:
 
   signature: ^5.0.0
   rxdart: ^0.27.1
-  json_annotation: ^4.3.0
+  json_annotation: ^4.4.0
   simple_html_css: ^3.0.1
   collection: ^1.15.0
 

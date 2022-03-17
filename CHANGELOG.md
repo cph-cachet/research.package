@@ -1,5 +1,6 @@
 ## 0.7.3
 - update to `carp_core` v. 0.33.0
+- misc. cleanup in Android example app configurations
 
 ## 0.7.2+3
 - Updated `signature` to 5.0.0
