@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         //  - the translations of informed consent and surveys are part of the
         //    app text and also included in the the 'assets/lang/' files
         //  - note that only some text is translated -- illustrates that RP
-        //    works both with and without tranlation.
+        //    works both with and without translation.
         RPLocalizations.delegate,
 
         // // Research Package translations - supports translation of both;
