@@ -313,3 +313,4 @@ doc/api
 # *.lock
 # example/pubspec.lock
 # pubspec.lock
+.vscode/settings.json
