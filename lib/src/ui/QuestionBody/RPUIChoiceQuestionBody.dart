@@ -18,8 +18,8 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
 
   @override
   void initState() {
-    selectedChoices = [];
     super.initState();
+    selectedChoices = [];
   }
 
   void _buttonCallBack(RPChoice selectedChoice) {

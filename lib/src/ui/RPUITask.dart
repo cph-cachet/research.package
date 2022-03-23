@@ -46,6 +46,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   late StreamSubscription<RPStepStatus> _stepStatusSubscription;
   late StreamSubscription<RPResult> _stepResultSubscription;
 
+  PageController _taskPageViewController = PageController(keepPage: false);
+
   bool navigableTask = false;
 
   @override
@@ -199,8 +201,6 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
       },
     );
   }
-
-  PageController _taskPageViewController = PageController(keepPage: false);
 
   Widget _carouselBar(RPLocalizations? locale) {
     return Container(

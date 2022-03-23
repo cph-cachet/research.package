@@ -195,10 +195,18 @@ RPInstructionStep instructionStep = RPInstructionStep(
     text:
         "Please fill out this questionnaire!\n\nIn this questionnaire the que-stions will come after each other in a given order. You still have the chance to skip a some of them though.");
 
+RPTimerStep timerStep = RPTimerStep(
+  identifier: 'RPTimerStepID',
+  timeout: Duration(seconds: 12),
+  title:
+      "Here is a timer to display how long the user must wait before going to the next step in the task",
+);
+
 RPOrderedTask linearSurveyTask = RPOrderedTask(
   identifier: "surveyTaskID",
   steps: [
     instructionStep,
+    timerStep,
     formStep,
     smokingQuestionStep,
     sliderQuestionStep,

@@ -46,6 +46,7 @@ part 'src/model/step/RPQuestionStep.dart';
 part 'src/model/step/RPInstructionStep.dart';
 part 'src/model/step/RPCompletionStep.dart';
 part 'src/model/step/RPActivityStep.dart';
+part 'src/model/step/RPTimerStep.dart';
 
 part 'src/model/task/RPOrderedTask.dart';
 part 'src/model/task/RPNavigableOrderedTask.dart';

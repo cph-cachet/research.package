@@ -39,3 +39,4 @@ part 'src/ui/RPUIQuestionStep.dart';
 part 'src/ui/RPUITask.dart';
 part 'src/ui/RPUIVisualConsentStep.dart';
 part 'src/ui/RPUIActivityStep.dart';
+part 'src/ui/RPUITimerStep.dart';
