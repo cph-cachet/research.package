@@ -632,6 +632,33 @@ Map<String, dynamic> _$RPCompletionStepToJson(RPCompletionStep instance) {
   return val;
 }
 
+RPTimerStep _$RPTimerStepFromJson(Map<String, dynamic> json) => RPTimerStep(
+      identifier: json['identifier'] as String,
+      timeout: Duration(microseconds: json['timeout'] as int),
+      title: json['title'] as String,
+      optional: json['optional'] as bool? ?? false,
+    )
+      ..$type = json[r'$type'] as String?
+      ..text = json['text'] as String?;
+
+Map<String, dynamic> _$RPTimerStepToJson(RPTimerStep instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(r'$type', instance.$type);
+  val['identifier'] = instance.identifier;
+  writeNotNull('text', instance.text);
+  val['optional'] = instance.optional;
+  val['timeout'] = instance.timeout.inMicroseconds;
+  val['title'] = instance.title;
+  return val;
+}
+
 RPOrderedTask _$RPOrderedTaskFromJson(Map<String, dynamic> json) =>
     RPOrderedTask(
       identifier: json['identifier'] as String,

@@ -29,8 +29,8 @@ class RPTimerStep extends RPStep {
   @override
   Widget get stepWidget => RPUITimerStep(this);
 
-  // Function get fromJsonFunction => _$RPTimerStepFromJson;
-  // factory RPTimerStep.fromJson(Map<String, dynamic> json) =>
-  //     FromJsonFactory().fromJson(json) as RPTimerStep;
-  // Map<String, dynamic> toJson() => _$RPTimerStepToJson(this);
+  Function get fromJsonFunction => _$RPTimerStepFromJson;
+  factory RPTimerStep.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as RPTimerStep;
+  Map<String, dynamic> toJson() => _$RPTimerStepToJson(this);
 }
