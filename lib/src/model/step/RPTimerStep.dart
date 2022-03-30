@@ -12,6 +12,9 @@ class RPTimerStep extends RPStep {
   /// a certain amount of time before the next step.
   String title;
 
+  /// If `playSound` is true, the [RPTimerStep] will play a sound when the timer
+  /// has finished counting down.
+  /// This is `false` by default.
   bool playSound;
 
   /// Creates a Timer Step with an identifier, title and duration.

@@ -29,6 +29,8 @@ void _registerFromJsonFunctions() {
   FromJsonFactory().register(RPQuestionStep(
       identifier: '', title: '', answerFormat: RPAnswerFormat()));
   FromJsonFactory().register(RPInstructionStep(identifier: '', title: ''));
+  FromJsonFactory()
+      .register(RPTimerStep(identifier: '', timeout: Duration(), title: ''));
   FromJsonFactory().register(RPFormStep(identifier: '', title: '', steps: []));
   FromJsonFactory().register(RPCompletionStep(identifier: '', title: ''));
 
