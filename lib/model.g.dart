@@ -636,6 +636,7 @@ RPTimerStep _$RPTimerStepFromJson(Map<String, dynamic> json) => RPTimerStep(
       identifier: json['identifier'] as String,
       timeout: Duration(microseconds: json['timeout'] as int),
       title: json['title'] as String,
+      playSound: json['play_sound'] as bool? ?? false,
       optional: json['optional'] as bool? ?? false,
     )
       ..$type = json[r'$type'] as String?
@@ -656,6 +657,7 @@ Map<String, dynamic> _$RPTimerStepToJson(RPTimerStep instance) {
   val['optional'] = instance.optional;
   val['timeout'] = instance.timeout.inMicroseconds;
   val['title'] = instance.title;
+  val['play_sound'] = instance.playSound;
   return val;
 }
 
