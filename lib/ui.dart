@@ -16,6 +16,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:logger/logger.dart' show Level;
 import 'package:signature/signature.dart';
 import 'package:simple_html_css/simple_html_css.dart';
 

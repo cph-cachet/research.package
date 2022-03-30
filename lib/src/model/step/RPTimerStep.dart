@@ -12,6 +12,8 @@ class RPTimerStep extends RPStep {
   /// a certain amount of time before the next step.
   String title;
 
+  bool playSound;
+
   /// Creates a Timer Step with an identifier, title and duration.
   /// The [RPTimerStep] is a step in which the user waits for [timeout]
   /// before being allowed to proceed to next question.
@@ -19,6 +21,7 @@ class RPTimerStep extends RPStep {
       {required String identifier,
       required this.timeout,
       required this.title,
+      this.playSound = false,
       bool optional = false})
       : super(identifier: identifier, title: title, optional: optional);
 

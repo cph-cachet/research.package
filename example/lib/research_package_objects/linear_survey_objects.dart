@@ -200,6 +200,7 @@ RPTimerStep timerStep = RPTimerStep(
   timeout: Duration(seconds: 12),
   title:
       "Here is a timer to display how long the user must wait before going to the next step in the task",
+  playSound: true,
 );
 
 RPOrderedTask linearSurveyTask = RPOrderedTask(

@@ -17,6 +17,7 @@ dependencies:
   json_annotation: ^4.4.0
   simple_html_css: ^3.0.1
   collection: ^1.15.0
+  flutter_sound: ^9.1.7
 
 dev_dependencies:
   # flutter_test:
@@ -43,3 +44,4 @@ flutter:
     - assets/icons/target.png
     - assets/icons/task.png
     - assets/lang/
+    - assets/audio/RPTimerStepSound.mp3
