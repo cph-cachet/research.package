@@ -1,3 +1,10 @@
+## 0.8.0
+- Updated deprecated theme usages.
+- Added the `RPTimerStep` and serialization.
+- Added `Audiofileplayer` plugin for the `RPTimerStep`
+- Updated README 
+- Updated .gitignore
+
 ## 0.7.3
 - update to `carp_core` v. 0.33.0
 - misc. cleanup in Android example app configurations
