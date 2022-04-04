@@ -49,11 +49,9 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
     consentSignatureResult.consentDocument.signatures.isEmpty
         ? result.setResultForIdentifier(
             "no signature collected", consentSignatureResult)
-        : //TODO: modify identifier to match the id of rpconsentsignature
-        result.setResultForIdentifier(
+        : result.setResultForIdentifier(
             consentSignatureResult.consentDocument.signatures.first.identifier,
-            consentSignatureResult); //TODO: modify identifier to match the id of RPConsentSignature
-
+            consentSignatureResult);
     blocTask.sendStepResult(result);
   }
 
@@ -225,10 +223,8 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                   backgroundColor:
                       MaterialStateProperty.all(Theme.of(context).primaryColor),
                 ),
-                child: Text(
-                  locale?.translate('AGREE') ?? "AGREE",
-                  style: Theme.of(context).accentTextTheme.button,
-                ),
+                child: Text(locale?.translate('AGREE') ?? "AGREE",
+                    style: Theme.of(context).textTheme.button),
                 onPressed: onPressedCallback,
               ),
             ],
@@ -256,36 +252,32 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             blocTask.sendStatus(RPStepStatus.Canceled);
           },
         ),
-        ButtonTheme(
-          buttonColor: Theme.of(context).buttonColor,
-          minWidth: 70,
-          child: TextButton(
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(Theme.of(context).primaryColor),
-            ),
-            child: Text(
-              locale?.translate('AGREE') ?? "AGREE",
-              style: Theme.of(context).accentTextTheme.button,
-            ),
-            onPressed: () {
-              _showConsentDialog(
-                widget.step.consentDocument.signatures.isNotEmpty
-                    ? () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        Navigator.of(context)
-                            .pushReplacementNamed('consent_review/signature');
-                      }
-                    : () {
-                        // Dismiss pop-up. It uses the root Navigator since it's an overlay
-                        Navigator.of(context, rootNavigator: true).pop();
-                        widget.onNoSignature(null);
-                        blocTask.sendStatus(RPStepStatus.Finished);
-                      },
-              );
-            },
+        TextButton(
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all(Theme.of(context).primaryColor),
           ),
+          child: Text(
+            locale?.translate('AGREE') ?? "AGREE",
+            style: Theme.of(context).textTheme.button,
+          ),
+          onPressed: () {
+            _showConsentDialog(
+              widget.step.consentDocument.signatures.isNotEmpty
+                  ? () {
+                      // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                      Navigator.of(context, rootNavigator: true).pop();
+                      Navigator.of(context)
+                          .pushReplacementNamed('consent_review/signature');
+                    }
+                  : () {
+                      // Dismiss pop-up. It uses the root Navigator since it's an overlay
+                      Navigator.of(context, rootNavigator: true).pop();
+                      widget.onNoSignature(null);
+                      blocTask.sendStatus(RPStepStatus.Finished);
+                    },
+            );
+          },
         ),
       ],
     );

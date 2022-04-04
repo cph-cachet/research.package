@@ -123,6 +123,13 @@ class _ChoiceButton extends StatefulWidget {
 
 class _ChoiceButtonState extends State<_ChoiceButton> {
   RPChoice? grpChoice;
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,16 +158,19 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
               decoration: !widget.isLastChoice
                   ? BoxDecoration(
                       border: Border(
-                          bottom: BorderSide(
-                              color: Theme.of(context).dividerColor)))
+                        bottom:
+                            BorderSide(color: Theme.of(context).dividerColor),
+                      ),
+                    )
                   : null,
               child: widget.choice.isFreeText
                   ? Container(
                       child: TextField(
                         onChanged: (newText) => widget.choice.text = newText,
                         decoration: InputDecoration(
-                            hintText: locale?.translate(widget.choice.text) ??
-                                widget.choice.text),
+                          hintText: locale?.translate(widget.choice.text) ??
+                              widget.choice.text,
+                        ),
                       ),
                     )
                   : Text(
@@ -174,5 +184,11 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
         ]),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

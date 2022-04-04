@@ -165,14 +165,12 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                   "Discard results and quit?"),
           actions: <Widget>[
             ButtonTheme(
-              buttonColor: Theme.of(context).buttonColor,
               minWidth: 70,
               child: TextButton(
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(Theme.of(context).primaryColor),
                 ),
-
                 child: Text(
                   RPLocalizations.of(context)?.translate('NO') ?? "NO",
                   style: TextStyle(color: Colors.white),

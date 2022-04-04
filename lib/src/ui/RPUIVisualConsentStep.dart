@@ -307,30 +307,28 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
             ),
             onPressed: () => _showCancelDialog(),
           ),
-          ButtonTheme(
-            buttonColor: Theme.of(context).buttonColor,
-            minWidth: 70,
-            child: TextButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(Theme.of(context).primaryColor),
-              ),
-              child: _lastPage
-                  ? Text(
-                      RPLocalizations.of(context)?.translate('SEE_SUMMARY') ??
-                          "SEE SUMMARY",
-                      style: TextStyle(color: Colors.white), //
-                    )
-                  : Text(
-                      RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
-                      style: Theme.of(context).accentTextTheme.button,
-                    ),
-              onPressed: _lastPage
-                  ? () => blocTask.sendStatus(RPStepStatus.Finished)
-                  : () => controller.nextPage(
-                      duration: Duration(milliseconds: 400),
-                      curve: Curves.fastOutSlowIn),
+          TextButton(
+            style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all(Theme.of(context).primaryColor),
             ),
+            child: _lastPage
+                ? Text(
+                    RPLocalizations.of(context)?.translate('SEE_SUMMARY') ??
+                        "SEE SUMMARY",
+                    style: TextStyle(color: Colors.white),
+                  )
+                : Text(
+                    RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
+                    style: Theme.of(context).textTheme.button?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                  ),
+            onPressed: _lastPage
+                ? () => blocTask.sendStatus(RPStepStatus.Finished)
+                : () => controller.nextPage(
+                    duration: Duration(milliseconds: 400),
+                    curve: Curves.fastOutSlowIn),
           ),
         ],
       ),

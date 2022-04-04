@@ -82,8 +82,7 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                     child: Text(
                       locale?.translate(widget.step.footnote!) ??
                           widget.step.footnote!,
-                      style:
-                          Theme.of(context).textTheme.caption, // TODO: change?
+                      style: Theme.of(context).textTheme.caption,
                       textAlign: TextAlign.start,
                     ),
                   )
