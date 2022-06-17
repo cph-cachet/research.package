@@ -2,21 +2,17 @@ import 'package:research_package/model.dart';
 
 RPConsentSection overviewSection = RPConsentSection(
     type: RPConsentSectionType.Overview,
-    summary: "Welcome! This is a summary for Overview",
-    content:
-        "Overview dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
+    summary: "overview.title",
+    content: "overview.content");
 
 RPConsentSection dataGatheringSection = RPConsentSection(
     type: RPConsentSectionType.DataGathering,
-    summary: "This is a summary for Data Gathering.",
-    content:
-        "Data Gathering dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
-
+    summary: "datagathering.title",
+    content: "datagathering.content");
 RPConsentSection privacySection = RPConsentSection(
     type: RPConsentSectionType.Privacy,
-    summary: "This is a summary for Privacy.",
-    content:
-        "Privacy dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
+    summary: "privacy.title",
+    content: "privacy.content");
 
 RPConsentSection dataUseSection = RPConsentSection(
     type: RPConsentSectionType.DataUse,
@@ -91,31 +87,26 @@ RPConsentSection healthSection = RPConsentSection(
     summary: "This is a summary for Health.",
     content: "Health dolor sit amet");
 
+// Using keys for translations
 RPConsentSection userDataCollection = RPConsentSection(
     type: RPConsentSectionType.UserDataCollection,
-    summary:
-        "This study will ask you to provide the information about the following categories:",
+    summary: "userDataCollection.summary",
     dataTypes: [
       RPDataTypeSection(
-          dataName: "Alcohol",
-          dataInformation:
-              "You have to input some info about alcohol in the alcohol card  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut aliquet augue, sed maximus sapien. Cras non sem vulputate, tincidunt est in, euismod orci. Aenean elit nisl, convallis vel lacus eget, pellentesque laoreet nunc."),
+          dataName: "userDataCollection.alcohol.dataName",
+          dataInformation: "userDataCollection.alcohol.dataInformation"),
       RPDataTypeSection(
-          dataName: "Mood",
-          dataInformation:
-              "You have to input some info about your mood in the mood card"),
+          dataName: "userDataCollection.mood.dataName",
+          dataInformation: "userDataCollection.mood.dataInformation"),
       RPDataTypeSection(
-          dataName: "Weight",
-          dataInformation:
-              "You have to input some info about your weight in the weight card"),
+          dataName: "userDataCollection.weight.dataName",
+          dataInformation: "userDataCollection.weight.dataInformation"),
       RPDataTypeSection(
-          dataName: "Medications",
-          dataInformation:
-              "You have to input some info about your medications in the medications card"),
+          dataName: "userDataCollection.medications.dataName",
+          dataInformation: "userDataCollection.medications.dataInformation"),
       RPDataTypeSection(
-          dataName: "Smoking",
-          dataInformation:
-              "You have to input some info about your smoking in the smoking card"),
+          dataName: "userDataCollection.smoking.dataName",
+          dataInformation: "userDataCollection.smoking.dataInformation"),
     ]);
 
 RPConsentSection passiveDataCollection = RPConsentSection(

@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
         //    works both with and without translation.
         RPLocalizations.delegate,
 
-        // // Research Package translations - supports translation of both;
-        // //  - the RP-specific text
-        // //  - app-specific text using the [AssetLocalizationLoader]
-        // //  - a map-based localization loader [MapLocalizationLoader]
+        // Research Package translations - supports translation of both;
+        //  - the RP-specific text
+        //  - app-specific text using the [AssetLocalizationLoader]
+        //  - a map-based localization loader [MapLocalizationLoader]
         // RPLocalizationsDelegate(loaders: [
         //   AssetLocalizationLoader(),
         //   MapLocalizationLoader({
@@ -77,11 +77,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    RPLocalizations locale = RPLocalizations.of(context)!;
+    RPLocalizations? locale = RPLocalizations.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(locale.translate('app_name')),
+        title: Text(locale?.translate('app_name') ?? 'Research Package Demo'),
       ),
       body: Container(
         padding: EdgeInsets.all(8),
@@ -94,7 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 50, horizontal: 8),
                 child: Text(
-                  locale.translate("app_info"),
+                  locale?.translate("app_info") ??
+                      "The 'Research Package' Flutter package allow you to create and obtain informed consent and user surveys.",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
                 ),
@@ -103,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
                   child: Text(
-                    locale.translate("informed_consent"),
+                    locale?.translate("informed_consent") ?? "Informed Consent",
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
@@ -116,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
                   child: Text(
-                    locale.translate("linear_survey"),
+                    locale?.translate("linear_survey") ?? "Linear Survey",
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
@@ -129,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
                   child: Text(
-                    locale.translate("branching_survey"),
+                    locale?.translate("branching_survey") ?? "Branching Survey",
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {

@@ -148,7 +148,12 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate)
     _taskResult.endDate = DateTime.now();
-    if (widget.onSubmit != null) widget.onSubmit!(_taskResult);
+    RPTaskResult? translatedTaskResult;
+    if (RPLocalizations.of(context) != null) {
+      translatedTaskResult =
+          _translateTaskResult(RPLocalizations.of(context)!, _taskResult);
+    }
+    widget.onSubmit?.call(translatedTaskResult ?? _taskResult);
   }
 
   void _showCancelConfirmationDialog() {
@@ -323,5 +328,140 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     _stepResultSubscription.cancel();
     _taskPageViewController.dispose();
     super.dispose();
+  }
+
+  // Translates the RPTaskResult values to the correct language,
+  // which was shown on screen during the task.
+  RPTaskResult _translateTaskResult(
+      RPLocalizations locale, RPTaskResult taskResult) {
+    RPTaskResult translatedTaskResult =
+        RPTaskResult(identifier: taskResult.identifier);
+    // For each step result in the task
+    for (MapEntry<String, dynamic> mapEntry in taskResult.results.entries) {
+      if (mapEntry.value is RPStepResult) {
+        // Translate answerformat
+        RPStepResult stepResult = mapEntry.value as RPStepResult;
+        RPAnswerFormat translatedAnswerFormat =
+            _translateAnswerFormat(locale, stepResult.answerFormat!);
+
+        // Create stepresult to fill with answers
+        RPStepResult translatedResult = RPStepResult(
+            identifier: stepResult.identifier,
+            answerFormat: translatedAnswerFormat)
+          ..questionTitle = stepResult.questionTitle;
+
+        // For each answer in the map
+        for (MapEntry<String, dynamic> resultEntry
+            in stepResult.results.entries) {
+          if (stepResult.answerFormat.runtimeType == RPFormAnswerFormat) {
+            translatedResult.setResultForIdentifier(
+                resultEntry.key, _translateResult(locale, resultEntry.value));
+          } else {
+            translatedResult
+                .setResult(_translateResult(locale, resultEntry.value));
+          }
+        }
+
+        translatedTaskResult.setStepResultForIdentifier(
+            mapEntry.key, translatedResult);
+      } else {
+        // if mapEntry.value is RPConsentSignatureResult
+        // which is handled in the RPUIConsentReviewStep.
+        // Other result types are also transfered.
+        translatedTaskResult.setStepResultForIdentifier(
+            mapEntry.key, mapEntry.value);
+      }
+    }
+    return translatedTaskResult;
+  }
+
+  RPAnswerFormat _translateAnswerFormat(
+      RPLocalizations locale, RPAnswerFormat answerFormat) {
+    switch (answerFormat.runtimeType) {
+      case RPIntegerAnswerFormat:
+        answerFormat as RPIntegerAnswerFormat;
+        return RPIntegerAnswerFormat(
+            maxValue: answerFormat.maxValue,
+            minValue: answerFormat.minValue,
+            suffix: (answerFormat.suffix == null)
+                ? null
+                : locale.translate(answerFormat.suffix!));
+
+      case RPChoiceAnswerFormat:
+        answerFormat as RPChoiceAnswerFormat;
+        List<RPChoice> translatedRPChoices = [];
+        for (RPChoice choice in answerFormat.choices) {
+          translatedRPChoices.add(RPChoice(
+              text: locale.translate(choice.text),
+              value: choice.value,
+              detailText: choice.detailText == null
+                  ? null
+                  : locale.translate(choice.detailText!),
+              isFreeText: choice.isFreeText));
+        }
+        return RPChoiceAnswerFormat(
+            answerStyle: answerFormat.answerStyle,
+            choices: translatedRPChoices);
+
+      case RPSliderAnswerFormat:
+        answerFormat as RPSliderAnswerFormat;
+        return RPSliderAnswerFormat(
+            minValue: answerFormat.minValue,
+            maxValue: answerFormat.maxValue,
+            divisions: answerFormat.divisions,
+            suffix: (answerFormat.suffix == null)
+                ? null
+                : locale.translate(answerFormat.suffix!),
+            prefix: (answerFormat.prefix == null)
+                ? null
+                : locale.translate(answerFormat.prefix!));
+
+      case RPImageChoiceAnswerFormat:
+        answerFormat as RPImageChoiceAnswerFormat;
+        List<RPImageChoice> translatedImageChoices = [];
+        for (RPImageChoice imageChoice in answerFormat.choices) {
+          translatedImageChoices.add(RPImageChoice(
+              imageUrl: imageChoice.imageUrl,
+              description: locale.translate(imageChoice.description),
+              key: imageChoice.key,
+              value: imageChoice.value));
+        }
+        return RPImageChoiceAnswerFormat(choices: translatedImageChoices);
+
+      // case RPDateTimeAnswerFormat:
+      //   answerFormat as RPDateTimeAnswerFormat;
+      //   return RPDateTimeAnswerFormat();
+      // case RPTextAnswerFormat:
+      //   answerFormat as RPTextAnswerFormat;
+      //   return RPTextAnswerFormat();
+      default:
+        return answerFormat;
+    }
+  }
+
+  dynamic _translateResult(RPLocalizations locale, dynamic value) {
+    switch (value.runtimeType) {
+      case RPImageChoice:
+        value as RPImageChoice;
+        return RPImageChoice(
+            imageUrl: value.imageUrl,
+            description: value.description,
+            key: value.key,
+            value: value.value);
+      case RPChoice:
+        value as RPChoice;
+        return RPChoice(
+            text: locale.translate(value.text),
+            value: value.value,
+            detailText: value.detailText == null
+                ? null
+                : locale.translate(value.detailText!),
+            isFreeText: value.isFreeText);
+      case List<RPChoice>:
+        value as List;
+        return value.map((e) => _translateResult(locale, e)).toList();
+      default:
+        return value;
+    }
   }
 }

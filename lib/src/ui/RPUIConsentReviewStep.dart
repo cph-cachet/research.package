@@ -17,20 +17,18 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
     with CanSaveResult {
   late RPConsentSignatureResult consentSignatureResult;
   RPSignatureResult? signatureResult;
-  late RPStepResult result;
+  // late RPStepResult result;
 
   @override
   void initState() {
     // Instantiate result so the counter starts
+    super.initState();
     RPAnswerFormat? af;
     try {
       af = (widget.step as RPQuestionStep).answerFormat;
     } catch (e) {
       print(e);
     }
-    result = RPStepResult(identifier: widget.step.identifier, answerFormat: af);
-    result.questionTitle = widget.step.consentDocument.title;
-    super.initState();
   }
 
   void _setSignatureResult(RPSignatureResult? result) {
@@ -42,17 +40,59 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
 
   @override
   void createAndSendResult() {
+    // Transforming the consent document from the string values in the objects
+    // to the translation the users were presented with
+    List<RPConsentSection> translatedConsentSections = [];
+    RPLocalizations? locale = RPLocalizations.of(context);
+    for (RPConsentSection section in widget.step.consentDocument.sections) {
+      List<RPDataTypeSection> translatedDataTypeSections = [];
+      if ([
+            RPConsentSectionType.UserDataCollection,
+            RPConsentSectionType.PassiveDataCollection
+          ].contains(section.type) &&
+          section.dataTypes != null) {
+        for (RPDataTypeSection dataTypeSection in section.dataTypes!) {
+          translatedDataTypeSections.add(
+            RPDataTypeSection(
+              dataName: locale?.translate(dataTypeSection.dataName) ??
+                  dataTypeSection.dataName,
+              dataInformation:
+                  locale?.translate(dataTypeSection.dataInformation) ??
+                      dataTypeSection.dataInformation,
+            ),
+          );
+        }
+      }
+      translatedConsentSections.add(RPConsentSection(
+        title: locale?.translate(section.title) ?? section.title,
+        summary: section.summary != null
+            ? locale?.translate(section.summary!) ?? section.summary
+            : null,
+        content: section.content != null
+            ? locale?.translate(section.content!) ?? section.content
+            : null,
+        type: section.type,
+        dataTypes: (translatedDataTypeSections.isNotEmpty)
+            ? translatedDataTypeSections
+            : null,
+      ));
+    }
+    RPConsentDocument translatedConsentDocument = RPConsentDocument(
+        title: locale?.translate(widget.step.consentDocument.title) ??
+            widget.step.consentDocument.title,
+        sections: translatedConsentSections);
+
+    for (RPConsentSignature signature
+        in widget.step.consentDocument.signatures) {
+      translatedConsentDocument.addSignature(signature);
+    }
+
+    // Creating the result object
     consentSignatureResult = RPConsentSignatureResult(
-        widget.step.identifier, widget.step.consentDocument, signatureResult)
+        widget.step.identifier, translatedConsentDocument, signatureResult)
       ..endDate = DateTime.now();
 
-    consentSignatureResult.consentDocument.signatures.isEmpty
-        ? result.setResultForIdentifier(
-            "no signature collected", consentSignatureResult)
-        : result.setResultForIdentifier(
-            consentSignatureResult.consentDocument.signatures.first.identifier,
-            consentSignatureResult);
-    blocTask.sendStepResult(result);
+    blocTask.sendStepResult(consentSignatureResult);
   }
 
   @override
