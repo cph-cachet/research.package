@@ -1,3 +1,7 @@
+## 0.9.1
+
+- Fixed a big in the signature during consent review.
+
 ## 0.9.0
 
 - Research Package now translates the `TaskResult` and steps from the localization keys to the localized values.
