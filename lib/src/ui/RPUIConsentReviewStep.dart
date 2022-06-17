@@ -23,12 +23,6 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
   void initState() {
     // Instantiate result so the counter starts
     super.initState();
-    RPAnswerFormat? af;
-    try {
-      af = (widget.step as RPQuestionStep).answerFormat;
-    } catch (e) {
-      print(e);
-    }
   }
 
   void _setSignatureResult(RPSignatureResult? result) {
