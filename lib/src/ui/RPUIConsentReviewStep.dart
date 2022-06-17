@@ -336,45 +336,12 @@ class _SignatureRoute extends StatefulWidget {
 
 class _SignatureRouteState extends State<_SignatureRoute> {
   late bool _isNameFilled;
-  late bool _isSignatureAdded;
+  bool _isSignatureAdded = false;
 
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
 
-  final SignatureController _signatureController = SignatureController(
-    penStrokeWidth: 4,
-    penColor: Colors.red,
-    exportBackgroundColor: Colors.blue,
-  );
-  late Signature _signature;
-
-  Widget _signatureCanvas() {
-    return GestureDetector(
-      onTapDown: (e) {
-        FocusScope.of(context).requestFocus(new FocusNode());
-      },
-      onPanStart: (e) {
-        FocusScope.of(context).requestFocus(new FocusNode());
-      },
-      onTap: () {
-        setState(() {
-          if (_signatureController.isNotEmpty) {
-            _isSignatureAdded = true;
-          }
-        });
-      },
-      onPanEnd: (e) {
-        setState(() {
-          if (_signatureController.isNotEmpty) {
-            _isSignatureAdded = true;
-          }
-        });
-      },
-      child: Container(
-        child: _signature,
-      ),
-    );
-  }
+  late SignatureController _signatureController;
 
   void _checkNameIsNotEmpty() {
     setState(() {
@@ -385,11 +352,17 @@ class _SignatureRouteState extends State<_SignatureRoute> {
 
   @override
   void initState() {
-    _signature = Signature(
-      controller: _signatureController,
-      height: 200,
-      width: 300,
-      backgroundColor: Colors.transparent,
+    _signatureController = SignatureController(
+      penStrokeWidth: 4,
+      penColor: Colors.red,
+      exportBackgroundColor: Colors.blue,
+      onDrawEnd: () {
+        if (_signatureController.isNotEmpty) {
+          setState(() {
+            _isSignatureAdded = true;
+          });
+        }
+      },
     );
 
     widget._consentSignature.requiresSignatureImage
@@ -438,7 +411,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           children: <Widget>[
             Text(
               locale?.translate('sign_with_finger') ??
-                  'Please sign using your finger on the box below',
+                  'Please sign using your finger in the box below',
               style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
             ),
@@ -451,7 +424,14 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                     width: 2,
                   ),
                 ),
-                child: _signatureCanvas(),
+                child: Container(
+                  child: Signature(
+                    controller: _signatureController,
+                    height: 200,
+                    width: MediaQuery.of(context).size.width - 70,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ),
               ),
             ),
             OutlinedButton(
