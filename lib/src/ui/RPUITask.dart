@@ -302,6 +302,8 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                               ),
                               onPressed: snapshot.data!
                                   ? () {
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
                                       blocTask
                                           .sendStatus(RPStepStatus.Finished);
                                     }

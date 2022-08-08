@@ -1,3 +1,7 @@
+## 0.9.2
+
+- Added a unfocus between question to avoid the keyboard remaining on the screen after answering a question.
+
 ## 0.9.1
 
 - Fixed a big in the signature during consent review.

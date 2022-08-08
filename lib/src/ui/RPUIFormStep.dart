@@ -144,6 +144,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   }
 
   skipQuestion() {
+    FocusManager.instance.primaryFocus?.unfocus();
     stepResult.results.keys.forEach((key) {
       (stepResult.results[key] as RPStepResult).setResult(null);
     });

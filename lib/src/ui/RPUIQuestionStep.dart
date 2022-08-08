@@ -31,6 +31,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   }
 
   skipQuestion() {
+    FocusManager.instance.primaryFocus?.unfocus();
     blocTask.sendStatus(RPStepStatus.Finished);
     this.currentQuestionBodyResult = null;
   }
