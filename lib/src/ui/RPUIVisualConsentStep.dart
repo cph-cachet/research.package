@@ -64,7 +64,7 @@ class _RPUIVisualConsentStep extends State<RPUIVisualConsentStep>
             ),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).primaryColor),
+                    backgroundColor: Theme.of(context).primaryColor),
                 child: Text(
                   RPLocalizations.of(context)?.translate('NO') ?? 'NO',
                   style: Theme.of(context).primaryTextTheme.button,

@@ -470,7 +470,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       persistentFooterButtons: <Widget>[
         ElevatedButton(
           style:
-              ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+              ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
           child: Text(
             locale?.translate('NEXT') ?? "NEXT",
             style: Theme.of(context).primaryTextTheme.button,

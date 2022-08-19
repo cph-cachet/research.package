@@ -13,17 +13,18 @@ dependencies:
 
   carp_core: ^0.33.0 # the core CARP domain model
 
-  signature: ^5.0.0
-  rxdart: ^0.27.1
-  json_annotation: ^4.4.0
-  simple_html_css: ^3.0.1
+  signature: ^5.2.1
+  rxdart: ^0.27.5
+  json_annotation: ^4.6.0
+  simple_html_css: ^4.0.0
   audiofileplayer: ^2.1.0
 
 dev_dependencies:
   # flutter_test:
   #   sdk: flutter
-  build_runner: ^2.1.5
-  json_serializable: ^6.1.5
+
+  build_runner: ^2.2.0
+  json_serializable: ^6.3.1
   test: ^1.20.2
 
 flutter:
