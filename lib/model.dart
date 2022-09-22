@@ -13,8 +13,7 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-// the carp core domain model incl. polymorphic json serialization
-import 'package:carp_core/carp_common/carp_core_common.dart';
+import 'package:carp_serializable/carp_serializable.dart';
 
 // Importing the UI library from Research Package
 import 'package:research_package/ui.dart';

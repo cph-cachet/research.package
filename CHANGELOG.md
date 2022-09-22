@@ -1,3 +1,7 @@
+## 0.9.3
+
+- Changed dependency from carp_core to carp_serializable, to reduce unnecessary imports.
+
 ## 0.9.2
 
 - Added a unfocus between question to avoid the keyboard remaining on the screen after answering a question.

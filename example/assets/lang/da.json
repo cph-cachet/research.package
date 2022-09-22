@@ -19,6 +19,13 @@
   "Some of the time": "Noget af tiden",
   "At no time": "På intet tidspunkt",
 
+  "timeChoice5": "Hele tiden",
+  "timeChoice4": "Det meste af tiden",
+  "timeChoice3": "Mere end halvdelen af tiden",
+  "timeChoice2": "Mindre end halvdelen af tiden",
+  "timeChoice1": "Noget af tiden",
+  "timeChoice0": "På intet tidspunkt",
+
   "Playing games": "Spille spil",
   "Jogging": "Løbe",
   "Playing an instrument": "Spille et instrument",
