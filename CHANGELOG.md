@@ -1,14 +1,16 @@
-## 0.10.0
+## 1.0.0
 
+- First stable release
 - `RPActivityStep` made serializable.
-- Upgraded to Dart 2.17
+- Upgraded to Dart 2.18 and Fluter 3
 - Refactoring to comply to [official Dart recommended lint rules](https://pub.dev/packages/flutter_lints)
-- upgrade of several constructors to use `super` which break backwards compatability to version 0.9.3
-- update and clean up in API documentation.
+- Upgrade of several constructors to use `super` which break backwards compatability to version 0.9.3
+- Update of demo app
+- Update and clean up in API documentation.
 
 ## 0.9.3
 
-- Changed dependency from carp_core to carp_serializable, to reduce unnecessary imports.
+- Changed dependency from carp_core to carp_serializable, to reduce unnecessary dependencies.
 
 ## 0.9.2
 
@@ -34,8 +36,8 @@
 
 ## 0.7.3
 
-- update to `carp_core` v. 0.33.0
-- misc. cleanup in Android example app configurations
+- Update to `carp_core` v. 0.33.0
+- Misc. cleanup in Android example app configurations
 
 ## 0.7.2+3
 

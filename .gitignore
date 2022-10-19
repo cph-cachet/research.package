@@ -862,3 +862,4 @@ Temporary Items
 # Archives         - https://github.com/github/gitignore/blob/main/Global/Archives.gitignore
 # Backup           - https://github.com/github/gitignore/blob/main/Global/Backup.gitignore
 # JEnv             - https://github.com/github/gitignore/blob/main/Global/JEnv.gitignore
+*.lock
