@@ -33,3 +33,4 @@ flutter:
   assets:
     - assets/images/
     - assets/lang/
+    - assets/carp_logo.png
