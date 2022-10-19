@@ -7,13 +7,13 @@ part of research_package_ui;
 class RPUICompletionStep extends StatefulWidget {
   final RPCompletionStep step;
 
-  RPUICompletionStep({required this.step});
+  const RPUICompletionStep({super.key, required this.step});
 
   @override
-  _RPUICompletionStepState createState() => _RPUICompletionStepState();
+  RPUICompletionStepState createState() => RPUICompletionStepState();
 }
 
-class _RPUICompletionStepState extends State<RPUICompletionStep>
+class RPUICompletionStepState extends State<RPUICompletionStep>
     with SingleTickerProviderStateMixin {
   late Animation<double> _scale;
   late AnimationController _controller;
@@ -22,8 +22,8 @@ class _RPUICompletionStepState extends State<RPUICompletionStep>
   void initState() {
     super.initState();
 
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 350));
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 350));
     _scale = Tween(begin: 0.3, end: 1.1)
         .chain(CurveTween(curve: Curves.easeInOut))
         .animate(_controller);

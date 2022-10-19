@@ -2,16 +2,20 @@ part of research_package_ui;
 
 class RPUIImageChoiceQuestionBody extends StatefulWidget {
   final RPImageChoiceAnswerFormat answerFormat;
-  final Function(dynamic) onResultChance;
+  final void Function(dynamic) onResultChance;
 
-  RPUIImageChoiceQuestionBody(this.answerFormat, this.onResultChance);
+  const RPUIImageChoiceQuestionBody(
+    this.answerFormat,
+    this.onResultChance, {
+    super.key,
+  });
 
   @override
-  _RPUIImageChoiceQuestionBodyState createState() =>
-      _RPUIImageChoiceQuestionBodyState();
+  RPUIImageChoiceQuestionBodyState createState() =>
+      RPUIImageChoiceQuestionBodyState();
 }
 
-class _RPUIImageChoiceQuestionBodyState
+class RPUIImageChoiceQuestionBodyState
     extends State<RPUIImageChoiceQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIImageChoiceQuestionBody> {
   RPImageChoice? _selectedItem;
@@ -29,7 +33,7 @@ class _RPUIImageChoiceQuestionBodyState
         ? (locale?.translate('select_image') ?? 'Select an image')
         : (locale?.translate(_selectedItem!.description) ??
             _selectedItem!.description);
-    return Container(
+    return SizedBox(
         height: 160,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -45,8 +49,8 @@ class _RPUIImageChoiceQuestionBodyState
 
   Row _buildList(BuildContext context, List<RPImageChoice> items) {
     List<Widget> list = [];
-    items.forEach(
-      (item) => list.add(
+    for (var item in items) {
+      list.add(
         InkWell(
           borderRadius: BorderRadius.circular(15),
           onTap: () {
@@ -81,8 +85,8 @@ class _RPUIImageChoiceQuestionBodyState
             child: Image.asset(item.imageUrl),
           ),
         ),
-      ),
-    );
+      );
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: list,

@@ -43,7 +43,8 @@ class AssetLocalizations {
 
     String jsonString = await rootBundle.loadString(filename, cache: false);
 
-    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    Map<String, dynamic> jsonMap =
+        json.decode(jsonString) as Map<String, dynamic>;
     _translations =
         jsonMap.map((key, value) => MapEntry(key, value.toString()));
 

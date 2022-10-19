@@ -6,14 +6,13 @@ part of research_package_ui;
 class RPUIQuestionStep extends StatefulWidget {
   final RPQuestionStep step;
 
-  RPUIQuestionStep(this.step);
+  const RPUIQuestionStep(this.step, {super.key});
 
   @override
-  _RPUIQuestionStepState createState() => _RPUIQuestionStepState();
+  RPUIQuestionStepState createState() => RPUIQuestionStepState();
 }
 
-class _RPUIQuestionStepState extends State<RPUIQuestionStep>
-    with CanSaveResult {
+class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
   dynamic _currentQuestionBodyResult;
   late bool readyToProceed;
@@ -21,19 +20,19 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   RPTaskProgress? recentTaskProgress;
 
   set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {
-    this._currentQuestionBodyResult = currentQuestionBodyResult;
+    _currentQuestionBodyResult = currentQuestionBodyResult;
     createAndSendResult();
-    if (this._currentQuestionBodyResult != null) {
+    if (_currentQuestionBodyResult != null) {
       blocQuestion.sendReadyToProceed(true);
     } else {
       blocQuestion.sendReadyToProceed(false);
     }
   }
 
-  skipQuestion() {
+  void skipQuestion() {
     FocusManager.instance.primaryFocus?.unfocus();
     blocTask.sendStatus(RPStepStatus.Finished);
-    this.currentQuestionBodyResult = null;
+    currentQuestionBodyResult = null;
   }
 
   @override
@@ -43,6 +42,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
 
     result = RPStepResult(
         identifier: widget.step.identifier,
+        questionTitle: widget.step.title,
         answerFormat: widget.step.answerFormat);
     readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
@@ -55,32 +55,32 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
       case RPIntegerAnswerFormat:
         return RPUIIntegerQuestionBody((answerFormat as RPIntegerAnswerFormat),
             (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
             (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPSliderAnswerFormat:
         return RPUISliderQuestionBody((answerFormat as RPSliderAnswerFormat),
             (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPImageChoiceAnswerFormat:
         return RPUIImageChoiceQuestionBody(
             (answerFormat as RPImageChoiceAnswerFormat), (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPDateTimeAnswerFormat:
         return RPUIDateTimeQuestionBody(
             (answerFormat as RPDateTimeAnswerFormat), (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPTextAnswerFormat:
         return RPUITextInputQuestionBody((answerFormat as RPTextAnswerFormat),
             (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       default:
         return Container();
@@ -92,7 +92,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
     RPLocalizations? locale = RPLocalizations.of(context);
     return SafeArea(
       child: ListView(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         children: [
           // Title
           Padding(
@@ -131,7 +131,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
 // Render the title above the questionBody
 class Title extends StatelessWidget {
   final String title;
-  Title(this.title);
+  const Title(this.title, {super.key});
 
   @override
   Widget build(BuildContext context) {

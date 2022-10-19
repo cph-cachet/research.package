@@ -26,17 +26,19 @@ void _registerFromJsonFunctions() {
 
   // Steps classes
   FromJsonFactory().register(RPStep(identifier: '', title: ''));
+  FromJsonFactory().register(RPActivityStep(identifier: ''));
   FromJsonFactory().register(RPQuestionStep(
       identifier: '', title: '', answerFormat: RPAnswerFormat()));
   FromJsonFactory().register(RPInstructionStep(identifier: '', title: ''));
-  FromJsonFactory()
-      .register(RPTimerStep(identifier: '', timeout: Duration(), title: ''));
+  FromJsonFactory().register(
+      RPTimerStep(identifier: '', timeout: const Duration(), title: ''));
   FromJsonFactory().register(RPFormStep(identifier: '', title: '', steps: []));
   FromJsonFactory().register(RPCompletionStep(identifier: '', title: ''));
 
   // Consent Document classes
   FromJsonFactory().register(RPConsentReviewStep(
       identifier: '',
+      title: '',
       consentDocument: RPConsentDocument(sections: [], title: '')));
   FromJsonFactory().register(RPVisualConsentStep(
       identifier: '',

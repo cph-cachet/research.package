@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).push(MaterialPageRoute<dynamic>(
                         builder: (context) => InformedConsentPage()));
                   },
                 ),
@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).push(MaterialPageRoute<dynamic>(
                         builder: (context) => LinearSurveyPage()));
                   },
                 ),
@@ -134,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).push(MaterialPageRoute<dynamic>(
                         builder: (context) => NavigableSurveyPage()));
                   },
                 ),

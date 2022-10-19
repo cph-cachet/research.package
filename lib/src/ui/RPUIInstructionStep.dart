@@ -8,22 +8,22 @@ part of research_package_ui;
 class RPUIInstructionStep extends StatefulWidget {
   final RPInstructionStep step;
 
-  RPUIInstructionStep({required this.step});
+  const RPUIInstructionStep({super.key, required this.step});
 
   @override
-  _RPUIInstructionStepState createState() => _RPUIInstructionStepState();
+  RPUIInstructionStepState createState() => RPUIInstructionStepState();
 }
 
-class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
+class RPUIInstructionStepState extends State<RPUIInstructionStep> {
   @override
   void initState() {
     blocQuestion.sendReadyToProceed(true);
     super.initState();
   }
 
-  _pushDetailTextRoute() {
+  void _pushDetailTextRoute() {
     Navigator.of(context).push(
-      MaterialPageRoute(
+      MaterialPageRoute<dynamic>(
         builder: (context) {
           return _DetailTextRoute(
             title: widget.step.title,
@@ -47,9 +47,9 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
             if (widget.step.imagePath != null)
               Center(
                 child: SizedBox(
-                  child: InstructionImage(widget.step.imagePath!),
                   height: MediaQuery.of(context).size.height * 0.25,
                   width: MediaQuery.of(context).size.width * 0.25,
+                  child: InstructionImage(widget.step.imagePath!),
                 ),
               ),
 
@@ -57,7 +57,8 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
                   child: Text(
                     locale?.translate(widget.step.text!) ?? widget.step.text!,
                     textAlign: TextAlign.start,
@@ -69,9 +70,9 @@ class _RPUIInstructionStepState extends State<RPUIInstructionStep> {
                         style: TextButton.styleFrom(
                             textStyle: TextStyle(
                                 color: Theme.of(context).primaryColor)),
+                        onPressed: _pushDetailTextRoute,
                         child: Text(
                             locale?.translate('learn_more') ?? "Learn more..."),
-                        onPressed: _pushDetailTextRoute,
                       )
                     : Container(),
               ],
@@ -98,7 +99,7 @@ class _DetailTextRoute extends StatelessWidget {
   final String title;
   final String content;
 
-  _DetailTextRoute({required this.title, required this.content});
+  const _DetailTextRoute({required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +112,7 @@ class _DetailTextRoute extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: 3),
+                const SizedBox(width: 3),
                 IconButton(
                   icon: Icon(Icons.arrow_back,
                       color: Theme.of(context).primaryColor, size: 30),
@@ -122,10 +123,10 @@ class _DetailTextRoute extends StatelessWidget {
               ],
             ),
             Container(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
                 child: Text(
-                  locale?.translate(this.content) ?? this.content,
+                  locale?.translate(content) ?? content,
                   style: Theme.of(context).textTheme.bodyText1,
                   textAlign: TextAlign.start,
                 ),
@@ -141,7 +142,7 @@ class _DetailTextRoute extends StatelessWidget {
 class InstructionImage extends StatelessWidget {
   final String _imagePath;
 
-  InstructionImage(this._imagePath);
+  const InstructionImage(this._imagePath, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +159,7 @@ class InstructionImage extends StatelessWidget {
 // Render the title above the questionBody
 class InstructionText extends StatelessWidget {
   final String text;
-  InstructionText(this.text);
+  const InstructionText(this.text, {super.key});
 
   @override
   Widget build(BuildContext context) {

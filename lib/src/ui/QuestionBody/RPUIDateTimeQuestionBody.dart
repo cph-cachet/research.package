@@ -3,10 +3,14 @@ part of research_package_ui;
 // ignore: must_be_immutable
 class RPUIDateTimeQuestionBody extends StatefulWidget {
   final RPDateTimeAnswerFormat answerFormat;
-  final Function(dynamic) onResultChange;
+  final void Function(dynamic) onResultChange;
   late final CupertinoDatePickerMode mode;
 
-  RPUIDateTimeQuestionBody(this.answerFormat, this.onResultChange) {
+  RPUIDateTimeQuestionBody(
+    this.answerFormat,
+    this.onResultChange, {
+    super.key,
+  }) {
     mode = (answerFormat.dateTimeAnswerStyle == RPDateTimeAnswerStyle.Date)
         ? CupertinoDatePickerMode.date
         : (answerFormat.dateTimeAnswerStyle == RPDateTimeAnswerStyle.TimeOfDay)
@@ -15,18 +19,18 @@ class RPUIDateTimeQuestionBody extends StatefulWidget {
   }
 
   @override
-  _RPUIDateTimeQuestionBodyState createState() =>
-      _RPUIDateTimeQuestionBodyState();
+  RPUIDateTimeQuestionBodyState createState() =>
+      RPUIDateTimeQuestionBodyState();
 }
 
-class _RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody>
+class RPUIDateTimeQuestionBodyState extends State<RPUIDateTimeQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIDateTimeQuestionBody> {
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Container(
       height: 200,
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       alignment: Alignment.topLeft,
       // TODO: Rendering bug in Flutter - https://github.com/flutter/flutter/issues/50193
       child: CupertinoTheme(

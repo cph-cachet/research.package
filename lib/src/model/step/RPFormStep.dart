@@ -12,27 +12,21 @@ class RPFormStep extends RPQuestionStep {
   /// The list of questions to be shown as part of the step.
   List<RPQuestionStep> steps;
 
-  RPFormStep(
-      {required String identifier,
-      required this.steps,
-      required String title,
-      bool optional = false})
-      : super(
-            identifier: identifier,
-            answerFormat: RPFormAnswerFormat(),
-            title: title,
-            optional: optional);
+  /// Create a new [RPFormStep] holding a list of [steps].
+  RPFormStep({
+    required super.identifier,
+    required super.title,
+    super.optional,
+    required this.steps,
+  }) : super(answerFormat: RPFormAnswerFormat());
 
-  /// The widget (UI representation) of Form Step.
-  ///
-  /// This gets initialized when a Form Step has been added to a Task which is
-  /// later presented by an [RPUITask] widget.
-  /// It shows the FormStep's [steps] in a scrollable list
   @override
   Widget get stepWidget => RPUIFormStep(this);
 
+  @override
   Function get fromJsonFunction => _$RPFormStepFromJson;
   factory RPFormStep.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPFormStep;
+  @override
   Map<String, dynamic> toJson() => _$RPFormStepToJson(this);
 }

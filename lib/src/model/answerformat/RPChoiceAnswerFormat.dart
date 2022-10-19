@@ -20,9 +20,11 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
         : RPQuestionType.MultipleChoice;
   }
 
+  @override
   Function get fromJsonFunction => _$RPChoiceAnswerFormatFromJson;
   factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPChoiceAnswerFormat;
+  @override
   Map<String, dynamic> toJson() => _$RPChoiceAnswerFormatToJson(this);
 }
 
@@ -52,8 +54,10 @@ class RPChoice extends Serializable {
     this.detailText,
   }) : super();
 
+  @override
   Function get fromJsonFunction => _$RPChoiceFromJson;
   factory RPChoice.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPChoice;
+  @override
   Map<String, dynamic> toJson() => _$RPChoiceToJson(this);
 }

@@ -6,8 +6,10 @@ part of research_package_model;
 class RPStepNavigationRule extends Serializable {
   RPStepNavigationRule();
 
+  @override
   Function get fromJsonFunction => _$RPStepNavigationRuleFromJson;
   factory RPStepNavigationRule.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPStepNavigationRule;
+  @override
   Map<String, dynamic> toJson() => _$RPStepNavigationRuleToJson(this);
 }

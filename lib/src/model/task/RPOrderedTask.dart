@@ -14,23 +14,23 @@ class RPOrderedTask extends RPTask {
   /// The list of [RPStep]s of the task
   List<RPStep> steps;
 
-  RPOrderedTask(
-      {required String identifier,
-      required this.steps,
-      bool closeAfterFinished = true})
-      : super(identifier: identifier, closeAfterFinished: closeAfterFinished) {
-    this._numberOfQuestionSteps = 0;
-    this._isConsentTask = false;
+  RPOrderedTask({
+    required super.identifier,
+    super.closeAfterFinished = true,
+    required this.steps,
+  }) {
+    _numberOfQuestionSteps = 0;
+    _isConsentTask = false;
 
-    steps.forEach((step) {
+    for (var step in steps) {
       // Counting the Question or FormStep items
-      if (step is RPQuestionStep) this._numberOfQuestionSteps++;
+      if (step is RPQuestionStep) _numberOfQuestionSteps++;
       // If there's a Consent Review Step among the steps it means the task is
       // a Consent Task
       if (step.runtimeType == RPConsentReviewStep) {
         _isConsentTask = true;
       }
-    });
+    }
   }
 
   /// Returns the step after a specified step if there's any. If the specified
@@ -82,13 +82,15 @@ class RPOrderedTask extends RPTask {
 
   /// Returns ```true``` if the task is a Consent Task. It is considered a
   /// Consent Task if it has an [RPConsentReviewStep]
-  bool get isConsentTask => this._isConsentTask;
+  bool get isConsentTask => _isConsentTask;
 
   /// The number of question steps in the task
-  int get numberOfQuestionSteps => this._numberOfQuestionSteps;
+  int get numberOfQuestionSteps => _numberOfQuestionSteps;
 
+  @override
   Function get fromJsonFunction => _$RPOrderedTaskFromJson;
   factory RPOrderedTask.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPOrderedTask;
+  @override
   Map<String, dynamic> toJson() => _$RPOrderedTaskToJson(this);
 }

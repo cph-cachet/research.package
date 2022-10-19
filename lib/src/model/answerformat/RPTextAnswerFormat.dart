@@ -10,10 +10,12 @@ class RPTextAnswerFormat extends RPAnswerFormat {
   RPTextAnswerFormat({this.hintText}) : super();
 
   @override
-  get questionType => RPQuestionType.Text;
+  RPQuestionType get questionType => RPQuestionType.Text;
 
+  @override
   Function get fromJsonFunction => _$RPTextAnswerFormatFromJson;
   factory RPTextAnswerFormat.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPTextAnswerFormat;
+  @override
   Map<String, dynamic> toJson() => _$RPTextAnswerFormatToJson(this);
 }
