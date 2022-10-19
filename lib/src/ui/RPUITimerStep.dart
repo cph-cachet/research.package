@@ -6,13 +6,13 @@ part of research_package_ui;
 class RPUITimerStep extends StatefulWidget {
   final RPTimerStep step;
 
-  RPUITimerStep(this.step);
+  const RPUITimerStep(this.step, {super.key});
 
   @override
-  _RPUITimerStepState createState() => _RPUITimerStepState();
+  RPUITimerStepState createState() => RPUITimerStepState();
 }
 
-class _RPUITimerStepState extends State<RPUITimerStep> {
+class RPUITimerStepState extends State<RPUITimerStep> {
   // Dynamic because we don't know what value the RPChoice will have
   Timer? timer;
   late int timeInSeconds;

@@ -3,13 +3,13 @@ part of research_package_ui;
 class RPUIFormStep extends StatefulWidget {
   final RPFormStep formStep;
 
-  RPUIFormStep(this.formStep);
+  const RPUIFormStep(this.formStep, {super.key});
 
   @override
-  _RPUIFormStepState createState() => _RPUIFormStepState();
+  RPUIFormStepState createState() => RPUIFormStepState();
 }
 
-class _RPUIFormStepState extends State<RPUIFormStep> {
+class RPUIFormStepState extends State<RPUIFormStep> {
   late bool readyToProceed;
   late RPStepResult stepResult;
   RPTaskProgress? recentTaskProgress;
@@ -19,7 +19,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
   // If any of the non-optional steps have a null-answer in the stepResult, it means the user has not answered it and CANNOT go to the next step.
   void checkReadyToProceed() {
     bool temp = true;
-    widget.formStep.steps.forEach((step) {
+    for (var step in widget.formStep.steps) {
       if (!step.optional) {
         if (stepResult.results.values.any((element) =>
             (element as RPStepResult).identifier == step.identifier &&
@@ -27,7 +27,7 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
           temp = false;
         }
       }
-    });
+    }
 
     setState(() {
       readyToProceed = temp;
@@ -41,20 +41,24 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     // Instantiating the result object here to start the time counter (startDate)
     stepResult = RPStepResult(
         identifier: widget.formStep.identifier,
+        questionTitle: widget.formStep.title,
         answerFormat: widget.formStep.answerFormat);
     stepResult.questionTitle =
         "Form Step - See titles for every question included";
 
     // Filling up the results with nulls
-    widget.formStep.steps.forEach((item) {
+    for (var item in widget.formStep.steps) {
       stepResult.setResultForIdentifier(
           item.identifier,
           RPStepResult(
-              identifier: item.identifier, answerFormat: item.answerFormat));
+            identifier: item.identifier,
+            questionTitle: item.title,
+            answerFormat: item.answerFormat,
+          ));
       // Set each questionTitle here in case this is a skippable question.
       (stepResult.results[item.identifier] as RPStepResult).questionTitle =
           item.title;
-    });
+    }
 
     readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
@@ -143,16 +147,16 @@ class _RPUIFormStepState extends State<RPUIFormStep> {
     }
   }
 
-  skipQuestion() {
+  void skipQuestion() {
     FocusManager.instance.primaryFocus?.unfocus();
-    stepResult.results.keys.forEach((key) {
+    for (var key in stepResult.results.keys) {
       (stepResult.results[key] as RPStepResult).setResult(null);
-    });
+    }
     blocTask.sendStatus(RPStepStatus.Finished);
     createAndSendResult();
   }
 
-  Widget formItemBuilder(context, index) {
+  Widget formItemBuilder(BuildContext context, int index) {
     RPLocalizations? locale = RPLocalizations.of(context);
     if (index == 0) {
       return Padding(

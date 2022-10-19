@@ -14,7 +14,6 @@ class RPConsentSection extends Serializable {
   /// The title of the consent section which appears both in [RPVisualConsentStep]
   /// and [RPConsentReviewStep].
   late String title;
-  String? formalTitle;
 
   /// A short summary of the section. It appears during [RPVisualConsentStep]
   String? summary;
@@ -57,9 +56,11 @@ class RPConsentSection extends Serializable {
             : _titleForConsentSectionType(type);
   }
 
+  @override
   Function get fromJsonFunction => _$RPConsentSectionFromJson;
   factory RPConsentSection.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPConsentSection;
+  @override
   Map<String, dynamic> toJson() => _$RPConsentSectionToJson(this);
 }
 

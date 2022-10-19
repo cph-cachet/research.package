@@ -7,13 +7,13 @@ part of research_package_ui;
 class RPUIConsentReviewStep extends StatefulWidget {
   final RPConsentReviewStep step;
 
-  RPUIConsentReviewStep(this.step);
+  const RPUIConsentReviewStep(this.step, {super.key});
 
   @override
-  _RPUIConsentReviewStepState createState() => _RPUIConsentReviewStepState();
+  RPUIConsentReviewStepState createState() => RPUIConsentReviewStepState();
 }
 
-class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
+class RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
     with CanSaveResult {
   late RPConsentSignatureResult consentSignatureResult;
   RPSignatureResult? signatureResult;
@@ -83,7 +83,9 @@ class _RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
 
     // Creating the result object
     consentSignatureResult = RPConsentSignatureResult(
-        widget.step.identifier, translatedConsentDocument, signatureResult)
+        identifier: widget.step.identifier,
+        consentDocument: translatedConsentDocument,
+        signature: signatureResult)
       ..endDate = DateTime.now();
 
     blocTask.sendStepResult(consentSignatureResult);
@@ -120,7 +122,7 @@ class _TextPresenterRoute extends StatefulWidget {
   final RPConsentReviewStep step;
   final void Function(RPSignatureResult?) onNoSignature;
 
-  _TextPresenterRoute(this.step, this.onNoSignature);
+  const _TextPresenterRoute(this.step, this.onNoSignature);
 
   @override
   __TextPresenterRouteState createState() => __TextPresenterRouteState();
@@ -149,94 +151,89 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             RPConsentSectionType.PassiveDataCollection ||
         widget.step.consentDocument.sections[index].type ==
             RPConsentSectionType.UserDataCollection) {
-      return Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 4),
-              child: Text(
-                locale?.translate(
-                        widget.step.consentDocument.sections[index].title) ??
-                    widget.step.consentDocument.sections[index].title,
-                style: Theme.of(context).textTheme.headline5,
-                textAlign: TextAlign.start,
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.step.consentDocument.sections[index]
-                  .dataTypes! // DataTypes must be provided given a data collection section has been created.
-                  .map((e) {
-                return Padding(
-                  padding: EdgeInsets.only(bottom: 4, top: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        locale?.translate(e.dataName) ?? e.dataName,
-                        style: Theme.of(context).textTheme.subtitle1,
-                        textAlign: TextAlign.start,
-                      ),
-                      Text(
-                        locale?.translate(e.dataInformation) ??
-                            e.dataInformation,
-                        style: Theme.of(context).textTheme.bodyText2,
-                        textAlign: TextAlign.start,
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return Container(
-      child: Column(
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.only(top: 24, bottom: 4),
             child: Text(
               locale?.translate(
                       widget.step.consentDocument.sections[index].title) ??
                   widget.step.consentDocument.sections[index].title,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5!
-                  .copyWith(color: Theme.of(context).primaryColor),
+              style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.start,
             ),
           ),
-          Text(
-            locale?.translate(widget.step.consentDocument.sections[index]
-                    .summary!) ?? // Content must be provided given a section has been created that isnt data collection.
-                widget.step.consentDocument.sections[index].summary!,
-            style: Theme.of(context).textTheme.bodyText1,
-            textAlign: TextAlign.start,
-          ),
-          Text(
-            locale?.translate(widget.step.consentDocument.sections[index]
-                    .content!) ?? // Content must be provided given a section has been created that isnt data collection.
-                widget.step.consentDocument.sections[index].content!,
-            style: Theme.of(context).textTheme.bodyText1,
-            textAlign: TextAlign.start,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: widget.step.consentDocument.sections[index]
+                .dataTypes! // DataTypes must be provided given a data collection section has been created.
+                .map((e) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 4, top: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      locale?.translate(e.dataName) ?? e.dataName,
+                      style: Theme.of(context).textTheme.subtitle1,
+                      textAlign: TextAlign.start,
+                    ),
+                    Text(
+                      locale?.translate(e.dataInformation) ?? e.dataInformation,
+                      style: Theme.of(context).textTheme.bodyText2,
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
-      ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Text(
+            locale?.translate(
+                    widget.step.consentDocument.sections[index].title) ??
+                widget.step.consentDocument.sections[index].title,
+            style: Theme.of(context)
+                .textTheme
+                .headline5!
+                .copyWith(color: Theme.of(context).primaryColor),
+            textAlign: TextAlign.start,
+          ),
+        ),
+        Text(
+          locale?.translate(widget.step.consentDocument.sections[index]
+                  .summary!) ?? // Content must be provided given a section has been created that isnt data collection.
+              widget.step.consentDocument.sections[index].summary!,
+          style: Theme.of(context).textTheme.bodyText1,
+          textAlign: TextAlign.start,
+        ),
+        Text(
+          locale?.translate(widget.step.consentDocument.sections[index]
+                  .content!) ?? // Content must be provided given a section has been created that isnt data collection.
+              widget.step.consentDocument.sections[index].content!,
+          style: Theme.of(context).textTheme.bodyText1,
+          textAlign: TextAlign.start,
+        ),
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
-    void _showConsentDialog(VoidCallback onPressedCallback) {
-      showDialog(
+    void showConsentDialog(VoidCallback onPressedCallback) {
+      showDialog<dynamic>(
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -257,9 +254,9 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                   backgroundColor:
                       MaterialStateProperty.all(Theme.of(context).primaryColor),
                 ),
+                onPressed: onPressedCallback,
                 child: Text(locale?.translate('AGREE') ?? "AGREE",
                     style: Theme.of(context).textTheme.button),
-                onPressed: onPressedCallback,
               ),
             ],
           );
@@ -271,7 +268,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: ListView.builder(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           itemCount: widget.step.consentDocument.sections.length + 1,
           itemBuilder: _reviewCellBuilder,
         ),
@@ -296,7 +293,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
             style: Theme.of(context).textTheme.button,
           ),
           onPressed: () {
-            _showConsentDialog(
+            showConsentDialog(
               widget.step.consentDocument.signatures.isNotEmpty
                   ? () {
                       // Dismiss pop-up. It uses the root Navigator since it's an overlay
@@ -322,7 +319,7 @@ class _SignatureRoute extends StatefulWidget {
   final RPConsentSignature _consentSignature;
   final void Function(RPSignatureResult) _onFinished;
 
-  _SignatureRoute(_, this._consentSignature, this._onFinished);
+  const _SignatureRoute(_, this._consentSignature, this._onFinished);
 
   @override
   _SignatureRouteState createState() => _SignatureRouteState();
@@ -400,7 +397,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
     RPLocalizations? locale = RPLocalizations.of(context);
     return Center(
       child: Padding(
-        padding: EdgeInsets.only(top: 20.0),
+        padding: const EdgeInsets.only(top: 20.0),
         child: Column(
           children: <Widget>[
             Text(
@@ -410,7 +407,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
               textAlign: TextAlign.center,
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -418,21 +415,15 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                     width: 2,
                   ),
                 ),
-                child: Container(
-                  child: Signature(
-                    controller: _signatureController,
-                    height: 200,
-                    width: MediaQuery.of(context).size.width - 70,
-                    backgroundColor: Colors.transparent,
-                  ),
+                child: Signature(
+                  controller: _signatureController,
+                  height: 200,
+                  width: MediaQuery.of(context).size.width - 70,
+                  backgroundColor: Colors.transparent,
                 ),
               ),
             ),
             OutlinedButton(
-              child: Text(
-                locale?.translate('clear') ?? 'Clear',
-                style: TextStyle(color: Theme.of(context).primaryColor),
-              ),
               onPressed: _isSignatureAdded
                   ? () {
                       _signatureController.clear();
@@ -441,6 +432,10 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                       });
                     }
                   : null,
+              child: Text(
+                locale?.translate('clear') ?? 'Clear',
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
             )
           ],
         ),
@@ -455,8 +450,8 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.all(12),
-          physics: NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(12),
+          physics: const NeverScrollableScrollPhysics(),
           children: <Widget>[
             widget._consentSignature.requiresName
                 ? _nameFields(context)
@@ -469,12 +464,8 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       ),
       persistentFooterButtons: <Widget>[
         ElevatedButton(
-          style:
-              ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
-          child: Text(
-            locale?.translate('NEXT') ?? "NEXT",
-            style: Theme.of(context).primaryTextTheme.button,
-          ),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).primaryColor),
           onPressed: (_isNameFilled && _isSignatureAdded)
               ? () {
                   if (widget._consentSignature.requiresSignatureImage) {
@@ -503,6 +494,10 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                   blocTask.sendStatus(RPStepStatus.Finished);
                 }
               : null,
+          child: Text(
+            locale?.translate('NEXT') ?? "NEXT",
+            style: Theme.of(context).primaryTextTheme.button,
+          ),
         ),
         //),
       ],

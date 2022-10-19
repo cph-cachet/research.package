@@ -2,21 +2,25 @@ part of research_package_ui;
 
 class RPUITextInputQuestionBody extends StatefulWidget {
   final RPTextAnswerFormat answerFormat;
-  final Function(dynamic) onResultChange;
+  final void Function(dynamic) onResultChange;
 
-  RPUITextInputQuestionBody(this.answerFormat, this.onResultChange);
+  const RPUITextInputQuestionBody(
+    this.answerFormat,
+    this.onResultChange, {
+    super.key,
+  });
 
   @override
-  _RPUITextInputQuestionBodyState createState() =>
-      _RPUITextInputQuestionBodyState();
+  RPUITextInputQuestionBodyState createState() =>
+      RPUITextInputQuestionBodyState();
 }
 
-class _RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
+class RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUITextInputQuestionBody> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   void checkInput(String input) {
-    if (input.length != 0) {
+    if (input.isNotEmpty) {
       widget.onResultChange(input);
     } else {
       widget.onResultChange(null);
@@ -28,19 +32,17 @@ class _RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
     RPLocalizations? locale = RPLocalizations.of(context);
 
     super.build(context);
-    return Container(
-      child: TextField(
-        maxLines: 10,
-        onChanged: checkInput,
-        decoration: InputDecoration(
-          hintText: (widget.answerFormat.hintText != null)
-              ? (locale?.translate(widget.answerFormat.hintText!) ??
-                  widget.answerFormat.hintText)
-              : widget.answerFormat.hintText,
-          border: OutlineInputBorder(),
-        ),
-        controller: _controller,
+    return TextField(
+      maxLines: 10,
+      onChanged: checkInput,
+      decoration: InputDecoration(
+        hintText: (widget.answerFormat.hintText != null)
+            ? (locale?.translate(widget.answerFormat.hintText!) ??
+                widget.answerFormat.hintText)
+            : widget.answerFormat.hintText,
+        border: const OutlineInputBorder(),
       ),
+      controller: _controller,
     );
   }
 

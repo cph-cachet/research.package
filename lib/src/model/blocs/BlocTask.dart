@@ -3,7 +3,7 @@ part of research_package_model;
 // Note: The streams are open for the whole application run. Maybe the singleton
 // solution is not the best and a new bloc instance is better to create each time it's needed.
 
-/// The BLoC file for the communication between the task [RPUITask] and its
+/// The BLoC for the communication between the [RPUITask] and its
 /// steps [RPStep].
 class BlocTask {
   final _stepStatusController = StreamController<RPStepStatus>.broadcast();
@@ -19,24 +19,24 @@ class BlocTask {
   ///
   /// Based on the status the task will navigate to the next question and manage
   /// the result of the question
-  Function(RPStepStatus) get sendStatus => _stepStatusController.sink.add;
+  void Function(RPStepStatus) get sendStatus => _stepStatusController.sink.add;
 
   /// The function to send the latest result of the step to the task
   ///
   /// Usually it's called as part of the [createAndSendResult] implementation
   /// in those classes which are
   /// implementing the [CanSaveResult] abstract class
-  Function(RPResult) get sendStepResult => _stepResultController.add;
+  void Function(RPResult) get sendStepResult => _stepResultController.add;
 
   /// The function to update the task progress. The task progress is shown in
   /// the appbar on top of the screen. It shows how many questions are there in
   /// total and where the participant stands in the process so far.
-  Function(RPTaskProgress) get updateTaskProgress =>
+  void Function(RPTaskProgress) get updateTaskProgress =>
       _taskProgressController.add;
 
   /// The function to update the task result which is shown in the AppBar
   /// for [RPOrderedTask]
-  Function(RPTaskResult) get updateTaskResult => _taskResultController.add;
+  void Function(RPTaskResult) get updateTaskResult => _taskResultController.add;
 
   //Retrieve data from stream
 
@@ -56,7 +56,7 @@ class BlocTask {
   /// the framework
   RPTaskResult? get lastTaskResult => _taskResultController.stream.value;
 
-  dispose() {
+  void dispose() {
     _stepStatusController.close();
     _stepResultController.close();
     _taskProgressController.close();

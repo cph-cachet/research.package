@@ -9,8 +9,10 @@ class RPDirectStepNavigationRule extends RPStepNavigationRule {
 
   RPDirectStepNavigationRule({required this.destinationStepIdentifier});
 
+  @override
   Function get fromJsonFunction => _$RPDirectStepNavigationRuleFromJson;
   factory RPDirectStepNavigationRule.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPDirectStepNavigationRule;
+  @override
   Map<String, dynamic> toJson() => _$RPDirectStepNavigationRuleToJson(this);
 }

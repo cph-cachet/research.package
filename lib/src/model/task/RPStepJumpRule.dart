@@ -30,8 +30,10 @@ class RPStepJumpRule extends RPStepNavigationRule {
 
   RPStepJumpRule({required this.answerMap});
 
+  @override
   Function get fromJsonFunction => _$RPStepJumpRuleFromJson;
   factory RPStepJumpRule.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPStepJumpRule;
+  @override
   Map<String, dynamic> toJson() => _$RPStepJumpRuleToJson(this);
 }

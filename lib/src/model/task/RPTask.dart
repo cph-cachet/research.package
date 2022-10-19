@@ -40,9 +40,11 @@ class RPTask extends Serializable {
   /// Returns the title of a given [step]
   String getTitleForStep(RPStep step) => '';
 
+  @override
   Function get fromJsonFunction => _$RPTaskFromJson;
   factory RPTask.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPTask;
+  @override
   Map<String, dynamic> toJson() => _$RPTaskToJson(this);
 }
 
@@ -51,14 +53,14 @@ class RPTask extends Serializable {
 ///
 /// Used by the counter in [RPUIQuestionStep] in the App Bar
 class RPTaskProgress {
-  int _current;
-  int _total;
+  final int _current;
+  final int _total;
 
   RPTaskProgress(this._current, this._total);
 
   /// Number of the current step
-  get current => this._current;
+  int get current => _current;
 
   /// Total number of steps in task
-  get total => this._total;
+  int get total => _total;
 }

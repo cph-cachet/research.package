@@ -9,8 +9,10 @@ class RPStepReorganizerRule extends RPStepNavigationRule {
 
   RPStepReorganizerRule({required this.reorderingMap});
 
+  @override
   Function get fromJsonFunction => _$RPStepReorganizerRuleFromJson;
   factory RPStepReorganizerRule.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPStepReorganizerRule;
+  @override
   Map<String, dynamic> toJson() => _$RPStepReorganizerRuleToJson(this);
 }

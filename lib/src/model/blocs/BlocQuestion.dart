@@ -17,7 +17,8 @@ class BlocQuestion {
   /// Usually used by a QuestionBody like [RPUIQuestionBody] to let its
   /// [RPUIQuestionStep] container  know that it's finished and ready to go to
   /// the next step.
-  Function(bool) get sendReadyToProceed => _questionStatusController.sink.add;
+  void Function(bool) get sendReadyToProceed =>
+      _questionStatusController.sink.add;
 
   /// The function to send [RPQuestionBodyResult] through a stream
   ///
@@ -40,9 +41,8 @@ class BlocQuestion {
   /// object based on the incoming data.
 //  Stream<RPQuestionBodyResult> get resultValue => _questionBodyResultController.stream;
 
-  dispose() {
+  void dispose() {
     _questionStatusController.close();
-//    _questionBodyResultController.close();
   }
 }
 
