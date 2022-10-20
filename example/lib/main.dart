@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:research_package/research_package.dart';
 
 import 'informed_consent_page.dart';
@@ -27,8 +26,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool fireBase = false;
-  bool buttonReady = true;
+  @override
+  void initState() {
+    // initialize cognition package
+    // only used if you load a cognition configuration from a json file
+    ResearchPackage();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,12 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 )),
             Padding(
-                padding:
-                    // const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-                    const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 20),
                 child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  // crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(

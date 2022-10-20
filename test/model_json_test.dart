@@ -3,13 +3,7 @@ import 'dart:convert';
 import 'package:research_package/research_package.dart';
 import 'package:carp_serializable/carp_serializable.dart';
 
-/// Tests are focusing mainly on Object -> JSON direction since the current
-/// use-case for Research Package doesn't include the other way around,
-/// only uploading results to server
 void main() {
-  // String toJsonString(Object object) =>
-  //     const JsonEncoder.withIndent(' ').convert(object);
-
   RPConsentSignature signature = RPConsentSignature(identifier: "signatureID");
 
   RPConsentSection overviewSection =
@@ -111,7 +105,10 @@ void main() {
   consentTaskResult.setStepResultForIdentifier(
       "signature", consentReviewStepResult);
 
-  setUp(() {});
+  setUp(() {
+    // initialize the package and json deserialization functions
+    ResearchPackage();
+  });
 
   group('Consent Document', () {
     test('RPConsentDocument -> JSON', () {

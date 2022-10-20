@@ -16,8 +16,8 @@ import '../example/lib/research_package_objects/navigation_step_jump_rule.dart';
 /// These tests takes the examples from the example app and tests de/serialization.
 void main() {
   setUp(() {
-    // create two dummy RPTask to register json deserialization functions for RP
-    RPTask(identifier: 'ignored');
+    // initialize the package and json deserialization functions
+    ResearchPackage();
   });
 
   group('Consent Document', () {

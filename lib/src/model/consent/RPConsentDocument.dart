@@ -25,9 +25,7 @@ class RPConsentDocument extends Serializable {
   /// Also their content is presented during [RPConsentReviewStep].
   List<RPConsentSection> sections;
 
-  RPConsentDocument({required this.title, required this.sections}) {
-    _registerFromJsonFunctions();
-  }
+  RPConsentDocument({required this.title, required this.sections});
 
   /// Adds a signature to the list of [signatures]
   void addSignature(RPConsentSignature signature) => signatures.add(signature);
