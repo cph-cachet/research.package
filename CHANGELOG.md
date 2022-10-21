@@ -1,3 +1,7 @@
+## 1.2.0
+
+- Upgrade of `pubspec` dependencies to lastest versions.
+
 ## 1.1.0
 
 - Support for initializing json serialization by calling the `ResearchPackage()` factory method. This allows for dynamic loading of survey or informed consents from a json configuration.
