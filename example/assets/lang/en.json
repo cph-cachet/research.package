@@ -88,5 +88,7 @@
   "userDataCollection.medications.dataName": "Medications",
   "userDataCollection.medications.dataInformation": "You have to input some info about your mood in the medications card",
   "userDataCollection.smoking.dataName": "Smoking",
-  "userDataCollection.smoking.dataInformation": "You have to input some info about your mood in the smoking card"
+  "userDataCollection.smoking.dataInformation": "You have to input some info about your mood in the smoking card",
+
+  "Information about:": "Information about:"
 }

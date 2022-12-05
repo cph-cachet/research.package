@@ -39,11 +39,13 @@ class RPChoice extends Serializable {
   int value;
 
   /// The detailed text to show if needed.
+  /// Shown as a Info-icon which takes the user to a detail page with the [detailText]
   String? detailText;
 
   /// If set to `true`, then the user can enter the text instead of the default
   /// [text] which was provided. The [value] remains the same.
   /// By default it is set to false.
+  /// [text] will be shown as a `hintText`
   bool isFreeText = false;
 
   /// Default constructor.

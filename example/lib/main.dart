@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:research_package/research_package.dart';
 
 import 'informed_consent_page.dart';
@@ -11,9 +12,58 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: [
+        Locale('en'),
+        Locale('da'),
+        Locale('fr'),
+      ],
+      localizationsDelegates: [
+        // Research Package translations - supports translation of both the
+        // RP-specific text as well as app-specific text.
+        //  - translations of the RP text is part of the RP Flutter package
+        //  - the translations of app text is located in the 'assets/lang/' folder
+        //  - the translations of informed consent and surveys are part of the
+        //    app text and also included in the the 'assets/lang/' files
+        //  - note that only some text is translated -- illustrates that RP
+        //    works both with and without translation.
+        RPLocalizations.delegate,
+
+        // Research Package translations - supports translation of both;
+        //  - the RP-specific text
+        //  - app-specific text using the [AssetLocalizationLoader]
+        //  - a map-based localization loader [MapLocalizationLoader]
+        // RPLocalizationsDelegate(loaders: [
+        //   AssetLocalizationLoader(),
+        //   MapLocalizationLoader({
+        //     'en': {'app_name': 'Research Package Demo'},
+        //     'da': {'app_name': 'Research Package Demonstration'},
+        //     'fr': {'app_name': 'Démonstration de Research Package'},
+        //   }),
+        // ]),
+
+        // Built-in localization of basic text for Cupertino widgets
+        GlobalCupertinoLocalizations.delegate,
+        // Built-in localization of basic text for Material widgets
+        GlobalMaterialLocalizations.delegate,
+        // Built-in localization for text direction LTR/RTL
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      // Returns a locale which will be used by the app
+      localeResolutionCallback: (locale, supportedLocales) {
+        // Check if the current device locale is supported
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale!.languageCode) {
+            return supportedLocale;
+          }
+        }
+        // if the locale of the device is not supported, use the first one
+        // from the list (English, in this case).
+        return supportedLocales.first;
+      },
+
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      title: 'Cognition Package Demo',
+      title: 'Research Package Demo',
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
