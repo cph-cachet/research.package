@@ -35,7 +35,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
   void _pushContent(String title, String content) {
     Navigator.of(context).push(
       MaterialPageRoute<dynamic>(
-        builder: (context) => _ContentRoute(
+        builder: (context) => _DetailTextRoute(
           title: title,
           content: content,
         ),
@@ -364,49 +364,6 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _ContentRoute extends StatelessWidget {
-  final String title;
-  final String content;
-
-  const _ContentRoute({required this.title, required this.content});
-
-  @override
-  Widget build(BuildContext context) {
-    RPLocalizations? locale = RPLocalizations.of(context);
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Column(
-        children: [
-          const SizedBox(height: 35),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                icon: Icon(Icons.clear,
-                    color: Theme.of(context).primaryColor, size: 30),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              const SizedBox(width: 5),
-            ],
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  locale?.translate(content) ?? content,
-                  style: Theme.of(context).textTheme.headline6,
-                  textAlign: TextAlign.start,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

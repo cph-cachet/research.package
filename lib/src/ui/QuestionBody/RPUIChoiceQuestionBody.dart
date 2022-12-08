@@ -183,6 +183,19 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                     ),
             ),
           ),
+          if (widget.choice.detailText != null)
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute<dynamic>(
+                      builder: (context) => _DetailTextRoute(
+                        title: widget.choice.text,
+                        content: widget.choice.detailText!,
+                      ),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.info))
         ]),
       ),
     );

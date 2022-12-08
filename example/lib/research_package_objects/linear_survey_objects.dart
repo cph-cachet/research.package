@@ -12,7 +12,7 @@ List<RPChoice> timeChoices = [
 
 List<RPChoice> joyfulActivities = [
   RPChoice(text: "Your input", value: 6, isFreeText: true),
-  RPChoice(text: "Jogging", value: 5),
+  RPChoice(text: "Jogging", value: 5, detailText: "Running in a moderate pace"),
   RPChoice(text: "Playing an instrument", value: 4),
   RPChoice(text: "Family and friends", value: 3),
   RPChoice(text: "Doing sports", value: 2),
@@ -21,7 +21,11 @@ List<RPChoice> joyfulActivities = [
 ];
 
 List<RPChoice> instruments = [
-  RPChoice(text: "Guitar", value: 3),
+  RPChoice(
+      text: "Guitar",
+      value: 3,
+      detailText:
+          "A guitar is an instrument. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum facilisis turpis, vitae congue nunc. Cras gravida tempor elit eu congue. Nam ut est eget enim imperdiet ullamcorper. Curabitur ac consequat augue. Suspendisse hendrerit, est eu varius suscipit, nisi magna congue purus, quis facilisis massa nibh sit amet est. Sed ut ligula diam. Nunc mollis iaculis nulla in hendrerit. Nulla facilisi. Vivamus faucibus augue vel auctor lacinia."),
   RPChoice(text: "Piano", value: 2),
   RPChoice(text: "Saxophone", value: 1),
 ];

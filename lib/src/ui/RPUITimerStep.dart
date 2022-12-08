@@ -31,9 +31,11 @@ class RPUITimerStepState extends State<RPUITimerStep> {
     timeInSeconds = widget.step.timeout.inSeconds;
     const oneSec = Duration(seconds: 1);
     timer = Timer.periodic(oneSec, (t) {
-      setState(() {
-        timeInSeconds--;
-      });
+      if (mounted) {
+        setState(() {
+          timeInSeconds--;
+        });
+      }
       if (timeInSeconds <= 0) {
         blocQuestion.sendReadyToProceed(true);
         if (_mPlayerIsInited) {
