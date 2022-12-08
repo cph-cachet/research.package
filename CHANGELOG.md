@@ -1,3 +1,8 @@
+## 1.2.1
+
+- Added usage of `detailText` on `RPChoice`s.
+- Small bug fixes
+
 ## 1.2.0
 
 - Upgrade of `pubspec` dependencies to lastest versions.
