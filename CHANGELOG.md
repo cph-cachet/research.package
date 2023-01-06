@@ -1,3 +1,7 @@
+## 1.3.0
+
+- Upgrade to `carp_serializable: ^1.1.0``
+
 ## 1.2.1
 
 - Added usage of `detailText` on `RPChoice`s.

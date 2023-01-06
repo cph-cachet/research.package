@@ -8,7 +8,7 @@ part of research_package_model;
 
 RPAnswerFormat _$RPAnswerFormatFromJson(Map<String, dynamic> json) =>
     RPAnswerFormat()
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..questionType =
           $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
 
@@ -21,7 +21,7 @@ Map<String, dynamic> _$RPAnswerFormatToJson(RPAnswerFormat instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType]!;
   return val;
 }
@@ -50,7 +50,7 @@ RPIntegerAnswerFormat _$RPIntegerAnswerFormatFromJson(
       maxValue: json['max_value'] as int,
       suffix: json['suffix'] as String?,
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..questionType =
           $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
 
@@ -64,7 +64,7 @@ Map<String, dynamic> _$RPIntegerAnswerFormatToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['min_value'] = instance.minValue;
   val['max_value'] = instance.maxValue;
   writeNotNull('suffix', instance.suffix);
@@ -81,7 +81,7 @@ RPChoiceAnswerFormat _$RPChoiceAnswerFormatFromJson(
           .map((e) => RPChoice.fromJson(e as Map<String, dynamic>))
           .toList(),
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..questionType =
           $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
 
@@ -95,7 +95,7 @@ Map<String, dynamic> _$RPChoiceAnswerFormatToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType]!;
   val['choices'] = instance.choices;
   val['answer_style'] = _$RPChoiceAnswerStyleEnumMap[instance.answerStyle]!;
@@ -112,7 +112,7 @@ RPChoice _$RPChoiceFromJson(Map<String, dynamic> json) => RPChoice(
       value: json['value'] as int,
       isFreeText: json['is_free_text'] as bool? ?? false,
       detailText: json['detail_text'] as String?,
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPChoiceToJson(RPChoice instance) {
   final val = <String, dynamic>{};
@@ -123,7 +123,7 @@ Map<String, dynamic> _$RPChoiceToJson(RPChoice instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['text'] = instance.text;
   val['value'] = instance.value;
   writeNotNull('detail_text', instance.detailText);
@@ -133,7 +133,7 @@ Map<String, dynamic> _$RPChoiceToJson(RPChoice instance) {
 
 RPFormAnswerFormat _$RPFormAnswerFormatFromJson(Map<String, dynamic> json) =>
     RPFormAnswerFormat()
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..questionType =
           $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
 
@@ -146,7 +146,7 @@ Map<String, dynamic> _$RPFormAnswerFormatToJson(RPFormAnswerFormat instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType]!;
   return val;
 }
@@ -160,7 +160,7 @@ RPSliderAnswerFormat _$RPSliderAnswerFormatFromJson(
       prefix: json['prefix'] as String? ?? '',
       suffix: json['suffix'] as String? ?? '',
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..questionType =
           $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
 
@@ -174,7 +174,7 @@ Map<String, dynamic> _$RPSliderAnswerFormatToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['min_value'] = instance.minValue;
   val['max_value'] = instance.maxValue;
   val['divisions'] = instance.divisions;
@@ -191,7 +191,7 @@ RPImageChoiceAnswerFormat _$RPImageChoiceAnswerFormatFromJson(
           .map((e) => RPImageChoice.fromJson(e as Map<String, dynamic>))
           .toList(),
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..questionType =
           $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
 
@@ -205,7 +205,7 @@ Map<String, dynamic> _$RPImageChoiceAnswerFormatToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['choices'] = instance.choices;
   val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType]!;
   return val;
@@ -217,7 +217,7 @@ RPImageChoice _$RPImageChoiceFromJson(Map<String, dynamic> json) =>
       key: json['key'] as String?,
       value: json['value'],
       description: json['description'] as String,
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPImageChoiceToJson(RPImageChoice instance) {
   final val = <String, dynamic>{};
@@ -228,7 +228,7 @@ Map<String, dynamic> _$RPImageChoiceToJson(RPImageChoice instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['image_url'] = instance.imageUrl;
   writeNotNull('key', instance.key);
   writeNotNull('value', instance.value);
@@ -242,7 +242,7 @@ RPDateTimeAnswerFormat _$RPDateTimeAnswerFormatFromJson(
       dateTimeAnswerStyle: $enumDecode(
           _$RPDateTimeAnswerStyleEnumMap, json['date_time_answer_style']),
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..questionType =
           $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
 
@@ -256,7 +256,7 @@ Map<String, dynamic> _$RPDateTimeAnswerFormatToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType]!;
   val['date_time_answer_style'] =
       _$RPDateTimeAnswerStyleEnumMap[instance.dateTimeAnswerStyle]!;
@@ -273,7 +273,7 @@ RPTextAnswerFormat _$RPTextAnswerFormatFromJson(Map<String, dynamic> json) =>
     RPTextAnswerFormat(
       hintText: json['hint_text'] as String?,
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..questionType =
           $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
 
@@ -286,7 +286,7 @@ Map<String, dynamic> _$RPTextAnswerFormatToJson(RPTextAnswerFormat instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   writeNotNull('hint_text', instance.hintText);
   val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType]!;
   return val;
@@ -299,7 +299,7 @@ RPConsentDocument _$RPConsentDocumentFromJson(Map<String, dynamic> json) =>
           .map((e) => RPConsentSection.fromJson(e as Map<String, dynamic>))
           .toList(),
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..signatures = (json['signatures'] as List<dynamic>)
           .map((e) => RPConsentSignature.fromJson(e as Map<String, dynamic>))
           .toList();
@@ -313,7 +313,7 @@ Map<String, dynamic> _$RPConsentDocumentToJson(RPConsentDocument instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['signatures'] = instance.signatures;
   val['title'] = instance.title;
   val['sections'] = instance.sections;
@@ -329,7 +329,7 @@ RPConsentSection _$RPConsentSectionFromJson(Map<String, dynamic> json) =>
       dataTypes: (json['data_types'] as List<dynamic>?)
           ?.map((e) => RPDataTypeSection.fromJson(e as Map<String, dynamic>))
           .toList(),
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPConsentSectionToJson(RPConsentSection instance) {
   final val = <String, dynamic>{};
@@ -340,7 +340,7 @@ Map<String, dynamic> _$RPConsentSectionToJson(RPConsentSection instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['type'] = _$RPConsentSectionTypeEnumMap[instance.type]!;
   val['title'] = instance.title;
   writeNotNull('summary', instance.summary);
@@ -378,7 +378,7 @@ RPConsentSignature _$RPConsentSignatureFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String?,
       requiresName: json['requires_name'] as bool? ?? true,
       requiresSignatureImage: json['requires_signature_image'] as bool? ?? true,
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPConsentSignatureToJson(RPConsentSignature instance) {
   final val = <String, dynamic>{};
@@ -389,7 +389,7 @@ Map<String, dynamic> _$RPConsentSignatureToJson(RPConsentSignature instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   writeNotNull('title', instance.title);
   val['requires_name'] = instance.requiresName;
@@ -403,7 +403,7 @@ RPVisualConsentStep _$RPVisualConsentStepFromJson(Map<String, dynamic> json) =>
       consentDocument: RPConsentDocument.fromJson(
           json['consent_document'] as Map<String, dynamic>),
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..title = json['title'] as String
       ..text = json['text'] as String?
       ..optional = json['optional'] as bool;
@@ -417,7 +417,7 @@ Map<String, dynamic> _$RPVisualConsentStepToJson(RPVisualConsentStep instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['title'] = instance.title;
   writeNotNull('text', instance.text);
@@ -435,7 +435,7 @@ RPConsentReviewStep _$RPConsentReviewStepFromJson(Map<String, dynamic> json) =>
           json['consent_document'] as Map<String, dynamic>),
       reasonForConsent: json['reason_for_consent'] as String?,
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..optional = json['optional'] as bool;
 
 Map<String, dynamic> _$RPConsentReviewStepToJson(RPConsentReviewStep instance) {
@@ -447,7 +447,7 @@ Map<String, dynamic> _$RPConsentReviewStepToJson(RPConsentReviewStep instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['title'] = instance.title;
   writeNotNull('text', instance.text);
@@ -461,7 +461,7 @@ RPDataTypeSection _$RPDataTypeSectionFromJson(Map<String, dynamic> json) =>
     RPDataTypeSection(
       dataName: json['data_name'] as String,
       dataInformation: json['data_information'] as String,
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPDataTypeSectionToJson(RPDataTypeSection instance) {
   final val = <String, dynamic>{};
@@ -472,7 +472,7 @@ Map<String, dynamic> _$RPDataTypeSectionToJson(RPDataTypeSection instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['data_name'] = instance.dataName;
   val['data_information'] = instance.dataInformation;
   return val;
@@ -483,7 +483,7 @@ RPStep _$RPStepFromJson(Map<String, dynamic> json) => RPStep(
       title: json['title'] as String,
       text: json['text'] as String?,
       optional: json['optional'] as bool? ?? false,
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPStepToJson(RPStep instance) {
   final val = <String, dynamic>{};
@@ -494,7 +494,7 @@ Map<String, dynamic> _$RPStepToJson(RPStep instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['title'] = instance.title;
   writeNotNull('text', instance.text);
@@ -510,7 +510,7 @@ RPFormStep _$RPFormStepFromJson(Map<String, dynamic> json) => RPFormStep(
           .map((e) => RPQuestionStep.fromJson(e as Map<String, dynamic>))
           .toList(),
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..text = json['text'] as String?
       ..answerFormat =
           RPAnswerFormat.fromJson(json['answer_format'] as Map<String, dynamic>)
@@ -525,7 +525,7 @@ Map<String, dynamic> _$RPFormStepToJson(RPFormStep instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['title'] = instance.title;
   writeNotNull('text', instance.text);
@@ -544,7 +544,7 @@ RPQuestionStep _$RPQuestionStepFromJson(Map<String, dynamic> json) =>
       answerFormat: RPAnswerFormat.fromJson(
           json['answer_format'] as Map<String, dynamic>),
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..text = json['text'] as String?
       ..placeholder = json['placeholder'] as String?;
 
@@ -557,7 +557,7 @@ Map<String, dynamic> _$RPQuestionStepToJson(RPQuestionStep instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['title'] = instance.title;
   writeNotNull('text', instance.text);
@@ -576,7 +576,7 @@ RPInstructionStep _$RPInstructionStepFromJson(Map<String, dynamic> json) =>
       detailText: json['detail_text'] as String?,
       footnote: json['footnote'] as String?,
       imagePath: json['image_path'] as String?,
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPInstructionStepToJson(RPInstructionStep instance) {
   final val = <String, dynamic>{};
@@ -587,7 +587,7 @@ Map<String, dynamic> _$RPInstructionStepToJson(RPInstructionStep instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['title'] = instance.title;
   writeNotNull('text', instance.text);
@@ -604,7 +604,7 @@ RPCompletionStep _$RPCompletionStepFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       text: json['text'] as String?,
       optional: json['optional'] as bool? ?? false,
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPCompletionStepToJson(RPCompletionStep instance) {
   final val = <String, dynamic>{};
@@ -615,7 +615,7 @@ Map<String, dynamic> _$RPCompletionStepToJson(RPCompletionStep instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['title'] = instance.title;
   writeNotNull('text', instance.text);
@@ -629,7 +629,7 @@ RPActivityStep _$RPActivityStepFromJson(Map<String, dynamic> json) =>
       includeInstructions: json['include_instructions'] as bool? ?? true,
       includeResults: json['include_results'] as bool? ?? true,
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..title = json['title'] as String
       ..text = json['text'] as String?
       ..optional = json['optional'] as bool;
@@ -643,7 +643,7 @@ Map<String, dynamic> _$RPActivityStepToJson(RPActivityStep instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['title'] = instance.title;
   writeNotNull('text', instance.text);
@@ -660,7 +660,7 @@ RPTimerStep _$RPTimerStepFromJson(Map<String, dynamic> json) => RPTimerStep(
       timeout: Duration(microseconds: json['timeout'] as int),
       playSound: json['play_sound'] as bool? ?? false,
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..text = json['text'] as String?;
 
 Map<String, dynamic> _$RPTimerStepToJson(RPTimerStep instance) {
@@ -672,7 +672,7 @@ Map<String, dynamic> _$RPTimerStepToJson(RPTimerStep instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['title'] = instance.title;
   writeNotNull('text', instance.text);
@@ -689,7 +689,7 @@ RPOrderedTask _$RPOrderedTaskFromJson(Map<String, dynamic> json) =>
       steps: (json['steps'] as List<dynamic>)
           .map((e) => RPStep.fromJson(e as Map<String, dynamic>))
           .toList(),
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPOrderedTaskToJson(RPOrderedTask instance) {
   final val = <String, dynamic>{};
@@ -700,7 +700,7 @@ Map<String, dynamic> _$RPOrderedTaskToJson(RPOrderedTask instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['close_after_finished'] = instance.closeAfterFinished;
   val['steps'] = instance.steps;
@@ -716,7 +716,7 @@ RPNavigableOrderedTask _$RPNavigableOrderedTaskFromJson(
           .toList(),
       closeAfterFinished: json['close_after_finished'] as bool? ?? true,
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..stepNavigationRules =
           (json['step_navigation_rules'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(
@@ -733,7 +733,7 @@ Map<String, dynamic> _$RPNavigableOrderedTaskToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['close_after_finished'] = instance.closeAfterFinished;
   val['steps'] = instance.steps;
@@ -743,7 +743,7 @@ Map<String, dynamic> _$RPNavigableOrderedTaskToJson(
 
 RPStepNavigationRule _$RPStepNavigationRuleFromJson(
         Map<String, dynamic> json) =>
-    RPStepNavigationRule()..$type = json[r'$type'] as String?;
+    RPStepNavigationRule()..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPStepNavigationRuleToJson(
     RPStepNavigationRule instance) {
@@ -755,7 +755,7 @@ Map<String, dynamic> _$RPStepNavigationRuleToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   return val;
 }
 
@@ -763,7 +763,7 @@ RPDirectStepNavigationRule _$RPDirectStepNavigationRuleFromJson(
         Map<String, dynamic> json) =>
     RPDirectStepNavigationRule(
       destinationStepIdentifier: json['destination_step_identifier'] as String,
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPDirectStepNavigationRuleToJson(
     RPDirectStepNavigationRule instance) {
@@ -775,7 +775,7 @@ Map<String, dynamic> _$RPDirectStepNavigationRuleToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['destination_step_identifier'] = instance.destinationStepIdentifier;
   return val;
 }
@@ -786,7 +786,7 @@ RPStepReorganizerRule _$RPStepReorganizerRuleFromJson(
       reorderingMap: (json['reordering_map'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(int.parse(k), e as String),
       ),
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPStepReorganizerRuleToJson(
     RPStepReorganizerRule instance) {
@@ -798,7 +798,7 @@ Map<String, dynamic> _$RPStepReorganizerRuleToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['reordering_map'] =
       instance.reorderingMap.map((k, e) => MapEntry(k.toString(), e));
   return val;
@@ -809,7 +809,7 @@ RPStepJumpRule _$RPStepJumpRuleFromJson(Map<String, dynamic> json) =>
       answerMap: (json['answer_map'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(int.parse(k), e as String),
       ),
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPStepJumpRuleToJson(RPStepJumpRule instance) {
   final val = <String, dynamic>{};
@@ -820,7 +820,7 @@ Map<String, dynamic> _$RPStepJumpRuleToJson(RPStepJumpRule instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['answer_map'] =
       instance.answerMap.map((k, e) => MapEntry(k.toString(), e));
   return val;
@@ -829,7 +829,7 @@ Map<String, dynamic> _$RPStepJumpRuleToJson(RPStepJumpRule instance) {
 RPTask _$RPTaskFromJson(Map<String, dynamic> json) => RPTask(
       identifier: json['identifier'] as String,
       closeAfterFinished: json['close_after_finished'] as bool? ?? false,
-    )..$type = json[r'$type'] as String?;
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPTaskToJson(RPTask instance) {
   final val = <String, dynamic>{};
@@ -840,7 +840,7 @@ Map<String, dynamic> _$RPTaskToJson(RPTask instance) {
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['identifier'] = instance.identifier;
   val['close_after_finished'] = instance.closeAfterFinished;
   return val;
