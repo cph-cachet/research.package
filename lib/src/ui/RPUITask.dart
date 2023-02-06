@@ -24,20 +24,20 @@ class RPUITask extends StatefulWidget {
   /// It's only optional. If nothing is provided (is ```null```) the survey just quits without doing anything with the result.
   final void Function(RPTaskResult? result)? onCancel;
 
-  RPUITask({required this.task, this.onSubmit, this.onCancel});
+  const RPUITask({super.key, required this.task, this.onSubmit, this.onCancel});
 
   @override
-  _RPUITaskState createState() => _RPUITaskState();
+  RPUITaskState createState() => RPUITaskState();
 }
 
-class _RPUITaskState extends State<RPUITask> with CanSaveResult {
+class RPUITaskState extends State<RPUITask> with CanSaveResult {
   late RPTaskResult _taskResult;
 
   /// A list of actual steps to show in the task.
   /// If the task is a [RPNavigableOrderedTask] not all the questions necessarily show up because of branching.
   /// (Some questions could be skipped based on previous answers.)
   /// It is a dynamic list which grows and shrinks according to the forward of back navigation of the task.
-  List<RPStep> _activeSteps = [];
+  final List<RPStep> _activeSteps = [];
 
   RPStep? _currentStep;
   int _currentStepIndex = 0;
@@ -46,12 +46,13 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   late StreamSubscription<RPStepStatus> _stepStatusSubscription;
   late StreamSubscription<RPResult> _stepResultSubscription;
 
-  PageController _taskPageViewController = PageController(keepPage: false);
+  final PageController _taskPageViewController =
+      PageController(keepPage: false);
 
   bool navigableTask = false;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     // Instantiate the taskresult so it starts tracking time
     _taskResult = RPTaskResult(identifier: widget.task.identifier);
@@ -82,9 +83,10 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           // Updating taskProgress stream
           if (_currentStep.runtimeType == RPQuestionStep) {
             _currentQuestionIndex++;
-            if (!navigableTask)
+            if (!navigableTask) {
               blocTask.updateTaskProgress(RPTaskProgress(
                   _currentQuestionIndex, widget.task.numberOfQuestionSteps));
+            }
           }
 
           // Calculating next step and then navigate there
@@ -96,10 +98,11 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           _currentStepIndex++;
 
           _taskPageViewController.nextPage(
-              duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
+              duration: const Duration(milliseconds: 400),
+              curve: Curves.easeInOut);
           break;
         case RPStepStatus.Canceled:
-          _showCancelConfirmationDialog();
+          showCancelConfirmationDialog();
           break;
         case RPStepStatus.Back:
           // If the stepWidgets list only has 1 element it means the user is on the first question, so no back navigation is enabled
@@ -111,12 +114,14 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
           } else {
             _currentQuestionIndex--;
             _currentStepIndex--;
-            if (!navigableTask)
+            if (!navigableTask) {
               blocTask.updateTaskProgress(RPTaskProgress(
                   _currentQuestionIndex, widget.task.numberOfQuestionSteps));
+            }
             // await because it can only update the stepWidgets list while the current step is out of the screen
             await _taskPageViewController.previousPage(
-                duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.easeInOut);
 
             setState(() {
               _activeSteps.removeLast();
@@ -148,11 +153,16 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate)
     _taskResult.endDate = DateTime.now();
-    if (widget.onSubmit != null) widget.onSubmit!(_taskResult);
+    RPTaskResult? translatedTaskResult;
+    if (RPLocalizations.of(context) != null) {
+      translatedTaskResult =
+          _translateTaskResult(RPLocalizations.of(context)!, _taskResult);
+    }
+    widget.onSubmit?.call(translatedTaskResult ?? _taskResult);
   }
 
-  void _showCancelConfirmationDialog() {
-    showDialog(
+  void showCancelConfirmationDialog() {
+    showDialog<dynamic>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
@@ -173,7 +183,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                 ),
                 child: Text(
                   RPLocalizations.of(context)?.translate('NO') ?? "NO",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 onPressed: () =>
                     Navigator.of(context).pop(), // Dismissing the pop-up
@@ -201,7 +211,7 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
   }
 
   Widget _carouselBar(RPLocalizations? locale) {
-    return Container(
+    return SizedBox(
       height: AppBar().preferredSize.height,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -243,7 +253,11 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     RPLocalizations? locale = RPLocalizations.of(context);
 
     return WillPopScope(
-      onWillPop: () => blocTask.sendStatus(RPStepStatus.Canceled),
+      onWillPop: () async {
+        // allow the user to cancel and pop the widget
+        blocTask.sendStatus(RPStepStatus.Canceled);
+        return true;
+      },
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,
@@ -261,14 +275,15 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                   },
                   itemCount: _activeSteps.length,
                   controller: _taskPageViewController,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                 ),
               ),
               // Bottom navigation
               if (![RPCompletionStep, RPVisualConsentStep, RPConsentReviewStep]
                   .contains(_currentStep.runtimeType))
                 Padding(
-                  padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                  padding:
+                      const EdgeInsets.only(left: 15, right: 15, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -290,17 +305,19 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
                             return ElevatedButton(
                               style:
                                   Theme.of(context).elevatedButtonTheme.style,
+                              onPressed: snapshot.data!
+                                  ? () {
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                      blocTask
+                                          .sendStatus(RPStepStatus.Finished);
+                                    }
+                                  : null,
                               child: Text(
                                 RPLocalizations.of(context)
                                         ?.translate('NEXT') ??
                                     "NEXT",
                               ),
-                              onPressed: snapshot.data!
-                                  ? () {
-                                      blocTask
-                                          .sendStatus(RPStepStatus.Finished);
-                                    }
-                                  : null,
                             );
                           } else {
                             return Container();
@@ -323,5 +340,140 @@ class _RPUITaskState extends State<RPUITask> with CanSaveResult {
     _stepResultSubscription.cancel();
     _taskPageViewController.dispose();
     super.dispose();
+  }
+
+  // Translates the RPTaskResult values to the correct language,
+  // which was shown on screen during the task.
+  RPTaskResult _translateTaskResult(
+      RPLocalizations locale, RPTaskResult taskResult) {
+    RPTaskResult translatedTaskResult =
+        RPTaskResult(identifier: taskResult.identifier);
+    // For each step result in the task
+    for (MapEntry<String, RPResult> mapEntry in taskResult.results.entries) {
+      if (mapEntry.value is RPStepResult) {
+        // Translate answerformat
+        RPStepResult stepResult = mapEntry.value as RPStepResult;
+        RPAnswerFormat translatedAnswerFormat =
+            _translateAnswerFormat(locale, stepResult.answerFormat);
+
+        // Create stepresult to fill with answers
+        RPStepResult translatedResult = RPStepResult(
+            identifier: stepResult.identifier,
+            questionTitle: stepResult.questionTitle,
+            answerFormat: translatedAnswerFormat);
+
+        // For each answer in the map
+        for (MapEntry<String, dynamic> resultEntry
+            in stepResult.results.entries) {
+          if (stepResult.answerFormat.runtimeType == RPFormAnswerFormat) {
+            translatedResult.setResultForIdentifier(
+                resultEntry.key, _translateResult(locale, resultEntry.value));
+          } else {
+            translatedResult
+                .setResult(_translateResult(locale, resultEntry.value));
+          }
+        }
+
+        translatedTaskResult.setStepResultForIdentifier(
+            mapEntry.key, translatedResult);
+      } else {
+        // if mapEntry.value is RPConsentSignatureResult
+        // which is handled in the RPUIConsentReviewStep.
+        // Other result types are also transfered.
+        translatedTaskResult.setStepResultForIdentifier(
+            mapEntry.key, mapEntry.value);
+      }
+    }
+    return translatedTaskResult;
+  }
+
+  RPAnswerFormat _translateAnswerFormat(
+      RPLocalizations locale, RPAnswerFormat answerFormat) {
+    switch (answerFormat.runtimeType) {
+      case RPIntegerAnswerFormat:
+        answerFormat as RPIntegerAnswerFormat;
+        return RPIntegerAnswerFormat(
+            maxValue: answerFormat.maxValue,
+            minValue: answerFormat.minValue,
+            suffix: (answerFormat.suffix == null)
+                ? null
+                : locale.translate(answerFormat.suffix!));
+
+      case RPChoiceAnswerFormat:
+        answerFormat as RPChoiceAnswerFormat;
+        List<RPChoice> translatedRPChoices = [];
+        for (RPChoice choice in answerFormat.choices) {
+          translatedRPChoices.add(RPChoice(
+              text: locale.translate(choice.text),
+              value: choice.value,
+              detailText: choice.detailText == null
+                  ? null
+                  : locale.translate(choice.detailText!),
+              isFreeText: choice.isFreeText));
+        }
+        return RPChoiceAnswerFormat(
+            answerStyle: answerFormat.answerStyle,
+            choices: translatedRPChoices);
+
+      case RPSliderAnswerFormat:
+        answerFormat as RPSliderAnswerFormat;
+        return RPSliderAnswerFormat(
+            minValue: answerFormat.minValue,
+            maxValue: answerFormat.maxValue,
+            divisions: answerFormat.divisions,
+            suffix: (answerFormat.suffix == null)
+                ? null
+                : locale.translate(answerFormat.suffix!),
+            prefix: (answerFormat.prefix == null)
+                ? null
+                : locale.translate(answerFormat.prefix!));
+
+      case RPImageChoiceAnswerFormat:
+        answerFormat as RPImageChoiceAnswerFormat;
+        List<RPImageChoice> translatedImageChoices = [];
+        for (RPImageChoice imageChoice in answerFormat.choices) {
+          translatedImageChoices.add(RPImageChoice(
+              imageUrl: imageChoice.imageUrl,
+              description: locale.translate(imageChoice.description),
+              key: imageChoice.key,
+              value: imageChoice.value));
+        }
+        return RPImageChoiceAnswerFormat(choices: translatedImageChoices);
+
+      // case RPDateTimeAnswerFormat:
+      //   answerFormat as RPDateTimeAnswerFormat;
+      //   return RPDateTimeAnswerFormat();
+      // case RPTextAnswerFormat:
+      //   answerFormat as RPTextAnswerFormat;
+      //   return RPTextAnswerFormat();
+      default:
+        return answerFormat;
+    }
+  }
+
+  dynamic _translateResult(RPLocalizations locale, dynamic value) {
+    switch (value.runtimeType) {
+      case RPImageChoice:
+        value as RPImageChoice;
+        return RPImageChoice(
+            imageUrl: value.imageUrl,
+            description: value.description,
+            key: value.key,
+            value: value.value);
+      case RPChoice:
+        value as RPChoice;
+        return RPChoice(
+            text: locale.translate(value.text),
+            value: value.value,
+            detailText: value.detailText == null
+                ? null
+                : locale.translate(value.detailText!),
+            isFreeText: value.isFreeText);
+      case List<RPChoice>:
+        value as List;
+        return value.map((e) => _translateResult(locale, e)).toList();
+      default:
+        return value;
+    }
   }
 }

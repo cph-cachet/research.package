@@ -13,14 +13,18 @@ class RPConsentSignatureResult extends RPResult {
   /// the ID of the user which signed the document
   String? userID;
 
-  RPConsentSignatureResult(
-      String identifier, this.consentDocument, this.signature)
-      : super(identifier);
-
   /// The time when the document was signed
-  DateTime? get signingDate => this.endDate;
+  DateTime? get signingDate => endDate;
+
+  /// Create a [RPConsentSignatureResult].
+  RPConsentSignatureResult({
+    required super.identifier,
+    required this.consentDocument,
+    this.signature,
+  });
 
   factory RPConsentSignatureResult.fromJson(Map<String, dynamic> json) =>
       _$RPConsentSignatureResultFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$RPConsentSignatureResultToJson(this);
 }

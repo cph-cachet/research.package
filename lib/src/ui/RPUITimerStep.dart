@@ -6,13 +6,13 @@ part of research_package_ui;
 class RPUITimerStep extends StatefulWidget {
   final RPTimerStep step;
 
-  RPUITimerStep(this.step);
+  const RPUITimerStep(this.step, {super.key});
 
   @override
-  _RPUITimerStepState createState() => _RPUITimerStepState();
+  RPUITimerStepState createState() => RPUITimerStepState();
 }
 
-class _RPUITimerStepState extends State<RPUITimerStep> {
+class RPUITimerStepState extends State<RPUITimerStep> {
   // Dynamic because we don't know what value the RPChoice will have
   Timer? timer;
   late int timeInSeconds;
@@ -31,9 +31,11 @@ class _RPUITimerStepState extends State<RPUITimerStep> {
     timeInSeconds = widget.step.timeout.inSeconds;
     const oneSec = Duration(seconds: 1);
     timer = Timer.periodic(oneSec, (t) {
-      setState(() {
-        timeInSeconds--;
-      });
+      if (mounted) {
+        setState(() {
+          timeInSeconds--;
+        });
+      }
       if (timeInSeconds <= 0) {
         blocQuestion.sendReadyToProceed(true);
         if (_mPlayerIsInited) {

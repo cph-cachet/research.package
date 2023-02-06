@@ -1,31 +1,80 @@
+## 1.2.1
+
+- Added usage of `detailText` on `RPChoice`s.
+- Small bug fixes
+
+## 1.2.0
+
+- Upgrade of `pubspec` dependencies to lastest versions.
+
+## 1.1.0
+
+- Support for initializing json serialization by calling the `ResearchPackage()` factory method. This allows for dynamic loading of survey or informed consents from a json configuration.
+
+## 1.0.0
+
+- First stable release
+- `RPActivityStep` made serializable.
+- Upgraded to Dart 2.18 and Fluter 3
+- Refactoring to comply to [official Dart recommended lint rules](https://pub.dev/packages/flutter_lints)
+- Upgrade of several constructors to use `super` which break backwards compatability to version 0.9.3
+- Update of demo app
+- Update and clean up in API documentation.
+
+## 0.9.3
+
+- Changed dependency from carp_core to carp_serializable, to reduce unnecessary dependencies.
+
+## 0.9.2
+
+- Added a unfocus between question to avoid the keyboard remaining on the screen after answering a question.
+
+## 0.9.1
+
+- Fixed a big in the signature during consent review.
+
+## 0.9.0
+
+- Research Package now translates the `TaskResult` and steps from the localization keys to the localized values.
+- Small updates to the example app
+- Small fixes to localization in the package and the example app.
+
 ## 0.8.0
+
 - Updated deprecated theme usages.
 - Added the `RPTimerStep` and serialization.
 - Added `Audiofileplayer` plugin for the `RPTimerStep`
-- Updated README 
+- Updated README
 - Updated .gitignore
 
 ## 0.7.3
-- update to `carp_core` v. 0.33.0
-- misc. cleanup in Android example app configurations
+
+- Update to `carp_core` v. 0.33.0
+- Misc. cleanup in Android example app configurations
 
 ## 0.7.2+3
+
 - Updated `signature` to 5.0.0
 
 ## 0.7.2+2
+
 - Changed asset urls to be specific urls of the assets
 - Added a new "Checkmark" in the RPCompletionStep
 
 ## 0.7.2+1
+
 - Changed brightness input on CupertinoDateTimePicker for `RPDateTimeAnswerFormat` to use Theme brightness instead of System brightness.
 
 ## 0.7.2
+
 - added base method for calculateScore() method into RPActivityStep class. Which is overriden by any child class that extends RPActivityStep
 
 ## 0.7.1
+
 - fix / enhancement of localization based on [issue #54](https://github.com/cph-cachet/research.package/issues/54).
 
 ## 0.7.0
+
 - Removed Boolean questions, including answer format for simplicity and navigation changes. (Use regular RPChoices now)
 - Removed Predicate Navigation rules, for simplicity and navigation changes. (Use `RPStepJumpRule` now)
 - JSON serialization to/from json, now retains the navigation rules added. Previously the navigation was lost after conversion.
@@ -34,45 +83,55 @@
 - Small bugfixes
 
 ## 0.6.7
+
 - Added Activity Steps as `RPActivityStep` - A class that allows for the making of Cognitive Tests
 - Added Activity Result as `RPActivityResult` - A class for storing the result of a Cognitive test
 - Added `RPActivityEventLogger` - used for logging small events during each `activity step`
 - Include json serialization for added classes.
 
 ## 0.6.6
+
 - update to `carp_core` v. 0.31.0
 
 ## 0.6.5+1
+
 - update to UI rendering in the Informed Consent based on PR [#51](https://github.com/cph-cachet/research.package/pull/51).
 - update to UI rendering in the Informed Consent based on PR [#50](https://github.com/cph-cachet/research.package/pull/50).
 - updating README to link to the new [tutorials on `carp.cachet.dk`](https://carp.cachet.dk/category/tutorials/).
 
 ## 0.6.4
+
 - `RPLocalizationsDelegate` now support multiple `loaders` which can merge translations from several sources.
 
 ## 0.6.3
+
 - Changed background color element from backgroundColor -> scaffoldBackgroundColor.
 - Updated RPConsentSection to also take a custom title on predefined section types.
 - Fixed an issue with the cupertinoDatePicker in dark mode, that caused the picker to not follow the theme values.
 - Added headline6 to questions step titles.
 
 ## 0.6.2
+
 - Additional customizable text in the theme
 - Example app updated
 - Textfield hintText uses the 'text' parameter.
 
 ## 0.6.1
+
 - Bug fix (Missing signature)
 
 ## 0.6.0
+
 - Null safety added.
 - Theming updated using PR #24
 - Minor fixes
 
 ## 0.5.5
+
 - small update to robustness and debug info in `RPLocalizations`
 
 ## 0.5.4
+
 - update to the localization model (`RPLocalizations`) so that:
   - the localization of the embedded text in RP is now part of RP (you don't need to worry about this anymore)
   - localization of informed consent and survey is (still) in the `assets/lang/` folder
@@ -81,31 +140,37 @@
 - example app update to illustrate the use of both types of localization
 
 ## 0.5.3+1
+
 - small updates to documentation
 - making `RPTask` serializable instead of abtstract
 - fix to `translate` method
 
 ## 0.5.2
+
 - update of json serialization in informed consent domain model
 - updated example and unit test on `RPConsentSection` for passive data collection
 
 ## 0.5.0
+
 - Included the [carp_core](https://pub.dev/packages/carp_core) which allow for de/serialization of RP models to/from json, while also supporting polymorphim (e.g., that an `RPAnswerFormat` can have different implementations). See [issue #12](https://github.com/cph-cachet/research.package/issues/12).
 - all `.withParams()` and similar constructors have been replaced with named constructors (as recommended in Dart).
 - added unit test to verify json de/serialization.
 - all examples and the demo app updated accordingly.
 
 ## 0.4.1
+
 - Fixed error in consent that caused it to have 2 top bars
 - Updated docs
 - Score fixes
 
 ## 0.4.0
+
 - Merged beta.1.0
 - Added RPTextAnswerFormat (a format for getting written answers from the user)
 - Minor bugfixes
 
 ## 0.4.0-beta.1.0
+
 - Updated UI for several elements:
   - RPQuestionStep (incl. most answerformats)
   - RPFormStep
@@ -118,36 +183,45 @@
 - Minor bug fixes
 
 ## 0.3.2+3
+
 - updates to documentation of RP and example app
 
 ## 0.3.2+2
+
 - Added RPJumpStepRule - A navigation rule to jump to questions based on the chosen answer to the question.
 
 ## 0.3.2+1
+
 - Revert of AnimationController
 
 ## 0.3.2
+
 - Updated `AnimationController`s to Flutter 1.22
 - Removed "Activity Steps" to be released in a separate package
 - Merged small-scale branching feature
 - Minor bugfixes
 
 ## 0.3.1+1
+
 - `onCancel` callback changed to only optional
 
 ## 0.3.1
+
 - `onCancel` callback added to Tasks
 
 ## 0.3.0
+
 - `RPActivityStep` and `RPActivityResult` added with including UI.
 - 8 cognitive tests added as activity steps.
 - Dependencies updated
 - Minor bugfixes
 
 ## 0.2.1
+
 - FormStep now supports Slider, Image, Date and Boolean Answer Formats as well
 
 ## 0.2.0
+
 - Support for Navigable Tasks
   - Branching support with `RPDirectStepNavigationRule` and `RPPredicateStepNavigationRule`
   - Navigation to previous questions
@@ -161,6 +235,7 @@
 - UI updates, bug fixes
 
 ## 0.1.2
+
 - Support for new Answer Formats
   - Slider
   - Date and Time
@@ -169,17 +244,21 @@
 - Small bug fixes and documentation update
 
 ## 0.1.1
+
 - `json_annotation` dependency updated to `^3.0.0`
 - `rx_dart` dependency updated to `^0.22.0`
 
 ## 0.1.0
+
 - Form Step feature added
 - Bug fixing
 
 ## 0.0.4
+
 - Example application added
 
 ## 0.0.3
+
 - Initial release for Pub
 - Support for three Answer Formats
   - Single Choice
@@ -187,6 +266,7 @@
   - Integer
 
 ## 0.0.2
+
 - Added initial support for serialization to/from JSON
 - JSON serialization is available for these classes:
   - `RPAnswerFormat`
@@ -200,6 +280,7 @@
   - `RPChoice`
 
 ## 0.0.1
+
 - Initial release
 - Entire framework done
 - Support for SingleChoice question type

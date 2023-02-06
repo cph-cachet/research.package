@@ -2,16 +2,19 @@ part of research_package_ui;
 
 class RPUIIntegerQuestionBody extends StatefulWidget {
   final RPIntegerAnswerFormat answerFormat;
-  final Function(dynamic) onResultChange;
+  final void Function(dynamic) onResultChange;
 
-  RPUIIntegerQuestionBody(this.answerFormat, this.onResultChange);
+  const RPUIIntegerQuestionBody(
+    this.answerFormat,
+    this.onResultChange, {
+    super.key,
+  });
 
   @override
-  _RPUIIntegerQuestionBodyState createState() =>
-      _RPUIIntegerQuestionBodyState();
+  RPUIIntegerQuestionBodyState createState() => RPUIIntegerQuestionBodyState();
 }
 
-class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
+class RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIIntegerQuestionBody> {
   late TextEditingController _textEditingController;
   String? _errorMessage;
@@ -59,24 +62,22 @@ class _RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
     super.build(context);
     RPLocalizations? locale = RPLocalizations.of(context);
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       alignment: Alignment.topLeft,
-      child: Container(
-        child: TextFormField(
-          controller: _textEditingController,
-          decoration: InputDecoration(
-            filled: true,
-            hintText: locale?.translate('tap_to_answer') ?? "Tap to answer",
-            helperStyle:
-                TextStyle(color: Theme.of(context).textTheme.bodyText1?.color),
-            suffix: widget.answerFormat.suffix != null
-                ? Text(locale?.translate(widget.answerFormat.suffix!) ??
-                    widget.answerFormat.suffix!)
-                : null,
-            errorText: _valid ? null : _errorMessage,
-          ),
-          onChanged: (text) => _validate(text, locale),
+      child: TextFormField(
+        controller: _textEditingController,
+        decoration: InputDecoration(
+          filled: true,
+          hintText: locale?.translate('tap_to_answer') ?? "Tap to answer",
+          helperStyle:
+              TextStyle(color: Theme.of(context).textTheme.bodyText1?.color),
+          suffix: widget.answerFormat.suffix != null
+              ? Text(locale?.translate(widget.answerFormat.suffix!) ??
+                  widget.answerFormat.suffix!)
+              : null,
+          errorText: _valid ? null : _errorMessage,
         ),
+        onChanged: (text) => _validate(text, locale),
       ),
     );
   }

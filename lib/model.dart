@@ -1,22 +1,17 @@
 /// The domain model part of Research Package.
+///
 /// Contains the "building blocks" for creating surveys and obtaining informed consents.
 /// Holds the different types of result classes.
 /// Also responsible for the streams and BLoC classes to provide communication channels
 /// between different parts of the package. ([BlocQuestion], [BlocTask])
 /// For the UI representations of the classes visit the [research_package_ui] library.
-
 library research_package_model;
 
-// Imports
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-// the carp core domain model incl. polymorphic json serialization
-import 'package:carp_core/carp_common/carp_core_common.dart';
-
-// Importing the UI library from Research Package
+import 'package:carp_serializable/carp_serializable.dart';
 import 'package:research_package/ui.dart';
 
 // JSON
@@ -70,3 +65,15 @@ part 'src/model/Abstracts.dart';
 // BLoCs
 part 'src/model/blocs/BlocTask.dart';
 part 'src/model/blocs/BlocQuestion.dart';
+
+/// Start class for this researc package library. Just create a singleton instance:
+///
+///    ResearchPackage();
+///
+class ResearchPackage {
+  static final _instance = ResearchPackage._();
+  factory ResearchPackage() => _instance;
+  ResearchPackage._() {
+    _registerFromJsonFunctions();
+  }
+}

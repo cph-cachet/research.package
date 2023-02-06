@@ -1,6 +1,6 @@
 part of research_package_model;
 
-/// The concrete subclass of [RPStep] that represents a step in which a single
+/// A concrete subclass of [RPStep] that represents a step in which a single
 /// question is presented to the user.
 ///
 /// When a Task Widget presents an Question Step object, it instantiates an
@@ -17,24 +17,26 @@ class RPQuestionStep extends RPStep {
   /// requires text entry
   String? placeholder;
 
-  /// Creates a Question Step populated with title (text of the question) and
-  /// answer format on which the actual layout depends
-  RPQuestionStep(
-      {required String identifier,
-      required this.answerFormat,
-      required String title,
-      bool optional = false})
-      : super(identifier: identifier, title: title, optional: optional);
-
-  /// The widget (UI representation) of the step.
+  /// Creates a [RPQuestionStep].
   ///
-  /// This gets initialized when a Question Step has been added to a Task which
-  /// is later presented by an [RPUITask] widget.
+  /// [identifier] is a unique id of this step,
+  /// [title] is shown as the title of the question), and
+  /// [answerFormat] defines the type of questionnaire, as defined in
+  /// [RPAnswerFormat].
+  RPQuestionStep({
+    required super.identifier,
+    required super.title,
+    super.optional,
+    required this.answerFormat,
+  });
+
   @override
   Widget get stepWidget => RPUIQuestionStep(this);
 
+  @override
   Function get fromJsonFunction => _$RPQuestionStepFromJson;
   factory RPQuestionStep.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPQuestionStep;
+  @override
   Map<String, dynamic> toJson() => _$RPQuestionStepToJson(this);
 }

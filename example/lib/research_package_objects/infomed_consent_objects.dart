@@ -2,21 +2,17 @@ import 'package:research_package/model.dart';
 
 RPConsentSection overviewSection = RPConsentSection(
     type: RPConsentSectionType.Overview,
-    summary: "Welcome! This is a summary for Overview",
-    content:
-        "Overview dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
+    summary: "overview.title",
+    content: "overview.content");
 
 RPConsentSection dataGatheringSection = RPConsentSection(
     type: RPConsentSectionType.DataGathering,
-    summary: "This is a summary for Data Gathering.",
-    content:
-        "Data Gathering dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
-
+    summary: "datagathering.title",
+    content: "datagathering.content");
 RPConsentSection privacySection = RPConsentSection(
     type: RPConsentSectionType.Privacy,
-    summary: "This is a summary for Privacy.",
-    content:
-        "Privacy dolor sit amet, consectetur adipiscing elit. Aenean a mi porttitor, bibendum elit elementum, placerat augue. Quisque eu sollicitudin tortor, sed egestas ante. Sed convallis, mauris quis malesuada convallis, lectus ante vestibulum ante, vel lobortis magna dui eu nisl. Proin ac pellentesque nulla. Morbi facilisis dui aliquam quam pulvinar efficitur. Duis at lorem vitae leo pharetra ultricies. Proin viverra eleifend varius. Nulla sed nisi ut enim placerat venenatis. Maecenas imperdiet accumsan ligula id varius. Donec rhoncus gravida odio vitae convallis.Nullam at tempor erat. Praesent euismod orci nec sollicitudin placerat. Nunc nec nibh efficitur, mattis ante sit amet, scelerisque libero. Aliquam et mollis erat. Pellentesque aliquam convallis turpis sit amet molestie. Duis accumsan venenatis imperdiet. Integer quis est non elit varius mattis. Donec hendrerit in nisl eget sollicitudin. Nulla sapien lacus, mattis non orci sed, commodo tincidunt risus.");
+    summary: "privacy.title",
+    content: "privacy.content");
 
 RPConsentSection dataUseSection = RPConsentSection(
     type: RPConsentSectionType.DataUse,
@@ -91,31 +87,26 @@ RPConsentSection healthSection = RPConsentSection(
     summary: "This is a summary for Health.",
     content: "Health dolor sit amet");
 
+// Using keys for translations
 RPConsentSection userDataCollection = RPConsentSection(
     type: RPConsentSectionType.UserDataCollection,
-    summary:
-        "This study will ask you to provide the information about the following categories:",
+    summary: "userDataCollection.summary",
     dataTypes: [
       RPDataTypeSection(
-          dataName: "Alcohol",
-          dataInformation:
-              "You have to input some info about alcohol in the alcohol card  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut aliquet augue, sed maximus sapien. Cras non sem vulputate, tincidunt est in, euismod orci. Aenean elit nisl, convallis vel lacus eget, pellentesque laoreet nunc."),
+          dataName: "userDataCollection.alcohol.dataName",
+          dataInformation: "userDataCollection.alcohol.dataInformation"),
       RPDataTypeSection(
-          dataName: "Mood",
-          dataInformation:
-              "You have to input some info about your mood in the mood card"),
+          dataName: "userDataCollection.mood.dataName",
+          dataInformation: "userDataCollection.mood.dataInformation"),
       RPDataTypeSection(
-          dataName: "Weight",
-          dataInformation:
-              "You have to input some info about your weight in the weight card"),
+          dataName: "userDataCollection.weight.dataName",
+          dataInformation: "userDataCollection.weight.dataInformation"),
       RPDataTypeSection(
-          dataName: "Medications",
-          dataInformation:
-              "You have to input some info about your medications in the medications card"),
+          dataName: "userDataCollection.medications.dataName",
+          dataInformation: "userDataCollection.medications.dataInformation"),
       RPDataTypeSection(
-          dataName: "Smoking",
-          dataInformation:
-              "You have to input some info about your smoking in the smoking card"),
+          dataName: "userDataCollection.smoking.dataName",
+          dataInformation: "userDataCollection.smoking.dataInformation"),
     ]);
 
 RPConsentSection passiveDataCollection = RPConsentSection(
@@ -183,32 +174,36 @@ RPConsentDocument consentDocumentAllSections = RPConsentDocument(
     locationSection,
     healthSection,
     userDataCollection,
-    passiveDataCollection
+    passiveDataCollection,
   ],
 )..addSignature(signature);
 
 RPConsentReviewStep consentReviewStep = RPConsentReviewStep(
-    identifier: "consentreviewstepID",
-    consentDocument: consentDocumentAllSections,
-    reasonForConsent: 'informed_consent.agree_text',
-    text: 'informed_consent.agree_confirm');
+  identifier: "consentreviewstepID",
+  title: 'Consent Review',
+  consentDocument: consentDocumentAllSections,
+  reasonForConsent: 'informed_consent.agree_text',
+  text: 'informed_consent.agree_confirm',
+);
 
 RPVisualConsentStep consentVisualStep = RPVisualConsentStep(
     identifier: "visualStep", consentDocument: consentDocumentAllSections);
 
 RPInstructionStep instructionStep = RPInstructionStep(
-    identifier: "instructionID",
-    title: "Welcome!",
-    detailText:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultricies feugiat turpis nec efficitur. Integer in pharetra libero. Proin a leo eu enim porttitor hendrerit. Suspendisse vestibulum interdum mollis. Donec in sapien ut orci ultricies laoreet. Ut maximus ante id arcu feugiat scelerisque. Proin non rutrum libero. Aliquam blandit arcu ac dolor consequat maximus. Integer et dolor quis quam tempor porta quis vel nibh. Phasellus ullamcorper fringilla lorem, ac tempus sem cursus a. Aliquam maximus facilisis quam. Morbi hendrerit tempor tellus, ac hendrerit augue tincidunt eu. Cras convallis lorem at nulla mattis tristique.",
-    footnote: "(1) Important footnote",
-    imagePath: "assets/images/waving-hand.png",
-    text: "informed_consent.welcome_text");
+  identifier: "instructionID",
+  title: "Welcome!",
+  detailText:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultricies feugiat turpis nec efficitur. Integer in pharetra libero. Proin a leo eu enim porttitor hendrerit. Suspendisse vestibulum interdum mollis. Donec in sapien ut orci ultricies laoreet. Ut maximus ante id arcu feugiat scelerisque. Proin non rutrum libero. Aliquam blandit arcu ac dolor consequat maximus. Integer et dolor quis quam tempor porta quis vel nibh. Phasellus ullamcorper fringilla lorem, ac tempus sem cursus a. Aliquam maximus facilisis quam. Morbi hendrerit tempor tellus, ac hendrerit augue tincidunt eu. Cras convallis lorem at nulla mattis tristique.",
+  footnote: "(1) Important footnote",
+  imagePath: "assets/images/waving-hand.png",
+  text: "informed_consent.welcome_text",
+);
 
 RPCompletionStep completionStep = RPCompletionStep(
-    identifier: "completionID",
-    title: "informed_consent.thanks",
-    text: "informed_consent.document_saved");
+  identifier: "completionID",
+  title: "informed_consent.thanks",
+  text: "informed_consent.document_saved",
+);
 
 RPOrderedTask consentTask = RPOrderedTask(
   identifier: "consentTaskID",
@@ -216,6 +211,6 @@ RPOrderedTask consentTask = RPOrderedTask(
     instructionStep,
     consentVisualStep,
     consentReviewStep,
-    completionStep
+    completionStep,
   ],
 );

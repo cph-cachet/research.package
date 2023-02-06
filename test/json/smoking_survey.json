@@ -1,0 +1,61 @@
+{
+    "$type": "RPNavigableOrderedTask",
+    "identifier": "NavigableTaskID",
+    "close_after_finished": true,
+    "steps": [
+        {
+            "$type": "RPQuestionStep",
+            "identifier": "smokingQuestionId",
+            "title": "Do you smoke?",
+            "optional": false,
+            "answer_format": {
+                "$type": "RPChoiceAnswerFormat",
+                "question_type": "SingleChoice",
+                "choices": [
+                    {
+                        "$type": "RPChoice",
+                        "text": "Yes",
+                        "value": 1,
+                        "is_free_text": false
+                    },
+                    {
+                        "$type": "RPChoice",
+                        "text": "No",
+                        "value": 0,
+                        "is_free_text": false
+                    }
+                ],
+                "answer_style": "SingleChoice"
+            }
+        },
+        {
+            "$type": "RPQuestionStep",
+            "identifier": "nrOfCigarettesQuestionStepID",
+            "title": "How many cigarettes do you smoke a day?",
+            "optional": false,
+            "answer_format": {
+                "$type": "RPIntegerAnswerFormat",
+                "min_value": 0,
+                "max_value": 200,
+                "suffix": "cigarettes",
+                "question_type": "Integer"
+            }
+        },
+        {
+            "$type": "RPCompletionStep",
+            "identifier": "completionID",
+            "title": "Finished",
+            "text": "Thank you for filling out the survey!",
+            "optional": false
+        }
+    ],
+    "step_navigation_rules": {
+        "smokingQuestionId": {
+            "$type": "RPStepJumpRule",
+            "answer_map": {
+                "1": "nrOfCigarettesQuestionStepID",
+                "0": "completionID"
+            }
+        }
+    }
+}

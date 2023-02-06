@@ -2,15 +2,19 @@ part of research_package_ui;
 
 class RPUISliderQuestionBody extends StatefulWidget {
   final RPSliderAnswerFormat answerFormat;
-  final Function(dynamic) onResultChange;
+  final void Function(dynamic) onResultChange;
 
-  RPUISliderQuestionBody(this.answerFormat, this.onResultChange);
+  const RPUISliderQuestionBody(
+    this.answerFormat,
+    this.onResultChange, {
+    super.key,
+  });
 
   @override
-  _RPUISliderQuestionBodyState createState() => _RPUISliderQuestionBodyState();
+  RPUISliderQuestionBodyState createState() => RPUISliderQuestionBodyState();
 }
 
-class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
+class RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUISliderQuestionBody> {
   double? value;
 
@@ -38,13 +42,13 @@ class _RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
         : "";
     return Card(
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         alignment: Alignment.topLeft,
         child: Column(
           children: <Widget>[
             Text(
               text,
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
             Slider(
               activeColor: Theme.of(context).sliderTheme.activeTrackColor,

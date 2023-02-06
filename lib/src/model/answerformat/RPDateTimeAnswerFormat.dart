@@ -14,8 +14,10 @@ class RPDateTimeAnswerFormat extends RPAnswerFormat {
             : RPQuestionType.DateAndTime;
   }
 
+  @override
   Function get fromJsonFunction => _$RPDateTimeAnswerFormatFromJson;
   factory RPDateTimeAnswerFormat.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPDateTimeAnswerFormat;
+  @override
   Map<String, dynamic> toJson() => _$RPDateTimeAnswerFormatToJson(this);
 }

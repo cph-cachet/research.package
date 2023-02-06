@@ -10,7 +10,7 @@ part of research_package_ui;
 /// ```
 ///
 class RPLocalizations extends AssetLocalizations {
-  static final String assetPath = 'research_package/assets/lang';
+  static const String assetPath = 'research_package/assets/lang';
 
   /// Create a localization based on [locale].
   RPLocalizations(Locale locale) : super(locale);
@@ -51,7 +51,8 @@ class RPLocalizations extends AssetLocalizations {
           'For now, translations provided in the app localization file(s) are also used for RP so you can provide translations for the RP terms there for now.');
     }
 
-    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    Map<String, dynamic> jsonMap =
+        json.decode(jsonString) as Map<String, dynamic>;
     _translations =
         jsonMap.map((key, value) => MapEntry(key, value.toString()));
 
@@ -72,7 +73,7 @@ class RPLocalizations extends AssetLocalizations {
   ///
   /// This default delegate loads translations from the `assets/lang` file path.
   static LocalizationsDelegate<RPLocalizations> delegate =
-      RPLocalizationsDelegate(loaders: [AssetLocalizationLoader()]);
+      RPLocalizationsDelegate(loaders: [const AssetLocalizationLoader()]);
 }
 
 class RPLocalizationsDelegate extends LocalizationsDelegate<RPLocalizations> {
@@ -156,7 +157,8 @@ class AssetLocalizationLoader implements LocalizationLoader {
     print("$runtimeType - loading '$path'");
     String jsonString = await rootBundle.loadString(path);
 
-    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    Map<String, dynamic> jsonMap =
+        json.decode(jsonString) as Map<String, dynamic>;
     Map<String, String> translations =
         jsonMap.map((key, value) => MapEntry(key, value.toString()));
 

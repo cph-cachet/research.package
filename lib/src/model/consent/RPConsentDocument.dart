@@ -25,43 +25,18 @@ class RPConsentDocument extends Serializable {
   /// Also their content is presented during [RPConsentReviewStep].
   List<RPConsentSection> sections;
 
-  // They are needed only for creating the pdf
-  String? _signaturePageTitle;
-  String? _signaturePageContent;
-
-  RPConsentDocument({required this.title, required this.sections}) {
-    _registerFromJsonFunctions();
-  }
+  RPConsentDocument({required this.title, required this.sections});
 
   /// Adds a signature to the list of [signatures]
-  void addSignature(RPConsentSignature signature) {
-    signatures.add(signature);
-  }
+  void addSignature(RPConsentSignature signature) => signatures.add(signature);
 
   /// Returns an [RPConsentSignature] from the [signatures] array at the given index
-  RPConsentSignature getConsentSignatureAtIndex(int index) {
-    return signatures[index];
-  }
+  RPConsentSignature getConsentSignatureAtIndex(int index) => signatures[index];
 
-  /// For creating PDF. Coming later...
-  String? get signaturePageTitle => _signaturePageTitle;
-
-  /// For creating PDF. Coming later...
-  String? get signaturePageContent => _signaturePageContent;
-
-  set signaturePageTitle(String? signaturePageTitle) {
-    this._signaturePageTitle = signaturePageTitle;
-  }
-
-  set signaturePageContent(String? signaturePageContent) {
-    this._signaturePageContent = signaturePageContent;
-  }
-
-  //TODO: PDF generating
-  //Generating the consent pdf is this class' task as well
-
+  @override
   Function get fromJsonFunction => _$RPConsentDocumentFromJson;
   factory RPConsentDocument.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPConsentDocument;
+  @override
   Map<String, dynamic> toJson() => _$RPConsentDocumentToJson(this);
 }

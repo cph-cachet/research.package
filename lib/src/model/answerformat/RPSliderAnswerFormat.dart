@@ -28,10 +28,12 @@ class RPSliderAnswerFormat extends RPAnswerFormat {
   }) : super();
 
   @override
-  get questionType => RPQuestionType.Scale;
+  RPQuestionType get questionType => RPQuestionType.Scale;
 
+  @override
   Function get fromJsonFunction => _$RPSliderAnswerFormatFromJson;
   factory RPSliderAnswerFormat.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPSliderAnswerFormat;
+  @override
   Map<String, dynamic> toJson() => _$RPSliderAnswerFormatToJson(this);
 }

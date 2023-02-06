@@ -6,14 +6,13 @@ part of research_package_ui;
 class RPUIQuestionStep extends StatefulWidget {
   final RPQuestionStep step;
 
-  RPUIQuestionStep(this.step);
+  const RPUIQuestionStep(this.step, {super.key});
 
   @override
-  _RPUIQuestionStepState createState() => _RPUIQuestionStepState();
+  RPUIQuestionStepState createState() => RPUIQuestionStepState();
 }
 
-class _RPUIQuestionStepState extends State<RPUIQuestionStep>
-    with CanSaveResult {
+class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
   dynamic _currentQuestionBodyResult;
   late bool readyToProceed;
@@ -21,31 +20,33 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
   RPTaskProgress? recentTaskProgress;
 
   set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {
-    this._currentQuestionBodyResult = currentQuestionBodyResult;
+    _currentQuestionBodyResult = currentQuestionBodyResult;
     createAndSendResult();
-    if (this._currentQuestionBodyResult != null) {
+    if (_currentQuestionBodyResult != null) {
       blocQuestion.sendReadyToProceed(true);
     } else {
       blocQuestion.sendReadyToProceed(false);
     }
   }
 
-  skipQuestion() {
+  void skipQuestion() {
+    FocusManager.instance.primaryFocus?.unfocus();
     blocTask.sendStatus(RPStepStatus.Finished);
-    this.currentQuestionBodyResult = null;
+    currentQuestionBodyResult = null;
   }
 
   @override
   void initState() {
     // Instantiating the result object here to start the time counter (startDate)
+    super.initState();
+
     result = RPStepResult(
         identifier: widget.step.identifier,
+        questionTitle: widget.step.title,
         answerFormat: widget.step.answerFormat);
     readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
-
-    super.initState();
   }
 
   // Returning the according step body widget based on the answerFormat of the step
@@ -54,32 +55,32 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
       case RPIntegerAnswerFormat:
         return RPUIIntegerQuestionBody((answerFormat as RPIntegerAnswerFormat),
             (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
             (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPSliderAnswerFormat:
         return RPUISliderQuestionBody((answerFormat as RPSliderAnswerFormat),
             (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPImageChoiceAnswerFormat:
         return RPUIImageChoiceQuestionBody(
             (answerFormat as RPImageChoiceAnswerFormat), (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPDateTimeAnswerFormat:
         return RPUIDateTimeQuestionBody(
             (answerFormat as RPDateTimeAnswerFormat), (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       case RPTextAnswerFormat:
         return RPUITextInputQuestionBody((answerFormat as RPTextAnswerFormat),
             (result) {
-          this.currentQuestionBodyResult = result;
+          currentQuestionBodyResult = result;
         });
       default:
         return Container();
@@ -91,7 +92,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
     RPLocalizations? locale = RPLocalizations.of(context);
     return SafeArea(
       child: ListView(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         children: [
           // Title
           Padding(
@@ -121,7 +122,6 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
 
   @override
   void createAndSendResult() {
-    // Populate the result object with value and end the time tracker (set endDate). Set questionTitle
     result.questionTitle = widget.step.title;
     result.setResult(_currentQuestionBodyResult);
     blocTask.sendStepResult(result);
@@ -131,7 +131,7 @@ class _RPUIQuestionStepState extends State<RPUIQuestionStep>
 // Render the title above the questionBody
 class Title extends StatelessWidget {
   final String title;
-  Title(this.title);
+  const Title(this.title, {super.key});
 
   @override
   Widget build(BuildContext context) {

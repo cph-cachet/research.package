@@ -19,6 +19,13 @@
   "Some of the time": "Noget af tiden",
   "At no time": "På intet tidspunkt",
 
+  "timeChoice5": "Hele tiden",
+  "timeChoice4": "Det meste af tiden",
+  "timeChoice3": "Mere end halvdelen af tiden",
+  "timeChoice2": "Mindre end halvdelen af tiden",
+  "timeChoice1": "Noget af tiden",
+  "timeChoice0": "På intet tidspunkt",
+
   "Playing games": "Spille spil",
   "Jogging": "Løbe",
   "Playing an instrument": "Spille et instrument",
@@ -49,7 +56,7 @@
   "When did you last drink alcohol?": "Hvornår drak du sidst alkohol?",
 
   "What did you pay for insulin?": "Hvad betaler du for insulin?",
-  "I have felt cheerful and in good spirits": "Jeg har følt mig glad og i godt humør",
+  "singleChoiceQuestionStep-title": "Jeg har følt mig glad og i godt humør",
 
   "Which instrument are you playing?": "Hvilket instrument spiller du?",
   "What makes you happy?": "Hvad gør dig glad?",
@@ -62,6 +69,7 @@
   "Finished": "Færdig",
   "Thank you for filling out the survey!": "Tak fordi du udfyldte undersøgelsen!",
 
+  "Skip this question": "Spring spørgsmålet over",
 
   "Tap to edit:": "Tryk for at ændre:",
   "Press to input date": "Tryk for at ",

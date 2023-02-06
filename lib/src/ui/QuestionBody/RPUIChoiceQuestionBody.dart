@@ -3,16 +3,20 @@ part of research_package_ui;
 /// The UI representation of [RPChoiceAnswerFormat]. This UI part appears embedded in a [RPUIQuestionStep].
 /// Depending on the [RPChoiceAnswerFormat]'s [ChoiceAnswerStyle] property, the user can select only one or multiple options.
 class RPUIChoiceQuestionBody extends StatefulWidget {
-  final RPChoiceAnswerFormat _answerFormat;
-  final Function(dynamic) onResultChange;
+  final RPChoiceAnswerFormat answerFormat;
+  final void Function(dynamic) onResultChange;
 
-  RPUIChoiceQuestionBody(this._answerFormat, this.onResultChange);
+  const RPUIChoiceQuestionBody(
+    this.answerFormat,
+    this.onResultChange, {
+    super.key,
+  });
 
   @override
-  _RPUIChoiceQuestionBodyState createState() => _RPUIChoiceQuestionBodyState();
+  RPUIChoiceQuestionBodyState createState() => RPUIChoiceQuestionBodyState();
 }
 
-class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
+class RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIChoiceQuestionBody> {
   late List<RPChoice> selectedChoices;
 
@@ -23,7 +27,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
   }
 
   void _buttonCallBack(RPChoice selectedChoice) {
-    if (widget._answerFormat.answerStyle == RPChoiceAnswerStyle.SingleChoice) {
+    if (widget.answerFormat.answerStyle == RPChoiceAnswerStyle.SingleChoice) {
       // Setting the state here is calling the build method so the check marks can be rendered.
       // Only one choice can be selected.
       if (selectedChoices.contains(selectedChoice)) {
@@ -37,8 +41,7 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
         });
       }
     }
-    if (widget._answerFormat.answerStyle ==
-        RPChoiceAnswerStyle.MultipleChoice) {
+    if (widget.answerFormat.answerStyle == RPChoiceAnswerStyle.MultipleChoice) {
       // Setting the state here is calling the build method so the check marks can be rendered.
       // Multiple choice can be selected.
       if (selectedChoices.contains(selectedChoice)) {
@@ -52,22 +55,22 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
       }
     }
 
-    selectedChoices.length != 0
+    selectedChoices.isNotEmpty
         ? widget.onResultChange(selectedChoices)
         : widget.onResultChange(null);
   }
 
   Widget _choiceCellBuilder(BuildContext context, int index) {
     return _ChoiceButton(
-      choice: widget._answerFormat.choices[index],
+      choice: widget.answerFormat.choices[index],
       selectedCallBack: _buttonCallBack,
-      selected: selectedChoices.contains(widget._answerFormat.choices[index])
+      selected: selectedChoices.contains(widget.answerFormat.choices[index])
           ? true
           : false,
       currentChoices: selectedChoices,
       index: index,
-      isLastChoice: index == widget._answerFormat.choices.length - 1,
-      answerStyle: widget._answerFormat.answerStyle,
+      isLastChoice: index == widget.answerFormat.choices.length - 1,
+      answerStyle: widget.answerFormat.answerStyle,
     );
   }
 
@@ -81,15 +84,15 @@ class _RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
       children: <Widget>[
         Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text((widget._answerFormat.answerStyle ==
+            child: Text((widget.answerFormat.answerStyle ==
                     RPChoiceAnswerStyle.MultipleChoice)
-                ? "(${locale?.translate('choose_one_or_more_options')})"
-                : "(${locale?.translate('choose_one_option')})")),
+                ? "(${locale?.translate('choose_one_or_more_options') ?? 'Choose one or more options'})"
+                : "(${locale?.translate('choose_one_option') ?? 'Choose one option'})")),
         ListView.builder(
           shrinkWrap: true,
-          itemCount: widget._answerFormat.choices.length,
+          itemCount: widget.answerFormat.choices.length,
           itemBuilder: _choiceCellBuilder,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
         ),
       ],
     );
@@ -108,7 +111,7 @@ class _ChoiceButton extends StatefulWidget {
   final int index;
   final RPChoiceAnswerStyle answerStyle;
 
-  _ChoiceButton(
+  const _ChoiceButton(
       {required this.choice,
       required this.selectedCallBack,
       required this.currentChoices,
@@ -153,8 +156,9 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                 ),
           Expanded(
             child: Container(
-              padding:
-                  widget.choice.isFreeText ? null : EdgeInsets.only(bottom: 13),
+              padding: widget.choice.isFreeText
+                  ? null
+                  : const EdgeInsets.only(bottom: 13),
               decoration: !widget.isLastChoice
                   ? BoxDecoration(
                       border: Border(
@@ -164,13 +168,11 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                     )
                   : null,
               child: widget.choice.isFreeText
-                  ? Container(
-                      child: TextField(
-                        onChanged: (newText) => widget.choice.text = newText,
-                        decoration: InputDecoration(
-                          hintText: locale?.translate(widget.choice.text) ??
-                              widget.choice.text,
-                        ),
+                  ? TextField(
+                      onChanged: (newText) => widget.choice.text = newText,
+                      decoration: InputDecoration(
+                        hintText: locale?.translate(widget.choice.text) ??
+                            widget.choice.text,
                       ),
                     )
                   : Text(
@@ -181,6 +183,19 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                     ),
             ),
           ),
+          if (widget.choice.detailText != null)
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute<dynamic>(
+                      builder: (context) => _DetailTextRoute(
+                        title: widget.choice.text,
+                        content: widget.choice.detailText!,
+                      ),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.info))
         ]),
       ),
     );

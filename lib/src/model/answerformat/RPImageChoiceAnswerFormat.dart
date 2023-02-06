@@ -13,11 +13,13 @@ class RPImageChoiceAnswerFormat extends RPAnswerFormat {
   RPImageChoiceAnswerFormat({required this.choices}) : super();
 
   @override
-  get questionType => RPQuestionType.ImageChoice;
+  RPQuestionType get questionType => RPQuestionType.ImageChoice;
 
+  @override
   Function get fromJsonFunction => _$RPImageChoiceAnswerFormatFromJson;
   factory RPImageChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPImageChoiceAnswerFormat;
+  @override
   Map<String, dynamic> toJson() => _$RPImageChoiceAnswerFormatToJson(this);
 }
 
@@ -46,8 +48,10 @@ class RPImageChoice extends Serializable {
     required this.description,
   }) : super();
 
+  @override
   Function get fromJsonFunction => _$RPImageChoiceFromJson;
   factory RPImageChoice.fromJson(Map<String, dynamic> json) =>
       FromJsonFactory().fromJson(json) as RPImageChoice;
+  @override
   Map<String, dynamic> toJson() => _$RPImageChoiceToJson(this);
 }

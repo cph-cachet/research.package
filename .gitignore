@@ -145,7 +145,8 @@ app.*.map.json
 #.packages
 #build/
 # If you're building an application, you may want to check-in your pubspec.lock
-#pubspec.lock
+pubspec.lock
+# !example/pubspec.lock
 
 # Directory created by dartdoc
 # If you don't generate documentation locally you can remove this line.
@@ -861,3 +862,4 @@ Temporary Items
 # Archives         - https://github.com/github/gitignore/blob/main/Global/Archives.gitignore
 # Backup           - https://github.com/github/gitignore/blob/main/Global/Backup.gitignore
 # JEnv             - https://github.com/github/gitignore/blob/main/Global/JEnv.gitignore
+# *.lock

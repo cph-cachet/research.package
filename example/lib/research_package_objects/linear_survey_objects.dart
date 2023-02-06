@@ -1,17 +1,18 @@
 import 'package:research_package/model.dart';
 
+// Using keys for translation example
 List<RPChoice> timeChoices = [
-  RPChoice(text: "All of the time", value: 5),
-  RPChoice(text: "Most of the time", value: 4),
-  RPChoice(text: "More than half of the time", value: 3),
-  RPChoice(text: "Less than half of the time", value: 2),
-  RPChoice(text: "Some of the time", value: 1),
-  RPChoice(text: "At no time", value: 0),
+  RPChoice(text: "timeChoice5", value: 5), // "All of the time"
+  RPChoice(text: "timeChoice4", value: 4), // "Most of the time"
+  RPChoice(text: "timeChoice3", value: 3), // "More than half of the time"
+  RPChoice(text: "timeChoice2", value: 2), // "Less than half of the time"
+  RPChoice(text: "timeChoice1", value: 1), // "Some of the time"
+  RPChoice(text: "timeChoice0", value: 0), // "At no time"
 ];
 
 List<RPChoice> joyfulActivities = [
   RPChoice(text: "Your input", value: 6, isFreeText: true),
-  RPChoice(text: "Jogging", value: 5),
+  RPChoice(text: "Jogging", value: 5, detailText: "Running in a moderate pace"),
   RPChoice(text: "Playing an instrument", value: 4),
   RPChoice(text: "Family and friends", value: 3),
   RPChoice(text: "Doing sports", value: 2),
@@ -20,7 +21,11 @@ List<RPChoice> joyfulActivities = [
 ];
 
 List<RPChoice> instruments = [
-  RPChoice(text: "Guitar", value: 3),
+  RPChoice(
+      text: "Guitar",
+      value: 3,
+      detailText:
+          "A guitar is an instrument. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum facilisis turpis, vitae congue nunc. Cras gravida tempor elit eu congue. Nam ut est eget enim imperdiet ullamcorper. Curabitur ac consequat augue. Suspendisse hendrerit, est eu varius suscipit, nisi magna congue purus, quis facilisis massa nibh sit amet est. Sed ut ligula diam. Nunc mollis iaculis nulla in hendrerit. Nulla facilisi. Vivamus faucibus augue vel auctor lacinia."),
   RPChoice(text: "Piano", value: 2),
   RPChoice(text: "Saxophone", value: 1),
 ];
@@ -31,21 +36,30 @@ List<RPChoice> yesNo = [
 
 List<RPImageChoice> images = [
   RPImageChoice(
-      imageUrl: 'assets/images/very-sad.png',
-      value: -2,
-      description: 'Feeling very sad'),
+    imageUrl: 'assets/images/very-sad.png',
+    value: -2,
+    description: 'Feeling very sad',
+  ),
   RPImageChoice(
-      imageUrl: 'assets/images/sad.png', value: -1, description: 'Feeling sad'),
+    imageUrl: 'assets/images/sad.png',
+    value: -1,
+    description: 'Feeling sad',
+  ),
   RPImageChoice(
-      imageUrl: 'assets/images/ok.png', value: 0, description: 'Feeling ok'),
+    imageUrl: 'assets/images/ok.png',
+    value: 0,
+    description: 'Feeling ok',
+  ),
   RPImageChoice(
-      imageUrl: 'assets/images/happy.png',
-      value: 1,
-      description: 'Feeling happy'),
+    imageUrl: 'assets/images/happy.png',
+    value: 1,
+    description: 'Feeling happy',
+  ),
   RPImageChoice(
-      imageUrl: 'assets/images/very-happy.png',
-      value: 2,
-      description: 'Feeling very happy'),
+    imageUrl: 'assets/images/very-happy.png',
+    value: 2,
+    description: 'Feeling very happy',
+  ),
 ];
 
 RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat(
@@ -126,9 +140,11 @@ RPQuestionStep sliderQuestionStep = RPQuestionStep(
   optional: true,
 );
 
+// Using keys for translations
 RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(
   identifier: "questionStep1ID",
-  title: "I have felt cheerful and in good spirits",
+  // title: "I have felt cheerful and in good spirits",
+  title: "singleChoiceQuestionStep-title",
   answerFormat: timeAnswerFormat,
 );
 
@@ -199,7 +215,7 @@ RPTimerStep timerStep = RPTimerStep(
   identifier: 'RPTimerStepID',
   timeout: Duration(seconds: 12),
   title:
-      "Here is a timer to display how long the user must wait before going to the next step in the task",
+      "Please think for a moment about how your day was and note it down in the next step",
   playSound: true,
 );
 
