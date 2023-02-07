@@ -57,6 +57,11 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
             (result) {
           currentQuestionBodyResult = result;
         });
+      case RPDoubleAnswerFormat:
+        return RPUIDoubleQuestionBody((answerFormat as RPDoubleAnswerFormat),
+                (result) {
+              currentQuestionBodyResult = result;
+            });
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
             (result) {

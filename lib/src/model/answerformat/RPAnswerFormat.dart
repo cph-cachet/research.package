@@ -42,6 +42,7 @@ enum RPQuestionType {
   Date,
   Duration,
   ImageChoice,
+  Double,
   // Eligibility,
   // TimeInterval,
   // Location,

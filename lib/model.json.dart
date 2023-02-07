@@ -20,6 +20,7 @@ void _registerFromJsonFunctions() {
   FromJsonFactory().register(RPImageChoiceAnswerFormat(choices: []));
   FromJsonFactory().register(RPImageChoice(description: '', imageUrl: ''));
   FromJsonFactory().register(RPIntegerAnswerFormat(maxValue: 1, minValue: 1));
+  FromJsonFactory().register(RPDoubleAnswerFormat(maxValue: 1, minValue: 1));
   FromJsonFactory()
       .register(RPSliderAnswerFormat(divisions: 1, maxValue: 1, minValue: 1));
   FromJsonFactory().register(RPTextAnswerFormat());
