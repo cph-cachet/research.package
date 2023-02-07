@@ -22,10 +22,6 @@ class RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
   Widget build(BuildContext context) {
     super.build(context);
     RPLocalizations? locale = RPLocalizations.of(context);
-    int intVal = widget.answerFormat.minValue.toInt();
-    if (value != null) {
-      intVal = value!.toInt();
-    }
     String text = "";
     // prefix
     text += (widget.answerFormat.prefix != null)
@@ -33,8 +29,7 @@ class RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
             widget.answerFormat.prefix!)
         : "";
     // value
-    text += intVal.toString();
-    // text += (value ?? widget.answerFormat.minValue).toString();
+    text += (value ?? widget.answerFormat.minValue).toString();
     // suffix
     text += (widget.answerFormat.suffix != null)
         ? (locale?.translate(widget.answerFormat.suffix!) ??
