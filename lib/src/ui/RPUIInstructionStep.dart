@@ -62,7 +62,7 @@ class RPUIInstructionStepState extends State<RPUIInstructionStep> {
                   child: Text(
                     locale?.translate(widget.step.text!) ?? widget.step.text!,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
                 widget.step.detailText != null
@@ -83,7 +83,7 @@ class RPUIInstructionStepState extends State<RPUIInstructionStep> {
                     child: Text(
                       locale?.translate(widget.step.footnote!) ??
                           widget.step.footnote!,
-                      style: Theme.of(context).textTheme.caption,
+                      style: Theme.of(context).textTheme.bodySmall,
                       textAlign: TextAlign.start,
                     ),
                   )
@@ -119,7 +119,7 @@ class _DetailTextRoute extends StatelessWidget {
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 Text(locale?.translate('learn_more') ?? 'Learn more',
-                    style: Theme.of(context).textTheme.headline5),
+                    style: Theme.of(context).textTheme.headlineSmall),
               ],
             ),
             Container(
@@ -127,7 +127,7 @@ class _DetailTextRoute extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Text(
                   locale?.translate(content) ?? content,
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -168,7 +168,7 @@ class InstructionText extends StatelessWidget {
     } else {
       return Text(
         text,
-        style: Theme.of(context).textTheme.bodyText1,
+        style: Theme.of(context).textTheme.bodyLarge,
         textAlign: TextAlign.start,
       );
     }

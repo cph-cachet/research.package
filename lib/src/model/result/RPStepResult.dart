@@ -22,7 +22,7 @@ class RPStepResult extends RPResult {
   // When this result only has a single value, pair that value with the following key.
   /// The default key for the results map. It's used when there's only one answer result.
   /// In that case the result value is saved under this key in the map.
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   static const String DEFAULT_KEY = "answer";
 
   /// Create a [RPStepResult] with a given [identifier] and an empty map of

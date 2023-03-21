@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:research_package/research_package.dart';
-import 'research_package_objects/infomed_consent_objects.dart';
+import 'research_package_objects/informed_consent_objects.dart';
 import 'dart:convert';
 
 class InformedConsentPage extends StatelessWidget {

@@ -54,10 +54,10 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
   @override
   void initState() {
     super.initState();
-    // Instantiate the taskresult so it starts tracking time
+    // Instantiate the task result so it starts tracking time
     _taskResult = RPTaskResult(identifier: widget.task.identifier);
 
-    // If it's navigable we don't want to show result on appbar
+    // If it's navigable we don't want to show result on app bar
     if (widget.task is RPNavigableOrderedTask) {
       blocTask.updateTaskProgress(RPTaskProgress(0, widget.task.steps.length));
       navigableTask = true;
@@ -295,7 +295,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                                   blocTask.sendStatus(RPStepStatus.Back),
                               child: Text(
                                 locale?.translate('BACK') ?? 'BACK',
-                                style: Theme.of(context).textTheme.button,
+                                style: Theme.of(context).textTheme.labelLarge,
                               ),
                             ),
                       StreamBuilder<bool>(
@@ -351,12 +351,12 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
     // For each step result in the task
     for (MapEntry<String, RPResult> mapEntry in taskResult.results.entries) {
       if (mapEntry.value is RPStepResult) {
-        // Translate answerformat
+        // Translate answer format
         RPStepResult stepResult = mapEntry.value as RPStepResult;
         RPAnswerFormat translatedAnswerFormat =
             _translateAnswerFormat(locale, stepResult.answerFormat);
 
-        // Create stepresult to fill with answers
+        // Create step result to fill with answers
         RPStepResult translatedResult = RPStepResult(
             identifier: stepResult.identifier,
             questionTitle: stepResult.questionTitle,
@@ -379,7 +379,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
       } else {
         // if mapEntry.value is RPConsentSignatureResult
         // which is handled in the RPUIConsentReviewStep.
-        // Other result types are also transfered.
+        // Other result types are also transferred.
         translatedTaskResult.setStepResultForIdentifier(
             mapEntry.key, mapEntry.value);
       }

@@ -10,7 +10,7 @@ part of research_package_model;
 /// form a task (an [RPTask] object)
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPStep extends Serializable {
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   late Widget _stepWidget;
 
   /// A unique identifier of the Step. This identifier connects the step to its

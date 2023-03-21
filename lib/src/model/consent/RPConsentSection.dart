@@ -30,7 +30,7 @@ class RPConsentSection extends Serializable {
   List<RPDataTypeSection>? dataTypes;
 
   /// A custom illustration (an [Image] or [Icon] to show for Custom [RPConsentSectionType]
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   Widget? customIllustration;
 
   /// Returns a populated object with the given [type].
@@ -67,7 +67,7 @@ class RPConsentSection extends Serializable {
 /// Enum containing the available types for [RPConsentSection].
 ///
 /// Every type has a title and a logo associated to it.
-/// Use [Custom] to create your own section type and avoid any prepopulation
+/// Use [Custom] to create your own section type and avoid any pre-population
 /// (title, logo, animation).
 /// See more at: [http://researchkit.org/docs/Constants/ORKConsentSectionType.html]
 enum RPConsentSectionType {
