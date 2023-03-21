@@ -1,6 +1,6 @@
 ## 1.3.0
 
-- Upgrade to `carp_serializable: ^1.1.0`. Note that this entail that all polymorphic json serialization use the type key `__type`. Hence, the json format for all the domain classes are **NOT** compatible with earlier versions.
+- Upgrade to `carp_serializable: ^1.1.0`. Note that this entails that all polymorphic json serialization uses the type key `__type`. Hence, the json format for all the domain classes is **NOT** compatible with earlier versions.
 
 ## 1.2.1
 
