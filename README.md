@@ -16,8 +16,8 @@ The main features of Research Package are:
 - [Creating surveys](https://carp.cachet.dk/creating-a-survey/) and questionnaires with a wide range of answer formats (e.g., Likert scale, date pickers, image pickers, etc.), such as the [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO-5%20questionaire%20-%20English.pdf) survey.
 - [Supporting localizations](https://carp.cachet.dk/localization/) of surveys and informed consent.
 
-Research Package is part of the overall [CACHET Research Platform (CARP)](https://carp.cachet.dk) with also provides a Flutter package for mobile and wearable sensing called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing).
-The CACHET [Pulmonary Monitor](https://github.com/cph-cachet/pulmonary_monitor_app) app shows how mobile sensing can be combined with collection of survey data from users.
+Research Package is part of the overall [Copenhagen Research Platform (CARP)](https://carp.cachet.dk) with also provides a Flutter package for mobile and wearable sensing called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing).
+The [Pulmonary Monitor](https://github.com/cph-cachet/pulmonary_monitor_app) app shows how mobile sensing can be combined with collection of survey data from users.
 
 ## Documentation
 
@@ -36,8 +36,7 @@ There is an [example app](https://github.com/cph-cachet/research.package/tree/ma
 
 ## Who is backing this project?
 
-Research Package is made by the [Copenhagen Center for Health Technology (CACHET)](https://www.cachet.dk/) and is an important component in the [CACHET Research Platform (CARP)](https://carp.cachet.dk), which is used
-in a number of applications and studies.
+Research Package is made by the [Copenhagen Center for Health Technology (CACHET)](https://www.cachet.dk/) and is an important component in the [Copenhagen Research Platform (CARP)](https://carp.cachet.dk), which is used in a number of applications and studies.
 The current project maintainers are [Mads Vedel Saaby Christensen](https://github.com/MadsVSChristensen) and [Jakob E. Bardram](https://www.bardram.net).
 
 ## How can I contribute?
