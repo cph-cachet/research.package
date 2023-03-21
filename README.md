@@ -13,11 +13,11 @@ Research Package is designed from the ground up to meet the requirements of most
 The main features of Research Package are:
 
 - [Obtaining informed consent](https://carp.cachet.dk/obtaining-consent/) from participants, including support for a signature.
-- [Creating surveys](https://carp.cachet.dk/creating-a-survey/) and questionnaires with a wide range of answer formats (e.g., likert scale, date pickers, image pickers, etc.), such as the [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO-5%20questionaire%20-%20English.pdf) survey.
+- [Creating surveys](https://carp.cachet.dk/creating-a-survey/) and questionnaires with a wide range of answer formats (e.g., Likert scale, date pickers, image pickers, etc.), such as the [WHO5](https://www.psykiatri-regionh.dk/who-5/Documents/WHO-5%20questionaire%20-%20English.pdf) survey.
 - [Supporting localizations](https://carp.cachet.dk/localization/) of surveys and informed consent.
 
-Research Package is part of the overall [CACHET Research Platform (CARP)](https://carp.cachet.dk) with also provides a Flutter package for mobile and wearable sensing called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing). 
-The CACHET [Pulmonary Monitor](https://github.com/cph-cachet/pulmonary_monitor_app) app shows how mobile sensing can be combined with collection of survery data from users.
+Research Package is part of the overall [CACHET Research Platform (CARP)](https://carp.cachet.dk) with also provides a Flutter package for mobile and wearable sensing called [CARP Mobile Sensing](https://pub.dev/packages/carp_mobile_sensing).
+The CACHET [Pulmonary Monitor](https://github.com/cph-cachet/pulmonary_monitor_app) app shows how mobile sensing can be combined with collection of survey data from users.
 
 ## Documentation
 
@@ -44,7 +44,7 @@ The current project maintainers are [Mads Vedel Saaby Christensen](https://githu
 
 We are more than happy to take contributions and feedback.
 Use the [Issues](https://github.com/cph-cachet/research.package/issues) page to file an issue or feature request.
-Besides general help for enhacement and quality assurance (bug fixing), we welcome input on new answer types.
+Besides general help for enhancement and quality assurance (bug fixing), we welcome input on new answer types.
 
 ## License
 

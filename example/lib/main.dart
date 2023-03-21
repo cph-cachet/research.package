@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         //   MapLocalizationLoader({
         //     'en': {'app_name': 'Research Package Demo'},
         //     'da': {'app_name': 'Research Package Demonstration'},
-        //     'fr': {'app_name': 'Démonstration de Research Package'},
+        //     'fr': {'app_name': 'Demonstration de Research Package'},
         //   }),
         // ]),
 

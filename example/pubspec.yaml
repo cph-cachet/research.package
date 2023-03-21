@@ -16,8 +16,8 @@ dependencies:
 
   research_package:
     path: ../
-  carp_serializable:
-    path: ../../carp/carp.sensing-flutter/carp_serializable/
+  # carp_serializable:
+  #   path: ../../carp/carp.sensing-flutter/carp_serializable/
 
 dev_dependencies:
 #  flutter_test:
@@ -29,4 +29,3 @@ flutter:
   assets:
     - assets/images/
     - assets/lang/
-    - assets/carp_logo.png
