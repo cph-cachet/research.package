@@ -1,25 +1,25 @@
 {
-    "$type": "RPNavigableOrderedTask",
+    "__type": "RPNavigableOrderedTask",
     "identifier": "NavigableTaskID",
     "close_after_finished": true,
     "steps": [
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "smokingQuestionId",
             "title": "Do you smoke?",
             "optional": false,
             "answer_format": {
-                "$type": "RPChoiceAnswerFormat",
+                "__type": "RPChoiceAnswerFormat",
                 "question_type": "SingleChoice",
                 "choices": [
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "Yes",
                         "value": 1,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "No",
                         "value": 0,
                         "is_free_text": false
@@ -29,12 +29,12 @@
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "nrOfCigarettesQuestionStepID",
             "title": "How many cigarettes do you smoke a day?",
             "optional": false,
             "answer_format": {
-                "$type": "RPIntegerAnswerFormat",
+                "__type": "RPIntegerAnswerFormat",
                 "min_value": 0,
                 "max_value": 200,
                 "suffix": "cigarettes",
@@ -42,7 +42,7 @@
             }
         },
         {
-            "$type": "RPCompletionStep",
+            "__type": "RPCompletionStep",
             "identifier": "completionID",
             "title": "Finished",
             "text": "Thank you for filling out the survey!",
@@ -51,7 +51,7 @@
     ],
     "step_navigation_rules": {
         "smokingQuestionId": {
-            "$type": "RPStepJumpRule",
+            "__type": "RPStepJumpRule",
             "answer_map": {
                 "1": "nrOfCigarettesQuestionStepID",
                 "0": "completionID"

@@ -1,10 +1,10 @@
 {
-    "$type": "RPOrderedTask",
+    "__type": "RPOrderedTask",
     "identifier": "surveyTaskID",
     "close_after_finished": true,
     "steps": [
         {
-            "$type": "RPInstructionStep",
+            "__type": "RPInstructionStep",
             "identifier": "instructionID",
             "title": "Welcome!",
             "text": "Please fill out this questionnaire!\n\nIn this questionnaire the que-stions will come after each other in a given order. You still have the chance to skip a some of them though.",
@@ -12,7 +12,7 @@
             "detail_text": "For the sake of science of course..."
         },
         {
-            "$type": "RPTimerStep",
+            "__type": "RPTimerStep",
             "identifier": "RPTimerStepID",
             "title": "Please think for a moment about how your day was and note it down in the next step",
             "optional": false,
@@ -20,38 +20,39 @@
             "play_sound": true
         },
         {
-            "$type": "RPFormStep",
+            "__type": "RPFormStep",
             "identifier": "formstepID",
             "title": "Questions about music",
             "optional": false,
             "answer_format": {
-                "$type": "RPFormAnswerFormat",
+                "__type": "RPFormAnswerFormat",
                 "question_type": "Form"
             },
             "steps": [
                 {
-                    "$type": "RPQuestionStep",
+                    "__type": "RPQuestionStep",
                     "identifier": "instrumentChoiceQuestionStepID",
                     "title": "Which instrument are you playing?",
                     "optional": true,
                     "answer_format": {
-                        "$type": "RPChoiceAnswerFormat",
+                        "__type": "RPChoiceAnswerFormat",
                         "question_type": "MultipleChoice",
                         "choices": [
                             {
-                                "$type": "RPChoice",
+                                "__type": "RPChoice",
                                 "text": "Guitar",
                                 "value": 3,
+                                "detail_text": "A guitar is an instrument. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum facilisis turpis, vitae congue nunc. Cras gravida tempor elit eu congue. Nam ut est eget enim imperdiet ullamcorper. Curabitur ac consequat augue. Suspendisse hendrerit, est eu varius suscipit, nisi magna congue purus, quis facilisis massa nibh sit amet est. Sed ut ligula diam. Nunc mollis iaculis nulla in hendrerit. Nulla facilisi. Vivamus faucibus augue vel auctor lacinia.",
                                 "is_free_text": false
                             },
                             {
-                                "$type": "RPChoice",
+                                "__type": "RPChoice",
                                 "text": "Piano",
                                 "value": 2,
                                 "is_free_text": false
                             },
                             {
-                                "$type": "RPChoice",
+                                "__type": "RPChoice",
                                 "text": "Saxophone",
                                 "value": 1,
                                 "is_free_text": false
@@ -61,23 +62,23 @@
                     }
                 },
                 {
-                    "$type": "RPQuestionStep",
+                    "__type": "RPQuestionStep",
                     "identifier": "textStepID",
                     "title": "Describe your morning routine",
                     "optional": false,
                     "answer_format": {
-                        "$type": "RPTextAnswerFormat",
+                        "__type": "RPTextAnswerFormat",
                         "hint_text": "Write here",
                         "question_type": "Text"
                     }
                 },
                 {
-                    "$type": "RPQuestionStep",
+                    "__type": "RPQuestionStep",
                     "identifier": "minutesQuestionStepID",
                     "title": "How many minutes do you spend practicing a week?",
                     "optional": true,
                     "answer_format": {
-                        "$type": "RPIntegerAnswerFormat",
+                        "__type": "RPIntegerAnswerFormat",
                         "min_value": 0,
                         "max_value": 10000,
                         "suffix": "minutes",
@@ -85,12 +86,12 @@
                     }
                 },
                 {
-                    "$type": "RPQuestionStep",
+                    "__type": "RPQuestionStep",
                     "identifier": "dateQuestionStepID",
                     "title": "When did you last drink alcohol?",
                     "optional": false,
                     "answer_format": {
-                        "$type": "RPDateTimeAnswerFormat",
+                        "__type": "RPDateTimeAnswerFormat",
                         "question_type": "Date",
                         "date_time_answer_style": "Date"
                     }
@@ -98,22 +99,22 @@
             ]
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "booleanQuestionStepID",
             "title": "Do you smoke?",
             "optional": false,
             "answer_format": {
-                "$type": "RPChoiceAnswerFormat",
+                "__type": "RPChoiceAnswerFormat",
                 "question_type": "SingleChoice",
                 "choices": [
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "Yes",
                         "value": 1,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "No",
                         "value": 0,
                         "is_free_text": false
@@ -123,12 +124,12 @@
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "sliderQuestionsStepID",
             "title": "What did you pay for insulin?",
             "optional": true,
             "answer_format": {
-                "$type": "RPSliderAnswerFormat",
+                "__type": "RPSliderAnswerFormat",
                 "min_value": 0.0,
                 "max_value": 100.0,
                 "divisions": 10,
@@ -138,72 +139,72 @@
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "timeOfDayQuestionStepID",
             "title": "When did you wake up?",
             "optional": false,
             "answer_format": {
-                "$type": "RPDateTimeAnswerFormat",
+                "__type": "RPDateTimeAnswerFormat",
                 "question_type": "TimeOfDay",
                 "date_time_answer_style": "TimeOfDay"
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "dateAndTimeQuestionStepID",
             "title": "When did you last eat unhealthy food?",
             "optional": false,
             "answer_format": {
-                "$type": "RPDateTimeAnswerFormat",
+                "__type": "RPDateTimeAnswerFormat",
                 "question_type": "DateAndTime",
                 "date_time_answer_style": "DateAndTime"
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "dateQuestionStepID",
             "title": "When did you last drink alcohol?",
             "optional": false,
             "answer_format": {
-                "$type": "RPDateTimeAnswerFormat",
+                "__type": "RPDateTimeAnswerFormat",
                 "question_type": "Date",
                 "date_time_answer_style": "Date"
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "imageStepID",
             "title": "Indicate you mood by selecting a picture!",
             "optional": false,
             "answer_format": {
-                "$type": "RPImageChoiceAnswerFormat",
+                "__type": "RPImageChoiceAnswerFormat",
                 "choices": [
                     {
-                        "$type": "RPImageChoice",
+                        "__type": "RPImageChoice",
                         "image_url": "assets/images/very-sad.png",
                         "value": -2,
                         "description": "Feeling very sad"
                     },
                     {
-                        "$type": "RPImageChoice",
+                        "__type": "RPImageChoice",
                         "image_url": "assets/images/sad.png",
                         "value": -1,
                         "description": "Feeling sad"
                     },
                     {
-                        "$type": "RPImageChoice",
+                        "__type": "RPImageChoice",
                         "image_url": "assets/images/ok.png",
                         "value": 0,
                         "description": "Feeling ok"
                     },
                     {
-                        "$type": "RPImageChoice",
+                        "__type": "RPImageChoice",
                         "image_url": "assets/images/happy.png",
                         "value": 1,
                         "description": "Feeling happy"
                     },
                     {
-                        "$type": "RPImageChoice",
+                        "__type": "RPImageChoice",
                         "image_url": "assets/images/very-happy.png",
                         "value": 2,
                         "description": "Feeling very happy"
@@ -213,46 +214,46 @@
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "questionStep1ID",
             "title": "singleChoiceQuestionStep-title",
             "optional": false,
             "answer_format": {
-                "$type": "RPChoiceAnswerFormat",
+                "__type": "RPChoiceAnswerFormat",
                 "question_type": "SingleChoice",
                 "choices": [
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "timeChoice5",
                         "value": 5,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "timeChoice4",
                         "value": 4,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "timeChoice3",
                         "value": 3,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "timeChoice2",
                         "value": 2,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "timeChoice1",
                         "value": 1,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "timeChoice0",
                         "value": 0,
                         "is_free_text": false
@@ -262,52 +263,53 @@
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "happinessChoiceQuestionStepID",
             "title": "What makes you happy?",
             "optional": false,
             "answer_format": {
-                "$type": "RPChoiceAnswerFormat",
+                "__type": "RPChoiceAnswerFormat",
                 "question_type": "MultipleChoice",
                 "choices": [
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "Your input",
                         "value": 6,
                         "is_free_text": true
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "Jogging",
                         "value": 5,
+                        "detail_text": "Running in a moderate pace",
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "Playing an instrument",
                         "value": 4,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "Family and friends",
                         "value": 3,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "Doing sports",
                         "value": 2,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "Reading",
                         "value": 1,
                         "is_free_text": false
                     },
                     {
-                        "$type": "RPChoice",
+                        "__type": "RPChoice",
                         "text": "Being productive",
                         "value": 0,
                         "is_free_text": false
@@ -317,12 +319,12 @@
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "weightQuestionStepID",
             "title": "What is your weight?",
             "optional": false,
             "answer_format": {
-                "$type": "RPIntegerAnswerFormat",
+                "__type": "RPIntegerAnswerFormat",
                 "min_value": 0,
                 "max_value": 200,
                 "suffix": "KG",
@@ -330,18 +332,18 @@
             }
         },
         {
-            "$type": "RPQuestionStep",
+            "__type": "RPQuestionStep",
             "identifier": "additionalInfoQuestionStepID",
             "title": "Do you have any more details you would like to add?",
             "optional": true,
             "answer_format": {
-                "$type": "RPTextAnswerFormat",
+                "__type": "RPTextAnswerFormat",
                 "hint_text": "Write your answer here",
                 "question_type": "Text"
             }
         },
         {
-            "$type": "RPCompletionStep",
+            "__type": "RPCompletionStep",
             "identifier": "completionID",
             "title": "Finished",
             "text": "Thank you for filling out the survey!",
