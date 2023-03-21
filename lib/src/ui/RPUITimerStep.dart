@@ -17,7 +17,7 @@ class RPUITimerStepState extends State<RPUITimerStep> {
   Timer? timer;
   late int timeInSeconds;
   Audio? audio;
-  bool _mPlayerIsInited = false;
+  bool _mPlayerIsInitialized = false;
   ByteData? data;
 
   @override
@@ -26,7 +26,7 @@ class RPUITimerStepState extends State<RPUITimerStep> {
     if (widget.step.playSound) {
       audio = Audio.load(
           'packages/research_package/assets/audio/RPTimerStepSound.mp3');
-      _mPlayerIsInited = true;
+      _mPlayerIsInitialized = true;
     }
     timeInSeconds = widget.step.timeout.inSeconds;
     const oneSec = Duration(seconds: 1);
@@ -38,7 +38,7 @@ class RPUITimerStepState extends State<RPUITimerStep> {
       }
       if (timeInSeconds <= 0) {
         blocQuestion.sendReadyToProceed(true);
-        if (_mPlayerIsInited) {
+        if (_mPlayerIsInitialized) {
           audio?.play();
         }
         t.cancel();
@@ -61,7 +61,7 @@ class RPUITimerStepState extends State<RPUITimerStep> {
             child: Text(
               locale?.translate(widget.step.title) ?? widget.step.title,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
 
@@ -89,7 +89,7 @@ class RPUITimerStepState extends State<RPUITimerStep> {
     if (audio != null) {
       await audio?.pause();
       await audio?.dispose();
-      _mPlayerIsInited = false;
+      _mPlayerIsInitialized = false;
       audio = null;
     }
     timer?.cancel();

@@ -67,7 +67,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
                     backgroundColor: Theme.of(context).primaryColor),
                 child: Text(
                   RPLocalizations.of(context)?.translate('NO') ?? 'NO',
-                  style: Theme.of(context).primaryTextTheme.button,
+                  style: Theme.of(context).primaryTextTheme.labelLarge,
                 ),
                 onPressed: () => Navigator.of(context).pop() // Pop the popup,
                 )
@@ -224,13 +224,13 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
               padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: Text(
                 locale?.translate(section.title) ?? section.title,
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.start,
               ),
             ),
             Text(
               locale?.translate(section.summary!) ?? section.summary!,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.start,
             ),
             Expanded(
@@ -267,12 +267,12 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
               children: <Widget>[
                 Text(
                   locale?.translate(section.title) ?? section.title,
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.start,
                 ),
                 const SizedBox(height: 5),
                 Text(locale?.translate(section.summary!) ?? section.summary!,
-                    style: Theme.of(context).textTheme.headline6),
+                    style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 30),
                 GestureDetector(
                   onTap: () => _pushContent(
@@ -284,7 +284,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
                           "Learn more...",
                       style: Theme.of(context)
                           .textTheme
-                          .headline6!
+                          .titleLarge!
                           .copyWith(color: Theme.of(context).primaryColor)),
                 ),
               ],
@@ -327,7 +327,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
                   )
                 : Text(
                     RPLocalizations.of(context)?.translate('NEXT') ?? "NEXT",
-                    style: Theme.of(context).textTheme.button?.copyWith(
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),
                   ),
@@ -388,7 +388,7 @@ class DataCollectionListItemState extends State<DataCollectionListItem> {
       title: Text(
         locale?.translate(widget.dataTypeSection.dataName) ??
             widget.dataTypeSection.dataName,
-        style: Theme.of(context).textTheme.subtitle1,
+        style: Theme.of(context).textTheme.titleMedium,
         textAlign: TextAlign.start,
       ),
       childrenPadding: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
@@ -396,7 +396,7 @@ class DataCollectionListItemState extends State<DataCollectionListItem> {
         Text(
           locale?.translate(widget.dataTypeSection.dataInformation) ??
               widget.dataTypeSection.dataInformation,
-          style: Theme.of(context).textTheme.bodyText2,
+          style: Theme.of(context).textTheme.bodyMedium,
           textAlign: TextAlign.start,
         ),
       ],

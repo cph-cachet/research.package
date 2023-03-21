@@ -1,6 +1,7 @@
 ## 1.3.0
 
 - Upgrade to `carp_serializable: ^1.1.0`. Note that this entails that all polymorphic json serialization uses the type key `__type`. Hence, the json format for all the domain classes is **NOT** compatible with earlier versions.
+- Update of Material Design names for title, caption, and body text.
 
 ## 1.2.1
 
@@ -21,7 +22,7 @@
 - `RPActivityStep` made serializable.
 - Upgraded to Dart 2.18 and Fluter 3
 - Refactoring to comply to [official Dart recommended lint rules](https://pub.dev/packages/flutter_lints)
-- Upgrade of several constructors to use `super` which break backwards compatability to version 0.9.3
+- Upgrade of several constructors to use `super` which break backwards compatibility to version 0.9.3
 - Update of demo app
 - Update and clean up in API documentation.
 
@@ -71,7 +72,7 @@
 
 ## 0.7.2
 
-- added base method for calculateScore() method into RPActivityStep class. Which is overriden by any child class that extends RPActivityStep
+- added base method for calculateScore() method into RPActivityStep class. Which is overridden by any child class that extends RPActivityStep
 
 ## 0.7.1
 
@@ -146,7 +147,7 @@
 ## 0.5.3+1
 
 - small updates to documentation
-- making `RPTask` serializable instead of abtstract
+- making `RPTask` serializable instead of abstract
 - fix to `translate` method
 
 ## 0.5.2
@@ -156,7 +157,7 @@
 
 ## 0.5.0
 
-- Included the [carp_core](https://pub.dev/packages/carp_core) which allow for de/serialization of RP models to/from json, while also supporting polymorphim (e.g., that an `RPAnswerFormat` can have different implementations). See [issue #12](https://github.com/cph-cachet/research.package/issues/12).
+- Included the [carp_core](https://pub.dev/packages/carp_core) which allow for de/serialization of RP models to/from json, while also supporting polymorphism (e.g., that an `RPAnswerFormat` can have different implementations). See [issue #12](https://github.com/cph-cachet/research.package/issues/12).
 - all `.withParams()` and similar constructors have been replaced with named constructors (as recommended in Dart).
 - added unit test to verify json de/serialization.
 - all examples and the demo app updated accordingly.
@@ -176,7 +177,7 @@
 ## 0.4.0-beta.1.0
 
 - Updated UI for several elements:
-  - RPQuestionStep (incl. most answerformats)
+  - RPQuestionStep (incl. most answer formats)
   - RPFormStep
   - RPInstructionStep
   - RPVisualConsentStep
