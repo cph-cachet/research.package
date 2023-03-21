@@ -17,7 +17,7 @@ import '../example/lib/research_package_objects/navigation_step_jump_rule.dart';
 void main() {
   setUp(() {
     // initialize the package and json deserialization functions
-    ResearchPackage();
+    ResearchPackage.ensureInitialized();
   });
 
   group('Consent Document', () {

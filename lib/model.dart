@@ -66,9 +66,11 @@ part 'src/model/Abstracts.dart';
 part 'src/model/blocs/BlocTask.dart';
 part 'src/model/blocs/BlocQuestion.dart';
 
-/// Start class for this researc package library. Just create a singleton instance:
+/// Start class for this research_package library. Just create a singleton instance:
 ///
-///    ResearchPackage();
+/// In order to ensure initialization of json serialization, call:
+///
+///    ResearchPackage.ensureInitialized();
 ///
 class ResearchPackage {
   static final _instance = ResearchPackage._();
@@ -76,4 +78,9 @@ class ResearchPackage {
   ResearchPackage._() {
     _registerFromJsonFunctions();
   }
+
+  /// Returns the singleton instance of [ResearchPackage].
+  /// If it has not yet been initialized, this call makes sure to create and
+  /// initialize it.
+  static ResearchPackage ensureInitialized() => _instance;
 }

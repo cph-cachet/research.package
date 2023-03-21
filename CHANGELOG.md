@@ -1,7 +1,8 @@
-## 1.3.0
+## 1.3.1
 
 - Upgrade to `carp_serializable: ^1.1.0`. Note that this entails that all polymorphic json serialization uses the type key `__type`. Hence, the json format for all the domain classes is **NOT** compatible with earlier versions.
 - Update of Material Design names for title, caption, and body text.
+- Added the `ResearchPackage.ensureInitialized()` static method to be compliant with the other CARP packages.
 
 ## 1.2.1
 

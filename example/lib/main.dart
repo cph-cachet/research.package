@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // initialize cognition package
     // only used if you load a cognition configuration from a json file
-    ResearchPackage();
+    ResearchPackage.ensureInitialized();
 
     super.initState();
   }

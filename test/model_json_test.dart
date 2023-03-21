@@ -107,7 +107,7 @@ void main() {
 
   setUp(() {
     // initialize the package and json deserialization functions
-    ResearchPackage();
+    ResearchPackage.ensureInitialized();
   });
 
   group('Consent Document', () {
