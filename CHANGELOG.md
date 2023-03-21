@@ -1,3 +1,7 @@
+## 1.3.0
+
+- Upgrade to `carp_serializable: ^1.1.0`. Note that this entail that all polymorphic json serialization use the type key `__type`. Hence, the json format for all the domain classes are **NOT** compatible with earlier versions.
+
 ## 1.2.1
 
 - Added usage of `detailText` on `RPChoice`s.
@@ -5,7 +9,7 @@
 
 ## 1.2.0
 
-- Upgrade of `pubspec` dependencies to lastest versions.
+- Upgrade of `pubspec` dependencies to latest versions.
 
 ## 1.1.0
 
@@ -27,7 +31,7 @@
 
 ## 0.9.2
 
-- Added a unfocus between question to avoid the keyboard remaining on the screen after answering a question.
+- Added a `unfocus` between question to avoid the keyboard remaining on the screen after answering a question.
 
 ## 0.9.1
 
