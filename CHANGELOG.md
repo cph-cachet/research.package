@@ -1,3 +1,12 @@
+## 1.3.2
+- Added translation of both Research Package and Cognition Package to French and to Portuguese (Portugal version).
+- Added autoFocus to TextAnswerFormat.
+- Added autoSkip, timeout, and autoSubmit to FormStep.
+- Added autoSkip, timeout, and autoFocus to QuestionStep.
+- Added timer to Step.
+- Added autoSkip and showTime to TimerStep.
+- Adapted colors in Research Package to the Cupertino apps.
+
 ## 1.3.1
 
 - Upgrade to `carp_serializable: ^1.1.0`. Note that this entails that all polymorphic json serialization uses the type key `__type`. Hence, the json format for all the domain classes is **NOT** compatible with earlier versions.
