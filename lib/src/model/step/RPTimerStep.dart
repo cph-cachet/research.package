@@ -17,6 +17,16 @@ class RPTimerStep extends RPStep {
   /// This is `false` by default.
   bool playSound;
 
+  /// If `autoSkip` is true, the [RPTimerStep] will move to the next step once
+  /// it has finished counting down.
+  /// This is `false` by default.
+  bool autoSkip;
+
+  /// If `showTime` is true, the [RPTimerStep] will show the time remaining
+  /// while counting down. If 'false' only the title will be shown.
+  /// This is `true` by default.
+  bool showTime;
+
   /// Creates a Timer Step with an identifier, title and duration.
   /// The [RPTimerStep] is a step in which the user waits for [timeout]
   /// before being allowed to proceed to next question.
@@ -26,6 +36,8 @@ class RPTimerStep extends RPStep {
     super.optional,
     required this.timeout,
     this.playSound = false,
+    this.autoSkip = false,
+    this.showTime = true,
   });
 
   @override
