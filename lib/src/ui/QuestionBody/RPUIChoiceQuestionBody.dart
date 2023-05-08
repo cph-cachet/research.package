@@ -148,11 +148,20 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
                   value: widget.choice,
                   groupValue: grpChoice,
                   onChanged: (x) => widget.selectedCallBack(widget.choice),
-                  activeColor: Theme.of(context).primaryColor)
+
+                  /// If the CupertinoTheme is in use, the primary color won't be the default one.
+                  /// In that case we use the CupertinoTheme primary color here, to match the rest of the app.
+                  activeColor: (CupertinoTheme.of(context).primaryColor ==
+                          CupertinoColors.activeBlue)
+                      ? Theme.of(context).primaryColor
+                      : CupertinoTheme.of(context).primaryColor)
               : Checkbox(
                   value: widget.selected,
                   onChanged: (x) => widget.selectedCallBack(widget.choice),
-                  activeColor: Theme.of(context).primaryColor,
+                  activeColor: (CupertinoTheme.of(context).primaryColor ==
+                          CupertinoColors.activeBlue)
+                      ? Theme.of(context).primaryColor
+                      : CupertinoTheme.of(context).primaryColor,
                 ),
           Expanded(
             child: Container(

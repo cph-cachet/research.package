@@ -76,6 +76,14 @@ class RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
                   widget.answerFormat.suffix!)
               : null,
           errorText: _valid ? null : _errorMessage,
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: (CupertinoTheme.of(context).primaryColor ==
+                      CupertinoColors.activeBlue)
+                  ? Theme.of(context).primaryColor
+                  : CupertinoTheme.of(context).primaryColor,
+            ),
+          ),
         ),
         onChanged: (text) => _validate(text, locale),
       ),

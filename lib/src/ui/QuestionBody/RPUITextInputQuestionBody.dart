@@ -40,9 +40,25 @@ class RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
             ? (locale?.translate(widget.answerFormat.hintText!) ??
                 widget.answerFormat.hintText)
             : widget.answerFormat.hintText,
-        border: const OutlineInputBorder(),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: (CupertinoTheme.of(context).primaryColor ==
+                    CupertinoColors.activeBlue)
+                ? Theme.of(context).primaryColor
+                : CupertinoTheme.of(context).primaryColor,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: (CupertinoTheme.of(context).primaryColor ==
+                    CupertinoColors.activeBlue)
+                ? Theme.of(context).primaryColor
+                : CupertinoTheme.of(context).primaryColor,
+          ),
+        ),
       ),
       controller: _controller,
+      autofocus: widget.answerFormat.autoFocus,
     );
   }
 
