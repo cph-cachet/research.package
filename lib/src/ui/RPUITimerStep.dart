@@ -37,11 +37,15 @@ class RPUITimerStepState extends State<RPUITimerStep> {
         });
       }
       if (timeInSeconds <= 0) {
+        if (widget.step.autoSkip) {
+          t.cancel();
+          FocusManager.instance.primaryFocus?.unfocus();
+          blocTask.sendStatus(RPStepStatus.Finished);
+        }
         blocQuestion.sendReadyToProceed(true);
         if (_mPlayerIsInitialized) {
           audio?.play();
         }
-        t.cancel();
       }
     });
     blocQuestion.sendReadyToProceed(false);
@@ -77,6 +81,9 @@ class RPUITimerStepState extends State<RPUITimerStep> {
   }
 
   String _durationFormat(Duration duration) {
+    if (widget.step.showTime == false) {
+      return "";
+    }
     String twoDigits(int n) => n.toString().padLeft(2, "0");
     String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
     String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
