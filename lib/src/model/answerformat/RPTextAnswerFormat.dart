@@ -6,8 +6,9 @@ part of research_package_model;
 class RPTextAnswerFormat extends RPAnswerFormat {
   /// Hint text shown in the TextField
   String? hintText;
+  bool autoFocus;
 
-  RPTextAnswerFormat({this.hintText}) : super();
+  RPTextAnswerFormat({this.hintText, this.autoFocus = false}) : super();
 
   @override
   RPQuestionType get questionType => RPQuestionType.Text;
