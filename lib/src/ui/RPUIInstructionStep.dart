@@ -68,8 +68,13 @@ class RPUIInstructionStepState extends State<RPUIInstructionStep> {
                 widget.step.detailText != null
                     ? TextButton(
                         style: TextButton.styleFrom(
-                            textStyle: TextStyle(
-                                color: Theme.of(context).primaryColor)),
+                          textStyle: TextStyle(
+                            color: (CupertinoTheme.of(context).primaryColor ==
+                                    CupertinoColors.activeBlue)
+                                ? Theme.of(context).primaryColor
+                                : CupertinoTheme.of(context).primaryColor,
+                          ),
+                        ),
                         onPressed: _pushDetailTextRoute,
                         child: Text(
                             locale?.translate('learn_more') ?? "Learn more..."),

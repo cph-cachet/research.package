@@ -24,7 +24,12 @@ class RPUITask extends StatefulWidget {
   /// It's only optional. If nothing is provided (is ```null```) the survey just quits without doing anything with the result.
   final void Function(RPTaskResult? result)? onCancel;
 
-  const RPUITask({super.key, required this.task, this.onSubmit, this.onCancel});
+  const RPUITask({
+    super.key,
+    required this.task,
+    this.onSubmit,
+    this.onCancel,
+  });
 
   @override
   RPUITaskState createState() => RPUITaskState();
@@ -178,8 +183,11 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
               minWidth: 70,
               child: TextButton(
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Theme.of(context).primaryColor),
+                  backgroundColor: MaterialStateProperty.all(
+                      (CupertinoTheme.of(context).primaryColor ==
+                              CupertinoColors.activeBlue)
+                          ? Theme.of(context).primaryColor
+                          : CupertinoTheme.of(context).primaryColor),
                 ),
                 child: Text(
                   RPLocalizations.of(context)?.translate('NO') ?? "NO",
@@ -192,7 +200,11 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
             OutlinedButton(
               child: Text(
                 RPLocalizations.of(context)?.translate('YES') ?? "YES",
-                style: TextStyle(color: Theme.of(context).primaryColor),
+                style: TextStyle(
+                    color: ((CupertinoTheme.of(context).primaryColor ==
+                            CupertinoColors.activeBlue)
+                        ? Theme.of(context).primaryColor
+                        : CupertinoTheme.of(context).primaryColor)),
               ),
               onPressed: () {
                 // Calling the onCancel method with which the developer can for e.g. save the result on the device.
@@ -238,7 +250,10 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
             child: IconButton(
               icon: Icon(
                 Icons.highlight_off,
-                color: Theme.of(context).primaryColor,
+                color: ((CupertinoTheme.of(context).primaryColor ==
+                        CupertinoColors.activeBlue)
+                    ? Theme.of(context).primaryColor
+                    : CupertinoTheme.of(context).primaryColor),
               ),
               onPressed: () => blocTask.sendStatus(RPStepStatus.Canceled),
             ),
@@ -288,7 +303,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // if first question or its a navigable task
-                      _currentStepIndex == 0 || navigableTask
+                      _currentStepIndex == 0 || !navigableTask
                           ? Container()
                           : OutlinedButton(
                               onPressed: () =>
@@ -303,8 +318,13 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return ElevatedButton(
-                              style:
-                                  Theme.of(context).elevatedButtonTheme.style,
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: (CupertinoTheme.of(context)
+                                              .primaryColor ==
+                                          CupertinoColors.activeBlue)
+                                      ? Theme.of(context).primaryColor
+                                      : CupertinoTheme.of(context)
+                                          .primaryColor),
                               onPressed: snapshot.data!
                                   ? () {
                                       FocusManager.instance.primaryFocus

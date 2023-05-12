@@ -46,8 +46,16 @@ class RPUISliderQuestionBodyState extends State<RPUISliderQuestionBody>
               style: const TextStyle(fontSize: 18),
             ),
             Slider(
-              activeColor: Theme.of(context).sliderTheme.activeTrackColor,
-              inactiveColor: Theme.of(context).sliderTheme.inactiveTrackColor,
+              // activeColor: Theme.of(context).sliderTheme.activeTrackColor,
+              activeColor: (CupertinoTheme.of(context).primaryColor ==
+                      CupertinoColors.activeBlue)
+                  ? Theme.of(context).sliderTheme.activeTrackColor
+                  : CupertinoTheme.of(context).primaryColor.withAlpha(0xff),
+              // inactiveColor: Theme.of(context).sliderTheme.inactiveTrackColor,
+              inactiveColor: (CupertinoTheme.of(context).primaryColor ==
+                      CupertinoColors.activeBlue)
+                  ? Theme.of(context).sliderTheme.inactiveTrackColor
+                  : CupertinoTheme.of(context).primaryColor.withAlpha(0x3d),
               value: value ?? widget.answerFormat.minValue,
               onChanged: (double newValue) {
                 setState(() {

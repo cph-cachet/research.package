@@ -13,6 +13,8 @@ class RPUIFormStepState extends State<RPUIFormStep> {
   late bool readyToProceed;
   late RPStepResult stepResult;
   RPTaskProgress? recentTaskProgress;
+  late int timeInSeconds;
+  late bool timerFinished;
 
   // Since the QuestionBody's are sending null if they are not answered yet we can loop through the
   // results of the steps.
@@ -26,6 +28,12 @@ class RPUIFormStepState extends State<RPUIFormStep> {
             element.results['answer'] == null)) {
           temp = false;
         }
+      }
+    }
+
+    if (widget.formStep.forceWait) {
+      if (timerFinished == false) {
+        temp = false;
       }
     }
 
@@ -63,8 +71,43 @@ class RPUIFormStepState extends State<RPUIFormStep> {
     readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
+    // 'timerFinished' will tell us whether the timer finished or not
+    timerFinished = false;
 
     super.initState();
+
+    if (widget.formStep.autoSkip) {
+      timeInSeconds = widget.formStep.timeout.inSeconds;
+      int previousTimeInSeconds = 0;
+      const oneSec = Duration(seconds: 1);
+      Timer.periodic(oneSec, (t) {
+        widget.formStep.timer = t;
+        if (mounted) {
+          setState(() {
+            previousTimeInSeconds = timeInSeconds;
+            timeInSeconds--;
+          });
+        } else {
+          t.cancel();
+        }
+        if (timeInSeconds <= 0) {
+          timerFinished = true;
+          t.cancel();
+          if (widget.formStep.autoSubmit) {
+            submitQuestionWithTempResult();
+          } else {
+            skipQuestion();
+          }
+          blocQuestion.sendReadyToProceed(true);
+          t.cancel();
+        }
+        // For some reason, when initializing this UIFormStep, it always does it
+        // twice. Thus, we need to kill the second timer if it exists.
+        if (previousTimeInSeconds == timeInSeconds) {
+          t.cancel();
+        }
+      });
+    }
   }
 
   // Returning the according step body widget based on the answerFormat of each step
@@ -151,6 +194,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
               .first
               .title;
           tempResult.setResult(result);
+          stepResult.results[id] = tempResult;
 
           checkReadyToProceed();
         });
@@ -164,6 +208,12 @@ class RPUIFormStepState extends State<RPUIFormStep> {
     for (var key in stepResult.results.keys) {
       (stepResult.results[key] as RPStepResult).setResult(null);
     }
+    blocTask.sendStatus(RPStepStatus.Finished);
+    createAndSendResult();
+  }
+
+  void submitQuestionWithTempResult() {
+    FocusManager.instance.primaryFocus?.unfocus();
     blocTask.sendStatus(RPStepStatus.Finished);
     createAndSendResult();
   }

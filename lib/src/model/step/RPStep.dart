@@ -34,6 +34,8 @@ class RPStep extends Serializable {
   /// Can this step be skipped? If so, the result for the step will be `null`.
   bool optional;
 
+  Timer? timer;
+
   /// Create a [RPStep] object with a unique [identifier], a [title], and
   /// a [text] to be displayed.
   RPStep(

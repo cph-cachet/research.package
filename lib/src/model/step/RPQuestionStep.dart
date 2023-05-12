@@ -17,6 +17,21 @@ class RPQuestionStep extends RPStep {
   /// requires text entry
   String? placeholder;
 
+  /// If `autoSkip` is true, the [RPTimerStep] will move to the next step once
+  /// it has finished counting down.
+  /// This is `false` by default.
+  bool autoSkip;
+
+  /// 'timeout' defines how many seconds we wait for the answer before
+  /// automatically skipping to the next step.
+  /// This is 0 seconds by default.
+  Duration timeout;
+
+  /// 'autoFocus' applies only to 'RPTextAnswerFormat' questions
+  /// if 'true' the keyboard will automatically be displayed when asking that text question.
+  /// This is 'false' by default.
+  bool autoFocus;
+
   /// Creates a [RPQuestionStep].
   ///
   /// [identifier] is a unique id of this step,
@@ -28,6 +43,9 @@ class RPQuestionStep extends RPStep {
     required super.title,
     super.optional,
     required this.answerFormat,
+    this.autoSkip = false,
+    this.timeout = const Duration(seconds: 0),
+    this.autoFocus = false,
   });
 
   @override
