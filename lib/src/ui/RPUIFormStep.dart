@@ -82,6 +82,18 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
           checkReadyToProceed();
         });
+      case RPDoubleAnswerFormat:
+        return RPUIDoubleQuestionBody((answerFormat as RPDoubleAnswerFormat),
+                (result) {
+              RPStepResult tempResult = stepResult.results[id] as RPStepResult;
+              tempResult.questionTitle = widget.formStep.steps
+                  .where((step) => step.identifier == id)
+                  .first
+                  .title;
+              tempResult.setResult(result);
+
+              checkReadyToProceed();
+            });
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
             (result) {

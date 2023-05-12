@@ -33,6 +33,7 @@ const _$RPQuestionTypeEnumMap = {
   RPQuestionType.MultipleChoice: 'MultipleChoice',
   RPQuestionType.Decimal: 'Decimal',
   RPQuestionType.Integer: 'Integer',
+  RPQuestionType.Double: 'Double',
   RPQuestionType.Boolean: 'Boolean',
   RPQuestionType.Text: 'Text',
   RPQuestionType.TimeOfDay: 'TimeOfDay',
@@ -65,6 +66,35 @@ Map<String, dynamic> _$RPIntegerAnswerFormatToJson(
   }
 
   writeNotNull('__type', instance.$type);
+  val['min_value'] = instance.minValue;
+  val['max_value'] = instance.maxValue;
+  writeNotNull('suffix', instance.suffix);
+  val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType]!;
+  return val;
+}
+
+RPDoubleAnswerFormat _$RPDoubleAnswerFormatFromJson(
+    Map<String, dynamic> json) =>
+    RPDoubleAnswerFormat(
+      minValue: json['min_value'] as double,
+      maxValue: json['max_value'] as double,
+      suffix: json['suffix'] as String?,
+    )
+      ..$type = json[r'$type'] as String?
+      ..questionType =
+      $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
+
+Map<String, dynamic> _$RPDoubleAnswerFormatToJson(
+    RPDoubleAnswerFormat instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(r'$type', instance.$type);
   val['min_value'] = instance.minValue;
   val['max_value'] = instance.maxValue;
   writeNotNull('suffix', instance.suffix);

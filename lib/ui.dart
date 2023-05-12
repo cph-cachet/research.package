@@ -30,6 +30,7 @@ part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIImageChoiceQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIIntegerQuestionBody.dart';
+part 'src/ui/QuestionBody/RPUIDoubleQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUISliderQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUITextInputQuestionBody.dart';
 part 'src/ui/RPUICompletionStep.dart';
