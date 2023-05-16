@@ -13,7 +13,6 @@ class RPUITimerStep extends StatefulWidget {
 }
 
 class RPUITimerStepState extends State<RPUITimerStep> {
-  // Dynamic because we don't know what value the RPChoice will have
   Timer? timer;
   late int timeInSeconds;
   Audio? audio;
@@ -38,7 +37,6 @@ class RPUITimerStepState extends State<RPUITimerStep> {
       }
       if (timeInSeconds <= 0) {
         if (widget.step.autoSkip) {
-          t.cancel();
           FocusManager.instance.primaryFocus?.unfocus();
           blocTask.sendStatus(RPStepStatus.Finished);
         }
@@ -46,6 +44,7 @@ class RPUITimerStepState extends State<RPUITimerStep> {
         if (_mPlayerIsInitialized) {
           audio?.play();
         }
+        t.cancel();
       }
     });
     blocQuestion.sendReadyToProceed(false);

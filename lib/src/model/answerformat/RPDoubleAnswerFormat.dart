@@ -1,7 +1,7 @@
 part of research_package_model;
 
 /// Class representing an Answer Format that lets participants input a
-/// number (integer)
+/// decimal number (double)
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPDoubleAnswerFormat extends RPAnswerFormat {
   /// The minimum value of the range. The participant can not proceed if the

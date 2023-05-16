@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of research_package_model;
+part of 'model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -33,7 +33,6 @@ const _$RPQuestionTypeEnumMap = {
   RPQuestionType.MultipleChoice: 'MultipleChoice',
   RPQuestionType.Decimal: 'Decimal',
   RPQuestionType.Integer: 'Integer',
-  RPQuestionType.Double: 'Double',
   RPQuestionType.Boolean: 'Boolean',
   RPQuestionType.Text: 'Text',
   RPQuestionType.TimeOfDay: 'TimeOfDay',
@@ -41,6 +40,7 @@ const _$RPQuestionTypeEnumMap = {
   RPQuestionType.Date: 'Date',
   RPQuestionType.Duration: 'Duration',
   RPQuestionType.ImageChoice: 'ImageChoice',
+  RPQuestionType.Double: 'Double',
   RPQuestionType.Form: 'Form',
 };
 
@@ -74,15 +74,15 @@ Map<String, dynamic> _$RPIntegerAnswerFormatToJson(
 }
 
 RPDoubleAnswerFormat _$RPDoubleAnswerFormatFromJson(
-    Map<String, dynamic> json) =>
+        Map<String, dynamic> json) =>
     RPDoubleAnswerFormat(
-      minValue: json['min_value'] as double,
-      maxValue: json['max_value'] as double,
+      minValue: (json['min_value'] as num).toDouble(),
+      maxValue: (json['max_value'] as num).toDouble(),
       suffix: json['suffix'] as String?,
     )
-      ..$type = json[r'$type'] as String?
+      ..$type = json['__type'] as String?
       ..questionType =
-      $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
+          $enumDecode(_$RPQuestionTypeEnumMap, json['question_type']);
 
 Map<String, dynamic> _$RPDoubleAnswerFormatToJson(
     RPDoubleAnswerFormat instance) {
@@ -94,7 +94,7 @@ Map<String, dynamic> _$RPDoubleAnswerFormatToJson(
     }
   }
 
-  writeNotNull(r'$type', instance.$type);
+  writeNotNull('__type', instance.$type);
   val['min_value'] = instance.minValue;
   val['max_value'] = instance.maxValue;
   writeNotNull('suffix', instance.suffix);
@@ -302,6 +302,7 @@ const _$RPDateTimeAnswerStyleEnumMap = {
 RPTextAnswerFormat _$RPTextAnswerFormatFromJson(Map<String, dynamic> json) =>
     RPTextAnswerFormat(
       hintText: json['hint_text'] as String?,
+      autoFocus: json['auto_focus'] as bool? ?? false,
     )
       ..$type = json['__type'] as String?
       ..questionType =
@@ -318,6 +319,7 @@ Map<String, dynamic> _$RPTextAnswerFormatToJson(RPTextAnswerFormat instance) {
 
   writeNotNull('__type', instance.$type);
   writeNotNull('hint_text', instance.hintText);
+  val['auto_focus'] = instance.autoFocus;
   val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType]!;
   return val;
 }
@@ -539,12 +541,18 @@ RPFormStep _$RPFormStepFromJson(Map<String, dynamic> json) => RPFormStep(
       steps: (json['steps'] as List<dynamic>)
           .map((e) => RPQuestionStep.fromJson(e as Map<String, dynamic>))
           .toList(),
+      autoSkip: json['auto_skip'] as bool? ?? false,
+      timeout: json['timeout'] == null
+          ? const Duration(seconds: 0)
+          : Duration(microseconds: json['timeout'] as int),
+      autoSubmit: json['auto_submit'] as bool? ?? false,
     )
       ..$type = json['__type'] as String?
       ..text = json['text'] as String?
       ..answerFormat =
           RPAnswerFormat.fromJson(json['answer_format'] as Map<String, dynamic>)
-      ..placeholder = json['placeholder'] as String?;
+      ..placeholder = json['placeholder'] as String?
+      ..autoFocus = json['auto_focus'] as bool;
 
 Map<String, dynamic> _$RPFormStepToJson(RPFormStep instance) {
   final val = <String, dynamic>{};
@@ -562,7 +570,11 @@ Map<String, dynamic> _$RPFormStepToJson(RPFormStep instance) {
   val['optional'] = instance.optional;
   val['answer_format'] = instance.answerFormat;
   writeNotNull('placeholder', instance.placeholder);
+  val['auto_skip'] = instance.autoSkip;
+  val['timeout'] = instance.timeout.inMicroseconds;
+  val['auto_focus'] = instance.autoFocus;
   val['steps'] = instance.steps;
+  val['auto_submit'] = instance.autoSubmit;
   return val;
 }
 
@@ -573,6 +585,11 @@ RPQuestionStep _$RPQuestionStepFromJson(Map<String, dynamic> json) =>
       optional: json['optional'] as bool? ?? false,
       answerFormat: RPAnswerFormat.fromJson(
           json['answer_format'] as Map<String, dynamic>),
+      autoSkip: json['auto_skip'] as bool? ?? false,
+      timeout: json['timeout'] == null
+          ? const Duration(seconds: 0)
+          : Duration(microseconds: json['timeout'] as int),
+      autoFocus: json['auto_focus'] as bool? ?? false,
     )
       ..$type = json['__type'] as String?
       ..text = json['text'] as String?
@@ -594,6 +611,9 @@ Map<String, dynamic> _$RPQuestionStepToJson(RPQuestionStep instance) {
   val['optional'] = instance.optional;
   val['answer_format'] = instance.answerFormat;
   writeNotNull('placeholder', instance.placeholder);
+  val['auto_skip'] = instance.autoSkip;
+  val['timeout'] = instance.timeout.inMicroseconds;
+  val['auto_focus'] = instance.autoFocus;
   return val;
 }
 
@@ -689,6 +709,8 @@ RPTimerStep _$RPTimerStepFromJson(Map<String, dynamic> json) => RPTimerStep(
       optional: json['optional'] as bool? ?? false,
       timeout: Duration(microseconds: json['timeout'] as int),
       playSound: json['play_sound'] as bool? ?? false,
+      autoSkip: json['auto_skip'] as bool? ?? false,
+      showTime: json['show_time'] as bool? ?? true,
     )
       ..$type = json['__type'] as String?
       ..text = json['text'] as String?;
@@ -709,6 +731,8 @@ Map<String, dynamic> _$RPTimerStepToJson(RPTimerStep instance) {
   val['optional'] = instance.optional;
   val['timeout'] = instance.timeout.inMicroseconds;
   val['play_sound'] = instance.playSound;
+  val['auto_skip'] = instance.autoSkip;
+  val['show_time'] = instance.showTime;
   return val;
 }
 

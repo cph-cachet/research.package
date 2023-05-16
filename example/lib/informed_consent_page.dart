@@ -13,8 +13,6 @@ class InformedConsentPage extends StatelessWidget {
   }
 
   void resultCallback(RPTaskResult result) {
-    // Do anything with the result
-    // print(_encode(result));
     printWrapped(_encode(result));
   }
 

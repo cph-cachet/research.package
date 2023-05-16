@@ -1,7 +1,6 @@
 part of research_package_model;
 
-/// Class representing an Answer Format that lets participants input a
-/// number (integer)
+/// Class representing an Answer Format that lets participants input a integer.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPIntegerAnswerFormat extends RPAnswerFormat {
   /// The minimum value of the range. The participant can not proceed if the
