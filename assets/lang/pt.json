@@ -28,7 +28,6 @@
     "choose_one_option": "Escolha uma opção",
     "sign_with_finger": "Por favor, assine com o seu dedo na linha abaixo",
     "review_form": "Reveja o formulário abaixo e prima ACEITAR se estiver pronto para prosseguir.",
-
     "Find the blue dots on the next screen. These are the targets dots.": "Encontre os pontos azuis no ecrã seguinte. Estes são os pontos-alvo.",
     "Once ready, press 'start' and the target dots will turn grey and start moving.": "Quando estiver pronto, prima 'iniciar' e os pontos-alvo ficarão cinzentos e começarão a mover-se.",
     "Follow the target dots around the screen": "Siga os pontos-alvo no ecrã",
@@ -98,4 +97,4 @@
     "Write the words you recall in the boxes in any order and click ": "Escreva as palavras de que se lembra nas caixas, por qualquer ordem, e clique em ",
     "listen": "ouvir",
     "task": "tarefa"
-    }
+}

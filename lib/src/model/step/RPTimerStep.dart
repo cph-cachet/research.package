@@ -20,9 +20,14 @@ class RPTimerStep extends RPStep {
   /// True by default.
   bool showTime;
 
-  /// Creates a Timer Step with an identifier, title and duration.
+  /// Creates a Timer Step with an [identifier], [title] and [timeout].
+  ///
   /// The [RPTimerStep] is a step in which the user waits for [timeout]
   /// before being allowed to proceed to next question.
+  /// If [showTime] is true, a count down is shown.
+  ///
+  /// When the time is up, a sound is played if [playSound] is true and
+  /// automatically moves to the next step, if [autoSkip] is true.
   RPTimerStep({
     required super.identifier,
     required super.title,

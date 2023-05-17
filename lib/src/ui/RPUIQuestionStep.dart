@@ -4,10 +4,9 @@ part of research_package_ui;
 ///
 /// As soon as the participant has finished with the question the [RPStepResult] is being added to the [RPTaskResult]'s result list.
 class RPUIQuestionStep extends StatefulWidget {
-  RPUIQuestionStepState? _state;
   final RPQuestionStep step;
 
-  RPUIQuestionStep(this.step, {super.key});
+  const RPUIQuestionStep(this.step, {super.key});
 
   @override
   RPUIQuestionStepState createState() => RPUIQuestionStepState();
@@ -35,7 +34,7 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
     timer?.cancel();
 
     FocusManager.instance.primaryFocus?.unfocus();
-    blocTask.sendStatus(RPStepStatus.Finished);
+    blocTask.sendStatus(RPStepStatus.Skipped);
     currentQuestionBodyResult = null;
   }
 
@@ -63,14 +62,12 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   @override
   void deactivate() {
     timer?.cancel();
-
     super.deactivate();
   }
 
   @override
   void dispose() {
     timer?.cancel();
-
     super.dispose();
   }
 

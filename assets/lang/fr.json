@@ -28,7 +28,6 @@
     "choose_one_option": "Choisissez une option",
     "sign_with_finger": "Veuillez signer avec votre doigt sur la ligne ci-dessous",
     "review_form": "Examinez ce formulaire ci-dessous et appuyez sur ACCEPTE si vous êtes prêt à continuer.",
-
     "Find the blue dots on the next screen. These are the targets dots.": "Trouvez les points bleus sur l'écran suivant. Ce sont les points cibles.",
     "Once ready, press 'start' and the target dots will turn grey and start moving.": "Une fois prêt, appuyez sur 'démarrer' et les points cibles deviendront gris et commenceront à bouger.",
     "Follow the target dots around the screen": "Suivez les points cibles sur l'écran",
@@ -98,4 +97,4 @@
     "Write the words you recall in the boxes in any order and click ": "Écrivez les mots que vous vous souvenez dans les cases dans n'importe quel ordre et cliquez sur ",
     "listen": "écouter",
     "task": "tâche"
-    }
+}

@@ -1,10 +1,10 @@
 ## 1.3.2
 
 - Added translation of both Research Package and Cognition Package to French and to Portuguese (Portugal version).
-- Added autoFocus to TextAnswerFormat.
-- Added autoSkip, timeout, and autoSubmit to FormStep.
-- Added autoSkip, timeout, and autoFocus to QuestionStep.
-- Added autoSkip and showTime to TimerStep.
+- Added autoFocus to `TextAnswerFormat`.
+- Added autoSkip, timeout, and autoSubmit to `FormStep`.
+- Added autoSkip, timeout, and autoFocus to `QuestionStep`.
+- Added autoSkip and showTime to `TimerStep`.
 - Adapted colors in Research Package for the Cupertino theme.
 - Added a `RPDoubleAnswerFormat`.
 

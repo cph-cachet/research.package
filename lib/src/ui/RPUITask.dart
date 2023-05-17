@@ -80,12 +80,15 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
     }
 
     // Subscribe to step status changes so the navigation can be triggered
-    _stepStatusSubscription = blocTask.stepStatus.listen((data) async {
-      switch (data) {
+    _stepStatusSubscription = blocTask.stepStatus.listen((status) async {
+      switch (status) {
         case RPStepStatus.Finished:
+        case RPStepStatus.Skipped:
+          // For now, the same thing has to happen whether a step is finished or skipped.
+          // But the "Skipped" status is included to cover this case also.
+
           // In case of last step we save the result and close the task
           if (_currentStep == widget.task.steps.last) {
-            //Creating and sending the task level of result to a stream to which anybody can subscribe
             createAndSendResult();
             if (widget.task.closeAfterFinished) {
               Navigator.of(context).pop();
@@ -101,7 +104,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
             }
           }
 
-          // Calculating next step and then navigate there
+          // Find the next step and then navigate there
           setState(() {
             _currentStep = _activeSteps.last;
             _currentStep = widget.task.getStepAfterStep(_currentStep, null);
@@ -113,14 +116,12 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
               duration: const Duration(milliseconds: 400),
               curve: Curves.easeInOut);
           break;
-        case RPStepStatus.Skipped:
-          //TODO - implement better support for skipping a step instead of using "Finished" which is done now (@bardram).
-          break;
         case RPStepStatus.Canceled:
           showCancelConfirmationDialog();
           break;
         case RPStepStatus.Back:
-          // If the stepWidgets list only has 1 element it means the user is on the first question, so no back navigation is enabled
+          // If the stepWidgets list only has 1 element it means the user is on
+          // the first question, so no back navigation is enabled.
           if (_activeSteps.length == 1) {
             break;
           }

@@ -60,9 +60,9 @@ class RPLocalizations extends AssetLocalizations {
       print(
           "$runtimeType - loading from a loader of type '${loader.runtimeType}'");
       Map<String, String> loadedTranslations = await loader.load(locale);
-      // merge the maps
-      // note that keys in [_translations] is overwritten with keys in [loadedTranslations]
-      // hence, it is possible to overwrite the default translations
+      // Merge the maps.
+      // Note that keys in [_translations] is overwritten with keys in [loadedTranslations].
+      // Hence, it is possible to overwrite the default translations.
       _translations.addAll(loadedTranslations);
     }
 
@@ -104,7 +104,7 @@ class RPLocalizationsDelegate extends LocalizationsDelegate<RPLocalizations> {
   }
 
   /// Mark that this delegate should reload its translations.
-  /// Usefull if, for example, downloaded from the network.
+  /// Useful if, for example, downloaded from the network.
   void reload() => _shouldReload = true;
 
   @override

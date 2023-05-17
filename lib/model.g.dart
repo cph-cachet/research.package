@@ -545,7 +545,7 @@ RPFormStep _$RPFormStepFromJson(Map<String, dynamic> json) => RPFormStep(
       timeout: json['timeout'] == null
           ? const Duration(seconds: 0)
           : Duration(microseconds: json['timeout'] as int),
-      autoSubmit: json['auto_submit'] as bool? ?? false,
+      saveResultsOnAutoSkip: json['auto_submit'] as bool? ?? false,
     )
       ..$type = json['__type'] as String?
       ..text = json['text'] as String?
@@ -574,7 +574,7 @@ Map<String, dynamic> _$RPFormStepToJson(RPFormStep instance) {
   val['timeout'] = instance.timeout.inMicroseconds;
   val['auto_focus'] = instance.autoFocus;
   val['steps'] = instance.steps;
-  val['auto_submit'] = instance.autoSubmit;
+  val['auto_submit'] = instance.saveResultsOnAutoSkip;
   return val;
 }
 

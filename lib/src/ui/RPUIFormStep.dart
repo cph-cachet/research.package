@@ -77,7 +77,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
         timeInForm++;
 
         if (timeInForm >= widget.formStep.timeout.inSeconds) {
-          if (widget.formStep.autoSubmit) {
+          if (widget.formStep.saveResultsOnAutoSkip) {
             submitQuestionWithTempResult();
           } else {
             skipQuestion();
@@ -88,6 +88,18 @@ class RPUIFormStepState extends State<RPUIFormStep> {
         }
       });
     }
+  }
+
+  @override
+  void deactivate() {
+    timer?.cancel();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   /// Builds the step body widget based on the answer format of each step.
@@ -189,7 +201,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
     stepResult?.results.keys.forEach((key) {
       (stepResult?.results[key] as RPStepResult).setResult(null);
     });
-    blocTask.sendStatus(RPStepStatus.Finished);
+    blocTask.sendStatus(RPStepStatus.Skipped);
     createAndSendResult();
   }
 

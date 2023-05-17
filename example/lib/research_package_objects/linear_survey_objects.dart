@@ -198,13 +198,16 @@ final textQuestionStep = RPQuestionStep(
 
 final formStep = RPFormStep(
   identifier: "formstepID",
+  title: "Questions about music",
   steps: [
     instrumentChoiceQuestionStep, // optional
     textQuestionStep,
     minutesQuestionStep, // optional
     alcoholStep
   ],
-  title: "Questions about music",
+  autoSkip: true,
+  timeout: Duration(seconds: 6),
+  saveResultsOnAutoSkip: true,
 );
 
 final completionStep = RPCompletionStep(
@@ -233,7 +236,7 @@ final linearSurveyTask = RPOrderedTask(
   steps: [
     instructionStep,
     // timerStep,
-    // formStep,
+    formStep,
     // smokingQuestionStep,
     insulinStep,
     // wakeUpStep,
