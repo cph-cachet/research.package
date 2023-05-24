@@ -36,14 +36,17 @@ class RPUITimerStepState extends State<RPUITimerStep> {
         });
       }
       if (timeInSeconds <= 0) {
-        if (widget.step.autoSkip) {
-          FocusManager.instance.primaryFocus?.unfocus();
-          blocTask.sendStatus(RPStepStatus.Finished);
-        }
-        blocQuestion.sendReadyToProceed(true);
         if (_mPlayerIsInitialized) {
           audio?.play();
         }
+        if (widget.step.autoSkip) {
+          // Wait for the sound to finish playing before auto skipping to next step.
+          Future.delayed(const Duration(seconds: 1), () {
+            FocusManager.instance.primaryFocus?.unfocus();
+            blocTask.sendStatus(RPStepStatus.Finished);
+          });
+        }
+        blocQuestion.sendReadyToProceed(true);
         t.cancel();
       }
     });

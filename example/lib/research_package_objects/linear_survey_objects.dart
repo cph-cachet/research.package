@@ -235,7 +235,7 @@ final linearSurveyTask = RPOrderedTask(
   identifier: "surveyTaskID",
   steps: [
     instructionStep,
-    // timerStep,
+    timerStep,
     formStep,
     // smokingQuestionStep,
     insulinStep,

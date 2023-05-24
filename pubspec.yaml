@@ -25,6 +25,10 @@ dependency_overrides:
   # carp_serializable:
   #   path: ../carp/carp.sensing-flutter/carp_serializable/
 
+# auto generate json code (.g files) with:
+#   flutter pub run build_runner build --delete-conflicting-outputs
+
+
 
 dev_dependencies:
   flutter_test:
@@ -37,19 +41,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/icons/analysis.png
-    - assets/icons/archive.png
-    - assets/icons/checkmark.png
-    - assets/icons/deadline.png
-    - assets/icons/document.png
-    - assets/icons/handshake.png
-    - assets/icons/health.png
-    - assets/icons/id.png
-    - assets/icons/location.png
-    - assets/icons/management.png
-    - assets/icons/networking.png
-    - assets/icons/settings.png
-    - assets/icons/target.png
-    - assets/icons/task.png
+    - assets/icons/
     - assets/lang/
-    - assets/audio/RPTimerStepSound.mp3
+    - assets/audio/
+

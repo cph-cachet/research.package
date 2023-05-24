@@ -33,8 +33,8 @@ class RPLocalizations extends AssetLocalizations {
   /// provided in [staticAssetName] combined with translations of the any text
   /// provided by the [loaders], which knows how to load translations.
   @override
-  Future<bool> load({List<LocalizationLoader> loaders = const []}) async {
-    print("$runtimeType - loading '$staticAssetName'");
+  Future<void> load({List<LocalizationLoader> loaders = const []}) async {
+    print("$runtimeType - loading static translations from '$staticAssetName'");
     String jsonString = '{}';
 
     // first try to load the static translations as part of RP
@@ -51,22 +51,17 @@ class RPLocalizations extends AssetLocalizations {
           'For now, translations provided in the app localization file(s) are also used for RP so you can provide translations for the RP terms there for now.');
     }
 
-    Map<String, dynamic> jsonMap =
-        json.decode(jsonString) as Map<String, dynamic>;
-    _translations =
-        jsonMap.map((key, value) => MapEntry(key, value.toString()));
+    final jsonMap = json.decode(jsonString) as Map<String, dynamic>;
+    translations
+        .addAll(jsonMap.map((key, value) => MapEntry(key, value.toString())));
 
     for (LocalizationLoader loader in loaders) {
-      print(
-          "$runtimeType - loading from a loader of type '${loader.runtimeType}'");
       Map<String, String> loadedTranslations = await loader.load(locale);
       // Merge the maps.
       // Note that keys in [_translations] is overwritten with keys in [loadedTranslations].
       // Hence, it is possible to overwrite the default translations.
-      _translations.addAll(loadedTranslations);
+      translations.addAll(loadedTranslations);
     }
-
-    return true;
   }
 
   /// A default [LocalizationsDelegate] for [RPLocalizations].
@@ -84,7 +79,7 @@ class RPLocalizationsDelegate extends LocalizationsDelegate<RPLocalizations> {
   ///
   /// [loaders] specify a list of [LocalizationLoader] which each can load
   /// different translations. Translations from all [loaders] are merged.
-  /// Potential dublicate tranlation keys are overwritten in the order of
+  /// Potential duplicate translation keys are overwritten in the order of
   /// the list of loaders.
   RPLocalizationsDelegate({required this.loaders});
 
