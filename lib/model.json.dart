@@ -2,12 +2,12 @@
 
 part of research_package_model;
 
-bool _fromJsonFunctionsRegistrered = false;
+bool _fromJsonFunctionsRegistered = false;
 
 /// Register all the fromJson functions for the deployment domain classes.
 void _registerFromJsonFunctions() {
-  if (_fromJsonFunctionsRegistrered) return;
-  _fromJsonFunctionsRegistrered = true;
+  if (_fromJsonFunctionsRegistered) return;
+  _fromJsonFunctionsRegistered = true;
 
   // AnswerFormat classes
   FromJsonFactory().register(RPAnswerFormat());

@@ -70,7 +70,7 @@ class RPUIDoubleQuestionBodyState extends State<RPUIDoubleQuestionBody>
           filled: true,
           hintText: locale?.translate('tap_to_answer') ?? "Tap to answer",
           helperStyle:
-              TextStyle(color: Theme.of(context).textTheme.bodyText1?.color),
+              TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
           suffix: widget.answerFormat.suffix != null
               ? Text(locale?.translate(widget.answerFormat.suffix!) ??
                   widget.answerFormat.suffix!)

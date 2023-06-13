@@ -10,30 +10,27 @@ class RPUIFormStep extends StatefulWidget {
 }
 
 class RPUIFormStepState extends State<RPUIFormStep> {
-  late bool readyToProceed;
-  late RPStepResult stepResult;
+  bool readyToProceed = false;
+  RPStepResult? stepResult;
   RPTaskProgress? recentTaskProgress;
-  late int timeInSeconds;
-  late bool timerFinished;
+  int timeInForm = 0;
+  Timer? timer;
 
-  // Since the QuestionBody's are sending null if they are not answered yet we can loop through the
-  // results of the steps.
-  // If any of the non-optional steps have a null-answer in the stepResult, it means the user has not answered it and CANNOT go to the next step.
+  // Since the QuestionBody's are sending null if they are not answered yet we
+  // can loop through the results of the steps.
+  // If any of the non-optional steps have a null-answer in the stepResult,
+  // it means the user has not answered it and CANNOT go to the next step.
   void checkReadyToProceed() {
+    if (stepResult == null) return;
+
     bool temp = true;
     for (var step in widget.formStep.steps) {
       if (!step.optional) {
-        if (stepResult.results.values.any((element) =>
+        if (stepResult!.results.values.any((element) =>
             (element as RPStepResult).identifier == step.identifier &&
             element.results['answer'] == null)) {
           temp = false;
         }
-      }
-    }
-
-    if (widget.formStep.forceWait) {
-      if (timerFinished == false) {
-        temp = false;
       }
     }
 
@@ -46,17 +43,17 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
   @override
   void initState() {
-    // Instantiating the result object here to start the time counter (startDate)
+    // Create the result object here to record the start time
     stepResult = RPStepResult(
         identifier: widget.formStep.identifier,
         questionTitle: widget.formStep.title,
         answerFormat: widget.formStep.answerFormat);
-    stepResult.questionTitle =
+    stepResult?.questionTitle =
         "Form Step - See titles for every question included";
 
     // Filling up the results with nulls
     for (var item in widget.formStep.steps) {
-      stepResult.setResultForIdentifier(
+      stepResult?.setResultForIdentifier(
           item.identifier,
           RPStepResult(
             identifier: item.identifier,
@@ -64,59 +61,54 @@ class RPUIFormStepState extends State<RPUIFormStep> {
             answerFormat: item.answerFormat,
           ));
       // Set each questionTitle here in case this question can be skipped.
-      (stepResult.results[item.identifier] as RPStepResult).questionTitle =
+      (stepResult?.results[item.identifier] as RPStepResult).questionTitle =
           item.title;
     }
 
-    readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
-    // 'timerFinished' will tell us whether the timer finished or not
-    timerFinished = false;
 
     super.initState();
 
+    timeInForm = 0;
+
     if (widget.formStep.autoSkip) {
-      timeInSeconds = widget.formStep.timeout.inSeconds;
-      int previousTimeInSeconds = 0;
-      const oneSec = Duration(seconds: 1);
-      Timer.periodic(oneSec, (t) {
-        widget.formStep.timer = t;
-        if (mounted) {
-          setState(() {
-            previousTimeInSeconds = timeInSeconds;
-            timeInSeconds--;
-          });
-        } else {
-          t.cancel();
-        }
-        if (timeInSeconds <= 0) {
-          timerFinished = true;
-          t.cancel();
-          if (widget.formStep.autoSubmit) {
+      timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        timeInForm++;
+
+        if (timeInForm >= widget.formStep.timeout.inSeconds) {
+          if (widget.formStep.saveResultsOnAutoSkip) {
             submitQuestionWithTempResult();
           } else {
             skipQuestion();
           }
+          timer.cancel();
+          readyToProceed = true;
           blocQuestion.sendReadyToProceed(true);
-          t.cancel();
-        }
-        // For some reason, when initializing this UIFormStep, it always does it
-        // twice. Thus, we need to kill the second timer if it exists.
-        if (previousTimeInSeconds == timeInSeconds) {
-          t.cancel();
         }
       });
     }
   }
 
-  // Returning the according step body widget based on the answerFormat of each step
+  @override
+  void deactivate() {
+    timer?.cancel();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  /// Builds the step body widget based on the answer format of each step.
   Widget stepBody(String id, RPAnswerFormat answerFormat) {
     switch (answerFormat.runtimeType) {
       case RPIntegerAnswerFormat:
         return RPUIIntegerQuestionBody((answerFormat as RPIntegerAnswerFormat),
             (result) {
-          RPStepResult tempResult = stepResult.results[id] as RPStepResult;
+          RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
               .first
@@ -127,20 +119,20 @@ class RPUIFormStepState extends State<RPUIFormStep> {
         });
       case RPDoubleAnswerFormat:
         return RPUIDoubleQuestionBody((answerFormat as RPDoubleAnswerFormat),
-                (result) {
-              RPStepResult tempResult = stepResult.results[id] as RPStepResult;
-              tempResult.questionTitle = widget.formStep.steps
-                  .where((step) => step.identifier == id)
-                  .first
-                  .title;
-              tempResult.setResult(result);
+            (result) {
+          RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
+          tempResult.questionTitle = widget.formStep.steps
+              .where((step) => step.identifier == id)
+              .first
+              .title;
+          tempResult.setResult(result);
 
-              checkReadyToProceed();
-            });
+          checkReadyToProceed();
+        });
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
             (result) {
-          RPStepResult tempResult = stepResult.results[id] as RPStepResult;
+          RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
               .first
@@ -152,7 +144,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
       case RPSliderAnswerFormat:
         return RPUISliderQuestionBody((answerFormat as RPSliderAnswerFormat),
             (result) {
-          RPStepResult tempResult = stepResult.results[id] as RPStepResult;
+          RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
               .first
@@ -164,7 +156,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
       case RPImageChoiceAnswerFormat:
         return RPUIImageChoiceQuestionBody(
             (answerFormat as RPImageChoiceAnswerFormat), (result) {
-          RPStepResult tempResult = stepResult.results[id] as RPStepResult;
+          RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
               .first
@@ -176,7 +168,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
       case RPDateTimeAnswerFormat:
         return RPUIDateTimeQuestionBody(
             (answerFormat as RPDateTimeAnswerFormat), (result) {
-          RPStepResult tempResult = stepResult.results[id] as RPStepResult;
+          RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
               .first
@@ -188,13 +180,13 @@ class RPUIFormStepState extends State<RPUIFormStep> {
       case RPTextAnswerFormat:
         return RPUITextInputQuestionBody((answerFormat as RPTextAnswerFormat),
             (result) {
-          RPStepResult tempResult = stepResult.results[id] as RPStepResult;
+          RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
           tempResult.questionTitle = widget.formStep.steps
               .where((step) => step.identifier == id)
               .first
               .title;
           tempResult.setResult(result);
-          stepResult.results[id] = tempResult;
+          stepResult?.results[id] = tempResult;
 
           checkReadyToProceed();
         });
@@ -205,10 +197,13 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
   void skipQuestion() {
     FocusManager.instance.primaryFocus?.unfocus();
-    for (var key in stepResult.results.keys) {
-      (stepResult.results[key] as RPStepResult).setResult(null);
+
+    if (stepResult != null) {
+      for (var key in stepResult!.results.keys) {
+        (stepResult?.results[key] as RPStepResult).setResult(null);
+      }
     }
-    blocTask.sendStatus(RPStepStatus.Finished);
+    blocTask.sendStatus(RPStepStatus.Skipped);
     createAndSendResult();
   }
 
@@ -296,7 +291,6 @@ class RPUIFormStepState extends State<RPUIFormStep> {
   }
 
   void createAndSendResult() {
-    // In this case the result is already created, the only needed thing left is to send it
-    blocTask.sendStepResult(stepResult);
+    if (stepResult != null) blocTask.sendStepResult(stepResult!);
   }
 }

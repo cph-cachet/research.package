@@ -1,11 +1,13 @@
 part of research_package_ui;
 
-/// This class is the primary entry point for the presentation of the Research Package framework UI.
-/// It presents the steps of an [RPOrderedTask] (either navigable or just linear) and then provides the [RPTaskResult] object.
+/// This class is the primary entry point for the presentation of the Research
+/// Package framework UI.
+/// It presents the steps of an [RPOrderedTask] (either navigable or just linear)
+/// and then provides the [RPTaskResult] object.
 class RPUITask extends StatefulWidget {
   /// The task to present. It can be either an [RPOrderedTask] or an [RPNavigableOrderedTask].
-  /// The [RPUITask] presents its steps after each other and creates an [RPTaskResult] object with the same
-  /// identifier as the [task]'s identifier.
+  /// The [RPUITask] presents its steps after each other and creates an [RPTaskResult]
+  /// object with the same identifier as the [task]'s identifier.
   final RPOrderedTask task;
 
   /// The callback function which has to return an [RPTaskResult] object.
@@ -21,7 +23,8 @@ class RPUITask extends StatefulWidget {
   ///      },
   /// ```
   ///
-  /// It's only optional. If nothing is provided (is ```null```) the survey just quits without doing anything with the result.
+  /// It's optional. If not provided (is `null`) the survey just stops
+  /// without doing anything with the result.
   final void Function(RPTaskResult? result)? onCancel;
 
   const RPUITask({
@@ -39,9 +42,13 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
   late RPTaskResult _taskResult;
 
   /// A list of actual steps to show in the task.
-  /// If the task is a [RPNavigableOrderedTask] not all the questions necessarily show up because of branching.
-  /// (Some questions could be skipped based on previous answers.)
-  /// It is a dynamic list which grows and shrinks according to the forward of back navigation of the task.
+  ///
+  /// If the task is a [RPNavigableOrderedTask] not all the questions necessarily
+  /// show up because of branching, i.e., some questions could be skipped based
+  /// on previous answers.
+  ///
+  /// It is a dynamic list which grows and shrinks according to the forward of
+  /// back navigation of the task.
   final List<RPStep> _activeSteps = [];
 
   RPStep? _currentStep;
@@ -73,12 +80,15 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
     }
 
     // Subscribe to step status changes so the navigation can be triggered
-    _stepStatusSubscription = blocTask.stepStatus.listen((data) async {
-      switch (data) {
+    _stepStatusSubscription = blocTask.stepStatus.listen((status) async {
+      switch (status) {
         case RPStepStatus.Finished:
+        case RPStepStatus.Skipped:
+          // For now, the same thing has to happen whether a step is finished or skipped.
+          // But the "Skipped" status is included to cover this case also.
+
           // In case of last step we save the result and close the task
           if (_currentStep == widget.task.steps.last) {
-            //Creating and sending the task level of result to a stream to which anybody can subscribe
             createAndSendResult();
             if (widget.task.closeAfterFinished) {
               Navigator.of(context).pop();
@@ -94,7 +104,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
             }
           }
 
-          // Calculating next step and then navigate there
+          // Find the next step and then navigate there
           setState(() {
             _currentStep = _activeSteps.last;
             _currentStep = widget.task.getStepAfterStep(_currentStep, null);
@@ -110,7 +120,8 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
           showCancelConfirmationDialog();
           break;
         case RPStepStatus.Back:
-          // If the stepWidgets list only has 1 element it means the user is on the first question, so no back navigation is enabled
+          // If the stepWidgets list only has 1 element it means the user is on
+          // the first question, so no back navigation is enabled.
           if (_activeSteps.length == 1) {
             break;
           }
@@ -269,7 +280,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
 
     return WillPopScope(
       onWillPop: () async {
-        // allow the user to cancel and pop the widget
+        // Allow the user to cancel and pop the widget
         blocTask.sendStatus(RPStepStatus.Canceled);
         return true;
       },
@@ -280,19 +291,20 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // top bar
+              // Top bar
               _carouselBar(locale),
+
               // Body
               Expanded(
                 child: PageView.builder(
-                  itemBuilder: (BuildContext context, int position) {
-                    return _activeSteps[position].stepWidget;
-                  },
+                  itemBuilder: (BuildContext context, int position) =>
+                      _activeSteps[position].stepWidget,
                   itemCount: _activeSteps.length,
                   controller: _taskPageViewController,
                   physics: const NeverScrollableScrollPhysics(),
                 ),
               ),
+
               // Bottom navigation
               if (![RPCompletionStep, RPVisualConsentStep, RPConsentReviewStep]
                   .contains(_currentStep.runtimeType))
@@ -362,10 +374,12 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
     super.dispose();
   }
 
-  // Translates the RPTaskResult values to the correct language,
-  // which was shown on screen during the task.
+  /// Translates the [taskResult] values to the specified [locale],
+  /// which was used during the task.
   RPTaskResult _translateTaskResult(
-      RPLocalizations locale, RPTaskResult taskResult) {
+    RPLocalizations locale,
+    RPTaskResult taskResult,
+  ) {
     RPTaskResult translatedTaskResult =
         RPTaskResult(identifier: taskResult.identifier);
     // For each step result in the task

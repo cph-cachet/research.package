@@ -10,6 +10,8 @@ part of research_package_model;
 /// appropriate to use [RPFormStep] instead of [RPQuestionStep].
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPQuestionStep extends RPStep {
+  RPUIQuestionStep? _widget;
+
   /// The answer format which describes the format how a question can be answered.
   RPAnswerFormat answerFormat;
 
@@ -17,19 +19,17 @@ class RPQuestionStep extends RPStep {
   /// requires text entry
   String? placeholder;
 
-  /// If `autoSkip` is true, the [RPTimerStep] will move to the next step once
-  /// it has finished counting down.
-  /// This is `false` by default.
+  /// Should we automatically move to the next step after [timeout] seconds?
+  /// False by default.
   bool autoSkip;
 
-  /// 'timeout' defines how many seconds we wait for the answer before
-  /// automatically skipping to the next step.
-  /// This is 0 seconds by default.
+  /// If [autoSkip] is true, defines how long to wait for the answer
+  /// before automatically skipping to the next step.
   Duration timeout;
 
-  /// 'autoFocus' applies only to 'RPTextAnswerFormat' questions
-  /// if 'true' the keyboard will automatically be displayed when asking that text question.
-  /// This is 'false' by default.
+  /// Should the keyboard automatically be displayed when asking a text question?
+  /// Applies only to [RPTextAnswerFormat] questions.
+  /// False by default.
   bool autoFocus;
 
   /// Creates a [RPQuestionStep].
@@ -49,7 +49,7 @@ class RPQuestionStep extends RPStep {
   });
 
   @override
-  Widget get stepWidget => RPUIQuestionStep(this);
+  Widget get stepWidget => _widget ??= RPUIQuestionStep(this);
 
   @override
   Function get fromJsonFunction => _$RPQuestionStepFromJson;

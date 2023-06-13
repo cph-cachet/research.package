@@ -23,7 +23,7 @@ import 'package:simple_html_css/simple_html_css.dart';
 import 'model.dart';
 
 // Library elements
-part 'src/localization/RPLocalization.dart';
+part 'src/localization/RPLocalizations.dart';
 part 'src/localization/AssetsLocalization.dart';
 part 'src/loggers/RPActivityEventLogger.dart';
 part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';

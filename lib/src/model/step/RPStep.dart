@@ -10,9 +10,6 @@ part of research_package_model;
 /// form a task (an [RPTask] object)
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPStep extends Serializable {
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  late Widget _stepWidget;
-
   /// A unique identifier of the Step. This identifier connects the step to its
   /// result ([RPResult]) object.
   final String identifier;
@@ -34,15 +31,14 @@ class RPStep extends Serializable {
   /// Can this step be skipped? If so, the result for the step will be `null`.
   bool optional;
 
-  Timer? timer;
-
   /// Create a [RPStep] object with a unique [identifier], a [title], and
   /// a [text] to be displayed.
-  RPStep(
-      {required this.identifier,
-      required this.title,
-      this.text,
-      this.optional = false});
+  RPStep({
+    required this.identifier,
+    required this.title,
+    this.text,
+    this.optional = false,
+  });
 
   /// The widget (UI representation) of the step.
   ///
@@ -52,7 +48,7 @@ class RPStep extends Serializable {
   /// they return the corresponding UI.
   ///
   /// When needed, it should be overridden to fit the different types of Steps.
-  Widget get stepWidget => _stepWidget;
+  Widget? get stepWidget => null;
 
   @override
   Function get fromJsonFunction => _$RPStepFromJson;
@@ -64,4 +60,4 @@ class RPStep extends Serializable {
 
 /// Status of a [RPStep].
 /// Used in the Bloc so the Task Widget is notified about step navigation.
-enum RPStepStatus { Finished, Canceled, Ongoing, Back }
+enum RPStepStatus { Finished, Skipped, Canceled, Ongoing, Back }

@@ -34,12 +34,11 @@ class RPOrderedTask extends RPTask {
   }
 
   /// Returns the step after a specified step if there's any. If the specified
-  /// step is ```null``` then it returns the first step.
+  /// step is `null` then it returns the first step.
   ///
-  /// Returns ```null``` if [step] was the last one in the sequence.
+  /// Returns `null` if [step] was the last one in the sequence.
   @override
   RPStep? getStepAfterStep(RPStep? step, RPTaskResult? result) {
-    step?.timer?.cancel();
     if (step == null) return steps.first;
     int nextIndex = steps.indexOf(step) + 1;
     if (nextIndex < steps.length) return steps[nextIndex];
@@ -47,12 +46,11 @@ class RPOrderedTask extends RPTask {
   }
 
   /// Returns the step that precedes the specified step, if there is one.
-  /// If the specified step is ```null``` then it returns the last step.
+  /// If the specified step is `null` then it returns the last step.
   ///
   /// Returns `null` if [step] was the first one in the sequence.
   @override
   RPStep? getStepBeforeStep(RPStep? step, RPTaskResult? result) {
-    step?.timer?.cancel();
     if (step == null) return steps.last;
     int nextIndex = steps.indexOf(step) - 1;
     if (nextIndex >= 0) return steps[nextIndex];
@@ -64,25 +62,16 @@ class RPOrderedTask extends RPTask {
   @override
   RPStep? getStepWithIdentifier(String identifier) {
     for (var step in steps) {
-      if (identifier == step.identifier) {
-        return step;
-      }
+      if (identifier == step.identifier) return step;
     }
     print("Problem: Task Steps out of index");
     return null;
   }
 
-//  @override
-//  RPTaskProgress getProgressOfCurrentStep(RPStep step, RPTaskResult result) {
-//    int current = step == null ? -1 : _steps.indexOf(step);
-//
-//    return RPTaskProgress(current, _steps.length);
-//  }
-
   @override
   String getTitleForStep(RPStep step) => step.title;
 
-  /// Returns ```true``` if the task is a Consent Task. It is considered a
+  /// Returns `true` if the task is a Consent Task. It is considered a
   /// Consent Task if it has an [RPConsentReviewStep]
   bool get isConsentTask => _isConsentTask;
 

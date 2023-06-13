@@ -1,8 +1,10 @@
 part of research_package_ui;
 
-/// The UI representation of the [RPQuestionStep]. This widget is the container, the concrete content depends on the input step's [RPAnswerFormat].
+/// The UI representation of the [RPQuestionStep]. This widget is the container,
+/// the concrete content depends on the input step's [RPAnswerFormat].
 ///
-/// As soon as the participant has finished with the question the [RPStepResult] is being added to the [RPTaskResult]'s result list.
+/// As soon as the participant has finished with the question the [RPStepResult]
+/// is being added to the [RPTaskResult]'s result list.
 class RPUITimerStep extends StatefulWidget {
   final RPTimerStep step;
 
@@ -13,7 +15,6 @@ class RPUITimerStep extends StatefulWidget {
 }
 
 class RPUITimerStepState extends State<RPUITimerStep> {
-  // Dynamic because we don't know what value the RPChoice will have
   Timer? timer;
   late int timeInSeconds;
   Audio? audio;
@@ -37,15 +38,18 @@ class RPUITimerStepState extends State<RPUITimerStep> {
         });
       }
       if (timeInSeconds <= 0) {
-        if (widget.step.autoSkip) {
-          t.cancel();
-          FocusManager.instance.primaryFocus?.unfocus();
-          blocTask.sendStatus(RPStepStatus.Finished);
-        }
-        blocQuestion.sendReadyToProceed(true);
         if (_mPlayerIsInitialized) {
           audio?.play();
         }
+        if (widget.step.autoSkip) {
+          // Wait for the sound to finish playing before auto skipping to next step.
+          Future.delayed(const Duration(seconds: 1), () {
+            FocusManager.instance.primaryFocus?.unfocus();
+            blocTask.sendStatus(RPStepStatus.Finished);
+          });
+        }
+        blocQuestion.sendReadyToProceed(true);
+        t.cancel();
       }
     });
     blocQuestion.sendReadyToProceed(false);

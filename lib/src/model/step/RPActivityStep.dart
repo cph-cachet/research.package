@@ -9,7 +9,8 @@ part of research_package_model;
 /// (e.g. [RPTrailMakingActivity] from the cognition_package Flutter package).
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPActivityStep extends RPStep {
-  /// Show the intruction before the test?
+  /// Show the instruction before the test?
+  ///
   /// You may include your own [RPInstructionStep] step before this activity step,
   /// if you wish to display a separate page with other instructions.
   bool includeInstructions;
@@ -17,7 +18,8 @@ class RPActivityStep extends RPStep {
   /// Show the results after the test?
   bool includeResults;
 
-  /// Create a [RPActivityStep]
+  /// Create a [RPActivityStep].
+  ///
   /// The [identifier] should uniquely identify this step.
   /// The optional parameters [includeInstructions] or [includeResults] can be
   /// used exclude the non-test sections of the step.
@@ -45,7 +47,7 @@ class RPActivityStep extends RPStep {
   /// Calculates the score for this activity step.
   ///
   /// Classes extending this activity step can override this method with a
-  /// custome scoring  algorithm.
+  /// custom scoring  algorithm.
   int calculateScore(dynamic result) => 0;
 
   @override

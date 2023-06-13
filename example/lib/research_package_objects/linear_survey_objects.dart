@@ -1,7 +1,7 @@
 import 'package:research_package/model.dart';
 
 // Using keys for translation example
-List<RPChoice> timeChoices = [
+final timeChoices = [
   RPChoice(text: "timeChoice5", value: 5), // "All of the time"
   RPChoice(text: "timeChoice4", value: 4), // "Most of the time"
   RPChoice(text: "timeChoice3", value: 3), // "More than half of the time"
@@ -10,7 +10,7 @@ List<RPChoice> timeChoices = [
   RPChoice(text: "timeChoice0", value: 0), // "At no time"
 ];
 
-List<RPChoice> joyfulActivities = [
+final joyfulActivities = [
   RPChoice(text: "Your input", value: 6, isFreeText: true),
   RPChoice(text: "Jogging", value: 5, detailText: "Running in a moderate pace"),
   RPChoice(text: "Playing an instrument", value: 4),
@@ -20,7 +20,7 @@ List<RPChoice> joyfulActivities = [
   RPChoice(text: "Being productive", value: 0),
 ];
 
-List<RPChoice> instruments = [
+final instruments = [
   RPChoice(
       text: "Guitar",
       value: 3,
@@ -29,12 +29,13 @@ List<RPChoice> instruments = [
   RPChoice(text: "Piano", value: 2),
   RPChoice(text: "Saxophone", value: 1),
 ];
-List<RPChoice> yesNo = [
+
+final yesNo = [
   RPChoice(text: "Yes", value: 1),
   RPChoice(text: "No", value: 0),
 ];
 
-List<RPImageChoice> images = [
+final images = [
   RPImageChoice(
     imageUrl: 'assets/images/very-sad.png',
     value: -2,
@@ -62,21 +63,20 @@ List<RPImageChoice> images = [
   ),
 ];
 
-RPChoiceAnswerFormat timeAnswerFormat = RPChoiceAnswerFormat(
+final timeAnswerFormat = RPChoiceAnswerFormat(
   answerStyle: RPChoiceAnswerStyle.SingleChoice,
   choices: timeChoices,
 );
 
 // All types of DateTime answer formats
-RPDateTimeAnswerFormat timeOfDayAnswerFormat = RPDateTimeAnswerFormat(
+final timeOfDayAnswerFormat = RPDateTimeAnswerFormat(
     dateTimeAnswerStyle: RPDateTimeAnswerStyle.TimeOfDay);
-RPDateTimeAnswerFormat dateAndTimeAnswerFormat = RPDateTimeAnswerFormat(
+final dateAndTimeAnswerFormat = RPDateTimeAnswerFormat(
     dateTimeAnswerStyle: RPDateTimeAnswerStyle.DateAndTime);
-RPDateTimeAnswerFormat dateAnswerFormat =
+final dateAnswerFormat =
     RPDateTimeAnswerFormat(dateTimeAnswerStyle: RPDateTimeAnswerStyle.Date);
 
-// Slider
-RPSliderAnswerFormat sliderAnswerFormat = RPSliderAnswerFormat(
+final sliderAnswerFormat = RPSliderAnswerFormat(
   minValue: 0,
   maxValue: 100,
   divisions: 10,
@@ -84,157 +84,170 @@ RPSliderAnswerFormat sliderAnswerFormat = RPSliderAnswerFormat(
   suffix: " paid",
 );
 
-RPChoiceAnswerFormat joyfulActivitiesAnswerFormat = RPChoiceAnswerFormat(
+final joyfulActivitiesAnswerFormat = RPChoiceAnswerFormat(
   answerStyle: RPChoiceAnswerStyle.MultipleChoice,
   choices: joyfulActivities,
 );
 
-RPChoiceAnswerFormat instrumentsAnswerFormat = RPChoiceAnswerFormat(
+final instrumentsAnswerFormat = RPChoiceAnswerFormat(
   answerStyle: RPChoiceAnswerStyle.MultipleChoice,
   choices: instruments,
 );
 
-RPIntegerAnswerFormat weightIntegerAnswerFormat =
+final weightIntegerAnswerFormat =
     RPIntegerAnswerFormat(minValue: 0, maxValue: 200, suffix: "KG");
 
-RPChoiceAnswerFormat yesNoAnswerFormat = RPChoiceAnswerFormat(
+final bloodGlucoseDoubleAnswerFormat =
+    RPDoubleAnswerFormat(minValue: 0, maxValue: 20, suffix: "mmol/l");
+
+final yesNoAnswerFormat = RPChoiceAnswerFormat(
   answerStyle: RPChoiceAnswerStyle.SingleChoice,
   choices: yesNo,
 );
 
-RPIntegerAnswerFormat minutesIntegerAnswerFormat =
+final minutesIntegerAnswerFormat =
     RPIntegerAnswerFormat(minValue: 0, maxValue: 10000, suffix: "minutes");
 
-RPTextAnswerFormat textAnswerFormat =
-    RPTextAnswerFormat(hintText: "Write your answer here");
+final textAnswerFormat = RPTextAnswerFormat(hintText: "Write your answer here");
 
-RPImageChoiceAnswerFormat imageChoiceAnswerFormat =
-    RPImageChoiceAnswerFormat(choices: images);
+final imageChoiceAnswerFormat = RPImageChoiceAnswerFormat(choices: images);
 
-RPQuestionStep additionalInfoQuestionStep = RPQuestionStep(
+final additionalInfoQuestionStep = RPQuestionStep(
     identifier: 'additionalInfoQuestionStepID',
     title: 'Do you have any more details you would like to add?',
     answerFormat: textAnswerFormat,
     optional: true);
 
-RPQuestionStep timeOfDayQuestionStep = RPQuestionStep(
-    identifier: 'timeOfDayQuestionStepID',
+final wakeUpStep = RPQuestionStep(
+    identifier: 'wakeUpStep',
     title: 'When did you wake up?',
     answerFormat: timeOfDayAnswerFormat);
 
-RPQuestionStep dateAndTimeQuestionStep = RPQuestionStep(
-    identifier: 'dateAndTimeQuestionStepID',
+final foodStep = RPQuestionStep(
+    identifier: 'foodStep',
     title: 'When did you last eat unhealthy food?',
     answerFormat: dateAndTimeAnswerFormat);
 
-RPQuestionStep dateQuestionStep = RPQuestionStep(
-    identifier: 'dateQuestionStepID',
-    title: 'When did you last drink alcohol?',
-    answerFormat: dateAnswerFormat);
+final alcoholStep = RPQuestionStep(
+  identifier: 'alcoholStep',
+  title: 'When did you last drink alcohol?',
+  answerFormat: dateAnswerFormat,
+  autoSkip: true,
+  timeout: Duration(seconds: 6),
+);
 
-// Slider
-RPQuestionStep sliderQuestionStep = RPQuestionStep(
-  identifier: "sliderQuestionsStepID",
+final insulinStep = RPQuestionStep(
+  identifier: "insulinStep",
   title: "What did you pay for insulin?",
   answerFormat: sliderAnswerFormat,
   optional: true,
 );
 
 // Using keys for translations
-RPQuestionStep singleChoiceQuestionStep = RPQuestionStep(
+final singleChoiceQuestionStep = RPQuestionStep(
   identifier: "questionStep1ID",
   // title: "I have felt cheerful and in good spirits",
   title: "singleChoiceQuestionStep-title",
   answerFormat: timeAnswerFormat,
 );
 
-RPQuestionStep smokingQuestionStep = RPQuestionStep(
+final smokingQuestionStep = RPQuestionStep(
   identifier: "booleanQuestionStepID",
   title: "Do you smoke?",
   answerFormat: yesNoAnswerFormat,
 );
 
-RPQuestionStep instrumentChoiceQuestionStep = RPQuestionStep(
+final instrumentChoiceQuestionStep = RPQuestionStep(
     identifier: "instrumentChoiceQuestionStepID",
     title: "Which instrument are you playing?",
     answerFormat: instrumentsAnswerFormat,
     optional: true);
 
-RPQuestionStep happinessChoiceQuestionStep = RPQuestionStep(
+final happinessChoiceQuestionStep = RPQuestionStep(
     identifier: "happinessChoiceQuestionStepID",
     title: "What makes you happy?",
     answerFormat: joyfulActivitiesAnswerFormat);
 
-RPQuestionStep weightQuestionStep = RPQuestionStep(
+final weightQuestionStep = RPQuestionStep(
     identifier: "weightQuestionStepID",
     title: "What is your weight?",
     answerFormat: weightIntegerAnswerFormat);
 
-RPQuestionStep minutesQuestionStep = RPQuestionStep(
+final bloodGlucoseStep = RPQuestionStep(
+    identifier: "bloodGlucoseStep",
+    title: "Please enter your Blood Glucose",
+    answerFormat: bloodGlucoseDoubleAnswerFormat);
+
+final minutesQuestionStep = RPQuestionStep(
     identifier: "minutesQuestionStepID",
     title: "How many minutes do you spend practicing a week?",
     answerFormat: minutesIntegerAnswerFormat,
     optional: true);
 
-RPQuestionStep imageChoiceQuestionStep = RPQuestionStep(
+final imageChoiceQuestionStep = RPQuestionStep(
   identifier: "imageStepID",
   title: "Indicate you mood by selecting a picture!",
   answerFormat: imageChoiceAnswerFormat,
 );
 
-RPQuestionStep textQuestionStep = RPQuestionStep(
+final textQuestionStep = RPQuestionStep(
   identifier: "textStepID",
   answerFormat: RPTextAnswerFormat(hintText: "Write here"),
   title: "Describe your morning routine",
 );
 
-RPFormStep formStep = RPFormStep(
+final formStep = RPFormStep(
   identifier: "formstepID",
+  title: "Questions about music",
   steps: [
     instrumentChoiceQuestionStep, // optional
     textQuestionStep,
     minutesQuestionStep, // optional
-    dateQuestionStep
+    alcoholStep
   ],
-  title: "Questions about music",
+  autoSkip: true,
+  timeout: Duration(seconds: 6),
+  saveResultsOnAutoSkip: true,
 );
 
-RPCompletionStep completionStep = RPCompletionStep(
+final completionStep = RPCompletionStep(
     identifier: "completionID",
     title: "Finished",
     text: "Thank you for filling out the survey!");
 
-RPInstructionStep instructionStep = RPInstructionStep(
+final instructionStep = RPInstructionStep(
     identifier: "instructionID",
     title: "Welcome!",
     detailText: "For the sake of science of course...",
     text:
-        "Please fill out this questionnaire!\n\nIn this questionnaire the que-stions will come after each other in a given order. You still have the chance to skip a some of them though.");
+        "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.");
 
-RPTimerStep timerStep = RPTimerStep(
+final timerStep = RPTimerStep(
   identifier: 'RPTimerStepID',
-  timeout: Duration(seconds: 12),
+  timeout: Duration(seconds: 5),
   title:
       "Please think for a moment about how your day was and note it down in the next step",
   playSound: true,
+  autoSkip: true,
 );
 
-RPOrderedTask linearSurveyTask = RPOrderedTask(
+final linearSurveyTask = RPOrderedTask(
   identifier: "surveyTaskID",
   steps: [
     instructionStep,
     timerStep,
     formStep,
-    smokingQuestionStep,
-    sliderQuestionStep,
-    timeOfDayQuestionStep,
-    dateAndTimeQuestionStep,
-    dateQuestionStep,
+    // smokingQuestionStep,
+    insulinStep,
+    // wakeUpStep,
+    foodStep,
+    alcoholStep,
+    bloodGlucoseStep,
     imageChoiceQuestionStep,
-    singleChoiceQuestionStep,
-    happinessChoiceQuestionStep,
-    weightQuestionStep,
-    additionalInfoQuestionStep,
-    completionStep
+    // singleChoiceQuestionStep,
+    // happinessChoiceQuestionStep,
+    // weightQuestionStep,
+    // additionalInfoQuestionStep,
+    // completionStep
   ],
 );

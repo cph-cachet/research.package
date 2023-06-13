@@ -15,10 +15,9 @@ class RPUIQuestionStep extends StatefulWidget {
 class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   // Dynamic because we don't know what value the RPChoice will have
   dynamic _currentQuestionBodyResult;
-  late bool readyToProceed;
-  late RPStepResult result;
+  RPStepResult? result;
   RPTaskProgress? recentTaskProgress;
-  late int timeInSeconds;
+  int timeInStep = 0;
   Timer? timer;
 
   set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {
@@ -32,40 +31,44 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   }
 
   void skipQuestion() {
+    timer?.cancel();
+
     FocusManager.instance.primaryFocus?.unfocus();
-    blocTask.sendStatus(RPStepStatus.Finished);
+    blocTask.sendStatus(RPStepStatus.Skipped);
     currentQuestionBodyResult = null;
   }
 
   @override
   void initState() {
-    // Instantiating the result object here to start the time counter (startDate)
     super.initState();
+    timeInStep = 0;
 
-    if (timeInSeconds <= 0) {
-      timeInSeconds = widget.step.timeout.inSeconds;
-      const oneSec = Duration(seconds: 1);
-      timer = Timer.periodic(oneSec, (t) {
-        if (mounted) {
-          setState(() {
-            timeInSeconds--;
-          });
-        }
-        if (widget.step.autoSkip) {
-          t.cancel();
-          skipQuestion();
-        }
-        blocQuestion.sendReadyToProceed(true);
+    if (widget.step.autoSkip) {
+      timer ??= Timer.periodic(const Duration(seconds: 1), (_) {
+        timeInStep++;
+        if (timeInStep >= widget.step.timeout.inSeconds) skipQuestion();
       });
     }
 
+    // Create the result object here to record the start time
     result = RPStepResult(
         identifier: widget.step.identifier,
         questionTitle: widget.step.title,
         answerFormat: widget.step.answerFormat);
-    readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
+  }
+
+  @override
+  void deactivate() {
+    timer?.cancel();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   // Returning the according step body widget based on the answerFormat of the step
@@ -78,9 +81,9 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
         });
       case RPDoubleAnswerFormat:
         return RPUIDoubleQuestionBody((answerFormat as RPDoubleAnswerFormat),
-                (result) {
-              currentQuestionBodyResult = result;
-            });
+            (result) {
+          currentQuestionBodyResult = result;
+        });
       case RPChoiceAnswerFormat:
         return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
             (result) {
@@ -146,9 +149,13 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
 
   @override
   void createAndSendResult() {
-    result.questionTitle = widget.step.title;
-    result.setResult(_currentQuestionBodyResult);
-    blocTask.sendStepResult(result);
+    timer?.cancel();
+
+    if (result != null) {
+      result?.questionTitle = widget.step.title;
+      result?.setResult(_currentQuestionBodyResult);
+      blocTask.sendStepResult(result!);
+    }
   }
 }
 

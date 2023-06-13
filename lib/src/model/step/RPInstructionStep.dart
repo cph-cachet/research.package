@@ -20,14 +20,15 @@ class RPInstructionStep extends RPStep {
   /// If `null` nothing is shown.
   String? imagePath;
 
-  RPInstructionStep(
-      {required super.identifier,
-      required super.title,
-      super.text,
-      super.optional,
-      this.detailText,
-      this.footnote,
-      this.imagePath});
+  RPInstructionStep({
+    required super.identifier,
+    required super.title,
+    super.text,
+    super.optional,
+    this.detailText,
+    this.footnote,
+    this.imagePath,
+  });
 
   @override
   Widget get stepWidget => RPUIInstructionStep(step: this);

@@ -6,7 +6,13 @@ import 'informed_consent_page.dart';
 import 'linear_survey_page.dart';
 import 'navigable_survey_page.dart';
 
-Future main() async => runApp(MyApp());
+Future main() async {
+  // initialize cognition package
+  // only used if you load a cognition configuration from a json file
+  ResearchPackage.ensureInitialized();
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -60,7 +66,6 @@ class MyApp extends StatelessWidget {
         // from the list (English, in this case).
         return supportedLocales.first;
       },
-
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
@@ -76,15 +81,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    // initialize cognition package
-    // only used if you load a cognition configuration from a json file
-    ResearchPackage.ensureInitialized();
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
@@ -109,13 +105,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      "Welcome to the demo of the Research Package, developed by the Copenhagen Center for Health Technology.",
+                      locale?.translate("home.welcome") ?? "Welcome",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     Container(height: 5),
                     Text(
-                      "If you have any questions feel free to contact us at",
+                      locale?.translate("home.questions") ?? "Questions?",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
