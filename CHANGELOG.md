@@ -1,6 +1,6 @@
 ## 1.3.2
 
-- Added translation of both Research Package and Cognition Package to French and to Portuguese (Portugal version).
+- Added translation to French and to Portuguese (Portugal version).
 - Added autoFocus to `TextAnswerFormat`.
 - Added autoSkip, timeout, and autoSubmit to `FormStep`.
 - Added autoSkip, timeout, and autoFocus to `QuestionStep`.

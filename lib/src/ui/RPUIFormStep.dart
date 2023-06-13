@@ -198,9 +198,11 @@ class RPUIFormStepState extends State<RPUIFormStep> {
   void skipQuestion() {
     FocusManager.instance.primaryFocus?.unfocus();
 
-    stepResult?.results.keys.forEach((key) {
-      (stepResult?.results[key] as RPStepResult).setResult(null);
-    });
+    if (stepResult != null) {
+      for (var key in stepResult!.results.keys) {
+        (stepResult?.results[key] as RPStepResult).setResult(null);
+      }
+    }
     blocTask.sendStatus(RPStepStatus.Skipped);
     createAndSendResult();
   }
