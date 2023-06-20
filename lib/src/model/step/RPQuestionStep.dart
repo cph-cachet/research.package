@@ -1,13 +1,11 @@
 part of research_package_model;
 
-/// A concrete subclass of [RPStep] that represents a step in which a single
-/// question is presented to the user.
+/// Represents a [RPStep] holding a single question to be presented to the user.
 ///
-/// When a Task Widget presents an Question Step object, it instantiates an
-/// [RPUIQuestionStep] object to present the step. The actual visual presentation
-/// depends on the answer format ([RPAnswerFormat]).
-/// When you need to present more than one question at the same time, it can be
-/// appropriate to use [RPFormStep] instead of [RPQuestionStep].
+/// The rendering of an [RPQuestionStep] depends on its [answerFormat].
+/// Each answer type has its own user interface widget.
+///
+/// If you want to present multiple questions on the same page, use an [RPFormStep].
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPQuestionStep extends RPStep {
   RPUIQuestionStep? _widget;

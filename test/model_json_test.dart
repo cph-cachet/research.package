@@ -60,7 +60,7 @@ void main() {
 
   RPFormStep formStep = RPFormStep(
     identifier: 'form_step_1',
-    steps: [choiceQuestionStep1, choiceQuestionStep2],
+    questions: [choiceQuestionStep1, choiceQuestionStep2],
     title: 'A form w. questions',
   );
 

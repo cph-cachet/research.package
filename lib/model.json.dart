@@ -33,7 +33,8 @@ void _registerFromJsonFunctions() {
   FromJsonFactory().register(RPInstructionStep(identifier: '', title: ''));
   FromJsonFactory().register(
       RPTimerStep(identifier: '', timeout: const Duration(), title: ''));
-  FromJsonFactory().register(RPFormStep(identifier: '', title: '', steps: []));
+  FromJsonFactory()
+      .register(RPFormStep(identifier: '', title: '', questions: []));
   FromJsonFactory().register(RPCompletionStep(identifier: '', title: ''));
 
   // Consent Document classes

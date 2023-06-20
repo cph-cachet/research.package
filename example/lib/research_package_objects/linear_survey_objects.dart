@@ -146,7 +146,6 @@ final insulinStep = RPQuestionStep(
 // Using keys for translations
 final singleChoiceQuestionStep = RPQuestionStep(
   identifier: "questionStep1ID",
-  // title: "I have felt cheerful and in good spirits",
   title: "singleChoiceQuestionStep-title",
   answerFormat: timeAnswerFormat,
 );
@@ -199,7 +198,7 @@ final textQuestionStep = RPQuestionStep(
 final formStep = RPFormStep(
   identifier: "formstepID",
   title: "Questions about music",
-  steps: [
+  questions: [
     instrumentChoiceQuestionStep, // optional
     textQuestionStep,
     minutesQuestionStep, // optional
