@@ -3,14 +3,14 @@ description: A demo application for Research Package
 publish_to: none
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.17.0 <4.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   
   cupertino_icons: ^1.0.4
-  flutter_cupertino_localizations: ^1.0.1
   flutter_localizations:
     sdk: flutter
 

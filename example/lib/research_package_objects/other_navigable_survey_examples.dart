@@ -126,7 +126,7 @@ RPQuestionStep minutesQuestionStep = RPQuestionStep(
     answerFormat: minutesIntegerAnswerFormat);
 RPFormStep formStep = RPFormStep(
   identifier: "formstepID",
-  steps: [instrumentChoiceQuestionStep, minutesQuestionStep],
+  questions: [instrumentChoiceQuestionStep, minutesQuestionStep],
   title: "Questions about music",
   optional: true,
 );
