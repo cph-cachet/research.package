@@ -346,6 +346,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                                     }
                                   : null,
                               child: Text(
+                                style: const TextStyle(color: Colors.white),
                                 RPLocalizations.of(context)
                                         ?.translate('NEXT') ??
                                     "NEXT",
