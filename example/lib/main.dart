@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(
                         locale?.translate("informed_consent") ??
                             "Informed Consent",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute<dynamic>(
@@ -154,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       child: Text(
                         locale?.translate("linear_survey") ?? "Linear Survey",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute<dynamic>(
@@ -170,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(
                         locale?.translate("branching_survey") ??
                             "Branching Survey",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute<dynamic>(

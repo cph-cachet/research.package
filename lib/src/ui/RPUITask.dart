@@ -218,7 +218,8 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                         : CupertinoTheme.of(context).primaryColor)),
               ),
               onPressed: () {
-                // Calling the onCancel method with which the developer can for e.g. save the result on the device.
+                // Calling the onCancel method with which the developer can for
+                // e.g. save the result on the device.
                 // Only call it if it's not null
                 widget.onCancel?.call(_taskResult);
                 // Popup dismiss
@@ -278,12 +279,8 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
 
-    return WillPopScope(
-      onWillPop: () async {
-        // Allow the user to cancel and pop the widget
-        blocTask.sendStatus(RPStepStatus.Canceled);
-        return true;
-      },
+    return PopScope(
+      canPop: true,
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,

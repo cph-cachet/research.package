@@ -1,3 +1,7 @@
+## 1.4.1
+
+* fix of issue [#183](https://github.com/cph-cachet/research.package/issues/182)
+
 ## 1.4.0
 
 * `steps` in `RPFormStep` are now called `questions`.

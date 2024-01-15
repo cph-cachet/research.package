@@ -17,4 +17,5 @@ linter:
     depend_on_referenced_packages: false
     avoid_print: false
     file_names: false
+    use_string_in_part_of_directives: false
 

@@ -341,8 +341,8 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
   Widget build(BuildContext context) {
     PageController controller = PageController();
 
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: SafeArea(
