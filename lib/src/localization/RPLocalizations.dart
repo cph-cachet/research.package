@@ -13,7 +13,7 @@ class RPLocalizations extends AssetLocalizations {
   static const String assetPath = 'research_package/assets/lang';
 
   /// Create a localization based on [locale].
-  RPLocalizations(Locale locale) : super(locale);
+  RPLocalizations(super.locale);
 
   /// Returns the localized resources object of type [RPLocalizations] for the
   /// widget tree that corresponds to the given [context].
