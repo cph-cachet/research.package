@@ -86,6 +86,7 @@ class RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
           ),
         ),
         onChanged: (text) => _validate(text, locale),
+        keyboardType: TextInputType.number,
       ),
     );
   }
