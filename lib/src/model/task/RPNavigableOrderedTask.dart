@@ -26,6 +26,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   /// Returns `null` if [step] was the last one in the sequence.
   @override
   RPStep? getStepAfterStep(RPStep? step, RPTaskResult? result) {
+    step?.timer?.cancel();
     RPStep? stepToReturn;
 
     void returnNextQuestion() {

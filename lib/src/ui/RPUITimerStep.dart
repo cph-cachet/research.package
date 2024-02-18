@@ -42,11 +42,9 @@ class RPUITimerStepState extends State<RPUITimerStep> {
           audio?.play();
         }
         if (widget.step.autoSkip) {
-          // Wait for the sound to finish playing before auto skipping to next step.
-          Future.delayed(const Duration(seconds: 1), () {
-            FocusManager.instance.primaryFocus?.unfocus();
-            blocTask.sendStatus(RPStepStatus.Finished);
-          });
+          t.cancel();
+          FocusManager.instance.primaryFocus?.unfocus();
+          blocTask.sendStatus(RPStepStatus.Finished);
         }
         blocQuestion.sendReadyToProceed(true);
         t.cancel();

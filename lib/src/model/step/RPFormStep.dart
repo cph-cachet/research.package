@@ -22,6 +22,12 @@ class RPFormStep extends RPQuestionStep {
   /// False by default.
   bool saveResultsOnAutoSkip;
 
+  /// If `forceWait` is true, the [RPTimerStep] will only allow to move to next
+  /// step after finishing the countdown. If 'false' the "next" will be possible
+  /// respecting the mandatory/optional option defined above.
+  /// This is `false` by default.
+  bool forceWait;
+
   /// Create a new [RPFormStep] holding a list of [questions].
   RPFormStep({
     required super.identifier,
@@ -31,6 +37,7 @@ class RPFormStep extends RPQuestionStep {
     super.timeout,
     required this.questions,
     this.saveResultsOnAutoSkip = false,
+    this.forceWait = false,
   }) : super(answerFormat: RPFormAnswerFormat());
 
   @override

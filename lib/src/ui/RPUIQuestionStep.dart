@@ -17,7 +17,7 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   dynamic _currentQuestionBodyResult;
   RPStepResult? result;
   RPTaskProgress? recentTaskProgress;
-  int timeInStep = 0;
+  late int timeInSeconds;
   Timer? timer;
 
   set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {
@@ -41,12 +41,21 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   @override
   void initState() {
     super.initState();
-    timeInStep = 0;
 
-    if (widget.step.autoSkip) {
-      timer ??= Timer.periodic(const Duration(seconds: 1), (_) {
-        timeInStep++;
-        if (timeInStep >= widget.step.timeout.inSeconds) skipQuestion();
+    if (timeInSeconds <= 0) {
+      timeInSeconds = widget.step.timeout.inSeconds;
+      const oneSec = Duration(seconds: 1);
+      timer = Timer.periodic(oneSec, (t) {
+        if (mounted) {
+          setState(() {
+            timeInSeconds--;
+          });
+        }
+        if (widget.step.autoSkip) {
+          t.cancel();
+          skipQuestion();
+        }
+        blocQuestion.sendReadyToProceed(true);
       });
     }
 
