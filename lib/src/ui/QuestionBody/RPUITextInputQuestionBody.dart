@@ -59,6 +59,9 @@ class RPUITextInputQuestionBodyState extends State<RPUITextInputQuestionBody>
       ),
       controller: _controller,
       autofocus: widget.answerFormat.autoFocus,
+      keyboardType: TextInputType.text,
+      autocorrect: widget.answerFormat.disableHelpers ? false : true,
+      enableSuggestions: widget.answerFormat.disableHelpers ? false : true,
     );
   }
 

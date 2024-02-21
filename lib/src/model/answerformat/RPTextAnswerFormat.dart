@@ -8,7 +8,13 @@ class RPTextAnswerFormat extends RPAnswerFormat {
   String? hintText;
   bool autoFocus;
 
-  RPTextAnswerFormat({this.hintText, this.autoFocus = false}) : super();
+  /// Force the keyboard not to have any suggestions, corrections, or auto completions
+  /// This is important for writing tests, in which the speed and accuracy is important
+  bool disableHelpers;
+
+  RPTextAnswerFormat(
+      {this.hintText, this.autoFocus = false, this.disableHelpers = false})
+      : super();
 
   @override
   RPQuestionType get questionType => RPQuestionType.Text;

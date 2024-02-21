@@ -78,6 +78,7 @@ class RPUIDoubleQuestionBodyState extends State<RPUIDoubleQuestionBody>
           errorText: _valid ? null : _errorMessage,
         ),
         onChanged: (text) => _validate(text, locale),
+        keyboardType: TextInputType.number,
       ),
     );
   }

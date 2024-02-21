@@ -95,6 +95,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
             }
             break;
           }
+          _currentStep?.timer?.cancel();
           // Updating taskProgress stream
           if (_currentStep.runtimeType == RPQuestionStep) {
             _currentQuestionIndex++;

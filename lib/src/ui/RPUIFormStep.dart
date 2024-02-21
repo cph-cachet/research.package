@@ -13,8 +13,8 @@ class RPUIFormStepState extends State<RPUIFormStep> {
   bool readyToProceed = false;
   RPStepResult? stepResult;
   RPTaskProgress? recentTaskProgress;
-  int timeInForm = 0;
-  Timer? timer;
+  late int timeInSeconds;
+  late bool timerFinished;
 
   // Since the QuestionBody's are sending null if they are not answered yet we
   // can loop through the results of the steps.
@@ -31,6 +31,12 @@ class RPUIFormStepState extends State<RPUIFormStep> {
             element.results['answer'] == null)) {
           temp = false;
         }
+      }
+    }
+
+    if (widget.formStep.forceWait) {
+      if (timerFinished == false) {
+        temp = false;
       }
     }
 
@@ -65,26 +71,42 @@ class RPUIFormStepState extends State<RPUIFormStep> {
           item.title;
     }
 
+    readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
+    timerFinished = false;
 
     super.initState();
 
-    timeInForm = 0;
-
     if (widget.formStep.autoSkip) {
-      timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        timeInForm++;
-
-        if (timeInForm >= widget.formStep.timeout.inSeconds) {
+      timeInSeconds = widget.formStep.timeout.inSeconds;
+      int previousTimeInSeconds = 0;
+      const oneSec = Duration(seconds: 1);
+      Timer.periodic(oneSec, (t) {
+        widget.formStep.timer = t;
+        if (mounted) {
+          setState(() {
+            previousTimeInSeconds = timeInSeconds;
+            timeInSeconds--;
+          });
+        } else {
+          t.cancel();
+        }
+        if (timeInSeconds <= 0) {
+          timerFinished = true;
+          t.cancel();
           if (widget.formStep.saveResultsOnAutoSkip) {
             submitQuestionWithTempResult();
           } else {
             skipQuestion();
           }
-          timer.cancel();
-          readyToProceed = true;
           blocQuestion.sendReadyToProceed(true);
+          t.cancel();
+        }
+        // For some reason, when initializing this UIFormStep, it always does it
+        // twice. Thus, we need to kill the second timer if it exists.
+        if (previousTimeInSeconds == timeInSeconds) {
+          t.cancel();
         }
       });
     }
@@ -92,13 +114,11 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
   @override
   void deactivate() {
-    timer?.cancel();
     super.deactivate();
   }
 
   @override
   void dispose() {
-    timer?.cancel();
     super.dispose();
   }
 
