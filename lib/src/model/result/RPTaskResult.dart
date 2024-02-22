@@ -12,9 +12,9 @@ class RPTaskResult extends RPResult {
   /// Create a [RPTaskResult] with a given [identifier] and an empty map of results.
   ///
   /// [identifier] should always be the identifier of the "parent" task.
-  /// It sets [startDate] to the ```DateTime.now()```. Since these objects are instantiated
+  /// It sets [startDate] to the `DateTime.now()`. Since these objects are instantiated
   /// together with the Task it belongs to so it can be used for measuring
-  /// how much time the participant spent the given Task.
+  /// how much time the participant spent on the given Task.
   RPTaskResult({required super.identifier}) {
     results = {};
     startDate = DateTime.now();
@@ -25,9 +25,8 @@ class RPTaskResult extends RPResult {
       results[identifier];
 
   /// Add a result to the [results] map with the given [identifier].
-  void setStepResultForIdentifier(String identifier, RPResult result) {
-    results[identifier] = result;
-  }
+  void setStepResultForIdentifier(String identifier, RPResult result) =>
+      results[identifier] = result;
 
   factory RPTaskResult.fromJson(Map<String, dynamic> json) =>
       _$RPTaskResultFromJson(json);

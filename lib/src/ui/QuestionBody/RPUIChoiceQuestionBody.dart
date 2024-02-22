@@ -18,7 +18,7 @@ class RPUIChoiceQuestionBody extends StatefulWidget {
 
 class RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIChoiceQuestionBody> {
-  late List<RPChoice> selectedChoices;
+  List<RPChoice> selectedChoices = [];
 
   @override
   void initState() {
@@ -126,7 +126,7 @@ class _ChoiceButton extends StatefulWidget {
 
 class _ChoiceButtonState extends State<_ChoiceButton> {
   RPChoice? grpChoice;
-  late TextEditingController _controller;
+  TextEditingController? _controller;
 
   @override
   void initState() {
@@ -212,7 +212,7 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 }

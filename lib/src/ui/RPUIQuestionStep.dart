@@ -1,8 +1,12 @@
 part of research_package_ui;
 
-/// The UI representation of the [RPQuestionStep]. This widget is the container, the concrete content depends on the input step's [RPAnswerFormat].
+/// The UI representation of the [RPQuestionStep].
 ///
-/// As soon as the participant has finished with the question the [RPStepResult] is being added to the [RPTaskResult]'s result list.
+/// This widget is the container, the concrete content depends on the input
+/// step's [RPAnswerFormat].
+///
+/// As soon as the participant has finished with the question the [RPStepResult]
+/// is being added to the [RPTaskResult]'s result list.
 class RPUIQuestionStep extends StatefulWidget {
   final RPQuestionStep step;
 
@@ -13,11 +17,11 @@ class RPUIQuestionStep extends StatefulWidget {
 }
 
 class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
-  // Dynamic because we don't know what value the RPChoice will have
+  // dynamic because we don't know what value the RPChoice will have
   dynamic _currentQuestionBodyResult;
   RPStepResult? result;
   RPTaskProgress? recentTaskProgress;
-  late int timeInSeconds;
+  int timeInSeconds = 0;
   Timer? timer;
 
   set currentQuestionBodyResult(dynamic currentQuestionBodyResult) {

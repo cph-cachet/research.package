@@ -13,8 +13,8 @@ class RPUIFormStepState extends State<RPUIFormStep> {
   bool readyToProceed = false;
   RPStepResult? stepResult;
   RPTaskProgress? recentTaskProgress;
-  late int timeInSeconds;
-  late bool timerFinished;
+  int timeInSeconds = 0;
+  bool? timerFinished;
 
   // Since the QuestionBody's are sending null if they are not answered yet we
   // can loop through the results of the steps.

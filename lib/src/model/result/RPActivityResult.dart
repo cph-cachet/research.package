@@ -48,39 +48,27 @@ class RPActivityResult extends RPResult {
 /// Class representing an interaction with the app in the UI
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Interaction {
-  late DateTime _time;
-  late String _correctness;
-  late String _type;
-  late String _description;
-
-  Interaction(
-      DateTime time, String correctness, String type, String description) {
-    _time = time;
-    _correctness = correctness;
-    _type = type;
-    _description = description;
-  }
-
   /// The time of the interaction
-  DateTime get time => _time;
+  DateTime time;
 
   /// The correctness of the interaction as a [String]
-  String get correctness => _correctness;
+  String correctness;
 
   /// The type of interaction (e.g. Button tap or Drawing gesture)
-  String get type => _type;
+  String type;
 
   /// A explanatory description of the interaction (e.g. Test failed after tapping the button twice)
-  String get description => _description;
+  String description;
+
+  Interaction(this.time, this.correctness, this.type, this.description);
 
   factory Interaction.fromJson(Map<String, dynamic> json) =>
       _$InteractionFromJson(json);
   Map<String, dynamic> toJson() => _$InteractionToJson(this);
 }
 
-@JsonSerializable(includeIfNull: false, fieldRename: FieldRename.snake)
-
 /// A class representing the times of each stage of the test.
+@JsonSerializable(includeIfNull: false, fieldRename: FieldRename.snake)
 class StepTimes {
   /// The time the instruction stage of a test started
   DateTime? instructionStarted;

@@ -16,7 +16,7 @@ class RPUITimerStep extends StatefulWidget {
 
 class RPUITimerStepState extends State<RPUITimerStep> {
   Timer? timer;
-  late int timeInSeconds;
+  int timeInSeconds = 0;
   Audio? audio;
   bool _mPlayerIsInitialized = false;
   ByteData? data;
