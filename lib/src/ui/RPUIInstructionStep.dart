@@ -119,7 +119,7 @@ class _DetailTextRoute extends StatelessWidget {
               children: [
                 const SizedBox(width: 3),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     size: 30,
                   ),
