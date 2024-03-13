@@ -127,13 +127,17 @@ class _DetailTextRoute extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineSmall),
               ],
             ),
-            Container(
-              padding: const EdgeInsets.all(20.0),
-              child: SingleChildScrollView(
-                child: Text(
-                  locale?.translate(content) ?? content,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  textAlign: TextAlign.start,
+            Expanded(
+              child: Scrollbar(
+                child: SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      locale?.translate(content) ?? content,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
                 ),
               ),
             ),
