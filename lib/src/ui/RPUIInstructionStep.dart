@@ -119,8 +119,10 @@ class _DetailTextRoute extends StatelessWidget {
               children: [
                 const SizedBox(width: 3),
                 IconButton(
-                  icon: Icon(Icons.arrow_back,
-                      color: Theme.of(context).colorScheme.onPrimary, size: 30),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                  ),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 Text(locale?.translate('learn_more') ?? 'Learn more',
