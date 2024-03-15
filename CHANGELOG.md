@@ -1,4 +1,5 @@
 ## 1.4.2
+* fix UI bugs [#100](https://github.com/cph-cachet/research.package/issues/100) and [#101](https://github.com/cph-cachet/research.package/issues/101)
 
 ## 1.4.1
 
