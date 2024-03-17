@@ -16,9 +16,9 @@ class RPUIDoubleQuestionBody extends StatefulWidget {
 
 class RPUIDoubleQuestionBodyState extends State<RPUIDoubleQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIDoubleQuestionBody> {
-  late TextEditingController _textEditingController;
+  TextEditingController? _textEditingController;
   String? _errorMessage;
-  late bool _valid;
+  bool _valid = true;
 
   @override
   void initState() {
@@ -85,7 +85,7 @@ class RPUIDoubleQuestionBodyState extends State<RPUIDoubleQuestionBody>
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    _textEditingController?.dispose();
     super.dispose();
   }
 

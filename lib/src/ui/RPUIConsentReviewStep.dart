@@ -15,9 +15,8 @@ class RPUIConsentReviewStep extends StatefulWidget {
 
 class RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
     with CanSaveResult {
-  late RPConsentSignatureResult consentSignatureResult;
+  RPConsentSignatureResult? consentSignatureResult;
   RPSignatureResult? signatureResult;
-  // late RPStepResult result;
 
   @override
   void initState() {
@@ -88,7 +87,7 @@ class RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
         signature: signatureResult)
       ..endDate = DateTime.now();
 
-    blocTask.sendStepResult(consentSignatureResult);
+    blocTask.sendStepResult(consentSignatureResult!);
   }
 
   @override
@@ -326,13 +325,13 @@ class _SignatureRoute extends StatefulWidget {
 }
 
 class _SignatureRouteState extends State<_SignatureRoute> {
-  late bool _isNameFilled;
+  bool _isNameFilled = false;
   bool _isSignatureAdded = false;
 
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
 
-  late SignatureController _signatureController;
+  SignatureController? _signatureController;
 
   void _checkNameIsNotEmpty() {
     setState(() {
@@ -348,7 +347,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
       penColor: Colors.red,
       exportBackgroundColor: Colors.blue,
       onDrawEnd: () {
-        if (_signatureController.isNotEmpty) {
+        if (_signatureController!.isNotEmpty) {
           setState(() {
             _isSignatureAdded = true;
           });
@@ -416,7 +415,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
                   ),
                 ),
                 child: Signature(
-                  controller: _signatureController,
+                  controller: _signatureController!,
                   height: 200,
                   width: MediaQuery.of(context).size.width - 70,
                   backgroundColor: Colors.transparent,
@@ -426,7 +425,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
             OutlinedButton(
               onPressed: _isSignatureAdded
                   ? () {
-                      _signatureController.clear();
+                      _signatureController?.clear();
                       setState(() {
                         _isSignatureAdded = false;
                       });
@@ -469,7 +468,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
           onPressed: (_isNameFilled && _isSignatureAdded)
               ? () {
                   if (widget._consentSignature.requiresSignatureImage) {
-                    _signatureController.toPngBytes().then(
+                    _signatureController?.toPngBytes().then(
                       (image) {
                         widget._onFinished(
                           RPSignatureResult.withParams(

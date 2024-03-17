@@ -1,3 +1,10 @@
+## 1.4.3
+
+* `DoubleQuestionFormat` and `IntegerQuestionFormat` now open a keyboard with only numbers, given that is the only accepted format.
+* `TextAnswerFormat` now has the possibility of disabling all the keyboard "helpers" (e.g., auto corrector, suggestions).
+* Fix of issue [#95](https://github.com/cph-cachet/research.package/issues/95).
+* Fix of a case in which an `RPStep` could be null.
+
 ## 1.4.2
 * fix UI bugs [#100](https://github.com/cph-cachet/research.package/issues/100) and [#101](https://github.com/cph-cachet/research.package/issues/101)
 
