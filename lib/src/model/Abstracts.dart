@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A protocol to mark the Widgets which are producing [RPResult] objects.
 /// They all need to implement the [createAndSendResult] method

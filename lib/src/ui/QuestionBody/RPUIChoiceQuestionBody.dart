@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../../ui.dart';
 
 /// The UI representation of [RPChoiceAnswerFormat]. This UI part appears embedded in a [RPUIQuestionStep].
 /// Depending on the [RPChoiceAnswerFormat]'s [ChoiceAnswerStyle] property, the user can select only one or multiple options.

@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A step which can be used as a "Thank you" or completion step in a task.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)

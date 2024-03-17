@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../ui.dart';
 
 /// This class is the primary entry point for the presentation of the Research
 /// Package framework UI.

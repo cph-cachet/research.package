@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A step which can be used to show instructions and other information
 /// to the participant.

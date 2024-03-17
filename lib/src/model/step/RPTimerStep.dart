@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A step where the user is forced to wait for [timeout] before being allowed
 /// to proceed to the next step.

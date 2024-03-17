@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../ui.dart';
 
 /// The information logger used in [RPUIActivityStep].
 /// It fills and modifies a [RPActivityResult] with events from an activity.

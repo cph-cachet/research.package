@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../../ui.dart';
 
 class RPUIImageChoiceQuestionBody extends StatefulWidget {
   final RPImageChoiceAnswerFormat answerFormat;

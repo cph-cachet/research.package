@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A navigation rule which maps from an answer to a step.
 /// If an answer value is specified then the survey jumps to that question

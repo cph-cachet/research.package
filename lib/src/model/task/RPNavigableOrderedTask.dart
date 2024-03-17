@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// The [RPNavigableOrderedTask] class adds conditional step navigation to the
 /// behavior inherited from the [RPOrderedTask] class.

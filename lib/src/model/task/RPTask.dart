@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// The [RPTask] class defines a task to be carried out by a
 /// participant in a research study.

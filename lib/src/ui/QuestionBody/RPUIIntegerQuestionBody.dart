@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../../ui.dart';
 
 class RPUIIntegerQuestionBody extends StatefulWidget {
   final RPIntegerAnswerFormat answerFormat;

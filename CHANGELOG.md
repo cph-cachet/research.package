@@ -4,8 +4,10 @@
 * `TextAnswerFormat` now has the possibility of disabling all the keyboard "helpers" (e.g., auto corrector, suggestions).
 * Fix of issue [#95](https://github.com/cph-cachet/research.package/issues/95).
 * Fix of a case in which an `RPStep` could be null.
+* Fix of `LateInitializationError` by removing late variables.
 
 ## 1.4.2
+
 * fix UI bugs [#100](https://github.com/cph-cachet/research.package/issues/100) and [#101](https://github.com/cph-cachet/research.package/issues/101)
 
 ## 1.4.1

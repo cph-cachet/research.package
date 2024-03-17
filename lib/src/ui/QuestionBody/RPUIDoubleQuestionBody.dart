@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../../ui.dart';
 
 class RPUIDoubleQuestionBody extends StatefulWidget {
   final RPDoubleAnswerFormat answerFormat;
@@ -78,7 +78,7 @@ class RPUIDoubleQuestionBodyState extends State<RPUIDoubleQuestionBody>
           errorText: _valid ? null : _errorMessage,
         ),
         onChanged: (text) => _validate(text, locale),
-        keyboardType: TextInputType.numberWithOptions(decimal: true),
+        keyboardType: const TextInputType.numberWithOptions(decimal: true),
       ),
     );
   }

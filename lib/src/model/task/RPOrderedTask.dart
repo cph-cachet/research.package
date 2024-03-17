@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A simple linear task which implement the [RPTask] protocol. It shows the
 /// steps one after another without the option of going back or branching.

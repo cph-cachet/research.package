@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of research_package_model;
+part of '../../../model.dart';
 
 bool _fromJsonFunctionsRegistered = false;
 

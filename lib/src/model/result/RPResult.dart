@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// The superclass for results. It defines the attributes which all the more
 /// specialized results classes should have.

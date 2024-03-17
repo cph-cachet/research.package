@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../ui.dart';
 
 /// Localization support for Research Package using [LocalizationLoader]
 /// configurations.

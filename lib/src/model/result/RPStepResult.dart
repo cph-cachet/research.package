@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// The result from a [RPStep].
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
