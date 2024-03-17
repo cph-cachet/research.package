@@ -119,21 +119,27 @@ class _DetailTextRoute extends StatelessWidget {
               children: [
                 const SizedBox(width: 3),
                 IconButton(
-                  icon: Icon(Icons.arrow_back,
-                      color: Theme.of(context).colorScheme.onPrimary, size: 30),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                  ),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 Text(locale?.translate('learn_more') ?? 'Learn more',
                     style: Theme.of(context).textTheme.headlineSmall),
               ],
             ),
-            Container(
-              padding: const EdgeInsets.all(20.0),
-              child: SingleChildScrollView(
-                child: Text(
-                  locale?.translate(content) ?? content,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  textAlign: TextAlign.start,
+            Expanded(
+              child: Scrollbar(
+                child: SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      locale?.translate(content) ?? content,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
                 ),
               ),
             ),
