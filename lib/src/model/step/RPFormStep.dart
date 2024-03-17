@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A [RPFormStep] is a special type of [RPQuestionStep], used for
 /// presenting multiple questions on a single scrollable page.

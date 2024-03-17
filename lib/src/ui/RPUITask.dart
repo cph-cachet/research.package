@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../ui.dart';
 
 /// This class is the primary entry point for the presentation of the Research
 /// Package framework UI.
@@ -39,7 +39,7 @@ class RPUITask extends StatefulWidget {
 }
 
 class RPUITaskState extends State<RPUITask> with CanSaveResult {
-  late RPTaskResult _taskResult;
+  RPTaskResult? _taskResult;
 
   /// A list of actual steps to show in the task.
   ///
@@ -55,8 +55,8 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
   int _currentStepIndex = 0;
   int _currentQuestionIndex = 1;
 
-  late StreamSubscription<RPStepStatus> _stepStatusSubscription;
-  late StreamSubscription<RPResult> _stepResultSubscription;
+  StreamSubscription<RPStepStatus>? _stepStatusSubscription;
+  StreamSubscription<RPResult>? _stepResultSubscription;
 
   final PageController _taskPageViewController =
       PageController(keepPage: false);
@@ -155,8 +155,11 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
     });
 
     _stepResultSubscription = blocTask.stepResult.listen((stepResult) {
-      _taskResult.setStepResultForIdentifier(stepResult.identifier, stepResult);
-      blocTask.updateTaskResult(_taskResult);
+      if (_taskResult != null) {
+        _taskResult?.setStepResultForIdentifier(
+            stepResult.identifier, stepResult);
+        blocTask.updateTaskResult(_taskResult!);
+      }
     });
 
     setState(() {
@@ -169,13 +172,13 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
   @override
   createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate)
-    _taskResult.endDate = DateTime.now();
+    _taskResult?.endDate = DateTime.now();
     RPTaskResult? translatedTaskResult;
-    if (RPLocalizations.of(context) != null) {
+    if (RPLocalizations.of(context) != null && _taskResult != null) {
       translatedTaskResult =
-          _translateTaskResult(RPLocalizations.of(context)!, _taskResult);
+          _translateTaskResult(RPLocalizations.of(context)!, _taskResult!);
     }
-    widget.onSubmit?.call(translatedTaskResult ?? _taskResult);
+    widget.onSubmit?.call(translatedTaskResult ?? _taskResult!);
   }
 
   void showCancelConfirmationDialog() {
@@ -367,8 +370,8 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
 
   @override
   dispose() {
-    _stepStatusSubscription.cancel();
-    _stepResultSubscription.cancel();
+    _stepStatusSubscription?.cancel();
+    _stepResultSubscription?.cancel();
     _taskPageViewController.dispose();
     super.dispose();
   }

@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../ui.dart';
 
 /// The UI representation of the [RPActivityStep]. This widget is the container, the concrete content depends on the input step's [runtimeType].
 ///
@@ -13,10 +13,10 @@ class RPUIActivityStep extends StatefulWidget {
 }
 
 class RPUIActivityStepState extends State<RPUIActivityStep> with CanSaveResult {
-  // Dynamic because as the type of result will have can vary
+  // dynamic because as the type of result will have can vary
   dynamic _currentActivityBodyResult;
   bool? readyToProceed;
-  late RPActivityResult result;
+  RPActivityResult? result;
   RPTaskProgress? recentTaskProgress;
   RPActivityEventLogger? eventLogger;
 
@@ -37,7 +37,7 @@ class RPUIActivityStepState extends State<RPUIActivityStep> with CanSaveResult {
     readyToProceed = false;
     blocQuestion.sendReadyToProceed(false);
     recentTaskProgress = blocTask.lastProgressValue;
-    eventLogger = RPActivityEventLogger(result);
+    eventLogger = RPActivityEventLogger(result!);
 
     super.initState();
   }
@@ -61,8 +61,8 @@ class RPUIActivityStepState extends State<RPUIActivityStep> with CanSaveResult {
   @override
   void createAndSendResult() {
     // Populate the result object with value and end the time tracker (set endDate)
-    result.setFinalResult(_currentActivityBodyResult);
-    blocTask.sendStepResult(result);
+    result?.setFinalResult(_currentActivityBodyResult);
+    blocTask.sendStepResult(result!);
   }
 }
 

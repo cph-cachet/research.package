@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// Class representing a specific data type being collected to be shown
 /// as part of informed consent.

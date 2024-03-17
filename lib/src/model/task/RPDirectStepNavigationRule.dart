@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// The [RPDirectStepNavigationRule] class can be used to unconditionally jump
 /// to a destination step specified by its identifier or to finish the task early.

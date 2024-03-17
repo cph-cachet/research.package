@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A content section in a [RPConsentDocument].
 ///

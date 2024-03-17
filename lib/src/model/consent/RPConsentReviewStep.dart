@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// The step for presenting the consent document for review and collecting the
 /// signature

@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../../ui.dart';
 
 /// The UI representation of [RPChoiceAnswerFormat]. This UI part appears embedded in a [RPUIQuestionStep].
 /// Depending on the [RPChoiceAnswerFormat]'s [ChoiceAnswerStyle] property, the user can select only one or multiple options.
@@ -18,7 +18,7 @@ class RPUIChoiceQuestionBody extends StatefulWidget {
 
 class RPUIChoiceQuestionBodyState extends State<RPUIChoiceQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIChoiceQuestionBody> {
-  late List<RPChoice> selectedChoices;
+  List<RPChoice> selectedChoices = [];
 
   @override
   void initState() {
@@ -126,7 +126,7 @@ class _ChoiceButton extends StatefulWidget {
 
 class _ChoiceButtonState extends State<_ChoiceButton> {
   RPChoice? grpChoice;
-  late TextEditingController _controller;
+  TextEditingController? _controller;
 
   @override
   void initState() {
@@ -212,7 +212,7 @@ class _ChoiceButtonState extends State<_ChoiceButton> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 }

@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// Super class of the navigation rules. Do not use this type, only sub-classes.
 /// Extend this to create a custom navigation rule.

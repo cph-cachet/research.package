@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../ui.dart';
 
 /// The UI representation of [RPInstructionStep]
 ///
@@ -133,7 +133,7 @@ class _DetailTextRoute extends StatelessWidget {
               child: Scrollbar(
                 child: SingleChildScrollView(
                   child: Container(
-                    padding: EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Text(
                       locale?.translate(content) ?? content,
                       style: Theme.of(context).textTheme.bodyLarge,

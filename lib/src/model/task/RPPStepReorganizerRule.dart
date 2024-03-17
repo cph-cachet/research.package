@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// Reorganizes the survey steps and removes all steps that arent specified by the [reorderingMap].
 /// The survey will then go to the specified step

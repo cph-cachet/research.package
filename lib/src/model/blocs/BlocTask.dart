@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 // Note: The streams are open for the whole application run. Maybe the singleton
 // solution is not the best and a new bloc instance is better to create each time it's needed.

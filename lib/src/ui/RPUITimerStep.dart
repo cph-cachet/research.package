@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../ui.dart';
 
 /// The UI representation of the [RPQuestionStep]. This widget is the container,
 /// the concrete content depends on the input step's [RPAnswerFormat].
@@ -16,7 +16,7 @@ class RPUITimerStep extends StatefulWidget {
 
 class RPUITimerStepState extends State<RPUITimerStep> {
   Timer? timer;
-  late int timeInSeconds;
+  int timeInSeconds = 0;
   Audio? audio;
   bool _mPlayerIsInitialized = false;
   ByteData? data;

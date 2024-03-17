@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../../ui.dart';
 
 class RPUIDoubleQuestionBody extends StatefulWidget {
   final RPDoubleAnswerFormat answerFormat;
@@ -16,9 +16,9 @@ class RPUIDoubleQuestionBody extends StatefulWidget {
 
 class RPUIDoubleQuestionBodyState extends State<RPUIDoubleQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIDoubleQuestionBody> {
-  late TextEditingController _textEditingController;
+  TextEditingController? _textEditingController;
   String? _errorMessage;
-  late bool _valid;
+  bool _valid = true;
 
   @override
   void initState() {
@@ -78,14 +78,14 @@ class RPUIDoubleQuestionBodyState extends State<RPUIDoubleQuestionBody>
           errorText: _valid ? null : _errorMessage,
         ),
         onChanged: (text) => _validate(text, locale),
-        keyboardType: TextInputType.numberWithOptions(decimal: true),
+        keyboardType: const TextInputType.numberWithOptions(decimal: true),
       ),
     );
   }
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    _textEditingController?.dispose();
     super.dispose();
   }
 

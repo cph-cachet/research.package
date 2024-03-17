@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// The signature used in [RPConsentSignatureResult]
 ///

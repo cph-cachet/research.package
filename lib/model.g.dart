@@ -303,6 +303,7 @@ RPTextAnswerFormat _$RPTextAnswerFormatFromJson(Map<String, dynamic> json) =>
     RPTextAnswerFormat(
       hintText: json['hint_text'] as String?,
       autoFocus: json['auto_focus'] as bool? ?? false,
+      disableHelpers: json['disable_helpers'] as bool? ?? false,
     )
       ..$type = json['__type'] as String?
       ..questionType =
@@ -320,6 +321,7 @@ Map<String, dynamic> _$RPTextAnswerFormatToJson(RPTextAnswerFormat instance) {
   writeNotNull('__type', instance.$type);
   writeNotNull('hint_text', instance.hintText);
   val['auto_focus'] = instance.autoFocus;
+  val['disable_helpers'] = instance.disableHelpers;
   val['question_type'] = _$RPQuestionTypeEnumMap[instance.questionType]!;
   return val;
 }
@@ -547,6 +549,7 @@ RPFormStep _$RPFormStepFromJson(Map<String, dynamic> json) => RPFormStep(
           .toList(),
       saveResultsOnAutoSkip:
           json['save_results_on_auto_skip'] as bool? ?? false,
+      forceWait: json['force_wait'] as bool? ?? false,
     )
       ..$type = json['__type'] as String?
       ..text = json['text'] as String?
@@ -576,6 +579,7 @@ Map<String, dynamic> _$RPFormStepToJson(RPFormStep instance) {
   val['auto_focus'] = instance.autoFocus;
   val['questions'] = instance.questions;
   val['save_results_on_auto_skip'] = instance.saveResultsOnAutoSkip;
+  val['force_wait'] = instance.forceWait;
   return val;
 }
 

@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../../ui.dart';
 
 class RPUIIntegerQuestionBody extends StatefulWidget {
   final RPIntegerAnswerFormat answerFormat;
@@ -16,9 +16,9 @@ class RPUIIntegerQuestionBody extends StatefulWidget {
 
 class RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
     with AutomaticKeepAliveClientMixin<RPUIIntegerQuestionBody> {
-  late TextEditingController _textEditingController;
+  TextEditingController? _textEditingController;
   String? _errorMessage;
-  late bool _valid;
+  bool _valid = true;
 
   @override
   void initState() {
@@ -93,7 +93,7 @@ class RPUIIntegerQuestionBodyState extends State<RPUIIntegerQuestionBody>
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    _textEditingController?.dispose();
     super.dispose();
   }
 

@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A concrete subclass of [RPStep] that represents a step in which a single
 /// Activity is presented to the user.

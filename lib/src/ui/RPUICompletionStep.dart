@@ -1,4 +1,4 @@
-part of research_package_ui;
+part of '../../ui.dart';
 
 /// The UI representation of [RPCompletionStep]
 ///
@@ -15,8 +15,8 @@ class RPUICompletionStep extends StatefulWidget {
 
 class RPUICompletionStepState extends State<RPUICompletionStep>
     with SingleTickerProviderStateMixin {
-  late Animation<double> _scale;
-  late AnimationController _controller;
+  Animation<double>? _scale;
+  AnimationController? _controller;
 
   @override
   void initState() {
@@ -26,8 +26,8 @@ class RPUICompletionStepState extends State<RPUICompletionStep>
         vsync: this, duration: const Duration(milliseconds: 350));
     _scale = Tween(begin: 0.3, end: 1.1)
         .chain(CurveTween(curve: Curves.easeInOut))
-        .animate(_controller);
-    _controller.forward();
+        .animate(_controller!);
+    _controller?.forward();
   }
 
   @override
@@ -59,7 +59,7 @@ class RPUICompletionStepState extends State<RPUICompletionStep>
               ],
             ),
             ScaleTransition(
-              scale: _scale,
+              scale: _scale!,
               child: Image.asset(
                 'assets/icons/checkmark.png',
                 package: 'research_package',
@@ -92,7 +92,7 @@ class RPUICompletionStepState extends State<RPUICompletionStep>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 }

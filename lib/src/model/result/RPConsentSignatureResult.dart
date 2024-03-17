@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// Represents a signature applied to a given consent document.
 /// It indicates if a given consent document has been signed by a user.

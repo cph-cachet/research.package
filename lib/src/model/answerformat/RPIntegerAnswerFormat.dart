@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// Class representing an Answer Format that lets participants input a integer.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)

@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// Represents a [RPStep] holding a single question to be presented to the user.
 ///

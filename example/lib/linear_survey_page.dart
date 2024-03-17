@@ -13,14 +13,15 @@ class LinearSurveyPage extends StatelessWidget {
   }
 
   void resultCallback(RPTaskResult result) {
-    // Do anything with the result
-    // print(_encode(result));
+    // Do anything with the final result
+    print('FINAL RESULT:');
     printWrapped(_encode(result));
   }
 
   void cancelCallBack(RPTaskResult result) {
     // Do anything with the result at the moment of the cancellation
-    print("The result so far:\n" + _encode(result));
+    print('RESULT SO FAR:');
+    printWrapped(_encode(result));
   }
 
   @override

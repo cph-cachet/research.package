@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// The BLoC for the communication between the question container
 /// [RPUIQuestionStep] and the question body

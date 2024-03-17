@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// Class representing the Answer Format for Form Questions (Multiple questions
 /// at the same time on the same page)

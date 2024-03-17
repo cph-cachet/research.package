@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// The [RPTask] class defines a task to be carried out by a
 /// participant in a research study.
@@ -17,7 +17,7 @@ class RPTask extends Serializable {
 
   /// A unique identifier of the Task. This identifier connects the Task to its
   /// result ([RPTaskResult]) object.
-  late String identifier;
+  String identifier;
 
   /// If set to `true` the Task will close after the participant has finished
   /// the task. If it's set to `false` no navigation function is called.

@@ -1,4 +1,4 @@
-part of research_package_model;
+part of '../../../model.dart';
 
 /// A simple linear task which implement the [RPTask] protocol. It shows the
 /// steps one after another without the option of going back or branching.
@@ -8,8 +8,8 @@ part of research_package_model;
 /// using [RPNavigableOrderedTask] which inherited from this class.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class RPOrderedTask extends RPTask {
-  late int _numberOfQuestionSteps;
-  late bool _isConsentTask;
+  int _numberOfQuestionSteps = 0;
+  bool _isConsentTask = false;
 
   /// The list of [RPStep]s of the task
   List<RPStep> steps;
@@ -19,9 +19,6 @@ class RPOrderedTask extends RPTask {
     super.closeAfterFinished = true,
     required this.steps,
   }) {
-    _numberOfQuestionSteps = 0;
-    _isConsentTask = false;
-
     for (var step in steps) {
       // Counting the Question or FormStep items
       if (step is RPQuestionStep) _numberOfQuestionSteps++;
