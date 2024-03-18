@@ -227,7 +227,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                 // Only call it if it's not null
                 widget.onCancel?.call(_taskResult);
                 // Popup dismiss
-                Navigator.of(context).pop();
+                //Navigator.of(context).pop();
                 // Exit the Ordered Task
                 Navigator.of(context).pop();
               },
@@ -261,19 +261,19 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                 : Container(),
           ),
           // Close button
-          Expanded(
-            flex: 1,
-            child: IconButton(
-              icon: Icon(
-                Icons.highlight_off,
-                color: ((CupertinoTheme.of(context).primaryColor ==
-                        CupertinoColors.activeBlue)
-                    ? Theme.of(context).primaryColor
-                    : CupertinoTheme.of(context).primaryColor),
-              ),
-              onPressed: () => blocTask.sendStatus(RPStepStatus.Canceled),
-            ),
-          ),
+          // Expanded(
+          //   flex: 1,
+          //   child: IconButton(
+          //     icon: Icon(
+          //       Icons.highlight_off,
+          //       color: ((CupertinoTheme.of(context).primaryColor ==
+          //               CupertinoColors.activeBlue)
+          //           ? Theme.of(context).primaryColor
+          //           : CupertinoTheme.of(context).primaryColor),
+          //     ),
+          //     onPressed: () => blocTask.sendStatus(RPStepStatus.Canceled),
+          //   ),
+          // ),
         ],
       ),
     );
