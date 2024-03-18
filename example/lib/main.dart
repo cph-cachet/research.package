@@ -19,10 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       supportedLocales: [
-        Locale('en'),
-        Locale('da'),
-        Locale('fr'),
         Locale('es'),
+        Locale('en'),
       ],
       localizationsDelegates: [
         // Research Package translations - supports translation of both the
