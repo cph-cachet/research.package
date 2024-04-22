@@ -48,7 +48,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
       RPStepNavigationRule rule = stepNavigationRules[step.identifier]!;
 
       switch (rule.runtimeType) {
-        case RPStepReorganizerRule:
+        case const (RPStepReorganizerRule):
           RPStepReorganizerRule reorganizerRule = rule as RPStepReorganizerRule;
           RPStepResult? stepResult;
           if (step.runtimeType == RPFormStep) {
@@ -104,7 +104,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
           returnNextQuestion();
 
           break;
-        case RPStepJumpRule:
+        case const (RPStepJumpRule):
           RPStepJumpRule jumpRule = (rule as RPStepJumpRule);
           RPStepResult? stepResult;
           if (step.runtimeType == RPFormStep) {
@@ -157,7 +157,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
           }
 
           break;
-        case RPDirectStepNavigationRule:
+        case const (RPDirectStepNavigationRule):
           String destinationStepIdentifier =
               (rule as RPDirectStepNavigationRule).destinationStepIdentifier;
           for (var step in steps) {

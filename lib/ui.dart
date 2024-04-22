@@ -12,33 +12,32 @@ library research_package_ui;
 import 'dart:async';
 import 'dart:convert';
 
-// Imports
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:audiofileplayer/audiofileplayer.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:signature/signature.dart';
 import 'package:simple_html_css/simple_html_css.dart';
 
 import 'model.dart';
 
 // Library elements
-part 'src/localization/RPLocalizations.dart';
-part 'src/localization/AssetsLocalization.dart';
-part 'src/loggers/RPActivityEventLogger.dart';
-part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIImageChoiceQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIIntegerQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUIDoubleQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUISliderQuestionBody.dart';
-part 'src/ui/QuestionBody/RPUITextInputQuestionBody.dart';
-part 'src/ui/RPUICompletionStep.dart';
-part 'src/ui/RPUIConsentReviewStep.dart';
-part 'src/ui/RPUIFormStep.dart';
-part 'src/ui/RPUIInstructionStep.dart';
-part 'src/ui/RPUIQuestionStep.dart';
-part 'src/ui/RPUITask.dart';
-part 'src/ui/RPUIVisualConsentStep.dart';
-part 'src/ui/RPUIActivityStep.dart';
-part 'src/ui/RPUITimerStep.dart';
+part 'src/localization/localizations.dart';
+part 'src/localization/assets_localization.dart';
+part 'src/loggers/activity_event_logger.dart';
+part 'src/ui/questions/choice_question_body.dart';
+part 'src/ui/questions/date_time_question_body.dart';
+part 'src/ui/questions/image_choice_question_body.dart';
+part 'src/ui/questions/integer_question_body.dart';
+part 'src/ui/questions/double_question_body.dart';
+part 'src/ui/questions/slider_question_body.dart';
+part 'src/ui/questions/text_input_question_body.dart';
+part 'src/ui/completion_step.dart';
+part 'src/ui/consent_review_step.dart';
+part 'src/ui/form_step.dart';
+part 'src/ui/instruction_step.dart';
+part 'src/ui/question_step.dart';
+part 'src/ui/task.dart';
+part 'src/ui/visual_consent_step.dart';
+part 'src/ui/activity_step.dart';
+part 'src/ui/timer_step.dart';

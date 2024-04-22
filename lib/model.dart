@@ -19,69 +19,55 @@ part 'model.g.dart';
 part 'model.json.dart';
 
 // Library elements
-part 'src/model/answerformat/RPAnswerFormat.dart';
-part 'src/model/answerformat/RPIntegerAnswerFormat.dart';
-part 'src/model/answerformat/RPDoubleAnswerFormat.dart';
-part 'src/model/answerformat/RPChoiceAnswerFormat.dart';
-part 'src/model/answerformat/RPFormAnswerFormat.dart';
-part 'src/model/answerformat/RPSliderAnswerFormat.dart';
-part 'src/model/answerformat/RPImageChoiceAnswerFormat.dart';
-part 'src/model/answerformat/RPDateTimeAnswerFormat.dart';
-part 'src/model/answerformat/RPTextAnswerFormat.dart';
+part 'src/model/answerformat/answer_format.dart';
+part 'src/model/answerformat/integer_answer_format.dart';
+part 'src/model/answerformat/double_answer_format.dart';
+part 'src/model/answerformat/choice_answer_format.dart';
+part 'src/model/answerformat/form_answer_format.dart';
+part 'src/model/answerformat/slider_answer_format.dart';
+part 'src/model/answerformat/image_choice_answer_format.dart';
+part 'src/model/answerformat/date_time_answer_format.dart';
+part 'src/model/answerformat/text_answer_format.dart';
 
-part 'src/model/consent/RPConsentDocument.dart';
-part 'src/model/consent/RPConsentSection.dart';
-part 'src/model/consent/RPConsentSignature.dart';
-part 'src/model/consent/RPVisualConsentStep.dart';
-part 'src/model/consent/RPConsentReviewStep.dart';
-part 'src/model/consent/RPDataTypeSection.dart';
+part 'src/model/consent/consent_document.dart';
+part 'src/model/consent/consent_section.dart';
+part 'src/model/consent/consent_signature.dart';
+part 'src/model/consent/visual_consent_step.dart';
+part 'src/model/consent/consent_review_step.dart';
+part 'src/model/consent/data_type_section.dart';
 
-part 'src/model/step/RPStep.dart';
-part 'src/model/step/RPFormStep.dart';
-part 'src/model/step/RPQuestionStep.dart';
-part 'src/model/step/RPInstructionStep.dart';
-part 'src/model/step/RPCompletionStep.dart';
-part 'src/model/step/RPActivityStep.dart';
-part 'src/model/step/RPTimerStep.dart';
+part 'src/model/step/step.dart';
+part 'src/model/step/form_step.dart';
+part 'src/model/step/question_step.dart';
+part 'src/model/step/instruction_step.dart';
+part 'src/model/step/completion_step.dart';
+part 'src/model/step/activity_step.dart';
+part 'src/model/step/timer_step.dart';
 
-part 'src/model/task/RPOrderedTask.dart';
-part 'src/model/task/RPNavigableOrderedTask.dart';
-part 'src/model/task/RPStepNavigationRule.dart';
-part 'src/model/task/RPDirectStepNavigationRule.dart';
-part 'src/model/task/RPPStepReorganizerRule.dart';
-part 'src/model/task/RPStepJumpRule.dart';
-part 'src/model/task/RPTask.dart';
+part 'src/model/task/ordered_task.dart';
+part 'src/model/task/navigable_ordered_task.dart';
+part 'src/model/task/step_navigation_rule.dart';
+part 'src/model/task/direct_step_navigation_rule.dart';
+part 'src/model/task/step_reorganizer_rule.dart';
+part 'src/model/task/step_jump_rule.dart';
+part 'src/model/task/task.dart';
 
-part 'src/model/result/RPResult.dart';
-part 'src/model/result/RPTaskResult.dart';
-part 'src/model/result/RPStepResult.dart';
-part 'src/model/result/RPConsentSignatureResult.dart';
-part 'src/model/result/RPSignatureResult.dart';
-part 'src/model/result/RPNoResult.dart';
-part 'src/model/result/RPActivityResult.dart';
-
-// Protocols
-part 'src/model/Abstracts.dart';
+part 'src/model/result/result.dart';
+part 'src/model/result/task_result.dart';
+part 'src/model/result/step_result.dart';
+part 'src/model/result/consent_signature_result.dart';
+part 'src/model/result/signature_result.dart';
+part 'src/model/result/no_result.dart';
+part 'src/model/result/activity_result.dart';
 
 // BLoCs
-part 'src/model/blocs/BlocTask.dart';
-part 'src/model/blocs/BlocQuestion.dart';
+part 'src/model/blocs/bloc_task.dart';
+part 'src/model/blocs/bloc_question.dart';
 
-/// Start class for this research_package library. Just create a singleton instance:
-///
-/// In order to ensure initialization of json serialization, call:
-///
-///    ResearchPackage.ensureInitialized();
-///
-class ResearchPackage {
-  static final _instance = ResearchPackage._();
-  factory ResearchPackage() => _instance;
-  ResearchPackage._() {
-    _registerFromJsonFunctions();
-  }
-
-  /// Returns the singleton instance of [ResearchPackage].
-  /// If it has not yet been initialized, this call makes sure to create and
-  /// initialize it.
-  static ResearchPackage ensureInitialized() => _instance;
+/// A protocol to mark the Widgets which are producing [RPResult] objects.
+/// They all need to implement the [createAndSendResult] method
+abstract mixin class CanSaveResult {
+  /// This method should be implemented in all the Widgets which are producing
+  /// an [RPResult] object.
+  void createAndSendResult();
 }

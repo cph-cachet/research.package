@@ -426,7 +426,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
   RPAnswerFormat _translateAnswerFormat(
       RPLocalizations locale, RPAnswerFormat answerFormat) {
     switch (answerFormat.runtimeType) {
-      case RPIntegerAnswerFormat:
+      case const (RPIntegerAnswerFormat):
         answerFormat as RPIntegerAnswerFormat;
         return RPIntegerAnswerFormat(
             maxValue: answerFormat.maxValue,
@@ -435,7 +435,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                 ? null
                 : locale.translate(answerFormat.suffix!));
 
-      case RPChoiceAnswerFormat:
+      case const (RPChoiceAnswerFormat):
         answerFormat as RPChoiceAnswerFormat;
         List<RPChoice> translatedRPChoices = [];
         for (RPChoice choice in answerFormat.choices) {
@@ -451,7 +451,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
             answerStyle: answerFormat.answerStyle,
             choices: translatedRPChoices);
 
-      case RPSliderAnswerFormat:
+      case const (RPSliderAnswerFormat):
         answerFormat as RPSliderAnswerFormat;
         return RPSliderAnswerFormat(
             minValue: answerFormat.minValue,
@@ -464,7 +464,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                 ? null
                 : locale.translate(answerFormat.prefix!));
 
-      case RPImageChoiceAnswerFormat:
+      case const (RPImageChoiceAnswerFormat):
         answerFormat as RPImageChoiceAnswerFormat;
         List<RPImageChoice> translatedImageChoices = [];
         for (RPImageChoice imageChoice in answerFormat.choices) {
@@ -489,14 +489,14 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
 
   dynamic _translateResult(RPLocalizations locale, dynamic value) {
     switch (value.runtimeType) {
-      case RPImageChoice:
+      case const (RPImageChoice):
         value as RPImageChoice;
         return RPImageChoice(
             imageUrl: value.imageUrl,
             description: value.description,
             key: value.key,
             value: value.value);
-      case RPChoice:
+      case const (RPChoice):
         value as RPChoice;
         return RPChoice(
             text: locale.translate(value.text),
@@ -505,7 +505,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                 ? null
                 : locale.translate(value.detailText!),
             isFreeText: value.isFreeText);
-      case List<RPChoice>:
+      case const (List<RPChoice>):
         value as List;
         return value.map((e) => _translateResult(locale, e)).toList();
       default:

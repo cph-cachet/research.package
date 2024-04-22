@@ -3,6 +3,7 @@
 
     <application
         android:label="Research Package Demo App"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name="io.flutter.embedding.android.FlutterActivity"
