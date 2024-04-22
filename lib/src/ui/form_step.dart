@@ -125,7 +125,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
   /// Builds the step body widget based on the answer format of each step.
   Widget stepBody(String id, RPAnswerFormat answerFormat) {
     switch (answerFormat.runtimeType) {
-      case RPIntegerAnswerFormat:
+      case const (RPIntegerAnswerFormat):
         return RPUIIntegerQuestionBody((answerFormat as RPIntegerAnswerFormat),
             (result) {
           RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
@@ -137,7 +137,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
           checkReadyToProceed();
         });
-      case RPDoubleAnswerFormat:
+      case const (RPDoubleAnswerFormat):
         return RPUIDoubleQuestionBody((answerFormat as RPDoubleAnswerFormat),
             (result) {
           RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
@@ -149,7 +149,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
           checkReadyToProceed();
         });
-      case RPChoiceAnswerFormat:
+      case const (RPChoiceAnswerFormat):
         return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
             (result) {
           RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
@@ -161,7 +161,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
           checkReadyToProceed();
         });
-      case RPSliderAnswerFormat:
+      case const (RPSliderAnswerFormat):
         return RPUISliderQuestionBody((answerFormat as RPSliderAnswerFormat),
             (result) {
           RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
@@ -173,7 +173,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
           checkReadyToProceed();
         });
-      case RPImageChoiceAnswerFormat:
+      case const (RPImageChoiceAnswerFormat):
         return RPUIImageChoiceQuestionBody(
             (answerFormat as RPImageChoiceAnswerFormat), (result) {
           RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
@@ -185,7 +185,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
           checkReadyToProceed();
         });
-      case RPDateTimeAnswerFormat:
+      case const (RPDateTimeAnswerFormat):
         return RPUIDateTimeQuestionBody(
             (answerFormat as RPDateTimeAnswerFormat), (result) {
           RPStepResult tempResult = stepResult?.results[id] as RPStepResult;
@@ -197,7 +197,7 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
           checkReadyToProceed();
         });
-      case RPTextAnswerFormat:
+      case const (RPTextAnswerFormat):
         return RPUITextInputQuestionBody((answerFormat as RPTextAnswerFormat),
             (result) {
           RPStepResult tempResult = stepResult?.results[id] as RPStepResult;

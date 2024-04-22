@@ -87,37 +87,37 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   // Returning the according step body widget based on the answerFormat of the step
   Widget stepBody(RPAnswerFormat answerFormat) {
     switch (answerFormat.runtimeType) {
-      case RPIntegerAnswerFormat:
+      case const (RPIntegerAnswerFormat):
         return RPUIIntegerQuestionBody((answerFormat as RPIntegerAnswerFormat),
             (result) {
           currentQuestionBodyResult = result;
         });
-      case RPDoubleAnswerFormat:
+      case const (RPDoubleAnswerFormat):
         return RPUIDoubleQuestionBody((answerFormat as RPDoubleAnswerFormat),
             (result) {
           currentQuestionBodyResult = result;
         });
-      case RPChoiceAnswerFormat:
+      case const (RPChoiceAnswerFormat):
         return RPUIChoiceQuestionBody((answerFormat as RPChoiceAnswerFormat),
             (result) {
           currentQuestionBodyResult = result;
         });
-      case RPSliderAnswerFormat:
+      case const (RPSliderAnswerFormat):
         return RPUISliderQuestionBody((answerFormat as RPSliderAnswerFormat),
             (result) {
           currentQuestionBodyResult = result;
         });
-      case RPImageChoiceAnswerFormat:
+      case const (RPImageChoiceAnswerFormat):
         return RPUIImageChoiceQuestionBody(
             (answerFormat as RPImageChoiceAnswerFormat), (result) {
           currentQuestionBodyResult = result;
         });
-      case RPDateTimeAnswerFormat:
+      case const (RPDateTimeAnswerFormat):
         return RPUIDateTimeQuestionBody(
             (answerFormat as RPDateTimeAnswerFormat), (result) {
           currentQuestionBodyResult = result;
         });
-      case RPTextAnswerFormat:
+      case const (RPTextAnswerFormat):
         return RPUITextInputQuestionBody((answerFormat as RPTextAnswerFormat),
             (result) {
           currentQuestionBodyResult = result;

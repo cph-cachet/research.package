@@ -17,7 +17,6 @@ dependencies:
   rxdart: ^0.27.7
   json_annotation: ^4.8.0
   simple_html_css: ^4.0.0
-  # audiofileplayer: ^2.1.1
   just_audio: ^0.9.0
 
 # Overriding carp core libraries to use the local copy

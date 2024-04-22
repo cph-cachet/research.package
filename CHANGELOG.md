@@ -1,6 +1,7 @@
 ## 1.4.4
 
 * fix of issue [#111](https://github.com/cph-cachet/research.package/issues/111)
+* fix of linter / static analysis issues
 
 ## 1.4.3
 
