@@ -12,19 +12,18 @@ library research_package_ui;
 import 'dart:async';
 import 'dart:convert';
 
-// Imports
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:audiofileplayer/audiofileplayer.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:signature/signature.dart';
 import 'package:simple_html_css/simple_html_css.dart';
 
 import 'model.dart';
 
 // Library elements
-part 'src/localization/RPLocalizations.dart';
-part 'src/localization/AssetsLocalization.dart';
+part 'src/localization/localizations.dart';
+part 'src/localization/assets_localization.dart';
 part 'src/loggers/RPActivityEventLogger.dart';
 part 'src/ui/QuestionBody/RPUIChoiceQuestionBody.dart';
 part 'src/ui/QuestionBody/RPUIDateTimeQuestionBody.dart';

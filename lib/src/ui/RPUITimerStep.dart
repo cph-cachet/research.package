@@ -17,7 +17,7 @@ class RPUITimerStep extends StatefulWidget {
 class RPUITimerStepState extends State<RPUITimerStep> {
   Timer? timer;
   int timeInSeconds = 0;
-  Audio? audio;
+  final player = AudioPlayer();
   bool _mPlayerIsInitialized = false;
   ByteData? data;
 
@@ -25,8 +25,8 @@ class RPUITimerStepState extends State<RPUITimerStep> {
   void initState() {
     super.initState();
     if (widget.step.playSound) {
-      audio = Audio.load(
-          'packages/research_package/assets/audio/RPTimerStepSound.mp3');
+      player.setAsset(
+          '../packages/research_package/assets/audio/RPTimerStepSound.mp3');
       _mPlayerIsInitialized = true;
     }
     timeInSeconds = widget.step.timeout.inSeconds;
@@ -39,7 +39,7 @@ class RPUITimerStepState extends State<RPUITimerStep> {
       }
       if (timeInSeconds <= 0) {
         if (_mPlayerIsInitialized) {
-          audio?.play();
+          player.play();
         }
         if (widget.step.autoSkip) {
           t.cancel();
@@ -95,12 +95,7 @@ class RPUITimerStepState extends State<RPUITimerStep> {
   @override
   void dispose() async {
     super.dispose();
-    if (audio != null) {
-      await audio?.pause();
-      await audio?.dispose();
-      _mPlayerIsInitialized = false;
-      audio = null;
-    }
+    _mPlayerIsInitialized = false;
     timer?.cancel();
   }
 }

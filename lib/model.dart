@@ -60,28 +60,14 @@ part 'src/model/result/RPSignatureResult.dart';
 part 'src/model/result/RPNoResult.dart';
 part 'src/model/result/RPActivityResult.dart';
 
-// Protocols
-part 'src/model/Abstracts.dart';
-
 // BLoCs
 part 'src/model/blocs/BlocTask.dart';
 part 'src/model/blocs/BlocQuestion.dart';
 
-/// Start class for this research_package library. Just create a singleton instance:
-///
-/// In order to ensure initialization of json serialization, call:
-///
-///    ResearchPackage.ensureInitialized();
-///
-class ResearchPackage {
-  static final _instance = ResearchPackage._();
-  factory ResearchPackage() => _instance;
-  ResearchPackage._() {
-    _registerFromJsonFunctions();
-  }
-
-  /// Returns the singleton instance of [ResearchPackage].
-  /// If it has not yet been initialized, this call makes sure to create and
-  /// initialize it.
-  static ResearchPackage ensureInitialized() => _instance;
+/// A protocol to mark the Widgets which are producing [RPResult] objects.
+/// They all need to implement the [createAndSendResult] method
+abstract mixin class CanSaveResult {
+  /// This method should be implemented in all the Widgets which are producing
+  /// an [RPResult] object.
+  void createAndSendResult();
 }

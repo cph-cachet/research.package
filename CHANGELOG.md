@@ -1,3 +1,7 @@
+## 1.4.4
+
+* fix of issue [#111](https://github.com/cph-cachet/research.package/issues/111)
+
 ## 1.4.3
 
 * `DoubleQuestionFormat` and `IntegerQuestionFormat` now open a keyboard with only numbers, given that is the only accepted format.

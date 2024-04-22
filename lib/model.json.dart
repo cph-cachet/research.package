@@ -1,11 +1,11 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../../model.dart';
+part of 'model.dart';
 
 bool _fromJsonFunctionsRegistered = false;
 
 /// Register all the fromJson functions for the deployment domain classes.
-void _registerFromJsonFunctions() {
+void registerFromJsonFunctions() {
   if (_fromJsonFunctionsRegistered) return;
   _fromJsonFunctionsRegistered = true;
 
