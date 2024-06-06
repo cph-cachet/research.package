@@ -166,22 +166,3 @@ class InstructionImage extends StatelessWidget {
     );
   }
 }
-
-// Render the title above the questionBody
-class InstructionText extends StatelessWidget {
-  final String text;
-  const InstructionText(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    if (text.contains('</')) {
-      return HTML.toRichText(context, text);
-    } else {
-      return Text(
-        text,
-        style: Theme.of(context).textTheme.bodyLarge,
-        textAlign: TextAlign.start,
-      );
-    }
-  }
-}
