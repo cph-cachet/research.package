@@ -1,3 +1,7 @@
+## 1.5.1
+
+* Fix issue [#115](https://github.com/cph-cachet/research.package/issues/115) by removing unused widgets, `simple_html_css` package
+
 ## 1.5.0
 
 * fix of issue [#111](https://github.com/cph-cachet/research.package/issues/111)
