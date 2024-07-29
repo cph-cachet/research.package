@@ -131,31 +131,51 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
     return SafeArea(
-      child: ListView(
+      child: Padding(
         padding: const EdgeInsets.all(8),
-        children: [
-          // Title
-          Padding(
-            padding:
-                const EdgeInsets.only(bottom: 24, left: 8, right: 8, top: 0),
-            child: Text(
-              locale?.translate(widget.step.title) ?? widget.step.title,
-              textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.titleLarge,
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.all(8),
+                children: [
+                  // Title
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        bottom: 24, left: 8, right: 8, top: 0),
+                    child: Text(
+                      locale?.translate(widget.step.title) ?? widget.step.title,
+                      textAlign: TextAlign.left,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: stepBody(widget.step.answerFormat),
+                  ),
+                  widget.step.optional
+                      ? TextButton(
+                          onPressed: () => skipQuestion(),
+                          child: Text(locale?.translate("Skip this question") ??
+                              "Skip this question"),
+                        )
+                      : Container(),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: stepBody(widget.step.answerFormat),
-          ),
-          widget.step.optional
-              ? TextButton(
-                  onPressed: () => skipQuestion(),
-                  child: Text(locale?.translate("Skip this question") ??
-                      "Skip this question"),
-                )
-              : Container(),
-        ],
+            if (widget.step.footnote != null)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  locale?.translate(widget.step.footnote!) ??
+                      widget.step.footnote!,
+                  style: Theme.of(context).textTheme.bodySmall,
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

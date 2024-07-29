@@ -38,63 +38,70 @@ class RPUIInstructionStepState extends State<RPUIInstructionStep> {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            // If image is provided show it
-            if (widget.step.imagePath != null)
-              Center(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  width: MediaQuery.of(context).size.width * 0.25,
-                  child: InstructionImage(widget.step.imagePath!),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  // If image is provided show it
+                  if (widget.step.imagePath != null)
+                    Center(
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.25,
+                        width: MediaQuery.of(context).size.width * 0.25,
+                        child: InstructionImage(widget.step.imagePath!),
+                      ),
+                    ),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 30, horizontal: 16),
+                        child: Text(
+                          locale?.translate(widget.step.text!) ??
+                              widget.step.text!,
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ),
+                      if (widget.step.detailText != null)
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            textStyle: TextStyle(
+                              color: (CupertinoTheme.of(context).primaryColor ==
+                                      CupertinoColors.activeBlue)
+                                  ? Theme.of(context).primaryColor
+                                  : CupertinoTheme.of(context).primaryColor,
+                            ),
+                          ),
+                          onPressed: _pushDetailTextRoute,
+                          child: Text(locale?.translate('learn_more') ??
+                              "Learn more..."),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          if (widget.step.footnote != null)
+            Center(
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  locale?.translate(widget.step.footnote!) ??
+                      widget.step.footnote!,
+                  style: Theme.of(context).textTheme.bodySmall,
+                  textAlign: TextAlign.center,
+                  softWrap: true,
                 ),
               ),
-
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
-                  child: Text(
-                    locale?.translate(widget.step.text!) ?? widget.step.text!,
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ),
-                widget.step.detailText != null
-                    ? TextButton(
-                        style: TextButton.styleFrom(
-                          textStyle: TextStyle(
-                            color: (CupertinoTheme.of(context).primaryColor ==
-                                    CupertinoColors.activeBlue)
-                                ? Theme.of(context).primaryColor
-                                : CupertinoTheme.of(context).primaryColor,
-                          ),
-                        ),
-                        onPressed: _pushDetailTextRoute,
-                        child: Text(
-                            locale?.translate('learn_more') ?? "Learn more..."),
-                      )
-                    : Container(),
-              ],
             ),
-            widget.step.footnote != null
-                ? Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      locale?.translate(widget.step.footnote!) ??
-                          widget.step.footnote!,
-                      style: Theme.of(context).textTheme.bodySmall,
-                      textAlign: TextAlign.start,
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
+        ],
       ),
     );
   }

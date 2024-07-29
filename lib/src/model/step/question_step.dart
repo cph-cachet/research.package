@@ -44,6 +44,7 @@ class RPQuestionStep extends RPStep {
     this.autoSkip = false,
     this.timeout = const Duration(seconds: 0),
     this.autoFocus = false,
+    super.footnote,
   });
 
   @override
