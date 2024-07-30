@@ -38,6 +38,7 @@ class RPFormStep extends RPQuestionStep {
     required this.questions,
     this.saveResultsOnAutoSkip = false,
     this.forceWait = false,
+    super.footnote,
   }) : super(answerFormat: RPFormAnswerFormat());
 
   @override

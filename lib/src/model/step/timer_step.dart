@@ -32,6 +32,7 @@ class RPTimerStep extends RPStep {
     this.playSound = false,
     this.autoSkip = false,
     this.showTime = true,
+    super.footnote,
   });
 
   @override

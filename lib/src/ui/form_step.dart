@@ -293,6 +293,8 @@ class RPUIFormStepState extends State<RPUIFormStep> {
 
   @override
   Widget build(BuildContext context) {
+    RPLocalizations? locale = RPLocalizations.of(context);
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
@@ -304,6 +306,17 @@ class RPUIFormStepState extends State<RPUIFormStep> {
                 itemCount: widget.formStep.questions.length + 2,
               ),
             ),
+            if (widget.formStep.footnote != null)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  locale?.translate(widget.formStep.footnote!) ??
+                      widget.formStep.footnote!,
+                  style: Theme.of(context).textTheme.bodySmall,
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                ),
+              ),
           ],
         ),
       ),

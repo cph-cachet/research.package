@@ -142,6 +142,8 @@ final insulinStep = RPQuestionStep(
   title: "What did you pay for insulin?",
   answerFormat: sliderAnswerFormat,
   optional: true,
+  footnote:
+      "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. UK (English) 2.1",
 );
 
 // Using keys for translations
@@ -208,19 +210,23 @@ final formStep = RPFormStep(
   autoSkip: true,
   timeout: Duration(seconds: 6),
   saveResultsOnAutoSkip: true,
+  footnote: "©️ 2021 Research Package",
 );
 
 final completionStep = RPCompletionStep(
-    identifier: "completionID",
-    title: "Finished",
-    text: "Thank you for filling out the survey!");
+  identifier: "completionID",
+  title: "Finished",
+  text: "Thank you for filling out the survey!",
+);
 
 final instructionStep = RPInstructionStep(
-    identifier: "instructionID",
-    title: "Welcome!",
-    detailText: "For the sake of science of course...",
-    text:
-        "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.");
+  identifier: "instructionID",
+  title: "Welcome!",
+  detailText: "For the sake of science of course...",
+  text:
+      "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.",
+  footnote: "©️ 2021 Research Package",
+);
 
 final timerStep1 = RPTimerStep(
   identifier: 'RPTimerStepID',
@@ -229,6 +235,7 @@ final timerStep1 = RPTimerStep(
       "Please think for a moment about how your day was and note it down in the next step",
   playSound: true,
   autoSkip: true,
+  footnote: "©️ 2021 Research Package",
 );
 
 final timerStep2 = RPTimerStep(
@@ -238,6 +245,7 @@ final timerStep2 = RPTimerStep(
       "Please think for a moment about how your day was and note it down in the next step",
   playSound: true,
   autoSkip: true,
+  footnote: "©️ 2021 Research Package",
 );
 
 final linearSurveyTask = RPOrderedTask(
