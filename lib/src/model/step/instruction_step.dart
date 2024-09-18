@@ -24,6 +24,8 @@ class RPInstructionStep extends RPStep {
   /// If `null` the ui is not shown.
   String? audioPath;
 
+  String? videoPath;
+
   RPInstructionStep({
     required super.identifier,
     required super.title,
@@ -32,6 +34,7 @@ class RPInstructionStep extends RPStep {
     this.detailText,
     this.imagePath,
     this.audioPath,
+    this.videoPath,
     super.footnote,
   });
 

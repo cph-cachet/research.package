@@ -197,6 +197,7 @@ RPInstructionStep instructionStep = RPInstructionStep(
   footnote: "(1) Important footnote",
   imagePath: "assets/images/waving-hand.png",
   audioPath: "audio/RPTimerStepSound.mp3",
+  videoPath: "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
   text: "informed_consent.welcome_text",
 );
 

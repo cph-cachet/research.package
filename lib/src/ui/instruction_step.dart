@@ -73,8 +73,10 @@ class RPUIInstructionStepState extends State<RPUIInstructionStep> {
                         child: InstructionImage(widget.step.imagePath!),
                       ),
                     ),
+                  if (widget.step.videoPath != null)
+                    VideoApp(step: widget.step),
                   if (widget.step.audioPath != null)
-                    PlayerWidget(player: player),
+                    AudioPlayerWidget(player: player),
 
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,20 +197,178 @@ class InstructionImage extends StatelessWidget {
   }
 }
 
-class PlayerWidget extends StatefulWidget {
+class VideoApp extends StatefulWidget {
+  final RPInstructionStep step;
+  const VideoApp({Key? key, required this.step});
+
+  @override
+  _VideoAppState createState() => _VideoAppState();
+}
+
+class _VideoAppState extends State<VideoApp> {
+  late VideoPlayerController _controller;
+  bool _isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        VideoPlayerController.networkUrl(Uri.parse(widget.step.videoPath!))
+          ..initialize().then((_) {
+            // Ensure the first frame is shown after the video is initialized
+            setState(() {});
+          });
+
+    _controller.addListener(() {
+      setState(() {
+        _isPlaying = _controller.value.isPlaying;
+      });
+    });
+    _controller.initialize();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _togglePlayPause() {
+    setState(() {
+      if (_controller.value.isPlaying) {
+        _controller.pause();
+      } else {
+        _controller.play();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        // Video Player
+        GestureDetector(
+          onTap: _togglePlayPause, // Tap to play/pause the video
+          child: _controller.value.isInitialized
+              ? AspectRatio(
+                  aspectRatio: _controller.value.aspectRatio,
+                  child: VideoPlayer(_controller),
+                )
+              : const CircularProgressIndicator(),
+        ),
+
+        // Video progress slider
+        if (_controller.value.isInitialized)
+          VideoProgressIndicator(
+            _controller,
+            allowScrubbing: true,
+            colors: const VideoProgressColors(
+              playedColor: Colors.blue,
+              bufferedColor: Colors.grey,
+            ),
+          ),
+
+        // Custom slider to control position
+        // if (_controller.value.isInitialized)
+        //   Slider(
+        //     value: _controller.value.position.inSeconds.toDouble(),
+        //     min: 0,
+        //     max: _controller.value.duration.inSeconds.toDouble(),
+        //     onChanged: (value) {
+        //       setState(() {
+        //         _controller.seekTo(Duration(seconds: value.toInt()));
+        //       });
+        //     },
+        //   ),
+
+        // Play/pause button (if desired, otherwise just tap the video to control play/pause)
+        // IconButton(
+        //   icon: Icon(
+        //     _isPlaying ? Icons.pause : Icons.play_arrow,
+        //   ),
+        //   onPressed: _togglePlayPause,
+        // ),
+      ],
+    );
+  }
+}
+
+/// Stateful widget to fetch and then display video content.
+// class VideoApp extends StatefulWidget {
+//   final RPInstructionStep step;
+
+//   const VideoApp({super.key, required this.step});
+
+//   @override
+//   _VideoAppState createState() => _VideoAppState();
+// }
+
+// class _VideoAppState extends State<VideoApp> {
+//   late VideoPlayerController _controller;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller =
+//         VideoPlayerController.networkUrl(Uri.parse(widget.step.videoPath!))
+//           ..initialize().then((_) {
+//             // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+//             setState(() {});
+//           });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Video Demo',
+//       home: Scaffold(
+//         body: Center(
+//           child: _controller.value.isInitialized
+//               ? AspectRatio(
+//                   aspectRatio: _controller.value.aspectRatio,
+//                   child: VideoPlayer(_controller),
+//                 )
+//               : Container(),
+//         ),
+//         floatingActionButton: FloatingActionButton(
+//           onPressed: () {
+//             setState(() {
+//               _controller.value.isPlaying
+//                   ? _controller.pause()
+//                   : _controller.play();
+//             });
+//           },
+//           child: Icon(
+//             _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
+// }
+
+class AudioPlayerWidget extends StatefulWidget {
   final AudioPlayer player;
 
-  const PlayerWidget({
+  const AudioPlayerWidget({
     required this.player,
     super.key,
   });
 
   @override
   State<StatefulWidget> createState() {
-    return _PlayerWidgetState();
+    return _AudioPlayerWidgetState();
   }
 }
-class _PlayerWidgetState extends State<PlayerWidget> {
+
+class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
   PlayerState? _playerState;
   Duration? _duration;
   Duration? _position;
@@ -270,6 +430,30 @@ class _PlayerWidgetState extends State<PlayerWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
+        Slider(
+          onChanged: (value) {
+            final duration = _duration;
+            if (duration == null) {
+              return;
+            }
+            final position = value * duration.inMilliseconds;
+            player.seek(Duration(milliseconds: position.round()));
+          },
+          value: (_position != null &&
+                  _duration != null &&
+                  _position!.inMilliseconds > 0 &&
+                  _position!.inMilliseconds < _duration!.inMilliseconds)
+              ? _position!.inMilliseconds / _duration!.inMilliseconds
+              : 0.0,
+        ),
+        Text(
+          _position != null
+              ? '$_positionText / $_durationText'
+              : _duration != null
+                  ? _durationText
+                  : '',
+          style: const TextStyle(fontSize: 16.0),
+        ),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -295,30 +479,6 @@ class _PlayerWidgetState extends State<PlayerWidget> {
               color: color,
             ),
           ],
-        ),
-        Slider(
-          onChanged: (value) {
-            final duration = _duration;
-            if (duration == null) {
-              return;
-            }
-            final position = value * duration.inMilliseconds;
-            player.seek(Duration(milliseconds: position.round()));
-          },
-          value: (_position != null &&
-                  _duration != null &&
-                  _position!.inMilliseconds > 0 &&
-                  _position!.inMilliseconds < _duration!.inMilliseconds)
-              ? _position!.inMilliseconds / _duration!.inMilliseconds
-              : 0.0,
-        ),
-        Text(
-          _position != null
-              ? '$_positionText / $_durationText'
-              : _duration != null
-                  ? _durationText
-                  : '',
-          style: const TextStyle(fontSize: 16.0),
         ),
       ],
     );
