@@ -6,9 +6,9 @@ import 'informed_consent_page.dart';
 import 'linear_survey_page.dart';
 import 'navigable_survey_page.dart';
 
-Future main() async {
-  // initialize cognition package
-  // only used if you load a cognition configuration from a json file
+void main() {
+  // initialize research package
+  // mostly used if you load a RP configurations from a json file
   ResearchPackage.ensureInitialized();
 
   runApp(const RPDemoApp());
