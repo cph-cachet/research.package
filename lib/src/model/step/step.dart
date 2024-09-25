@@ -34,6 +34,11 @@ class RPStep extends Serializable {
   @JsonKey(includeFromJson: false, includeToJson: false)
   Timer? timer;
 
+  /// Optional footer text to be displayed below the question.
+  /// This can be used to provide additional information, such as copyright, or instructions.
+  /// This text will be displayed in a smaller font size.
+  String? footnote;
+
   /// Create a [RPStep] object with a unique [identifier], a [title], and
   /// a [text] to be displayed.
   RPStep({
@@ -41,6 +46,7 @@ class RPStep extends Serializable {
     required this.title,
     this.text,
     this.optional = false,
+    this.footnote,
   });
 
   /// The widget (UI representation) of the step.

@@ -9,9 +9,6 @@ class RPInstructionStep extends RPStep {
   /// If `null`, no "Learn more" button is shown.
   String? detailText;
 
-  /// Optional footnote to appear on the bottom of the screen
-  String? footnote;
-
   /// The path of the image to show during the Instruction Step
   /// (e.g.: "assets/picture.png").
   ///
@@ -26,8 +23,8 @@ class RPInstructionStep extends RPStep {
     super.text,
     super.optional,
     this.detailText,
-    this.footnote,
     this.imagePath,
+    super.footnote,
   });
 
   @override

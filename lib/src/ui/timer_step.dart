@@ -77,6 +77,21 @@ class RPUITimerStepState extends State<RPUITimerStep> {
             child: Text(_durationFormat(Duration(seconds: timeInSeconds)),
                 style: Theme.of(context).textTheme.displayMedium),
           ),
+
+          widget.step.footnote != null
+              ? Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      locale?.translate(widget.step.footnote!) ??
+                          widget.step.footnote!,
+                      style: Theme.of(context).textTheme.bodySmall,
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                    ),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );

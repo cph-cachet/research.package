@@ -1,3 +1,7 @@
+## 1.6.0
+
+* Add optional `footnote` option to various `RPSteps` and add it to the UI
+
 ## 1.5.1
 
 * Fix issue [#115](https://github.com/cph-cachet/research.package/issues/115) by removing unused widgets, `simple_html_css` package
