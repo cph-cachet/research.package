@@ -2,7 +2,8 @@ part of '../../../model.dart';
 
 /// The result a [RPActivityStep] creates, populated with results, steptimes
 /// and interactions.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPActivityResult extends RPResult {
   /// The map of results with a String as identifier and generic type as value
   Map<String, dynamic> results = {};

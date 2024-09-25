@@ -3,7 +3,8 @@ part of '../../../model.dart';
 /// A content section in a [RPConsentDocument].
 ///
 /// It represents one section in a [RPConsentDocument].
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPConsentSection extends Serializable {
   /// The type of the section.
   ///
@@ -59,7 +60,7 @@ class RPConsentSection extends Serializable {
   @override
   Function get fromJsonFunction => _$RPConsentSectionFromJson;
   factory RPConsentSection.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPConsentSection;
+      FromJsonFactory().fromJson<RPConsentSection>(json);
   @override
   Map<String, dynamic> toJson() => _$RPConsentSectionToJson(this);
 }

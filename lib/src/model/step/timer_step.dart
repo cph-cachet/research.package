@@ -2,7 +2,8 @@ part of '../../../model.dart';
 
 /// A step where the user is forced to wait for [timeout] before being allowed
 /// to proceed to the next step.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPTimerStep extends RPStep {
   /// The time the user must wait before being able to continue.
   Duration timeout;
@@ -41,7 +42,7 @@ class RPTimerStep extends RPStep {
   @override
   Function get fromJsonFunction => _$RPTimerStepFromJson;
   factory RPTimerStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPTimerStep;
+      FromJsonFactory().fromJson<RPTimerStep>(json);
   @override
   Map<String, dynamic> toJson() => _$RPTimerStepToJson(this);
 }

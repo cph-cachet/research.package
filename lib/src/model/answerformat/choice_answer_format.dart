@@ -2,7 +2,8 @@ part of '../../../model.dart';
 
 /// Class representing an Answer Format that lets participants choose from a
 /// fixed set of choices.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPChoiceAnswerFormat extends RPAnswerFormat {
   /// An array of available [RPChoice] objects which represent the choices to
   /// the participant.
@@ -23,14 +24,15 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
   @override
   Function get fromJsonFunction => _$RPChoiceAnswerFormatFromJson;
   factory RPChoiceAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPChoiceAnswerFormat;
+      FromJsonFactory().fromJson<RPChoiceAnswerFormat>(json);
   @override
   Map<String, dynamic> toJson() => _$RPChoiceAnswerFormatToJson(this);
 }
 
 /// The choice object which the participant can choose during a [RPQuestionStep]
 /// with [RPChoiceAnswerFormat].
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPChoice extends Serializable {
   /// The text to display.
   String text;
@@ -59,7 +61,7 @@ class RPChoice extends Serializable {
   @override
   Function get fromJsonFunction => _$RPChoiceFromJson;
   factory RPChoice.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPChoice;
+      FromJsonFactory().fromJson<RPChoice>(json);
   @override
   Map<String, dynamic> toJson() => _$RPChoiceToJson(this);
 }

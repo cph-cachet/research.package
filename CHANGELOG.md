@@ -1,3 +1,7 @@
+## 1.7.0
+
+* Upgrade to carp_serialization v. 2.0
+
 ## 1.6.0
 
 * Add optional `footnote` option to various `RPSteps` and add it to the UI

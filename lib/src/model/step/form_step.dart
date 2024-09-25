@@ -8,7 +8,8 @@ part of '../../../model.dart';
 ///
 /// The result of an [RPFormStep] is an [RPStepResult] that consists further
 /// [RPStepResult]s for each question in the form.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPFormStep extends RPQuestionStep {
   /// The list of questions to be shown on the form.
   List<RPQuestionStep> questions;
@@ -47,7 +48,7 @@ class RPFormStep extends RPQuestionStep {
   @override
   Function get fromJsonFunction => _$RPFormStepFromJson;
   factory RPFormStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPFormStep;
+      FromJsonFactory().fromJson<RPFormStep>(json);
   @override
   Map<String, dynamic> toJson() => _$RPFormStepToJson(this);
 }

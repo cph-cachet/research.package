@@ -7,7 +7,8 @@ part of '../../../model.dart';
 /// [RPUIActivityStep] object to present the step.
 /// The actual visual presentation depends on the type of [RPActivityStep]
 /// (e.g. [RPTrailMakingActivity] from the cognition_package Flutter package).
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPActivityStep extends RPStep {
   /// Show the instruction before the test?
   ///
@@ -53,7 +54,7 @@ class RPActivityStep extends RPStep {
   @override
   Function get fromJsonFunction => _$RPActivityStepFromJson;
   factory RPActivityStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPActivityStep;
+      FromJsonFactory().fromJson<RPActivityStep>(json);
   @override
   Map<String, dynamic> toJson() => _$RPActivityStepToJson(this);
 }
