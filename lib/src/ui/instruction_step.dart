@@ -26,7 +26,9 @@ class RPUIInstructionStepState extends State<RPUIInstructionStep> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       try {
-        await player.setSource(AssetSource(widget.step.audioPath!));
+        if (widget.step.audioPath != null) {
+          await player.setSource(AssetSource(widget.step.audioPath!));
+        }
       } catch (e) {
         print(e);
       }
@@ -192,6 +194,10 @@ class InstructionImage extends StatelessWidget {
       child: Image.asset(
         _imagePath,
         width: MediaQuery.of(context).size.width / 2,
+        errorBuilder:
+            (BuildContext context, Object error, StackTrace? stackTrace) {
+          return Container();
+        },
       ),
     );
   }
@@ -199,7 +205,7 @@ class InstructionImage extends StatelessWidget {
 
 class VideoApp extends StatefulWidget {
   final RPInstructionStep step;
-  const VideoApp({Key? key, required this.step});
+  const VideoApp({super.key, required this.step});
 
   @override
   _VideoAppState createState() => _VideoAppState();
@@ -208,6 +214,10 @@ class VideoApp extends StatefulWidget {
 class _VideoAppState extends State<VideoApp> {
   late VideoPlayerController _controller;
   bool _isPlaying = false;
+  bool _isCompleted = false;
+  bool _hasError = false;
+  Duration? _position;
+  Duration? _duration;
 
   @override
   void initState() {
@@ -216,13 +226,30 @@ class _VideoAppState extends State<VideoApp> {
         VideoPlayerController.networkUrl(Uri.parse(widget.step.videoPath!))
           ..initialize().then((_) {
             // Ensure the first frame is shown after the video is initialized
-            setState(() {});
+            setState(() {
+              _duration = _controller.value.duration;
+            });
+          }).catchError((onError) {
+            _showConnectionErrorDialog();
           });
 
     _controller.addListener(() {
       setState(() {
         _isPlaying = _controller.value.isPlaying;
+        _position = _controller.value.position;
+        if (_controller.value.position == _controller.value.duration) {
+          _isPlaying = false;
+          _isCompleted = true;
+        }
       });
+
+      // Check for errors during playback
+      if (_controller.value.hasError) {
+        setState(() {
+          _hasError = true;
+        });
+        _showConnectionErrorDialog();
+      }
     });
     _controller.initialize();
   }
@@ -234,13 +261,64 @@ class _VideoAppState extends State<VideoApp> {
   }
 
   void _togglePlayPause() {
-    setState(() {
-      if (_controller.value.isPlaying) {
-        _controller.pause();
-      } else {
-        _controller.play();
-      }
-    });
+    if (_isCompleted) {
+      // If video completed, restart it from the beginning
+      _controller.seekTo(Duration.zero);
+      _controller.play();
+      setState(() {
+        _isPlaying = true;
+        _isCompleted = false;
+      });
+    } else if (_isPlaying) {
+      _controller.pause();
+      setState(() {
+        _isPlaying = false;
+      });
+    } else {
+      _controller.play();
+      setState(() {
+        _isPlaying = true;
+      });
+    }
+  }
+
+  void _seekToPosition(double value) {
+    final position = Duration(seconds: value.round());
+    _controller.seekTo(position);
+  }
+
+  // Method to show the error dialog when video loading fails
+  void _showConnectionErrorDialog() {
+    showDialog<dynamic>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Connection Error'),
+          titlePadding: const EdgeInsets.symmetric(vertical: 4.0),
+          insetPadding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 40),
+          content: const Text(
+              'Internet connection not found or video could not be loaded.'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Retry'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                // Retry loading the video
+                setState(() {
+                  _controller.initialize();
+                });
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -249,46 +327,62 @@ class _VideoAppState extends State<VideoApp> {
       children: <Widget>[
         // Video Player
         GestureDetector(
-          onTap: _togglePlayPause, // Tap to play/pause the video
+          onTap: _togglePlayPause, // Play/Pause on tap
           child: _controller.value.isInitialized
               ? AspectRatio(
                   aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      VideoPlayer(_controller),
+                      if (!_isPlaying && !_isCompleted)
+                        const Icon(
+                          Icons.play_circle_outline,
+                          size: 64.0,
+                          color: Colors.white,
+                        ),
+                      if (_isCompleted)
+                        const Icon(
+                          Icons.replay,
+                          size: 64.0,
+                          color: Colors.white,
+                        ),
+                    ],
+                  ),
                 )
-              : const CircularProgressIndicator(),
+              : Center(child: const CircularProgressIndicator()),
         ),
 
         // Video progress slider
-        if (_controller.value.isInitialized)
-          VideoProgressIndicator(
-            _controller,
-            allowScrubbing: true,
-            colors: const VideoProgressColors(
-              playedColor: Colors.blue,
-              bufferedColor: Colors.grey,
-            ),
+        if (_controller.value.isInitialized && !_hasError)
+          Column(
+            children: [
+              SliderTheme(
+                data: SliderTheme.of(context).copyWith(
+                  thumbShape: const RoundSliderThumbShape(
+                      enabledThumbRadius: 10.0), // Customize the thumb
+                  activeTrackColor: Colors.blue,
+                  inactiveTrackColor: Colors.grey,
+                  thumbColor: Colors.blue, // Thumb color
+                  overlayColor:
+                      Colors.blue.withAlpha(32), // Thumb overlay when dragged
+                  trackHeight: 4.0, // Thickness of the progress bar
+                ),
+                child: Slider(
+                  min: 0.0,
+                  max: _duration?.inSeconds.toDouble() ?? 1.0,
+                  value: _position?.inSeconds.toDouble() ?? 0.0,
+                  onChanged: (value) {
+                    _seekToPosition(value);
+                  },
+                ),
+              ),
+              Text(
+                '${_position?.toString().split('.').first} / ${_duration?.toString().split('.').first}',
+                style: const TextStyle(fontSize: 16.0),
+              ),
+            ],
           ),
-
-        // Custom slider to control position
-        // if (_controller.value.isInitialized)
-        //   Slider(
-        //     value: _controller.value.position.inSeconds.toDouble(),
-        //     min: 0,
-        //     max: _controller.value.duration.inSeconds.toDouble(),
-        //     onChanged: (value) {
-        //       setState(() {
-        //         _controller.seekTo(Duration(seconds: value.toInt()));
-        //       });
-        //     },
-        //   ),
-
-        // Play/pause button (if desired, otherwise just tap the video to control play/pause)
-        // IconButton(
-        //   icon: Icon(
-        //     _isPlaying ? Icons.pause : Icons.play_arrow,
-        //   ),
-        //   onPressed: _togglePlayPause,
-        // ),
       ],
     );
   }

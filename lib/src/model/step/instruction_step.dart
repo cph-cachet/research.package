@@ -47,4 +47,9 @@ class RPInstructionStep extends RPStep {
       FromJsonFactory().fromJson(json) as RPInstructionStep;
   @override
   Map<String, dynamic> toJson() => _$RPInstructionStepToJson(this);
+
+  @override
+  String toString() {
+    return "identifier: $identifier, title: $title, text: $text, detailText: $detailText, imagePath: $imagePath, audioPath: $audioPath, videoPath: $videoPath, footnote: $footnote";
+  }
 }
