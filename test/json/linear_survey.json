@@ -7,8 +7,9 @@
             "__type": "RPInstructionStep",
             "identifier": "instructionID",
             "title": "Welcome!",
-            "text": "Please fill out this questionnaire!\n\nIn this questionnaire the que-stions will come after each other in a given order. You still have the chance to skip a some of them though.",
+            "text": "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.",
             "optional": false,
+            "footnote": "©️ 2021 Research Package",
             "detail_text": "For the sake of science of course..."
         },
         {
@@ -16,19 +17,26 @@
             "identifier": "RPTimerStepID",
             "title": "Please think for a moment about how your day was and note it down in the next step",
             "optional": false,
-            "timeout": 12000000,
-            "play_sound": true
+            "footnote": "©️ 2021 Research Package",
+            "timeout": 5000000,
+            "play_sound": true,
+            "auto_skip": true,
+            "show_time": true
         },
         {
             "__type": "RPFormStep",
             "identifier": "formstepID",
             "title": "Questions about music",
             "optional": false,
+            "footnote": "©️ 2021 Research Package",
             "answer_format": {
                 "__type": "RPFormAnswerFormat",
                 "question_type": "Form"
             },
-            "steps": [
+            "auto_skip": true,
+            "timeout": 6000000,
+            "auto_focus": false,
+            "questions": [
                 {
                     "__type": "RPQuestionStep",
                     "identifier": "instrumentChoiceQuestionStepID",
@@ -59,7 +67,10 @@
                             }
                         ],
                         "answer_style": "MultipleChoice"
-                    }
+                    },
+                    "auto_skip": false,
+                    "timeout": 0,
+                    "auto_focus": false
                 },
                 {
                     "__type": "RPQuestionStep",
@@ -69,8 +80,13 @@
                     "answer_format": {
                         "__type": "RPTextAnswerFormat",
                         "hint_text": "Write here",
+                        "auto_focus": false,
+                        "disable_helpers": false,
                         "question_type": "Text"
-                    }
+                    },
+                    "auto_skip": false,
+                    "timeout": 0,
+                    "auto_focus": false
                 },
                 {
                     "__type": "RPQuestionStep",
@@ -83,51 +99,46 @@
                         "max_value": 10000,
                         "suffix": "minutes",
                         "question_type": "Integer"
-                    }
+                    },
+                    "auto_skip": false,
+                    "timeout": 0,
+                    "auto_focus": false
                 },
                 {
                     "__type": "RPQuestionStep",
-                    "identifier": "dateQuestionStepID",
+                    "identifier": "alcoholStep",
                     "title": "When did you last drink alcohol?",
                     "optional": false,
                     "answer_format": {
                         "__type": "RPDateTimeAnswerFormat",
                         "question_type": "Date",
                         "date_time_answer_style": "Date"
-                    }
-                }
-            ]
-        },
-        {
-            "__type": "RPQuestionStep",
-            "identifier": "booleanQuestionStepID",
-            "title": "Do you smoke?",
-            "optional": false,
-            "answer_format": {
-                "__type": "RPChoiceAnswerFormat",
-                "question_type": "SingleChoice",
-                "choices": [
-                    {
-                        "__type": "RPChoice",
-                        "text": "Yes",
-                        "value": 1,
-                        "is_free_text": false
                     },
-                    {
-                        "__type": "RPChoice",
-                        "text": "No",
-                        "value": 0,
-                        "is_free_text": false
-                    }
-                ],
-                "answer_style": "SingleChoice"
-            }
+                    "auto_skip": true,
+                    "timeout": 6000000,
+                    "auto_focus": false
+                }
+            ],
+            "save_results_on_auto_skip": true,
+            "force_wait": false
+        },
+        {
+            "__type": "RPTimerStep",
+            "identifier": "RPTimerStepID",
+            "title": "Please think for a moment about how your day was and note it down in the next step",
+            "optional": false,
+            "footnote": "©️ 2021 Research Package",
+            "timeout": 5000000,
+            "play_sound": true,
+            "auto_skip": true,
+            "show_time": true
         },
         {
             "__type": "RPQuestionStep",
-            "identifier": "sliderQuestionsStepID",
+            "identifier": "insulinStep",
             "title": "What did you pay for insulin?",
             "optional": true,
+            "footnote": "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. UK (English) 2.1",
             "answer_format": {
                 "__type": "RPSliderAnswerFormat",
                 "min_value": 0.0,
@@ -136,40 +147,54 @@
                 "prefix": "$",
                 "suffix": " paid",
                 "question_type": "Scale"
-            }
+            },
+            "auto_skip": false,
+            "timeout": 0,
+            "auto_focus": false
         },
         {
             "__type": "RPQuestionStep",
-            "identifier": "timeOfDayQuestionStepID",
-            "title": "When did you wake up?",
-            "optional": false,
-            "answer_format": {
-                "__type": "RPDateTimeAnswerFormat",
-                "question_type": "TimeOfDay",
-                "date_time_answer_style": "TimeOfDay"
-            }
-        },
-        {
-            "__type": "RPQuestionStep",
-            "identifier": "dateAndTimeQuestionStepID",
+            "identifier": "foodStep",
             "title": "When did you last eat unhealthy food?",
             "optional": false,
             "answer_format": {
                 "__type": "RPDateTimeAnswerFormat",
                 "question_type": "DateAndTime",
                 "date_time_answer_style": "DateAndTime"
-            }
+            },
+            "auto_skip": false,
+            "timeout": 0,
+            "auto_focus": false
         },
         {
             "__type": "RPQuestionStep",
-            "identifier": "dateQuestionStepID",
+            "identifier": "alcoholStep",
             "title": "When did you last drink alcohol?",
             "optional": false,
             "answer_format": {
                 "__type": "RPDateTimeAnswerFormat",
                 "question_type": "Date",
                 "date_time_answer_style": "Date"
-            }
+            },
+            "auto_skip": true,
+            "timeout": 6000000,
+            "auto_focus": false
+        },
+        {
+            "__type": "RPQuestionStep",
+            "identifier": "bloodGlucoseStep",
+            "title": "Please enter your Blood Glucose",
+            "optional": false,
+            "answer_format": {
+                "__type": "RPDoubleAnswerFormat",
+                "min_value": 0.0,
+                "max_value": 20.0,
+                "suffix": "mmol/l",
+                "question_type": "Double"
+            },
+            "auto_skip": false,
+            "timeout": 0,
+            "auto_focus": false
         },
         {
             "__type": "RPQuestionStep",
@@ -211,143 +236,10 @@
                     }
                 ],
                 "question_type": "ImageChoice"
-            }
-        },
-        {
-            "__type": "RPQuestionStep",
-            "identifier": "questionStep1ID",
-            "title": "singleChoiceQuestionStep-title",
-            "optional": false,
-            "answer_format": {
-                "__type": "RPChoiceAnswerFormat",
-                "question_type": "SingleChoice",
-                "choices": [
-                    {
-                        "__type": "RPChoice",
-                        "text": "timeChoice5",
-                        "value": 5,
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "timeChoice4",
-                        "value": 4,
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "timeChoice3",
-                        "value": 3,
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "timeChoice2",
-                        "value": 2,
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "timeChoice1",
-                        "value": 1,
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "timeChoice0",
-                        "value": 0,
-                        "is_free_text": false
-                    }
-                ],
-                "answer_style": "SingleChoice"
-            }
-        },
-        {
-            "__type": "RPQuestionStep",
-            "identifier": "happinessChoiceQuestionStepID",
-            "title": "What makes you happy?",
-            "optional": false,
-            "answer_format": {
-                "__type": "RPChoiceAnswerFormat",
-                "question_type": "MultipleChoice",
-                "choices": [
-                    {
-                        "__type": "RPChoice",
-                        "text": "Your input",
-                        "value": 6,
-                        "is_free_text": true
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "Jogging",
-                        "value": 5,
-                        "detail_text": "Running in a moderate pace",
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "Playing an instrument",
-                        "value": 4,
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "Family and friends",
-                        "value": 3,
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "Doing sports",
-                        "value": 2,
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "Reading",
-                        "value": 1,
-                        "is_free_text": false
-                    },
-                    {
-                        "__type": "RPChoice",
-                        "text": "Being productive",
-                        "value": 0,
-                        "is_free_text": false
-                    }
-                ],
-                "answer_style": "MultipleChoice"
-            }
-        },
-        {
-            "__type": "RPQuestionStep",
-            "identifier": "weightQuestionStepID",
-            "title": "What is your weight?",
-            "optional": false,
-            "answer_format": {
-                "__type": "RPIntegerAnswerFormat",
-                "min_value": 0,
-                "max_value": 200,
-                "suffix": "KG",
-                "question_type": "Integer"
-            }
-        },
-        {
-            "__type": "RPQuestionStep",
-            "identifier": "additionalInfoQuestionStepID",
-            "title": "Do you have any more details you would like to add?",
-            "optional": true,
-            "answer_format": {
-                "__type": "RPTextAnswerFormat",
-                "hint_text": "Write your answer here",
-                "question_type": "Text"
-            }
-        },
-        {
-            "__type": "RPCompletionStep",
-            "identifier": "completionID",
-            "title": "Finished",
-            "text": "Thank you for filling out the survey!",
-            "optional": false
+            },
+            "auto_skip": false,
+            "timeout": 0,
+            "auto_focus": false
         }
     ]
 }

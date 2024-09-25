@@ -1,7 +1,8 @@
 part of '../../../model.dart';
 
 /// The result object a Task creates
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPTaskResult extends RPResult {
   /// The results of each step of this task result.
   ///

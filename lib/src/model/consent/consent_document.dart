@@ -9,7 +9,8 @@ part of '../../../model.dart';
 /// They hold the content which is presented and later agreed by the participant.
 /// By adding [signatures] to the consent document the parameters of the
 /// signature(s) to collect can be specified.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPConsentDocument extends Serializable {
   /// The list of signatures that are required in the document
   List<RPConsentSignature> signatures = [];
@@ -36,7 +37,7 @@ class RPConsentDocument extends Serializable {
   @override
   Function get fromJsonFunction => _$RPConsentDocumentFromJson;
   factory RPConsentDocument.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPConsentDocument;
+      FromJsonFactory().fromJson<RPConsentDocument>(json);
   @override
   Map<String, dynamic> toJson() => _$RPConsentDocumentToJson(this);
 }

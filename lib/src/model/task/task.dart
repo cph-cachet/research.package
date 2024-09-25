@@ -11,7 +11,8 @@ part of '../../../model.dart';
 /// sequential tasks. Each step ([RPStep]) in a task roughly corresponds to one
 /// screen through their [stepWidget] Widget, and represents the primary unit of
 /// work in any task presented by a task view controller.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPTask extends Serializable {
   RPTask({required this.identifier, this.closeAfterFinished = false});
 
@@ -41,7 +42,7 @@ class RPTask extends Serializable {
   @override
   Function get fromJsonFunction => _$RPTaskFromJson;
   factory RPTask.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPTask;
+      FromJsonFactory().fromJson<RPTask>(json);
   @override
   Map<String, dynamic> toJson() => _$RPTaskToJson(this);
 }

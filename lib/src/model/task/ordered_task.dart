@@ -6,7 +6,8 @@ part of '../../../model.dart';
 /// For simple tasks the [RPOrderedTask] is perfect.
 /// For more features (going back to previous questions, branching...) consider
 /// using [RPNavigableOrderedTask] which inherited from this class.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPOrderedTask extends RPTask {
   int _numberOfQuestionSteps = 0;
   bool _isConsentTask = false;
@@ -80,7 +81,7 @@ class RPOrderedTask extends RPTask {
   @override
   Function get fromJsonFunction => _$RPOrderedTaskFromJson;
   factory RPOrderedTask.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPOrderedTask;
+      FromJsonFactory().fromJson<RPOrderedTask>(json);
   @override
   Map<String, dynamic> toJson() => _$RPOrderedTaskToJson(this);
 }

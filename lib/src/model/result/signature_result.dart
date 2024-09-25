@@ -3,7 +3,8 @@ part of '../../../model.dart';
 /// The signature used in [RPConsentSignatureResult]
 ///
 /// It represents a signature with the participants name and signature image.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPSignatureResult {
   /// The person's first name
   String? firstName;
