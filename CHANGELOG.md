@@ -1,6 +1,7 @@
 ## 1.7.0
 
 * Upgrade to carp_serialization v. 2.0
+* Small upgrade to text and email in demo app
 
 ## 1.6.0
 
