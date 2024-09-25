@@ -7,7 +7,8 @@ part of '../../../model.dart';
 /// The signature object has no concept of a cryptographic signature – it is merely
 /// a record of any input the user made during a consent review step.
 /// Also, the object does not verify or vouch for user identity.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPConsentSignature extends Serializable {
   /// Unique identifier of the signature. This identifies the signature in the
   /// result hierarchy.
@@ -42,7 +43,7 @@ class RPConsentSignature extends Serializable {
   @override
   Function get fromJsonFunction => _$RPConsentSignatureFromJson;
   factory RPConsentSignature.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPConsentSignature;
+      FromJsonFactory().fromJson<RPConsentSignature>(json);
   @override
   Map<String, dynamic> toJson() => _$RPConsentSignatureToJson(this);
 }

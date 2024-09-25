@@ -11,7 +11,8 @@ part of '../../../model.dart';
 /// serialize it we have to provide a constructor and factory.
 /// There's no better solution found yet.
 /// Used in [RPStepResult]
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPAnswerFormat extends Serializable {
   /// The question type of this answer.
   /// Should be implemented / overwritten in the subclasses.
@@ -24,7 +25,7 @@ class RPAnswerFormat extends Serializable {
   @override
   Function get fromJsonFunction => _$RPAnswerFormatFromJson;
   factory RPAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPAnswerFormat;
+      FromJsonFactory().fromJson<RPAnswerFormat>(json);
   @override
   Map<String, dynamic> toJson() => _$RPAnswerFormatToJson(this);
 }

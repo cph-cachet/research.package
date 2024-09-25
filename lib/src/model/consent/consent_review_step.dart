@@ -10,7 +10,8 @@ part of '../../../model.dart';
 ///
 /// The presence or type of the to be collected signature depends on the
 /// [consentDocument]'s signature list.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPConsentReviewStep extends RPStep {
   /// The consent document to review and sign
   RPConsentDocument consentDocument;
@@ -41,7 +42,7 @@ class RPConsentReviewStep extends RPStep {
   @override
   Function get fromJsonFunction => _$RPConsentReviewStepFromJson;
   factory RPConsentReviewStep.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPConsentReviewStep;
+      FromJsonFactory().fromJson<RPConsentReviewStep>(json);
   @override
   Map<String, dynamic> toJson() => _$RPConsentReviewStepToJson(this);
 }

@@ -134,7 +134,7 @@ final alcoholStep = RPQuestionStep(
   answerFormat: dateAnswerFormat,
   autoSkip: true,
   // TODO - something is wrong - this step time out after 1-2 secs
-  timeout: Duration(seconds: 6),
+  timeout: const Duration(seconds: 6),
 );
 
 final insulinStep = RPQuestionStep(
@@ -208,7 +208,7 @@ final formStep = RPFormStep(
     alcoholStep
   ],
   autoSkip: true,
-  timeout: Duration(seconds: 6),
+  timeout: const Duration(seconds: 6),
   saveResultsOnAutoSkip: true,
   footnote: "©️ 2021 Research Package",
 );
@@ -230,7 +230,7 @@ final instructionStep = RPInstructionStep(
 
 final timerStep1 = RPTimerStep(
   identifier: 'RPTimerStepID',
-  timeout: Duration(seconds: 5),
+  timeout: const Duration(seconds: 5),
   title:
       "Please think for a moment about how your day was and note it down in the next step",
   playSound: true,
@@ -240,7 +240,7 @@ final timerStep1 = RPTimerStep(
 
 final timerStep2 = RPTimerStep(
   identifier: 'RPTimerStepID',
-  timeout: Duration(seconds: 5),
+  timeout: const Duration(seconds: 5),
   title:
       "Please think for a moment about how your day was and note it down in the next step",
   playSound: true,

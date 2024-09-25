@@ -32,8 +32,9 @@ class InformedConsentPage extends StatelessWidget {
       onCancel: (RPTaskResult? result) {
         if (result == null) {
           print("No result");
-        } else
+        } else {
           cancelCallBack(result);
+        }
       },
     );
   }

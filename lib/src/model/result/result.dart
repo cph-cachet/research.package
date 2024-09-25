@@ -2,7 +2,8 @@ part of '../../../model.dart';
 
 /// The superclass for results. It defines the attributes which all the more
 /// specialized results classes should have.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPResult {
   /// The identifier which connects the result to the [RPStep] or [RPTask] which
   /// generated this result.

@@ -1,7 +1,8 @@
 part of '../../../model.dart';
 
 /// Class representing an Answer Format that lets participants input a integer.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPIntegerAnswerFormat extends RPAnswerFormat {
   /// The minimum value of the range. The participant can not proceed if the
   /// number is outside the range.
@@ -25,7 +26,7 @@ class RPIntegerAnswerFormat extends RPAnswerFormat {
   @override
   Function get fromJsonFunction => _$RPIntegerAnswerFormatFromJson;
   factory RPIntegerAnswerFormat.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPIntegerAnswerFormat;
+      FromJsonFactory().fromJson<RPIntegerAnswerFormat>(json);
   @override
   Map<String, dynamic> toJson() => _$RPIntegerAnswerFormatToJson(this);
 }

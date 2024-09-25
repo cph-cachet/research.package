@@ -1,7 +1,8 @@
 part of '../../../model.dart';
 
 /// The result object of a step with no result.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPNoResult extends RPResult {
   RPNoResult({required super.identifier});
 

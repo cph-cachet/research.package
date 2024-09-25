@@ -7,7 +7,8 @@ part of '../../../model.dart';
 /// [RPStepNavigationRule]s.
 /// This task allows participant to go back to/looping through previous questions.
 /// In that case only the last answer given to the question will be saved.
-@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
 class RPNavigableOrderedTask extends RPOrderedTask {
   /// A dictionary of step identifier Strings and their corresponding navigation
   /// rule([RPStepNavigationRule]).
@@ -209,7 +210,7 @@ class RPNavigableOrderedTask extends RPOrderedTask {
   @override
   Function get fromJsonFunction => _$RPNavigableOrderedTaskFromJson;
   factory RPNavigableOrderedTask.fromJson(Map<String, dynamic> json) =>
-      FromJsonFactory().fromJson(json) as RPNavigableOrderedTask;
+      FromJsonFactory().fromJson<RPNavigableOrderedTask>(json);
   @override
   Map<String, dynamic> toJson() => _$RPNavigableOrderedTaskToJson(this);
 }
