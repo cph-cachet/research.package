@@ -24,6 +24,7 @@ class RPDemoApp extends StatelessWidget {
         Locale('en'),
         Locale('da'),
         Locale('fr'),
+        Locale('es'),
       ],
       localizationsDelegates: [
         // Research Package translations - supports translation of both the
