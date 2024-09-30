@@ -59,7 +59,6 @@ class RPUIQuestionStepState extends State<RPUIQuestionStep> with CanSaveResult {
           t.cancel();
           skipQuestion();
         }
-        blocQuestion.sendReadyToProceed(true);
       });
     }
 
