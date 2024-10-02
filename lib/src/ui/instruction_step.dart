@@ -27,7 +27,7 @@ class RPUIInstructionStepState extends State<RPUIInstructionStep> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       try {
         if (widget.step.audioPath != null) {
-          await player.setSource(AssetSource(widget.step.audioPath!));
+          await player.setSource(UrlSource(widget.step.audioPath!));
         }
       } catch (e) {
         print(e);
@@ -191,7 +191,7 @@ class InstructionImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Image.asset(
+      child: Image.network(
         _imagePath,
         width: MediaQuery.of(context).size.width / 2,
         errorBuilder:
