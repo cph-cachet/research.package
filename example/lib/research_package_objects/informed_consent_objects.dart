@@ -197,7 +197,8 @@ RPInstructionStep instructionStep = RPInstructionStep(
   footnote: "(1) Important footnote",
   imagePath: "https://picsum.photos/500",
   audioPath: "https://files.catbox.moe/vif2j1.mp3",
-  videoPath: "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+  videoPath:
+      "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
   text: "informed_consent.welcome_text",
 );
 
