@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Class representing an Answer Format that lets participants choose from a
 /// fixed set of choices.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPDateTimeAnswerFormat extends RPAnswerFormat {
   RPDateTimeAnswerStyle dateTimeAnswerStyle;
 

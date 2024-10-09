@@ -7,8 +7,7 @@ part of '../../../model.dart';
 /// [RPUIActivityStep] object to present the step.
 /// The actual visual presentation depends on the type of [RPActivityStep]
 /// (e.g. [RPTrailMakingActivity] from the cognition_package Flutter package).
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPActivityStep extends RPStep {
   /// Show the instruction before the test?
   ///

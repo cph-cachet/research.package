@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Class representing an Answer Format that lets participants input a
 /// decimal number (double)
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPDoubleAnswerFormat extends RPAnswerFormat {
   /// The minimum value of the range. The participant can not proceed if the
   /// number is outside the range.

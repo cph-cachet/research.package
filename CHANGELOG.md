@@ -1,12 +1,8 @@
-## 1.8.0
+## 1.7.1
 
-* Added support for new media types in RPInstructionStep class. Media types include video, audio, and an image. Media can be accessed by providing a url in the protocol under an RPInstructionStep by setting it as "video_step": "url".
-* Changed color of BACK button in task to be same as NEXT button.
-
-## 1.7.0
-
-* Upgrade to carp_serialization v. 2.0
-* Small upgrade to text and email in demo app
+* Upgrade to carp_serialization v. 2.0 - note that we now use **camelCase** for JSON.
+* Small upgrade to text and email in demo app.
+* Added support for Spanish (ES) in demo app.
 
 ## 1.6.0
 
@@ -18,8 +14,8 @@
 
 ## 1.5.0
 
-* fix of issue [#111](https://github.com/cph-cachet/research.package/issues/111)
-* fix of linter / static analysis issues
+* Fix of issue [#111](https://github.com/cph-cachet/research.package/issues/111)
+* Fix of linter / static analysis issues
 
 ## 1.4.3
 
@@ -31,18 +27,18 @@
 
 ## 1.4.2
 
-* fix UI bugs [#100](https://github.com/cph-cachet/research.package/issues/100) and [#101](https://github.com/cph-cachet/research.package/issues/101)
+* Fix UI bugs [#100](https://github.com/cph-cachet/research.package/issues/100) and [#101](https://github.com/cph-cachet/research.package/issues/101)
 
 ## 1.4.1
 
-* fix of issue [#183](https://github.com/cph-cachet/research.package/issues/182)
+* Fix of issue [#183](https://github.com/cph-cachet/research.package/issues/182)
 
 ## 1.4.0
 
 * `steps` in `RPFormStep` are now called `questions`.
-* improvements to API documentation
-* upgrade to Dart 3 and Android APK upgrades
-* fix of issue [#86](https://github.com/cph-cachet/research.package/issues/86)
+* Improvements to API documentation
+* Upgrade to Dart 3 and Android APK upgrades
+* Fix of issue [#86](https://github.com/cph-cachet/research.package/issues/86)
 
 ## 1.3.2
 

@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Class representing an Answer Format that lets participants use a slider
 /// to choose a value.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPSliderAnswerFormat extends RPAnswerFormat {
   /// The minimum value of the range.
   double minValue;

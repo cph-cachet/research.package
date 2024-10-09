@@ -132,9 +132,9 @@ final alcoholStep = RPQuestionStep(
   identifier: 'alcoholStep',
   title: 'When did you last drink alcohol?',
   answerFormat: dateAnswerFormat,
-  autoSkip: true,
+  // autoSkip: true,
   // TODO - something is wrong - this step time out after 1-2 secs
-  timeout: const Duration(seconds: 6),
+  // timeout: const Duration(seconds: 6),
 );
 
 final insulinStep = RPQuestionStep(
@@ -207,9 +207,9 @@ final formStep = RPFormStep(
     minutesQuestionStep, // optional
     alcoholStep
   ],
-  autoSkip: true,
-  timeout: const Duration(seconds: 6),
-  saveResultsOnAutoSkip: true,
+  // autoSkip: true,
+  // timeout: const Duration(seconds: 6),
+  // saveResultsOnAutoSkip: true,
   footnote: "©️ 2021 Research Package",
 );
 
@@ -224,8 +224,9 @@ final instructionStep = RPInstructionStep(
   title: "Welcome!",
   detailText: "For the sake of science of course...",
   text:
-      "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.",
+      "In this questionnaire the questions will come after each other in a given order. You still be able to skip some of them though.",
   footnote: "©️ 2021 Research Package",
+  imagePath: "assets/images/survey.png",
 );
 
 final timerStep1 = RPTimerStep(

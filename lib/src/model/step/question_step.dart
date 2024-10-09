@@ -6,8 +6,7 @@ part of '../../../model.dart';
 /// Each answer type has its own user interface widget.
 ///
 /// If you want to present multiple questions on the same page, use an [RPFormStep].
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPQuestionStep extends RPStep {
   RPUIQuestionStep? _widget;
 

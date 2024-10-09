@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Class representing an Answer Format that lets participants choose an image
 /// from a set of images.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPImageChoiceAnswerFormat extends RPAnswerFormat {
   /// A list of available [RPImageChoice] objects which represent the choices to
   /// the participants.
@@ -26,8 +25,7 @@ class RPImageChoiceAnswerFormat extends RPAnswerFormat {
 
 /// The image choice object which the participants can choose from, during a
 /// [RPQuestionStep] with [RPImageChoiceAnswerFormat]
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPImageChoice extends Serializable {
   /// The image portraying the choice.
   String imageUrl;

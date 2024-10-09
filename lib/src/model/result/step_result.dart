@@ -1,8 +1,7 @@
 part of '../../../model.dart';
 
 /// The result from a [RPStep].
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPStepResult extends RPResult {
   /// The title of the question.
   ///

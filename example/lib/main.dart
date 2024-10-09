@@ -70,7 +70,8 @@ class RPDemoApp extends StatelessWidget {
         return supportedLocales.first;
       },
       theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      // the default dark theme looks very strange.... so disabled for now
+      // darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
       home: const HomePage(),
       debugShowCheckedModeBanner: false,

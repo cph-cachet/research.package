@@ -8,8 +8,7 @@ part of '../../../model.dart';
 ///
 /// The result of an [RPFormStep] is an [RPStepResult] that consists further
 /// [RPStepResult]s for each question in the form.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPFormStep extends RPQuestionStep {
   /// The list of questions to be shown on the form.
   List<RPQuestionStep> questions;
