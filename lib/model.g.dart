@@ -641,6 +641,8 @@ RPInstructionStep _$RPInstructionStepFromJson(Map<String, dynamic> json) =>
       optional: json['optional'] as bool? ?? false,
       detailText: json['detail_text'] as String?,
       imagePath: json['image_path'] as String?,
+      audioPath: json['audio_path'] as String?,
+      videoPath: json['video_path'] as String?,
       footnote: json['footnote'] as String?,
     )..$type = json['__type'] as String?;
 
@@ -661,6 +663,8 @@ Map<String, dynamic> _$RPInstructionStepToJson(RPInstructionStep instance) {
   writeNotNull('footnote', instance.footnote);
   writeNotNull('detail_text', instance.detailText);
   writeNotNull('image_path', instance.imagePath);
+  writeNotNull('audio_path', instance.audioPath);
+  writeNotNull('video_path', instance.videoPath);
   return val;
 }
 

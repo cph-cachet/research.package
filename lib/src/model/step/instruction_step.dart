@@ -18,6 +18,15 @@ class RPInstructionStep extends RPStep {
   /// If `null` nothing is shown.
   String? imagePath;
 
+  /// The path of the audio to play after the Instruction Step is finished.
+  ///
+  /// Remember to add audio to use as an asset to your `pubspec.yaml` file.
+  ///
+  /// If `null` the ui is not shown.
+  String? audioPath;
+
+  String? videoPath;
+
   RPInstructionStep({
     required super.identifier,
     required super.title,
@@ -25,6 +34,8 @@ class RPInstructionStep extends RPStep {
     super.optional,
     this.detailText,
     this.imagePath,
+    this.audioPath,
+    this.videoPath,
     super.footnote,
   });
 
@@ -37,4 +48,9 @@ class RPInstructionStep extends RPStep {
       FromJsonFactory().fromJson<RPInstructionStep>(json);
   @override
   Map<String, dynamic> toJson() => _$RPInstructionStepToJson(this);
+
+  @override
+  String toString() {
+    return "identifier: $identifier, title: $title, text: $text, detailText: $detailText, imagePath: $imagePath, audioPath: $audioPath, videoPath: $videoPath, footnote: $footnote";
+  }
 }
