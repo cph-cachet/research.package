@@ -1,7 +1,7 @@
 {
     "__type": "RPOrderedTask",
     "identifier": "surveyTaskID",
-    "close_after_finished": true,
+    "closeAfterFinished": true,
     "steps": [
         {
             "__type": "RPInstructionStep",
@@ -10,7 +10,7 @@
             "text": "Please fill out this questionnaire!\n\nIn this questionnaire the questions will come after each other in a given order. You still have the chance to skip a some of them though.",
             "optional": false,
             "footnote": "©️ 2021 Research Package",
-            "detail_text": "For the sake of science of course..."
+            "detailText": "For the sake of science of course..."
         },
         {
             "__type": "RPTimerStep",
@@ -19,9 +19,9 @@
             "optional": false,
             "footnote": "©️ 2021 Research Package",
             "timeout": 5000000,
-            "play_sound": true,
-            "auto_skip": true,
-            "show_time": true
+            "playSound": true,
+            "autoSkip": true,
+            "showTime": true
         },
         {
             "__type": "RPFormStep",
@@ -29,98 +29,98 @@
             "title": "Questions about music",
             "optional": false,
             "footnote": "©️ 2021 Research Package",
-            "answer_format": {
+            "answerFormat": {
                 "__type": "RPFormAnswerFormat",
-                "question_type": "Form"
+                "questionType": "Form"
             },
-            "auto_skip": true,
+            "autoSkip": true,
             "timeout": 6000000,
-            "auto_focus": false,
+            "autoFocus": false,
             "questions": [
                 {
                     "__type": "RPQuestionStep",
                     "identifier": "instrumentChoiceQuestionStepID",
                     "title": "Which instrument are you playing?",
                     "optional": true,
-                    "answer_format": {
+                    "answerFormat": {
                         "__type": "RPChoiceAnswerFormat",
-                        "question_type": "MultipleChoice",
+                        "questionType": "MultipleChoice",
                         "choices": [
                             {
                                 "__type": "RPChoice",
                                 "text": "Guitar",
                                 "value": 3,
-                                "detail_text": "A guitar is an instrument. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum facilisis turpis, vitae congue nunc. Cras gravida tempor elit eu congue. Nam ut est eget enim imperdiet ullamcorper. Curabitur ac consequat augue. Suspendisse hendrerit, est eu varius suscipit, nisi magna congue purus, quis facilisis massa nibh sit amet est. Sed ut ligula diam. Nunc mollis iaculis nulla in hendrerit. Nulla facilisi. Vivamus faucibus augue vel auctor lacinia.",
-                                "is_free_text": false
+                                "detailText": "A guitar is an instrument. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum facilisis turpis, vitae congue nunc. Cras gravida tempor elit eu congue. Nam ut est eget enim imperdiet ullamcorper. Curabitur ac consequat augue. Suspendisse hendrerit, est eu varius suscipit, nisi magna congue purus, quis facilisis massa nibh sit amet est. Sed ut ligula diam. Nunc mollis iaculis nulla in hendrerit. Nulla facilisi. Vivamus faucibus augue vel auctor lacinia.",
+                                "isFreeText": false
                             },
                             {
                                 "__type": "RPChoice",
                                 "text": "Piano",
                                 "value": 2,
-                                "is_free_text": false
+                                "isFreeText": false
                             },
                             {
                                 "__type": "RPChoice",
                                 "text": "Saxophone",
                                 "value": 1,
-                                "is_free_text": false
+                                "isFreeText": false
                             }
                         ],
-                        "answer_style": "MultipleChoice"
+                        "answerStyle": "MultipleChoice"
                     },
-                    "auto_skip": false,
+                    "autoSkip": false,
                     "timeout": 0,
-                    "auto_focus": false
+                    "autoFocus": false
                 },
                 {
                     "__type": "RPQuestionStep",
                     "identifier": "textStepID",
                     "title": "Describe your morning routine",
                     "optional": false,
-                    "answer_format": {
+                    "answerFormat": {
                         "__type": "RPTextAnswerFormat",
-                        "hint_text": "Write here",
-                        "auto_focus": false,
-                        "disable_helpers": false,
-                        "question_type": "Text"
+                        "hintText": "Write here",
+                        "autoFocus": false,
+                        "disableHelpers": false,
+                        "questionType": "Text"
                     },
-                    "auto_skip": false,
+                    "autoSkip": false,
                     "timeout": 0,
-                    "auto_focus": false
+                    "autoFocus": false
                 },
                 {
                     "__type": "RPQuestionStep",
                     "identifier": "minutesQuestionStepID",
                     "title": "How many minutes do you spend practicing a week?",
                     "optional": true,
-                    "answer_format": {
+                    "answerFormat": {
                         "__type": "RPIntegerAnswerFormat",
-                        "min_value": 0,
-                        "max_value": 10000,
+                        "minValue": 0,
+                        "maxValue": 10000,
                         "suffix": "minutes",
-                        "question_type": "Integer"
+                        "questionType": "Integer"
                     },
-                    "auto_skip": false,
+                    "autoSkip": false,
                     "timeout": 0,
-                    "auto_focus": false
+                    "autoFocus": false
                 },
                 {
                     "__type": "RPQuestionStep",
                     "identifier": "alcoholStep",
                     "title": "When did you last drink alcohol?",
                     "optional": false,
-                    "answer_format": {
+                    "answerFormat": {
                         "__type": "RPDateTimeAnswerFormat",
-                        "question_type": "Date",
-                        "date_time_answer_style": "Date"
+                        "questionType": "Date",
+                        "dateTimeAnswerStyle": "Date"
                     },
-                    "auto_skip": true,
+                    "autoSkip": true,
                     "timeout": 6000000,
-                    "auto_focus": false
+                    "autoFocus": false
                 }
             ],
-            "save_results_on_auto_skip": true,
-            "force_wait": false
+            "saveResultsOnAutoSkip": true,
+            "forceWait": false
         },
         {
             "__type": "RPTimerStep",
@@ -129,9 +129,9 @@
             "optional": false,
             "footnote": "©️ 2021 Research Package",
             "timeout": 5000000,
-            "play_sound": true,
-            "auto_skip": true,
-            "show_time": true
+            "playSound": true,
+            "autoSkip": true,
+            "showTime": true
         },
         {
             "__type": "RPQuestionStep",
@@ -139,107 +139,107 @@
             "title": "What did you pay for insulin?",
             "optional": true,
             "footnote": "© EuroQol Research Foundation. EQ-5D™ is a trade mark of the EuroQol Research Foundation. UK (English) 2.1",
-            "answer_format": {
+            "answerFormat": {
                 "__type": "RPSliderAnswerFormat",
-                "min_value": 0.0,
-                "max_value": 100.0,
+                "minValue": 0.0,
+                "maxValue": 100.0,
                 "divisions": 10,
                 "prefix": "$",
                 "suffix": " paid",
-                "question_type": "Scale"
+                "questionType": "Scale"
             },
-            "auto_skip": false,
+            "autoSkip": false,
             "timeout": 0,
-            "auto_focus": false
+            "autoFocus": false
         },
         {
             "__type": "RPQuestionStep",
             "identifier": "foodStep",
             "title": "When did you last eat unhealthy food?",
             "optional": false,
-            "answer_format": {
+            "answerFormat": {
                 "__type": "RPDateTimeAnswerFormat",
-                "question_type": "DateAndTime",
-                "date_time_answer_style": "DateAndTime"
+                "questionType": "DateAndTime",
+                "dateTimeAnswerStyle": "DateAndTime"
             },
-            "auto_skip": false,
+            "autoSkip": false,
             "timeout": 0,
-            "auto_focus": false
+            "autoFocus": false
         },
         {
             "__type": "RPQuestionStep",
             "identifier": "alcoholStep",
             "title": "When did you last drink alcohol?",
             "optional": false,
-            "answer_format": {
+            "answerFormat": {
                 "__type": "RPDateTimeAnswerFormat",
-                "question_type": "Date",
-                "date_time_answer_style": "Date"
+                "questionType": "Date",
+                "dateTimeAnswerStyle": "Date"
             },
-            "auto_skip": true,
+            "autoSkip": true,
             "timeout": 6000000,
-            "auto_focus": false
+            "autoFocus": false
         },
         {
             "__type": "RPQuestionStep",
             "identifier": "bloodGlucoseStep",
             "title": "Please enter your Blood Glucose",
             "optional": false,
-            "answer_format": {
+            "answerFormat": {
                 "__type": "RPDoubleAnswerFormat",
-                "min_value": 0.0,
-                "max_value": 20.0,
+                "minValue": 0.0,
+                "maxValue": 20.0,
                 "suffix": "mmol/l",
-                "question_type": "Double"
+                "questionType": "Double"
             },
-            "auto_skip": false,
+            "autoSkip": false,
             "timeout": 0,
-            "auto_focus": false
+            "autoFocus": false
         },
         {
             "__type": "RPQuestionStep",
             "identifier": "imageStepID",
             "title": "Indicate you mood by selecting a picture!",
             "optional": false,
-            "answer_format": {
+            "answerFormat": {
                 "__type": "RPImageChoiceAnswerFormat",
                 "choices": [
                     {
                         "__type": "RPImageChoice",
-                        "image_url": "assets/images/very-sad.png",
+                        "imageUrl": "assets/images/very-sad.png",
                         "value": -2,
                         "description": "Feeling very sad"
                     },
                     {
                         "__type": "RPImageChoice",
-                        "image_url": "assets/images/sad.png",
+                        "imageUrl": "assets/images/sad.png",
                         "value": -1,
                         "description": "Feeling sad"
                     },
                     {
                         "__type": "RPImageChoice",
-                        "image_url": "assets/images/ok.png",
+                        "imageUrl": "assets/images/ok.png",
                         "value": 0,
                         "description": "Feeling ok"
                     },
                     {
                         "__type": "RPImageChoice",
-                        "image_url": "assets/images/happy.png",
+                        "imageUrl": "assets/images/happy.png",
                         "value": 1,
                         "description": "Feeling happy"
                     },
                     {
                         "__type": "RPImageChoice",
-                        "image_url": "assets/images/very-happy.png",
+                        "imageUrl": "assets/images/very-happy.png",
                         "value": 2,
                         "description": "Feeling very happy"
                     }
                 ],
-                "question_type": "ImageChoice"
+                "questionType": "ImageChoice"
             },
-            "auto_skip": false,
+            "autoSkip": false,
             "timeout": 0,
-            "auto_focus": false
+            "autoFocus": false
         }
     ]
 }

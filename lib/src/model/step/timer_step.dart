@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// A step where the user is forced to wait for [timeout] before being allowed
 /// to proceed to the next step.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPTimerStep extends RPStep {
   /// The time the user must wait before being able to continue.
   Duration timeout;

@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Super class of the navigation rules. Do not use this type, only sub-classes.
 /// Extend this to create a custom navigation rule.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPStepNavigationRule extends Serializable {
   RPStepNavigationRule();
 
