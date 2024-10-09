@@ -1,7 +1,7 @@
 {
     "__type": "RPOrderedTask",
     "identifier": "consentTaskID",
-    "close_after_finished": true,
+    "closeAfterFinished": true,
     "steps": [
         {
             "__type": "RPInstructionStep",
@@ -9,23 +9,23 @@
             "title": "Welcome!",
             "text": "informed_consent.welcome_text",
             "optional": false,
-            "detail_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultricies feugiat turpis nec efficitur. Integer in pharetra libero. Proin a leo eu enim porttitor hendrerit. Suspendisse vestibulum interdum mollis. Donec in sapien ut orci ultricies laoreet. Ut maximus ante id arcu feugiat scelerisque. Proin non rutrum libero. Aliquam blandit arcu ac dolor consequat maximus. Integer et dolor quis quam tempor porta quis vel nibh. Phasellus ullamcorper fringilla lorem, ac tempus sem cursus a. Aliquam maximus facilisis quam. Morbi hendrerit tempor tellus, ac hendrerit augue tincidunt eu. Cras convallis lorem at nulla mattis tristique.",
             "footnote": "(1) Important footnote",
-            "image_path": "assets/images/waving-hand.png"
+            "detailText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultricies feugiat turpis nec efficitur. Integer in pharetra libero. Proin a leo eu enim porttitor hendrerit. Suspendisse vestibulum interdum mollis. Donec in sapien ut orci ultricies laoreet. Ut maximus ante id arcu feugiat scelerisque. Proin non rutrum libero. Aliquam blandit arcu ac dolor consequat maximus. Integer et dolor quis quam tempor porta quis vel nibh. Phasellus ullamcorper fringilla lorem, ac tempus sem cursus a. Aliquam maximus facilisis quam. Morbi hendrerit tempor tellus, ac hendrerit augue tincidunt eu. Cras convallis lorem at nulla mattis tristique.",
+            "imagePath": "assets/images/waving-hand.png"
         },
         {
             "__type": "RPVisualConsentStep",
             "identifier": "visualStep",
             "title": "",
             "optional": false,
-            "consent_document": {
+            "consentDocument": {
                 "__type": "RPConsentDocument",
                 "signatures": [
                     {
                         "__type": "RPConsentSignature",
                         "identifier": "consentSignatureID",
-                        "requires_name": true,
-                        "requires_signature_image": true
+                        "requiresName": true,
+                        "requiresSignatureImage": true
                     }
                 ],
                 "title": "Informed Consent - Full Version",
@@ -147,31 +147,31 @@
                         "type": "UserDataCollection",
                         "title": "Data collection from you",
                         "summary": "userDataCollection.summary",
-                        "data_types": [
+                        "dataTypes": [
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.alcohol.dataName",
-                                "data_information": "userDataCollection.alcohol.dataInformation"
+                                "dataName": "userDataCollection.alcohol.dataName",
+                                "dataInformation": "userDataCollection.alcohol.dataInformation"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.mood.dataName",
-                                "data_information": "userDataCollection.mood.dataInformation"
+                                "dataName": "userDataCollection.mood.dataName",
+                                "dataInformation": "userDataCollection.mood.dataInformation"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.weight.dataName",
-                                "data_information": "userDataCollection.weight.dataInformation"
+                                "dataName": "userDataCollection.weight.dataName",
+                                "dataInformation": "userDataCollection.weight.dataInformation"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.medications.dataName",
-                                "data_information": "userDataCollection.medications.dataInformation"
+                                "dataName": "userDataCollection.medications.dataName",
+                                "dataInformation": "userDataCollection.medications.dataInformation"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.smoking.dataName",
-                                "data_information": "userDataCollection.smoking.dataInformation"
+                                "dataName": "userDataCollection.smoking.dataName",
+                                "dataInformation": "userDataCollection.smoking.dataInformation"
                             }
                         ]
                     },
@@ -180,26 +180,26 @@
                         "type": "PassiveDataCollection",
                         "title": "Passive data collection",
                         "summary": "This study will passively collect data about the following categories:",
-                        "data_types": [
+                        "dataTypes": [
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "Steps",
-                                "data_information": "Your daily step counts as collected by the phone."
+                                "dataName": "Steps",
+                                "dataInformation": "Your daily step counts as collected by the phone."
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "Activity",
-                                "data_information": "Your different types of activities as detected by the phone"
+                                "dataName": "Activity",
+                                "dataInformation": "Your different types of activities as detected by the phone"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "Location",
-                                "data_information": "Your location as you move around"
+                                "dataName": "Location",
+                                "dataInformation": "Your location as you move around"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "Noise",
-                                "data_information": "Background noise as detected by the phone's microphone"
+                                "dataName": "Noise",
+                                "dataInformation": "Background noise as detected by the phone's microphone"
                             }
                         ]
                     }
@@ -212,14 +212,14 @@
             "title": "Consent Review",
             "text": "informed_consent.agree_confirm",
             "optional": false,
-            "consent_document": {
+            "consentDocument": {
                 "__type": "RPConsentDocument",
                 "signatures": [
                     {
                         "__type": "RPConsentSignature",
                         "identifier": "consentSignatureID",
-                        "requires_name": true,
-                        "requires_signature_image": true
+                        "requiresName": true,
+                        "requiresSignatureImage": true
                     }
                 ],
                 "title": "Informed Consent - Full Version",
@@ -341,31 +341,31 @@
                         "type": "UserDataCollection",
                         "title": "Data collection from you",
                         "summary": "userDataCollection.summary",
-                        "data_types": [
+                        "dataTypes": [
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.alcohol.dataName",
-                                "data_information": "userDataCollection.alcohol.dataInformation"
+                                "dataName": "userDataCollection.alcohol.dataName",
+                                "dataInformation": "userDataCollection.alcohol.dataInformation"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.mood.dataName",
-                                "data_information": "userDataCollection.mood.dataInformation"
+                                "dataName": "userDataCollection.mood.dataName",
+                                "dataInformation": "userDataCollection.mood.dataInformation"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.weight.dataName",
-                                "data_information": "userDataCollection.weight.dataInformation"
+                                "dataName": "userDataCollection.weight.dataName",
+                                "dataInformation": "userDataCollection.weight.dataInformation"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.medications.dataName",
-                                "data_information": "userDataCollection.medications.dataInformation"
+                                "dataName": "userDataCollection.medications.dataName",
+                                "dataInformation": "userDataCollection.medications.dataInformation"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "userDataCollection.smoking.dataName",
-                                "data_information": "userDataCollection.smoking.dataInformation"
+                                "dataName": "userDataCollection.smoking.dataName",
+                                "dataInformation": "userDataCollection.smoking.dataInformation"
                             }
                         ]
                     },
@@ -374,32 +374,32 @@
                         "type": "PassiveDataCollection",
                         "title": "Passive data collection",
                         "summary": "This study will passively collect data about the following categories:",
-                        "data_types": [
+                        "dataTypes": [
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "Steps",
-                                "data_information": "Your daily step counts as collected by the phone."
+                                "dataName": "Steps",
+                                "dataInformation": "Your daily step counts as collected by the phone."
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "Activity",
-                                "data_information": "Your different types of activities as detected by the phone"
+                                "dataName": "Activity",
+                                "dataInformation": "Your different types of activities as detected by the phone"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "Location",
-                                "data_information": "Your location as you move around"
+                                "dataName": "Location",
+                                "dataInformation": "Your location as you move around"
                             },
                             {
                                 "__type": "RPDataTypeSection",
-                                "data_name": "Noise",
-                                "data_information": "Background noise as detected by the phone's microphone"
+                                "dataName": "Noise",
+                                "dataInformation": "Background noise as detected by the phone's microphone"
                             }
                         ]
                     }
                 ]
             },
-            "reason_for_consent": "informed_consent.agree_text"
+            "reasonForConsent": "informed_consent.agree_text"
         },
         {
             "__type": "RPCompletionStep",

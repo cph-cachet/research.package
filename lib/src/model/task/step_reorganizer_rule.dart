@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Reorganizes the survey steps and removes all steps that arent specified by the [reorderingMap].
 /// The survey will then go to the specified step
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPStepReorganizerRule extends RPStepNavigationRule {
   /// Those steps will be removed which are not selected
   Map<int, String> reorderingMap;

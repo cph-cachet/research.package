@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Class representing an Answer Format that lets participants input a
 /// number (integer)
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPTextAnswerFormat extends RPAnswerFormat {
   /// Hint text shown in the TextField
   String? hintText;

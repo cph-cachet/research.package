@@ -1,8 +1,7 @@
 part of '../../../model.dart';
 
 /// A step which can be used as a "Thank you" or completion step in a task.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPCompletionStep extends RPStep {
   /// Create a new [RPCompletionStep] which shown the [text] to the user.
   RPCompletionStep({

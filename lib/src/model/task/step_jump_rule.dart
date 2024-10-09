@@ -13,8 +13,7 @@ part of '../../../model.dart';
 /// ```
 /// If answer value 2 is taken then the survey will jump to `instructionStepC`
 /// and continue from there.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPStepJumpRule extends RPStepNavigationRule {
   /// A map of `answer-value -> step-id` linking the possible values of the answer to step.
   /// If a specific value is chosen, the survey jumps to the targeted next step.

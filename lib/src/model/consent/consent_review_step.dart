@@ -10,8 +10,7 @@ part of '../../../model.dart';
 ///
 /// The presence or type of the to be collected signature depends on the
 /// [consentDocument]'s signature list.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPConsentReviewStep extends RPStep {
   /// The consent document to review and sign
   RPConsentDocument consentDocument;

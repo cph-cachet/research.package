@@ -6,8 +6,7 @@ part of '../../../model.dart';
 /// with at least one section and attach the document to a visual consent step.
 /// Put the visual consent step into a Research Package task, and present it
 /// with an [RPUITask].
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPVisualConsentStep extends RPStep {
   /// The consent document whose sections determine the order and appearance of
   /// scenes in the visual consent step.
