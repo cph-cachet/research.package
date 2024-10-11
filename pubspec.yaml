@@ -15,7 +15,6 @@ dependencies:
 
   signature: ^5.4.0
   rxdart: ^0.28.0
-  rxdart: ^0.28.0
   json_annotation: ^4.8.0
   audioplayers: ^6.1.0
   video_player: ^2.9.1
