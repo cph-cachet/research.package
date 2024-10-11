@@ -460,7 +460,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).primaryColor;
+    final color = Theme.of(context).primaryColorLight;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
