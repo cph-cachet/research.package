@@ -1,3 +1,11 @@
+## 1.8.0
+* Added support for new media types in RPInstructionStep class. Media types include
+  - Video 
+  - Audio
+  - Image
+Media can be accessed by providing a url in the protocol under an RPInstructionStep by setting it as "video_step": "url".
+* Changed color of BACK button in task to be same as NEXT button.
+
 ## 1.7.1
 
 * Upgrade to carp_serialization v. 2.0 - note that we now use **camelCase** for JSON.
