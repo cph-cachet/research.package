@@ -70,9 +70,10 @@ class RPUIInstructionStepState extends State<RPUIInstructionStep> {
                   if (widget.step.imagePath != null)
                     Center(
                       child: SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.25,
-                        width: MediaQuery.of(context).size.width * 0.25,
-                        child: InstructionImage(widget.step.imagePath!),
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        child:
+                            InstructionImage(imagePath: widget.step.imagePath!),
                       ),
                     ),
                   if (widget.step.videoPath != null)
@@ -182,23 +183,46 @@ class _DetailTextRoute extends StatelessWidget {
   }
 }
 
-class InstructionImage extends StatelessWidget {
-  final String _imagePath;
-
-  const InstructionImage(this._imagePath, {super.key});
+class InstructionImage extends StatefulWidget {
+  final String imagePath;
+  const InstructionImage({super.key, required this.imagePath});
 
   @override
+  _InstructionImageState createState() => _InstructionImageState();
+}
+
+class _InstructionImageState extends State<InstructionImage> {
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Image.network(
+    String _imagePath = widget.imagePath;
+    Image image;
+    _imagePath = widget.imagePath;
+
+    if (_imagePath.startsWith('http')) {
+      image = Image.network(
         _imagePath,
-        width: MediaQuery.of(context).size.width / 2,
         errorBuilder:
             (BuildContext context, Object error, StackTrace? stackTrace) {
           return Container();
         },
-      ),
+      );
+    } else {
+      image = Image.asset(_imagePath);
+    }
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        return Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: SizedBox(
+              width: image.width ?? constraints.maxWidth,
+              height: image.height ?? constraints.maxHeight,
+              child: image,
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -295,7 +319,8 @@ class _VideoAppState extends State<VideoApp> {
         return AlertDialog(
           title: const Text('Connection Error'),
           titlePadding: const EdgeInsets.symmetric(vertical: 4.0),
-          insetPadding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 40),
+          insetPadding:
+              const EdgeInsets.symmetric(vertical: 24.0, horizontal: 40),
           content: const Text(
               'Internet connection not found or video could not be loaded.'),
           actions: <Widget>[
