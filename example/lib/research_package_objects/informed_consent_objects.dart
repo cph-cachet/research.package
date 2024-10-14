@@ -195,10 +195,13 @@ RPInstructionStep instructionStep = RPInstructionStep(
   detailText:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultricies feugiat turpis nec efficitur. Integer in pharetra libero. Proin a leo eu enim porttitor hendrerit. Suspendisse vestibulum interdum mollis. Donec in sapien ut orci ultricies laoreet. Ut maximus ante id arcu feugiat scelerisque. Proin non rutrum libero. Aliquam blandit arcu ac dolor consequat maximus. Integer et dolor quis quam tempor porta quis vel nibh. Phasellus ullamcorper fringilla lorem, ac tempus sem cursus a. Aliquam maximus facilisis quam. Morbi hendrerit tempor tellus, ac hendrerit augue tincidunt eu. Cras convallis lorem at nulla mattis tristique.",
   footnote: "(1) Important footnote",
-  imagePath: "assets/images/sad.png",
-  audioPath: "assets/audio/house.mp3",
-  // videoPath:
-  //     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+  imagePath:
+      // "assets/images/sad.png",
+      "https://fastly.picsum.photos/id/409/1200/1200.jpg?hmac=khino2Cwzom1RO51dX-vISUNyG5y1yPpT99jmiEDUgQ",
+  audioPath: "audio/house.mp3",
+  videoPath:
+      // "assets/video/colors.mp4",
+      "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
   text: "informed_consent.welcome_text",
 );
 

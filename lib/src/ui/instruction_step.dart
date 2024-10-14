@@ -27,7 +27,11 @@ class RPUIInstructionStepState extends State<RPUIInstructionStep> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       try {
         if (widget.step.audioPath != null) {
-          await player.setSource(UrlSource(widget.step.audioPath!));
+          if (widget.step.audioPath!.startsWith('http')) {
+            await player.setSource(UrlSource(widget.step.audioPath!));
+          } else {
+            await player.setSource(AssetSource(widget.step.audioPath!));
+          }
         }
       } catch (e) {
         print(e);
@@ -246,16 +250,30 @@ class _VideoAppState extends State<VideoApp> {
   @override
   void initState() {
     super.initState();
-    _controller =
-        VideoPlayerController.networkUrl(Uri.parse(widget.step.videoPath!))
-          ..initialize().then((_) {
-            // Ensure the first frame is shown after the video is initialized
-            setState(() {
-              _duration = _controller.value.duration;
+    if (widget.step.videoPath != null &&
+        widget.step.videoPath!.startsWith("http")) {
+      _controller =
+          VideoPlayerController.networkUrl(Uri.parse(widget.step.videoPath!))
+            ..initialize().then((_) {
+              // Ensure the first frame is shown after the video is initialized
+              setState(() {
+                _duration = _controller.value.duration;
+              });
+            }).catchError((onError) {
+              _showConnectionErrorDialog();
             });
-          }).catchError((onError) {
-            _showConnectionErrorDialog();
+    } else {
+      print("widget.step.videopath ${widget.step.videoPath}");
+      _controller = VideoPlayerController.asset(widget.step.videoPath!)
+        ..initialize().then((_) {
+          // Ensure the first frame is shown after the video is initialized
+          setState(() {
+            _duration = _controller.value.duration;
           });
+        }).catchError((onError) {
+          _showConnectionErrorDialog();
+        });
+    }
 
     _controller.addListener(() {
       setState(() {
@@ -317,8 +335,10 @@ class _VideoAppState extends State<VideoApp> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Connection Error'),
-          titlePadding: const EdgeInsets.symmetric(vertical: 4.0),
+          title: const Center(
+            child: Text('Connection Error'),
+          ),
+          titlePadding: const EdgeInsets.symmetric(vertical: 12.0),
           insetPadding:
               const EdgeInsets.symmetric(vertical: 24.0, horizontal: 40),
           content: const Text(
@@ -344,6 +364,17 @@ class _VideoAppState extends State<VideoApp> {
         );
       },
     );
+  }
+
+  void _toggleFullScreen() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => FullscreenVideoPlayer(
+        controller: _controller,
+        onExitFullScreen: () {
+          Navigator.of(context).pop();
+        },
+      ),
+    ));
   }
 
   @override
@@ -372,43 +403,122 @@ class _VideoAppState extends State<VideoApp> {
                           size: 64.0,
                           color: Colors.white,
                         ),
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (_controller.value.isInitialized && !_hasError)
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: SliderTheme(
+                                  data: SliderTheme.of(context).copyWith(
+                                      overlayShape:
+                                          SliderComponentShape.noOverlay),
+                                  child: Slider(
+                                    min: 0.0,
+                                    max: _duration?.inSeconds.toDouble() ?? 1.0,
+                                    value:
+                                        _position?.inSeconds.toDouble() ?? 0.0,
+                                    onChanged: (value) {
+                                      _seekToPosition(value);
+                                    },
+                                  ),
+                                ),
+                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.fullscreen,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: _toggleFullScreen,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 )
               : Center(child: const CircularProgressIndicator()),
         ),
-
-        // Video progress slider
-        if (_controller.value.isInitialized && !_hasError)
-          Column(
-            children: [
-              SliderTheme(
-                data: SliderTheme.of(context).copyWith(
-                  thumbShape: const RoundSliderThumbShape(
-                      enabledThumbRadius: 10.0), // Customize the thumb
-                  activeTrackColor: Colors.blue,
-                  inactiveTrackColor: Colors.grey,
-                  thumbColor: Colors.blue, // Thumb color
-                  overlayColor:
-                      Colors.blue.withAlpha(32), // Thumb overlay when dragged
-                  trackHeight: 4.0, // Thickness of the progress bar
-                ),
-                child: Slider(
-                  min: 0.0,
-                  max: _duration?.inSeconds.toDouble() ?? 1.0,
-                  value: _position?.inSeconds.toDouble() ?? 0.0,
-                  onChanged: (value) {
-                    _seekToPosition(value);
-                  },
-                ),
-              ),
-              Text(
-                '${_position?.toString().split('.').first} / ${_duration?.toString().split('.').first}',
-                style: const TextStyle(fontSize: 16.0),
-              ),
-            ],
-          ),
       ],
+    );
+  }
+}
+
+class FullscreenVideoPlayer extends StatelessWidget {
+  final VideoPlayerController controller;
+  final VoidCallback onExitFullScreen;
+
+  const FullscreenVideoPlayer(
+      {super.key, required this.controller, required this.onExitFullScreen});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                if (controller.value.isPlaying) {
+                  controller.pause();
+                } else {
+                  controller.play();
+                }
+              },
+              child: controller.value.isInitialized
+                  ? AspectRatio(
+                      aspectRatio: controller.value.aspectRatio,
+                      child: VideoPlayer(controller),
+                    )
+                  : const CircularProgressIndicator(),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Slider(
+                      min: 0.0,
+                      max: controller.value.duration.inSeconds.toDouble(),
+                      value: controller.value.position.inSeconds.toDouble(),
+                      onChanged: (value) {
+                        controller.seekTo(Duration(seconds: value.round()));
+                      },
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        icon: const Icon(
+                          Icons.fullscreen_exit,
+                          color: Colors.white,
+                        ),
+                        onPressed: onExitFullScreen,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
