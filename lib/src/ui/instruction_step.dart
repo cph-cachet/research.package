@@ -250,29 +250,33 @@ class _VideoAppState extends State<VideoApp> {
   @override
   void initState() {
     super.initState();
-    if (widget.step.videoPath != null &&
-        widget.step.videoPath!.startsWith("http")) {
-      _controller =
-          VideoPlayerController.networkUrl(Uri.parse(widget.step.videoPath!))
-            ..initialize().then((_) {
-              // Ensure the first frame is shown after the video is initialized
-              setState(() {
-                _duration = _controller.value.duration;
+    try {
+      if (widget.step.videoPath != null &&
+          widget.step.videoPath!.startsWith("http")) {
+        _controller =
+            VideoPlayerController.networkUrl(Uri.parse(widget.step.videoPath!))
+              ..initialize().then((_) {
+                // Ensure the first frame is shown after the video is initialized
+                setState(() {
+                  _duration = _controller.value.duration;
+                });
+              }).catchError((onError) {
+                _showConnectionErrorDialog();
               });
-            }).catchError((onError) {
-              _showConnectionErrorDialog();
+      } else {
+        print("widget.step.videopath ${widget.step.videoPath}");
+        _controller = VideoPlayerController.asset(widget.step.videoPath!)
+          ..initialize().then((_) {
+            // Ensure the first frame is shown after the video is initialized
+            setState(() {
+              _duration = _controller.value.duration;
             });
-    } else {
-      print("widget.step.videopath ${widget.step.videoPath}");
-      _controller = VideoPlayerController.asset(widget.step.videoPath!)
-        ..initialize().then((_) {
-          // Ensure the first frame is shown after the video is initialized
-          setState(() {
-            _duration = _controller.value.duration;
+          }).catchError((onError) {
+            _showConnectionErrorDialog();
           });
-        }).catchError((onError) {
-          _showConnectionErrorDialog();
-        });
+      }
+    } catch (e) {
+      debugPrint("Initialization Error: $e");
     }
 
     _controller.addListener(() {
