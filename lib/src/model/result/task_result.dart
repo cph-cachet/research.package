@@ -28,8 +28,11 @@ class RPTaskResult extends RPResult {
   void setStepResultForIdentifier(String identifier, RPResult result) =>
       results[identifier] = result;
 
+  @override
+  Function get fromJsonFunction => _$RPTaskResultFromJson;
   factory RPTaskResult.fromJson(Map<String, dynamic> json) =>
-      _$RPTaskResultFromJson(json);
+      FromJsonFactory().fromJson<RPTaskResult>(json);
+
   @override
   Map<String, dynamic> toJson() => _$RPTaskResultToJson(this);
 }

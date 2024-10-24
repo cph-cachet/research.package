@@ -3,7 +3,7 @@ part of '../../../model.dart';
 /// The superclass for results. It defines the attributes which all the more
 /// specialized results classes should have.
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
-class RPResult {
+class RPResult extends Serializable {
   /// The identifier which connects the result to the [RPStep] or [RPTask] which
   /// generated this result.
   String identifier;
@@ -16,10 +16,14 @@ class RPResult {
 
   RPResult({required this.identifier});
 
-  // ignore: annotate_overrides
-  String toString() => '$runtimeType - identifier: $identifier';
-
+  @override
+  Function get fromJsonFunction => _$RPResultFromJson;
   factory RPResult.fromJson(Map<String, dynamic> json) =>
-      _$RPResultFromJson(json);
+      FromJsonFactory().fromJson<RPResult>(json);
+
+  @override
   Map<String, dynamic> toJson() => _$RPResultToJson(this);
+
+  @override
+  String toString() => '$runtimeType - identifier: $identifier';
 }

@@ -39,8 +39,11 @@ class RPActivityResult extends RPResult {
     endDate = DateTime.now();
   }
 
+  @override
+  Function get fromJsonFunction => _$RPActivityResultFromJson;
   factory RPActivityResult.fromJson(Map<String, dynamic> json) =>
-      _$RPActivityResultFromJson(json);
+      FromJsonFactory().fromJson<RPActivityResult>(json);
+
   @override
   Map<String, dynamic> toJson() => _$RPActivityResultToJson(this);
 }

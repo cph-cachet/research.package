@@ -1,0 +1,58 @@
+{
+    "__type": "RPTaskResult",
+    "identifier": "consentTaskResultID",
+    "startDate": "2024-10-24T19:03:33.133434",
+    "results": {
+        "signature": {
+            "__type": "RPStepResult",
+            "identifier": "",
+            "startDate": "2024-10-24T19:03:33.133431",
+            "endDate": "2024-10-24T19:03:33.133433",
+            "questionTitle": "I have felt cheerful and in good spirits",
+            "results": {
+                "answer": {
+                    "__type": "RPConsentSignatureResult",
+                    "identifier": "consentSignatureID",
+                    "consentDocument": {
+                        "__type": "RPConsentDocument",
+                        "signatures": [
+                            {
+                                "__type": "RPConsentSignature",
+                                "identifier": "signatureID",
+                                "requiresName": true,
+                                "requiresSignatureImage": true
+                            }
+                        ],
+                        "title": "WHO5 Consent",
+                        "sections": [
+                            {
+                                "__type": "RPConsentSection",
+                                "type": "Overview",
+                                "title": "Overview",
+                                "summary": "Welcome to this survey",
+                                "content": "Overview content"
+                            },
+                            {
+                                "__type": "RPConsentSection",
+                                "type": "DataGathering",
+                                "title": "Data Gathering",
+                                "summary": "This is a summary for Data Gathering.",
+                                "content": "Data Gathering content"
+                            }
+                        ]
+                    },
+                    "signature": {
+                        "__type": "RPSignatureResult",
+                        "firstName": "TestFirstName",
+                        "lastName": "TestLastName",
+                        "signatureImage": "pngbytes in form of a long long string"
+                    }
+                }
+            },
+            "answerFormat": {
+                "__type": "RPFormAnswerFormat",
+                "questionType": "Form"
+            }
+        }
+    }
+}

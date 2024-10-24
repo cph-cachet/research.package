@@ -4,7 +4,7 @@ part of '../../../model.dart';
 ///
 /// It represents a signature with the participants name and signature image.
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
-class RPSignatureResult {
+class RPSignatureResult extends Serializable {
   /// The person's first name
   String? firstName;
 
@@ -27,7 +27,10 @@ class RPSignatureResult {
   /// Returns the person's full name with space between first and last name
   String get fullName => "$firstName $lastName";
 
+  @override
+  Function get fromJsonFunction => _$RPSignatureResultFromJson;
   factory RPSignatureResult.fromJson(Map<String, dynamic> json) =>
-      _$RPSignatureResultFromJson(json);
+      FromJsonFactory().fromJson<RPSignatureResult>(json);
+
   Map<String, dynamic> toJson() => _$RPSignatureResultToJson(this);
 }
