@@ -5,7 +5,7 @@
 /// Also responsible for the streams and BLoC classes to provide communication channels
 /// between different parts of the package. ([BlocQuestion], [BlocTask])
 /// For the UI representations of the classes visit the [research_package_ui] library.
-library research_package_model;
+library;
 
 import 'package:flutter/material.dart';
 import 'dart:async';

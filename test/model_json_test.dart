@@ -1,7 +1,8 @@
-import 'package:test/test.dart';
+import 'dart:io';
 import 'dart:convert';
-import 'package:research_package/research_package.dart';
 import 'package:carp_serializable/carp_serializable.dart';
+import 'package:research_package/research_package.dart';
+import 'package:test/test.dart';
 
 void main() {
   RPConsentSignature signature = RPConsentSignature(identifier: "signatureID");
@@ -246,6 +247,40 @@ void main() {
     test('RPTaskResult (Consent Document) -> JSON', () {
       print(toJsonString(consentTaskResult));
       expect(consentTaskResult.results["signature"], consentReviewStepResult);
+    });
+
+    test('JSON -> RPStepResult', () async {
+      String plainJson = File('test/json/step_result.json').readAsStringSync();
+
+      final step =
+          RPStepResult.fromJson(json.decode(plainJson) as Map<String, dynamic>);
+
+      expect(step.$type, step.runtimeType.toString());
+      expect(step.results['answer'], 5);
+      print(toJsonString(step));
+    });
+
+    test('JSON -> RPTaskResult', () async {
+      String plainJson = File('test/json/task_result.json').readAsStringSync();
+
+      final task =
+          RPTaskResult.fromJson(json.decode(plainJson) as Map<String, dynamic>);
+
+      expect(task.$type, task.runtimeType.toString());
+      expect(task.results.values.first.$type, 'RPStepResult');
+      print(toJsonString(task));
+    });
+
+    test('JSON -> Consent Document', () async {
+      String plainJson =
+          File('test/json/consent_result.json').readAsStringSync();
+
+      final consent =
+          RPTaskResult.fromJson(json.decode(plainJson) as Map<String, dynamic>);
+
+      expect(consent.$type, consent.runtimeType.toString());
+      expect(consent.results.keys.first, 'signature');
+      print(toJsonString(consent));
     });
   });
 }

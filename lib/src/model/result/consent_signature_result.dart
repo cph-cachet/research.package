@@ -23,8 +23,11 @@ class RPConsentSignatureResult extends RPResult {
     this.signature,
   });
 
+  @override
+  Function get fromJsonFunction => _$RPConsentSignatureResultFromJson;
   factory RPConsentSignatureResult.fromJson(Map<String, dynamic> json) =>
-      _$RPConsentSignatureResultFromJson(json);
+      FromJsonFactory().fromJson<RPConsentSignatureResult>(json);
+
   @override
   Map<String, dynamic> toJson() => _$RPConsentSignatureResultToJson(this);
 }

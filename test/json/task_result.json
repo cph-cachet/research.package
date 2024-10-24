@@ -1,0 +1,113 @@
+{
+    "__type": "RPTaskResult",
+    "identifier": "surveyTaskResultID",
+    "startDate": "2024-10-24T19:01:31.060971",
+    "results": {
+        "questionID1": {
+            "__type": "RPStepResult",
+            "identifier": "questionStep1ID",
+            "startDate": "2024-10-24T19:01:31.060757",
+            "endDate": "2024-10-24T19:01:31.060893",
+            "questionTitle": "I have felt cheerful and in good spirits",
+            "results": {
+                "answer": 5
+            },
+            "answerFormat": {
+                "__type": "RPChoiceAnswerFormat",
+                "questionType": "SingleChoice",
+                "choices": [
+                    {
+                        "__type": "RPChoice",
+                        "text": "All of the time",
+                        "value": 5,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "Most of the time",
+                        "value": 4,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "More than half of the time",
+                        "value": 3,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "Less than half of the time",
+                        "value": 2,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "Some of the time",
+                        "value": 1,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "At no time",
+                        "value": 0,
+                        "isFreeText": false
+                    }
+                ],
+                "answerStyle": "SingleChoice"
+            }
+        },
+        "questionID2": {
+            "__type": "RPStepResult",
+            "identifier": "questionStep2ID",
+            "startDate": "2024-10-24T19:01:31.060902",
+            "endDate": "2024-10-24T19:01:31.060904",
+            "questionTitle": "I have felt calm and relaxed",
+            "results": {
+                "answer": 1
+            },
+            "answerFormat": {
+                "__type": "RPChoiceAnswerFormat",
+                "questionType": "SingleChoice",
+                "choices": [
+                    {
+                        "__type": "RPChoice",
+                        "text": "All of the time",
+                        "value": 5,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "Most of the time",
+                        "value": 4,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "More than half of the time",
+                        "value": 3,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "Less than half of the time",
+                        "value": 2,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "Some of the time",
+                        "value": 1,
+                        "isFreeText": false
+                    },
+                    {
+                        "__type": "RPChoice",
+                        "text": "At no time",
+                        "value": 0,
+                        "isFreeText": false
+                    }
+                ],
+                "answerStyle": "SingleChoice"
+            }
+        }
+    }
+}

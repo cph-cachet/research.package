@@ -1,0 +1,53 @@
+{
+    "__type": "RPStepResult",
+    "identifier": "questionStep1ID",
+    "startDate": "2024-10-24T18:59:54.396959",
+    "endDate": "2024-10-24T18:59:54.397062",
+    "questionTitle": "I have felt cheerful and in good spirits",
+    "results": {
+        "answer": 5
+    },
+    "answerFormat": {
+        "__type": "RPChoiceAnswerFormat",
+        "questionType": "SingleChoice",
+        "choices": [
+            {
+                "__type": "RPChoice",
+                "text": "All of the time",
+                "value": 5,
+                "isFreeText": false
+            },
+            {
+                "__type": "RPChoice",
+                "text": "Most of the time",
+                "value": 4,
+                "isFreeText": false
+            },
+            {
+                "__type": "RPChoice",
+                "text": "More than half of the time",
+                "value": 3,
+                "isFreeText": false
+            },
+            {
+                "__type": "RPChoice",
+                "text": "Less than half of the time",
+                "value": 2,
+                "isFreeText": false
+            },
+            {
+                "__type": "RPChoice",
+                "text": "Some of the time",
+                "value": 1,
+                "isFreeText": false
+            },
+            {
+                "__type": "RPChoice",
+                "text": "At no time",
+                "value": 0,
+                "isFreeText": false
+            }
+        ],
+        "answerStyle": "SingleChoice"
+    }
+}

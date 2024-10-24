@@ -5,13 +5,7 @@ import 'package:test/test.dart';
 import 'package:research_package/research_package.dart';
 
 // ignore: avoid_relative_lib_imports
-import '../example/lib/research_package_objects/informed_consent_objects.dart';
-// ignore: avoid_relative_lib_imports
-import '../example/lib/research_package_objects/linear_survey_objects.dart';
-// ignore: avoid_relative_lib_imports
-import '../example/lib/research_package_objects/other_navigable_survey_examples.dart';
-// ignore: avoid_relative_lib_imports
-import '../example/lib/research_package_objects/navigation_step_jump_rule.dart';
+import '../example/lib/main.dart';
 
 /// These tests takes the examples from the example app and tests de/serialization.
 void main() {

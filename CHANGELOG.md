@@ -1,6 +1,10 @@
-## 1.7.1
+## 1.7.2
 
-* Upgrade to carp_serialization v. 2.0 - note that we now use **camelCase** for JSON.
+* Upgrade of serialization
+  * Upgrade to `carp_serializable` v. 2.0
+  * Now using **camelCase** for JSON.
+  * Support for deserialization of all `RPResult` classes and sub-classes (polymorphic serialization using the `carp_serializable` package) (issue [#83](https://github.com/cph-cachet/research.package/issues/83))
+* Temporary fix of `rxdart` issue (#131).
 * Small upgrade to text and email in demo app.
 * Added support for Spanish (ES) in demo app.
 
