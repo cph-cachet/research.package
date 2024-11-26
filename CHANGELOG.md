@@ -1,6 +1,6 @@
 ## 1.7.3
 
-* Fix signature background colour issue [#134]
+* Fix signature background colour issue [#134](https://github.com/cph-cachet/research.package/issues/134)
 
 ## 1.7.2
 
