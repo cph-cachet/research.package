@@ -1,3 +1,7 @@
+## 1.7.3
+
+* Fix signature background colour issue [#134]
+
 ## 1.7.2
 
 * Upgrade of serialization
