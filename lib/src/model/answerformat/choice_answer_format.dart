@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Class representing an Answer Format that lets participants choose from a
 /// fixed set of choices.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPChoiceAnswerFormat extends RPAnswerFormat {
   /// An array of available [RPChoice] objects which represent the choices to
   /// the participant.
@@ -31,8 +30,7 @@ class RPChoiceAnswerFormat extends RPAnswerFormat {
 
 /// The choice object which the participant can choose during a [RPQuestionStep]
 /// with [RPChoiceAnswerFormat].
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPChoice extends Serializable {
   /// The text to display.
   String text;

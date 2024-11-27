@@ -3,8 +3,7 @@ part of '../../../model.dart';
 /// A step which can be used to show instructions and other information
 /// to the participant.
 /// Usually it is used as the first step in a Task explaining the task.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPInstructionStep extends RPStep {
   /// The text which is shown in a new window by pressing the "Learn more" button.
   /// If `null`, no "Learn more" button is shown.

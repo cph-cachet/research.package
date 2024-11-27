@@ -1,45 +1,51 @@
 {
     "__type": "RPNavigableOrderedTask",
     "identifier": "NavigableTaskID",
-    "close_after_finished": true,
+    "closeAfterFinished": true,
     "steps": [
         {
             "__type": "RPQuestionStep",
             "identifier": "smokingQuestionId",
             "title": "Do you smoke?",
             "optional": false,
-            "answer_format": {
+            "answerFormat": {
                 "__type": "RPChoiceAnswerFormat",
-                "question_type": "SingleChoice",
+                "questionType": "SingleChoice",
                 "choices": [
                     {
                         "__type": "RPChoice",
                         "text": "Yes",
                         "value": 1,
-                        "is_free_text": false
+                        "isFreeText": false
                     },
                     {
                         "__type": "RPChoice",
                         "text": "No",
                         "value": 0,
-                        "is_free_text": false
+                        "isFreeText": false
                     }
                 ],
-                "answer_style": "SingleChoice"
-            }
+                "answerStyle": "SingleChoice"
+            },
+            "autoSkip": false,
+            "timeout": 0,
+            "autoFocus": false
         },
         {
             "__type": "RPQuestionStep",
             "identifier": "nrOfCigarettesQuestionStepID",
             "title": "How many cigarettes do you smoke a day?",
             "optional": false,
-            "answer_format": {
+            "answerFormat": {
                 "__type": "RPIntegerAnswerFormat",
-                "min_value": 0,
-                "max_value": 200,
+                "minValue": 0,
+                "maxValue": 200,
                 "suffix": "cigarettes",
-                "question_type": "Integer"
-            }
+                "questionType": "Integer"
+            },
+            "autoSkip": false,
+            "timeout": 0,
+            "autoFocus": false
         },
         {
             "__type": "RPCompletionStep",
@@ -49,10 +55,10 @@
             "optional": false
         }
     ],
-    "step_navigation_rules": {
+    "stepNavigationRules": {
         "smokingQuestionId": {
             "__type": "RPStepJumpRule",
-            "answer_map": {
+            "answerMap": {
                 "1": "nrOfCigarettesQuestionStepID",
                 "0": "completionID"
             }

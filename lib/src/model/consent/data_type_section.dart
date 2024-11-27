@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Class representing a specific data type being collected to be shown
 /// as part of informed consent.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPDataTypeSection extends Serializable {
   /// The name of the data being collected.
   String dataName;

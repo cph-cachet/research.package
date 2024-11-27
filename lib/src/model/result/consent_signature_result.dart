@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Represents a signature applied to a given consent document.
 /// It indicates if a given consent document has been signed by a user.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPConsentSignatureResult extends RPResult {
   /// The linked Consent Document which the user signed
   RPConsentDocument consentDocument;
@@ -24,8 +23,11 @@ class RPConsentSignatureResult extends RPResult {
     this.signature,
   });
 
+  @override
+  Function get fromJsonFunction => _$RPConsentSignatureResultFromJson;
   factory RPConsentSignatureResult.fromJson(Map<String, dynamic> json) =>
-      _$RPConsentSignatureResultFromJson(json);
+      FromJsonFactory().fromJson<RPConsentSignatureResult>(json);
+
   @override
   Map<String, dynamic> toJson() => _$RPConsentSignatureResultToJson(this);
 }

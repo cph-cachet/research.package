@@ -1,10 +1,20 @@
+import 'dart:developer';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:research_package/research_package.dart';
+import 'package:carp_serializable/carp_serializable.dart';
 
-import 'informed_consent_page.dart';
-import 'linear_survey_page.dart';
-import 'navigable_survey_page.dart';
+part 'informed_consent_page.dart';
+part 'linear_survey_page.dart';
+part 'navigable_survey_page.dart';
+part 'research_package_objects/informed_consent.dart';
+part 'research_package_objects/linear_survey.dart';
+part 'research_package_objects/navigation_direct_step_navigation_rule.dart';
+part 'research_package_objects/navigation_step_jump_rule.dart';
+part 'research_package_objects/navigation_step_reorganizer_rule.dart';
+part 'research_package_objects/other_navigable_survey_examples.dart';
 
 void main() {
   // initialize research package
@@ -70,7 +80,8 @@ class RPDemoApp extends StatelessWidget {
         return supportedLocales.first;
       },
       theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      // the default dark theme looks very strange.... so disabled for now
+      // darkTheme: ThemeData.dark(),
       title: 'Research Package Demo',
       home: const HomePage(),
       debugShowCheckedModeBanner: false,

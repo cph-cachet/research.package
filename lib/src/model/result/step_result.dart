@@ -1,8 +1,7 @@
 part of '../../../model.dart';
 
 /// The result from a [RPStep].
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPStepResult extends RPResult {
   /// The title of the question.
   ///
@@ -61,8 +60,11 @@ class RPStepResult extends RPResult {
     endDate = DateTime.now();
   }
 
+  @override
+  Function get fromJsonFunction => _$RPStepResultFromJson;
   factory RPStepResult.fromJson(Map<String, dynamic> json) =>
-      _$RPStepResultFromJson(json);
+      FromJsonFactory().fromJson<RPStepResult>(json);
+
   @override
   Map<String, dynamic> toJson() => _$RPStepResultToJson(this);
 }

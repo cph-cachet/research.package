@@ -9,8 +9,7 @@ part of '../../../model.dart';
 /// They hold the content which is presented and later agreed by the participant.
 /// By adding [signatures] to the consent document the parameters of the
 /// signature(s) to collect can be specified.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPConsentDocument extends Serializable {
   /// The list of signatures that are required in the document
   List<RPConsentSignature> signatures = [];

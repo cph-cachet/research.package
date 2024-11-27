@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// Class representing the Answer Format for Form Questions (Multiple questions
 /// at the same time on the same page)
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPFormAnswerFormat extends RPAnswerFormat {
   RPFormAnswerFormat() : super() {
     questionType = RPQuestionType.Form;

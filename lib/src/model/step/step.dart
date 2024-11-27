@@ -8,8 +8,7 @@ part of '../../../model.dart';
 /// obtaining consent, or running an active task, everything in the Research
 /// Package framework is a collection of steps ([RPStep] objects), which together
 /// form a task (an [RPTask] object)
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPStep extends Serializable {
   /// A unique identifier of the Step. This identifier connects the step to its
   /// result ([RPResult]) object.

@@ -2,8 +2,7 @@ part of '../../../model.dart';
 
 /// The result a [RPActivityStep] creates, populated with results, steptimes
 /// and interactions.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPActivityResult extends RPResult {
   /// The map of results with a String as identifier and generic type as value
   Map<String, dynamic> results = {};
@@ -40,8 +39,11 @@ class RPActivityResult extends RPResult {
     endDate = DateTime.now();
   }
 
+  @override
+  Function get fromJsonFunction => _$RPActivityResultFromJson;
   factory RPActivityResult.fromJson(Map<String, dynamic> json) =>
-      _$RPActivityResultFromJson(json);
+      FromJsonFactory().fromJson<RPActivityResult>(json);
+
   @override
   Map<String, dynamic> toJson() => _$RPActivityResultToJson(this);
 }

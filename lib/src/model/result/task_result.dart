@@ -1,8 +1,7 @@
 part of '../../../model.dart';
 
 /// The result object a Task creates
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPTaskResult extends RPResult {
   /// The results of each step of this task result.
   ///
@@ -29,8 +28,11 @@ class RPTaskResult extends RPResult {
   void setStepResultForIdentifier(String identifier, RPResult result) =>
       results[identifier] = result;
 
+  @override
+  Function get fromJsonFunction => _$RPTaskResultFromJson;
   factory RPTaskResult.fromJson(Map<String, dynamic> json) =>
-      _$RPTaskResultFromJson(json);
+      FromJsonFactory().fromJson<RPTaskResult>(json);
+
   @override
   Map<String, dynamic> toJson() => _$RPTaskResultToJson(this);
 }

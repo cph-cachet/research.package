@@ -10,60 +10,74 @@ void registerFromJsonFunctions() {
   _fromJsonFunctionsRegistered = true;
 
   // AnswerFormat classes
-  FromJsonFactory().register(RPAnswerFormat());
-  FromJsonFactory().register(RPChoiceAnswerFormat(
-      answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: []));
-  FromJsonFactory().register(RPChoice(text: '', value: 1));
-  FromJsonFactory().register(
-      RPDateTimeAnswerFormat(dateTimeAnswerStyle: RPDateTimeAnswerStyle.Date));
-  FromJsonFactory().register(RPFormAnswerFormat());
-  FromJsonFactory().register(RPImageChoiceAnswerFormat(choices: []));
-  FromJsonFactory().register(RPImageChoice(description: '', imageUrl: ''));
-  FromJsonFactory().register(RPIntegerAnswerFormat(maxValue: 1, minValue: 1));
-  FromJsonFactory().register(RPDoubleAnswerFormat(maxValue: 1, minValue: 1));
-  FromJsonFactory()
-      .register(RPSliderAnswerFormat(divisions: 1, maxValue: 1, minValue: 1));
-  FromJsonFactory().register(RPTextAnswerFormat());
+  FromJsonFactory().registerAll([
+    RPAnswerFormat(),
+    RPChoiceAnswerFormat(
+        answerStyle: RPChoiceAnswerStyle.SingleChoice, choices: []),
+    RPChoice(text: '', value: 1),
+    RPDateTimeAnswerFormat(dateTimeAnswerStyle: RPDateTimeAnswerStyle.Date),
+    RPFormAnswerFormat(),
+    RPImageChoiceAnswerFormat(choices: []),
+    RPImageChoice(description: '', imageUrl: ''),
+    RPIntegerAnswerFormat(maxValue: 1, minValue: 1),
+    RPDoubleAnswerFormat(maxValue: 1, minValue: 1),
+    RPSliderAnswerFormat(divisions: 1, maxValue: 1, minValue: 1),
+    RPTextAnswerFormat(),
+  ]);
 
   // Steps classes
-  FromJsonFactory().register(RPStep(identifier: '', title: ''));
-  FromJsonFactory().register(RPActivityStep(identifier: ''));
-  FromJsonFactory().register(RPQuestionStep(
-      identifier: '', title: '', answerFormat: RPAnswerFormat()));
-  FromJsonFactory().register(RPInstructionStep(identifier: '', title: ''));
-  FromJsonFactory().register(
-      RPTimerStep(identifier: '', timeout: const Duration(), title: ''));
-  FromJsonFactory()
-      .register(RPFormStep(identifier: '', title: '', questions: []));
-  FromJsonFactory().register(RPCompletionStep(identifier: '', title: ''));
+  FromJsonFactory().registerAll([
+    RPStep(identifier: '', title: ''),
+    RPActivityStep(identifier: ''),
+    RPQuestionStep(identifier: '', title: '', answerFormat: RPAnswerFormat()),
+    RPInstructionStep(identifier: '', title: ''),
+    RPTimerStep(identifier: '', timeout: const Duration(), title: ''),
+    RPFormStep(identifier: '', title: '', questions: []),
+    RPCompletionStep(identifier: '', title: ''),
+  ]);
 
   // Consent Document classes
-  FromJsonFactory().register(RPConsentReviewStep(
-      identifier: '',
-      title: '',
-      consentDocument: RPConsentDocument(sections: [], title: '')));
-  FromJsonFactory().register(RPVisualConsentStep(
-      identifier: '',
-      consentDocument: RPConsentDocument(sections: [], title: '')));
-  FromJsonFactory().register(RPConsentDocument(title: '', sections: []));
-  FromJsonFactory()
-      .register(RPConsentSection(type: RPConsentSectionType.AboutUs));
-  FromJsonFactory().register(RPConsentSignature(identifier: ''));
+  FromJsonFactory().registerAll([
+    RPConsentReviewStep(
+        identifier: '',
+        title: '',
+        consentDocument: RPConsentDocument(sections: [], title: '')),
+    RPVisualConsentStep(
+        identifier: '',
+        consentDocument: RPConsentDocument(sections: [], title: '')),
+    RPConsentDocument(title: '', sections: []),
+    RPConsentSection(type: RPConsentSectionType.AboutUs),
+    RPConsentSignature(identifier: ''),
+  ]);
 
   // Tasks classes
-  FromJsonFactory().register(RPOrderedTask(identifier: '', steps: []));
-  FromJsonFactory().register(RPNavigableOrderedTask(identifier: '', steps: []));
-  FromJsonFactory().register(RPDataTypeSection(
-    dataName: '',
-    dataInformation: '',
-  ));
+  FromJsonFactory().registerAll([
+    RPOrderedTask(identifier: '', steps: []),
+    RPNavigableOrderedTask(identifier: '', steps: []),
+    RPDataTypeSection(
+      dataName: '',
+      dataInformation: '',
+    ),
+  ]);
 
   // Navigation rule classes
-  FromJsonFactory()
-      .register(RPDirectStepNavigationRule(destinationStepIdentifier: ''));
-  FromJsonFactory().register(RPStepJumpRule(answerMap: {}));
-  FromJsonFactory().register(RPStepReorganizerRule(reorderingMap: {}));
-}
+  FromJsonFactory().registerAll([
+    RPDirectStepNavigationRule(destinationStepIdentifier: ''),
+    RPStepJumpRule(answerMap: {}),
+    RPStepReorganizerRule(reorderingMap: {}),
+  ]);
 
-// auto generate json code (.g files) with:
-//   flutter pub run build_runner build --delete-conflicting-outputs
+  // Result classes
+  FromJsonFactory().registerAll([
+    RPResult(identifier: ''),
+    RPStepResult(
+        identifier: '', questionTitle: '', answerFormat: RPAnswerFormat()),
+    RPSignatureResult(),
+    RPConsentSignatureResult(
+        identifier: '',
+        consentDocument: RPConsentDocument(title: '', sections: [])),
+    RPActivityResult(identifier: ''),
+    RPNoResult(identifier: ''),
+    RPTaskResult(identifier: ''),
+  ]);
+}

@@ -6,8 +6,7 @@ part of '../../../model.dart';
 /// For simple tasks the [RPOrderedTask] is perfect.
 /// For more features (going back to previous questions, branching...) consider
 /// using [RPNavigableOrderedTask] which inherited from this class.
-@JsonSerializable(
-    fieldRename: FieldRename.snake, includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class RPOrderedTask extends RPTask {
   int _numberOfQuestionSteps = 0;
   bool _isConsentTask = false;
