@@ -285,6 +285,9 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
 
     return PopScope(
       canPop: true,
+      onPopInvokedWithResult: (bool didPop, Object? result) async {
+        return widget.onCancel?.call(_taskResult);
+      },
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,
