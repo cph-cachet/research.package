@@ -178,6 +178,8 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
       translatedTaskResult =
           _translateTaskResult(RPLocalizations.of(context)!, _taskResult!);
     }
+    translatedTaskResult?.startDate = _taskResult?.startDate;
+    translatedTaskResult?.endDate = _taskResult?.endDate;
     widget.onSubmit?.call(translatedTaskResult ?? _taskResult!);
   }
 
