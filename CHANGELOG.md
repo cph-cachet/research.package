@@ -1,6 +1,8 @@
 ## 1.7.3
 
-* Fix signature background colour issue [#134](https://github.com/cph-cachet/research.package/issues/134)
+* Fix signature background colour ([#134](https://github.com/cph-cachet/research.package/issues/134))
+* Fix of implicit back button ([PR #140](https://github.com/cph-cachet/research.package/pull/140))
+* Fix of start & end time stamps ([#136](https://github.com/cph-cachet/research.package/issues/136))
 
 ## 1.7.2
 
