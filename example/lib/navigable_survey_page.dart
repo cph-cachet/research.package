@@ -1,9 +1,4 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
-import 'package:research_package/research_package.dart';
-import 'research_package_objects/navigation_step_jump_rule.dart';
-import 'package:carp_serializable/carp_serializable.dart';
+part of 'main.dart';
 
 class NavigableSurveyPage extends StatelessWidget {
   void resultCallback(RPTaskResult result) => log(toJsonString(result));

@@ -345,7 +345,7 @@ class _SignatureRouteState extends State<_SignatureRoute> {
     _signatureController = SignatureController(
       penStrokeWidth: 4,
       penColor: Colors.red,
-      exportBackgroundColor: Colors.blue,
+      exportBackgroundColor: Colors.transparent,
       onDrawEnd: () {
         if (_signatureController!.isNotEmpty) {
           setState(() {

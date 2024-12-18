@@ -930,6 +930,7 @@ Map<String, dynamic> _$RPTaskToJson(RPTask instance) {
 RPResult _$RPResultFromJson(Map<String, dynamic> json) => RPResult(
       identifier: json['identifier'] as String,
     )
+      ..$type = json['__type'] as String?
       ..startDate = json['startDate'] == null
           ? null
           : DateTime.parse(json['startDate'] as String)
@@ -938,9 +939,7 @@ RPResult _$RPResultFromJson(Map<String, dynamic> json) => RPResult(
           : DateTime.parse(json['endDate'] as String);
 
 Map<String, dynamic> _$RPResultToJson(RPResult instance) {
-  final val = <String, dynamic>{
-    'identifier': instance.identifier,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -948,6 +947,8 @@ Map<String, dynamic> _$RPResultToJson(RPResult instance) {
     }
   }
 
+  writeNotNull('__type', instance.$type);
+  val['identifier'] = instance.identifier;
   writeNotNull('startDate', instance.startDate?.toIso8601String());
   writeNotNull('endDate', instance.endDate?.toIso8601String());
   return val;
@@ -956,6 +957,7 @@ Map<String, dynamic> _$RPResultToJson(RPResult instance) {
 RPTaskResult _$RPTaskResultFromJson(Map<String, dynamic> json) => RPTaskResult(
       identifier: json['identifier'] as String,
     )
+      ..$type = json['__type'] as String?
       ..startDate = json['startDate'] == null
           ? null
           : DateTime.parse(json['startDate'] as String)
@@ -967,9 +969,7 @@ RPTaskResult _$RPTaskResultFromJson(Map<String, dynamic> json) => RPTaskResult(
       );
 
 Map<String, dynamic> _$RPTaskResultToJson(RPTaskResult instance) {
-  final val = <String, dynamic>{
-    'identifier': instance.identifier,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -977,6 +977,8 @@ Map<String, dynamic> _$RPTaskResultToJson(RPTaskResult instance) {
     }
   }
 
+  writeNotNull('__type', instance.$type);
+  val['identifier'] = instance.identifier;
   writeNotNull('startDate', instance.startDate?.toIso8601String());
   writeNotNull('endDate', instance.endDate?.toIso8601String());
   val['results'] = instance.results.map((k, e) => MapEntry(k, e.toJson()));
@@ -989,6 +991,7 @@ RPStepResult _$RPStepResultFromJson(Map<String, dynamic> json) => RPStepResult(
       answerFormat:
           RPAnswerFormat.fromJson(json['answerFormat'] as Map<String, dynamic>),
     )
+      ..$type = json['__type'] as String?
       ..startDate = json['startDate'] == null
           ? null
           : DateTime.parse(json['startDate'] as String)
@@ -998,9 +1001,7 @@ RPStepResult _$RPStepResultFromJson(Map<String, dynamic> json) => RPStepResult(
       ..results = json['results'] as Map<String, dynamic>;
 
 Map<String, dynamic> _$RPStepResultToJson(RPStepResult instance) {
-  final val = <String, dynamic>{
-    'identifier': instance.identifier,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1008,6 +1009,8 @@ Map<String, dynamic> _$RPStepResultToJson(RPStepResult instance) {
     }
   }
 
+  writeNotNull('__type', instance.$type);
+  val['identifier'] = instance.identifier;
   writeNotNull('startDate', instance.startDate?.toIso8601String());
   writeNotNull('endDate', instance.endDate?.toIso8601String());
   val['questionTitle'] = instance.questionTitle;
@@ -1027,6 +1030,7 @@ RPConsentSignatureResult _$RPConsentSignatureResultFromJson(
           : RPSignatureResult.fromJson(
               json['signature'] as Map<String, dynamic>),
     )
+      ..$type = json['__type'] as String?
       ..startDate = json['startDate'] == null
           ? null
           : DateTime.parse(json['startDate'] as String)
@@ -1037,9 +1041,7 @@ RPConsentSignatureResult _$RPConsentSignatureResultFromJson(
 
 Map<String, dynamic> _$RPConsentSignatureResultToJson(
     RPConsentSignatureResult instance) {
-  final val = <String, dynamic>{
-    'identifier': instance.identifier,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1047,6 +1049,8 @@ Map<String, dynamic> _$RPConsentSignatureResultToJson(
     }
   }
 
+  writeNotNull('__type', instance.$type);
+  val['identifier'] = instance.identifier;
   writeNotNull('startDate', instance.startDate?.toIso8601String());
   writeNotNull('endDate', instance.endDate?.toIso8601String());
   val['consentDocument'] = instance.consentDocument.toJson();
@@ -1060,7 +1064,7 @@ RPSignatureResult _$RPSignatureResultFromJson(Map<String, dynamic> json) =>
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       signatureImage: json['signatureImage'] as String?,
-    );
+    )..$type = json['__type'] as String?;
 
 Map<String, dynamic> _$RPSignatureResultToJson(RPSignatureResult instance) {
   final val = <String, dynamic>{};
@@ -1071,6 +1075,7 @@ Map<String, dynamic> _$RPSignatureResultToJson(RPSignatureResult instance) {
     }
   }
 
+  writeNotNull('__type', instance.$type);
   writeNotNull('firstName', instance.firstName);
   writeNotNull('lastName', instance.lastName);
   writeNotNull('signatureImage', instance.signatureImage);
@@ -1080,6 +1085,7 @@ Map<String, dynamic> _$RPSignatureResultToJson(RPSignatureResult instance) {
 RPNoResult _$RPNoResultFromJson(Map<String, dynamic> json) => RPNoResult(
       identifier: json['identifier'] as String,
     )
+      ..$type = json['__type'] as String?
       ..startDate = json['startDate'] == null
           ? null
           : DateTime.parse(json['startDate'] as String)
@@ -1088,9 +1094,7 @@ RPNoResult _$RPNoResultFromJson(Map<String, dynamic> json) => RPNoResult(
           : DateTime.parse(json['endDate'] as String);
 
 Map<String, dynamic> _$RPNoResultToJson(RPNoResult instance) {
-  final val = <String, dynamic>{
-    'identifier': instance.identifier,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1098,6 +1102,8 @@ Map<String, dynamic> _$RPNoResultToJson(RPNoResult instance) {
     }
   }
 
+  writeNotNull('__type', instance.$type);
+  val['identifier'] = instance.identifier;
   writeNotNull('startDate', instance.startDate?.toIso8601String());
   writeNotNull('endDate', instance.endDate?.toIso8601String());
   return val;
@@ -1107,6 +1113,7 @@ RPActivityResult _$RPActivityResultFromJson(Map<String, dynamic> json) =>
     RPActivityResult(
       identifier: json['identifier'] as String,
     )
+      ..$type = json['__type'] as String?
       ..startDate = json['startDate'] == null
           ? null
           : DateTime.parse(json['startDate'] as String)
@@ -1121,9 +1128,7 @@ RPActivityResult _$RPActivityResultFromJson(Map<String, dynamic> json) =>
           .toList();
 
 Map<String, dynamic> _$RPActivityResultToJson(RPActivityResult instance) {
-  final val = <String, dynamic>{
-    'identifier': instance.identifier,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1131,6 +1136,8 @@ Map<String, dynamic> _$RPActivityResultToJson(RPActivityResult instance) {
     }
   }
 
+  writeNotNull('__type', instance.$type);
+  val['identifier'] = instance.identifier;
   writeNotNull('startDate', instance.startDate?.toIso8601String());
   writeNotNull('endDate', instance.endDate?.toIso8601String());
   val['results'] = instance.results;

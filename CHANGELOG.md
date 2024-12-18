@@ -1,14 +1,14 @@
-## 1.8.0
-* Added support for new media types in RPInstructionStep class. Media types include
-  - Video 
-  - Audio
-  - Image
-Media can be accessed by providing a url in the protocol under an RPInstructionStep by setting it as "video_step": "url".
-* Changed color of BACK button in task to be same as NEXT button.
+## 1.7.3
 
-## 1.7.1
+* Fix signature background colour issue [#134](https://github.com/cph-cachet/research.package/issues/134)
 
-* Upgrade to carp_serialization v. 2.0 - note that we now use **camelCase** for JSON.
+## 1.7.2
+
+* Upgrade of serialization
+  * Upgrade to `carp_serializable` v. 2.0
+  * Now using **camelCase** for JSON.
+  * Support for deserialization of all `RPResult` classes and sub-classes (polymorphic serialization using the `carp_serializable` package) (issue [#83](https://github.com/cph-cachet/research.package/issues/83))
+* Temporary fix of `rxdart` issue (#131).
 * Small upgrade to text and email in demo app.
 * Added support for Spanish (ES) in demo app.
 

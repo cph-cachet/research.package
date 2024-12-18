@@ -5,8 +5,11 @@ part of '../../../model.dart';
 class RPNoResult extends RPResult {
   RPNoResult({required super.identifier});
 
+  @override
+  Function get fromJsonFunction => _$RPNoResultFromJson;
   factory RPNoResult.fromJson(Map<String, dynamic> json) =>
-      _$RPNoResultFromJson(json);
+      FromJsonFactory().fromJson<RPNoResult>(json);
+
   @override
   Map<String, dynamic> toJson() => _$RPNoResultToJson(this);
 }

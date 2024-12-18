@@ -178,6 +178,8 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
       translatedTaskResult =
           _translateTaskResult(RPLocalizations.of(context)!, _taskResult!);
     }
+    translatedTaskResult?.startDate = _taskResult?.startDate;
+    translatedTaskResult?.endDate = _taskResult?.endDate;
     widget.onSubmit?.call(translatedTaskResult ?? _taskResult!);
   }
 
@@ -285,6 +287,9 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
 
     return PopScope(
       canPop: true,
+      onPopInvokedWithResult: (bool didPop, Object? result) async {
+        return widget.onCancel?.call(_taskResult);
+      },
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,
