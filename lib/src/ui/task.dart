@@ -149,8 +149,6 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
           break;
         case RPStepStatus.Ongoing:
           break;
-        default:
-          break;
       }
     });
 
