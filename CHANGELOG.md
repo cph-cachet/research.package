@@ -1,3 +1,7 @@
+## 1.7.4
+
+* Removing option to use back button due to Issue [#141](https://github.com/cph-cachet/research.package/issues/141)
+
 ## 1.7.3
 
 * Fix signature background colour ([#134](https://github.com/cph-cachet/research.package/issues/134))

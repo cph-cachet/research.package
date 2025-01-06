@@ -13,14 +13,14 @@ class LinearSurveyPage extends StatelessWidget {
 
   void resultCallback(RPTaskResult result) {
     // Do anything with the final result
-    print('FINAL RESULT:');
+    print('FINAL RESULT SUBMITTED:');
     printWrapped(_encode(result));
   }
 
-  void cancelCallBack(RPTaskResult result) {
+  void cancelCallBack(RPTaskResult? result) {
     // Do anything with the result at the moment of the cancellation
-    print('RESULT SO FAR:');
-    printWrapped(_encode(result));
+    print('RESULT SO FAR BEFORE CANCELED:');
+    printWrapped(_encode(result ?? 'No Result'));
   }
 
   @override
@@ -28,13 +28,14 @@ class LinearSurveyPage extends StatelessWidget {
     return RPUITask(
       task: linearSurveyTask,
       onSubmit: resultCallback,
-      onCancel: (RPTaskResult? result) {
-        if (result == null) {
-          print("No result");
-        } else {
-          cancelCallBack(result);
-        }
-      },
+      onCancel: cancelCallBack,
+      // onCancel: (RPTaskResult? result) {
+      //   if (result == null) {
+      //     print("No result");
+      //   } else {
+      //     cancelCallBack(result);
+      //   }
+      // },
     );
   }
 }
