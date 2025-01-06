@@ -286,10 +286,11 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
     RPLocalizations? locale = RPLocalizations.of(context);
 
     return PopScope(
-      canPop: true,
-      onPopInvokedWithResult: (bool didPop, Object? result) async {
-        return widget.onCancel?.call(_taskResult);
-      },
+      canPop: false,
+      // removed again - see issue #141
+      // onPopInvokedWithResult: (bool didPop, Object? result) async {
+      //   return widget.onCancel?.call(_taskResult);
+      // },
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,
