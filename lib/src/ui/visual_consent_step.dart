@@ -32,7 +32,8 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
     });
   }
 
-  void _pushContent(String title, String content) {
+  // This is on click of the learn more button
+  void _onClickLearnMore(String title, String content) {
     Navigator.of(context).push(
       MaterialPageRoute<dynamic>(
         builder: (context) => _DetailTextRoute(
@@ -275,7 +276,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
                     style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 30),
                 GestureDetector(
-                  onTap: () => _pushContent(
+                  onTap: () => _onClickLearnMore(
                     section.title,
                     section.content!,
                   ),
