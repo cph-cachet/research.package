@@ -215,7 +215,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
     }
   }
 
-  Widget _consentSectionPageBuilder(BuildContext context, int index, bool expandAll) {
+  Widget _consentSectionPageBuilder(BuildContext context, int index) {
     RPConsentSection section = widget.consentDocument.sections[index];
     RPLocalizations? locale = RPLocalizations.of(context);
 
