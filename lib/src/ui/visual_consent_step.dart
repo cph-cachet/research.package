@@ -386,7 +386,6 @@ class DataCollectionListItem extends StatefulWidget {
 }
 
 class DataCollectionListItemState extends State<DataCollectionListItem> {
-  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
