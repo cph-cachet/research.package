@@ -203,18 +203,26 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
+      case RPConsentSectionType.HealthDataCollection:
+        return Image.asset(
+          'assets/icons/health.png',
+          package: 'research_package',
+          width: iconSize,
+          height: iconSize,
+        );
       default:
         return Container();
     }
   }
 
-  Widget _consentSectionPageBuilder(BuildContext context, int index) {
+  Widget _consentSectionPageBuilder(BuildContext context, int index, bool expandAll) {
     RPConsentSection section = widget.consentDocument.sections[index];
     RPLocalizations? locale = RPLocalizations.of(context);
 
     // Display the list builder if type is of these types otherwise show normal.
     if (section.type == RPConsentSectionType.UserDataCollection ||
-        section.type == RPConsentSectionType.PassiveDataCollection) {
+        section.type == RPConsentSectionType.PassiveDataCollection ||
+        section.type == RPConsentSectionType.HealthDataCollection) {
       return Container(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -312,7 +320,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
           TextButton(
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all(Theme.of(context).primaryColor),
+                  WidgetStateProperty.all(Theme.of(context).primaryColor),
             ),
             onPressed: _lastPage
                 ? () => blocTask.sendStatus(RPStepStatus.Finished)

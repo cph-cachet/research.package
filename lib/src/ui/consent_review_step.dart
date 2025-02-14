@@ -41,7 +41,8 @@ class RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
       List<RPDataTypeSection> translatedDataTypeSections = [];
       if ([
             RPConsentSectionType.UserDataCollection,
-            RPConsentSectionType.PassiveDataCollection
+            RPConsentSectionType.PassiveDataCollection,
+            RPConsentSectionType.HealthDataCollection
           ].contains(section.type) &&
           section.dataTypes != null) {
         for (RPDataTypeSection dataTypeSection in section.dataTypes!) {
