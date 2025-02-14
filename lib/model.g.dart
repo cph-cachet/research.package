@@ -297,6 +297,7 @@ const _$RPConsentSectionTypeEnumMap = {
   RPConsentSectionType.DataHandling: 'DataHandling',
   RPConsentSectionType.Location: 'Location',
   RPConsentSectionType.Health: 'Health',
+  RPConsentSectionType.HealthDataCollection: 'HealthDataCollection',
   RPConsentSectionType.UserDataCollection: 'UserDataCollection',
   RPConsentSectionType.PassiveDataCollection: 'PassiveDataCollection',
   RPConsentSectionType.Custom: 'Custom',
