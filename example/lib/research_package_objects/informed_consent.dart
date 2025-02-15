@@ -93,22 +93,6 @@ RPOrderedTask get consentTask {
     summary: "ic.health.summary",
     dataTypes: [
       RPDataTypeSection(
-        dataName: "ic.health.height",
-        dataInformation: "ic.health.height.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.weight",
-        dataInformation: "ic.health.weight.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.body_fat_percentage",
-        dataInformation: "ic.health.fat_percentage.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.body_temperature",
-        dataInformation: "ic.health.temperature.info",
-      ),
-      RPDataTypeSection(
         dataName: "ic.health.heartrate",
         dataInformation: "ic.health.heartrate.info",
       ),
@@ -117,68 +101,12 @@ RPOrderedTask get consentTask {
         dataInformation: "ic.health.blod_glucose.info",
       ),
       RPDataTypeSection(
-        dataName: "ic.health.blood_pressure_diastolic",
-        dataInformation: "ic.health.pressure_diastolic.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.blood_pressure_systolic",
-        dataInformation: "ic.health.pressure_systolic.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.blood_oxygen",
-        dataInformation: "ic.health.oxigen.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.resting_heartrate",
-        dataInformation: "ic.health.resting_heartrate.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.electrodermal_activity",
-        dataInformation: "ic.health.electrodermal_activity.info",
+        dataName: "ic.health.blood_pressure",
+        dataInformation: "ic.health.blood_pressure.info",
       ),
       RPDataTypeSection(
         dataName: "ic.health.steps",
         dataInformation: "ic.health.steps.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.exercise_time",
-        dataInformation: "ic.health.exercise_time.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.distance_walking_running",
-        dataInformation: "ic.health.distance_walking_running.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.distance_cycling",
-        dataInformation: "ic.health.distance_cycling.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.total_calories_burned",
-        dataInformation: "ic.health.total_calories_burned.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.active_energy_burned",
-        dataInformation: "ic.health.active_energy_burned.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.flights_climbed",
-        dataInformation: "ic.health.flights_climbed.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.basal_energy_burned",
-        dataInformation: "ic.health.basal_energy_burned.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.respiratory_rate",
-        dataInformation: "ic.health.respiratory_rate.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.nutrition",
-        dataInformation: "ic.health.nutrition.info",
-      ),
-      RPDataTypeSection(
-        dataName: "ic.health.sleep_time",
-        dataInformation: "ic.health.sleep_time.info",
       ),
     ],
   );

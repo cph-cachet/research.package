@@ -1,3 +1,8 @@
+## 1.8.0
+
+* Added support for a `HealthDataCollection` type in the `RPConsentSectionType` which allow for showing what health data is being collected as part of an informed consent flow.
+* Added and example incl. translations of a `HealthDataCollection` type
+
 ## 1.7.4
 
 * Removing option to use back button due to Issue [#141](https://github.com/cph-cachet/research.package/issues/141)

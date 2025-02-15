@@ -237,7 +237,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
               ),
             ),
             Text(
-              locale?.translate(section.summary!) ?? section.summary!,
+              locale?.translate(section.summary) ?? section.summary,
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.start,
             ),
@@ -279,7 +279,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
                   textAlign: TextAlign.start,
                 ),
                 const SizedBox(height: 5),
-                Text(locale?.translate(section.summary!) ?? section.summary!,
+                Text(locale?.translate(section.summary) ?? section.summary,
                     style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 30),
                 GestureDetector(
@@ -386,7 +386,6 @@ class DataCollectionListItem extends StatefulWidget {
 }
 
 class DataCollectionListItemState extends State<DataCollectionListItem> {
-
   @override
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);

@@ -18,12 +18,6 @@ class RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
   RPConsentSignatureResult? consentSignatureResult;
   RPSignatureResult? signatureResult;
 
-  @override
-  void initState() {
-    // Instantiate result so the counter starts
-    super.initState();
-  }
-
   void _setSignatureResult(RPSignatureResult? result) {
     setState(() {
       signatureResult = result;
@@ -59,9 +53,7 @@ class RPUIConsentReviewStepState extends State<RPUIConsentReviewStep>
       }
       translatedConsentSections.add(RPConsentSection(
         title: locale?.translate(section.title) ?? section.title,
-        summary: section.summary != null
-            ? locale?.translate(section.summary!) ?? section.summary
-            : null,
+        summary: locale?.translate(section.summary) ?? section.summary,
         content: section.content != null
             ? locale?.translate(section.content!) ?? section.content
             : null,
@@ -150,7 +142,9 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
     if (widget.step.consentDocument.sections[index].type ==
             RPConsentSectionType.PassiveDataCollection ||
         widget.step.consentDocument.sections[index].type ==
-            RPConsentSectionType.UserDataCollection) {
+            RPConsentSectionType.UserDataCollection ||
+        widget.step.consentDocument.sections[index].type ==
+            RPConsentSectionType.HealthDataCollection) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -212,19 +206,21 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
           ),
         ),
         Text(
-          locale?.translate(widget.step.consentDocument.sections[index]
-                  .summary!) ?? // Content must be provided given a section has been created that isn't data collection.
-              widget.step.consentDocument.sections[index].summary!,
+          locale?.translate(
+                  widget.step.consentDocument.sections[index].summary) ??
+              widget.step.consentDocument.sections[index].summary,
           style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.start,
         ),
-        Text(
-          locale?.translate(widget.step.consentDocument.sections[index]
-                  .content!) ?? // Content must be provided given a section has been created that isn't data collection.
-              widget.step.consentDocument.sections[index].content!,
-          style: Theme.of(context).textTheme.bodyLarge,
-          textAlign: TextAlign.start,
-        ),
+        widget.step.consentDocument.sections[index].content != null
+            ? Text(
+                locale?.translate(
+                        widget.step.consentDocument.sections[index].content!) ??
+                    widget.step.consentDocument.sections[index].content!,
+                style: Theme.of(context).textTheme.bodyLarge,
+                textAlign: TextAlign.start,
+              )
+            : Container(),
       ],
     );
   }
@@ -252,7 +248,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
               TextButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all(Theme.of(context).primaryColor),
+                      WidgetStateProperty.all(Theme.of(context).primaryColor),
                 ),
                 onPressed: onPressedCallback,
                 child: Text(locale?.translate('AGREE') ?? "AGREE",
@@ -286,7 +282,7 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
         TextButton(
           style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all(Theme.of(context).primaryColor),
+                WidgetStateProperty.all(Theme.of(context).primaryColor),
           ),
           child: Text(
             locale?.translate('AGREE') ?? "AGREE",

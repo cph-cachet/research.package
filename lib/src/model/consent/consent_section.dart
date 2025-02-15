@@ -16,7 +16,7 @@ class RPConsentSection extends Serializable {
   late String title;
 
   /// A short summary of the section. It appears during [RPVisualConsentStep]
-  String? summary;
+  String summary;
 
   /// A longer content text of the section.
   ///
@@ -33,17 +33,15 @@ class RPConsentSection extends Serializable {
   @JsonKey(includeFromJson: false, includeToJson: false)
   Widget? customIllustration;
 
-  /// Returns a populated object with the given [type].
+  /// Create a new [RPConsentSection] of a given [type].
   ///
-  /// It is enough to provide only the [type] of the section, the title is
-  /// automatically filled out. If a title is provided, that title is used instead.
-  /// [summary] is set to [null] initially.
-  ///
-  /// If creating a custom section, a title must be provided.
+  /// It is enough to provide the [type] and [summary] of the section.
+  /// If a [title] is not provided, a default title is used, unless the type is
+  /// [RPConsentSectionType.Custom]. In that case, the title must be provided.
   RPConsentSection(
       {required this.type,
       String? title,
-      this.summary,
+      required this.summary,
       this.content,
       this.dataTypes,
       this.customIllustration}) {
@@ -53,7 +51,7 @@ class RPConsentSection extends Serializable {
         ? title!
         : (title != null)
             ? title
-            : _titleForConsentSectionType(type);
+            : "title.${type.name.toLowerCase()}";
   }
 
   @override
@@ -92,51 +90,4 @@ enum RPConsentSectionType {
   UserDataCollection,
   PassiveDataCollection,
   Custom
-}
-
-String _titleForConsentSectionType(RPConsentSectionType type) {
-  switch (type) {
-    case RPConsentSectionType.Overview:
-      return "Overview";
-    case RPConsentSectionType.DataGathering:
-      return "Data Gathering";
-    case RPConsentSectionType.Privacy:
-      return "Privacy";
-    case RPConsentSectionType.DataUse:
-      return "Data Use";
-    case RPConsentSectionType.TimeCommitment:
-      return "Time Commitment";
-    case RPConsentSectionType.StudyTasks:
-      return "Study Tasks";
-    case RPConsentSectionType.StudySurvey:
-      return "Study Survey";
-    case RPConsentSectionType.Withdrawing:
-      return "Withdrawing";
-    case RPConsentSectionType.Welcome:
-      return "Welcome";
-    case RPConsentSectionType.AboutUs:
-      return "About us";
-    case RPConsentSectionType.Goals:
-      return "Our goal";
-    case RPConsentSectionType.Benefits:
-      return "Benefits for you";
-    case RPConsentSectionType.DataHandling:
-      return "Data handling";
-    case RPConsentSectionType.Duration:
-      return "Study duration";
-    case RPConsentSectionType.YourRights:
-      return "Your rights";
-    case RPConsentSectionType.Location:
-      return "Location";
-    case RPConsentSectionType.Health:
-      return "Health";
-    case RPConsentSectionType.HealthDataCollection:
-      return "Health data collection";
-    case RPConsentSectionType.UserDataCollection:
-      return "Data collection from you";
-    case RPConsentSectionType.PassiveDataCollection:
-      return "Passive data collection";
-    case RPConsentSectionType.Custom:
-      return ''; // Case handled in the initialization.
-  }
 }
