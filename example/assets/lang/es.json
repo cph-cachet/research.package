@@ -72,5 +72,17 @@
   "userDataCollection.medications.dataInformation": "Tienes que introducir información sobre los medicamentos en la tarjeta de medicamentos",
   "userDataCollection.smoking.dataName": "Fumar",
   "userDataCollection.smoking.dataInformation": "Tienes que introducir información sobre fumar en la tarjeta de fumar",
-  "Information about:": "Información sobre:"
+  "userDataCollection.sleep.dataName": "Sueño",
+  "userDataCollection.sleep.dataInformation": "Tienes que introducir información sobre tu sueño en la tarjeta de sueño",
+  "ic.health.summary": "Este estudio te pedirá que proporciones información sobre las siguientes categorías:",
+  "ic.health.heartrate": "Frecuencia cardíaca",
+  "ic.health.heartrate.info": "Tienes que introducir información sobre la frecuencia cardíaca en la tarjeta de frecuencia cardíaca",
+  "ic.health.blood_glucose": "Glucosa en sangre",
+  "ic.health.blood_glucose.info": "Tienes que introducir información sobre la glucosa en sangre en la tarjeta de glucosa en sangre",
+  "ic.health.blood_pressure": "Presión arterial",
+  "ic.health.blood_pressure.info": "Tienes que introducir información sobre la presión arterial en la tarjeta de presión arterial",
+  "ic.health.blood_pressure_systolic": "Presión arterial sistólica",
+  "ic.health.pressure_systolic.info": "Tienes que introducir información sobre la presión arterial sistólica en la tarjeta de presión arterial sistólica",
+  "ic.health.steps": "Pasos",
+  "ic.health.steps.info": "Tienes que introducir información sobre los pasos en la tarjeta de pasos"
 }

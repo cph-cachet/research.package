@@ -261,7 +261,7 @@ RPConsentSection _$RPConsentSectionFromJson(Map<String, dynamic> json) =>
     RPConsentSection(
       type: $enumDecode(_$RPConsentSectionTypeEnumMap, json['type']),
       title: json['title'] as String?,
-      summary: json['summary'] as String?,
+      summary: json['summary'] as String,
       content: json['content'] as String?,
       dataTypes: (json['dataTypes'] as List<dynamic>?)
           ?.map((e) => RPDataTypeSection.fromJson(e as Map<String, dynamic>))
@@ -273,7 +273,7 @@ Map<String, dynamic> _$RPConsentSectionToJson(RPConsentSection instance) =>
       if (instance.$type case final value?) '__type': value,
       'type': _$RPConsentSectionTypeEnumMap[instance.type]!,
       'title': instance.title,
-      if (instance.summary case final value?) 'summary': value,
+      'summary': instance.summary,
       if (instance.content case final value?) 'content': value,
       if (instance.dataTypes?.map((e) => e.toJson()).toList() case final value?)
         'dataTypes': value,
@@ -297,6 +297,7 @@ const _$RPConsentSectionTypeEnumMap = {
   RPConsentSectionType.DataHandling: 'DataHandling',
   RPConsentSectionType.Location: 'Location',
   RPConsentSectionType.Health: 'Health',
+  RPConsentSectionType.HealthDataCollection: 'HealthDataCollection',
   RPConsentSectionType.UserDataCollection: 'UserDataCollection',
   RPConsentSectionType.PassiveDataCollection: 'PassiveDataCollection',
   RPConsentSectionType.Custom: 'Custom',

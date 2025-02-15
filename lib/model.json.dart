@@ -46,7 +46,7 @@ void registerFromJsonFunctions() {
         identifier: '',
         consentDocument: RPConsentDocument(sections: [], title: '')),
     RPConsentDocument(title: '', sections: []),
-    RPConsentSection(type: RPConsentSectionType.AboutUs),
+    RPConsentSection(type: RPConsentSectionType.AboutUs, summary: ''),
     RPConsentSignature(identifier: ''),
   ]);
 

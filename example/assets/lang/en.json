@@ -72,5 +72,15 @@
   "userDataCollection.medications.dataInformation": "You have to input some info about your mood in the medications card",
   "userDataCollection.smoking.dataName": "Smoking",
   "userDataCollection.smoking.dataInformation": "You have to input some info about your mood in the smoking card",
-  "Information about:": "Information about:"
+  "information_about": "Information About:",
+  "ic.health.summary": "This study will ask you to provide the information about the following health categories:",
+  "ic.health.heartrate": "Heart Rate",
+  "ic.health.heartrate.info": "We will collect heart rate (both active and resting) from any fitness tracker or watch you may be using (like an Apple or Garmin Watch).",
+  "ic.health.blood_glucose": "Blood Glucose",
+  "ic.health.blod_glucose.info": "We will collect blood glucose data from the continous blood glucose sensor you may use (like the Dexcom G7).",
+  "ic.health.blood_pressure": "Blood Pressure",
+  "ic.health.blood_pressure.info": "We will collect blood pressure data from any blood pressure sensor you may use.",
+  "ic.health.steps": "Steps",
+  "ic.health.steps.info": "We will automatically collect how many steps you take",
+  "": ""
 }

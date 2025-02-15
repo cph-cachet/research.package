@@ -91,7 +91,9 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
           if (_currentStep == widget.task.steps.last) {
             createAndSendResult();
             if (widget.task.closeAfterFinished) {
-              Navigator.of(context).pop();
+              if (context.mounted) {
+                Navigator.of(context).pop();
+              }
             }
             break;
           }
@@ -198,7 +200,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
               minWidth: 70,
               child: TextButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(
                       (CupertinoTheme.of(context).primaryColor ==
                               CupertinoColors.activeBlue)
                           ? Theme.of(context).primaryColor
