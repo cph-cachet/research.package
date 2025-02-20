@@ -325,11 +325,18 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                       _currentStepIndex == 0 || !navigableTask
                           ? Container()
                           : OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                  backgroundColor: (CupertinoTheme.of(context)
+                                              .primaryColor ==
+                                          CupertinoColors.activeBlue)
+                                      ? Theme.of(context).primaryColor
+                                      : CupertinoTheme.of(context)
+                                          .primaryColor),
                               onPressed: () =>
                                   blocTask.sendStatus(RPStepStatus.Back),
                               child: Text(
                                 locale?.translate('BACK') ?? 'BACK',
-                                style: Theme.of(context).textTheme.labelLarge,
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
                       StreamBuilder<bool>(
