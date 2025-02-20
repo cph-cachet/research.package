@@ -1,3 +1,12 @@
+## 1.9.0
+* Added support for new media types in RPInstructionStep class. Media types include
+  - Video 
+  - Audio
+  - Image
+Media can be accessed by providing a url in the protocol under an RPInstructionStep by setting it as "video_step": "url".
+* Changed color of BACK button in task to be same as NEXT button.
+
+
 ## 1.8.0
 
 * Added support for a `HealthDataCollection` type in the `RPConsentSectionType` which allow for showing what health data is being collected as part of an informed consent flow.
