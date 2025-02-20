@@ -91,7 +91,9 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
           if (_currentStep == widget.task.steps.last) {
             createAndSendResult();
             if (widget.task.closeAfterFinished) {
-              Navigator.of(context).pop();
+              if (context.mounted) {
+                Navigator.of(context).pop();
+              }
             }
             break;
           }
@@ -149,8 +151,6 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
           break;
         case RPStepStatus.Ongoing:
           break;
-        default:
-          break;
       }
     });
 
@@ -200,7 +200,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
               minWidth: 70,
               child: TextButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(
                       (CupertinoTheme.of(context).primaryColor ==
                               CupertinoColors.activeBlue)
                           ? Theme.of(context).primaryColor
@@ -286,10 +286,11 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
     RPLocalizations? locale = RPLocalizations.of(context);
 
     return PopScope(
-      canPop: true,
-      onPopInvokedWithResult: (bool didPop, Object? result) async {
-        return widget.onCancel?.call(_taskResult);
-      },
+      canPop: false,
+      // removed again - see issue #141
+      // onPopInvokedWithResult: (bool didPop, Object? result) async {
+      //   return widget.onCancel?.call(_taskResult);
+      // },
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         resizeToAvoidBottomInset: true,

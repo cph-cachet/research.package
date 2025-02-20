@@ -88,6 +88,29 @@ RPOrderedTask get consentTask {
       summary: "This is a summary for Health.",
       content: "Health dolor sit amet");
 
+  final healthDataCollectionSection = RPConsentSection(
+    type: RPConsentSectionType.HealthDataCollection,
+    summary: "ic.health.summary",
+    dataTypes: [
+      RPDataTypeSection(
+        dataName: "ic.health.heartrate",
+        dataInformation: "ic.health.heartrate.info",
+      ),
+      RPDataTypeSection(
+        dataName: "ic.health.blood_glucose",
+        dataInformation: "ic.health.blod_glucose.info",
+      ),
+      RPDataTypeSection(
+        dataName: "ic.health.blood_pressure",
+        dataInformation: "ic.health.blood_pressure.info",
+      ),
+      RPDataTypeSection(
+        dataName: "ic.health.steps",
+        dataInformation: "ic.health.steps.info",
+      ),
+    ],
+  );
+
 // Using keys for translations
   RPConsentSection userDataCollection = RPConsentSection(
       type: RPConsentSectionType.UserDataCollection,
@@ -175,6 +198,7 @@ RPOrderedTask get consentTask {
       benefitsSection,
       locationSection,
       healthSection,
+      healthDataCollectionSection,
       userDataCollection,
       passiveDataCollection,
     ],

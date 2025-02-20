@@ -1,14 +1,17 @@
 ## 1.8.0
-* Added support for new media types in RPInstructionStep class. Media types include
-  - Video 
-  - Audio
-  - Image
-Media can be accessed by providing a url in the protocol under an RPInstructionStep by setting it as "video_step": "url".
-* Changed color of BACK button in task to be same as NEXT button.
+
+* Added support for a `HealthDataCollection` type in the `RPConsentSectionType` which allow for showing what health data is being collected as part of an informed consent flow.
+* Added and example incl. translations of a `HealthDataCollection` type
+
+## 1.7.4
+
+* Removing option to use back button due to Issue [#141](https://github.com/cph-cachet/research.package/issues/141)
 
 ## 1.7.3
 
-* Fix signature background colour issue [#134](https://github.com/cph-cachet/research.package/issues/134)
+* Fix signature background colour ([#134](https://github.com/cph-cachet/research.package/issues/134))
+* Fix of implicit back button ([PR #140](https://github.com/cph-cachet/research.package/pull/140))
+* Fix of start & end time stamps ([#136](https://github.com/cph-cachet/research.package/issues/136))
 
 ## 1.7.2
 

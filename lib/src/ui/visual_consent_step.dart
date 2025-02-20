@@ -203,6 +203,13 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
           width: iconSize,
           height: iconSize,
         );
+      case RPConsentSectionType.HealthDataCollection:
+        return Image.asset(
+          'assets/icons/health.png',
+          package: 'research_package',
+          width: iconSize,
+          height: iconSize,
+        );
       default:
         return Container();
     }
@@ -214,7 +221,8 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
 
     // Display the list builder if type is of these types otherwise show normal.
     if (section.type == RPConsentSectionType.UserDataCollection ||
-        section.type == RPConsentSectionType.PassiveDataCollection) {
+        section.type == RPConsentSectionType.PassiveDataCollection ||
+        section.type == RPConsentSectionType.HealthDataCollection) {
       return Container(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -229,7 +237,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
               ),
             ),
             Text(
-              locale?.translate(section.summary!) ?? section.summary!,
+              locale?.translate(section.summary) ?? section.summary,
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.start,
             ),
@@ -271,7 +279,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
                   textAlign: TextAlign.start,
                 ),
                 const SizedBox(height: 5),
-                Text(locale?.translate(section.summary!) ?? section.summary!,
+                Text(locale?.translate(section.summary) ?? section.summary,
                     style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 30),
                 GestureDetector(
@@ -312,7 +320,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
           TextButton(
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all(Theme.of(context).primaryColor),
+                  WidgetStateProperty.all(Theme.of(context).primaryColor),
             ),
             onPressed: _lastPage
                 ? () => blocTask.sendStatus(RPStepStatus.Finished)
@@ -378,8 +386,6 @@ class DataCollectionListItem extends StatefulWidget {
 }
 
 class DataCollectionListItemState extends State<DataCollectionListItem> {
-  bool isExpanded = false;
-
   @override
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);

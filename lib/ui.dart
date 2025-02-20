@@ -7,7 +7,7 @@
 /// Many of these Widgets are responsible for making the collected results accessible to others.
 /// Also contains general styles, UI statics used in Research Package UI in [RPStyles].
 
-library research_package_ui;
+library;
 
 import 'dart:async';
 import 'dart:convert';

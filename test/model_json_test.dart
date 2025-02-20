@@ -7,15 +7,15 @@ import 'package:test/test.dart';
 void main() {
   RPConsentSignature signature = RPConsentSignature(identifier: "signatureID");
 
-  RPConsentSection overviewSection =
-      RPConsentSection(type: RPConsentSectionType.Overview)
-        ..summary = "Welcome to this survey"
-        ..content = "Overview content";
+  RPConsentSection overviewSection = RPConsentSection(
+      type: RPConsentSectionType.Overview,
+      summary: "Welcome to this survey",
+      content: "Overview content");
 
-  RPConsentSection dataGatheringSection =
-      RPConsentSection(type: RPConsentSectionType.DataGathering)
-        ..summary = "This is a summary for Data Gathering."
-        ..content = "Data Gathering content";
+  RPConsentSection dataGatheringSection = RPConsentSection(
+      type: RPConsentSectionType.DataGathering,
+      summary: "This is a summary for Data Gathering.",
+      content: "Data Gathering content");
 
   RPConsentDocument consentDocument = RPConsentDocument(
     title: 'WHO5 Consent',
