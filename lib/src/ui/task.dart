@@ -196,6 +196,18 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                       ?.translate('discard_confirmation') ??
                   "Discard results and quit?"),
           actions: <Widget>[
+            OutlinedButton(
+              child: Text(
+                RPLocalizations.of(context)?.translate('NO') ?? "NO",
+                style: TextStyle(
+                    color: ((CupertinoTheme.of(context).primaryColor ==
+                            CupertinoColors.activeBlue)
+                        ? Theme.of(context).primaryColor
+                        : CupertinoTheme.of(context).primaryColor)),
+              ),
+              onPressed: () =>
+                  Navigator.of(context).pop(), // Dismissing the pop-up
+            ),
             ButtonTheme(
               minWidth: 70,
               child: TextButton(
@@ -207,33 +219,21 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                           : CupertinoTheme.of(context).primaryColor),
                 ),
                 child: Text(
-                  RPLocalizations.of(context)?.translate('NO') ?? "NO",
+                  RPLocalizations.of(context)?.translate('YES') ?? "YES",
                   style: const TextStyle(color: Colors.white),
                 ),
-                onPressed: () =>
-                    Navigator.of(context).pop(), // Dismissing the pop-up
+                onPressed: () {
+                  // Calling the onCancel method with which the developer can for
+                  // e.g. save the result on the device.
+                  // Only call it if it's not null
+                  widget.onCancel?.call(_taskResult);
+                  // Popup dismiss
+                  Navigator.of(context).pop();
+                  // Exit the Ordered Task
+                  Navigator.of(context).pop();
+                },
               ),
             ),
-            OutlinedButton(
-              child: Text(
-                RPLocalizations.of(context)?.translate('YES') ?? "YES",
-                style: TextStyle(
-                    color: ((CupertinoTheme.of(context).primaryColor ==
-                            CupertinoColors.activeBlue)
-                        ? Theme.of(context).primaryColor
-                        : CupertinoTheme.of(context).primaryColor)),
-              ),
-              onPressed: () {
-                // Calling the onCancel method with which the developer can for
-                // e.g. save the result on the device.
-                // Only call it if it's not null
-                widget.onCancel?.call(_taskResult);
-                // Popup dismiss
-                Navigator.of(context).pop();
-                // Exit the Ordered Task
-                Navigator.of(context).pop();
-              },
-            )
           ],
         );
       },
@@ -246,17 +246,24 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Spacer
           Expanded(
-            flex: 1,
-            child: Container(),
+            flex: 5,
+            child: Container(
+              child: Image.asset(
+                'assets/images/carp_logo_example.png',
+                fit: BoxFit.contain,
+                height: 16,
+              ),
+            ),
           ),
           // Carousel indicator
           Expanded(
             flex: 2,
             child: (!navigableTask)
                 ? Text(
-                    '${_currentStepIndex + 1} ${locale?.translate('of') ?? 'of'} ${widget.task.steps.length}',
+                    '${_currentStepIndex + 1} '
+                    '${locale?.translate('of') ?? 'of'} '
+                    '${widget.task.steps.length}',
                     style: Theme.of(context).appBarTheme.titleTextStyle,
                     textAlign: TextAlign.center,
                   )
@@ -264,8 +271,10 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
           ),
           // Close button
           Expanded(
-            flex: 1,
+            flex: 5,
             child: IconButton(
+              padding: const EdgeInsets.only(right: 30),
+              alignment: Alignment.centerRight,
               icon: Icon(
                 Icons.highlight_off,
                 color: ((CupertinoTheme.of(context).primaryColor ==
@@ -285,7 +294,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
 
-    return PopScope(
+    return PopScope<bool>(
       canPop: false,
       // removed again - see issue #141
       // onPopInvokedWithResult: (bool didPop, Object? result) async {
@@ -338,12 +347,9 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
                           if (snapshot.hasData) {
                             return ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: (CupertinoTheme.of(context)
-                                              .primaryColor ==
-                                          CupertinoColors.activeBlue)
-                                      ? Theme.of(context).primaryColor
-                                      : CupertinoTheme.of(context)
-                                          .primaryColor),
+                                  backgroundColor: Theme.of(context)
+                                      .extension<RPColors>()!
+                                      .primary),
                               onPressed: snapshot.data!
                                   ? () {
                                       FocusManager.instance.primaryFocus

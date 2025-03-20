@@ -239,18 +239,18 @@ class __TextPresenterRouteState extends State<_TextPresenterRoute> {
                 widget.step.reasonForConsent!),
             actions: <Widget>[
               OutlinedButton(
+                onPressed: onPressedCallback,
                 child: Text(
                   locale?.translate('CANCEL') ?? 'CANCEL',
                   style: TextStyle(color: Theme.of(context).primaryColor),
                 ),
-                onPressed: () => Navigator.of(context).pop(),
               ),
               TextButton(
                 style: ButtonStyle(
-                  backgroundColor:
-                      WidgetStateProperty.all(Theme.of(context).primaryColor),
+                  backgroundColor: WidgetStateProperty.all(
+                      Theme.of(context).extension<RPColors>()!.primary),
                 ),
-                onPressed: onPressedCallback,
+                onPressed: () => Navigator.of(context).pop(),
                 child: Text(locale?.translate('AGREE') ?? "AGREE",
                     style: Theme.of(context).textTheme.labelLarge),
               ),

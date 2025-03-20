@@ -16,6 +16,7 @@ class RPUIVisualConsentStep extends StatefulWidget {
 class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
     with SingleTickerProviderStateMixin {
   int _pageNr = 0;
+  int _totalPages = 0;
   bool _lastPage = false;
 
   @override
@@ -54,23 +55,24 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
           actions: <Widget>[
             OutlinedButton(
               child: Text(
-                locale?.translate('YES') ?? "YES",
+                locale?.translate('NO') ?? "NO",
                 style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
+              onPressed: () => Navigator.of(context).pop(), // Pop the popup,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Theme.of(context).extension<RPColors>()!.primary),
+              child: Text(
+                RPLocalizations.of(context)?.translate('YES') ?? 'YES',
+                style: Theme.of(context).primaryTextTheme.labelLarge,
               ),
               onPressed: () {
                 Navigator.of(context).pop(); // Pop the popup
                 Navigator.of(context).pop(); // Pop the screen
               },
             ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor),
-                child: Text(
-                  RPLocalizations.of(context)?.translate('NO') ?? 'NO',
-                  style: Theme.of(context).primaryTextTheme.labelLarge,
-                ),
-                onPressed: () => Navigator.of(context).pop() // Pop the popup,
-                )
           ],
         );
       },
@@ -216,6 +218,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
   }
 
   Widget _consentSectionPageBuilder(BuildContext context, int index) {
+    _totalPages = widget.consentDocument.sections.length;
     RPConsentSection section = widget.consentDocument.sections[index];
     RPLocalizations? locale = RPLocalizations.of(context);
 
@@ -224,15 +227,19 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
         section.type == RPConsentSectionType.PassiveDataCollection ||
         section.type == RPConsentSectionType.HealthDataCollection) {
       return Container(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            _progressIndicator(),
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
                 locale?.translate(section.title) ?? section.title,
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: visualConsentStepTitleStyle.copyWith(
+                  color: Theme.of(context).extension<RPColors>()!.primary,
+                ),
                 textAlign: TextAlign.start,
               ),
             ),
@@ -259,6 +266,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            _progressIndicator(),
             Center(
               child: Stack(
                 children: [
@@ -275,12 +283,18 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
               children: <Widget>[
                 Text(
                   locale?.translate(section.title) ?? section.title,
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: visualConsentStepTitleStyle.copyWith(
+                    color: Theme.of(context).extension<RPColors>()!.primary,
+                  ),
                   textAlign: TextAlign.start,
                 ),
                 const SizedBox(height: 5),
-                Text(locale?.translate(section.summary) ?? section.summary,
-                    style: Theme.of(context).textTheme.titleLarge),
+                Text(
+                  locale?.translate(section.summary) ?? section.summary,
+                  style: visualConsentStepSummaryStyle.copyWith(
+                    color: Theme.of(context).extension<RPColors>()!.grey900,
+                  ),
+                ),
                 const SizedBox(height: 30),
                 GestureDetector(
                   onTap: () => _pushContent(
@@ -288,12 +302,12 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
                     section.content!,
                   ),
                   child: Text(
-                      RPLocalizations.of(context)?.translate('learn_more') ??
-                          "Learn more...",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(color: Theme.of(context).primaryColor)),
+                    RPLocalizations.of(context)?.translate('learn_more') ??
+                        "Learn more",
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        color:
+                            Theme.of(context).extension<RPColors>()!.primary),
+                  ),
                 ),
               ],
             ),
@@ -301,6 +315,26 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
         ),
       );
     }
+  }
+
+  Widget _progressIndicator() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(_totalPages - 1, (index) {
+        return Expanded(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 4.0),
+            height: 4, // Thickness of the indicator
+            decoration: BoxDecoration(
+              color: index < _pageNr
+                  ? Theme.of(context).extension<RPColors>()!.primary
+                  : Theme.of(context).extension<RPColors>()!.grey300,
+              borderRadius: BorderRadius.circular(4),
+            ),
+          ),
+        );
+      }),
+    );
   }
 
   Widget _navigationButtons(PageController controller) {
@@ -319,8 +353,8 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
           ),
           TextButton(
             style: ButtonStyle(
-              backgroundColor:
-                  WidgetStateProperty.all(Theme.of(context).primaryColor),
+              backgroundColor: WidgetStateProperty.all(
+                  Theme.of(context).extension<RPColors>()!.primary),
             ),
             onPressed: _lastPage
                 ? () => blocTask.sendStatus(RPStepStatus.Finished)
@@ -349,7 +383,7 @@ class RPUIVisualConsentStepState extends State<RPUIVisualConsentStep>
   Widget build(BuildContext context) {
     PageController controller = PageController();
 
-    return PopScope(
+    return PopScope<RPUIVisualConsentStep>(
       canPop: false,
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -390,14 +424,17 @@ class DataCollectionListItemState extends State<DataCollectionListItem> {
   Widget build(BuildContext context) {
     RPLocalizations? locale = RPLocalizations.of(context);
     return ExpansionTile(
+      tilePadding: const EdgeInsets.only(left: 0),
       expandedAlignment: Alignment.centerLeft,
       title: Text(
         locale?.translate(widget.dataTypeSection.dataName) ??
             widget.dataTypeSection.dataName,
-        style: Theme.of(context).textTheme.titleMedium,
+        style: visualConsentStepTileStyle.copyWith(
+          color: Theme.of(context).extension<RPColors>()!.grey900,
+        ),
         textAlign: TextAlign.start,
       ),
-      childrenPadding: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
+      childrenPadding: const EdgeInsets.only(bottom: 5),
       children: [
         Text(
           locale?.translate(widget.dataTypeSection.dataInformation) ??
