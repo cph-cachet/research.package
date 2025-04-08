@@ -183,6 +183,8 @@ RPOrderedTask get consentTask {
     title: 'Informed Consent - Full Version',
     sections: [
       overviewSection,
+      welcomeSection,
+      aboutUs,
       dataGatheringSection,
       privacySection,
       dataUseSection,
@@ -192,8 +194,6 @@ RPOrderedTask get consentTask {
       studySurveySection,
       withdrawingSection,
       yourRightsSection,
-      welcomeSection,
-      aboutUs,
       goalsSection,
       benefitsSection,
       locationSection,
@@ -234,7 +234,7 @@ RPOrderedTask get consentTask {
   RPOrderedTask consentTask = RPOrderedTask(
     identifier: "consentTaskID",
     steps: [
-      instructionStep,
+      // instructionStep,
       consentVisualStep,
       consentReviewStep,
       completionStep,

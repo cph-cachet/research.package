@@ -1,3 +1,11 @@
+## 2.0.0
+
+* Redesign of informed consent 
+* Redesign of app bar
+* Addition of research_package_styles
+* Major flutter upgrade for example app
+* Major gradle upgrade for exmaple app 
+
 ## 1.8.0
 
 * Added support for a `HealthDataCollection` type in the `RPConsentSectionType` which allow for showing what health data is being collected as part of an informed consent flow.
