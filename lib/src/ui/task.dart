@@ -251,6 +251,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
             child: Container(
               child: Image.asset(
                 'assets/icons/carp_logo_example.png',
+                package: 'research_package',
                 fit: BoxFit.contain,
                 height: 16,
               ),
