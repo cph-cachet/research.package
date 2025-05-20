@@ -250,7 +250,7 @@ class RPUITaskState extends State<RPUITask> with CanSaveResult {
             flex: 5,
             child: Container(
               child: Image.asset(
-                'assets/images/carp_logo_example.png',
+                'assets/icons/carp_logo_example.png',
                 fit: BoxFit.contain,
                 height: 16,
               ),

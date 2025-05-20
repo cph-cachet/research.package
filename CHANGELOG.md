@@ -1,3 +1,7 @@
+## 2.0.1
+
+* fixing asset path
+
 ## 2.0.0
 
 * Redesign of informed consent 
