@@ -8,10 +8,10 @@ class RPColors extends ThemeExtension<RPColors> {
     required this.grey900,
   });
 
-  final Color primary;
+  final Color? primary;
   final Color? warningColor;
-  final Color grey300;
-  final Color grey900;
+  final Color? grey300;
+  final Color? grey900;
 
   @override
   RPColors copyWith(
