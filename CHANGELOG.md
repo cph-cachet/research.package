@@ -1,3 +1,11 @@
+## 2.1.0
+
+* updating RPColors theme to act as carp_styles_package temporarily
+
+## 2.0.2
+
+* fixing nullable variables
+
 ## 2.0.1
 
 * fixing asset path
